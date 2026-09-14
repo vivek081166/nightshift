@@ -54,7 +54,8 @@
      "text": "P1: Roll back the deployment from 14 minutes ago.",
      "severity": "P1"
     }
-   ]
+   ],
+   "alert_text": "payments-api: p95 latency 4.8 s for 6 min, error rate 0.9 %, 3 customer reports of failed checkout, last deploy 14 min ago."
   },
   {
    "alert": "ep01",
@@ -104,7 +105,8 @@
      "text": "P1: Roll back the last deployment.",
      "severity": "P1"
     }
-   ]
+   ],
+   "alert_text": "payments-api: p95 latency 4.8 s for 6 min, error rate 0.9 %, 3 customer reports of failed checkout, last deploy 14 min ago."
   },
   {
    "alert": "notifier-night",
@@ -154,7 +156,8 @@
      "text": "P2: Check consumer worker count and downstream latency to determine why processing rate is trailing ingestion, then scale consumers if unconstrained.",
      "severity": "P2"
     }
-   ]
+   ],
+   "alert_text": "notifier: queue depth 1,200 and rising for 25 min, no errors logged, delivery still succeeding, 03:10 local time, no customer reports, last deploy 3 days ago."
   },
   {
    "alert": "notifier-night",
@@ -204,7 +207,8 @@
      "text": "P2: Check ingress rate versus consumer processing rate and scale up notifier worker capacity.",
      "severity": "P2"
     }
-   ]
+   ],
+   "alert_text": "notifier: queue depth 1,200 and rising for 25 min, no errors logged, delivery still succeeding, 03:10 local time, no customer reports, last deploy 3 days ago."
   },
   {
    "alert": "api-slo-edge",
@@ -254,7 +258,8 @@
      "text": "P2, inspect API error logs to identify the failing endpoints and HTTP status code distribution.",
      "severity": "P2"
     }
-   ]
+   ],
+   "alert_text": "api: error rate 0.4 % for 40 min against a 0.5 % monthly SLO budget, p95 latency normal, 1 customer report, last deploy 6 h ago."
   },
   {
    "alert": "api-slo-edge",
@@ -304,7 +309,8 @@
      "text": "P2; inspect API error logs to identify the failing endpoints and HTTP 5xx error distribution.",
      "severity": "P2"
     }
-   ]
+   ],
+   "alert_text": "api: error rate 0.4 % for 40 min against a 0.5 % monthly SLO budget, p95 latency normal, 1 customer report, last deploy 6 h ago."
   },
   {
    "alert": "disk-slow-burn",
@@ -354,7 +360,8 @@
      "text": "P2, SSH into the affected nodes and run `du -sh` or check log directories to identify the rapidly growing files.",
      "severity": "P2"
     }
-   ]
+   ],
+   "alert_text": "web: disk usage 81 % climbing ~1 % per hour on 2 of 6 nodes, no errors, no latency change, no customer reports, last deploy 2 days ago."
   },
   {
    "alert": "disk-slow-burn",
@@ -404,7 +411,8 @@
      "text": "P2: SSH into the affected nodes and inspect disk usage (e.g., `du -sh /*` or `lsof +L1`) to identify growing files such as unrotated logs or core dumps.",
      "severity": "P2"
     }
-   ]
+   ],
+   "alert_text": "web: disk usage 81 % climbing ~1 % per hour on 2 of 6 nodes, no errors, no latency change, no customer reports, last deploy 2 days ago."
   },
   {
    "alert": "payments-partial",
@@ -455,7 +463,8 @@
      "text": "P2: Inspect `eu-west` checkout error logs and payment gateway response codes to identify the specific failure reason.",
      "severity": "P2"
     }
-   ]
+   ],
+   "alert_text": "payments: checkout failures 12 % in eu-west only, other regions clean, p95 latency normal, 1 customer report, no deploy in 5 days, upstream provider status page green."
   },
   {
    "alert": "payments-partial",
@@ -506,7 +515,8 @@
      "text": "P2 - Check eu-west payment service error logs and response codes to identify the specific failure reason.",
      "severity": "P2"
     }
-   ]
+   ],
+   "alert_text": "payments: checkout failures 12 % in eu-west only, other regions clean, p95 latency normal, 1 customer report, no deploy in 5 days, upstream provider status page green."
   },
   {
    "alert": "web-cosmetic",
@@ -556,7 +566,8 @@
      "text": "P2: Check the recent deployment diff to see if `favicon.ico` was moved, deleted, or had its static routing misconfigured.",
      "severity": "P2"
     }
-   ]
+   ],
+   "alert_text": "web: 404 rate up from 0.2 % to 1.1 % for 15 min, all on /favicon.ico, no other errors, no latency change, no customer reports, last deploy 20 min ago."
   },
   {
    "alert": "web-cosmetic",
@@ -606,7 +617,16 @@
      "text": "P2: Check the recent deployment for missing static assets or misrouted `/favicon.ico`.",
      "severity": "P2"
     }
-   ]
+   ],
+   "alert_text": "web: 404 rate up from 0.2 % to 1.1 % for 15 min, all on /favicon.ico, no other errors, no latency change, no customer reports, last deploy 20 min ago."
   }
- ]
+ ],
+ "alert_texts": {
+  "ep01": "payments-api: p95 latency 4.8 s for 6 min, error rate 0.9 %, 3 customer reports of failed checkout, last deploy 14 min ago.",
+  "notifier-night": "notifier: queue depth 1,200 and rising for 25 min, no errors logged, delivery still succeeding, 03:10 local time, no customer reports, last deploy 3 days ago.",
+  "api-slo-edge": "api: error rate 0.4 % for 40 min against a 0.5 % monthly SLO budget, p95 latency normal, 1 customer report, last deploy 6 h ago.",
+  "disk-slow-burn": "web: disk usage 81 % climbing ~1 % per hour on 2 of 6 nodes, no errors, no latency change, no customer reports, last deploy 2 days ago.",
+  "payments-partial": "payments: checkout failures 12 % in eu-west only, other regions clean, p95 latency normal, 1 customer report, no deploy in 5 days, upstream provider status page green.",
+  "web-cosmetic": "web: 404 rate up from 0.2 % to 1.1 % for 15 min, all on /favicon.ico, no other errors, no latency change, no customer reports, last deploy 20 min ago."
+ }
 }

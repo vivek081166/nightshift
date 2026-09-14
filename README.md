@@ -1,0 +1,26 @@
+# Nightshift
+
+The code from the AI Engineering course. One git tag per episode, so `git checkout ep01` gives you
+exactly what is on screen in episode 1.
+
+You can write a Python function and call an HTTP API. No machine learning needed.
+
+## Run it
+
+    export GEMINI_API_KEY=...
+    python3 ten_runs.py           # one on-call alert, ten times, with the tally and the cost line
+    node js/ep01/first_call.mjs   # the same first call in Node
+
+Both calls are raw HTTP on purpose. No SDK, nothing to install past the key.
+The demo calls Gemini. The OpenAI and Anthropic APIs take the same kind of request, and nothing in
+the course depends on the vendor.
+
+## Episodes
+
+| Tag | Episode | What it adds |
+|---|---|---|
+| `ep01` | [AI Engineering Roadmap 2026](https://youtu.be/5dW1jMOYbMY) | The 40-line v0: one alert, ten runs, tokens and cost |
+
+The map the course follows: [Andrew Ng's AI Engineering Skills Map](https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map)
+
+Model ids and the prices behind the cost line are pinned in [PROVENANCE.md](PROVENANCE.md).

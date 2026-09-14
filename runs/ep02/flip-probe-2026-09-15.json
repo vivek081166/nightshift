@@ -1,0 +1,612 @@
+{
+ "model": "gemini-3.8-flash",
+ "n": 10,
+ "date": "2026-09-15",
+ "tokens_in": 8760,
+ "tokens_out": 62307,
+ "cost_usd": 0.2402,
+ "results": [
+  {
+   "alert": "ep01",
+   "temperature": null,
+   "tally": {
+    "P1": 10
+   },
+   "distinct_texts": 5,
+   "answers": [
+    {
+     "text": "P1: Roll back the deployment from 14 minutes ago.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1: Roll back the deployment from 14 minutes ago.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1 - Roll back the last deployment immediately.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1: Roll back the last deployment.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1: Roll back the last deployment.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1: Roll back the deployment from 14 minutes ago.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1 - Roll back the deployment from 14 minutes ago.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1: Roll back the last deployment.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1 \u2014 Roll back the last deployment immediately.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1: Roll back the deployment from 14 minutes ago.",
+     "severity": "P1"
+    }
+   ]
+  },
+  {
+   "alert": "ep01",
+   "temperature": 0.0,
+   "tally": {
+    "P1": 10
+   },
+   "distinct_texts": 5,
+   "answers": [
+    {
+     "text": "P1: Roll back the deployment from 14 minutes ago.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1: Roll back the deployment from 14 minutes ago.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1 - Roll back the deployment from 14 minutes ago.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1 \u2014 Roll back the last deployment immediately.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1: Roll back the deployment from 14 minutes ago.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1: Roll back the deployment from 14 minutes ago.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1 - Roll back the deployment from 14 minutes ago.",
+     "severity": "P1"
+    },
+    {
+     "text": "**P1** \u2014 Roll back the last deployment of `payments-api` immediately.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1: Roll back the deployment from 14 minutes ago.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1: Roll back the last deployment.",
+     "severity": "P1"
+    }
+   ]
+  },
+  {
+   "alert": "notifier-night",
+   "temperature": null,
+   "tally": {
+    "P2": 10
+   },
+   "distinct_texts": 10,
+   "answers": [
+    {
+     "text": "P2: Check consumer throughput and worker concurrency/scaling to determine if processing slowed down or inbound volume spiked.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check consumer worker health and scale up worker capacity to address processing lag.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check consumer processing rate versus ingress rate and scale up worker consumers if they are saturated.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check consumer processing throughput and scale out the notifier worker instances.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check consumer processing rates and worker health/autoscaling to determine if consumers are stalled or incoming traffic has spiked.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2; check consumer worker count and scale up consumers to match ingress rate.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2 - Check consumer processing rate against incoming message volume and scale up worker capacity.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2 - Check consumer throughput versus publish rate to determine if there is an ingress traffic spike, and scale up the worker pool if needed.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check consumer processing throughput against incoming message rate and scale up notifier workers if healthy.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check consumer worker count and downstream latency to determine why processing rate is trailing ingestion, then scale consumers if unconstrained.",
+     "severity": "P2"
+    }
+   ]
+  },
+  {
+   "alert": "notifier-night",
+   "temperature": 0.0,
+   "tally": {
+    "P2": 10
+   },
+   "distinct_texts": 10,
+   "answers": [
+    {
+     "text": "P2 - Check worker processing capacity against incoming message rate and scale up the consumer fleet.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2 - Check consumer processing latency and scale up notifier worker capacity to handle the increased load.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check consumer worker health and processing throughput against incoming message volume, then scale up worker capacity.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check consumer processing throughput against incoming publish volume and scale up notifier worker instances.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check consumer processing rate against incoming message volume and scale up notifier workers.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2 - Check notifier worker processing rates and scale out consumers if processing is lagging behind an ingestion spike.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2 - Check consumer processing rates and worker scaling metrics to identify if consumption is stalled or outpaced by an inbound traffic spike.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check consumer processing capacity and scale up the notifier worker pool.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check incoming message throughput against worker consumption rates and scale up consumer workers if healthy.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check ingress rate versus consumer processing rate and scale up notifier worker capacity.",
+     "severity": "P2"
+    }
+   ]
+  },
+  {
+   "alert": "api-slo-edge",
+   "temperature": null,
+   "tally": {
+    "P2": 10
+   },
+   "distinct_texts": 10,
+   "answers": [
+    {
+     "text": "P2: Check API logs and error breakdown to identify the failing endpoints and dominant 5xx status codes.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Inspect the API logs to identify the failing endpoints, HTTP status codes, and error signatures.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2 - Inspect API error logs filtered by HTTP status code and endpoint to identify the failing requests and root cause.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Query API logs to identify the failing endpoints, status codes, and affected users.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2; inspect API error logs grouped by status code and endpoint to identify the failing requests.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2, query API logs to identify the failing endpoints and specific 5xx error signatures.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check API service logs to identify the specific error codes and affected endpoints.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2 - Inspect API error logs and metrics grouped by endpoint and status code to isolate the failure source.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Inspect API error logs and metrics to identify the failing endpoints and specific 5xx status codes.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2, inspect API error logs to identify the failing endpoints and HTTP status code distribution.",
+     "severity": "P2"
+    }
+   ]
+  },
+  {
+   "alert": "api-slo-edge",
+   "temperature": 0.0,
+   "tally": {
+    "P2": 10
+   },
+   "distinct_texts": 10,
+   "answers": [
+    {
+     "text": "P2 - Check API logs to identify the failing endpoints and specific 5xx error codes.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check API error logs to identify the failing endpoints and dominant 5xx/4xx error codes.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Inspect API error logs and metrics to identify the failing endpoints, status codes, and affected customer scope.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Inspect application and gateway logs to identify the specific 5xx errors, failing endpoints, and affected callers.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Inspect API error logs for 5xx status codes and stack traces to identify the failing endpoints and failure mode.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2 - Inspect API logs and metrics grouped by endpoint and status code to isolate the source of the 5xx errors.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2; inspect API gateway/service error logs to identify the failing endpoints and specific 5xx/4xx error codes.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check the API error logs and the customer report to identify the failing endpoints and specific error codes.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Inspect error logs to identify failing endpoints and specific status codes.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2; inspect API error logs to identify the failing endpoints and HTTP 5xx error distribution.",
+     "severity": "P2"
+    }
+   ]
+  },
+  {
+   "alert": "disk-slow-burn",
+   "temperature": null,
+   "tally": {
+    "P2": 10
+   },
+   "distinct_texts": 10,
+   "answers": [
+    {
+     "text": "P2: SSH into the affected nodes to identify and clear rapidly growing files/directories (e.g., check `/var/log` or run `du -sh /*`).",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: SSH into the affected nodes and run `du -ahx / | sort -rh | head -n 20` (or check `/var/log`) to identify and mitigate the rapidly growing files.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: SSH into one of the affected nodes and identify the growing files or unlinked open processes using `du -ahx / | sort -rh | head -20` and `lsof +L1`.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2; SSH into one of the affected nodes and identify the rapidly growing files/directories (e.g., via `ncdu` or checking `/var/log`).",
+     "severity": "P2"
+    },
+    {
+     "text": "P2; SSH into an affected node and run `du -xhd 1 / | sort -h` (or inspect `/var/log`) to identify the rapidly growing files or directories.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2; SSH into one of the affected nodes and inspect the filesystem (e.g., `du -sh /*` or check `/var/log`) to identify which directory or file is consuming space.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: SSH into the affected nodes and identify the growing files or directories using `du -ah / | sort -rh | head -n 20` or check for unlinked open files with `lsof +L1`.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: SSH into the affected nodes and run `du -h --max-depth=2 /` to identify the rapidly growing files or logs.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: SSH into the affected nodes and run `du -h -d 2 /` (or check `/var/log`) to identify which files or directories are consuming the disk space.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2, SSH into the affected nodes and run `du -sh` or check log directories to identify the rapidly growing files.",
+     "severity": "P2"
+    }
+   ]
+  },
+  {
+   "alert": "disk-slow-burn",
+   "temperature": 0.0,
+   "tally": {
+    "P2": 10
+   },
+   "distinct_texts": 10,
+   "answers": [
+    {
+     "text": "**P2**; SSH into the affected nodes to identify the rapidly growing files/directories using `ncdu` or `du -xhd 1 /`.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Inspect the affected nodes using `du -sh` or `lsof +L1` to identify the rapidly growing files or unlinked open logs consuming disk space.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2 - SSH into one of the affected nodes and run `du -h --max-depth=1 /` (or check `/var/log`) to identify which directory or file is rapidly consuming space.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: SSH into an affected node and identify the rapidly growing directory or file using `du -ahx / | sort -rh | head -n 20` (check `/var/log` or temp files first).",
+     "severity": "P2"
+    },
+    {
+     "text": "**P2** \u2014 SSH into one of the affected nodes and run `du -hxd1 / | sort -hr` (or check `/var/log`) to identify the rapidly growing files or directories.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: SSH into one of the affected nodes and run `du -sh /*` or check `/var/log` to identify the rapidly growing files/processes.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2 - SSH into one of the affected nodes to identify the growing files or directories (e.g., check `/var/log` or run `du -sh /* | sort -h`).",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: SSH into an affected node and run `du -h --max-depth=1 /` (or `lsof +L1`) to identify what files or logs are consuming space.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2 - SSH into an affected node and run `du -sh /*` or check `/var/log` to identify the rapidly growing files or unrotated logs.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: SSH into the affected nodes and inspect disk usage (e.g., `du -sh /*` or `lsof +L1`) to identify growing files such as unrotated logs or core dumps.",
+     "severity": "P2"
+    }
+   ]
+  },
+  {
+   "alert": "payments-partial",
+   "temperature": null,
+   "tally": {
+    "P2": 5,
+    "P1": 5
+   },
+   "distinct_texts": 10,
+   "answers": [
+    {
+     "text": "P2 - Query eu-west payment error logs to identify specific failure codes and failure domains.",
+     "severity": "P2"
+    },
+    {
+     "text": "**P1** \u2014 Inspect eu-west payment service logs and error code distributions to identify the failing checkout failure reason or upstream endpoint.",
+     "severity": "P1"
+    },
+    {
+     "text": "P2: Inspect eu-west payment service logs and error codes to determine if failures are due to a specific payment method, regional network issue, or unannounced upstream gateway outage.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2 - Inspect the `eu-west` checkout service error logs and gateway response codes to identify the specific failure cause.",
+     "severity": "P2"
+    },
+    {
+     "text": "**P1**: Inspect `eu-west` payment service logs and error codes to identify the root cause of the rejected transactions.",
+     "severity": "P1"
+    },
+    {
+     "text": "P2 \u2014 Inspect eu-west application error logs and payment gateway response codes to identify the failure root cause.",
+     "severity": "P2"
+    },
+    {
+     "text": "P1: Inspect eu-west payment service error logs and gateway response codes to identify the specific failure reason.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1 - Check eu-west payment service error logs and gateway response codes to identify the specific failure reason.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1: Inspect eu-west payment service error logs and upstream response codes to identify the specific failure reason.",
+     "severity": "P1"
+    },
+    {
+     "text": "P2: Inspect `eu-west` checkout error logs and payment gateway response codes to identify the specific failure reason.",
+     "severity": "P2"
+    }
+   ]
+  },
+  {
+   "alert": "payments-partial",
+   "temperature": 0.0,
+   "tally": {
+    "P1": 9,
+    "P2": 1
+   },
+   "distinct_texts": 10,
+   "answers": [
+    {
+     "text": "P1 - Inspect eu-west payment service logs to identify the specific error codes returned by the upstream gateway.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1: Inspect eu-west payment service logs and gateway error codes to identify the specific failure reason.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1 - Check eu-west payment gateway error logs to identify the specific failure codes and failing provider endpoints.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1 - Inspect eu-west payment service error logs and failure codes to determine the exact reason transactions are being rejected.",
+     "severity": "P1"
+    },
+    {
+     "text": "**P1** \u2014 Inspect eu-west payment error logs to identify the specific failure codes and error responses from the upstream gateway.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1: Query eu-west checkout error logs to identify the specific failure codes and error responses from the payment gateway.",
+     "severity": "P1"
+    },
+    {
+     "text": "**P1** \u2014 Inspect `eu-west` payment service error logs and gateway response codes to identify the specific failure reason.",
+     "severity": "P1"
+    },
+    {
+     "text": "P1: Check eu-west checkout error logs to identify the specific failure codes and error responses from the upstream payment gateway.",
+     "severity": "P1"
+    },
+    {
+     "text": "**P1** \u2014 Inspect the checkout service logs and error codes in `eu-west` to identify the specific failure reason and downstream responses.",
+     "severity": "P1"
+    },
+    {
+     "text": "P2 - Check eu-west payment service error logs and response codes to identify the specific failure reason.",
+     "severity": "P2"
+    }
+   ]
+  },
+  {
+   "alert": "web-cosmetic",
+   "temperature": null,
+   "tally": {
+    "P2": 10
+   },
+   "distinct_texts": 10,
+   "answers": [
+    {
+     "text": "P2: Check the recent deployment diff for missing or misplaced static assets (`/favicon.ico`).",
+     "severity": "P2"
+    },
+    {
+     "text": "P2 - Check the recent deployment diff to see if `favicon.ico` was removed, relocated, or if static asset routing was misconfigured.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2 - Inspect the recent deployment diff for missing, moved, or misrouted `favicon.ico` static assets.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check the recent deploy diff for missing or misrouted static assets, specifically `favicon.ico`.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check the recent deployment changelog/diff for missing, renamed, or misrouted static assets, specifically `favicon.ico`.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2; check the latest deploy's changelog/diff for missing static assets or changes to `/favicon.ico` routing.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2 - Verify if the recent deployment removed or misrouted the static `/favicon.ico` asset and restore it.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check the last deployment's changelog and static asset configuration for a missing or misrouted favicon.ico.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2, check the recent deploy for missing static assets or routing changes for favicon.ico.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check the recent deployment diff to see if `favicon.ico` was moved, deleted, or had its static routing misconfigured.",
+     "severity": "P2"
+    }
+   ]
+  },
+  {
+   "alert": "web-cosmetic",
+   "temperature": 0.0,
+   "tally": {
+    "P2": 10
+   },
+   "distinct_texts": 10,
+   "answers": [
+    {
+     "text": "P2: Check the recent deployment diff for removed, moved, or misrouted `/favicon.ico` assets.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2, verify if the recent deploy removed or misrouted the `favicon.ico` static asset.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2; inspect the recent deployment for missing static assets or changes to the `/favicon.ico` path.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2, inspect the recent deployment for a missing or misrouted `/favicon.ico` static asset.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2, check the recent deploy diff for missing static asset routing or an accidentally removed favicon.ico file.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check the recent deploy diff to see if the favicon asset or its static routing rule was accidentally removed or relocated.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check the recent deployment changelog/diff for missing or misconfigured static asset routing for favicon.ico.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check the recent deployment for missing static asset configuration or an accidentally removed `/favicon.ico`.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check the recent deployment changes to see if the favicon.ico static asset was deleted, moved, or misrouted.",
+     "severity": "P2"
+    },
+    {
+     "text": "P2: Check the recent deployment for missing static assets or misrouted `/favicon.ico`.",
+     "severity": "P2"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "why": "Does the API actually honour generationConfig.temperature, or could a malformed field be ignored in silence? A cold reader raised this against EP02's temperature section: 'your parameter never took effect'. It did.",
+ "date": "2026-09-17",
+ "model": "gemini-3.8-flash",
+ "endpoint": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent",
+ "results": {
+  "accepted__generationConfig_temperature_0": {
+   "sent": {
+    "generationConfig": {
+     "temperature": 0
+    }
+   },
+   "http": 200,
+   "error": ""
+  },
+  "rejected__outer_key_misspelled": {
+   "sent": {
+    "generationConfigg": {
+     "temperature": 0
+    }
+   },
+   "http": 400,
+   "error": "Invalid JSON payload received. Unknown name \"generationConfigg\": Cannot find field."
+  },
+  "rejected__inner_key_misspelled": {
+   "sent": {
+    "generationConfig": {
+     "temperatur": 0
+    }
+   },
+   "http": 400,
+   "error": "Invalid JSON payload received. Unknown name \"temperatur\" at 'generation_config': Cannot find field."
+  },
+  "rejected__temperature_out_of_range": {
+   "sent": {
+    "generationConfig": {
+     "temperature": 99
+    }
+   },
+   "http": 400,
+   "error": "* GenerateContentRequest.generation_config.temperature: temperature must be in the range [0.0, 2.0].\n"
+  }
+ }
+}

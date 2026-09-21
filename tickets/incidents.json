@@ -1,0 +1,152 @@
+[
+ {
+  "id": "payments-latency",
+  "alert": "payments-api: p95 latency 4.8 s for 6 min, error rate 0.9 %, 3 customer reports of failed checkout, last deploy 14 min ago.",
+  "want": "roll back"
+ },
+ {
+  "id": "payments-partial",
+  "alert": "payments: checkout failures 12 % in eu-west only, other regions clean, p95 latency normal, 1 customer report, no deploy in 5 days, upstream provider status page green.",
+  "want": "read logs"
+ },
+ {
+  "id": "api-slo-edge",
+  "alert": "api: error rate 0.4 % for 40 min against a 0.5 % monthly SLO budget, p95 latency normal, 1 customer report, last deploy 6 h ago.",
+  "want": "read logs"
+ },
+ {
+  "id": "disk-slow-burn",
+  "alert": "web: disk usage 81 % climbing ~1 % per hour on 2 of 6 nodes, no errors, no latency change, no customer reports, last deploy 2 days ago.",
+  "want": "no action"
+ },
+ {
+  "id": "web-cosmetic",
+  "alert": "web: 404 rate up from 0.2 % to 1.1 % for 15 min, all on /favicon.ico, no other errors, no latency change, no customer reports, last deploy 20 min ago.",
+  "want": "no action"
+ },
+ {
+  "id": "notifier-night",
+  "alert": "notifier: queue depth 1,200 and rising for 25 min, no errors logged, delivery still succeeding, 03:10 local time, no customer reports, last deploy 3 days ago.",
+  "want": "no action"
+ },
+ {
+  "id": "notifier-vendor-5xx",
+  "alert": "notifier: 100 % of SMS sends failing for 8 min, the SMS vendor's API returning 503, 12 customer reports of missing codes, last deploy 4 days ago.",
+  "want": "check provider"
+ },
+ {
+  "id": "api-deploy-5xx",
+  "alert": "api: error rate up from 0 % to 6.5 % for 4 min, 9 customer reports, last deploy 7 min ago.",
+  "want": "roll back"
+ },
+ {
+  "id": "payments-provider-timeout",
+  "alert": "payments: 22 % of charge attempts timing out for 11 min, our own latency normal, the card provider's status page reports a partial outage, 6 customer reports, last deploy 3 days ago.",
+  "want": "check provider"
+ },
+ {
+  "id": "web-node-restart",
+  "alert": "web: node 3 restarted twice in 20 min, memory at 94 % before each restart, the other five nodes serving normally, no customer reports, last deploy 5 days ago.",
+  "want": "read logs"
+ },
+ {
+  "id": "api-data-leak",
+  "alert": "api: 340 requests in 5 min returned another customer's booking details, 1 customer report, last deploy 2 days ago.",
+  "want": "page owner"
+ },
+ {
+  "id": "payments-double-refund",
+  "alert": "payments: 14 refunds issued twice in the last hour, 182,000 yen total, no errors logged, last deploy 6 days ago.",
+  "want": "page owner"
+ },
+ {
+  "id": "web-deploy-blank",
+  "alert": "web: 5 % of page loads rendering blank for 3 min, 4 customer reports, last deploy 9 min ago.",
+  "want": "roll back"
+ },
+ {
+  "id": "notifier-queue-stuck",
+  "alert": "notifier: queue depth flat at 4,300 for 35 min, nothing delivered in that window, 3 customer reports of missing email, last deploy 2 days ago.",
+  "want": "read logs"
+ },
+ {
+  "id": "api-region-dns",
+  "alert": "api: all requests from ap-northeast failing to resolve for 6 min, other regions clean, the cloud provider reports a DNS incident in that region, 5 customer reports.",
+  "want": "check provider"
+ },
+ {
+  "id": "web-cdn-purge",
+  "alert": "web: static assets returning 404 worldwide for 12 min, the CDN dashboard shows a purge still in progress, 8 customer reports, last deploy 3 days ago.",
+  "want": "check provider"
+ },
+ {
+  "id": "payments-deploy-validation",
+  "alert": "payments: 3 % of checkout submissions returning a validation error, 2 customer reports, last deploy 22 min ago.",
+  "want": "roll back"
+ },
+ {
+  "id": "api-slow-search",
+  "alert": "api: p95 latency up from 1.2 s to 3.9 s for 18 min, error rate normal, 2 customer reports of slow search, last deploy 4 h ago.",
+  "want": "read logs"
+ },
+ {
+  "id": "web-crawler",
+  "alert": "web: request volume 4x normal for 30 min from one address range matching a known search-engine crawler, latency unchanged, no errors, no customer reports, last deploy 3 days ago.",
+  "want": "no action"
+ },
+ {
+  "id": "payments-webhook-retry",
+  "alert": "payments: 18 % of provider webhooks retried at least once in the last hour, all of them delivered in the end, no customer reports, last deploy 2 days ago.",
+  "want": "no action"
+ },
+ {
+  "id": "api-partner-limit",
+  "alert": "api: one integration partner's requests all rejected for 25 min after their contract limit was reduced overnight, 1 customer report from that partner, last deploy 8 days ago.",
+  "want": "page owner"
+ },
+ {
+  "id": "web-deploy-layout",
+  "alert": "web: 1.4 % of sessions reporting a broken checkout layout, 3 customer reports, last deploy 25 min ago.",
+  "want": "roll back"
+ },
+ {
+  "id": "notifier-vendor-quota",
+  "alert": "notifier: the email vendor returning \"daily quota exceeded\" for 14 min, 20 customer reports of missing confirmations, last deploy 5 days ago.",
+  "want": "check provider"
+ },
+ {
+  "id": "api-db-pool",
+  "alert": "api: database connection pool at 95 % for 12 min, 3 requests timed out, 1 customer report, last deploy 3 days ago.",
+  "want": "read logs"
+ },
+ {
+  "id": "payments-key-in-logs",
+  "alert": "payments: a provider API key appears in plain text in the last hour of application logs, no errors, no customer reports, last deploy 4 days ago.",
+  "want": "page owner"
+ },
+ {
+  "id": "web-deploy-slow",
+  "alert": "web: p95 page load up from 0.9 s to 2.6 s for 5 min, no errors, 1 customer report, last deploy 11 min ago.",
+  "want": "roll back"
+ },
+ {
+  "id": "api-audit-gap",
+  "alert": "api: the audit log has no entries for a 40 min window this morning, the service was serving normally throughout, no customer reports, last deploy 6 days ago.",
+  "want": "read logs"
+ },
+ {
+  "id": "notifier-duplicate-sends",
+  "alert": "notifier: 2,100 duplicate confirmation emails sent in 10 min, 15 customer reports, last deploy 4 h ago.",
+  "want": "read logs"
+ },
+ {
+  "id": "payments-region-cloud",
+  "alert": "payments: all requests in us-east failing for 9 min, the cloud provider's status page reports a networking incident in us-east, 11 customer reports, last deploy 2 days ago.",
+  "want": "check provider"
+ },
+ {
+  "id": "web-bulk-delete",
+  "alert": "web: 38 accounts deleted in 4 min from a single admin session, no errors, no customer reports yet, last deploy 7 days ago.",
+  "want": "page owner"
+ }
+]

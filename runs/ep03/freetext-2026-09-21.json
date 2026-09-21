@@ -1,0 +1,199 @@
+{
+ "name": "free-text",
+ "model": "gemini-3.8-flash",
+ "rounds": 1,
+ "date": "2026-09-21",
+ "template": "You are the on-call assistant. Alert:\n{alert}\nReply in one line: P1 or P2, then the first action.",
+ "results": [
+  {
+   "round": 0,
+   "score": 0,
+   "answers": [
+    {
+     "id": "payments-latency",
+     "want": "roll back",
+     "text": "P1: Roll back the deployment from 14 minutes ago.",
+     "action": "?"
+    },
+    {
+     "id": "payments-partial",
+     "want": "read logs",
+     "text": "P1: Inspect eu-west payment gateway error logs and response codes to identify the specific failure reason.",
+     "action": "?"
+    },
+    {
+     "id": "api-slo-edge",
+     "want": "read logs",
+     "text": "P2: Query API logs to identify which endpoints and status codes are driving the 0.4% error rate.",
+     "action": "?"
+    },
+    {
+     "id": "disk-slow-burn",
+     "want": "no action",
+     "text": "P2 - SSH into an affected node and run `du -sh /*` (or check `/var/log`) to identify the growing files or directories.",
+     "action": "?"
+    },
+    {
+     "id": "web-cosmetic",
+     "want": "no action",
+     "text": "P2: Check the diff of the deploy from 20 minutes ago to see if `/favicon.ico` was removed, moved, or its routing misconfigured.",
+     "action": "?"
+    },
+    {
+     "id": "notifier-night",
+     "want": "no action",
+     "text": "P2: Check consumer worker health and processing throughput against incoming message rate to see if workers are stalled or under-provisioned.",
+     "action": "?"
+    },
+    {
+     "id": "notifier-vendor-5xx",
+     "want": "check provider",
+     "text": "P1; fail over SMS routing to the secondary/backup vendor (or post an incident banner and open a high-priority ticket with the vendor if no fallback exists).",
+     "action": "?"
+    },
+    {
+     "id": "api-deploy-5xx",
+     "want": "roll back",
+     "text": "P1: Roll back the deployment from 7 minutes ago immediately.",
+     "action": "?"
+    },
+    {
+     "id": "payments-provider-timeout",
+     "want": "check provider",
+     "text": "P1: Fail over payment traffic to the secondary payment processor (or update status page/messaging if no fallback exists).",
+     "action": "?"
+    },
+    {
+     "id": "web-node-restart",
+     "want": "read logs",
+     "text": "P2: Drain traffic from node 3 to isolate it and inspect its OOM/application logs.",
+     "action": "?"
+    },
+    {
+     "id": "api-data-leak",
+     "want": "page owner",
+     "text": "P1, immediately bypass/flush response caching on the booking API (or temporarily take the endpoint offline) to stop the active data leak.",
+     "action": "?"
+    },
+    {
+     "id": "payments-double-refund",
+     "want": "page owner",
+     "text": "P1: Immediately pause automated refund processing to stop further duplicate payouts.",
+     "action": "?"
+    },
+    {
+     "id": "web-deploy-blank",
+     "want": "roll back",
+     "text": "P1: Initiate an immediate rollback of the deployment from 9 minutes ago.",
+     "action": "?"
+    },
+    {
+     "id": "notifier-queue-stuck",
+     "want": "read logs",
+     "text": "P1 — Check the notifier worker logs and process/pod health to see why queue consumers are stalled or failing to process messages.",
+     "action": "?"
+    },
+    {
+     "id": "api-region-dns",
+     "want": "check provider",
+     "text": "P2 - Post an incident update to the public status page acknowledging the regional provider DNS outage and investigate whether traffic/DNS rerouting is viable.",
+     "action": "?"
+    },
+    {
+     "id": "web-cdn-purge",
+     "want": "check provider",
+     "text": "P1 - Verify if the origin server/storage bucket is reachable and correctly serving the static assets on cache misses.",
+     "action": "?"
+    },
+    {
+     "id": "payments-deploy-validation",
+     "want": "roll back",
+     "text": "P2 - Roll back the deployment from 22 minutes ago.",
+     "action": "?"
+    },
+    {
+     "id": "api-slow-search",
+     "want": "read logs",
+     "text": "P2: Check search backend/datastore performance metrics (CPU, slow queries, queue depth) and recent trace latency breakdowns for search endpoints.",
+     "action": "?"
+    },
+    {
+     "id": "web-crawler",
+     "want": "no action",
+     "text": "P2: Verify crawler authenticity via reverse DNS and monitor infrastructure capacity to ensure headroom remains stable.",
+     "action": "?"
+    },
+    {
+     "id": "payments-webhook-retry",
+     "want": "no action",
+     "text": "P2: Check ingress and application logs for webhook endpoint response codes and latencies to determine why the provider is encountering initial failures/timeouts.",
+     "action": "?"
+    },
+    {
+     "id": "api-partner-limit",
+     "want": "page owner",
+     "text": "P2, temporarily restore/increase the partner's rate limit to unblock traffic while confirming the contract change with the account team.",
+     "action": "?"
+    },
+    {
+     "id": "web-deploy-layout",
+     "want": "roll back",
+     "text": "P1: Immediately roll back the deployment from 25 minutes ago.",
+     "action": "?"
+    },
+    {
+     "id": "notifier-vendor-quota",
+     "want": "check provider",
+     "text": "P1: Request an emergency quota increase from the email vendor (or switch to a secondary email provider if configured).",
+     "action": "?"
+    },
+    {
+     "id": "api-db-pool",
+     "want": "read logs",
+     "text": "P2 - Check active database connections for long-running or blocking queries to identify and terminate what is exhausting the pool.",
+     "action": "?"
+    },
+    {
+     "id": "payments-key-in-logs",
+     "want": "page owner",
+     "text": "P1: Immediately rotate the exposed payment provider API key.",
+     "action": "?"
+    },
+    {
+     "id": "web-deploy-slow",
+     "want": "roll back",
+     "text": "P2: Roll back the deployment from 11 minutes ago.",
+     "action": "?"
+    },
+    {
+     "id": "api-audit-gap",
+     "want": "read logs",
+     "text": "P2 - Inspect the audit logging pipeline and buffer/dead-letter queues to determine if the missing logs are delayed in transit or permanently lost.",
+     "action": "?"
+    },
+    {
+     "id": "notifier-duplicate-sends",
+     "want": "read logs",
+     "text": "P1 — Temporarily pause the notification queue/email worker to stop outbound email delivery immediately.",
+     "action": "?"
+    },
+    {
+     "id": "payments-region-cloud",
+     "want": "check provider",
+     "text": "P1; initiate immediate traffic failover to route payment requests away from us-east to an alternate healthy region.",
+     "action": "?"
+    },
+    {
+     "id": "web-bulk-delete",
+     "want": "page owner",
+     "text": "P1: Immediately terminate the active admin session and revoke credentials to halt further deletions.",
+     "action": "?"
+    }
+   ]
+  }
+ ],
+ "tokens_in": 1974,
+ "tokens_out": 15611,
+ "cost_usd": 0.06,
+ "seconds": 20.9
+}

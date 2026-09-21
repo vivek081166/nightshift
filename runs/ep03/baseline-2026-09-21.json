@@ -1,0 +1,943 @@
+{
+ "name": "baseline",
+ "model": "gemini-3.8-flash",
+ "rounds": 5,
+ "date": "2026-09-21",
+ "template": "You are the on-call assistant. Alert:\n{alert}\nReply with exactly one of these and nothing else: roll back, read logs, check provider, page owner, no action.",
+ "results": [
+  {
+   "round": 0,
+   "score": 21,
+   "answers": [
+    {
+     "id": "payments-latency",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "payments-partial",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-slo-edge",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "disk-slow-burn",
+     "want": "no action",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "web-cosmetic",
+     "want": "no action",
+     "text": "no action",
+     "action": "no action"
+    },
+    {
+     "id": "notifier-night",
+     "want": "no action",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "notifier-vendor-5xx",
+     "want": "check provider",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "api-deploy-5xx",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "payments-provider-timeout",
+     "want": "check provider",
+     "text": "page owner",
+     "action": "page owner"
+    },
+    {
+     "id": "web-node-restart",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-data-leak",
+     "want": "page owner",
+     "text": "page owner",
+     "action": "page owner"
+    },
+    {
+     "id": "payments-double-refund",
+     "want": "page owner",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "web-deploy-blank",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "notifier-queue-stuck",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-region-dns",
+     "want": "check provider",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "web-cdn-purge",
+     "want": "check provider",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "payments-deploy-validation",
+     "want": "roll back",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-slow-search",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "web-crawler",
+     "want": "no action",
+     "text": "no action",
+     "action": "no action"
+    },
+    {
+     "id": "payments-webhook-retry",
+     "want": "no action",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-partner-limit",
+     "want": "page owner",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "web-deploy-layout",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "notifier-vendor-quota",
+     "want": "check provider",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "api-db-pool",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "payments-key-in-logs",
+     "want": "page owner",
+     "text": "page owner",
+     "action": "page owner"
+    },
+    {
+     "id": "web-deploy-slow",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "api-audit-gap",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "notifier-duplicate-sends",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "payments-region-cloud",
+     "want": "check provider",
+     "text": "page owner",
+     "action": "page owner"
+    },
+    {
+     "id": "web-bulk-delete",
+     "want": "page owner",
+     "text": "read logs",
+     "action": "read logs"
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "score": 20,
+   "answers": [
+    {
+     "id": "payments-latency",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "payments-partial",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-slo-edge",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "disk-slow-burn",
+     "want": "no action",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "web-cosmetic",
+     "want": "no action",
+     "text": "no action",
+     "action": "no action"
+    },
+    {
+     "id": "notifier-night",
+     "want": "no action",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "notifier-vendor-5xx",
+     "want": "check provider",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "api-deploy-5xx",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "payments-provider-timeout",
+     "want": "check provider",
+     "text": "page owner",
+     "action": "page owner"
+    },
+    {
+     "id": "web-node-restart",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-data-leak",
+     "want": "page owner",
+     "text": "page owner",
+     "action": "page owner"
+    },
+    {
+     "id": "payments-double-refund",
+     "want": "page owner",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "web-deploy-blank",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "notifier-queue-stuck",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-region-dns",
+     "want": "check provider",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "web-cdn-purge",
+     "want": "check provider",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "payments-deploy-validation",
+     "want": "roll back",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-slow-search",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "web-crawler",
+     "want": "no action",
+     "text": "no action",
+     "action": "no action"
+    },
+    {
+     "id": "payments-webhook-retry",
+     "want": "no action",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-partner-limit",
+     "want": "page owner",
+     "text": "no action",
+     "action": "no action"
+    },
+    {
+     "id": "web-deploy-layout",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "notifier-vendor-quota",
+     "want": "check provider",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "api-db-pool",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "payments-key-in-logs",
+     "want": "page owner",
+     "text": "page owner",
+     "action": "page owner"
+    },
+    {
+     "id": "web-deploy-slow",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "api-audit-gap",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "notifier-duplicate-sends",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "payments-region-cloud",
+     "want": "check provider",
+     "text": "page owner",
+     "action": "page owner"
+    },
+    {
+     "id": "web-bulk-delete",
+     "want": "page owner",
+     "text": "read logs",
+     "action": "read logs"
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "score": 22,
+   "answers": [
+    {
+     "id": "payments-latency",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "payments-partial",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-slo-edge",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "disk-slow-burn",
+     "want": "no action",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "web-cosmetic",
+     "want": "no action",
+     "text": "no action",
+     "action": "no action"
+    },
+    {
+     "id": "notifier-night",
+     "want": "no action",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "notifier-vendor-5xx",
+     "want": "check provider",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "api-deploy-5xx",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "payments-provider-timeout",
+     "want": "check provider",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "web-node-restart",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-data-leak",
+     "want": "page owner",
+     "text": "page owner",
+     "action": "page owner"
+    },
+    {
+     "id": "payments-double-refund",
+     "want": "page owner",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "web-deploy-blank",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "notifier-queue-stuck",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-region-dns",
+     "want": "check provider",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "web-cdn-purge",
+     "want": "check provider",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "payments-deploy-validation",
+     "want": "roll back",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-slow-search",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "web-crawler",
+     "want": "no action",
+     "text": "no action",
+     "action": "no action"
+    },
+    {
+     "id": "payments-webhook-retry",
+     "want": "no action",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "api-partner-limit",
+     "want": "page owner",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "web-deploy-layout",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "notifier-vendor-quota",
+     "want": "check provider",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "api-db-pool",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "payments-key-in-logs",
+     "want": "page owner",
+     "text": "page owner",
+     "action": "page owner"
+    },
+    {
+     "id": "web-deploy-slow",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "api-audit-gap",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "notifier-duplicate-sends",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "payments-region-cloud",
+     "want": "check provider",
+     "text": "page owner",
+     "action": "page owner"
+    },
+    {
+     "id": "web-bulk-delete",
+     "want": "page owner",
+     "text": "read logs",
+     "action": "read logs"
+    }
+   ]
+  },
+  {
+   "round": 3,
+   "score": 22,
+   "answers": [
+    {
+     "id": "payments-latency",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "payments-partial",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-slo-edge",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "disk-slow-burn",
+     "want": "no action",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "web-cosmetic",
+     "want": "no action",
+     "text": "no action",
+     "action": "no action"
+    },
+    {
+     "id": "notifier-night",
+     "want": "no action",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "notifier-vendor-5xx",
+     "want": "check provider",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "api-deploy-5xx",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "payments-provider-timeout",
+     "want": "check provider",
+     "text": "page owner",
+     "action": "page owner"
+    },
+    {
+     "id": "web-node-restart",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-data-leak",
+     "want": "page owner",
+     "text": "page owner",
+     "action": "page owner"
+    },
+    {
+     "id": "payments-double-refund",
+     "want": "page owner",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "web-deploy-blank",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "notifier-queue-stuck",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-region-dns",
+     "want": "check provider",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "web-cdn-purge",
+     "want": "check provider",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "payments-deploy-validation",
+     "want": "roll back",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-slow-search",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "web-crawler",
+     "want": "no action",
+     "text": "no action",
+     "action": "no action"
+    },
+    {
+     "id": "payments-webhook-retry",
+     "want": "no action",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-partner-limit",
+     "want": "page owner",
+     "text": "no action",
+     "action": "no action"
+    },
+    {
+     "id": "web-deploy-layout",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "notifier-vendor-quota",
+     "want": "check provider",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "api-db-pool",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "payments-key-in-logs",
+     "want": "page owner",
+     "text": "page owner",
+     "action": "page owner"
+    },
+    {
+     "id": "web-deploy-slow",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "api-audit-gap",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "notifier-duplicate-sends",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "payments-region-cloud",
+     "want": "check provider",
+     "text": "page owner",
+     "action": "page owner"
+    },
+    {
+     "id": "web-bulk-delete",
+     "want": "page owner",
+     "text": "page owner",
+     "action": "page owner"
+    }
+   ]
+  },
+  {
+   "round": 4,
+   "score": 20,
+   "answers": [
+    {
+     "id": "payments-latency",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "payments-partial",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-slo-edge",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "disk-slow-burn",
+     "want": "no action",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "web-cosmetic",
+     "want": "no action",
+     "text": "no action",
+     "action": "no action"
+    },
+    {
+     "id": "notifier-night",
+     "want": "no action",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "notifier-vendor-5xx",
+     "want": "check provider",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "api-deploy-5xx",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "payments-provider-timeout",
+     "want": "check provider",
+     "text": "page owner",
+     "action": "page owner"
+    },
+    {
+     "id": "web-node-restart",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-data-leak",
+     "want": "page owner",
+     "text": "page owner",
+     "action": "page owner"
+    },
+    {
+     "id": "payments-double-refund",
+     "want": "page owner",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "web-deploy-blank",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "notifier-queue-stuck",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-region-dns",
+     "want": "check provider",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "web-cdn-purge",
+     "want": "check provider",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "payments-deploy-validation",
+     "want": "roll back",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-slow-search",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "web-crawler",
+     "want": "no action",
+     "text": "no action",
+     "action": "no action"
+    },
+    {
+     "id": "payments-webhook-retry",
+     "want": "no action",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "api-partner-limit",
+     "want": "page owner",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "web-deploy-layout",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "notifier-vendor-quota",
+     "want": "check provider",
+     "text": "check provider",
+     "action": "check provider"
+    },
+    {
+     "id": "api-db-pool",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "payments-key-in-logs",
+     "want": "page owner",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "web-deploy-slow",
+     "want": "roll back",
+     "text": "roll back",
+     "action": "roll back"
+    },
+    {
+     "id": "api-audit-gap",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "notifier-duplicate-sends",
+     "want": "read logs",
+     "text": "read logs",
+     "action": "read logs"
+    },
+    {
+     "id": "payments-region-cloud",
+     "want": "check provider",
+     "text": "page owner",
+     "action": "page owner"
+    },
+    {
+     "id": "web-bulk-delete",
+     "want": "page owner",
+     "text": "read logs",
+     "action": "read logs"
+    }
+   ]
+  }
+ ],
+ "tokens_in": 11220,
+ "tokens_out": 109711,
+ "cost_usd": 0.4198,
+ "seconds": 123.2
+}

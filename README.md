@@ -9,6 +9,8 @@ You can write a Python function and call an HTTP API. No machine learning needed
 
     export GEMINI_API_KEY=...
     python3 ten_runs.py           # one on-call alert, ten times, with the tally and the cost line
+    python3 ask_all.py            # all thirty alerts, one sentence each, nothing you can count
+    python3 score.py              # all thirty scored against the answers you wanted, and the misses
     node js/ep01/first_call.mjs   # the same first call in Node
 
 Both calls are raw HTTP on purpose. No SDK, nothing to install past the key.
@@ -20,6 +22,8 @@ the course depends on the vendor.
 | Tag | Episode | What it adds |
 |---|---|---|
 | `ep01` | [AI Engineering Roadmap 2026](https://youtu.be/5dW1jMOYbMY) | The 40-line v0: one alert, ten runs, tokens and cost |
+| `ep02` | [Ten Answers to One Question](https://youtu.be/o4MtpnO2Av8) | Fifty answers, the parser that drops four, and the alert whose verdict moves |
+| `ep03` | Your First Eval Set | Thirty cases, the noise the score moves by, and one change measured against it |
 
 The map the course follows: [Andrew Ng's AI Engineering Skills Map](https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map)
 

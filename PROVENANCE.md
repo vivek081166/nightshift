@@ -32,19 +32,24 @@ number comes from that file, never from a plan.
 - `tickets/incidents.json`: 30 alerts with the first move wanted beside each. The first six are the six
   alerts from ep02, so the set the viewer already saw is still in this one. The five allowed first moves are
   `roll back`, `read logs`, `check provider`, `page owner`, `no action`.
-- Every score below is `score.py` on this machine, 2026-09-21, saved verbatim as
-  `runs/ep03/2026-09-21-ep03-*-run*.txt`. Five runs each way, nothing changed between the runs in a group.
+- The runs ON SCREEN in the episode were recorded live on camera on 2026-09-22, and their terminal text is saved
+  verbatim as `runs/ep03/2026-09-22-ep03-camera-{askall,base,fix}.txt`. Every number the episode speaks comes
+  from those three files. Five runs each way, nothing changed between the runs in a group, no network failures.
 
-      RULES empty  (baseline)   19 · 19 · 21 · 22 · 21     low 19, high 22, three points of wobble
-      RULES filled (the change) 24 · 24 · 25 · 24 · 25     low 24, high 25, one point
+      ask_all.py, free text     30 answers, 30 of them different
+      RULES empty  (baseline)   20 · 20 · 21 · 19 · 20     low 19, high 21, two points of wobble
+      RULES filled (the change) 24 · 23 · 23 · 24 · 24     low 23, high 24
 
-  The highest baseline run is below the lowest run after the change, so the two do not overlap. That gap is
-  the only reason the change can be called an improvement rather than a lucky run.
-- Per case across those ten runs: 11 came right, 4 went backwards, 1 stayed wrong, 14 were right throughout.
-  All four that went backwards now answer `page owner`, because the rule line says "when money, customer data
-  or account access is involved" and a payments alert always involves money.
-- `runs/ep03/freetext-2026-09-21.json`: the ep01/ep02 prompt asked of all thirty, 30 answers, 30 distinct
-  sentences. That is why `score.py` hands the model a list of five words instead of asking for a sentence.
+  The worst run after the change (23) beats the best run before it (21): the two bands do not overlap.
+  Per case: 8 improved, 3 broke, 19 unchanged. The three that broke (payments-latency, payments-partial,
+  notifier-vendor-5xx) were right in all five runs before and in none after, and all three now answer
+  `page owner`: the rule line for it says "when money, customer data or account access is involved, or when
+  somebody has to make a decision you are not allowed to make", and it reaches further than intended.
+- The earlier runs of 2026-09-21 (`runs/ep03/2026-09-21-ep03-*-run*.txt`: 19 19 21 22 21 before, 24 24 25 24 25
+  after) planned the episode and are kept; they tell the same story and are not what the video shows.
+- `runs/ep03/freetext-2026-09-21.json` (planning run): the ep01/ep02 prompt asked of all thirty, 30 answers,
+  30 distinct sentences; the camera run of 09-22 found the same, 30 of 30 different. That is why `score.py`
+  hands the model a list of five words instead of asking for a sentence.
 - `runs/ep03/fix-narrowed-2026-09-21.json`: NOT used in the episode. The second turn of the loop, narrowing
   the `page owner` line to damage you cannot undo, scored 30 29 30 30 30. It is left as the exercise because
   a set you score thirty out of thirty on has stopped being able to teach you anything, and because the

@@ -1,0 +1,35 @@
+➜  nightshift git:(main) ✗ python3 ask_all.py
+P1 - Roll back the deployment from 14 minutes ago.
+P1: Inspect eu-west payment gateway logs and error codes to identify the specific failure reason.
+P2: Inspect the API error logs to identify the failing endpoints, error types, and affected customer accounts.
+P2: SSH into one of the affected nodes and run `du -sh /*` (or check `/var/log`) to identify which directory and files are growing.
+P2, inspect the last deploy for static asset path changes or missing favicon.ico.
+P2 - Check consumer worker concurrency/scaling and compare incoming traffic rate against processing throughput.
+P1; Fail over to the backup SMS provider (or check the vendor's status page and open a critical incident ticket with them).
+P1: Immediately roll back the deployment from 7 minutes ago.
+P1: Fail over payment traffic to the backup payment processor (or update the status page with an external outage notice if no secondary provider exists).
+P2: Drain node 3 from the load balancer rotation to prevent dropped requests, then inspect OOM/heap dump logs.
+P1 - Purge the API/CDN cache immediately to halt the active data leak.
+P1 — Temporarily pause the refund processing worker or disable the refund endpoint to prevent further duplicate payouts.
+P2: Roll back the deployment from 9 minutes ago.
+P1 - Check notifier worker health and application logs to see why queue consumers are stopped, crashed, or failing to process messages.
+P1: Reroute ap-northeast traffic to healthy adjacent regions via global DNS/traffic management.
+P1 - Fetch a static asset directly from the origin to determine whether the origin storage/server is missing the files or misconfigured.
+P2: Roll back the last deployment.
+P2: Check APM traces for the search endpoint to identify slow downstream database or dependency queries.
+P2: Check system capacity headroom and monitor resource utilization to ensure the crawler does not degrade performance.
+P2: Inspect webhook receiver logs and HTTP status codes to identify why the initial delivery attempts failed.
+P2 - Temporarily increase the partner's rate limit to restore their traffic, then contact their account manager to confirm the intended contract limits.
+P1 - Roll back the deployment from 25 minutes ago.
+P1 - Request an immediate daily quota increase from the email vendor.
+P2 - Inspect active database queries to identify and terminate long-running or blocking connections.
+P1: Immediately rotate and invalidate the exposed payment provider API key.
+P2: Roll back the deployment from 11 minutes ago.
+P2 - Check the logging pipeline queue depth and shipper/worker health to determine if events are delayed or permanently dropped.
+P1: Pause the confirmation email queue/worker immediately to stop the runaway sending loop.
+P1 - Fail over payment traffic away from us-east to a secondary region.
+P1 — Terminate the active admin session and temporarily revoke that admin's access credentials to stop further deletions.
+
+30 answers, 30 of them different · 1,974 in / 15,861 out · $0.0610 · 121.1 s
+➜  nightshift git:(main) ✗ 
+

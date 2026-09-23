@@ -13,7 +13,11 @@ You can write a Python function and call an HTTP API. No machine learning needed
     python3 score.py              # all thirty scored against the answers you wanted, and the misses
     node js/ep01/first_call.mjs   # the same first call in Node
 
-Both calls are raw HTTP on purpose. No SDK, nothing to install past the key.
+The `ep03` tag holds `score.py` as the episode leaves it, with RULES filled in. The first five runs in
+the video used the same file with `RULES = ""` on line 14. Replace the RULES block with that one line
+to run them yourself.
+
+Every call is raw HTTP on purpose. No SDK, nothing to install past the key.
 The demo calls Gemini. The OpenAI and Anthropic APIs take the same kind of request, and nothing in
 the course depends on the vendor.
 

@@ -28,6 +28,7 @@ the course depends on the vendor.
 | `ep01` | [AI Engineering Roadmap 2026](https://youtu.be/5dW1jMOYbMY) | The 40-line v0: one alert, ten runs, tokens and cost |
 | `ep02` | [Ten Answers to One Question](https://youtu.be/o4MtpnO2Av8) | Fifty answers, the parser that drops four, and the alert whose verdict moves |
 | `ep03` | Your First Eval Set | Thirty cases, the noise the score moves by, and one change measured against it |
+| `ep04` | Tokens and the Context Window | Count a 40,000-line log (generated, `sorrel/make_logs.py`), send it whole and get refused, send the tail, then only the lines around the errors, with the cost of each |
 
 The map the course follows: [Andrew Ng's AI Engineering Skills Map](https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map)
 

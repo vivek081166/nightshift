@@ -1,0 +1,55 @@
+{
+  "date": "2026-09-24T01:38:17+0900",
+  "beat": "naive",
+  "run": "3",
+  "model": "gemini-3.8-flash",
+  "endpoint": "POST v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+    "log_slice": "tail -n 875 of logs/sorrel-incident.log (budget 100000 tokens / 114.22 tokens per line)",
+    "log_lines": 875,
+    "prompt_chars": 167937,
+    "prompt_bytes": 167937,
+    "prompt_md5": "190a7286538a9bbe4b76bc6bcf167eea",
+    "prompt_template": "You are the on-call assistant. Alert:\npayments-api: p95 latency 4.8 s for 6 min, error rate 0.9 %,\n3 customer reports of failed checkout, last deploy 14 min ago.\nThe log:\n{log}\nWhat is the root cause? Reply in two lines: the cause, then the one log line that shows it, copied exactly.",
+    "traceback_in_prompt": false,
+    "generationConfig": "none (API defaults)"
+  },
+  "http_status": 429,
+  "latency_s": 0.51,
+  "response": {
+    "error": {
+      "code": 429,
+      "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_paid_tier_input_token_count, limit: 2000000, model: gemini-3.8-flash\nPlease retry in 41.554450847s.",
+      "status": "RESOURCE_EXHAUSTED",
+      "details": [
+        {
+          "@type": "type.googleapis.com/google.rpc.Help",
+          "links": [
+            {
+              "description": "Learn more about Gemini API quotas",
+              "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+            }
+          ]
+        },
+        {
+          "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+          "violations": [
+            {
+              "quotaMetric": "generativelanguage.googleapis.com/generate_content_paid_tier_input_token_count",
+              "quotaId": "GenerateContentPaidTierInputTokensPerModelPerMinute",
+              "quotaDimensions": {
+                "location": "global",
+                "model": "gemini-3.8-flash"
+              },
+              "quotaValue": "2000000"
+            }
+          ]
+        },
+        {
+          "@type": "type.googleapis.com/google.rpc.RetryInfo",
+          "retryDelay": "41s"
+        }
+      ]
+    }
+  }
+}

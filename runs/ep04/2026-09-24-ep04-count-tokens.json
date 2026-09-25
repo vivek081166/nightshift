@@ -1,0 +1,183 @@
+{
+  "date": "2026-09-24T01:36:54+0900",
+  "endpoint": "POST v1beta/models/gemini-3.8-flash:countTokens (free)",
+  "items": [
+    {
+      "what": "plain English word",
+      "text": "checkout",
+      "chars": 8,
+      "bytes": 8,
+      "tokens": 1
+    },
+    {
+      "what": "short word",
+      "text": "the",
+      "chars": 3,
+      "bytes": 3,
+      "tokens": 1
+    },
+    {
+      "what": "long word",
+      "text": "internationalization",
+      "chars": 20,
+      "bytes": 20,
+      "tokens": 2
+    },
+    {
+      "what": "service name",
+      "text": "payments",
+      "chars": 8,
+      "bytes": 8,
+      "tokens": 1
+    },
+    {
+      "what": "error code",
+      "text": "PAY-4031",
+      "chars": 8,
+      "bytes": 8,
+      "tokens": 6
+    },
+    {
+      "what": "request id (UUID)",
+      "text": "49c50d38-dba3-42b3-a176-40dd9ddf36bf",
+      "chars": 36,
+      "bytes": 36,
+      "tokens": 31
+    },
+    {
+      "what": "ISO timestamp",
+      "text": "2026-09-23T13:38:32.095Z",
+      "chars": 24,
+      "bytes": 24,
+      "tokens": 24
+    },
+    {
+      "what": "number",
+      "text": "4.8",
+      "chars": 3,
+      "bytes": 3,
+      "tokens": 3
+    },
+    {
+      "what": "Hindi sentence",
+      "text": "मेरा पेमेंट फ़ेल हो गया।",
+      "chars": 24,
+      "bytes": 64,
+      "tokens": 7
+    },
+    {
+      "what": "English of the same sentence",
+      "text": "My payment failed.",
+      "chars": 18,
+      "bytes": 18,
+      "tokens": 4
+    },
+    {
+      "what": "Japanese sentence",
+      "text": "支払いに失敗しました。",
+      "chars": 11,
+      "bytes": 33,
+      "tokens": 5
+    },
+    {
+      "what": "EP01 alert prompt (ten_runs.py PROMPT)",
+      "text": "You are the on-call assistant. Alert:\npayments-api: p95 latency 4.8 s for 6 min, error rate 0.9 %,\n3 customer reports of failed checkout, last deploy 14 min ago.\nReply in one line: P1 or P2, then the first action.",
+      "chars": 213,
+      "bytes": 213,
+      "tokens": 69
+    },
+    {
+      "what": "one log line: a slow checkout charge",
+      "text": "2026-09-23T13:39:08.008Z INFO  payments pod=payments-6d4b8c-4kz2q req=49c50d38-dba3-42b3-a176-40dd9ddf36bf method=POST path=/v1/charges status=201 dur_ms=3445 amount=8800 currency=JPY fx_source=live provider=cardco provider_ms=553",
+      "chars": 230,
+      "bytes": 230,
+      "tokens": 122
+    },
+    {
+      "what": "one log line: a health check",
+      "text": "2026-09-23T12:54:00.070Z INFO  notifier pod=notifier-7b9c6f-6lfmv method=GET path=/healthz status=200 dur_ms=1 ua=\"kube-probe/1.31\"",
+      "chars": 131,
+      "bytes": 131,
+      "tokens": 70
+    },
+    {
+      "what": "the traceback alone (header line + 11 lines)",
+      "text": "2026-09-23T13:38:32.095Z ERROR payments pod=payments-6d4b8c-4kz2q stream=stderr Exception in thread rate-cache-refresher:\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.12/threading.py\", line 1075, in _bootstrap_inner\n    self.run()\n  File \"/usr/local/lib/python3.12/threading.py\", line 1012, in run\n    self._target(*self._args, **self._kwargs)\n  File \"/app/payments/rates/cache.py\", line 64, in refresh_forever\n    self._refresh_once()\n  File \"/app/payments/rates/cache.py\", line 81, in _refresh_once\n    ttl = int(settings[\"RATE_CACHE_TTL\"])\n              ~~~~~~~~^^^^^^^^^^^^^^^^^^\nKeyError: 'RATE_CACHE_TTL'",
+      "chars": 631,
+      "bytes": 631,
+      "tokens": 233
+    }
+  ],
+  "corpus": {
+    "file": "logs/sorrel-incident.log",
+    "lines": 40000,
+    "bytes": 7676813,
+    "tokens": 4568958,
+    "count_latency_s": 4.97
+  },
+  "slices": {
+    "naive_tail": {
+      "rule": "tail -n 875",
+      "first_line_no": 39126,
+      "first_ts": "2026-09-23T13:47:22.311Z",
+      "tokens": 99895,
+      "traceback_line_no": 32545,
+      "traceback_survives": false
+    },
+    "max_fit_tail": {
+      "rule": "tail -n 9180 (limit / tokens per line)",
+      "first_line_no": 30821,
+      "first_ts": "2026-09-23T13:36:10.847Z",
+      "tokens": 1048756,
+      "traceback_survives": true
+    },
+    "error_window": {
+      "lines": 127,
+      "tokens": 13245,
+      "traceback_survives": true
+    },
+    "question_wrapper_tokens_no_log": 83,
+    "sample_40_lines_tokens_sorted": [
+      69,
+      70,
+      70,
+      70,
+      71,
+      71,
+      71,
+      71,
+      75,
+      76,
+      81,
+      102,
+      103,
+      108,
+      108,
+      108,
+      109,
+      115,
+      115,
+      118,
+      119,
+      120,
+      120,
+      120,
+      122,
+      122,
+      122,
+      123,
+      123,
+      125,
+      126,
+      136,
+      136,
+      138,
+      140,
+      142,
+      143,
+      144,
+      145,
+      148
+    ]
+  }
+}

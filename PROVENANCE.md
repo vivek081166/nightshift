@@ -56,3 +56,32 @@ number comes from that file, never from a plan.
   answers and the rules came out of the same head. Kept here so the claim is checkable.
 - ⚠️ `score.py` has no retry. About one call in a few hundred is dropped by the network and the script stops.
   Re-run it; nothing is cached, so a re-run is a fresh sample.
+
+## ep04
+
+- Same model and prices as ep01 to ep03: $0.75 per million input tokens, $3.75 per million output tokens,
+  thinking billed as output. The pricing page fetched 2026-09-24 shows no long-context price tier for
+  `gemini-3.8-flash` (`runs/ep04/2026-09-24-pricing-gemini-3.8-flash.txt`).
+- The context window comes from the model itself: `GET v1beta/models/gemini-3.8-flash` returns
+  `"inputTokenLimit": 1048576` (`runs/ep04/2026-09-24-model-resource.json`). `count.py` reads it live.
+- `logs/sorrel-incident.log` is GENERATED, not a real incident: `python3 sorrel/make_logs.py`, stdlib, seed
+  20260923, 40,000 lines, 7,676,813 bytes, md5 `c227166acf2b17df7b16c741186ceb8d`. The calls made on it are real.
+  What went wrong in it is fixed before any call: at 13:38:32 the rate-cache refresher thread crashes on
+  `KeyError: 'RATE_CACHE_TTL'` (line 32,545), the saved exchange rates expire, and every checkout looks them up live.
+- `count.py`: 4,568,958 tokens for the whole log by `countTokens`, which is free and does not enforce the limit.
+  4.36 times the context window. Sending the log whole is refused with HTTP 400 INVALID_ARGUMENT and no usage.
+- `ask_log.py` sends the same question each time: the alert from ep01, the log, and "What is the root cause?
+  Reply in two lines: the cause, then the one log line that shows it, copied exactly."
+- `tail -n 875` is the last 100,000 tokens by the average tokens per line (875 lines, 99,895 tokens, the last
+  74 seconds). It does not contain the traceback. `tail -n 9180` would, and is 180 tokens over the limit.
+- `around_errors.py`: every line that says ` ERROR ` or starts `Traceback`, plus twenty lines either side,
+  `...` between gaps. On this log: 127 lines, 13,245 tokens, the traceback inside.
+- Planning runs, 2026-09-24 01:37-01:40 (`runs/ep04/2026-09-24-ep04-*.json`), three each:
+  the tail 99,979 in, $0.0862-0.0882, named the live lookups as the cause 3 of 3;
+  the lines around the errors 13,329 in, $0.0149-0.0170, named the crash and quoted `KeyError: 'RATE_CACHE_TTL'` 3 of 3.
+  The whole log: 400 in 8.0 s, nothing returned.
+- Dry run of the on-screen files, 2026-09-24 02:15-02:19, verbatim in `runs/ep04/dryrun-*.txt`. The runs ON SCREEN
+  are recorded live on camera later; every number the episode speaks comes from those camera files.
+- ⚠️ The input-token quota on this key is 2,000,000 per minute. A whole-log attempt made within a minute of other
+  calls came back HTTP 429 RESOURCE_EXHAUSTED instead of the 400 (`runs/ep04/dryrun-A-whole-429.txt`, and the two
+  `*-429.json` planning files). Wait a minute and send it again; `ask_log.py` has no retry.

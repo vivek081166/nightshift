@@ -1,0 +1,4 @@
+$ tail -n 875 logs/sorrel-incident.log | python3 ask_log.py
+Synchronous live foreign exchange rate lookups (`fx_source=live`) during charge processing are adding 3–4+ seconds of latency per checkout.
+2026-09-23T13:48:16.177Z INFO  payments pod=payments-7b9c6f-dk7d9 req=fdec0839-2adc-4af3-87be-5c5cf9017549 method=POST path=/v1/charges status=201 dur_ms=4919 amount=8800 currency=JPY fx_source=live provider=cardco provider_ms=486
+gemini-3.8-flash · 99,979 in / 2,582 out (2,430 thinking) · $0.0847 · 8.1 s

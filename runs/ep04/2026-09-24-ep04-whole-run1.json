@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-24T01:37:44+0900",
+  "beat": "whole",
+  "run": "1",
+  "model": "gemini-3.8-flash",
+  "endpoint": "POST v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+    "log_slice": "all 40000 lines of logs/sorrel-incident.log",
+    "log_lines": 40000,
+    "prompt_chars": 7677091,
+    "prompt_bytes": 7677091,
+    "prompt_md5": "ee27d1315f5e79be83968ccf240fa32f",
+    "prompt_template": "You are the on-call assistant. Alert:\npayments-api: p95 latency 4.8 s for 6 min, error rate 0.9 %,\n3 customer reports of failed checkout, last deploy 14 min ago.\nThe log:\n{log}\nWhat is the root cause? Reply in two lines: the cause, then the one log line that shows it, copied exactly.",
+    "traceback_in_prompt": true,
+    "generationConfig": "none (API defaults)"
+  },
+  "http_status": 400,
+  "latency_s": 8.03,
+  "response": {
+    "error": {
+      "code": 400,
+      "message": "The input token count exceeds the maximum number of tokens allowed (1048576).",
+      "status": "INVALID_ARGUMENT"
+    }
+  }
+}

@@ -46,8 +46,11 @@ if __name__ == "__main__":
     t0 = time.time()
     resp = urllib.request.urlopen(req)
     r = json.load(resp)
-    print("HTTP", resp.status, "· finishReason", r["candidates"][0]["finishReason"])
+    finish = r["candidates"][0]["finishReason"]
+    print("HTTP", resp.status, "· finishReason", finish)
     print(cost_line(r["usageMetadata"], time.time() - t0))
+    if finish != "STOP":   # HTTP 200 only means the call went through, not that the answer is whole
+        sys.exit(f"stopped: finishReason is {finish}, not STOP, so this answer is not complete")
     text = "".join(p["text"] for p in r["candidates"][0]["content"]["parts"])
     print(text)
     plan = json.loads(text)

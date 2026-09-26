@@ -1,0 +1,17 @@
+$ python3 plan.py 64    # 2026-09-26T12:45:21Z, terminal output verbatim, plan.py at 28283af
+HTTP 200 · finishReason MAX_TOKENS
+gemini-3.8-flash · 80 in / 60 out (58 thinking) · $0.0003 · 1.4 s
+Here
+Traceback (most recent call last):
+  File "/Users/vivek/Projects/nightshift/plan.py", line 53, in <module>
+    plan = json.loads(text)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+exit 1

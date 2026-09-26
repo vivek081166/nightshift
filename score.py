@@ -5,7 +5,7 @@
 Prints the score, then the ones it got wrong. The total tells you almost nothing on its
 own; the list underneath is the part you read.
 """
-import json, os, re, time, urllib.request
+import json, os, re, sys, time, urllib.request
 
 CASES = json.load(open("tickets/incidents.json"))
 ACTIONS = ["roll back", "read logs", "check provider", "page owner", "no action"]
@@ -18,6 +18,13 @@ RULES = """At this company the five actions mean:
 - page owner: wake the person who owns this service, when money, customer data or account access is involved, or when somebody has to make a decision you are not allowed to make.
 - no action: write it down and move on, when nothing has failed and no customer is affected.
 """
+
+# The page owner line narrowed to harm you cannot undo. Try it with: python3 score.py --narrowed
+NARROWED = ("- page owner: wake the person who owns this service, when something has already happened that you "
+            "cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision "
+            "you are not allowed to make.")
+if "--narrowed" in sys.argv:
+    RULES = "\n".join(NARROWED if line.startswith("- page owner:") else line for line in RULES.split("\n"))
 
 MODEL = "gemini-3.8-flash"
 URL = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent"

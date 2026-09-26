@@ -2,6 +2,7 @@
 
     python3 measure/score_runs.py MODEL RUNS OUT.json [low|high]     # thinking level optional
     python3 measure/score_runs.py MODEL pilot OUT.json [low|high]    # one call, for the cost estimate
+    add --narrowed to use score.py's narrowed page owner line
 """
 import json, os, statistics, sys, time
 sys.path[:0] = [".", "measure"]
@@ -13,8 +14,11 @@ ns = {}
 exec(src[:src.index("\ndef ask(")] + "\n" + src[src.index("\ndef prompt("):src.index("\ndef ask(")], ns)
 CASES, ACTIONS, prompt = ns["CASES"], ns["ACTIONS"], ns["prompt"]
 
-model, runs, out = sys.argv[1], sys.argv[2], sys.argv[3]
-level = sys.argv[4] if len(sys.argv) > 4 else None
+# "--narrowed" is read by score.py's own code above (the exec); strip it before the positional arguments.
+args = [a for a in sys.argv if a != "--narrowed"]
+rules = "narrowed" if "--narrowed" in sys.argv else "score.py default"
+model, runs, out = args[1], args[2], args[3]
+level = args[4] if len(args) > 4 else None
 config = {"thinkingConfig": {"thinkingLevel": level}} if level else None
 pilot = runs == "pilot"
 cases = CASES[:1] if pilot else CASES
@@ -30,7 +34,7 @@ for run in range(1 if pilot else int(runs)):
         if not rec["right"]:
             missed.append(case["id"])
         records.append(rec)
-        record.save(out, {"model": model, "thinking": level or "API default", "runs": summaries, "calls": records})
+        record.save(out, {"model": model, "thinking": level or "API default", "rules": rules, "runs": summaries, "calls": records})
         spent = sum(r.get("cost_usd") or 0 for r in records)
         if spent > float(os.environ.get("BUDGET_USD", "inf")):
             sys.exit(f"budget reached: ${spent:.4f} in this invocation, stopping (saved {len(records)} calls)")
@@ -51,5 +55,5 @@ for run in range(1 if pilot else int(runs)):
          "http_not_200": sum(r["http"] != 200 for r in calls), "retries": sum(len(r["retries"]) for r in calls),
          "modelVersion": sorted({r.get("modelVersion") or "-" for r in calls})}
     summaries.append(s)
-    record.save(out, {"model": model, "thinking": level or "API default", "runs": summaries, "calls": records})
+    record.save(out, {"model": model, "thinking": level or "API default", "rules": rules, "runs": summaries, "calls": records})
     print(json.dumps(s))

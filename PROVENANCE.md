@@ -85,3 +85,29 @@ number comes from that file, never from a plan.
 - ⚠️ The input-token quota on this key is 2,000,000 per minute. A whole-log attempt made within a minute of other
   calls came back HTTP 429 RESOURCE_EXHAUSTED instead of the 400 (`runs/ep04/dryrun-A-whole-429.txt`, and the two
   `*-429.json` planning files). Wait a minute and send it again; `ask_log.py` has no retry.
+
+## ep05 (measurement, not yet the episode)
+
+Measured 2026-09-26 on local branch `ep05-wip` before any script was written. Nothing here is on screen yet; the camera
+runs come later and every number the episode speaks will come from those files.
+
+- Models: `gemini-3.8-flash` (all blocks), `gemini-3.5-flash-lite`, `gemini-3.1-flash-lite`, `gemini-3.1-pro-preview`.
+  `modelVersion` in every response matched the id asked for. `gemini-pro-latest` was not used: it is not on the pricing
+  page and its model resource names no concrete model (`runs/ep05/model-resource-gemini-pro-latest.json`).
+- Prices (Standard paid tier, per million tokens, prompts <= 200k, thinking billed as output), from
+  https://ai.google.dev/gemini-api/docs/pricing fetched 2026-09-26, text saved as `runs/ep05/2026-09-26-pricing.txt`:
+  gemini-3.8-flash $0.75 in / $3.75 out (through 2026-12-31; $1.50 / $7.50 from 2027-01-01);
+  gemini-3.5-flash-lite $0.30 / $2.50; gemini-3.1-flash-lite $0.25 / $1.50; gemini-3.1-pro-preview $2.00 / $12.00.
+- Harness (not episode code): `measure/record.py` saves each call with the generationConfig sent, HTTP status,
+  finishReason, full usageMetadata, modelVersion, text or error body, latency, UTC time, retries.
+  `measure/score_runs.py` takes the prompt out of `score.py` itself, so it is the same prompt byte for byte.
+- `plan.py`: the ep01 alert as a JSON action plan with `responseSchema`; optional output limit from argv.
+- Run files, `runs/ep05/`:
+  - `block1-pilot.json`: HTTP 402, prepaid credit depleted, before the top-up. No usage.
+  - `block1-thinking-probe.json`: thinkingLevel minimal refused (HTTP 400), low/medium/high and thinkingBudget 0/128/1024/-1 accepted.
+  - `block1-grid.json` (54 calls) and `block1-grid-1024.json` (6): maxOutputTokens x thinking level, 3 calls per cell.
+  - `2026-09-26-plan-py-64.txt`, `2026-09-26-plan-py-512.txt`: `plan.py` itself, terminal verbatim (KeyError, JSONDecodeError).
+  - `block3-pilot-*.json`, `block3-gemini-*.json`: the thirty at the API-default thinking, 3/2/2/1 runs.
+  - `block2-pilot-{low,high}.json`, `block2-gemini-3.8-flash-low.json`, `block2-gemini-3.8-flash-high-run{1,2}.json`:
+    the thirty at thinkingLevel low (2 runs) and high (2 runs); the default is the Block 3 3.8-flash file (3 runs).
+- Spend for all of it: $1.43. Findings and tables: `content/ai-engineering-course/qc/ep05/measure.md` in the vivek-ai repo.

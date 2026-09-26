@@ -1,0 +1,1173 @@
+{
+ "model": "gemini-3.8-flash",
+ "thinking": "high",
+ "runs": [
+  {
+   "run": 1,
+   "score": 25,
+   "of": 30,
+   "missed": [
+    "payments-latency",
+    "payments-partial",
+    "payments-provider-timeout",
+    "payments-deploy-validation",
+    "payments-region-cloud"
+   ],
+   "format_fail": [],
+   "in": 6324,
+   "answer": 56,
+   "thoughts": 86866,
+   "cost_usd": 0.3307,
+   "wall_s": 356.8,
+   "p50_s": 3.3,
+   "max_s": 108.125,
+   "http_not_200": 0,
+   "retries": 0,
+   "modelVersion": [
+    "gemini-3.8-flash"
+   ]
+  }
+ ],
+ "calls": [
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:20:47+00:00",
+   "latency_s": 12.843,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 214,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 3187,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 214
+     }
+    ],
+    "thoughtsTokenCount": 2971,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "page owner",
+   "naive_parts": "ok",
+   "cost_usd": 0.01130925,
+   "run": 1,
+   "id": "payments-latency",
+   "want": "roll back",
+   "thinking": "high",
+   "got": "page owner",
+   "right": false,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:21:00+00:00",
+   "latency_s": 3.852,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 215,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 996,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 215
+     }
+    ],
+    "thoughtsTokenCount": 779,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "page owner",
+   "naive_parts": "ok",
+   "cost_usd": 0.00309,
+   "run": 1,
+   "id": "payments-partial",
+   "want": "read logs",
+   "thinking": "high",
+   "got": "page owner",
+   "right": false,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:21:04+00:00",
+   "latency_s": 3.281,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 216,
+    "candidatesTokenCount": 1,
+    "totalTokenCount": 854,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 216
+     }
+    ],
+    "thoughtsTokenCount": 637,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "read logs",
+   "naive_parts": "ok",
+   "cost_usd": 0.0025545,
+   "run": 1,
+   "id": "api-slo-edge",
+   "want": "read logs",
+   "thinking": "high",
+   "got": "read logs",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:21:07+00:00",
+   "latency_s": 22.281,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 213,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 5964,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 213
+     }
+    ],
+    "thoughtsTokenCount": 5749,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "no action",
+   "naive_parts": "ok",
+   "cost_usd": 0.021726,
+   "run": 1,
+   "id": "disk-slow-burn",
+   "want": "no action",
+   "thinking": "high",
+   "got": "no action",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:21:29+00:00",
+   "latency_s": 4.343,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 226,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 1081,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 226
+     }
+    ],
+    "thoughtsTokenCount": 853,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "no action",
+   "naive_parts": "ok",
+   "cost_usd": 0.00337575,
+   "run": 1,
+   "id": "web-cosmetic",
+   "want": "no action",
+   "thinking": "high",
+   "got": "no action",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:21:34+00:00",
+   "latency_s": 9.774,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 219,
+    "candidatesTokenCount": 1,
+    "totalTokenCount": 2584,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 219
+     }
+    ],
+    "thoughtsTokenCount": 2364,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "no action",
+   "naive_parts": "ok",
+   "cost_usd": 0.009033,
+   "run": 1,
+   "id": "notifier-night",
+   "want": "no action",
+   "thinking": "high",
+   "got": "no action",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:21:43+00:00",
+   "latency_s": 49.723,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 217,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 13896,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 217
+     }
+    ],
+    "thoughtsTokenCount": 13677,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "check provider",
+   "naive_parts": "ok",
+   "cost_usd": 0.051459,
+   "run": 1,
+   "id": "notifier-vendor-5xx",
+   "want": "check provider",
+   "thinking": "high",
+   "got": "check provider",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:22:33+00:00",
+   "latency_s": 2.467,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 205,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 760,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 205
+     }
+    ],
+    "thoughtsTokenCount": 553,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "roll back",
+   "naive_parts": "ok",
+   "cost_usd": 0.002235,
+   "run": 1,
+   "id": "api-deploy-5xx",
+   "want": "roll back",
+   "thinking": "high",
+   "got": "roll back",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:22:36+00:00",
+   "latency_s": 9.464,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 219,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 2165,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 219
+     }
+    ],
+    "thoughtsTokenCount": 1944,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "page owner",
+   "naive_parts": "ok",
+   "cost_usd": 0.00746175,
+   "run": 1,
+   "id": "payments-provider-timeout",
+   "want": "check provider",
+   "thinking": "high",
+   "got": "page owner",
+   "right": false,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:22:45+00:00",
+   "latency_s": 3.158,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 214,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 712,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 214
+     }
+    ],
+    "thoughtsTokenCount": 496,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "read logs",
+   "naive_parts": "ok",
+   "cost_usd": 0.002028,
+   "run": 1,
+   "id": "web-node-restart",
+   "want": "read logs",
+   "thinking": "high",
+   "got": "read logs",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:22:48+00:00",
+   "latency_s": 2.341,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 204,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 606,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 204
+     }
+    ],
+    "thoughtsTokenCount": 400,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "page owner",
+   "naive_parts": "ok",
+   "cost_usd": 0.0016605,
+   "run": 1,
+   "id": "api-data-leak",
+   "want": "page owner",
+   "thinking": "high",
+   "got": "page owner",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:22:51+00:00",
+   "latency_s": 2.879,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 208,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 771,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 208
+     }
+    ],
+    "thoughtsTokenCount": 561,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "page owner",
+   "naive_parts": "ok",
+   "cost_usd": 0.00226725,
+   "run": 1,
+   "id": "payments-double-refund",
+   "want": "page owner",
+   "thinking": "high",
+   "got": "page owner",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:22:53+00:00",
+   "latency_s": 2.862,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 200,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 814,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 200
+     }
+    ],
+    "thoughtsTokenCount": 612,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "roll back",
+   "naive_parts": "ok",
+   "cost_usd": 0.0024525,
+   "run": 1,
+   "id": "web-deploy-blank",
+   "want": "roll back",
+   "thinking": "high",
+   "got": "roll back",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:22:56+00:00",
+   "latency_s": 3.152,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 212,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 918,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 212
+     }
+    ],
+    "thoughtsTokenCount": 704,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "read logs",
+   "naive_parts": "ok",
+   "cost_usd": 0.0028065,
+   "run": 1,
+   "id": "notifier-queue-stuck",
+   "want": "read logs",
+   "thinking": "high",
+   "got": "read logs",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:22:59+00:00",
+   "latency_s": 2.355,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 210,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 612,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 210
+     }
+    ],
+    "thoughtsTokenCount": 400,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "check provider",
+   "naive_parts": "ok",
+   "cost_usd": 0.001665,
+   "run": 1,
+   "id": "api-region-dns",
+   "want": "check provider",
+   "thinking": "high",
+   "got": "check provider",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:23:02+00:00",
+   "latency_s": 3.112,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 211,
+    "candidatesTokenCount": 1,
+    "totalTokenCount": 766,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 211
+     }
+    ],
+    "thoughtsTokenCount": 554,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "check provider",
+   "naive_parts": "ok",
+   "cost_usd": 0.0022395,
+   "run": 1,
+   "id": "web-cdn-purge",
+   "want": "check provider",
+   "thinking": "high",
+   "got": "check provider",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:23:05+00:00",
+   "latency_s": 108.125,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 199,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 27781,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 199
+     }
+    ],
+    "thoughtsTokenCount": 27580,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "page owner",
+   "naive_parts": "ok",
+   "cost_usd": 0.10358175,
+   "run": 1,
+   "id": "payments-deploy-validation",
+   "want": "roll back",
+   "thinking": "high",
+   "got": "page owner",
+   "right": false,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:24:53+00:00",
+   "latency_s": 2.492,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 217,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 695,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 217
+     }
+    ],
+    "thoughtsTokenCount": 476,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "read logs",
+   "naive_parts": "ok",
+   "cost_usd": 0.00195525,
+   "run": 1,
+   "id": "api-slow-search",
+   "want": "read logs",
+   "thinking": "high",
+   "got": "read logs",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:24:56+00:00",
+   "latency_s": 2.312,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 215,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 700,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 215
+     }
+    ],
+    "thoughtsTokenCount": 483,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "no action",
+   "naive_parts": "ok",
+   "cost_usd": 0.00198,
+   "run": 1,
+   "id": "web-crawler",
+   "want": "no action",
+   "thinking": "high",
+   "got": "no action",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:24:58+00:00",
+   "latency_s": 14.238,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 212,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 2999,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 212
+     }
+    ],
+    "thoughtsTokenCount": 2785,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "no action",
+   "naive_parts": "ok",
+   "cost_usd": 0.01061025,
+   "run": 1,
+   "id": "payments-webhook-retry",
+   "want": "no action",
+   "thinking": "high",
+   "got": "no action",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:25:12+00:00",
+   "latency_s": 3.641,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 211,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 876,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 211
+     }
+    ],
+    "thoughtsTokenCount": 663,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "page owner",
+   "naive_parts": "ok",
+   "cost_usd": 0.002652,
+   "run": 1,
+   "id": "api-partner-limit",
+   "want": "page owner",
+   "thinking": "high",
+   "got": "page owner",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:25:16+00:00",
+   "latency_s": 9.232,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 201,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 2184,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 201
+     }
+    ],
+    "thoughtsTokenCount": 1981,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "roll back",
+   "naive_parts": "ok",
+   "cost_usd": 0.007587,
+   "run": 1,
+   "id": "web-deploy-layout",
+   "want": "roll back",
+   "thinking": "high",
+   "got": "roll back",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:25:25+00:00",
+   "latency_s": 3.071,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 206,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 848,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 206
+     }
+    ],
+    "thoughtsTokenCount": 640,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "check provider",
+   "naive_parts": "ok",
+   "cost_usd": 0.002562,
+   "run": 1,
+   "id": "notifier-vendor-quota",
+   "want": "check provider",
+   "thinking": "high",
+   "got": "check provider",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:25:28+00:00",
+   "latency_s": 3.998,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 207,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 1106,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 207
+     }
+    ],
+    "thoughtsTokenCount": 897,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "read logs",
+   "naive_parts": "ok",
+   "cost_usd": 0.0035265,
+   "run": 1,
+   "id": "api-db-pool",
+   "want": "read logs",
+   "thinking": "high",
+   "got": "read logs",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:25:32+00:00",
+   "latency_s": 3.323,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 205,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 898,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 205
+     }
+    ],
+    "thoughtsTokenCount": 691,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "page owner",
+   "naive_parts": "ok",
+   "cost_usd": 0.0027525,
+   "run": 1,
+   "id": "payments-key-in-logs",
+   "want": "page owner",
+   "thinking": "high",
+   "got": "page owner",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:25:35+00:00",
+   "latency_s": 2.612,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 214,
+    "candidatesTokenCount": 1,
+    "totalTokenCount": 824,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 214
+     }
+    ],
+    "thoughtsTokenCount": 609,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "roll back",
+   "naive_parts": "ok",
+   "cost_usd": 0.002448,
+   "run": 1,
+   "id": "web-deploy-slow",
+   "want": "roll back",
+   "thinking": "high",
+   "got": "roll back",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:25:38+00:00",
+   "latency_s": 7.863,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 209,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 2232,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 209
+     }
+    ],
+    "thoughtsTokenCount": 2021,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "read logs",
+   "naive_parts": "ok",
+   "cost_usd": 0.007743,
+   "run": 1,
+   "id": "api-audit-gap",
+   "want": "read logs",
+   "thinking": "high",
+   "got": "read logs",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:25:46+00:00",
+   "latency_s": 3.232,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 204,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 853,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 204
+     }
+    ],
+    "thoughtsTokenCount": 647,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "read logs",
+   "naive_parts": "ok",
+   "cost_usd": 0.00258675,
+   "run": 1,
+   "id": "notifier-duplicate-sends",
+   "want": "read logs",
+   "thinking": "high",
+   "got": "read logs",
+   "right": true,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:25:49+00:00",
+   "latency_s": 52.534,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 216,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 13948,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 216
+     }
+    ],
+    "thoughtsTokenCount": 13730,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "page owner",
+   "naive_parts": "ok",
+   "cost_usd": 0.051657,
+   "run": 1,
+   "id": "payments-region-cloud",
+   "want": "check provider",
+   "thinking": "high",
+   "got": "page owner",
+   "right": false,
+   "format_ok": true
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "high"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:26:42+00:00",
+   "latency_s": 2.134,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 205,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 616,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 205
+     }
+    ],
+    "thoughtsTokenCount": 409,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "page owner",
+   "naive_parts": "ok",
+   "cost_usd": 0.001695,
+   "run": 1,
+   "id": "web-bulk-delete",
+   "want": "page owner",
+   "thinking": "high",
+   "got": "page owner",
+   "right": true,
+   "format_ok": true
+  }
+ ]
+}

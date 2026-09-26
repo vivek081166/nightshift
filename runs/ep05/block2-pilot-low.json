@@ -1,0 +1,67 @@
+{
+ "model": "gemini-3.8-flash",
+ "thinking": "low",
+ "runs": [
+  {
+   "run": 1,
+   "score": 0,
+   "of": 1,
+   "missed": [
+    "payments-latency"
+   ],
+   "format_fail": [],
+   "in": 214,
+   "answer": 2,
+   "thoughts": 264,
+   "cost_usd": 0.00116,
+   "wall_s": 1.9,
+   "p50_s": 1.91,
+   "max_s": 1.91,
+   "http_not_200": 0,
+   "retries": 0,
+   "modelVersion": [
+    "gemini-3.8-flash"
+   ]
+  }
+ ],
+ "calls": [
+  {
+   "model": "gemini-3.8-flash",
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   },
+   "http": 200,
+   "utc": "2026-09-26T09:17:51+00:00",
+   "latency_s": 1.91,
+   "retries": [],
+   "error": null,
+   "finishReason": "STOP",
+   "usageMetadata": {
+    "promptTokenCount": 214,
+    "candidatesTokenCount": 2,
+    "totalTokenCount": 480,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 214
+     }
+    ],
+    "thoughtsTokenCount": 264,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "text": "page owner",
+   "naive_parts": "ok",
+   "cost_usd": 0.001158,
+   "run": 1,
+   "id": "payments-latency",
+   "want": "roll back",
+   "thinking": "low",
+   "got": "page owner",
+   "right": false,
+   "format_ok": true
+  }
+ ]
+}

@@ -3,7 +3,7 @@
     python3 measure/score_runs.py MODEL RUNS OUT.json [low|high]     # thinking level optional
     python3 measure/score_runs.py MODEL pilot OUT.json [low|high]    # one call, for the cost estimate
 """
-import json, statistics, sys, time
+import json, os, statistics, sys, time
 sys.path[:0] = [".", "measure"]
 import record
 
@@ -31,6 +31,9 @@ for run in range(1 if pilot else int(runs)):
             missed.append(case["id"])
         records.append(rec)
         record.save(out, {"model": model, "thinking": level or "API default", "runs": summaries, "calls": records})
+        spent = sum(r.get("cost_usd") or 0 for r in records)
+        if spent > float(os.environ.get("BUDGET_USD", "inf")):
+            sys.exit(f"budget reached: ${spent:.4f} in this invocation, stopping (saved {len(records)} calls)")
         if rec["http"] == 402:
             sys.exit("402: credits depleted, stopping")
         if rec["http"] != 200:

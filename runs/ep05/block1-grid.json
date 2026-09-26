@@ -1,0 +1,4184 @@
+[
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:01+00:00",
+  "latency_s": 3.766,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 83,
+   "totalTokenCount": 737,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 574,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll back\",\"steps\":[\"Initiate rollback of the deployment from 14 minutes ago.\",\"Open incident channel and announce ongoing checkout disruption.\",\"Verify third-party payment provider status and read API error logs.\",\"Monitor p95 latency, error rates, and checkout metrics post-rollback.\",\"Update customer support on resolution.\"]}",
+  "naive_parts": "ok",
+  "cost_usd": 0.00252375,
+  "thinking": "API default",
+  "maxOutputTokens": null,
+  "call": 1,
+  "json_ok": true,
+  "text_len": 385,
+  "first60": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll",
+  "last60": "s post-rollback.\",\"Update customer support on resolution.\"]}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:05+00:00",
+  "latency_s": 2.959,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 78,
+   "totalTokenCount": 578,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 420,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll back\",\"steps\":[\"Initiate rollback of the deploy from 14 minutes ago.\",\"Open an incident channel and post status updates.\",\"Monitor p95 latency and error rate for recovery.\",\"Review payment gateway dashboards for external outages.\",\"Investigate application logs of the rolled-back release.\"]}",
+  "naive_parts": "ok",
+  "cost_usd": 0.0019275,
+  "thinking": "API default",
+  "maxOutputTokens": null,
+  "call": 2,
+  "json_ok": true,
+  "text_len": 352,
+  "first60": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll",
+  "last60": "\"Investigate application logs of the rolled-back release.\"]}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:08+00:00",
+  "latency_s": 3.666,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 50,
+   "totalTokenCount": 636,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 506,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll back\",\"steps\":[\"Roll back the recent deployment\",\"Verify latency and error rate metrics recover\",\"Check application logs for timeouts or errors\",\"Notify incident response team and stakeholders\"]}",
+  "naive_parts": "ok",
+  "cost_usd": 0.002145,
+  "thinking": "API default",
+  "maxOutputTokens": null,
+  "call": 3,
+  "json_ok": true,
+  "text_len": 256,
+  "first60": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll",
+  "last60": "r errors\",\"Notify incident response team and stakeholders\"]}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 2048
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:12+00:00",
+  "latency_s": 3.403,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 79,
+   "totalTokenCount": 646,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 487,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll back\",\"steps\":[\"Initiate rollback of the deploy from 14 min ago.\",\"Monitor p95 latency and checkout error rates to verify recovery.\",\"Check upstream payment gateway provider status for secondary issues.\",\"Inspect application logs and traces during the regression window.\",\"Update customer support and incident stakeholders.\"]}",
+  "naive_parts": "ok",
+  "cost_usd": 0.0021825,
+  "thinking": "API default",
+  "maxOutputTokens": 2048,
+  "call": 1,
+  "json_ok": true,
+  "text_len": 387,
+  "first60": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll",
+  "last60": "dow.\",\"Update customer support and incident stakeholders.\"]}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 2048
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:15+00:00",
+  "latency_s": 3.767,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 62,
+   "totalTokenCount": 662,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 520,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll back\",\"steps\":[\"Roll back recent deployment immediately\",\"Monitor p95 latency and error rate for recovery\",\"Check payment provider status page and webhooks\",\"Inspect application logs for connection timeouts\",\"Post status update to the incident channel\"]}",
+  "naive_parts": "ok",
+  "cost_usd": 0.0022425,
+  "thinking": "API default",
+  "maxOutputTokens": 2048,
+  "call": 2,
+  "json_ok": true,
+  "text_len": 315,
+  "first60": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll",
+  "last60": "ion timeouts\",\"Post status update to the incident channel\"]}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 2048
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:19+00:00",
+  "latency_s": 3.635,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 68,
+   "totalTokenCount": 735,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 587,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll back\",\"steps\":[\"Roll back recent deployment from 14 minutes ago\",\"Verify latency and checkout error rates return to normal\",\"Inspect application logs for deployment-related exceptions\",\"Verify status of third-party payment providers\",\"Post update to the incident status page\"]}",
+  "naive_parts": "ok",
+  "cost_usd": 0.00251625,
+  "thinking": "API default",
+  "maxOutputTokens": 2048,
+  "call": 3,
+  "json_ok": true,
+  "text_len": 338,
+  "first60": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll",
+  "last60": "yment providers\",\"Post update to the incident status page\"]}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 512
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:22+00:00",
+  "latency_s": 3.39,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 43,
+   "totalTokenCount": 577,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 454,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll back\",\"steps\":[\"Roll back recent deployment from 14 minutes ago.\",\"Verify if p95 latency and checkout error rates",
+  "naive_parts": "ok",
+  "cost_usd": 0.00192375,
+  "thinking": "API default",
+  "maxOutputTokens": 512,
+  "call": 1,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Unterminated string starting at: line 1 column 128 (char 127)",
+  "text_len": 174,
+  "first60": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll",
+  "last60": "inutes ago.\",\"Verify if p95 latency and checkout error rates"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 512
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:26+00:00",
+  "latency_s": 3.73,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 41,
+   "totalTokenCount": 577,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 456,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll back\",\"steps\":[\"Roll back deployment from 14 minutes ago\",\"Monitor p95 latency and error rate recovery\",\"",
+  "naive_parts": "ok",
+  "cost_usd": 0.00192375,
+  "thinking": "API default",
+  "maxOutputTokens": 512,
+  "call": 2,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Unterminated string starting at: line 1 column 166 (char 165)",
+  "text_len": 166,
+  "first60": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll",
+  "last60": "minutes ago\",\"Monitor p95 latency and error rate recovery\",\""
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 512
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:30+00:00",
+  "latency_s": 3.156,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 38,
+   "totalTokenCount": 577,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 459,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll back\",\"steps\":[\"Roll back recent deployment from 14 minutes ago\",\"Verify latency and error rate return",
+  "naive_parts": "ok",
+  "cost_usd": 0.00192375,
+  "thinking": "API default",
+  "maxOutputTokens": 512,
+  "call": 3,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Unterminated string starting at: line 1 column 127 (char 126)",
+  "text_len": 163,
+  "first60": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll",
+  "last60": "t from 14 minutes ago\",\"Verify latency and error rate return"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 256
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:33+00:00",
+  "latency_s": 1.973,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 8,
+   "totalTokenCount": 332,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 244,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "Here is the JSON requested:\n```",
+  "naive_parts": "ok",
+  "cost_usd": 0.001005,
+  "thinking": "API default",
+  "maxOutputTokens": 256,
+  "call": 1,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+  "text_len": 31,
+  "first60": "Here is the JSON requested:\n```",
+  "last60": "Here is the JSON requested:\n```"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 256
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:35+00:00",
+  "latency_s": 1.908,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 8,
+   "totalTokenCount": 332,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 244,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "Here is the JSON requested:\n",
+  "naive_parts": "ok",
+  "cost_usd": 0.001005,
+  "thinking": "API default",
+  "maxOutputTokens": 256,
+  "call": 2,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+  "text_len": 28,
+  "first60": "Here is the JSON requested:\n",
+  "last60": "Here is the JSON requested:\n"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 256
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:37+00:00",
+  "latency_s": 2.338,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 5,
+   "totalTokenCount": 332,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 247,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "Here is the JSON",
+  "naive_parts": "ok",
+  "cost_usd": 0.001005,
+  "thinking": "API default",
+  "maxOutputTokens": 256,
+  "call": 3,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+  "text_len": 16,
+  "first60": "Here is the JSON",
+  "last60": "Here is the JSON"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 128
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:39+00:00",
+  "latency_s": 1.488,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 5,
+   "totalTokenCount": 204,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 119,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "Here is the JSON",
+  "naive_parts": "ok",
+  "cost_usd": 0.000525,
+  "thinking": "API default",
+  "maxOutputTokens": 128,
+  "call": 1,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+  "text_len": 16,
+  "first60": "Here is the JSON",
+  "last60": "Here is the JSON"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 128
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:41+00:00",
+  "latency_s": 1.544,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 3,
+   "totalTokenCount": 204,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 121,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "Here is",
+  "naive_parts": "ok",
+  "cost_usd": 0.000525,
+  "thinking": "API default",
+  "maxOutputTokens": 128,
+  "call": 2,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+  "text_len": 7,
+  "first60": "Here is",
+  "last60": "Here is"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 128
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:42+00:00",
+  "latency_s": 1.548,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 5,
+   "totalTokenCount": 204,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 119,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "Here is the JSON requested",
+  "naive_parts": "ok",
+  "cost_usd": 0.000525,
+  "thinking": "API default",
+  "maxOutputTokens": 128,
+  "call": 3,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+  "text_len": 26,
+  "first60": "Here is the JSON requested",
+  "last60": "Here is the JSON requested"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 64
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:44+00:00",
+  "latency_s": 0.926,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "totalTokenCount": 141,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 61,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "",
+  "naive_parts": "KeyError: 'parts'",
+  "candidate_raw": {
+   "content": {},
+   "finishReason": "MAX_TOKENS",
+   "index": 0
+  },
+  "cost_usd": 0.00028875,
+  "thinking": "API default",
+  "maxOutputTokens": 64,
+  "call": 1,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+  "text_len": 0,
+  "first60": "",
+  "last60": ""
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 64
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:45+00:00",
+  "latency_s": 1.368,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "totalTokenCount": 141,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 61,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "",
+  "naive_parts": "KeyError: 'parts'",
+  "candidate_raw": {
+   "content": {},
+   "finishReason": "MAX_TOKENS",
+   "index": 0
+  },
+  "cost_usd": 0.00028875,
+  "thinking": "API default",
+  "maxOutputTokens": 64,
+  "call": 2,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+  "text_len": 0,
+  "first60": "",
+  "last60": ""
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 64
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:46+00:00",
+  "latency_s": 1.217,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "totalTokenCount": 141,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 61,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "",
+  "naive_parts": "KeyError: 'parts'",
+  "candidate_raw": {
+   "content": {},
+   "finishReason": "MAX_TOKENS",
+   "index": 0
+  },
+  "cost_usd": 0.00028875,
+  "thinking": "API default",
+  "maxOutputTokens": 64,
+  "call": 3,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+  "text_len": 0,
+  "first60": "",
+  "last60": ""
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:47+00:00",
+  "latency_s": 1.401,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 97,
+   "totalTokenCount": 177,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_move\": \"roll back\",\n  \"steps\": [\n    \"Roll back the deployment from 14 minutes ago\",\n    \"Monitor p95 latency and checkout error rates\",\n    \"Verify external payment gateway status\",\n    \"Inspect application logs for timeout causes\",\n    \"Update stakeholders and customer support\"\n  ]\n}",
+  "naive_parts": "ok",
+  "cost_usd": 0.00042375,
+  "thinking": "low (lowest accepted)",
+  "maxOutputTokens": null,
+  "call": 1,
+  "json_ok": true,
+  "text_len": 346,
+  "first60": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_",
+  "last60": "auses\",\n    \"Update stakeholders and customer support\"\n  ]\n}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:49+00:00",
+  "latency_s": 1.856,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 108,
+   "totalTokenCount": 188,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_move\": \"roll back\",\n  \"steps\": [\n    \"Roll back the deployment from 14 minutes ago\",\n    \"Verify p95 latency and error rate metrics return to baseline\",\n    \"Check payment gateway and downstream provider status\",\n    \"Review application and error logs during the incident window\",\n    \"Notify customer support regarding the checkout failure resolution\"\n  ]\n}",
+  "naive_parts": "ok",
+  "cost_usd": 0.000465,
+  "thinking": "low (lowest accepted)",
+  "maxOutputTokens": null,
+  "call": 2,
+  "json_ok": true,
+  "text_len": 418,
+  "first60": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_",
+  "last60": "mer support regarding the checkout failure resolution\"\n  ]\n}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:50+00:00",
+  "latency_s": 1.562,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 108,
+   "totalTokenCount": 188,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_move\": \"roll back\",\n  \"steps\": [\n    \"Roll back the deployment from 14 minutes ago\",\n    \"Verify p95 latency and error rate metrics return to baseline\",\n    \"Check payment gateway and downstream provider health\",\n    \"Inspect application logs for errors or timeouts during checkout\",\n    \"Notify customer support regarding the checkout issue mitigation\"\n  ]\n}",
+  "naive_parts": "ok",
+  "cost_usd": 0.000465,
+  "thinking": "low (lowest accepted)",
+  "maxOutputTokens": null,
+  "call": 3,
+  "json_ok": true,
+  "text_len": 419,
+  "first60": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_",
+  "last60": "tomer support regarding the checkout issue mitigation\"\n  ]\n}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 2048,
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:52+00:00",
+  "latency_s": 1.57,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 91,
+   "totalTokenCount": 171,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_move\": \"roll back\",\n  \"steps\": [\n    \"Roll back the deployment from 14 minutes ago\",\n    \"Monitor p95 latency and checkout error rates\",\n    \"Inspect application logs and metrics for root cause\",\n    \"Notify customer support of the mitigation\"\n  ]\n}",
+  "naive_parts": "ok",
+  "cost_usd": 0.00040125,
+  "thinking": "low (lowest accepted)",
+  "maxOutputTokens": 2048,
+  "call": 1,
+  "json_ok": true,
+  "text_len": 309,
+  "first60": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_",
+  "last60": "ause\",\n    \"Notify customer support of the mitigation\"\n  ]\n}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 2048,
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:54+00:00",
+  "latency_s": 1.569,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 106,
+   "totalTokenCount": 186,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_move\": \"roll back\",\n  \"steps\": [\n    \"Roll back the deployment from 14 minutes ago.\",\n    \"Verify if p95 latency and error rate recover.\",\n    \"Monitor checkout completion metrics and error logs.\",\n    \"Notify customer support of mitigation in progress.\",\n    \"Investigate the faulty deploy in a staging environment.\"\n  ]\n}",
+  "naive_parts": "ok",
+  "cost_usd": 0.0004575,
+  "thinking": "low (lowest accepted)",
+  "maxOutputTokens": 2048,
+  "call": 2,
+  "json_ok": true,
+  "text_len": 383,
+  "first60": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_",
+  "last60": "vestigate the faulty deploy in a staging environment.\"\n  ]\n}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 2048,
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:55+00:00",
+  "latency_s": 1.351,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 110,
+   "totalTokenCount": 190,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_move\": \"roll back\",\n  \"steps\": [\n    \"Roll back the last deployment from 14 minutes ago.\",\n    \"Verify p95 latency and error rate metrics return to normal thresholds.\",\n    \"Inspect application logs and third-party payment gateway status.\",\n    \"Monitor customer checkout success rates.\",\n    \"Communicate incident status to customer support and stakeholders.\"\n  ]\n}",
+  "naive_parts": "ok",
+  "cost_usd": 0.0004725,
+  "thinking": "low (lowest accepted)",
+  "maxOutputTokens": 2048,
+  "call": 3,
+  "json_ok": true,
+  "text_len": 426,
+  "first60": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_",
+  "last60": "incident status to customer support and stakeholders.\"\n  ]\n}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 512,
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:56+00:00",
+  "latency_s": 1.542,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 84,
+   "totalTokenCount": 164,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_move\": \"roll back\",\n  \"steps\": [\n    \"Roll back recent deployment\",\n    \"Verify p95 latency and error rate recovery\",\n    \"Inspect checkout logs and downstream payment gateway status\",\n    \"Notify customer support of mitigation\"\n  ]\n}",
+  "naive_parts": "ok",
+  "cost_usd": 0.000375,
+  "thinking": "low (lowest accepted)",
+  "maxOutputTokens": 512,
+  "call": 1,
+  "json_ok": true,
+  "text_len": 294,
+  "first60": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_",
+  "last60": "y status\",\n    \"Notify customer support of mitigation\"\n  ]\n}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 512,
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:58+00:00",
+  "latency_s": 1.309,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 104,
+   "totalTokenCount": 184,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_move\": \"roll back\",\n  \"steps\": [\n    \"Roll back the deployment from 14 minutes ago\",\n    \"Monitor checkout success rate and p95 latency\",\n    \"Check payment provider status page for external issues\",\n    \"Inspect application logs for timeout or error spikes\",\n    \"Post an incident update to internal stakeholders\"\n  ]\n}",
+  "naive_parts": "ok",
+  "cost_usd": 0.00045,
+  "thinking": "low (lowest accepted)",
+  "maxOutputTokens": 512,
+  "call": 2,
+  "json_ok": true,
+  "text_len": 380,
+  "first60": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_",
+  "last60": "    \"Post an incident update to internal stakeholders\"\n  ]\n}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 512,
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:01:59+00:00",
+  "latency_s": 1.529,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 118,
+   "totalTokenCount": 198,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_move\": \"roll back\",\n  \"steps\": [\n    \"Roll back the deployment from 14 minutes ago.\",\n    \"Monitor p95 latency and checkout error rates to verify recovery.\",\n    \"Inspect application logs and third-party payment provider status for anomalies.\",\n    \"Update incident status and notify customer support.\",\n    \"Investigate root cause in the rolled-back deployment before re-releasing.\"\n  ]\n}",
+  "naive_parts": "ok",
+  "cost_usd": 0.0005025,
+  "thinking": "low (lowest accepted)",
+  "maxOutputTokens": 512,
+  "call": 3,
+  "json_ok": true,
+  "text_len": 449,
+  "first60": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_",
+  "last60": "se in the rolled-back deployment before re-releasing.\"\n  ]\n}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 256,
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:02:01+00:00",
+  "latency_s": 1.75,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 107,
+   "totalTokenCount": 187,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_move\": \"roll back\",\n  \"steps\": [\n    \"Initiate rollback of the last deploy\",\n    \"Notify incident response channel and stakeholders\",\n    \"Monitor latency and error rates post-rollback\",\n    \"Check provider status and external payment gateways\",\n    \"Review logs for failed checkout errors\",\n    \"Verify checkout flow functionality with synthetic tests\"\n  ]\n}",
+  "naive_parts": "ok",
+  "cost_usd": 0.00046125,
+  "thinking": "low (lowest accepted)",
+  "maxOutputTokens": 256,
+  "call": 1,
+  "json_ok": true,
+  "text_len": 419,
+  "first60": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_",
+  "last60": "rify checkout flow functionality with synthetic tests\"\n  ]\n}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 256,
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:02:03+00:00",
+  "latency_s": 1.634,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 110,
+   "totalTokenCount": 190,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_move\": \"roll back\",\n  \"steps\": [\n    \"Roll back the last deployment from 14 minutes ago.\",\n    \"Monitor p95 latency and checkout error rates for recovery.\",\n    \"Verify checkout flow functionality with a test transaction.\",\n    \"Notify customer support and update the incident channel.\",\n    \"Inspect application logs and metrics to identify the root cause.\"\n  ]\n}",
+  "naive_parts": "ok",
+  "cost_usd": 0.0004725,
+  "thinking": "low (lowest accepted)",
+  "maxOutputTokens": 256,
+  "call": 2,
+  "json_ok": true,
+  "text_len": 424,
+  "first60": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_",
+  "last60": "lication logs and metrics to identify the root cause.\"\n  ]\n}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 256,
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:02:04+00:00",
+  "latency_s": 1.214,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 100,
+   "totalTokenCount": 180,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_move\": \"roll back\",\n  \"steps\": [\n    \"Roll back the deployment from 14 minutes ago\",\n    \"Monitor p95 latency and checkout error rates\",\n    \"Check payment provider status page and APIs\",\n    \"Investigate application error logs for timeouts\",\n    \"Update stakeholders and customer support\"\n  ]\n}",
+  "naive_parts": "ok",
+  "cost_usd": 0.000435,
+  "thinking": "low (lowest accepted)",
+  "maxOutputTokens": 256,
+  "call": 3,
+  "json_ok": true,
+  "text_len": 355,
+  "first60": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_",
+  "last60": "eouts\",\n    \"Update stakeholders and customer support\"\n  ]\n}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 128,
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:02:06+00:00",
+  "latency_s": 1.388,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 97,
+   "totalTokenCount": 177,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_move\": \"roll back\",\n  \"steps\": [\n    \"Roll back the deployment from 14 minutes ago.\",\n    \"Monitor p95 latency and checkout error rates to verify recovery.\",\n    \"Inspect application logs and error metrics for root cause.\",\n    \"Notify support and confirm customer checkout resolution.\"\n  ]\n}",
+  "naive_parts": "ok",
+  "cost_usd": 0.00042375,
+  "thinking": "low (lowest accepted)",
+  "maxOutputTokens": 128,
+  "call": 1,
+  "json_ok": true,
+  "text_len": 352,
+  "first60": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_",
+  "last60": "ify support and confirm customer checkout resolution.\"\n  ]\n}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 128,
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:02:07+00:00",
+  "latency_s": 1.388,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 106,
+   "totalTokenCount": 186,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_move\": \"roll back\",\n  \"steps\": [\n    \"Roll back the deployment from 14 minutes ago\",\n    \"Verify p95 latency and error rate metrics recover\",\n    \"Check payment provider status page for external issues\",\n    \"Read application logs for the failed checkout traces\",\n    \"Post an incident update to the status channel\"\n  ]\n}",
+  "naive_parts": "ok",
+  "cost_usd": 0.0004575,
+  "thinking": "low (lowest accepted)",
+  "maxOutputTokens": 128,
+  "call": 2,
+  "json_ok": true,
+  "text_len": 381,
+  "first60": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_",
+  "last60": "\",\n    \"Post an incident update to the status channel\"\n  ]\n}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 128,
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:02:08+00:00",
+  "latency_s": 1.474,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 107,
+   "totalTokenCount": 187,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_move\": \"roll back\",\n  \"steps\": [\n    \"Initiate rollback of the deploy from 14 minutes ago.\",\n    \"Verify error rate and latency drop post-rollback.\",\n    \"Check payment provider status page and network health.\",\n    \"Inspect application logs for timeout causes and error details.\",\n    \"Communicate incident status to customer support.\"\n  ]\n}",
+  "naive_parts": "ok",
+  "cost_usd": 0.00046125,
+  "thinking": "low (lowest accepted)",
+  "maxOutputTokens": 128,
+  "call": 3,
+  "json_ok": true,
+  "text_len": 402,
+  "first60": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_",
+  "last60": "    \"Communicate incident status to customer support.\"\n  ]\n}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 64,
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:02:10+00:00",
+  "latency_s": 1.443,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 49,
+   "totalTokenCount": 129,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_move\": \"roll back\",\n  \"steps\": [\n    \"Roll back the last deployment from 14",
+  "naive_parts": "ok",
+  "cost_usd": 0.00024375,
+  "thinking": "low (lowest accepted)",
+  "maxOutputTokens": 64,
+  "call": 1,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Unterminated string starting at: line 6 column 5 (char 97)",
+  "text_len": 135,
+  "first60": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_",
+  "last60": "ck\",\n  \"steps\": [\n    \"Roll back the last deployment from 14"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 64,
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:02:11+00:00",
+  "latency_s": 1.753,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 49,
+   "totalTokenCount": 129,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_move\": \"roll back\",\n  \"steps\": [\n    \"Roll back the deployment from 14 minutes",
+  "naive_parts": "ok",
+  "cost_usd": 0.00024375,
+  "thinking": "low (lowest accepted)",
+  "maxOutputTokens": 64,
+  "call": 2,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Unterminated string starting at: line 6 column 5 (char 97)",
+  "text_len": 138,
+  "first60": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_",
+  "last60": ",\n  \"steps\": [\n    \"Roll back the deployment from 14 minutes"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 64,
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:02:13+00:00",
+  "latency_s": 1.299,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 49,
+   "totalTokenCount": 129,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_move\": \"roll back\",\n  \"steps\": [\n    \"Roll back the deployment from 14 minutes",
+  "naive_parts": "ok",
+  "cost_usd": 0.00024375,
+  "thinking": "low (lowest accepted)",
+  "maxOutputTokens": 64,
+  "call": 3,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Unterminated string starting at: line 6 column 5 (char 97)",
+  "text_len": 138,
+  "first60": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_",
+  "last60": ",\n  \"steps\": [\n    \"Roll back the deployment from 14 minutes"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "thinkingConfig": {
+    "thinkingLevel": "high"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:02:14+00:00",
+  "latency_s": 8.078,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 61,
+   "totalTokenCount": 970,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 829,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll back\",\"steps\":[\"Initiate rollback of the recent deployment\",\"Monitor p95 latency and error rates for recovery\",\"Check downstream payment provider status\",\"Inspect error logs for failed checkout traces\",\"Notify stakeholders and update incident channel\"]}",
+  "naive_parts": "ok",
+  "cost_usd": 0.0033975,
+  "thinking": "high (highest accepted)",
+  "maxOutputTokens": null,
+  "call": 1,
+  "json_ok": true,
+  "text_len": 314,
+  "first60": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll",
+  "last60": " traces\",\"Notify stakeholders and update incident channel\"]}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "thinkingConfig": {
+    "thinkingLevel": "high"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:02:22+00:00",
+  "latency_s": 5.478,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 68,
+   "totalTokenCount": 1099,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 951,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll back\",\"steps\":[\"Roll back deployment from 14 minutes ago\",\"Monitor p95 latency and error rates for recovery\",\"Verify checkout functionality with a test transaction\",\"Inspect application logs and metrics for root cause\",\"Update status page and communicate with support team\"]}",
+  "naive_parts": "ok",
+  "cost_usd": 0.00388125,
+  "thinking": "high (highest accepted)",
+  "maxOutputTokens": null,
+  "call": 2,
+  "json_ok": true,
+  "text_len": 336,
+  "first60": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll",
+  "last60": "se\",\"Update status page and communicate with support team\"]}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "thinkingConfig": {
+    "thinkingLevel": "high"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:02:28+00:00",
+  "latency_s": 3.736,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 58,
+   "totalTokenCount": 808,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 670,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll back\",\"steps\":[\"Roll back recent deployment\",\"Monitor p95 latency and error rate recovery\",\"Verify third-party payment provider status\",\"Inspect application logs for timeout traces\",\"Notify stakeholders and update incident channel\"]}",
+  "naive_parts": "ok",
+  "cost_usd": 0.00279,
+  "thinking": "high (highest accepted)",
+  "maxOutputTokens": null,
+  "call": 3,
+  "json_ok": true,
+  "text_len": 294,
+  "first60": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll",
+  "last60": " traces\",\"Notify stakeholders and update incident channel\"]}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 2048,
+   "thinkingConfig": {
+    "thinkingLevel": "high"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:02:32+00:00",
+  "latency_s": 4.703,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 56,
+   "totalTokenCount": 1043,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 907,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll back\",\"steps\":[\"Roll back recent deployment\",\"Verify latency and error rate recovery\",\"Check logs and payment gateway status\",\"Communicate status in the incident channel\",\"Investigate release diff for root cause\"]}",
+  "naive_parts": "ok",
+  "cost_usd": 0.00367125,
+  "thinking": "high (highest accepted)",
+  "maxOutputTokens": 2048,
+  "call": 1,
+  "json_ok": true,
+  "text_len": 275,
+  "first60": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll",
+  "last60": "ncident channel\",\"Investigate release diff for root cause\"]}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 2048,
+   "thinkingConfig": {
+    "thinkingLevel": "high"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:02:36+00:00",
+  "latency_s": 5.288,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 76,
+   "totalTokenCount": 947,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 791,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll back\",\"steps\":[\"Initiate immediate rollback of the deployment from 14 minutes ago\",\"Post incident announcement in incident response channel\",\"Monitor p95 latency and error rate metrics until stabilized\",\"Verify checkout flows and third-party payment gateway health\",\"Inspect deployment diff and logs for root cause analysis\"]}",
+  "naive_parts": "ok",
+  "cost_usd": 0.00331125,
+  "thinking": "high (highest accepted)",
+  "maxOutputTokens": 2048,
+  "call": 2,
+  "json_ok": true,
+  "text_len": 387,
+  "first60": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll",
+  "last60": "\"Inspect deployment diff and logs for root cause analysis\"]}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 2048,
+   "thinkingConfig": {
+    "thinkingLevel": "high"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:02:42+00:00",
+  "latency_s": 5.344,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 60,
+   "totalTokenCount": 1225,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 1085,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll back\",\"steps\":[\"Roll back to the previous stable release\",\"Monitor p95 latency and checkout error rates\",\"Check upstream payment provider status page\",\"Inspect application logs for timeout details\",\"Update customer support on mitigation status\"]}",
+  "naive_parts": "ok",
+  "cost_usd": 0.00435375,
+  "thinking": "high (highest accepted)",
+  "maxOutputTokens": 2048,
+  "call": 3,
+  "json_ok": true,
+  "text_len": 307,
+  "first60": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll",
+  "last60": "ut details\",\"Update customer support on mitigation status\"]}"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 512,
+   "thinkingConfig": {
+    "thinkingLevel": "high"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:02:47+00:00",
+  "latency_s": 3.021,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 7,
+   "totalTokenCount": 578,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 491,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"",
+  "naive_parts": "ok",
+  "cost_usd": 0.0019275,
+  "thinking": "high (highest accepted)",
+  "maxOutputTokens": 512,
+  "call": 1,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Unterminated string starting at: line 2 column 15 (char 16)",
+  "text_len": 17,
+  "first60": "{\n  \"severity\": \"",
+  "last60": "{\n  \"severity\": \""
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 512,
+   "thinkingConfig": {
+    "thinkingLevel": "high"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:02:50+00:00",
+  "latency_s": 3.247,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 10,
+   "totalTokenCount": 577,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 487,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",",
+  "naive_parts": "ok",
+  "cost_usd": 0.00192375,
+  "thinking": "high (highest accepted)",
+  "maxOutputTokens": 512,
+  "call": 2,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Expecting property name enclosed in double quotes: line 2 column 20 (char 21)",
+  "text_len": 21,
+  "first60": "{\n  \"severity\": \"P1\",",
+  "last60": "{\n  \"severity\": \"P1\","
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 512,
+   "thinkingConfig": {
+    "thinkingLevel": "high"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:02:53+00:00",
+  "latency_s": 3.009,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 10,
+   "totalTokenCount": 577,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 487,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",",
+  "naive_parts": "ok",
+  "cost_usd": 0.00192375,
+  "thinking": "high (highest accepted)",
+  "maxOutputTokens": 512,
+  "call": 3,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Expecting property name enclosed in double quotes: line 2 column 20 (char 21)",
+  "text_len": 21,
+  "first60": "{\n  \"severity\": \"P1\",",
+  "last60": "{\n  \"severity\": \"P1\","
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 256,
+   "thinkingConfig": {
+    "thinkingLevel": "high"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:02:56+00:00",
+  "latency_s": 2.257,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 6,
+   "totalTokenCount": 332,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 246,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "Here is the JSON requested",
+  "naive_parts": "ok",
+  "cost_usd": 0.001005,
+  "thinking": "high (highest accepted)",
+  "maxOutputTokens": 256,
+  "call": 1,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+  "text_len": 26,
+  "first60": "Here is the JSON requested",
+  "last60": "Here is the JSON requested"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 256,
+   "thinkingConfig": {
+    "thinkingLevel": "high"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:02:59+00:00",
+  "latency_s": 2.039,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 9,
+   "totalTokenCount": 332,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 243,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "Here is the JSON requested:\n",
+  "naive_parts": "ok",
+  "cost_usd": 0.001005,
+  "thinking": "high (highest accepted)",
+  "maxOutputTokens": 256,
+  "call": 2,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+  "text_len": 28,
+  "first60": "Here is the JSON requested:\n",
+  "last60": "Here is the JSON requested:\n"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 256,
+   "thinkingConfig": {
+    "thinkingLevel": "high"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:03:01+00:00",
+  "latency_s": 1.768,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "totalTokenCount": 321,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 241,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "",
+  "naive_parts": "KeyError: 'parts'",
+  "candidate_raw": {
+   "content": {},
+   "finishReason": "MAX_TOKENS",
+   "index": 0
+  },
+  "cost_usd": 0.00096375,
+  "thinking": "high (highest accepted)",
+  "maxOutputTokens": 256,
+  "call": 3,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+  "text_len": 0,
+  "first60": "",
+  "last60": ""
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 128,
+   "thinkingConfig": {
+    "thinkingLevel": "high"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:03:02+00:00",
+  "latency_s": 1.639,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 6,
+   "totalTokenCount": 204,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 118,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "Here is the JSON requested",
+  "naive_parts": "ok",
+  "cost_usd": 0.000525,
+  "thinking": "high (highest accepted)",
+  "maxOutputTokens": 128,
+  "call": 1,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+  "text_len": 26,
+  "first60": "Here is the JSON requested",
+  "last60": "Here is the JSON requested"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 128,
+   "thinkingConfig": {
+    "thinkingLevel": "high"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:03:04+00:00",
+  "latency_s": 1.298,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 5,
+   "totalTokenCount": 204,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 119,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "Here is the JSON",
+  "naive_parts": "ok",
+  "cost_usd": 0.000525,
+  "thinking": "high (highest accepted)",
+  "maxOutputTokens": 128,
+  "call": 2,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+  "text_len": 16,
+  "first60": "Here is the JSON",
+  "last60": "Here is the JSON"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 128,
+   "thinkingConfig": {
+    "thinkingLevel": "high"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:03:05+00:00",
+  "latency_s": 1.292,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 6,
+   "totalTokenCount": 204,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 118,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "Here is the JSON requested:",
+  "naive_parts": "ok",
+  "cost_usd": 0.000525,
+  "thinking": "high (highest accepted)",
+  "maxOutputTokens": 128,
+  "call": 3,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+  "text_len": 27,
+  "first60": "Here is the JSON requested:",
+  "last60": "Here is the JSON requested:"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 64,
+   "thinkingConfig": {
+    "thinkingLevel": "high"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:03:07+00:00",
+  "latency_s": 1.114,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "totalTokenCount": 141,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 61,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "",
+  "naive_parts": "KeyError: 'parts'",
+  "candidate_raw": {
+   "content": {},
+   "finishReason": "MAX_TOKENS",
+   "index": 0
+  },
+  "cost_usd": 0.00028875,
+  "thinking": "high (highest accepted)",
+  "maxOutputTokens": 64,
+  "call": 1,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+  "text_len": 0,
+  "first60": "",
+  "last60": ""
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 64,
+   "thinkingConfig": {
+    "thinkingLevel": "high"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:03:08+00:00",
+  "latency_s": 1.201,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 3,
+   "totalTokenCount": 140,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 57,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "Here is the",
+  "naive_parts": "ok",
+  "cost_usd": 0.000285,
+  "thinking": "high (highest accepted)",
+  "maxOutputTokens": 64,
+  "call": 2,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+  "text_len": 11,
+  "first60": "Here is the",
+  "last60": "Here is the"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "maxOutputTokens": 64,
+   "thinkingConfig": {
+    "thinkingLevel": "high"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:03:09+00:00",
+  "latency_s": 1.121,
+  "retries": [],
+  "error": null,
+  "finishReason": "MAX_TOKENS",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "totalTokenCount": 141,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 61,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "",
+  "naive_parts": "KeyError: 'parts'",
+  "candidate_raw": {
+   "content": {},
+   "finishReason": "MAX_TOKENS",
+   "index": 0
+  },
+  "cost_usd": 0.00028875,
+  "thinking": "high (highest accepted)",
+  "maxOutputTokens": 64,
+  "call": 3,
+  "json_ok": false,
+  "json_error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+  "text_len": 0,
+  "first60": "",
+  "last60": ""
+ }
+]

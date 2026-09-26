@@ -1,0 +1,16 @@
+$ python3 plan.py 512    # 2026-09-26T09:04:04Z, terminal output verbatim
+MAX_TOKENS {'promptTokenCount': 80, 'candidatesTokenCount': 5, 'totalTokenCount': 577, 'promptTokensDetails': [{'modality': 'TEXT', 'tokenCount': 80}], 'thoughtsTokenCount': 492, 'serviceTier': 'standard'}
+Traceback (most recent call last):
+  File "/Users/vivek/Projects/nightshift/plan.py", line 37, in <module>
+    plan = json.loads(text)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py", line 361, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ~~~~~~~~~~~~~~^^^^^^^^
+json.decoder.JSONDecodeError: Unterminated string starting at: line 1 column 13 (char 12)
+exit 1

@@ -1,0 +1,8 @@
+$ python3 plan.py 64    # 2026-09-26T09:04:03Z, terminal output verbatim
+MAX_TOKENS {'promptTokenCount': 80, 'totalTokenCount': 141, 'promptTokensDetails': [{'modality': 'TEXT', 'tokenCount': 80}], 'thoughtsTokenCount': 61, 'serviceTier': 'standard'}
+Traceback (most recent call last):
+  File "/Users/vivek/Projects/nightshift/plan.py", line 36, in <module>
+    text = "".join(p["text"] for p in r["candidates"][0]["content"]["parts"])
+                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+KeyError: 'parts'
+exit 1

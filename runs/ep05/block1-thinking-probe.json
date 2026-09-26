@@ -1,0 +1,616 @@
+[
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:00:20+00:00",
+  "latency_s": 3.016,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 90,
+   "totalTokenCount": 606,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 436,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll back\",\"steps\":[\"Initiate immediate rollback of the deployment from 14 minutes ago.\",\"Verify if p95 latency and checkout error rates recover post-rollback.\",\"Check payment provider status page and network connectivity for external degradation.\",\"Inspect payments-api logs and traces for timeout or database bottlenecks.\",\"Confirm resolution with customer support regarding failed checkout reports.\"]}",
+  "naive_parts": "ok",
+  "cost_usd": 0.0020325,
+  "probe": "API default"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "thinkingConfig": {
+    "thinkingLevel": "minimal"
+   }
+  },
+  "http": 400,
+  "utc": "2026-09-26T09:00:23+00:00",
+  "latency_s": 0.348,
+  "retries": [],
+  "error": "{\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"Thinking level MINIMAL is not supported for this model. Please retry with other thinking level.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n",
+  "probe": "thinkingLevel=minimal"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:00:23+00:00",
+  "latency_s": 1.813,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 106,
+   "totalTokenCount": 186,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_move\": \"roll back\",\n  \"steps\": [\n    \"Roll back the deployment from 14 minutes ago\",\n    \"Verify p95 latency and error rate metrics recover\",\n    \"Check payment provider status page for external issues\",\n    \"Read application logs for timeout or dependency errors\",\n    \"Notify customer support regarding the checkout failures\"\n  ]\n}",
+  "naive_parts": "ok",
+  "cost_usd": 0.0004575,
+  "probe": "thinkingLevel=low"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "thinkingConfig": {
+    "thinkingLevel": "medium"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:00:25+00:00",
+  "latency_s": 3.03,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 59,
+   "totalTokenCount": 522,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 383,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll back\",\"steps\":[\"Roll back deployment from 14 minutes ago\",\"Verify latency and error rates stabilize\",\"Check payment provider status page\",\"Inspect application logs for errors and timeouts\",\"Update incident response channel and stakeholders\"]}",
+  "naive_parts": "ok",
+  "cost_usd": 0.0017175,
+  "probe": "thinkingLevel=medium"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "thinkingConfig": {
+    "thinkingLevel": "high"
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:00:28+00:00",
+  "latency_s": 4.196,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 55,
+   "totalTokenCount": 928,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 793,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll back\",\"steps\":[\"Roll back the recent deployment\",\"Verify latency and error rates normalize\",\"Communicate incident status to customer support\",\"Inspect application logs and deploy diff\",\"Run post-incident review\"]}",
+  "naive_parts": "ok",
+  "cost_usd": 0.00324,
+  "probe": "thinkingLevel=high"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "thinkingConfig": {
+    "thinkingBudget": 0
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:00:32+00:00",
+  "latency_s": 2.504,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 109,
+   "totalTokenCount": 189,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_move\": \"roll back\",\n  \"steps\": [\n    \"Initiate rollback of the recent deploy from 14 minutes ago.\",\n    \"Monitor p95 latency and checkout error rates post-rollback.\",\n    \"Check payment gateway and downstream provider statuses.\",\n    \"Inspect application logs for errors and timeouts during checkout.\",\n    \"Notify customer support with status updates.\"\n  ]\n}",
+  "naive_parts": "ok",
+  "cost_usd": 0.00046875,
+  "probe": "thinkingBudget=0"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "thinkingConfig": {
+    "thinkingBudget": 128
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:00:35+00:00",
+  "latency_s": 2.852,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 97,
+   "totalTokenCount": 177,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_move\": \"roll back\",\n  \"steps\": [\n    \"Roll back the last deployment.\",\n    \"Monitor latency and error rates to confirm recovery.\",\n    \"Check payment provider status page and integration health.\",\n    \"Inspect application logs for exceptions and timeouts.\",\n    \"Notify customer support with status update.\"\n  ]\n}",
+  "naive_parts": "ok",
+  "cost_usd": 0.00042375,
+  "probe": "thinkingBudget=128"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "thinkingConfig": {
+    "thinkingBudget": 1024
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:00:38+00:00",
+  "latency_s": 1.69,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 113,
+   "totalTokenCount": 193,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments-api\",\n  \"first_move\": \"roll back\",\n  \"steps\": [\n    \"Roll back the deployment from 14 minutes ago\",\n    \"Verify latency and checkout error rates return to normal\",\n    \"Monitor incoming customer checkout reports\",\n    \"Check payment gateway and downstream provider health\",\n    \"Inspect application logs for errors during the high latency period\",\n    \"Notify stakeholders and update incident status\"\n  ]\n}",
+  "naive_parts": "ok",
+  "cost_usd": 0.00048375,
+  "probe": "thinkingBudget=1024"
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "generationConfig": {
+   "responseMimeType": "application/json",
+   "responseSchema": {
+    "type": "object",
+    "properties": {
+     "severity": {
+      "type": "string",
+      "enum": [
+       "P1",
+       "P2",
+       "P3"
+      ]
+     },
+     "service": {
+      "type": "string"
+     },
+     "first_move": {
+      "type": "string",
+      "enum": [
+       "roll back",
+       "read logs",
+       "check provider",
+       "page owner",
+       "no action"
+      ]
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "severity",
+     "service",
+     "first_move",
+     "steps"
+    ]
+   },
+   "thinkingConfig": {
+    "thinkingBudget": -1
+   }
+  },
+  "http": 200,
+  "utc": "2026-09-26T09:00:39+00:00",
+  "latency_s": 4.67,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 80,
+   "candidatesTokenCount": 56,
+   "totalTokenCount": 948,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 80
+    }
+   ],
+   "thoughtsTokenCount": 812,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "{\"severity\":\"P1\",\"service\":\"payments-api\",\"first_move\":\"roll back\",\"steps\":[\"Roll back recent deployment to previous stable version\",\"Monitor latency and error rates for recovery\",\"Inspect application logs and third-party payment provider status\",\"Notify stakeholders and update incident channel\"]}",
+  "naive_parts": "ok",
+  "cost_usd": 0.003315,
+  "probe": "thinkingBudget=-1"
+ }
+]

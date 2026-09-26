@@ -4,7 +4,7 @@
     python3 measure/table.py models     # four models at their default thinking, on the thirty alerts
     python3 measure/table.py same         # the alerts wrong in every run (4 models + low and high thinking), and their text
     python3 measure/table.py temperature  # the borderline alert, ten answers at the default and ten at temperature 0
-    python3 measure/table.py narrowed     # score.py's rules against the page owner line narrowed (score.py --narrowed)
+    python3 measure/table.py narrowed     # score.py's rules against the narrowed page owner line, then the cheaper settings re-checked
 """
 import json, sys, textwrap
 
@@ -76,10 +76,13 @@ elif what == "temperature":
 elif what == "narrowed":
     base_runs, base = load(["block3-gemini-3.8-flash.json"])
     new_runs, new = load(["block4-gemini-3.8-flash-narrowed.json"])
-    print(f"gemini-3.8-flash, default thinking {'':10} runs  score/30")
-    print(f"{'score.py rules':45} {len(base_runs):>4}  {' '.join(str(r['score']) for r in base_runs)}")
-    print(f"{'page owner line narrowed':45} {len(new_runs):>4}  {' '.join(str(r['score']) for r in new_runs)}\n")
-    print(f"  {'':27} {'wanted':15} {'score.py rules':17} narrowed")
+    rows = [("score.py rules      gemini-3.8-flash", "block3-gemini-3.8-flash.json"),
+            ("page owner narrowed gemini-3.8-flash", "block4-gemini-3.8-flash-narrowed.json"),
+            ("page owner narrowed gemini-3.8-flash low", "block5-gemini-3.8-flash-low-narrowed.json"),
+            ("page owner narrowed gemini-3.1-flash-lite", "block5-gemini-3.1-flash-lite-narrowed.json"),
+            ("page owner narrowed gemini-3.5-flash-lite", "block5-gemini-3.5-flash-lite-narrowed.json")]
+    table([(name, [f]) for name, f in rows], "the thirty alerts")
+    print(f"\n  {'':27} {'wanted':15} {'score.py rules':17} narrowed")
     for alert in ["payments-partial", "payments-provider-timeout", "payments-region-cloud"]:
         got = lambda calls: ", ".join(sorted({c["got"] for c in calls if c["id"] == alert}))
         want = next(c["want"] for c in base if c["id"] == alert)

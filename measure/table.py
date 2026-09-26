@@ -2,9 +2,9 @@
 
     python3 measure/table.py thinking   # one model, three thinking levels, on the thirty alerts
     python3 measure/table.py models     # four models at their default thinking, on the thirty alerts
-    python3 measure/table.py same       # the alerts every model got wrong, in every run, with the same answer
+    python3 measure/table.py same       # the alerts every model got wrong, in every run, with the same answer, and their text
 """
-import json, sys
+import json, sys, textwrap
 
 RUNS = "runs/ep05/"
 THINKING = [("low", ["block2-gemini-3.8-flash-low.json"]),
@@ -44,6 +44,7 @@ elif what == "models":
     table([(m, [f"block3-{m}.json"]) for m in MODELS], "model")
     print("\ndefault thinking · the thirty alerts · one score per run")
 elif what == "same":
+    alerts = {c["id"]: c["alert"] for c in json.load(open("tickets/incidents.json"))}
     per_model = {m: load([f"block3-{m}.json"]) for m in MODELS}
     n_runs = sum(len(runs) for runs, _ in per_model.values())
     wrong = {}   # alert id -> list of (model, run, got) for every wrong answer
@@ -56,5 +57,6 @@ elif what == "same":
         answers = {got for _, _, got, _ in misses}
         if len(misses) == n_runs and len(answers) == 1:
             print(f"  {alert:27} wanted {misses[0][3]:15} got {answers.pop()}")
+            print(textwrap.indent(textwrap.fill(alerts[alert], 64), "      ") + "\n")
 else:
     sys.exit(__doc__)

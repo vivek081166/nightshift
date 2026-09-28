@@ -86,10 +86,17 @@ number comes from that file, never from a plan.
   calls came back HTTP 429 RESOURCE_EXHAUSTED instead of the 400 (`runs/ep04/dryrun-A-whole-429.txt`, and the two
   `*-429.json` planning files). Wait a minute and send it again; `ask_log.py` has no retry.
 
-## ep05 (measurement, not yet the episode)
+## ep05
 
-Measured 2026-09-26 on local branch `ep05-wip` before any script was written. Nothing here is on screen yet; the camera
-runs come later and every number the episode speaks will come from those files.
+Measured 2026-09-26 before any script was written, then re-run on camera 2026-09-27. Every number the episode speaks
+comes from a file below.
+
+- Camera runs, terminal verbatim: `runs/ep05/2026-09-27-ep05-camera-a.txt` (`plan.py 512`, MAX_TOKENS),
+  `-camera-c.txt` (`plan.py 512` with the check, stopped), `-camera-d1.txt` (`plan.py 2048`, STOP),
+  `-camera-d2.txt` (`plan.py 512 low`, STOP, 0 thinking).
+- The page owner line narrowed (`score.py --narrowed`): `runs/ep05/block4-gemini-3.8-flash-narrowed.json` (30, 30) and
+  the re-check `runs/ep05/block5-*-narrowed.json` (3.8-flash low 30, 30; 3.1-flash-lite 25, 26; 3.5-flash-lite 26, 26).
+- The temperature table (`measure/table.py temperature`) reads `runs/ep02/flip-probe-2026-09-15.json`.
 
 - Models: `gemini-3.8-flash` (all blocks), `gemini-3.5-flash-lite`, `gemini-3.1-flash-lite`, `gemini-3.1-pro-preview`.
   `modelVersion` in every response matched the id asked for. `gemini-pro-latest` was not used: it is not on the pricing

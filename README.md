@@ -18,6 +18,12 @@ You can write a Python function and call an HTTP API. No machine learning needed
     tail -n 875 logs/sorrel-incident.log | python3 ask_log.py    # just the tail, with its cost line
     python3 around_errors.py | python3 ask_log.py                # only the lines around the errors
 
+    python3 plan.py 512           # the plan as JSON, cut off by the output limit: the check stops it
+    python3 plan.py 2048          # room above the thinking, the whole plan
+    python3 plan.py 512 low       # the same limit, thinking low
+    python3 score.py --narrowed   # the thirty with the page owner line narrowed
+    python3 measure/table.py thinking   # the tables on screen, from runs/ (also: models, same, narrowed, temperature)
+
 The `ep03` tag holds `score.py` as the episode leaves it, with RULES filled in. The first five runs in
 the video used the same file with `RULES = ""` on line 14. Replace the RULES block with that one line
 to run them yourself.
@@ -34,6 +40,7 @@ the course depends on the vendor.
 | `ep02` | [Ten Answers to One Question](https://youtu.be/o4MtpnO2Av8) | Fifty answers, the parser that drops four, and the alert whose verdict moves |
 | `ep03` | [Your First Eval Set](https://youtu.be/r8X-KKHGxhc) | Thirty cases, the noise the score moves by, and one change measured against it |
 | `ep04` | [Tokens and the Context Window](https://youtu.be/VFQ0xTwhi3Y) | Count a 40,000-line log (generated, `sorrel/make_logs.py`), send it whole and get refused, send the tail, then only the lines around the errors, with the cost of each |
+| `ep05` | [Your LLM Cut Its Own Answer Short and Said OK](https://youtu.be/KRcB3oFzEWU) | `plan.py` gets cut off at 512 and still says HTTP 200; the finish-reason check; thinking low/default/high and four models on the thirty; the page owner line that every model followed too far |
 
 The map the course follows: [Andrew Ng's AI Engineering Skills Map](https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map)
 

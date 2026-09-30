@@ -1,0 +1,458 @@
+{
+ "first": {
+  "tag": "sig/first/payments-latency",
+  "model": "gemini-3.8-flash",
+  "think": "low",
+  "request": {
+   "systemInstruction": {
+    "parts": [
+     {
+      "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+     }
+    ]
+   },
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "text": "Alert:\npayments-api: p95 latency 4.8 s for 6 min, error rate 0.9 %, 3 customer reports of failed checkout, last deploy 14 min ago.\nMake your first move by calling one of the functions."
+      }
+     ]
+    },
+    {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "read_logs",
+        "args": {
+         "minutes": 15,
+         "service": "payments"
+        },
+        "id": "call_37433"
+       }
+      }
+     ],
+     "role": "model"
+    },
+    {
+     "role": "user",
+     "parts": [
+      {
+       "functionResponse": {
+        "name": "read_logs",
+        "response": {
+         "lines": [
+          "payments started d-2989 14 min ago",
+          "payments WARN p95 latency 4.8 s for 6 min",
+          "payments WARN p95 latency 4.8 s for 6 min (repeated)"
+         ]
+        },
+        "id": "call_37433"
+       }
+      }
+     ]
+    }
+   ],
+   "tools": [
+    {
+     "functionDeclarations": [
+      {
+       "name": "read_logs",
+       "description": "Read one of our services' recent log lines.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "service": {
+          "type": "string",
+          "enum": [
+           "web",
+           "api",
+           "payments",
+           "notifier"
+          ]
+         },
+         "minutes": {
+          "type": "integer",
+          "description": "how far back to read, 1 to 60"
+         }
+        },
+        "required": [
+         "service",
+         "minutes"
+        ]
+       }
+      },
+      {
+       "name": "list_deploys",
+       "description": "List one of our services' recent deploys, newest first, with their ids.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "service": {
+          "type": "string",
+          "enum": [
+           "web",
+           "api",
+           "payments",
+           "notifier"
+          ]
+         }
+        },
+        "required": [
+         "service"
+        ]
+       }
+      },
+      {
+       "name": "roll_back",
+       "description": "Undo one deploy of one of our services.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "service": {
+          "type": "string",
+          "enum": [
+           "web",
+           "api",
+           "payments",
+           "notifier"
+          ]
+         },
+         "deploy_id": {
+          "type": "string",
+          "description": "the id of the deploy to undo"
+         }
+        },
+        "required": [
+         "service",
+         "deploy_id"
+        ]
+       }
+      },
+      {
+       "name": "check_provider",
+       "description": "Check the status of an outside provider we depend on.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "provider": {
+          "type": "string",
+          "enum": [
+           "card-provider",
+           "sms-vendor",
+           "email-vendor",
+           "cdn",
+           "cloud"
+          ]
+         }
+        },
+        "required": [
+         "provider"
+        ]
+       }
+      },
+      {
+       "name": "page_owner",
+       "description": "Wake the person who owns one of our services.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "service": {
+          "type": "string",
+          "enum": [
+           "web",
+           "api",
+           "payments",
+           "notifier"
+          ]
+         },
+         "reason": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "service",
+         "reason"
+        ]
+       }
+      },
+      {
+       "name": "no_action",
+       "description": "Write the alert down and take no action.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "note": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "note"
+        ]
+       }
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "retries": 0,
+  "utc": "2026-09-29T14:49:39+00:00",
+  "status": 200,
+  "response": {
+   "candidates": [
+    {
+     "content": {
+      "parts": [
+       {
+        "functionCall": {
+         "name": "read_logs",
+         "args": {
+          "minutes": 15,
+          "service": "payments"
+         },
+         "id": "call_37433"
+        },
+        "thoughtSignature": "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"
+       }
+      ],
+      "role": "model"
+     },
+     "finishReason": "STOP",
+     "index": 0,
+     "finishMessage": "Model generated function call(s)."
+    }
+   ],
+   "usageMetadata": {
+    "promptTokenCount": 687,
+    "candidatesTokenCount": 21,
+    "totalTokenCount": 1329,
+    "promptTokensDetails": [
+     {
+      "modality": "TEXT",
+      "tokenCount": 687
+     }
+    ],
+    "thoughtsTokenCount": 621,
+    "serviceTier": "standard"
+   },
+   "modelVersion": "gemini-3.8-flash",
+   "responseId": "A9C7aq2rGJXirfcPz_HdiA0"
+  },
+  "latency_s": 3.62
+ },
+ "signatures_stripped": 1,
+ "second": {
+  "tag": "sig/second/payments-latency",
+  "model": "gemini-3.8-flash",
+  "think": "low",
+  "request": {
+   "systemInstruction": {
+    "parts": [
+     {
+      "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+     }
+    ]
+   },
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "text": "Alert:\npayments-api: p95 latency 4.8 s for 6 min, error rate 0.9 %, 3 customer reports of failed checkout, last deploy 14 min ago.\nMake your first move by calling one of the functions."
+      }
+     ]
+    },
+    {
+     "parts": [
+      {
+       "functionCall": {
+        "name": "read_logs",
+        "args": {
+         "minutes": 15,
+         "service": "payments"
+        },
+        "id": "call_37433"
+       }
+      }
+     ],
+     "role": "model"
+    },
+    {
+     "role": "user",
+     "parts": [
+      {
+       "functionResponse": {
+        "name": "read_logs",
+        "response": {
+         "lines": [
+          "payments started d-2989 14 min ago",
+          "payments WARN p95 latency 4.8 s for 6 min",
+          "payments WARN p95 latency 4.8 s for 6 min (repeated)"
+         ]
+        },
+        "id": "call_37433"
+       }
+      }
+     ]
+    }
+   ],
+   "tools": [
+    {
+     "functionDeclarations": [
+      {
+       "name": "read_logs",
+       "description": "Read one of our services' recent log lines.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "service": {
+          "type": "string",
+          "enum": [
+           "web",
+           "api",
+           "payments",
+           "notifier"
+          ]
+         },
+         "minutes": {
+          "type": "integer",
+          "description": "how far back to read, 1 to 60"
+         }
+        },
+        "required": [
+         "service",
+         "minutes"
+        ]
+       }
+      },
+      {
+       "name": "list_deploys",
+       "description": "List one of our services' recent deploys, newest first, with their ids.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "service": {
+          "type": "string",
+          "enum": [
+           "web",
+           "api",
+           "payments",
+           "notifier"
+          ]
+         }
+        },
+        "required": [
+         "service"
+        ]
+       }
+      },
+      {
+       "name": "roll_back",
+       "description": "Undo one deploy of one of our services.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "service": {
+          "type": "string",
+          "enum": [
+           "web",
+           "api",
+           "payments",
+           "notifier"
+          ]
+         },
+         "deploy_id": {
+          "type": "string",
+          "description": "the id of the deploy to undo"
+         }
+        },
+        "required": [
+         "service",
+         "deploy_id"
+        ]
+       }
+      },
+      {
+       "name": "check_provider",
+       "description": "Check the status of an outside provider we depend on.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "provider": {
+          "type": "string",
+          "enum": [
+           "card-provider",
+           "sms-vendor",
+           "email-vendor",
+           "cdn",
+           "cloud"
+          ]
+         }
+        },
+        "required": [
+         "provider"
+        ]
+       }
+      },
+      {
+       "name": "page_owner",
+       "description": "Wake the person who owns one of our services.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "service": {
+          "type": "string",
+          "enum": [
+           "web",
+           "api",
+           "payments",
+           "notifier"
+          ]
+         },
+         "reason": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "service",
+         "reason"
+        ]
+       }
+      },
+      {
+       "name": "no_action",
+       "description": "Write the alert down and take no action.",
+       "parameters": {
+        "type": "object",
+        "properties": {
+         "note": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "note"
+        ]
+       }
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "retries": 0,
+  "utc": "2026-09-29T14:49:42+00:00",
+  "status": 400,
+  "error": "{\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"Function call is missing a thought_signature in functionCall parts. This is required for tools to work correctly, and missing thought_signature may lead to degraded model performance. Additional data, function call `default_api:read_logs` , position 2. Please refer to https://ai.google.dev/gemini-api/docs/thought-signatures for more details.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n",
+  "latency_s": 0.46
+ }
+}

@@ -1,0 +1,25 @@
+$ python3 tools.py --all
+notifier-vendor-5xx
+  model  check_provider(provider='sms')
+  code   refused: no provider called 'sms'; ours are card-provider, sms-vendor, email-vendor, cdn, cloud
+  model  check_provider(provider='sms-vendor')
+  code   ran: {'status': 'incident reported'}
+payments-provider-timeout
+  model  check_provider(provider='card provider')
+  code   refused: no provider called 'card provider'; ours are card-provider, sms-vendor, email-vendor, cdn, cloud
+  model  check_provider(provider='card-provider')
+  code   ran: {'status': 'incident reported'}
+api-region-dns
+  model  check_provider(provider='cloud provider')
+  code   refused: no provider called 'cloud provider'; ours are card-provider, sms-vendor, email-vendor, cdn, cloud
+  model  check_provider(provider='cloud')
+  code   ran: {'status': 'incident reported'}
+payments-region-cloud
+  model  check_provider(provider='cloud provider')
+  code   refused: no provider called 'cloud provider'; ours are card-provider, sms-vendor, email-vendor, cdn, cloud
+  model  check_provider(provider='cloud')
+  code   ran: {'status': 'incident reported'}
+
+refused 4
+gemini-3.8-flash · 74 calls · 62,876 in / 14,008 out · $0.0997 · 185.8 s
+[exit 0]

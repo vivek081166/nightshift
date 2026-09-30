@@ -1,0 +1,9 @@
+$ python3 tools.py payments-provider-timeout
+alert  payments: 22 % of charge attempts timing out for 11 min, our own latency normal, the card provider's status page reports a partial outage, 6 customer reports, last deploy 3 days ago.
+model  check_provider(provider='card')
+code   refused: no provider called 'card'; ours are card-provider, sms-vendor, email-vendor, cdn, cloud
+model  check_provider(provider='card-provider')
+code   ran: {'status': 'incident reported'}
+model  I have checked the status of `card-provider`, which confirms an incident is currently reported on their end.
+gemini-3.8-flash · 3 calls · 2,757 in / 523 out · $0.0040 · 5.5 s
+[exit 0]

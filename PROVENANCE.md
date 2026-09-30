@@ -118,3 +118,26 @@ comes from a file below.
   - `block2-pilot-{low,high}.json`, `block2-gemini-3.8-flash-low.json`, `block2-gemini-3.8-flash-high-run{1,2}.json`:
     the thirty at thinkingLevel low (2 runs) and high (2 runs); the default is the Block 3 3.8-flash file (3 runs).
 - Spend for all of it: $1.43. Findings and tables: `content/ai-engineering-course/qc/ep05/measure.md` in the vivek-ai repo.
+
+## ep06
+
+Measured 2026-09-29/30 before the script was final, then run on camera 2026-09-30. Every number the episode speaks
+comes from a file below.
+
+- Camera runs, terminal verbatim: `runs/ep06/2026-09-30-ep06-camera-a.txt` (`tools.py payments-provider-timeout`:
+  `check_provider('card provider')` refused, `'card-provider'` ran, 3 calls), `-camera-b.txt` (`triage.py`: the answer
+  in a ```json fence, JSONDecodeError; `-camera-b-r1.txt` is the first take, same result, re-recorded for framing),
+  `-camera-c.txt` (`triage.py schema`: bare JSON, parsed), `-camera-d.txt` (`tools.py payments-latency --list`:
+  `list_deploys`, then `roll_back('d-2989')`, the id the lookup printed).
+- The two tables on screen are `measure/ep06_screen.py shape` and `names`, printed from the saved runs below (no API call).
+- Run files, `runs/ep06/`, all `gemini-3.8-flash` at thinkingLevel low, the thirty alerts, `rules.py` SYSTEM:
+  - `*-shape-prompt-*` (3 runs): JSON asked for in the prompt only, 0 of 30 parsed each run, all 90 in a fence.
+  - `*-shape-json-*`, `*-shape-schema-*`: JSON mode, and JSON mode + responseSchema: 30 of 30 parsed, 28 first moves right.
+  - `*-calls-*`: the first tool call only, plain strings (AUTO) and enum names (AUTO / ANY / VALIDATED).
+  - `*-loop-free-*` (3 runs): the loop with plain-string names, 140 tool calls, 14 made-up provider names, 14 refused,
+    14 fixed on the next call. `*-loop-enum-*` (2 runs): names as an enum, 92 tool calls, 0 made up.
+  - `*-sig-*`: the second turn sent back without the model's thoughtSignature: HTTP 400.
+  - `dry-2026-09-30/`: the on-screen commands run once before the camera takes.
+- Harness (not episode code): `measure/ep06.py` records every call; `measure/ep06_table.py` counts from the files.
+- Prices as for ep05 (gemini-3.8-flash $0.75 in / $3.75 out per million, thinking billed as output). Spend for all of
+  it: 654 calls, $0.98.

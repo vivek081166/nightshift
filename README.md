@@ -24,6 +24,13 @@ You can write a Python function and call an HTTP API. No machine learning needed
     python3 score.py --narrowed   # the thirty with the page owner line narrowed
     python3 measure/table.py thinking   # the tables on screen, from runs/ (also: models, same, narrowed, temperature)
 
+    python3 triage.py                 # JSON asked for in words: the answer comes back in backticks and json.loads fails
+    python3 triage.py schema          # JSON mode and the shape: bare JSON, parsed (also: json; --all for the thirty)
+    python3 tools.py payments-provider-timeout   # a tool call with a made-up name, refused, then fixed
+    python3 tools.py payments-latency --list     # the names as a list: it looks around, then rolls back
+    python3 tools.py --all            # all thirty: what the check refused, and what came next (--list for the names as a list)
+    python3 measure/ep06_screen.py shape   # the tables on screen, from runs/ep06 (also: names)
+
 The `ep03` tag holds `score.py` as the episode leaves it, with RULES filled in. The first five runs in
 the video used the same file with `RULES = ""` on line 14. Replace the RULES block with that one line
 to run them yourself.

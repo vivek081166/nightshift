@@ -1,0 +1,25 @@
+➜  nightshift git:(main) python3 triage.py
+```json
+{
+  "severity": "P1",
+  "service": "payments",
+  "first_move": "roll back",
+  "reason": "Customer checkouts are failing following a deploy 14 minutes ago; rolling back the recent deploy is the quickest path to mitigate active revenue impact."
+}
+```
+gemini-3.8-flash · 263 in / 272 out · $0.0012 · 2.4 s
+Traceback (most recent call last):
+  File "/Users/vivek/Projects/nightshift/triage.py", line 57, in <module>
+    print(json.loads(text))
+          ~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+➜  nightshift git:(main) 
+

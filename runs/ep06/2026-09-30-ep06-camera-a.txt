@@ -1,0 +1,21 @@
+➜  nightshift git:(main) python3 tools.py payments-provider-timeout
+alert  payments: 22 % of charge attempts timing out for 11 min, our own latency normal, the card provider's status page reports a partial outage, 6 customer reports, last deploy 3 days ago.
+model  check_provider(provider='card provider')
+code   refused: no provider called 'card provider'; ours are card-provider, sms-vendor, email-vendor, cdn, cloud
+model  check_provider(provider='card-provider')
+code   ran: {'status': 'incident reported'}
+model  The `card-provider` status check confirms an active incident reported by the provider. Since the timeouts in `payments` correlate with this external outage, our internal latency is normal, and the last deploy was 3 days ago, the issue stems from the upstream card provider.
+gemini-3.8-flash · 3 calls · 2,467 in / 436 out · $0.0035 · 5.2 s
+➜  nightshift git:(main) 
+
+
+
+
+
+
+
+
+
+
+
+

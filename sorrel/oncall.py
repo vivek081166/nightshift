@@ -4,7 +4,7 @@ each function returns the text a real one would, built from the alert, so every 
 import hashlib, re
 
 SERVICES = ["web", "api", "payments", "notifier"]
-PROVIDERS = ["card-provider", "sms-vendor", "email-vendor", "cdn", "cloud"]
+PROVIDERS = ["stripe", "twilio", "sendgrid", "cloudflare", "aws"]
 OWNERS = {"web": "Aiko", "api": "Ravi", "payments": "Mei", "notifier": "Tom"}
 
 

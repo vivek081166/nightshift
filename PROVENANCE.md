@@ -134,10 +134,20 @@ comes from a file below.
   - `*-shape-prompt-*` (3 runs): JSON asked for in the prompt only, 0 of 30 parsed each run, all 90 in a fence.
   - `*-shape-json-*`, `*-shape-schema-*`: JSON mode, and JSON mode + responseSchema: 30 of 30 parsed, 28 first moves right.
   - `*-calls-*`: the first tool call only, plain strings (AUTO) and enum names (AUTO / ANY / VALIDATED).
-  - `*-loop-free-*` (3 runs): the loop with plain-string names, 140 tool calls, 14 made-up provider names, 14 refused,
+  - (09-30, the OLD made-up ids, superseded for the episode by the 10-01 realnames runs below) `*-loop-free-*` (3 runs): the loop with plain-string names, 140 tool calls, 14 made-up provider names, 14 refused,
     14 fixed on the next call. `*-loop-enum-*` (2 runs): names as an enum, 92 tool calls, 0 made up.
   - `*-sig-*`: the second turn sent back without the model's thoughtSignature: HTTP 400.
   - `dry-2026-09-30/`: the on-screen commands run once before the camera takes.
+- ⚠️ 2026-10-01 RE-MEASURE WITH REAL PROVIDER NAMES (the episode's numbers come from these, not the 09-30 loop runs):
+  `sorrel/oncall.py` PROVIDERS changed from made-up ids (card-provider, sms-vendor, ...) to stripe, twilio, sendgrid,
+  cloudflare, aws; the alerts were not changed. `*-loop-free-*-runrealnames{1,2,3}.json`: 131 tool calls, 14 made-up
+  names, 14 refused, 14 fixed on the next call; `*-loop-enum-*-runrealnames{1,2}.json`: 91 tool calls, none made up;
+  30 roll backs, all passed the check. `-runrealnames-pilot1.json` = the six provider alerts first. Spend $0.57.
+  `measure/ep06_screen.py names|fixes` read only the realnames runs: the 09-30 loop runs used the old ids, and the
+  current check would re-score them wrong. `tools.py`'s loop variables renamed (contents -> conversation, asks ->
+  tool_calls), then `call` -> `ask_model` and the footer's "calls" -> "requests" (10-01 panel: "call" collided with
+  "tool call"), logic unchanged. The counts come from measure/ep06.py's check, which also refuses on the alert's
+  service and on minutes: 1 refusal per enum run that tools.py would have run; the name and roll back counts are the same.
 - Harness (not episode code): `measure/ep06.py` records every call; `measure/ep06_table.py` counts from the files.
 - Prices as for ep05 (gemini-3.8-flash $0.75 in / $3.75 out per million, thinking billed as output). Spend for all of
   it: 654 calls, $0.98.

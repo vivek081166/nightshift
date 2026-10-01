@@ -1,0 +1,4161 @@
+[
+ {
+  "case": "notifier-vendor-5xx",
+  "want": "check provider",
+  "trace": [
+   {
+    "call": "check_provider",
+    "args": {
+     "provider": "sms"
+    },
+    "refused": "no provider called 'sms'; ours are stripe, twilio, sendgrid, cloudflare, aws",
+    "result": {
+     "refused": "no provider called 'sms'; ours are stripe, twilio, sendgrid, cloudflare, aws"
+    }
+   },
+   {
+    "call": "check_provider",
+    "args": {
+     "provider": "twilio"
+    },
+    "refused": null,
+    "result": {
+     "status": "incident reported"
+    }
+   },
+   {
+    "text": "I have checked our SMS provider, **Twilio**, which reports an ongoing incident (`incident reported`), confirming that the external vendor outage is causing the 503 errors and delivery failures on the notifier service."
+   }
+  ],
+  "calls": [
+   {
+    "tag": "loop/free/AUTO/notifier-vendor-5xx",
+    "model": "gemini-3.8-flash",
+    "think": "low",
+    "request": {
+     "systemInstruction": {
+      "parts": [
+       {
+        "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+       }
+      ]
+     },
+     "contents": [
+      {
+       "role": "user",
+       "parts": [
+        {
+         "text": "Alert:\nnotifier: 100 % of SMS sends failing for 8 min, the SMS vendor's API returning 503, 12 customer reports of missing codes, last deploy 4 days ago.\nMake your first move by calling one of the functions."
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "sms"
+          },
+          "id": "call_89482"
+         },
+         "thoughtSignature": "EucICuQIAWkUfRPB0fBtF/AcdatlhwJ9CxhLUi1wJKMgjuaCT19XXtr3O0qhZsniAZrvw+42ALTMk2+nlAO2EcPqB4/+FWul0o67BK4XfCz8QlHSwCdfdtUz8bOakhKZDOz75UbrGP5qNzw6ToBQ1BXwrr+s0EGocALkTv8DSulojfhsLtVTukg/sns58zcxsFqGxArf8Qp9bzvSynQsDf+9U2dGzEQmbddy0BTPecfxfbkkPpHQzddepr164zQRY37r7AMkqo/3ys3fRnTy3EWM9jNjwRfQxF+zqievjUl6ChZeqTyybjAEZZ0Vs4FGFpqOa72XKKe4VjO2xORomLKoUS8gjIxM9T1OHctpG0Cf5j/To+AMSKzcmuRD5qQFjDFNxFT+l1ODDQ97II+vpyAI67wTuPyj9y1Ozasv4JLdLdtKZ0x5BuSU4xkMURFhQAyQa1Ktbz+z+lUNSv0ILJrkQYgwMORNYKwze3tu1uT8jz5c4ufAfJdqTj5GmTN16RLT/eKrSMznm9gFCjLJWx9iaqMD5Y+jwyfGS8q0VVylS9IzelP63HQbwBfBalwbhbctmo5aWTU3IF4EtjfWYn3g8anDj8n5ZPo1WTzVahvA1xzC8sT466HaNPNjPMEv3z/VgTxFnsTTKZLYL6RJshVlQMgg3xqiTjOr4umT8GMeSiLGW+aFLDkzVEo8sWTfoFFVmToPB0XOvSGD94zZ8oJM059PAh9okVJw/bh0mstBb0JlSXvkhnX2+4k7udR0JpAUWaDhOSnMlobGOUeGLohFwPJO/efRjN1WFYbuopDJfB+k5/v1K0R2p+Bjh2YpfWlZiBJmP+/jxoRLT5HWLigIWUqcjqXVzjU5VAcRIxC8mBUogAhqn/6dJvBz5tLonyy1Ehr6dykVwVUwXaL2o5y0JbQgy7WkjqsSZj8F4d4XhdzLO1w6zqZRTO8+HtJb3KWg2t9RWMVv31UuI/ty2PrsvGiRE2bdsEm51j1HjZXusOrjtgCwiqiQ7w9+qCLxJli/GkU+aalElbm/TNiNdeZ3ffQM/c9Md2wOXruoPRlsOgPI+b9faeKIVM08kaw3qAbNf0Z1P+mUvmYd/O1YrK/Fxh+TRaKwlqZL3TLAj8V5NEB4R5cZhmf2pxKFwMz6hgSiKexPtURyktUceZUxrtSdMzmtwpI249qt2vksZxN9fDZgW3rlPte7uJoSbhDhyA8N45txflOjjmyLRWiUAuPNsiMjzam/X0a8epg+LDYCjGTlTxnBDdEISizrU6s1nTsMfosgYk8d9BixBVyn/j++THmjJu2yfRqcxKmL3oT/JXEoKJ9kub6A91XD053Fp+cyyIZEd+iQyTdMVz/7SFtjL/WR+gQ0EUUGJJkpm9z8xyItuHJajFG4RNzxl/WeRwGfi0MD2CY+4XYl5AOUy480UP5Mo7J6MD5jt5+u1Kt2luXfJuaJcLs65IxHDGRsC5otgAFNSNxFNN7pjZsoDOzRfWe1OUsYvlA="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "refused": "no provider called 'sms'; ours are stripe, twilio, sendgrid, cloudflare, aws"
+          },
+          "id": "call_89482"
+         }
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "twilio"
+          },
+          "id": "call_106368"
+         },
+         "thoughtSignature": "EtMBCtABAWkUfRPM4YAypq3OJ4m61rMYkAA8McpfKs1MdmXdd4PPVmPASz8CEJirDYAoZohKquH2XJXjMF0soZeF0RX1lL10KZ0klr5NgKS/XPaLLq/Z4DiHwhLrxAdTrnCKHwAImb/ZsdF+vfH7pVhjVNPO4K652w0AUhxQw3RzM2szgiu+hLoNJH9Vo4N8bkt7/CAIRo1jVYyL1IHaP/eQ8cnn28mxrp1OzE1FlaGjvY1VKChXD8IvULc1b+edUXMvgZF/L3QNf9iCrRWIcutqP2avZQ=="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "status": "incident reported"
+          },
+          "id": "call_106368"
+         }
+        }
+       ]
+      }
+     ],
+     "tools": [
+      {
+       "functionDeclarations": [
+        {
+         "name": "read_logs",
+         "description": "Read one of our services' recent log lines.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "minutes": {
+            "type": "integer",
+            "description": "how far back to read, 1 to 60"
+           }
+          },
+          "required": [
+           "service",
+           "minutes"
+          ]
+         }
+        },
+        {
+         "name": "list_deploys",
+         "description": "List one of our services' recent deploys, newest first, with their ids.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service"
+          ]
+         }
+        },
+        {
+         "name": "roll_back",
+         "description": "Undo one deploy of one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "deploy_id": {
+            "type": "string",
+            "description": "the id of the deploy to undo"
+           }
+          },
+          "required": [
+           "service",
+           "deploy_id"
+          ]
+         }
+        },
+        {
+         "name": "check_provider",
+         "description": "Check the status of an outside provider we depend on.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "provider": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "provider"
+          ]
+         }
+        },
+        {
+         "name": "page_owner",
+         "description": "Wake the person who owns one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "reason": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service",
+           "reason"
+          ]
+         }
+        },
+        {
+         "name": "no_action",
+         "description": "Write the alert down and take no action.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "note": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "note"
+          ]
+         }
+        }
+       ]
+      }
+     ],
+     "generationConfig": {
+      "thinkingConfig": {
+       "thinkingLevel": "low"
+      }
+     }
+    },
+    "retries": 0,
+    "utc": "2026-10-01T11:51:48+00:00",
+    "status": 200,
+    "response": {
+     "candidates": [
+      {
+       "content": {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "check_provider",
+           "args": {
+            "provider": "sms"
+           },
+           "id": "call_89482"
+          },
+          "thoughtSignature": "EucICuQIAWkUfRPB0fBtF/AcdatlhwJ9CxhLUi1wJKMgjuaCT19XXtr3O0qhZsniAZrvw+42ALTMk2+nlAO2EcPqB4/+FWul0o67BK4XfCz8QlHSwCdfdtUz8bOakhKZDOz75UbrGP5qNzw6ToBQ1BXwrr+s0EGocALkTv8DSulojfhsLtVTukg/sns58zcxsFqGxArf8Qp9bzvSynQsDf+9U2dGzEQmbddy0BTPecfxfbkkPpHQzddepr164zQRY37r7AMkqo/3ys3fRnTy3EWM9jNjwRfQxF+zqievjUl6ChZeqTyybjAEZZ0Vs4FGFpqOa72XKKe4VjO2xORomLKoUS8gjIxM9T1OHctpG0Cf5j/To+AMSKzcmuRD5qQFjDFNxFT+l1ODDQ97II+vpyAI67wTuPyj9y1Ozasv4JLdLdtKZ0x5BuSU4xkMURFhQAyQa1Ktbz+z+lUNSv0ILJrkQYgwMORNYKwze3tu1uT8jz5c4ufAfJdqTj5GmTN16RLT/eKrSMznm9gFCjLJWx9iaqMD5Y+jwyfGS8q0VVylS9IzelP63HQbwBfBalwbhbctmo5aWTU3IF4EtjfWYn3g8anDj8n5ZPo1WTzVahvA1xzC8sT466HaNPNjPMEv3z/VgTxFnsTTKZLYL6RJshVlQMgg3xqiTjOr4umT8GMeSiLGW+aFLDkzVEo8sWTfoFFVmToPB0XOvSGD94zZ8oJM059PAh9okVJw/bh0mstBb0JlSXvkhnX2+4k7udR0JpAUWaDhOSnMlobGOUeGLohFwPJO/efRjN1WFYbuopDJfB+k5/v1K0R2p+Bjh2YpfWlZiBJmP+/jxoRLT5HWLigIWUqcjqXVzjU5VAcRIxC8mBUogAhqn/6dJvBz5tLonyy1Ehr6dykVwVUwXaL2o5y0JbQgy7WkjqsSZj8F4d4XhdzLO1w6zqZRTO8+HtJb3KWg2t9RWMVv31UuI/ty2PrsvGiRE2bdsEm51j1HjZXusOrjtgCwiqiQ7w9+qCLxJli/GkU+aalElbm/TNiNdeZ3ffQM/c9Md2wOXruoPRlsOgPI+b9faeKIVM08kaw3qAbNf0Z1P+mUvmYd/O1YrK/Fxh+TRaKwlqZL3TLAj8V5NEB4R5cZhmf2pxKFwMz6hgSiKexPtURyktUceZUxrtSdMzmtwpI249qt2vksZxN9fDZgW3rlPte7uJoSbhDhyA8N45txflOjjmyLRWiUAuPNsiMjzam/X0a8epg+LDYCjGTlTxnBDdEISizrU6s1nTsMfosgYk8d9BixBVyn/j++THmjJu2yfRqcxKmL3oT/JXEoKJ9kub6A91XD053Fp+cyyIZEd+iQyTdMVz/7SFtjL/WR+gQ0EUUGJJkpm9z8xyItuHJajFG4RNzxl/WeRwGfi0MD2CY+4XYl5AOUy480UP5Mo7J6MD5jt5+u1Kt2luXfJuaJcLs65IxHDGRsC5otgAFNSNxFNN7pjZsoDOzRfWe1OUsYvlA="
+         }
+        ],
+        "role": "model"
+       },
+       "finishReason": "STOP",
+       "index": 0,
+       "finishMessage": "Model generated function call(s)."
+      }
+     ],
+     "usageMetadata": {
+      "promptTokenCount": 590,
+      "candidatesTokenCount": 16,
+      "totalTokenCount": 869,
+      "promptTokensDetails": [
+       {
+        "modality": "TEXT",
+        "tokenCount": 590
+       }
+      ],
+      "thoughtsTokenCount": 263,
+      "serviceTier": "standard"
+     },
+     "modelVersion": "gemini-3.8-flash",
+     "responseId": "VUm-at_GEJH81e8P7cXG4Q0"
+    },
+    "latency_s": 1.86
+   },
+   {
+    "tag": "loop/free/AUTO/notifier-vendor-5xx",
+    "model": "gemini-3.8-flash",
+    "think": "low",
+    "request": {
+     "systemInstruction": {
+      "parts": [
+       {
+        "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+       }
+      ]
+     },
+     "contents": [
+      {
+       "role": "user",
+       "parts": [
+        {
+         "text": "Alert:\nnotifier: 100 % of SMS sends failing for 8 min, the SMS vendor's API returning 503, 12 customer reports of missing codes, last deploy 4 days ago.\nMake your first move by calling one of the functions."
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "sms"
+          },
+          "id": "call_89482"
+         },
+         "thoughtSignature": "EucICuQIAWkUfRPB0fBtF/AcdatlhwJ9CxhLUi1wJKMgjuaCT19XXtr3O0qhZsniAZrvw+42ALTMk2+nlAO2EcPqB4/+FWul0o67BK4XfCz8QlHSwCdfdtUz8bOakhKZDOz75UbrGP5qNzw6ToBQ1BXwrr+s0EGocALkTv8DSulojfhsLtVTukg/sns58zcxsFqGxArf8Qp9bzvSynQsDf+9U2dGzEQmbddy0BTPecfxfbkkPpHQzddepr164zQRY37r7AMkqo/3ys3fRnTy3EWM9jNjwRfQxF+zqievjUl6ChZeqTyybjAEZZ0Vs4FGFpqOa72XKKe4VjO2xORomLKoUS8gjIxM9T1OHctpG0Cf5j/To+AMSKzcmuRD5qQFjDFNxFT+l1ODDQ97II+vpyAI67wTuPyj9y1Ozasv4JLdLdtKZ0x5BuSU4xkMURFhQAyQa1Ktbz+z+lUNSv0ILJrkQYgwMORNYKwze3tu1uT8jz5c4ufAfJdqTj5GmTN16RLT/eKrSMznm9gFCjLJWx9iaqMD5Y+jwyfGS8q0VVylS9IzelP63HQbwBfBalwbhbctmo5aWTU3IF4EtjfWYn3g8anDj8n5ZPo1WTzVahvA1xzC8sT466HaNPNjPMEv3z/VgTxFnsTTKZLYL6RJshVlQMgg3xqiTjOr4umT8GMeSiLGW+aFLDkzVEo8sWTfoFFVmToPB0XOvSGD94zZ8oJM059PAh9okVJw/bh0mstBb0JlSXvkhnX2+4k7udR0JpAUWaDhOSnMlobGOUeGLohFwPJO/efRjN1WFYbuopDJfB+k5/v1K0R2p+Bjh2YpfWlZiBJmP+/jxoRLT5HWLigIWUqcjqXVzjU5VAcRIxC8mBUogAhqn/6dJvBz5tLonyy1Ehr6dykVwVUwXaL2o5y0JbQgy7WkjqsSZj8F4d4XhdzLO1w6zqZRTO8+HtJb3KWg2t9RWMVv31UuI/ty2PrsvGiRE2bdsEm51j1HjZXusOrjtgCwiqiQ7w9+qCLxJli/GkU+aalElbm/TNiNdeZ3ffQM/c9Md2wOXruoPRlsOgPI+b9faeKIVM08kaw3qAbNf0Z1P+mUvmYd/O1YrK/Fxh+TRaKwlqZL3TLAj8V5NEB4R5cZhmf2pxKFwMz6hgSiKexPtURyktUceZUxrtSdMzmtwpI249qt2vksZxN9fDZgW3rlPte7uJoSbhDhyA8N45txflOjjmyLRWiUAuPNsiMjzam/X0a8epg+LDYCjGTlTxnBDdEISizrU6s1nTsMfosgYk8d9BixBVyn/j++THmjJu2yfRqcxKmL3oT/JXEoKJ9kub6A91XD053Fp+cyyIZEd+iQyTdMVz/7SFtjL/WR+gQ0EUUGJJkpm9z8xyItuHJajFG4RNzxl/WeRwGfi0MD2CY+4XYl5AOUy480UP5Mo7J6MD5jt5+u1Kt2luXfJuaJcLs65IxHDGRsC5otgAFNSNxFNN7pjZsoDOzRfWe1OUsYvlA="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "refused": "no provider called 'sms'; ours are stripe, twilio, sendgrid, cloudflare, aws"
+          },
+          "id": "call_89482"
+         }
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "twilio"
+          },
+          "id": "call_106368"
+         },
+         "thoughtSignature": "EtMBCtABAWkUfRPM4YAypq3OJ4m61rMYkAA8McpfKs1MdmXdd4PPVmPASz8CEJirDYAoZohKquH2XJXjMF0soZeF0RX1lL10KZ0klr5NgKS/XPaLLq/Z4DiHwhLrxAdTrnCKHwAImb/ZsdF+vfH7pVhjVNPO4K652w0AUhxQw3RzM2szgiu+hLoNJH9Vo4N8bkt7/CAIRo1jVYyL1IHaP/eQ8cnn28mxrp1OzE1FlaGjvY1VKChXD8IvULc1b+edUXMvgZF/L3QNf9iCrRWIcutqP2avZQ=="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "status": "incident reported"
+          },
+          "id": "call_106368"
+         }
+        }
+       ]
+      }
+     ],
+     "tools": [
+      {
+       "functionDeclarations": [
+        {
+         "name": "read_logs",
+         "description": "Read one of our services' recent log lines.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "minutes": {
+            "type": "integer",
+            "description": "how far back to read, 1 to 60"
+           }
+          },
+          "required": [
+           "service",
+           "minutes"
+          ]
+         }
+        },
+        {
+         "name": "list_deploys",
+         "description": "List one of our services' recent deploys, newest first, with their ids.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service"
+          ]
+         }
+        },
+        {
+         "name": "roll_back",
+         "description": "Undo one deploy of one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "deploy_id": {
+            "type": "string",
+            "description": "the id of the deploy to undo"
+           }
+          },
+          "required": [
+           "service",
+           "deploy_id"
+          ]
+         }
+        },
+        {
+         "name": "check_provider",
+         "description": "Check the status of an outside provider we depend on.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "provider": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "provider"
+          ]
+         }
+        },
+        {
+         "name": "page_owner",
+         "description": "Wake the person who owns one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "reason": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service",
+           "reason"
+          ]
+         }
+        },
+        {
+         "name": "no_action",
+         "description": "Write the alert down and take no action.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "note": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "note"
+          ]
+         }
+        }
+       ]
+      }
+     ],
+     "generationConfig": {
+      "thinkingConfig": {
+       "thinkingLevel": "low"
+      }
+     }
+    },
+    "retries": 0,
+    "utc": "2026-10-01T11:51:50+00:00",
+    "status": 200,
+    "response": {
+     "candidates": [
+      {
+       "content": {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "check_provider",
+           "args": {
+            "provider": "twilio"
+           },
+           "id": "call_106368"
+          },
+          "thoughtSignature": "EtMBCtABAWkUfRPM4YAypq3OJ4m61rMYkAA8McpfKs1MdmXdd4PPVmPASz8CEJirDYAoZohKquH2XJXjMF0soZeF0RX1lL10KZ0klr5NgKS/XPaLLq/Z4DiHwhLrxAdTrnCKHwAImb/ZsdF+vfH7pVhjVNPO4K652w0AUhxQw3RzM2szgiu+hLoNJH9Vo4N8bkt7/CAIRo1jVYyL1IHaP/eQ8cnn28mxrp1OzE1FlaGjvY1VKChXD8IvULc1b+edUXMvgZF/L3QNf9iCrRWIcutqP2avZQ=="
+         }
+        ],
+        "role": "model"
+       },
+       "finishReason": "STOP",
+       "index": 0,
+       "finishMessage": "Model generated function call(s)."
+      }
+     ],
+     "usageMetadata": {
+      "promptTokenCount": 903,
+      "candidatesTokenCount": 16,
+      "totalTokenCount": 949,
+      "promptTokensDetails": [
+       {
+        "modality": "TEXT",
+        "tokenCount": 903
+       }
+      ],
+      "thoughtsTokenCount": 30,
+      "serviceTier": "standard"
+     },
+     "modelVersion": "gemini-3.8-flash",
+     "responseId": "V0m-aqriCL-22roP7vTP8AI"
+    },
+    "latency_s": 1.22
+   },
+   {
+    "tag": "loop/free/AUTO/notifier-vendor-5xx",
+    "model": "gemini-3.8-flash",
+    "think": "low",
+    "request": {
+     "systemInstruction": {
+      "parts": [
+       {
+        "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+       }
+      ]
+     },
+     "contents": [
+      {
+       "role": "user",
+       "parts": [
+        {
+         "text": "Alert:\nnotifier: 100 % of SMS sends failing for 8 min, the SMS vendor's API returning 503, 12 customer reports of missing codes, last deploy 4 days ago.\nMake your first move by calling one of the functions."
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "sms"
+          },
+          "id": "call_89482"
+         },
+         "thoughtSignature": "EucICuQIAWkUfRPB0fBtF/AcdatlhwJ9CxhLUi1wJKMgjuaCT19XXtr3O0qhZsniAZrvw+42ALTMk2+nlAO2EcPqB4/+FWul0o67BK4XfCz8QlHSwCdfdtUz8bOakhKZDOz75UbrGP5qNzw6ToBQ1BXwrr+s0EGocALkTv8DSulojfhsLtVTukg/sns58zcxsFqGxArf8Qp9bzvSynQsDf+9U2dGzEQmbddy0BTPecfxfbkkPpHQzddepr164zQRY37r7AMkqo/3ys3fRnTy3EWM9jNjwRfQxF+zqievjUl6ChZeqTyybjAEZZ0Vs4FGFpqOa72XKKe4VjO2xORomLKoUS8gjIxM9T1OHctpG0Cf5j/To+AMSKzcmuRD5qQFjDFNxFT+l1ODDQ97II+vpyAI67wTuPyj9y1Ozasv4JLdLdtKZ0x5BuSU4xkMURFhQAyQa1Ktbz+z+lUNSv0ILJrkQYgwMORNYKwze3tu1uT8jz5c4ufAfJdqTj5GmTN16RLT/eKrSMznm9gFCjLJWx9iaqMD5Y+jwyfGS8q0VVylS9IzelP63HQbwBfBalwbhbctmo5aWTU3IF4EtjfWYn3g8anDj8n5ZPo1WTzVahvA1xzC8sT466HaNPNjPMEv3z/VgTxFnsTTKZLYL6RJshVlQMgg3xqiTjOr4umT8GMeSiLGW+aFLDkzVEo8sWTfoFFVmToPB0XOvSGD94zZ8oJM059PAh9okVJw/bh0mstBb0JlSXvkhnX2+4k7udR0JpAUWaDhOSnMlobGOUeGLohFwPJO/efRjN1WFYbuopDJfB+k5/v1K0R2p+Bjh2YpfWlZiBJmP+/jxoRLT5HWLigIWUqcjqXVzjU5VAcRIxC8mBUogAhqn/6dJvBz5tLonyy1Ehr6dykVwVUwXaL2o5y0JbQgy7WkjqsSZj8F4d4XhdzLO1w6zqZRTO8+HtJb3KWg2t9RWMVv31UuI/ty2PrsvGiRE2bdsEm51j1HjZXusOrjtgCwiqiQ7w9+qCLxJli/GkU+aalElbm/TNiNdeZ3ffQM/c9Md2wOXruoPRlsOgPI+b9faeKIVM08kaw3qAbNf0Z1P+mUvmYd/O1YrK/Fxh+TRaKwlqZL3TLAj8V5NEB4R5cZhmf2pxKFwMz6hgSiKexPtURyktUceZUxrtSdMzmtwpI249qt2vksZxN9fDZgW3rlPte7uJoSbhDhyA8N45txflOjjmyLRWiUAuPNsiMjzam/X0a8epg+LDYCjGTlTxnBDdEISizrU6s1nTsMfosgYk8d9BixBVyn/j++THmjJu2yfRqcxKmL3oT/JXEoKJ9kub6A91XD053Fp+cyyIZEd+iQyTdMVz/7SFtjL/WR+gQ0EUUGJJkpm9z8xyItuHJajFG4RNzxl/WeRwGfi0MD2CY+4XYl5AOUy480UP5Mo7J6MD5jt5+u1Kt2luXfJuaJcLs65IxHDGRsC5otgAFNSNxFNN7pjZsoDOzRfWe1OUsYvlA="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "refused": "no provider called 'sms'; ours are stripe, twilio, sendgrid, cloudflare, aws"
+          },
+          "id": "call_89482"
+         }
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "twilio"
+          },
+          "id": "call_106368"
+         },
+         "thoughtSignature": "EtMBCtABAWkUfRPM4YAypq3OJ4m61rMYkAA8McpfKs1MdmXdd4PPVmPASz8CEJirDYAoZohKquH2XJXjMF0soZeF0RX1lL10KZ0klr5NgKS/XPaLLq/Z4DiHwhLrxAdTrnCKHwAImb/ZsdF+vfH7pVhjVNPO4K652w0AUhxQw3RzM2szgiu+hLoNJH9Vo4N8bkt7/CAIRo1jVYyL1IHaP/eQ8cnn28mxrp1OzE1FlaGjvY1VKChXD8IvULc1b+edUXMvgZF/L3QNf9iCrRWIcutqP2avZQ=="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "status": "incident reported"
+          },
+          "id": "call_106368"
+         }
+        }
+       ]
+      }
+     ],
+     "tools": [
+      {
+       "functionDeclarations": [
+        {
+         "name": "read_logs",
+         "description": "Read one of our services' recent log lines.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "minutes": {
+            "type": "integer",
+            "description": "how far back to read, 1 to 60"
+           }
+          },
+          "required": [
+           "service",
+           "minutes"
+          ]
+         }
+        },
+        {
+         "name": "list_deploys",
+         "description": "List one of our services' recent deploys, newest first, with their ids.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service"
+          ]
+         }
+        },
+        {
+         "name": "roll_back",
+         "description": "Undo one deploy of one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "deploy_id": {
+            "type": "string",
+            "description": "the id of the deploy to undo"
+           }
+          },
+          "required": [
+           "service",
+           "deploy_id"
+          ]
+         }
+        },
+        {
+         "name": "check_provider",
+         "description": "Check the status of an outside provider we depend on.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "provider": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "provider"
+          ]
+         }
+        },
+        {
+         "name": "page_owner",
+         "description": "Wake the person who owns one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "reason": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service",
+           "reason"
+          ]
+         }
+        },
+        {
+         "name": "no_action",
+         "description": "Write the alert down and take no action.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "note": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "note"
+          ]
+         }
+        }
+       ]
+      }
+     ],
+     "generationConfig": {
+      "thinkingConfig": {
+       "thinkingLevel": "low"
+      }
+     }
+    },
+    "retries": 0,
+    "utc": "2026-10-01T11:51:51+00:00",
+    "status": 200,
+    "response": {
+     "candidates": [
+      {
+       "content": {
+        "parts": [
+         {
+          "text": "I have checked our SMS provider, **Twilio**, which reports an ongoing incident (`incident reported`), confirming that the external vendor outage is causing the 503 errors and delivery failures on the notifier service.",
+          "thoughtSignature": "Et4BCtsBAWkUfRMTN7SI/w3Uq2qMTeFf4Iwzw+DMCq7piI3cugtDYJ8/WIWKH5b7oYkPotwYdqvfrr46Lt64LhRXhdruL4WnYVxHmjrGa5sB6mqCvzr8v5xo8ENOwrbBnZuTLes+ACQZ32/LFis1R1LjFbStN33G2l33WT6IlW7j1jlf65qVh/wL3/ApbhckeOKQoT7+sV3i9ETYVsNXKjMpMBGmTY7pqNCKrYh1aLPJWtbQh7u7nzlh3gZzpqy0cNSjkZH5VlxTD8K5ufmV8McaHUPCMsdNx5q62xXOTjVE"
+         }
+        ],
+        "role": "model"
+       },
+       "finishReason": "STOP",
+       "index": 0
+      }
+     ],
+     "usageMetadata": {
+      "promptTokenCount": 964,
+      "candidatesTokenCount": 42,
+      "totalTokenCount": 1029,
+      "promptTokensDetails": [
+       {
+        "modality": "TEXT",
+        "tokenCount": 964
+       }
+      ],
+      "thoughtsTokenCount": 23,
+      "serviceTier": "standard"
+     },
+     "modelVersion": "gemini-3.8-flash",
+     "responseId": "WEm-avqwFIy02roPyNK16QM"
+    },
+    "latency_s": 1.15
+   }
+  ]
+ },
+ {
+  "case": "payments-provider-timeout",
+  "want": "check provider",
+  "trace": [
+   {
+    "call": "check_provider",
+    "args": {
+     "provider": "card provider"
+    },
+    "refused": "no provider called 'card provider'; ours are stripe, twilio, sendgrid, cloudflare, aws",
+    "result": {
+     "refused": "no provider called 'card provider'; ours are stripe, twilio, sendgrid, cloudflare, aws"
+    }
+   },
+   {
+    "call": "check_provider",
+    "args": {
+     "provider": "stripe"
+    },
+    "refused": null,
+    "result": {
+     "status": "incident reported"
+    }
+   },
+   {
+    "text": "I checked the status of our payment provider (**Stripe**), which is reporting an active incident (`incident reported`), confirming that the timeouts on charge attempts are due to an external outage on their end rather than an issue with a recent deployment."
+   }
+  ],
+  "calls": [
+   {
+    "tag": "loop/free/AUTO/payments-provider-timeout",
+    "model": "gemini-3.8-flash",
+    "think": "low",
+    "request": {
+     "systemInstruction": {
+      "parts": [
+       {
+        "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+       }
+      ]
+     },
+     "contents": [
+      {
+       "role": "user",
+       "parts": [
+        {
+         "text": "Alert:\npayments: 22 % of charge attempts timing out for 11 min, our own latency normal, the card provider's status page reports a partial outage, 6 customer reports, last deploy 3 days ago.\nMake your first move by calling one of the functions."
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "card provider"
+          },
+          "id": "call_223620"
+         },
+         "thoughtSignature": "ErcGCrQGAWkUfRMLlCK1Su5kXFmoCBcoqotNZtBwYpDNvQkwy14ZX2da9tkiY5Ph8La5KeAnyrODsXLS+22u8H9cUZhG76Jy073/qp6/71MIRZCHmGLqqNIUhiM7XKotz0XT8ylDt9b83c2RA1OycXeNrEZNFaUxB+V70bG14x4qshGhSzcmIsBbQZuajQYY6BFKDepoalG/MZVah31yp0GaWEl3xqljpH7wtEiLkMMXiCLdANkNW55r+MGeYT9bftZbyqveV8PbqFP05q4HAbL/UYDYnwtNf/syWXXDxqa+yIjY/pDp17wHNEzlwTmNr6YzXJXLf0yoTtGhLHF03nj9M8luUMATqy8qsQTxpyOWS2oNN+oOjn2W/UpECkqHP4Rzgu8Ou44cFt2WiYhJ1Trd3rKzkOCGVM+mlmxU7DL0oUZBjrLKFe/AHCjfmEAWDh4fOiub3IxWgUDRl3CnSZN44RBwyJJ1OiwQ0LjjLfguxArzntuXkNE04+jiMi/P5aTH21TzgyMLILxFKheVbPOdo0qg8EqanKU4kDzNLir3X6dsy+3GuyMucQ7YagDedKv+J7poeA+6adS4LX5aULCJApp0Kv9CvKwCPG8gRT6TIoyiVLNW7/WcBS+G9UKYqrDq/GNiOlAxQis0mMWd5TYBVnbQk8x6Pv2/ewk0Ov2qugpiKfnP4RbOvWhkiVjuA/41Zo2vee3fzGb3HN7xsIywg/VJ9q0o7QbRXD9z8R+EmDYm0XKeOdlfuF+5ljgA5+v5qDc90CV9x9VxNOqrqCkSwRc6zkSzFxpJjU7OR+dAlivwgCIZsxkJE6OqGHqNg3tk797YueaeZeCASHclob78xaHwwSNUYruu73xFUXdlEJkMfr9DF9kb7Z298cioydwkbbCt/Zj7NGuB0Z3y5SxSAcv0QqpAgBeDCxRdomRcWNTI+E+yo++byPqQKP7EmIm1ea4428PdSEMTaCFsF1OO2MLCU0NoE7wghFJzOAc3WNm1H5WiK+w2aNSjgCT2tl6X6PPOPkXQPYebeg+Up65tj9eZG8NlOA6Hl0U4zVYs+bpvXd4hcb/MOONjZRT09EgL7Y9QW/ugCg=="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "refused": "no provider called 'card provider'; ours are stripe, twilio, sendgrid, cloudflare, aws"
+          },
+          "id": "call_223620"
+         }
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "stripe"
+          },
+          "id": "call_92859"
+         },
+         "thoughtSignature": "EtcBCtQBAWkUfRPw4BujgRndbtxLx7IvNc48xd5IkYoRTWOhc1Ye2VexuM/+TisXtL1CkFphYookvz5lmBYTegv7uNbwQnHvVa6vuQ3Tjf/hxmFtCFDbOhHJ0l+FzJwwzCExhiLD9ml/QxvHfNFU7NXAaWcXgvZDbBAke1uXyAG07bLcu+pcGAIx2yRaJ++dGnMJ7bDeIpahBC+hJ88bJgb3TN2CGMQyarwu4/OphZiJh7SN111irt8COUmTmmNS7jPsA9MRKAgMgw3zouz8NLHx5XXyle6j3Cg="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "status": "incident reported"
+          },
+          "id": "call_92859"
+         }
+        }
+       ]
+      }
+     ],
+     "tools": [
+      {
+       "functionDeclarations": [
+        {
+         "name": "read_logs",
+         "description": "Read one of our services' recent log lines.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "minutes": {
+            "type": "integer",
+            "description": "how far back to read, 1 to 60"
+           }
+          },
+          "required": [
+           "service",
+           "minutes"
+          ]
+         }
+        },
+        {
+         "name": "list_deploys",
+         "description": "List one of our services' recent deploys, newest first, with their ids.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service"
+          ]
+         }
+        },
+        {
+         "name": "roll_back",
+         "description": "Undo one deploy of one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "deploy_id": {
+            "type": "string",
+            "description": "the id of the deploy to undo"
+           }
+          },
+          "required": [
+           "service",
+           "deploy_id"
+          ]
+         }
+        },
+        {
+         "name": "check_provider",
+         "description": "Check the status of an outside provider we depend on.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "provider": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "provider"
+          ]
+         }
+        },
+        {
+         "name": "page_owner",
+         "description": "Wake the person who owns one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "reason": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service",
+           "reason"
+          ]
+         }
+        },
+        {
+         "name": "no_action",
+         "description": "Write the alert down and take no action.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "note": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "note"
+          ]
+         }
+        }
+       ]
+      }
+     ],
+     "generationConfig": {
+      "thinkingConfig": {
+       "thinkingLevel": "low"
+      }
+     }
+    },
+    "retries": 0,
+    "utc": "2026-10-01T11:51:53+00:00",
+    "status": 200,
+    "response": {
+     "candidates": [
+      {
+       "content": {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "check_provider",
+           "args": {
+            "provider": "card provider"
+           },
+           "id": "call_223620"
+          },
+          "thoughtSignature": "ErcGCrQGAWkUfRMLlCK1Su5kXFmoCBcoqotNZtBwYpDNvQkwy14ZX2da9tkiY5Ph8La5KeAnyrODsXLS+22u8H9cUZhG76Jy073/qp6/71MIRZCHmGLqqNIUhiM7XKotz0XT8ylDt9b83c2RA1OycXeNrEZNFaUxB+V70bG14x4qshGhSzcmIsBbQZuajQYY6BFKDepoalG/MZVah31yp0GaWEl3xqljpH7wtEiLkMMXiCLdANkNW55r+MGeYT9bftZbyqveV8PbqFP05q4HAbL/UYDYnwtNf/syWXXDxqa+yIjY/pDp17wHNEzlwTmNr6YzXJXLf0yoTtGhLHF03nj9M8luUMATqy8qsQTxpyOWS2oNN+oOjn2W/UpECkqHP4Rzgu8Ou44cFt2WiYhJ1Trd3rKzkOCGVM+mlmxU7DL0oUZBjrLKFe/AHCjfmEAWDh4fOiub3IxWgUDRl3CnSZN44RBwyJJ1OiwQ0LjjLfguxArzntuXkNE04+jiMi/P5aTH21TzgyMLILxFKheVbPOdo0qg8EqanKU4kDzNLir3X6dsy+3GuyMucQ7YagDedKv+J7poeA+6adS4LX5aULCJApp0Kv9CvKwCPG8gRT6TIoyiVLNW7/WcBS+G9UKYqrDq/GNiOlAxQis0mMWd5TYBVnbQk8x6Pv2/ewk0Ov2qugpiKfnP4RbOvWhkiVjuA/41Zo2vee3fzGb3HN7xsIywg/VJ9q0o7QbRXD9z8R+EmDYm0XKeOdlfuF+5ljgA5+v5qDc90CV9x9VxNOqrqCkSwRc6zkSzFxpJjU7OR+dAlivwgCIZsxkJE6OqGHqNg3tk797YueaeZeCASHclob78xaHwwSNUYruu73xFUXdlEJkMfr9DF9kb7Z298cioydwkbbCt/Zj7NGuB0Z3y5SxSAcv0QqpAgBeDCxRdomRcWNTI+E+yo++byPqQKP7EmIm1ea4428PdSEMTaCFsF1OO2MLCU0NoE7wghFJzOAc3WNm1H5WiK+w2aNSjgCT2tl6X6PPOPkXQPYebeg+Up65tj9eZG8NlOA6Hl0U4zVYs+bpvXd4hcb/MOONjZRT09EgL7Y9QW/ugCg=="
+         }
+        ],
+        "role": "model"
+       },
+       "finishReason": "STOP",
+       "index": 0,
+       "finishMessage": "Model generated function call(s)."
+      }
+     ],
+     "usageMetadata": {
+      "promptTokenCount": 592,
+      "candidatesTokenCount": 17,
+      "totalTokenCount": 780,
+      "promptTokensDetails": [
+       {
+        "modality": "TEXT",
+        "tokenCount": 592
+       }
+      ],
+      "thoughtsTokenCount": 171,
+      "serviceTier": "standard"
+     },
+     "modelVersion": "gemini-3.8-flash",
+     "responseId": "WUm-asWFHo2l0-kPqfyG2AM"
+    },
+    "latency_s": 1.7
+   },
+   {
+    "tag": "loop/free/AUTO/payments-provider-timeout",
+    "model": "gemini-3.8-flash",
+    "think": "low",
+    "request": {
+     "systemInstruction": {
+      "parts": [
+       {
+        "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+       }
+      ]
+     },
+     "contents": [
+      {
+       "role": "user",
+       "parts": [
+        {
+         "text": "Alert:\npayments: 22 % of charge attempts timing out for 11 min, our own latency normal, the card provider's status page reports a partial outage, 6 customer reports, last deploy 3 days ago.\nMake your first move by calling one of the functions."
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "card provider"
+          },
+          "id": "call_223620"
+         },
+         "thoughtSignature": "ErcGCrQGAWkUfRMLlCK1Su5kXFmoCBcoqotNZtBwYpDNvQkwy14ZX2da9tkiY5Ph8La5KeAnyrODsXLS+22u8H9cUZhG76Jy073/qp6/71MIRZCHmGLqqNIUhiM7XKotz0XT8ylDt9b83c2RA1OycXeNrEZNFaUxB+V70bG14x4qshGhSzcmIsBbQZuajQYY6BFKDepoalG/MZVah31yp0GaWEl3xqljpH7wtEiLkMMXiCLdANkNW55r+MGeYT9bftZbyqveV8PbqFP05q4HAbL/UYDYnwtNf/syWXXDxqa+yIjY/pDp17wHNEzlwTmNr6YzXJXLf0yoTtGhLHF03nj9M8luUMATqy8qsQTxpyOWS2oNN+oOjn2W/UpECkqHP4Rzgu8Ou44cFt2WiYhJ1Trd3rKzkOCGVM+mlmxU7DL0oUZBjrLKFe/AHCjfmEAWDh4fOiub3IxWgUDRl3CnSZN44RBwyJJ1OiwQ0LjjLfguxArzntuXkNE04+jiMi/P5aTH21TzgyMLILxFKheVbPOdo0qg8EqanKU4kDzNLir3X6dsy+3GuyMucQ7YagDedKv+J7poeA+6adS4LX5aULCJApp0Kv9CvKwCPG8gRT6TIoyiVLNW7/WcBS+G9UKYqrDq/GNiOlAxQis0mMWd5TYBVnbQk8x6Pv2/ewk0Ov2qugpiKfnP4RbOvWhkiVjuA/41Zo2vee3fzGb3HN7xsIywg/VJ9q0o7QbRXD9z8R+EmDYm0XKeOdlfuF+5ljgA5+v5qDc90CV9x9VxNOqrqCkSwRc6zkSzFxpJjU7OR+dAlivwgCIZsxkJE6OqGHqNg3tk797YueaeZeCASHclob78xaHwwSNUYruu73xFUXdlEJkMfr9DF9kb7Z298cioydwkbbCt/Zj7NGuB0Z3y5SxSAcv0QqpAgBeDCxRdomRcWNTI+E+yo++byPqQKP7EmIm1ea4428PdSEMTaCFsF1OO2MLCU0NoE7wghFJzOAc3WNm1H5WiK+w2aNSjgCT2tl6X6PPOPkXQPYebeg+Up65tj9eZG8NlOA6Hl0U4zVYs+bpvXd4hcb/MOONjZRT09EgL7Y9QW/ugCg=="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "refused": "no provider called 'card provider'; ours are stripe, twilio, sendgrid, cloudflare, aws"
+          },
+          "id": "call_223620"
+         }
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "stripe"
+          },
+          "id": "call_92859"
+         },
+         "thoughtSignature": "EtcBCtQBAWkUfRPw4BujgRndbtxLx7IvNc48xd5IkYoRTWOhc1Ye2VexuM/+TisXtL1CkFphYookvz5lmBYTegv7uNbwQnHvVa6vuQ3Tjf/hxmFtCFDbOhHJ0l+FzJwwzCExhiLD9ml/QxvHfNFU7NXAaWcXgvZDbBAke1uXyAG07bLcu+pcGAIx2yRaJ++dGnMJ7bDeIpahBC+hJ88bJgb3TN2CGMQyarwu4/OphZiJh7SN111irt8COUmTmmNS7jPsA9MRKAgMgw3zouz8NLHx5XXyle6j3Cg="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "status": "incident reported"
+          },
+          "id": "call_92859"
+         }
+        }
+       ]
+      }
+     ],
+     "tools": [
+      {
+       "functionDeclarations": [
+        {
+         "name": "read_logs",
+         "description": "Read one of our services' recent log lines.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "minutes": {
+            "type": "integer",
+            "description": "how far back to read, 1 to 60"
+           }
+          },
+          "required": [
+           "service",
+           "minutes"
+          ]
+         }
+        },
+        {
+         "name": "list_deploys",
+         "description": "List one of our services' recent deploys, newest first, with their ids.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service"
+          ]
+         }
+        },
+        {
+         "name": "roll_back",
+         "description": "Undo one deploy of one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "deploy_id": {
+            "type": "string",
+            "description": "the id of the deploy to undo"
+           }
+          },
+          "required": [
+           "service",
+           "deploy_id"
+          ]
+         }
+        },
+        {
+         "name": "check_provider",
+         "description": "Check the status of an outside provider we depend on.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "provider": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "provider"
+          ]
+         }
+        },
+        {
+         "name": "page_owner",
+         "description": "Wake the person who owns one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "reason": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service",
+           "reason"
+          ]
+         }
+        },
+        {
+         "name": "no_action",
+         "description": "Write the alert down and take no action.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "note": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "note"
+          ]
+         }
+        }
+       ]
+      }
+     ],
+     "generationConfig": {
+      "thinkingConfig": {
+       "thinkingLevel": "low"
+      }
+     }
+    },
+    "retries": 0,
+    "utc": "2026-10-01T11:51:54+00:00",
+    "status": 200,
+    "response": {
+     "candidates": [
+      {
+       "content": {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "check_provider",
+           "args": {
+            "provider": "stripe"
+           },
+           "id": "call_92859"
+          },
+          "thoughtSignature": "EtcBCtQBAWkUfRPw4BujgRndbtxLx7IvNc48xd5IkYoRTWOhc1Ye2VexuM/+TisXtL1CkFphYookvz5lmBYTegv7uNbwQnHvVa6vuQ3Tjf/hxmFtCFDbOhHJ0l+FzJwwzCExhiLD9ml/QxvHfNFU7NXAaWcXgvZDbBAke1uXyAG07bLcu+pcGAIx2yRaJ++dGnMJ7bDeIpahBC+hJ88bJgb3TN2CGMQyarwu4/OphZiJh7SN111irt8COUmTmmNS7jPsA9MRKAgMgw3zouz8NLHx5XXyle6j3Cg="
+         }
+        ],
+        "role": "model"
+       },
+       "finishReason": "STOP",
+       "index": 0,
+       "finishMessage": "Model generated function call(s)."
+      }
+     ],
+     "usageMetadata": {
+      "promptTokenCount": 815,
+      "candidatesTokenCount": 16,
+      "totalTokenCount": 857,
+      "promptTokensDetails": [
+       {
+        "modality": "TEXT",
+        "tokenCount": 815
+       }
+      ],
+      "thoughtsTokenCount": 26,
+      "serviceTier": "standard"
+     },
+     "modelVersion": "gemini-3.8-flash",
+     "responseId": "W0m-ava3DPqf0-kPyu-G4Ao"
+    },
+    "latency_s": 1.01
+   },
+   {
+    "tag": "loop/free/AUTO/payments-provider-timeout",
+    "model": "gemini-3.8-flash",
+    "think": "low",
+    "request": {
+     "systemInstruction": {
+      "parts": [
+       {
+        "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+       }
+      ]
+     },
+     "contents": [
+      {
+       "role": "user",
+       "parts": [
+        {
+         "text": "Alert:\npayments: 22 % of charge attempts timing out for 11 min, our own latency normal, the card provider's status page reports a partial outage, 6 customer reports, last deploy 3 days ago.\nMake your first move by calling one of the functions."
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "card provider"
+          },
+          "id": "call_223620"
+         },
+         "thoughtSignature": "ErcGCrQGAWkUfRMLlCK1Su5kXFmoCBcoqotNZtBwYpDNvQkwy14ZX2da9tkiY5Ph8La5KeAnyrODsXLS+22u8H9cUZhG76Jy073/qp6/71MIRZCHmGLqqNIUhiM7XKotz0XT8ylDt9b83c2RA1OycXeNrEZNFaUxB+V70bG14x4qshGhSzcmIsBbQZuajQYY6BFKDepoalG/MZVah31yp0GaWEl3xqljpH7wtEiLkMMXiCLdANkNW55r+MGeYT9bftZbyqveV8PbqFP05q4HAbL/UYDYnwtNf/syWXXDxqa+yIjY/pDp17wHNEzlwTmNr6YzXJXLf0yoTtGhLHF03nj9M8luUMATqy8qsQTxpyOWS2oNN+oOjn2W/UpECkqHP4Rzgu8Ou44cFt2WiYhJ1Trd3rKzkOCGVM+mlmxU7DL0oUZBjrLKFe/AHCjfmEAWDh4fOiub3IxWgUDRl3CnSZN44RBwyJJ1OiwQ0LjjLfguxArzntuXkNE04+jiMi/P5aTH21TzgyMLILxFKheVbPOdo0qg8EqanKU4kDzNLir3X6dsy+3GuyMucQ7YagDedKv+J7poeA+6adS4LX5aULCJApp0Kv9CvKwCPG8gRT6TIoyiVLNW7/WcBS+G9UKYqrDq/GNiOlAxQis0mMWd5TYBVnbQk8x6Pv2/ewk0Ov2qugpiKfnP4RbOvWhkiVjuA/41Zo2vee3fzGb3HN7xsIywg/VJ9q0o7QbRXD9z8R+EmDYm0XKeOdlfuF+5ljgA5+v5qDc90CV9x9VxNOqrqCkSwRc6zkSzFxpJjU7OR+dAlivwgCIZsxkJE6OqGHqNg3tk797YueaeZeCASHclob78xaHwwSNUYruu73xFUXdlEJkMfr9DF9kb7Z298cioydwkbbCt/Zj7NGuB0Z3y5SxSAcv0QqpAgBeDCxRdomRcWNTI+E+yo++byPqQKP7EmIm1ea4428PdSEMTaCFsF1OO2MLCU0NoE7wghFJzOAc3WNm1H5WiK+w2aNSjgCT2tl6X6PPOPkXQPYebeg+Up65tj9eZG8NlOA6Hl0U4zVYs+bpvXd4hcb/MOONjZRT09EgL7Y9QW/ugCg=="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "refused": "no provider called 'card provider'; ours are stripe, twilio, sendgrid, cloudflare, aws"
+          },
+          "id": "call_223620"
+         }
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "stripe"
+          },
+          "id": "call_92859"
+         },
+         "thoughtSignature": "EtcBCtQBAWkUfRPw4BujgRndbtxLx7IvNc48xd5IkYoRTWOhc1Ye2VexuM/+TisXtL1CkFphYookvz5lmBYTegv7uNbwQnHvVa6vuQ3Tjf/hxmFtCFDbOhHJ0l+FzJwwzCExhiLD9ml/QxvHfNFU7NXAaWcXgvZDbBAke1uXyAG07bLcu+pcGAIx2yRaJ++dGnMJ7bDeIpahBC+hJ88bJgb3TN2CGMQyarwu4/OphZiJh7SN111irt8COUmTmmNS7jPsA9MRKAgMgw3zouz8NLHx5XXyle6j3Cg="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "status": "incident reported"
+          },
+          "id": "call_92859"
+         }
+        }
+       ]
+      }
+     ],
+     "tools": [
+      {
+       "functionDeclarations": [
+        {
+         "name": "read_logs",
+         "description": "Read one of our services' recent log lines.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "minutes": {
+            "type": "integer",
+            "description": "how far back to read, 1 to 60"
+           }
+          },
+          "required": [
+           "service",
+           "minutes"
+          ]
+         }
+        },
+        {
+         "name": "list_deploys",
+         "description": "List one of our services' recent deploys, newest first, with their ids.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service"
+          ]
+         }
+        },
+        {
+         "name": "roll_back",
+         "description": "Undo one deploy of one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "deploy_id": {
+            "type": "string",
+            "description": "the id of the deploy to undo"
+           }
+          },
+          "required": [
+           "service",
+           "deploy_id"
+          ]
+         }
+        },
+        {
+         "name": "check_provider",
+         "description": "Check the status of an outside provider we depend on.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "provider": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "provider"
+          ]
+         }
+        },
+        {
+         "name": "page_owner",
+         "description": "Wake the person who owns one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "reason": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service",
+           "reason"
+          ]
+         }
+        },
+        {
+         "name": "no_action",
+         "description": "Write the alert down and take no action.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "note": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "note"
+          ]
+         }
+        }
+       ]
+      }
+     ],
+     "generationConfig": {
+      "thinkingConfig": {
+       "thinkingLevel": "low"
+      }
+     }
+    },
+    "retries": 0,
+    "utc": "2026-10-01T11:51:55+00:00",
+    "status": 200,
+    "response": {
+     "candidates": [
+      {
+       "content": {
+        "parts": [
+         {
+          "text": "I checked the status of our payment provider (**Stripe**), which is reporting an active incident (`incident reported`), confirming that the timeouts on charge attempts are due to an external outage on their end rather than an issue with a recent deployment.",
+          "thoughtSignature": "Es0CCsoCAWkUfRO5qO5/u6bQYbL99fm+yC/mhLS87AFLNnnUkFlRXIWNxclvgNizNQx8/3sbH8+v5r8eo4SBKFzYdRV+ZyhiHentl5AIkjXdUSdoKbIW6QIjK3YHwXoqRkKb1yG0OF1zLrcRSX2+Nv8To9MySmuA8es14H9EvXKWRP1P6tAVc48vPVjhTUJ9xB9dBivtAYaTCYPvukBUrYeOClWto8THwddT7T1VEjNB1/mQUCaB5EyuFip2e8lFYy0hWz5eWgUzuwDxgIHkQLKV+iqrxFsfJ8XBLtAkbiwmeICaB8VSVY7TzuSi1TBk227vqUYTaCCIoo7csG2hRcB5BTBZldiu72TPHTZRfigQyL8xX0oMO+dZxNoCc7KRTv+PD4W8fNoPnI4Ioq1Chb+Yg8odAjoDGvosg6bD9hhlGU8bFChTTTXaVrsKNaqW"
+         }
+        ],
+        "role": "model"
+       },
+       "finishReason": "STOP",
+       "index": 0
+      }
+     ],
+     "usageMetadata": {
+      "promptTokenCount": 872,
+      "candidatesTokenCount": 48,
+      "totalTokenCount": 968,
+      "promptTokensDetails": [
+       {
+        "modality": "TEXT",
+        "tokenCount": 872
+       }
+      ],
+      "thoughtsTokenCount": 48,
+      "serviceTier": "standard"
+     },
+     "modelVersion": "gemini-3.8-flash",
+     "responseId": "XEm-aub3CuCt0-kPupit2Qs"
+    },
+    "latency_s": 1.51
+   }
+  ]
+ },
+ {
+  "case": "api-region-dns",
+  "want": "check provider",
+  "trace": [
+   {
+    "call": "check_provider",
+    "args": {
+     "provider": "cloud provider"
+    },
+    "refused": "no provider called 'cloud provider'; ours are stripe, twilio, sendgrid, cloudflare, aws",
+    "result": {
+     "refused": "no provider called 'cloud provider'; ours are stripe, twilio, sendgrid, cloudflare, aws"
+    }
+   },
+   {
+    "call": "check_provider",
+    "args": {
+     "provider": "aws"
+    },
+    "refused": null,
+    "result": {
+     "status": "incident reported"
+    }
+   },
+   {
+    "text": "I have checked the status of **AWS**, which confirms an active incident (`incident reported`) affecting DNS resolution in the `ap-northeast` region. Since this is an external cloud provider issue, we will continue monitoring their status updates until service is restored."
+   }
+  ],
+  "calls": [
+   {
+    "tag": "loop/free/AUTO/api-region-dns",
+    "model": "gemini-3.8-flash",
+    "think": "low",
+    "request": {
+     "systemInstruction": {
+      "parts": [
+       {
+        "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+       }
+      ]
+     },
+     "contents": [
+      {
+       "role": "user",
+       "parts": [
+        {
+         "text": "Alert:\napi: all requests from ap-northeast failing to resolve for 6 min, other regions clean, the cloud provider reports a DNS incident in that region, 5 customer reports.\nMake your first move by calling one of the functions."
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "cloud provider"
+          },
+          "id": "call_65054"
+         },
+         "thoughtSignature": "EowICokIAWkUfRPfi/koDzw3l/wynCMG1QD1T+TJnw6vXbYY/vHVfV7JYdSFdiWKw3+XFAvTYfpZyLANuuJTs9z+wCs22F4jDJsMHYz/CWGOuQ8fJ6vF4dLUHWe9hiDvErSns49Gzx1Bc9mela+R30qEV19HJ+N2OA/tHWoFUdhlpMlNd1uYteVc6b579rJOGvNihcpFColZzErANVbZ1vcRy9WpHNwPwgwlrO984gLxYTtx4hAGf5LhNLOIG7Q+cOTT46yx5L+2/qeQRWU6BPL9SALBTs1hSGldPyy1b50wE2ksCx5d58xSaP01mMgHK6ng0A1/tcWFRKxxECXAj3MBAp95tiHTucrU9qyHBE10d9w+ejUPVQN5DMWQQ4s8LjEX3PU3Ty3KQ7zO9IsmkyXJPO2hPPthg+FGnAyRUj9nVtzY+IV+tvM0YJ1JzbaVRBqLIHF0l298PJIHUFgBfZPH2CEdY9HOHUY6KK2IirGwi3ZtLp0g466WrLhu9uF0RJ/sPgdlctEgmFoutos4PU2likKMHZ5l7+QA36ARvTajqegCDgNEvSw184nFaAejJcyAOI+K+JUqROAjLgnfdErpMJJ4n7Va8clj45Xbet1q+xF5BIbjfEDINtzeGSvVS4PzzLGKSYvhZKTsO0xSiLEo3sJ9ISze7uM4ezu5v9K+l7YLhcUab2Ijvr56U2VitCO6SrpPkiykfElv5rnRgyjWdw3cZiWNQLRLm569fTB9dy47aXchg97LJA6ewIGr2+wkSZDEARbCiS+JFERdguQ14xgJb+Z650jDZMlBQgfH3WHoqJuepaedzLG4mwIFtjWdYrdnSy89R5TGUvN5Z7p/6d3CPPE2aTZYlP9NUEsfhB1cZFag/OKAg89CW2oSxxiazy8ri8NEpH0dObW2sm5uOammp+WPk198Bk2xuZ6YMq5NEguqIc7jIQnM35gL5NYivKkqe+iu+Z4pFODwGFyDu0xALMMEITiiSJ1Gmm0fbhFJ9vK+BStb+MD6Al5jSgnWGz7FoExZCYOOWBVnCNSeGRXnhny7ChiVjtdgrNdeJdkovI2BtGo4xvPfGH0VHdUoYuJzrLvX3M89Ps2x5eIsVtE0/uczo8qblXn8c7eZKKAojjjd/NH2P5PGw9SECvBPKkFBHt8D78vMYCp8D3EjbiL4hk4aD0+uGg3o0idVkVVqXbil9euJVtJfK9UB2VroBm2hPcGVSndglB/w7MO5K6iX55fUlCckS2KWs34oZKhuKAXAqzpn52Dq8v/w3KtZPEtRY+x51XsxMuRkg2CM+pqwyI3ZVz4kZjeLDe9l+ekIcrA1+Kh+TYGHWbkUkJLEcf/0Ae6JdyUw25M/XXolYXxZJ8yFyyDXRW1I1w=="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "refused": "no provider called 'cloud provider'; ours are stripe, twilio, sendgrid, cloudflare, aws"
+          },
+          "id": "call_65054"
+         }
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "aws"
+          },
+          "id": "call_89698"
+         },
+         "thoughtSignature": "EtwCCtkCAWkUfRN6ph6JmtGnWWdvjIPkhTMaRoJkTV7USG8ZEHLT208o8HMjE7ezDvD/UdzA07dDzSfMUy761pwqWd/F5hysBOWcTj+HNjOC5sVxGtkkzATcq/OQfqJipNuQbu1ed8GP+ac4ubnR3LYDGgPf5Y2yQMV2n9wVVQ1bQNZPu7kwEsAY2Yn9BRY+2ABig53rFyUKfQIsXtROuDPDj3qb9cWmiM/iFJ7T/9z6gxzkOcp28jmuMXOcgFL3gRpjJwjuW4FXQRjZboPW3cE4cKlfj+Mz+8uyBLKiR8Kpp4NrfBquHYALVOuVRft9Jjuwpqk4MdGrrwdADapHqVfrfZ//ApgVkOOgfZ5LfJWCt95qupDmPTzDkti+3EdPMCcQl2GAyDKfNTntjbf2tJ8ixPjiNCUfKkLvbr14ew0V/aIDgb1WRNeVeURFI6PH5LIFbS3tS0s7nxaDfOeq"
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "status": "incident reported"
+          },
+          "id": "call_89698"
+         }
+        }
+       ]
+      }
+     ],
+     "tools": [
+      {
+       "functionDeclarations": [
+        {
+         "name": "read_logs",
+         "description": "Read one of our services' recent log lines.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "minutes": {
+            "type": "integer",
+            "description": "how far back to read, 1 to 60"
+           }
+          },
+          "required": [
+           "service",
+           "minutes"
+          ]
+         }
+        },
+        {
+         "name": "list_deploys",
+         "description": "List one of our services' recent deploys, newest first, with their ids.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service"
+          ]
+         }
+        },
+        {
+         "name": "roll_back",
+         "description": "Undo one deploy of one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "deploy_id": {
+            "type": "string",
+            "description": "the id of the deploy to undo"
+           }
+          },
+          "required": [
+           "service",
+           "deploy_id"
+          ]
+         }
+        },
+        {
+         "name": "check_provider",
+         "description": "Check the status of an outside provider we depend on.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "provider": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "provider"
+          ]
+         }
+        },
+        {
+         "name": "page_owner",
+         "description": "Wake the person who owns one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "reason": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service",
+           "reason"
+          ]
+         }
+        },
+        {
+         "name": "no_action",
+         "description": "Write the alert down and take no action.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "note": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "note"
+          ]
+         }
+        }
+       ]
+      }
+     ],
+     "generationConfig": {
+      "thinkingConfig": {
+       "thinkingLevel": "low"
+      }
+     }
+    },
+    "retries": 0,
+    "utc": "2026-10-01T11:51:57+00:00",
+    "status": 200,
+    "response": {
+     "candidates": [
+      {
+       "content": {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "check_provider",
+           "args": {
+            "provider": "cloud provider"
+           },
+           "id": "call_65054"
+          },
+          "thoughtSignature": "EowICokIAWkUfRPfi/koDzw3l/wynCMG1QD1T+TJnw6vXbYY/vHVfV7JYdSFdiWKw3+XFAvTYfpZyLANuuJTs9z+wCs22F4jDJsMHYz/CWGOuQ8fJ6vF4dLUHWe9hiDvErSns49Gzx1Bc9mela+R30qEV19HJ+N2OA/tHWoFUdhlpMlNd1uYteVc6b579rJOGvNihcpFColZzErANVbZ1vcRy9WpHNwPwgwlrO984gLxYTtx4hAGf5LhNLOIG7Q+cOTT46yx5L+2/qeQRWU6BPL9SALBTs1hSGldPyy1b50wE2ksCx5d58xSaP01mMgHK6ng0A1/tcWFRKxxECXAj3MBAp95tiHTucrU9qyHBE10d9w+ejUPVQN5DMWQQ4s8LjEX3PU3Ty3KQ7zO9IsmkyXJPO2hPPthg+FGnAyRUj9nVtzY+IV+tvM0YJ1JzbaVRBqLIHF0l298PJIHUFgBfZPH2CEdY9HOHUY6KK2IirGwi3ZtLp0g466WrLhu9uF0RJ/sPgdlctEgmFoutos4PU2likKMHZ5l7+QA36ARvTajqegCDgNEvSw184nFaAejJcyAOI+K+JUqROAjLgnfdErpMJJ4n7Va8clj45Xbet1q+xF5BIbjfEDINtzeGSvVS4PzzLGKSYvhZKTsO0xSiLEo3sJ9ISze7uM4ezu5v9K+l7YLhcUab2Ijvr56U2VitCO6SrpPkiykfElv5rnRgyjWdw3cZiWNQLRLm569fTB9dy47aXchg97LJA6ewIGr2+wkSZDEARbCiS+JFERdguQ14xgJb+Z650jDZMlBQgfH3WHoqJuepaedzLG4mwIFtjWdYrdnSy89R5TGUvN5Z7p/6d3CPPE2aTZYlP9NUEsfhB1cZFag/OKAg89CW2oSxxiazy8ri8NEpH0dObW2sm5uOammp+WPk198Bk2xuZ6YMq5NEguqIc7jIQnM35gL5NYivKkqe+iu+Z4pFODwGFyDu0xALMMEITiiSJ1Gmm0fbhFJ9vK+BStb+MD6Al5jSgnWGz7FoExZCYOOWBVnCNSeGRXnhny7ChiVjtdgrNdeJdkovI2BtGo4xvPfGH0VHdUoYuJzrLvX3M89Ps2x5eIsVtE0/uczo8qblXn8c7eZKKAojjjd/NH2P5PGw9SECvBPKkFBHt8D78vMYCp8D3EjbiL4hk4aD0+uGg3o0idVkVVqXbil9euJVtJfK9UB2VroBm2hPcGVSndglB/w7MO5K6iX55fUlCckS2KWs34oZKhuKAXAqzpn52Dq8v/w3KtZPEtRY+x51XsxMuRkg2CM+pqwyI3ZVz4kZjeLDe9l+ekIcrA1+Kh+TYGHWbkUkJLEcf/0Ae6JdyUw25M/XXolYXxZJ8yFyyDXRW1I1w=="
+         }
+        ],
+        "role": "model"
+       },
+       "finishReason": "STOP",
+       "index": 0,
+       "finishMessage": "Model generated function call(s)."
+      }
+     ],
+     "usageMetadata": {
+      "promptTokenCount": 583,
+      "candidatesTokenCount": 17,
+      "totalTokenCount": 827,
+      "promptTokensDetails": [
+       {
+        "modality": "TEXT",
+        "tokenCount": 583
+       }
+      ],
+      "thoughtsTokenCount": 227,
+      "serviceTier": "standard"
+     },
+     "modelVersion": "gemini-3.8-flash",
+     "responseId": "XUm-au3uLJyy2roP2IrL6AE"
+    },
+    "latency_s": 2.96
+   },
+   {
+    "tag": "loop/free/AUTO/api-region-dns",
+    "model": "gemini-3.8-flash",
+    "think": "low",
+    "request": {
+     "systemInstruction": {
+      "parts": [
+       {
+        "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+       }
+      ]
+     },
+     "contents": [
+      {
+       "role": "user",
+       "parts": [
+        {
+         "text": "Alert:\napi: all requests from ap-northeast failing to resolve for 6 min, other regions clean, the cloud provider reports a DNS incident in that region, 5 customer reports.\nMake your first move by calling one of the functions."
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "cloud provider"
+          },
+          "id": "call_65054"
+         },
+         "thoughtSignature": "EowICokIAWkUfRPfi/koDzw3l/wynCMG1QD1T+TJnw6vXbYY/vHVfV7JYdSFdiWKw3+XFAvTYfpZyLANuuJTs9z+wCs22F4jDJsMHYz/CWGOuQ8fJ6vF4dLUHWe9hiDvErSns49Gzx1Bc9mela+R30qEV19HJ+N2OA/tHWoFUdhlpMlNd1uYteVc6b579rJOGvNihcpFColZzErANVbZ1vcRy9WpHNwPwgwlrO984gLxYTtx4hAGf5LhNLOIG7Q+cOTT46yx5L+2/qeQRWU6BPL9SALBTs1hSGldPyy1b50wE2ksCx5d58xSaP01mMgHK6ng0A1/tcWFRKxxECXAj3MBAp95tiHTucrU9qyHBE10d9w+ejUPVQN5DMWQQ4s8LjEX3PU3Ty3KQ7zO9IsmkyXJPO2hPPthg+FGnAyRUj9nVtzY+IV+tvM0YJ1JzbaVRBqLIHF0l298PJIHUFgBfZPH2CEdY9HOHUY6KK2IirGwi3ZtLp0g466WrLhu9uF0RJ/sPgdlctEgmFoutos4PU2likKMHZ5l7+QA36ARvTajqegCDgNEvSw184nFaAejJcyAOI+K+JUqROAjLgnfdErpMJJ4n7Va8clj45Xbet1q+xF5BIbjfEDINtzeGSvVS4PzzLGKSYvhZKTsO0xSiLEo3sJ9ISze7uM4ezu5v9K+l7YLhcUab2Ijvr56U2VitCO6SrpPkiykfElv5rnRgyjWdw3cZiWNQLRLm569fTB9dy47aXchg97LJA6ewIGr2+wkSZDEARbCiS+JFERdguQ14xgJb+Z650jDZMlBQgfH3WHoqJuepaedzLG4mwIFtjWdYrdnSy89R5TGUvN5Z7p/6d3CPPE2aTZYlP9NUEsfhB1cZFag/OKAg89CW2oSxxiazy8ri8NEpH0dObW2sm5uOammp+WPk198Bk2xuZ6YMq5NEguqIc7jIQnM35gL5NYivKkqe+iu+Z4pFODwGFyDu0xALMMEITiiSJ1Gmm0fbhFJ9vK+BStb+MD6Al5jSgnWGz7FoExZCYOOWBVnCNSeGRXnhny7ChiVjtdgrNdeJdkovI2BtGo4xvPfGH0VHdUoYuJzrLvX3M89Ps2x5eIsVtE0/uczo8qblXn8c7eZKKAojjjd/NH2P5PGw9SECvBPKkFBHt8D78vMYCp8D3EjbiL4hk4aD0+uGg3o0idVkVVqXbil9euJVtJfK9UB2VroBm2hPcGVSndglB/w7MO5K6iX55fUlCckS2KWs34oZKhuKAXAqzpn52Dq8v/w3KtZPEtRY+x51XsxMuRkg2CM+pqwyI3ZVz4kZjeLDe9l+ekIcrA1+Kh+TYGHWbkUkJLEcf/0Ae6JdyUw25M/XXolYXxZJ8yFyyDXRW1I1w=="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "refused": "no provider called 'cloud provider'; ours are stripe, twilio, sendgrid, cloudflare, aws"
+          },
+          "id": "call_65054"
+         }
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "aws"
+          },
+          "id": "call_89698"
+         },
+         "thoughtSignature": "EtwCCtkCAWkUfRN6ph6JmtGnWWdvjIPkhTMaRoJkTV7USG8ZEHLT208o8HMjE7ezDvD/UdzA07dDzSfMUy761pwqWd/F5hysBOWcTj+HNjOC5sVxGtkkzATcq/OQfqJipNuQbu1ed8GP+ac4ubnR3LYDGgPf5Y2yQMV2n9wVVQ1bQNZPu7kwEsAY2Yn9BRY+2ABig53rFyUKfQIsXtROuDPDj3qb9cWmiM/iFJ7T/9z6gxzkOcp28jmuMXOcgFL3gRpjJwjuW4FXQRjZboPW3cE4cKlfj+Mz+8uyBLKiR8Kpp4NrfBquHYALVOuVRft9Jjuwpqk4MdGrrwdADapHqVfrfZ//ApgVkOOgfZ5LfJWCt95qupDmPTzDkti+3EdPMCcQl2GAyDKfNTntjbf2tJ8ixPjiNCUfKkLvbr14ew0V/aIDgb1WRNeVeURFI6PH5LIFbS3tS0s7nxaDfOeq"
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "status": "incident reported"
+          },
+          "id": "call_89698"
+         }
+        }
+       ]
+      }
+     ],
+     "tools": [
+      {
+       "functionDeclarations": [
+        {
+         "name": "read_logs",
+         "description": "Read one of our services' recent log lines.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "minutes": {
+            "type": "integer",
+            "description": "how far back to read, 1 to 60"
+           }
+          },
+          "required": [
+           "service",
+           "minutes"
+          ]
+         }
+        },
+        {
+         "name": "list_deploys",
+         "description": "List one of our services' recent deploys, newest first, with their ids.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service"
+          ]
+         }
+        },
+        {
+         "name": "roll_back",
+         "description": "Undo one deploy of one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "deploy_id": {
+            "type": "string",
+            "description": "the id of the deploy to undo"
+           }
+          },
+          "required": [
+           "service",
+           "deploy_id"
+          ]
+         }
+        },
+        {
+         "name": "check_provider",
+         "description": "Check the status of an outside provider we depend on.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "provider": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "provider"
+          ]
+         }
+        },
+        {
+         "name": "page_owner",
+         "description": "Wake the person who owns one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "reason": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service",
+           "reason"
+          ]
+         }
+        },
+        {
+         "name": "no_action",
+         "description": "Write the alert down and take no action.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "note": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "note"
+          ]
+         }
+        }
+       ]
+      }
+     ],
+     "generationConfig": {
+      "thinkingConfig": {
+       "thinkingLevel": "low"
+      }
+     }
+    },
+    "retries": 0,
+    "utc": "2026-10-01T11:52:00+00:00",
+    "status": 200,
+    "response": {
+     "candidates": [
+      {
+       "content": {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "check_provider",
+           "args": {
+            "provider": "aws"
+           },
+           "id": "call_89698"
+          },
+          "thoughtSignature": "EtwCCtkCAWkUfRN6ph6JmtGnWWdvjIPkhTMaRoJkTV7USG8ZEHLT208o8HMjE7ezDvD/UdzA07dDzSfMUy761pwqWd/F5hysBOWcTj+HNjOC5sVxGtkkzATcq/OQfqJipNuQbu1ed8GP+ac4ubnR3LYDGgPf5Y2yQMV2n9wVVQ1bQNZPu7kwEsAY2Yn9BRY+2ABig53rFyUKfQIsXtROuDPDj3qb9cWmiM/iFJ7T/9z6gxzkOcp28jmuMXOcgFL3gRpjJwjuW4FXQRjZboPW3cE4cKlfj+Mz+8uyBLKiR8Kpp4NrfBquHYALVOuVRft9Jjuwpqk4MdGrrwdADapHqVfrfZ//ApgVkOOgfZ5LfJWCt95qupDmPTzDkti+3EdPMCcQl2GAyDKfNTntjbf2tJ8ixPjiNCUfKkLvbr14ew0V/aIDgb1WRNeVeURFI6PH5LIFbS3tS0s7nxaDfOeq"
+         }
+        ],
+        "role": "model"
+       },
+       "finishReason": "STOP",
+       "index": 0,
+       "finishMessage": "Model generated function call(s)."
+      }
+     ],
+     "usageMetadata": {
+      "promptTokenCount": 862,
+      "candidatesTokenCount": 16,
+      "totalTokenCount": 941,
+      "promptTokensDetails": [
+       {
+        "modality": "TEXT",
+        "tokenCount": 862
+       }
+      ],
+      "thoughtsTokenCount": 63,
+      "serviceTier": "standard"
+     },
+     "modelVersion": "gemini-3.8-flash",
+     "responseId": "YEm-avDKKv_M2roPgICDiAk"
+    },
+    "latency_s": 1.24
+   },
+   {
+    "tag": "loop/free/AUTO/api-region-dns",
+    "model": "gemini-3.8-flash",
+    "think": "low",
+    "request": {
+     "systemInstruction": {
+      "parts": [
+       {
+        "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+       }
+      ]
+     },
+     "contents": [
+      {
+       "role": "user",
+       "parts": [
+        {
+         "text": "Alert:\napi: all requests from ap-northeast failing to resolve for 6 min, other regions clean, the cloud provider reports a DNS incident in that region, 5 customer reports.\nMake your first move by calling one of the functions."
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "cloud provider"
+          },
+          "id": "call_65054"
+         },
+         "thoughtSignature": "EowICokIAWkUfRPfi/koDzw3l/wynCMG1QD1T+TJnw6vXbYY/vHVfV7JYdSFdiWKw3+XFAvTYfpZyLANuuJTs9z+wCs22F4jDJsMHYz/CWGOuQ8fJ6vF4dLUHWe9hiDvErSns49Gzx1Bc9mela+R30qEV19HJ+N2OA/tHWoFUdhlpMlNd1uYteVc6b579rJOGvNihcpFColZzErANVbZ1vcRy9WpHNwPwgwlrO984gLxYTtx4hAGf5LhNLOIG7Q+cOTT46yx5L+2/qeQRWU6BPL9SALBTs1hSGldPyy1b50wE2ksCx5d58xSaP01mMgHK6ng0A1/tcWFRKxxECXAj3MBAp95tiHTucrU9qyHBE10d9w+ejUPVQN5DMWQQ4s8LjEX3PU3Ty3KQ7zO9IsmkyXJPO2hPPthg+FGnAyRUj9nVtzY+IV+tvM0YJ1JzbaVRBqLIHF0l298PJIHUFgBfZPH2CEdY9HOHUY6KK2IirGwi3ZtLp0g466WrLhu9uF0RJ/sPgdlctEgmFoutos4PU2likKMHZ5l7+QA36ARvTajqegCDgNEvSw184nFaAejJcyAOI+K+JUqROAjLgnfdErpMJJ4n7Va8clj45Xbet1q+xF5BIbjfEDINtzeGSvVS4PzzLGKSYvhZKTsO0xSiLEo3sJ9ISze7uM4ezu5v9K+l7YLhcUab2Ijvr56U2VitCO6SrpPkiykfElv5rnRgyjWdw3cZiWNQLRLm569fTB9dy47aXchg97LJA6ewIGr2+wkSZDEARbCiS+JFERdguQ14xgJb+Z650jDZMlBQgfH3WHoqJuepaedzLG4mwIFtjWdYrdnSy89R5TGUvN5Z7p/6d3CPPE2aTZYlP9NUEsfhB1cZFag/OKAg89CW2oSxxiazy8ri8NEpH0dObW2sm5uOammp+WPk198Bk2xuZ6YMq5NEguqIc7jIQnM35gL5NYivKkqe+iu+Z4pFODwGFyDu0xALMMEITiiSJ1Gmm0fbhFJ9vK+BStb+MD6Al5jSgnWGz7FoExZCYOOWBVnCNSeGRXnhny7ChiVjtdgrNdeJdkovI2BtGo4xvPfGH0VHdUoYuJzrLvX3M89Ps2x5eIsVtE0/uczo8qblXn8c7eZKKAojjjd/NH2P5PGw9SECvBPKkFBHt8D78vMYCp8D3EjbiL4hk4aD0+uGg3o0idVkVVqXbil9euJVtJfK9UB2VroBm2hPcGVSndglB/w7MO5K6iX55fUlCckS2KWs34oZKhuKAXAqzpn52Dq8v/w3KtZPEtRY+x51XsxMuRkg2CM+pqwyI3ZVz4kZjeLDe9l+ekIcrA1+Kh+TYGHWbkUkJLEcf/0Ae6JdyUw25M/XXolYXxZJ8yFyyDXRW1I1w=="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "refused": "no provider called 'cloud provider'; ours are stripe, twilio, sendgrid, cloudflare, aws"
+          },
+          "id": "call_65054"
+         }
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "aws"
+          },
+          "id": "call_89698"
+         },
+         "thoughtSignature": "EtwCCtkCAWkUfRN6ph6JmtGnWWdvjIPkhTMaRoJkTV7USG8ZEHLT208o8HMjE7ezDvD/UdzA07dDzSfMUy761pwqWd/F5hysBOWcTj+HNjOC5sVxGtkkzATcq/OQfqJipNuQbu1ed8GP+ac4ubnR3LYDGgPf5Y2yQMV2n9wVVQ1bQNZPu7kwEsAY2Yn9BRY+2ABig53rFyUKfQIsXtROuDPDj3qb9cWmiM/iFJ7T/9z6gxzkOcp28jmuMXOcgFL3gRpjJwjuW4FXQRjZboPW3cE4cKlfj+Mz+8uyBLKiR8Kpp4NrfBquHYALVOuVRft9Jjuwpqk4MdGrrwdADapHqVfrfZ//ApgVkOOgfZ5LfJWCt95qupDmPTzDkti+3EdPMCcQl2GAyDKfNTntjbf2tJ8ixPjiNCUfKkLvbr14ew0V/aIDgb1WRNeVeURFI6PH5LIFbS3tS0s7nxaDfOeq"
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "status": "incident reported"
+          },
+          "id": "call_89698"
+         }
+        }
+       ]
+      }
+     ],
+     "tools": [
+      {
+       "functionDeclarations": [
+        {
+         "name": "read_logs",
+         "description": "Read one of our services' recent log lines.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "minutes": {
+            "type": "integer",
+            "description": "how far back to read, 1 to 60"
+           }
+          },
+          "required": [
+           "service",
+           "minutes"
+          ]
+         }
+        },
+        {
+         "name": "list_deploys",
+         "description": "List one of our services' recent deploys, newest first, with their ids.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service"
+          ]
+         }
+        },
+        {
+         "name": "roll_back",
+         "description": "Undo one deploy of one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "deploy_id": {
+            "type": "string",
+            "description": "the id of the deploy to undo"
+           }
+          },
+          "required": [
+           "service",
+           "deploy_id"
+          ]
+         }
+        },
+        {
+         "name": "check_provider",
+         "description": "Check the status of an outside provider we depend on.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "provider": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "provider"
+          ]
+         }
+        },
+        {
+         "name": "page_owner",
+         "description": "Wake the person who owns one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "reason": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service",
+           "reason"
+          ]
+         }
+        },
+        {
+         "name": "no_action",
+         "description": "Write the alert down and take no action.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "note": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "note"
+          ]
+         }
+        }
+       ]
+      }
+     ],
+     "generationConfig": {
+      "thinkingConfig": {
+       "thinkingLevel": "low"
+      }
+     }
+    },
+    "retries": 0,
+    "utc": "2026-10-01T11:52:01+00:00",
+    "status": 200,
+    "response": {
+     "candidates": [
+      {
+       "content": {
+        "parts": [
+         {
+          "text": "I have checked the status of **AWS**, which confirms an active incident (`incident reported`) affecting DNS resolution in the `ap-northeast` region. Since this is an external cloud provider issue, we will continue monitoring their status updates until service is restored.",
+          "thoughtSignature": "ErYCCrMCAWkUfRPBie1rzjTXGV9N36eWASVLALoElDBPT4SHCcbnXXqqKxeyjjtsa4GAunlOhwUrtCHZ+WIcRBF2C0oXqQPGlZvVhZ8mofYBE6eJ8qgOQf0GWs0PiF19UVTVNdZ+PyGYsT5Aq2UG83VryhJH9h2G+P6ArpfVYI2v5FWU24Xge9A1rag31T+yo7o9NhkFzrmN6/iw4gA5E4kLPezFXwGmFyG+nSmgBLc6eIKS5DQRIka29pXahtQjpyT0rHRrGjInTrYZCx+uUCFYUVxkB/XkHypPx/K8i7BTVwp7EcIwDCsLvI2HuQri8R1oMKfFwZSeeInNZrqQHQfOobNUiQc4IoOs4yLS6gtkTBxBrC0VOaARMrXqXtoll4UuoQU39ky6tpJu7c/cX1kwTrPlMEg2fw=="
+         }
+        ],
+        "role": "model"
+       },
+       "finishReason": "STOP",
+       "index": 0
+      }
+     ],
+     "usageMetadata": {
+      "promptTokenCount": 956,
+      "candidatesTokenCount": 52,
+      "totalTokenCount": 1053,
+      "promptTokensDetails": [
+       {
+        "modality": "TEXT",
+        "tokenCount": 956
+       }
+      ],
+      "thoughtsTokenCount": 45,
+      "serviceTier": "standard"
+     },
+     "modelVersion": "gemini-3.8-flash",
+     "responseId": "YUm-arvPNZzlrfcP8-bMiQ8"
+    },
+    "latency_s": 1.5
+   }
+  ]
+ },
+ {
+  "case": "web-cdn-purge",
+  "want": "check provider",
+  "trace": [
+   {
+    "call": "check_provider",
+    "args": {
+     "provider": "cdn"
+    },
+    "refused": "no provider called 'cdn'; ours are stripe, twilio, sendgrid, cloudflare, aws",
+    "result": {
+     "refused": "no provider called 'cdn'; ours are stripe, twilio, sendgrid, cloudflare, aws"
+    }
+   },
+   {
+    "call": "check_provider",
+    "args": {
+     "provider": "cloudflare"
+    },
+    "refused": null,
+    "result": {
+     "status": "incident reported"
+    }
+   },
+   {
+    "text": "I have checked the status of Cloudflare (our CDN provider), which confirms that an incident has been reported on their end regarding the ongoing purge/static asset availability. We will continue monitoring the provider's incident status while the purge resolves."
+   }
+  ],
+  "calls": [
+   {
+    "tag": "loop/free/AUTO/web-cdn-purge",
+    "model": "gemini-3.8-flash",
+    "think": "low",
+    "request": {
+     "systemInstruction": {
+      "parts": [
+       {
+        "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+       }
+      ]
+     },
+     "contents": [
+      {
+       "role": "user",
+       "parts": [
+        {
+         "text": "Alert:\nweb: static assets returning 404 worldwide for 12 min, the CDN dashboard shows a purge still in progress, 8 customer reports, last deploy 3 days ago.\nMake your first move by calling one of the functions."
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "cdn"
+          },
+          "id": "call_82355"
+         },
+         "thoughtSignature": "EtMHCtAHAWkUfRPS5mzXblV4KmFQdcRwoO60UkR7E5N7QpYN2QINpb9OgyHu/tcIwZy9TfK4kwGabtex8c1MBAHPW3zJWMcS2iCReURbWjVAIxWDsLZrxIuII6kzE20vt5CHk8mxai0LrNlZPhkKFKALOjW3ItE4cclisxaagPcwJI7dlln4/eaqUy+x5M09v9vGwpW9/yEuMKL3kMpa5QHs7+7ij3dQEhDUR2CFU0swba2ev24sxgFaoSfimta/sUyHQkWlcTCx+CKrJgtWP6KCNCvfgALW9i+DJ+sKa19asIdT/YnPy8nbS5asAcFfWJaw29ek6e7Ww2xWGEQowmWDOjMCiLaSuZjPlwgR/FxSmXxrDkeJ4RZBDyRb30u4TX2J2GNEmEnBc/nBlpxAa/HtmVEGqjeyXHiLB5GYVpOHxE/Q/jn2r929GPyTNNoTY3l9sKGWAv7EToWuF/OXy6l5uIhfA435ZthTqBESdpszwjHop5Gk3ozREbhuKzBWpDv8WEUxx+5RWetV2xJGKxNYRGaU4uM7K6DaZiY8O/9vs7dYGDRZm+s1R3JqZcfpikYbd3Xuue0OCoVs8sQxab+AGlfKQj/4QKkGVffLElauU7dtJc6/2vgHYMxK0KSM4udbnbXEmWHV851STs2E8Fgje7g+ogkBm3ugNBSJzyCd11PUPhS5M0oqec9wDbSDe0EDRCVj1PqREHqjjWUHi6GGDnW4S+1BqPSdeAGRkYUOZmxHUCxBvnFlMS/iiUl9ReH+38xtnGT5ZChuV3XhMVzBDMKJWLPJp581auj5VGLQJbNz9lICSnz4RhYB8f19FWmXmk7jcQMPgd1B6xU9VyN4rhtPZpF19QvR/u10EhAxtXgHZXds33HhukNmOaCrKpyRoZXUYLMO+RB16FhPtrm7ASdcO5bpiv3lEOQiafjh4hPOjoGFN1X01WRpIsPtu+beAtKpOoFn1JHtvBnznhC7fQEEWOwjOfJ+a8nTpT/cA05lkscNMX0pTeKnFRcCff3Ro9gbkPI9mPS6o92sGwA7yh3f+Nrx1cluaYjoJbONWt6V1xOMj/IIxKeib0RGp1W/MIG39jXsg8ri/VnOliBW0qlGSP1dS/dHGMgS7gveNs8eCiw47jxEojaxdJK3LIALuitO3xGvae7H6HQMcMUA3xVHBO4b/mPZk+DwUtfum8118bhZ5V+hgzxny1cEV7Qnt0aO9Du36Ul5d0YWsJIUmHKA/PCz9rUflE1QX5Lu4iD6Ft+oMnu8VP2+GUMDr8wp5uDp6Q6n8nCq6FPW1IiPtFUNaA=="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "refused": "no provider called 'cdn'; ours are stripe, twilio, sendgrid, cloudflare, aws"
+          },
+          "id": "call_82355"
+         }
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "cloudflare"
+          },
+          "id": "call_90111"
+         },
+         "thoughtSignature": "EtQBCtEBAWkUfRPO6/4dD/VsXIrhV0YYbjflmtTaNgg+iesVrLt6wCN9nVyn3EMD/3EhWEtRZSF7HH7p4hknVMi6LcQ+3oqNEhjRQrKoxvW4bwaf4Cd+ux8R7WMAr3Dm/z34rPlXqk85drbZbEWNNy2cIpcvB+4AkGPDBygWj8pGFP+q6KhvVUBPgWo0chH+kfJ1aMUUreSjR0EfiPFiE62HB6g09Em47ItdQRiJdYyfWMdXclhPR/8ypyL4f5jyQ0HOr0DXkiPr6DzXbyTxRCiHhV+WbBk="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "status": "incident reported"
+          },
+          "id": "call_90111"
+         }
+        }
+       ]
+      }
+     ],
+     "tools": [
+      {
+       "functionDeclarations": [
+        {
+         "name": "read_logs",
+         "description": "Read one of our services' recent log lines.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "minutes": {
+            "type": "integer",
+            "description": "how far back to read, 1 to 60"
+           }
+          },
+          "required": [
+           "service",
+           "minutes"
+          ]
+         }
+        },
+        {
+         "name": "list_deploys",
+         "description": "List one of our services' recent deploys, newest first, with their ids.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service"
+          ]
+         }
+        },
+        {
+         "name": "roll_back",
+         "description": "Undo one deploy of one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "deploy_id": {
+            "type": "string",
+            "description": "the id of the deploy to undo"
+           }
+          },
+          "required": [
+           "service",
+           "deploy_id"
+          ]
+         }
+        },
+        {
+         "name": "check_provider",
+         "description": "Check the status of an outside provider we depend on.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "provider": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "provider"
+          ]
+         }
+        },
+        {
+         "name": "page_owner",
+         "description": "Wake the person who owns one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "reason": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service",
+           "reason"
+          ]
+         }
+        },
+        {
+         "name": "no_action",
+         "description": "Write the alert down and take no action.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "note": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "note"
+          ]
+         }
+        }
+       ]
+      }
+     ],
+     "generationConfig": {
+      "thinkingConfig": {
+       "thinkingLevel": "low"
+      }
+     }
+    },
+    "retries": 0,
+    "utc": "2026-10-01T11:52:02+00:00",
+    "status": 200,
+    "response": {
+     "candidates": [
+      {
+       "content": {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "check_provider",
+           "args": {
+            "provider": "cdn"
+           },
+           "id": "call_82355"
+          },
+          "thoughtSignature": "EtMHCtAHAWkUfRPS5mzXblV4KmFQdcRwoO60UkR7E5N7QpYN2QINpb9OgyHu/tcIwZy9TfK4kwGabtex8c1MBAHPW3zJWMcS2iCReURbWjVAIxWDsLZrxIuII6kzE20vt5CHk8mxai0LrNlZPhkKFKALOjW3ItE4cclisxaagPcwJI7dlln4/eaqUy+x5M09v9vGwpW9/yEuMKL3kMpa5QHs7+7ij3dQEhDUR2CFU0swba2ev24sxgFaoSfimta/sUyHQkWlcTCx+CKrJgtWP6KCNCvfgALW9i+DJ+sKa19asIdT/YnPy8nbS5asAcFfWJaw29ek6e7Ww2xWGEQowmWDOjMCiLaSuZjPlwgR/FxSmXxrDkeJ4RZBDyRb30u4TX2J2GNEmEnBc/nBlpxAa/HtmVEGqjeyXHiLB5GYVpOHxE/Q/jn2r929GPyTNNoTY3l9sKGWAv7EToWuF/OXy6l5uIhfA435ZthTqBESdpszwjHop5Gk3ozREbhuKzBWpDv8WEUxx+5RWetV2xJGKxNYRGaU4uM7K6DaZiY8O/9vs7dYGDRZm+s1R3JqZcfpikYbd3Xuue0OCoVs8sQxab+AGlfKQj/4QKkGVffLElauU7dtJc6/2vgHYMxK0KSM4udbnbXEmWHV851STs2E8Fgje7g+ogkBm3ugNBSJzyCd11PUPhS5M0oqec9wDbSDe0EDRCVj1PqREHqjjWUHi6GGDnW4S+1BqPSdeAGRkYUOZmxHUCxBvnFlMS/iiUl9ReH+38xtnGT5ZChuV3XhMVzBDMKJWLPJp581auj5VGLQJbNz9lICSnz4RhYB8f19FWmXmk7jcQMPgd1B6xU9VyN4rhtPZpF19QvR/u10EhAxtXgHZXds33HhukNmOaCrKpyRoZXUYLMO+RB16FhPtrm7ASdcO5bpiv3lEOQiafjh4hPOjoGFN1X01WRpIsPtu+beAtKpOoFn1JHtvBnznhC7fQEEWOwjOfJ+a8nTpT/cA05lkscNMX0pTeKnFRcCff3Ro9gbkPI9mPS6o92sGwA7yh3f+Nrx1cluaYjoJbONWt6V1xOMj/IIxKeib0RGp1W/MIG39jXsg8ri/VnOliBW0qlGSP1dS/dHGMgS7gveNs8eCiw47jxEojaxdJK3LIALuitO3xGvae7H6HQMcMUA3xVHBO4b/mPZk+DwUtfum8118bhZ5V+hgzxny1cEV7Qnt0aO9Du36Ul5d0YWsJIUmHKA/PCz9rUflE1QX5Lu4iD6Ft+oMnu8VP2+GUMDr8wp5uDp6Q6n8nCq6FPW1IiPtFUNaA=="
+         }
+        ],
+        "role": "model"
+       },
+       "finishReason": "STOP",
+       "index": 0,
+       "finishMessage": "Model generated function call(s)."
+      }
+     ],
+     "usageMetadata": {
+      "promptTokenCount": 584,
+      "candidatesTokenCount": 16,
+      "totalTokenCount": 811,
+      "promptTokensDetails": [
+       {
+        "modality": "TEXT",
+        "tokenCount": 584
+       }
+      ],
+      "thoughtsTokenCount": 211,
+      "serviceTier": "standard"
+     },
+     "modelVersion": "gemini-3.8-flash",
+     "responseId": "Y0m-atmNGLnt2roPmvnT8QM"
+    },
+    "latency_s": 1.57
+   },
+   {
+    "tag": "loop/free/AUTO/web-cdn-purge",
+    "model": "gemini-3.8-flash",
+    "think": "low",
+    "request": {
+     "systemInstruction": {
+      "parts": [
+       {
+        "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+       }
+      ]
+     },
+     "contents": [
+      {
+       "role": "user",
+       "parts": [
+        {
+         "text": "Alert:\nweb: static assets returning 404 worldwide for 12 min, the CDN dashboard shows a purge still in progress, 8 customer reports, last deploy 3 days ago.\nMake your first move by calling one of the functions."
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "cdn"
+          },
+          "id": "call_82355"
+         },
+         "thoughtSignature": "EtMHCtAHAWkUfRPS5mzXblV4KmFQdcRwoO60UkR7E5N7QpYN2QINpb9OgyHu/tcIwZy9TfK4kwGabtex8c1MBAHPW3zJWMcS2iCReURbWjVAIxWDsLZrxIuII6kzE20vt5CHk8mxai0LrNlZPhkKFKALOjW3ItE4cclisxaagPcwJI7dlln4/eaqUy+x5M09v9vGwpW9/yEuMKL3kMpa5QHs7+7ij3dQEhDUR2CFU0swba2ev24sxgFaoSfimta/sUyHQkWlcTCx+CKrJgtWP6KCNCvfgALW9i+DJ+sKa19asIdT/YnPy8nbS5asAcFfWJaw29ek6e7Ww2xWGEQowmWDOjMCiLaSuZjPlwgR/FxSmXxrDkeJ4RZBDyRb30u4TX2J2GNEmEnBc/nBlpxAa/HtmVEGqjeyXHiLB5GYVpOHxE/Q/jn2r929GPyTNNoTY3l9sKGWAv7EToWuF/OXy6l5uIhfA435ZthTqBESdpszwjHop5Gk3ozREbhuKzBWpDv8WEUxx+5RWetV2xJGKxNYRGaU4uM7K6DaZiY8O/9vs7dYGDRZm+s1R3JqZcfpikYbd3Xuue0OCoVs8sQxab+AGlfKQj/4QKkGVffLElauU7dtJc6/2vgHYMxK0KSM4udbnbXEmWHV851STs2E8Fgje7g+ogkBm3ugNBSJzyCd11PUPhS5M0oqec9wDbSDe0EDRCVj1PqREHqjjWUHi6GGDnW4S+1BqPSdeAGRkYUOZmxHUCxBvnFlMS/iiUl9ReH+38xtnGT5ZChuV3XhMVzBDMKJWLPJp581auj5VGLQJbNz9lICSnz4RhYB8f19FWmXmk7jcQMPgd1B6xU9VyN4rhtPZpF19QvR/u10EhAxtXgHZXds33HhukNmOaCrKpyRoZXUYLMO+RB16FhPtrm7ASdcO5bpiv3lEOQiafjh4hPOjoGFN1X01WRpIsPtu+beAtKpOoFn1JHtvBnznhC7fQEEWOwjOfJ+a8nTpT/cA05lkscNMX0pTeKnFRcCff3Ro9gbkPI9mPS6o92sGwA7yh3f+Nrx1cluaYjoJbONWt6V1xOMj/IIxKeib0RGp1W/MIG39jXsg8ri/VnOliBW0qlGSP1dS/dHGMgS7gveNs8eCiw47jxEojaxdJK3LIALuitO3xGvae7H6HQMcMUA3xVHBO4b/mPZk+DwUtfum8118bhZ5V+hgzxny1cEV7Qnt0aO9Du36Ul5d0YWsJIUmHKA/PCz9rUflE1QX5Lu4iD6Ft+oMnu8VP2+GUMDr8wp5uDp6Q6n8nCq6FPW1IiPtFUNaA=="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "refused": "no provider called 'cdn'; ours are stripe, twilio, sendgrid, cloudflare, aws"
+          },
+          "id": "call_82355"
+         }
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "cloudflare"
+          },
+          "id": "call_90111"
+         },
+         "thoughtSignature": "EtQBCtEBAWkUfRPO6/4dD/VsXIrhV0YYbjflmtTaNgg+iesVrLt6wCN9nVyn3EMD/3EhWEtRZSF7HH7p4hknVMi6LcQ+3oqNEhjRQrKoxvW4bwaf4Cd+ux8R7WMAr3Dm/z34rPlXqk85drbZbEWNNy2cIpcvB+4AkGPDBygWj8pGFP+q6KhvVUBPgWo0chH+kfJ1aMUUreSjR0EfiPFiE62HB6g09Em47ItdQRiJdYyfWMdXclhPR/8ypyL4f5jyQ0HOr0DXkiPr6DzXbyTxRCiHhV+WbBk="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "status": "incident reported"
+          },
+          "id": "call_90111"
+         }
+        }
+       ]
+      }
+     ],
+     "tools": [
+      {
+       "functionDeclarations": [
+        {
+         "name": "read_logs",
+         "description": "Read one of our services' recent log lines.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "minutes": {
+            "type": "integer",
+            "description": "how far back to read, 1 to 60"
+           }
+          },
+          "required": [
+           "service",
+           "minutes"
+          ]
+         }
+        },
+        {
+         "name": "list_deploys",
+         "description": "List one of our services' recent deploys, newest first, with their ids.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service"
+          ]
+         }
+        },
+        {
+         "name": "roll_back",
+         "description": "Undo one deploy of one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "deploy_id": {
+            "type": "string",
+            "description": "the id of the deploy to undo"
+           }
+          },
+          "required": [
+           "service",
+           "deploy_id"
+          ]
+         }
+        },
+        {
+         "name": "check_provider",
+         "description": "Check the status of an outside provider we depend on.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "provider": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "provider"
+          ]
+         }
+        },
+        {
+         "name": "page_owner",
+         "description": "Wake the person who owns one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "reason": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service",
+           "reason"
+          ]
+         }
+        },
+        {
+         "name": "no_action",
+         "description": "Write the alert down and take no action.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "note": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "note"
+          ]
+         }
+        }
+       ]
+      }
+     ],
+     "generationConfig": {
+      "thinkingConfig": {
+       "thinkingLevel": "low"
+      }
+     }
+    },
+    "retries": 0,
+    "utc": "2026-10-01T11:52:04+00:00",
+    "status": 200,
+    "response": {
+     "candidates": [
+      {
+       "content": {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "check_provider",
+           "args": {
+            "provider": "cloudflare"
+           },
+           "id": "call_90111"
+          },
+          "thoughtSignature": "EtQBCtEBAWkUfRPO6/4dD/VsXIrhV0YYbjflmtTaNgg+iesVrLt6wCN9nVyn3EMD/3EhWEtRZSF7HH7p4hknVMi6LcQ+3oqNEhjRQrKoxvW4bwaf4Cd+ux8R7WMAr3Dm/z34rPlXqk85drbZbEWNNy2cIpcvB+4AkGPDBygWj8pGFP+q6KhvVUBPgWo0chH+kfJ1aMUUreSjR0EfiPFiE62HB6g09Em47ItdQRiJdYyfWMdXclhPR/8ypyL4f5jyQ0HOr0DXkiPr6DzXbyTxRCiHhV+WbBk="
+         }
+        ],
+        "role": "model"
+       },
+       "finishReason": "STOP",
+       "index": 0,
+       "finishMessage": "Model generated function call(s)."
+      }
+     ],
+     "usageMetadata": {
+      "promptTokenCount": 845,
+      "candidatesTokenCount": 16,
+      "totalTokenCount": 888,
+      "promptTokensDetails": [
+       {
+        "modality": "TEXT",
+        "tokenCount": 845
+       }
+      ],
+      "thoughtsTokenCount": 27,
+      "serviceTier": "standard"
+     },
+     "modelVersion": "gemini-3.8-flash",
+     "responseId": "ZEm-aouCPcTX2roP34eGuAE"
+    },
+    "latency_s": 1.08
+   },
+   {
+    "tag": "loop/free/AUTO/web-cdn-purge",
+    "model": "gemini-3.8-flash",
+    "think": "low",
+    "request": {
+     "systemInstruction": {
+      "parts": [
+       {
+        "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+       }
+      ]
+     },
+     "contents": [
+      {
+       "role": "user",
+       "parts": [
+        {
+         "text": "Alert:\nweb: static assets returning 404 worldwide for 12 min, the CDN dashboard shows a purge still in progress, 8 customer reports, last deploy 3 days ago.\nMake your first move by calling one of the functions."
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "cdn"
+          },
+          "id": "call_82355"
+         },
+         "thoughtSignature": "EtMHCtAHAWkUfRPS5mzXblV4KmFQdcRwoO60UkR7E5N7QpYN2QINpb9OgyHu/tcIwZy9TfK4kwGabtex8c1MBAHPW3zJWMcS2iCReURbWjVAIxWDsLZrxIuII6kzE20vt5CHk8mxai0LrNlZPhkKFKALOjW3ItE4cclisxaagPcwJI7dlln4/eaqUy+x5M09v9vGwpW9/yEuMKL3kMpa5QHs7+7ij3dQEhDUR2CFU0swba2ev24sxgFaoSfimta/sUyHQkWlcTCx+CKrJgtWP6KCNCvfgALW9i+DJ+sKa19asIdT/YnPy8nbS5asAcFfWJaw29ek6e7Ww2xWGEQowmWDOjMCiLaSuZjPlwgR/FxSmXxrDkeJ4RZBDyRb30u4TX2J2GNEmEnBc/nBlpxAa/HtmVEGqjeyXHiLB5GYVpOHxE/Q/jn2r929GPyTNNoTY3l9sKGWAv7EToWuF/OXy6l5uIhfA435ZthTqBESdpszwjHop5Gk3ozREbhuKzBWpDv8WEUxx+5RWetV2xJGKxNYRGaU4uM7K6DaZiY8O/9vs7dYGDRZm+s1R3JqZcfpikYbd3Xuue0OCoVs8sQxab+AGlfKQj/4QKkGVffLElauU7dtJc6/2vgHYMxK0KSM4udbnbXEmWHV851STs2E8Fgje7g+ogkBm3ugNBSJzyCd11PUPhS5M0oqec9wDbSDe0EDRCVj1PqREHqjjWUHi6GGDnW4S+1BqPSdeAGRkYUOZmxHUCxBvnFlMS/iiUl9ReH+38xtnGT5ZChuV3XhMVzBDMKJWLPJp581auj5VGLQJbNz9lICSnz4RhYB8f19FWmXmk7jcQMPgd1B6xU9VyN4rhtPZpF19QvR/u10EhAxtXgHZXds33HhukNmOaCrKpyRoZXUYLMO+RB16FhPtrm7ASdcO5bpiv3lEOQiafjh4hPOjoGFN1X01WRpIsPtu+beAtKpOoFn1JHtvBnznhC7fQEEWOwjOfJ+a8nTpT/cA05lkscNMX0pTeKnFRcCff3Ro9gbkPI9mPS6o92sGwA7yh3f+Nrx1cluaYjoJbONWt6V1xOMj/IIxKeib0RGp1W/MIG39jXsg8ri/VnOliBW0qlGSP1dS/dHGMgS7gveNs8eCiw47jxEojaxdJK3LIALuitO3xGvae7H6HQMcMUA3xVHBO4b/mPZk+DwUtfum8118bhZ5V+hgzxny1cEV7Qnt0aO9Du36Ul5d0YWsJIUmHKA/PCz9rUflE1QX5Lu4iD6Ft+oMnu8VP2+GUMDr8wp5uDp6Q6n8nCq6FPW1IiPtFUNaA=="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "refused": "no provider called 'cdn'; ours are stripe, twilio, sendgrid, cloudflare, aws"
+          },
+          "id": "call_82355"
+         }
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "cloudflare"
+          },
+          "id": "call_90111"
+         },
+         "thoughtSignature": "EtQBCtEBAWkUfRPO6/4dD/VsXIrhV0YYbjflmtTaNgg+iesVrLt6wCN9nVyn3EMD/3EhWEtRZSF7HH7p4hknVMi6LcQ+3oqNEhjRQrKoxvW4bwaf4Cd+ux8R7WMAr3Dm/z34rPlXqk85drbZbEWNNy2cIpcvB+4AkGPDBygWj8pGFP+q6KhvVUBPgWo0chH+kfJ1aMUUreSjR0EfiPFiE62HB6g09Em47ItdQRiJdYyfWMdXclhPR/8ypyL4f5jyQ0HOr0DXkiPr6DzXbyTxRCiHhV+WbBk="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "status": "incident reported"
+          },
+          "id": "call_90111"
+         }
+        }
+       ]
+      }
+     ],
+     "tools": [
+      {
+       "functionDeclarations": [
+        {
+         "name": "read_logs",
+         "description": "Read one of our services' recent log lines.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "minutes": {
+            "type": "integer",
+            "description": "how far back to read, 1 to 60"
+           }
+          },
+          "required": [
+           "service",
+           "minutes"
+          ]
+         }
+        },
+        {
+         "name": "list_deploys",
+         "description": "List one of our services' recent deploys, newest first, with their ids.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service"
+          ]
+         }
+        },
+        {
+         "name": "roll_back",
+         "description": "Undo one deploy of one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "deploy_id": {
+            "type": "string",
+            "description": "the id of the deploy to undo"
+           }
+          },
+          "required": [
+           "service",
+           "deploy_id"
+          ]
+         }
+        },
+        {
+         "name": "check_provider",
+         "description": "Check the status of an outside provider we depend on.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "provider": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "provider"
+          ]
+         }
+        },
+        {
+         "name": "page_owner",
+         "description": "Wake the person who owns one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "reason": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service",
+           "reason"
+          ]
+         }
+        },
+        {
+         "name": "no_action",
+         "description": "Write the alert down and take no action.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "note": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "note"
+          ]
+         }
+        }
+       ]
+      }
+     ],
+     "generationConfig": {
+      "thinkingConfig": {
+       "thinkingLevel": "low"
+      }
+     }
+    },
+    "retries": 0,
+    "utc": "2026-10-01T11:52:05+00:00",
+    "status": 200,
+    "response": {
+     "candidates": [
+      {
+       "content": {
+        "parts": [
+         {
+          "text": "I have checked the status of Cloudflare (our CDN provider), which confirms that an incident has been reported on their end regarding the ongoing purge/static asset availability. We will continue monitoring the provider's incident status while the purge resolves.",
+          "thoughtSignature": "EtICCs8CAWkUfRP3GjZc9J4U0ZQGQDgQwwKJMl3fp9AhxCx3eLYPGoXS9RhA9ixbhR8a0HANPkZ6gPo0H0N80cEpWAcPkCpM6moahRn2LsGuybRDfReW7rwUpQpL9yVwZLX6FSfJzfGN0K50+gOqJnd7F5TLOokHrk+jOYOb4d4gEF7MWP2cniYks+Ip7aSTew7TstpgViINkF1LmPncrzbIlPXFCXCb/nwiHTYPvcq82wZp0j5m0xGFFP7xtJH5jFHlwJ5F/RWhTbUI/BSN8pw/7cgU43qyae58eD4F4sGULwdm1UpCnTUqm7wp2zY3Ild4Oz7xVc4OazCskmFkznFuJWXAHJ6KI0j/G8a1GQ5GOEvnOeTr3JFwOCkIvbo4SsMw6acWj0WO6hoA7ohQNor9gsFIueHLRPdBikav3V5yc+4KyuXf4LRkyBnvESy1pGntOY8="
+         }
+        ],
+        "role": "model"
+       },
+       "finishReason": "STOP",
+       "index": 0
+      }
+     ],
+     "usageMetadata": {
+      "promptTokenCount": 903,
+      "candidatesTokenCount": 48,
+      "totalTokenCount": 998,
+      "promptTokensDetails": [
+       {
+        "modality": "TEXT",
+        "tokenCount": 903
+       }
+      ],
+      "thoughtsTokenCount": 47,
+      "serviceTier": "standard"
+     },
+     "modelVersion": "gemini-3.8-flash",
+     "responseId": "Zkm-auLzBvTAvr0PuZySuAc"
+    },
+    "latency_s": 1.45
+   }
+  ]
+ },
+ {
+  "case": "notifier-vendor-quota",
+  "want": "check provider",
+  "trace": [
+   {
+    "call": "page_owner",
+    "args": {
+     "service": "notifier",
+     "reason": "Email vendor daily quota exceeded, causing missing confirmation emails. A decision is required on upgrading the plan or purchasing additional quota."
+    },
+    "refused": null,
+    "result": {
+     "result": "paged Tom, the owner of notifier"
+    }
+   },
+   {
+    "text": "I have paged Tom, the owner of the `notifier` service, as resolving the email vendor's exceeded daily quota requires an account or billing decision that an on-call assistant cannot make."
+   }
+  ],
+  "calls": [
+   {
+    "tag": "loop/free/AUTO/notifier-vendor-quota",
+    "model": "gemini-3.8-flash",
+    "think": "low",
+    "request": {
+     "systemInstruction": {
+      "parts": [
+       {
+        "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+       }
+      ]
+     },
+     "contents": [
+      {
+       "role": "user",
+       "parts": [
+        {
+         "text": "Alert:\nnotifier: the email vendor returning \"daily quota exceeded\" for 14 min, 20 customer reports of missing confirmations, last deploy 5 days ago.\nMake your first move by calling one of the functions."
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "page_owner",
+          "args": {
+           "service": "notifier",
+           "reason": "Email vendor daily quota exceeded, causing missing confirmation emails. A decision is required on upgrading the plan or purchasing additional quota."
+          },
+          "id": "call_132102"
+         },
+         "thoughtSignature": "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"
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "page_owner",
+          "response": {
+           "result": "paged Tom, the owner of notifier"
+          },
+          "id": "call_132102"
+         }
+        }
+       ]
+      }
+     ],
+     "tools": [
+      {
+       "functionDeclarations": [
+        {
+         "name": "read_logs",
+         "description": "Read one of our services' recent log lines.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "minutes": {
+            "type": "integer",
+            "description": "how far back to read, 1 to 60"
+           }
+          },
+          "required": [
+           "service",
+           "minutes"
+          ]
+         }
+        },
+        {
+         "name": "list_deploys",
+         "description": "List one of our services' recent deploys, newest first, with their ids.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service"
+          ]
+         }
+        },
+        {
+         "name": "roll_back",
+         "description": "Undo one deploy of one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "deploy_id": {
+            "type": "string",
+            "description": "the id of the deploy to undo"
+           }
+          },
+          "required": [
+           "service",
+           "deploy_id"
+          ]
+         }
+        },
+        {
+         "name": "check_provider",
+         "description": "Check the status of an outside provider we depend on.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "provider": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "provider"
+          ]
+         }
+        },
+        {
+         "name": "page_owner",
+         "description": "Wake the person who owns one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "reason": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service",
+           "reason"
+          ]
+         }
+        },
+        {
+         "name": "no_action",
+         "description": "Write the alert down and take no action.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "note": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "note"
+          ]
+         }
+        }
+       ]
+      }
+     ],
+     "generationConfig": {
+      "thinkingConfig": {
+       "thinkingLevel": "low"
+      }
+     }
+    },
+    "retries": 0,
+    "utc": "2026-10-01T11:52:07+00:00",
+    "status": 200,
+    "response": {
+     "candidates": [
+      {
+       "content": {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "page_owner",
+           "args": {
+            "service": "notifier",
+            "reason": "Email vendor daily quota exceeded, causing missing confirmation emails. A decision is required on upgrading the plan or purchasing additional quota."
+           },
+           "id": "call_132102"
+          },
+          "thoughtSignature": "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"
+         }
+        ],
+        "role": "model"
+       },
+       "finishReason": "STOP",
+       "index": 0,
+       "finishMessage": "Model generated function call(s)."
+      }
+     ],
+     "usageMetadata": {
+      "promptTokenCount": 579,
+      "candidatesTokenCount": 45,
+      "totalTokenCount": 1544,
+      "promptTokensDetails": [
+       {
+        "modality": "TEXT",
+        "tokenCount": 579
+       }
+      ],
+      "thoughtsTokenCount": 920,
+      "serviceTier": "standard"
+     },
+     "modelVersion": "gemini-3.8-flash",
+     "responseId": "Z0m-av_FH4m30-kP58WG0Ak"
+    },
+    "latency_s": 4.96
+   },
+   {
+    "tag": "loop/free/AUTO/notifier-vendor-quota",
+    "model": "gemini-3.8-flash",
+    "think": "low",
+    "request": {
+     "systemInstruction": {
+      "parts": [
+       {
+        "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+       }
+      ]
+     },
+     "contents": [
+      {
+       "role": "user",
+       "parts": [
+        {
+         "text": "Alert:\nnotifier: the email vendor returning \"daily quota exceeded\" for 14 min, 20 customer reports of missing confirmations, last deploy 5 days ago.\nMake your first move by calling one of the functions."
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "page_owner",
+          "args": {
+           "service": "notifier",
+           "reason": "Email vendor daily quota exceeded, causing missing confirmation emails. A decision is required on upgrading the plan or purchasing additional quota."
+          },
+          "id": "call_132102"
+         },
+         "thoughtSignature": "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"
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "page_owner",
+          "response": {
+           "result": "paged Tom, the owner of notifier"
+          },
+          "id": "call_132102"
+         }
+        }
+       ]
+      }
+     ],
+     "tools": [
+      {
+       "functionDeclarations": [
+        {
+         "name": "read_logs",
+         "description": "Read one of our services' recent log lines.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "minutes": {
+            "type": "integer",
+            "description": "how far back to read, 1 to 60"
+           }
+          },
+          "required": [
+           "service",
+           "minutes"
+          ]
+         }
+        },
+        {
+         "name": "list_deploys",
+         "description": "List one of our services' recent deploys, newest first, with their ids.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service"
+          ]
+         }
+        },
+        {
+         "name": "roll_back",
+         "description": "Undo one deploy of one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "deploy_id": {
+            "type": "string",
+            "description": "the id of the deploy to undo"
+           }
+          },
+          "required": [
+           "service",
+           "deploy_id"
+          ]
+         }
+        },
+        {
+         "name": "check_provider",
+         "description": "Check the status of an outside provider we depend on.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "provider": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "provider"
+          ]
+         }
+        },
+        {
+         "name": "page_owner",
+         "description": "Wake the person who owns one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "reason": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service",
+           "reason"
+          ]
+         }
+        },
+        {
+         "name": "no_action",
+         "description": "Write the alert down and take no action.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "note": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "note"
+          ]
+         }
+        }
+       ]
+      }
+     ],
+     "generationConfig": {
+      "thinkingConfig": {
+       "thinkingLevel": "low"
+      }
+     }
+    },
+    "retries": 0,
+    "utc": "2026-10-01T11:52:12+00:00",
+    "status": 200,
+    "response": {
+     "candidates": [
+      {
+       "content": {
+        "parts": [
+         {
+          "text": "I have paged Tom, the owner of the `notifier` service, as resolving the email vendor's exceeded daily quota requires an account or billing decision that an on-call assistant cannot make.",
+          "thoughtSignature": "EmkKZwFpFH0T4kTnbJf6Y2iU5VEnAPn0cPXrqHlTYPrIOvKWiU++npEXTTZ07ZmQqSSH2G3Elz1QMCCu4EwAJ2X58b82MzZyvaWBRd9Ocny0CCn+NQ3VxHRR2JUSmo8Q3GX4a3SpVZURUyA="
+         }
+        ],
+        "role": "model"
+       },
+       "finishReason": "STOP",
+       "index": 0
+      }
+     ],
+     "usageMetadata": {
+      "promptTokenCount": 1565,
+      "candidatesTokenCount": 40,
+      "totalTokenCount": 1605,
+      "promptTokensDetails": [
+       {
+        "modality": "TEXT",
+        "tokenCount": 1565
+       }
+      ],
+      "serviceTier": "standard"
+     },
+     "modelVersion": "gemini-3.8-flash",
+     "responseId": "bEm-avLxHeOWosUPgYeeyAc"
+    },
+    "latency_s": 1.19
+   }
+  ]
+ },
+ {
+  "case": "payments-region-cloud",
+  "want": "check provider",
+  "trace": [
+   {
+    "call": "check_provider",
+    "args": {
+     "provider": "cloud provider"
+    },
+    "refused": "no provider called 'cloud provider'; ours are stripe, twilio, sendgrid, cloudflare, aws",
+    "result": {
+     "refused": "no provider called 'cloud provider'; ours are stripe, twilio, sendgrid, cloudflare, aws"
+    }
+   },
+   {
+    "call": "check_provider",
+    "args": {
+     "provider": "aws"
+    },
+    "refused": null,
+    "result": {
+     "status": "incident reported"
+    }
+   },
+   {
+    "text": "I have checked the status of the cloud provider (**AWS**), which confirms an active incident reported in their networking infrastructure affecting `us-east`."
+   }
+  ],
+  "calls": [
+   {
+    "tag": "loop/free/AUTO/payments-region-cloud",
+    "model": "gemini-3.8-flash",
+    "think": "low",
+    "request": {
+     "systemInstruction": {
+      "parts": [
+       {
+        "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+       }
+      ]
+     },
+     "contents": [
+      {
+       "role": "user",
+       "parts": [
+        {
+         "text": "Alert:\npayments: all requests in us-east failing for 9 min, the cloud provider's status page reports a networking incident in us-east, 11 customer reports, last deploy 2 days ago.\nMake your first move by calling one of the functions."
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "cloud provider"
+          },
+          "id": "call_161381"
+         },
+         "thoughtSignature": "ErcLCrQLAWkUfRP0LTQOif5p4v/D7SW4CNuVN2BCSGfVN96jRbXvbfGJmKBVrTk7zABP+SDgDM9gYEaNoHGVdaWCp5JpQHpFzMuizWKaCKZJb1g20EALmXKuc0CqW1pmPTho+8dx3gnmWcCln33gzz0IMfGU35CnScQRchSTmQT1TMupCWZTuK3TEnbiW+JU2Lp/TptgGU6qAffLF7FjetcWMY8q8lHBNFkU9vEFdeoW9KvI5YOaRIgxljai83UZf1FfoiUBjc/DWdhqQaoSi4eFEqPL10gnkZpLDc5bf2v+Tuu6GJAWtZBtUw8P3Ea74AbV9BeljPuJ14Ax3gySpQMNmKjvY9eR9y1XeQleHJFLxYEfmjBsnUCZgGJJzgF401dd10sXM6nyM/mKF59Uk2AtMh6aB+4nDvu9F+M1gnrwilx+7V6dTa6HOWbPnTkkVBdryrtIuLXw/y+qKnhbMS3abkft9L/mq16hKttwTf2H/o9HEE0MuJg+Ma6y+uDbi14r6mc/FO1knv1LxIiuE29zhj7PIGMUfZRCplX7ptL/RhYFg5eM4trm3eAJ/VznTIkI7v6v3541KNWQVzgehcy4OszXvvppuARTLRe9zQ+4Ls5iChIZeU8sDM99abrlB6ERpt9FpCt3GOWiKq7nONO43gwNp+kqnWzPjBTvB2dLUU318qpTZH9OvzXKArW0MWQvCGMtACRIwbxU7jf8f9VQq+uEGqAUFsg6ee05DVD1QW0aT0Vh0ouxa0Dq8DY+QBgRiaF/PGsrT+wvKGDvDi7GhUqT2KKri0S6sXbqZiOVe3r2a/c7dynHQb1EqZEsXMDPFZJoYd0+6ccsMYR59CiIYJfI0CWQgoksa1836+Wbc2ksGyr1HmWkO8VH45t/oYCi8tX3zPDkhcLZ8Ql27kA8o3hE3U3Xw1jMYmLOaJvacIrd7q4pPAsnLwgLYuEmHgShRg2IxxFtK/5gZ6UCVMCEroLth+XdjdgNuh+XSLE2ZCUvW9ZAzIc5tZhN+52CjjgaRwYi9kIsAL3D9xBktszrUHTqvofdUerKDcWCLXiSKCUDnaiS3UatQgupIbnQk7sMVQcdxUL2b2dL1yzrPah2Gr8ncXVWNzadttqSUBpZUaCZy75EkL4KEY3txU5u+C+CD6y8UD1Hs59Ux9f3TCWSZdQ4bX27WTKgqkKGbN7Ifit+NtJTG7J3IPNk/G7/okHdwC3DV1gXCJhrR67FpErZhlY8w59IZd3vDnfBBmXglM0m6uCpBM1p2qd3/x0y2roXINq7Okzqhlsdx6bH01q82iFE3x1FPvsCNOkjeR0wfPxixQLY3i0dz/UNzNhydJ2hg+537ua1zgcHUcvQBM/qBvn5dAB3cuXTQpXtyUGJIPRU+LZQaZCBIuF6C7vjUIhymlArH8LQch2oZ6y+M97dLyO0E94a6JfaiGpAuhPCBzC1i3Cu9wRkMNjHD7NGyLRNKGbvZPBBu1It3FUfdMPYcWfeegJqjCH8gJUSDvjrHQaWCCtry55OesaCGvH2ZxLHSLUn7GWVB4mJOpIZg/YoenBAcJJ7hLSbJ8SE9CtDKxRTrun8XQiAQEEFP1lby2EqRiKYvvQA5o4xDjuXUTVQzJA84gFSzv3aQ9giqUcXl6KRke5IwAbFF6opDKmQ9iWWQnaVzKXF/jkPYhHbf7OGwQVlfz/6Ka2VM1Wosai/cUHpcG0+SJoMG7l/dWwlHvKnw3XCGRDWLwg7vqWJE01r3TDCCK1NHMwCSnSrSJCLyPhmdAmGQvinr47q8oGn4US9hcvCqqwECG2qCZ+AKBw/gT0UyeP4cq6Z6RdR+u0pvdi4Bb5BFVgPAvY0G5shQGfxMHoQ/CAgcCKGdpTw0EcHuq589WLxl0vn1/oTAHHA4g4rE1rBExBq4+tFt7GtpBbGGahfW3NTZX97M2lBW/3rv4ItGKDvON0="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "refused": "no provider called 'cloud provider'; ours are stripe, twilio, sendgrid, cloudflare, aws"
+          },
+          "id": "call_161381"
+         }
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "aws"
+          },
+          "id": "call_85810"
+         },
+         "thoughtSignature": "EoACCv0BAWkUfRMYETqZPulU8s967j2xNZpg4TmYf/+Xa9Mjmzezr/5WM4MJPzOMiz/CBHNo8IWCmuGDYSopbblBCiUEyy0qhLiLnPVh9Yz4um2G1uIpX6bKTTLyFfB5iu3yrpdpmGmrKF+LBoR0mHYZN3a8Tv3dHvKzVlVTnbqZ31fTjV6R1KXLjdJ6UhUtR9D8Rxw56ADE7VfSGlPDbjVqEzTcXxU92xj2A8HZSzCnfpMuX0Vj0OSm+JotwJoFBVcKFtFajVOWhImDZ7loKfa4CLwKgS4YctuHxRfkQVFV758nAuSR/CvGCb4GI1Rcygay36lIEYrJpIQcSpctf+8iPQ=="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "status": "incident reported"
+          },
+          "id": "call_85810"
+         }
+        }
+       ]
+      }
+     ],
+     "tools": [
+      {
+       "functionDeclarations": [
+        {
+         "name": "read_logs",
+         "description": "Read one of our services' recent log lines.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "minutes": {
+            "type": "integer",
+            "description": "how far back to read, 1 to 60"
+           }
+          },
+          "required": [
+           "service",
+           "minutes"
+          ]
+         }
+        },
+        {
+         "name": "list_deploys",
+         "description": "List one of our services' recent deploys, newest first, with their ids.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service"
+          ]
+         }
+        },
+        {
+         "name": "roll_back",
+         "description": "Undo one deploy of one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "deploy_id": {
+            "type": "string",
+            "description": "the id of the deploy to undo"
+           }
+          },
+          "required": [
+           "service",
+           "deploy_id"
+          ]
+         }
+        },
+        {
+         "name": "check_provider",
+         "description": "Check the status of an outside provider we depend on.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "provider": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "provider"
+          ]
+         }
+        },
+        {
+         "name": "page_owner",
+         "description": "Wake the person who owns one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "reason": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service",
+           "reason"
+          ]
+         }
+        },
+        {
+         "name": "no_action",
+         "description": "Write the alert down and take no action.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "note": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "note"
+          ]
+         }
+        }
+       ]
+      }
+     ],
+     "generationConfig": {
+      "thinkingConfig": {
+       "thinkingLevel": "low"
+      }
+     }
+    },
+    "retries": 0,
+    "utc": "2026-10-01T11:52:13+00:00",
+    "status": 200,
+    "response": {
+     "candidates": [
+      {
+       "content": {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "check_provider",
+           "args": {
+            "provider": "cloud provider"
+           },
+           "id": "call_161381"
+          },
+          "thoughtSignature": "ErcLCrQLAWkUfRP0LTQOif5p4v/D7SW4CNuVN2BCSGfVN96jRbXvbfGJmKBVrTk7zABP+SDgDM9gYEaNoHGVdaWCp5JpQHpFzMuizWKaCKZJb1g20EALmXKuc0CqW1pmPTho+8dx3gnmWcCln33gzz0IMfGU35CnScQRchSTmQT1TMupCWZTuK3TEnbiW+JU2Lp/TptgGU6qAffLF7FjetcWMY8q8lHBNFkU9vEFdeoW9KvI5YOaRIgxljai83UZf1FfoiUBjc/DWdhqQaoSi4eFEqPL10gnkZpLDc5bf2v+Tuu6GJAWtZBtUw8P3Ea74AbV9BeljPuJ14Ax3gySpQMNmKjvY9eR9y1XeQleHJFLxYEfmjBsnUCZgGJJzgF401dd10sXM6nyM/mKF59Uk2AtMh6aB+4nDvu9F+M1gnrwilx+7V6dTa6HOWbPnTkkVBdryrtIuLXw/y+qKnhbMS3abkft9L/mq16hKttwTf2H/o9HEE0MuJg+Ma6y+uDbi14r6mc/FO1knv1LxIiuE29zhj7PIGMUfZRCplX7ptL/RhYFg5eM4trm3eAJ/VznTIkI7v6v3541KNWQVzgehcy4OszXvvppuARTLRe9zQ+4Ls5iChIZeU8sDM99abrlB6ERpt9FpCt3GOWiKq7nONO43gwNp+kqnWzPjBTvB2dLUU318qpTZH9OvzXKArW0MWQvCGMtACRIwbxU7jf8f9VQq+uEGqAUFsg6ee05DVD1QW0aT0Vh0ouxa0Dq8DY+QBgRiaF/PGsrT+wvKGDvDi7GhUqT2KKri0S6sXbqZiOVe3r2a/c7dynHQb1EqZEsXMDPFZJoYd0+6ccsMYR59CiIYJfI0CWQgoksa1836+Wbc2ksGyr1HmWkO8VH45t/oYCi8tX3zPDkhcLZ8Ql27kA8o3hE3U3Xw1jMYmLOaJvacIrd7q4pPAsnLwgLYuEmHgShRg2IxxFtK/5gZ6UCVMCEroLth+XdjdgNuh+XSLE2ZCUvW9ZAzIc5tZhN+52CjjgaRwYi9kIsAL3D9xBktszrUHTqvofdUerKDcWCLXiSKCUDnaiS3UatQgupIbnQk7sMVQcdxUL2b2dL1yzrPah2Gr8ncXVWNzadttqSUBpZUaCZy75EkL4KEY3txU5u+C+CD6y8UD1Hs59Ux9f3TCWSZdQ4bX27WTKgqkKGbN7Ifit+NtJTG7J3IPNk/G7/okHdwC3DV1gXCJhrR67FpErZhlY8w59IZd3vDnfBBmXglM0m6uCpBM1p2qd3/x0y2roXINq7Okzqhlsdx6bH01q82iFE3x1FPvsCNOkjeR0wfPxixQLY3i0dz/UNzNhydJ2hg+537ua1zgcHUcvQBM/qBvn5dAB3cuXTQpXtyUGJIPRU+LZQaZCBIuF6C7vjUIhymlArH8LQch2oZ6y+M97dLyO0E94a6JfaiGpAuhPCBzC1i3Cu9wRkMNjHD7NGyLRNKGbvZPBBu1It3FUfdMPYcWfeegJqjCH8gJUSDvjrHQaWCCtry55OesaCGvH2ZxLHSLUn7GWVB4mJOpIZg/YoenBAcJJ7hLSbJ8SE9CtDKxRTrun8XQiAQEEFP1lby2EqRiKYvvQA5o4xDjuXUTVQzJA84gFSzv3aQ9giqUcXl6KRke5IwAbFF6opDKmQ9iWWQnaVzKXF/jkPYhHbf7OGwQVlfz/6Ka2VM1Wosai/cUHpcG0+SJoMG7l/dWwlHvKnw3XCGRDWLwg7vqWJE01r3TDCCK1NHMwCSnSrSJCLyPhmdAmGQvinr47q8oGn4US9hcvCqqwECG2qCZ+AKBw/gT0UyeP4cq6Z6RdR+u0pvdi4Bb5BFVgPAvY0G5shQGfxMHoQ/CAgcCKGdpTw0EcHuq589WLxl0vn1/oTAHHA4g4rE1rBExBq4+tFt7GtpBbGGahfW3NTZX97M2lBW/3rv4ItGKDvON0="
+         }
+        ],
+        "role": "model"
+       },
+       "finishReason": "STOP",
+       "index": 0,
+       "finishMessage": "Model generated function call(s)."
+      }
+     ],
+     "usageMetadata": {
+      "promptTokenCount": 589,
+      "candidatesTokenCount": 17,
+      "totalTokenCount": 924,
+      "promptTokensDetails": [
+       {
+        "modality": "TEXT",
+        "tokenCount": 589
+       }
+      ],
+      "thoughtsTokenCount": 318,
+      "serviceTier": "standard"
+     },
+     "modelVersion": "gemini-3.8-flash",
+     "responseId": "bUm-aqScKPCUvr0Pkv724Q0"
+    },
+    "latency_s": 2.2
+   },
+   {
+    "tag": "loop/free/AUTO/payments-region-cloud",
+    "model": "gemini-3.8-flash",
+    "think": "low",
+    "request": {
+     "systemInstruction": {
+      "parts": [
+       {
+        "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+       }
+      ]
+     },
+     "contents": [
+      {
+       "role": "user",
+       "parts": [
+        {
+         "text": "Alert:\npayments: all requests in us-east failing for 9 min, the cloud provider's status page reports a networking incident in us-east, 11 customer reports, last deploy 2 days ago.\nMake your first move by calling one of the functions."
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "cloud provider"
+          },
+          "id": "call_161381"
+         },
+         "thoughtSignature": "ErcLCrQLAWkUfRP0LTQOif5p4v/D7SW4CNuVN2BCSGfVN96jRbXvbfGJmKBVrTk7zABP+SDgDM9gYEaNoHGVdaWCp5JpQHpFzMuizWKaCKZJb1g20EALmXKuc0CqW1pmPTho+8dx3gnmWcCln33gzz0IMfGU35CnScQRchSTmQT1TMupCWZTuK3TEnbiW+JU2Lp/TptgGU6qAffLF7FjetcWMY8q8lHBNFkU9vEFdeoW9KvI5YOaRIgxljai83UZf1FfoiUBjc/DWdhqQaoSi4eFEqPL10gnkZpLDc5bf2v+Tuu6GJAWtZBtUw8P3Ea74AbV9BeljPuJ14Ax3gySpQMNmKjvY9eR9y1XeQleHJFLxYEfmjBsnUCZgGJJzgF401dd10sXM6nyM/mKF59Uk2AtMh6aB+4nDvu9F+M1gnrwilx+7V6dTa6HOWbPnTkkVBdryrtIuLXw/y+qKnhbMS3abkft9L/mq16hKttwTf2H/o9HEE0MuJg+Ma6y+uDbi14r6mc/FO1knv1LxIiuE29zhj7PIGMUfZRCplX7ptL/RhYFg5eM4trm3eAJ/VznTIkI7v6v3541KNWQVzgehcy4OszXvvppuARTLRe9zQ+4Ls5iChIZeU8sDM99abrlB6ERpt9FpCt3GOWiKq7nONO43gwNp+kqnWzPjBTvB2dLUU318qpTZH9OvzXKArW0MWQvCGMtACRIwbxU7jf8f9VQq+uEGqAUFsg6ee05DVD1QW0aT0Vh0ouxa0Dq8DY+QBgRiaF/PGsrT+wvKGDvDi7GhUqT2KKri0S6sXbqZiOVe3r2a/c7dynHQb1EqZEsXMDPFZJoYd0+6ccsMYR59CiIYJfI0CWQgoksa1836+Wbc2ksGyr1HmWkO8VH45t/oYCi8tX3zPDkhcLZ8Ql27kA8o3hE3U3Xw1jMYmLOaJvacIrd7q4pPAsnLwgLYuEmHgShRg2IxxFtK/5gZ6UCVMCEroLth+XdjdgNuh+XSLE2ZCUvW9ZAzIc5tZhN+52CjjgaRwYi9kIsAL3D9xBktszrUHTqvofdUerKDcWCLXiSKCUDnaiS3UatQgupIbnQk7sMVQcdxUL2b2dL1yzrPah2Gr8ncXVWNzadttqSUBpZUaCZy75EkL4KEY3txU5u+C+CD6y8UD1Hs59Ux9f3TCWSZdQ4bX27WTKgqkKGbN7Ifit+NtJTG7J3IPNk/G7/okHdwC3DV1gXCJhrR67FpErZhlY8w59IZd3vDnfBBmXglM0m6uCpBM1p2qd3/x0y2roXINq7Okzqhlsdx6bH01q82iFE3x1FPvsCNOkjeR0wfPxixQLY3i0dz/UNzNhydJ2hg+537ua1zgcHUcvQBM/qBvn5dAB3cuXTQpXtyUGJIPRU+LZQaZCBIuF6C7vjUIhymlArH8LQch2oZ6y+M97dLyO0E94a6JfaiGpAuhPCBzC1i3Cu9wRkMNjHD7NGyLRNKGbvZPBBu1It3FUfdMPYcWfeegJqjCH8gJUSDvjrHQaWCCtry55OesaCGvH2ZxLHSLUn7GWVB4mJOpIZg/YoenBAcJJ7hLSbJ8SE9CtDKxRTrun8XQiAQEEFP1lby2EqRiKYvvQA5o4xDjuXUTVQzJA84gFSzv3aQ9giqUcXl6KRke5IwAbFF6opDKmQ9iWWQnaVzKXF/jkPYhHbf7OGwQVlfz/6Ka2VM1Wosai/cUHpcG0+SJoMG7l/dWwlHvKnw3XCGRDWLwg7vqWJE01r3TDCCK1NHMwCSnSrSJCLyPhmdAmGQvinr47q8oGn4US9hcvCqqwECG2qCZ+AKBw/gT0UyeP4cq6Z6RdR+u0pvdi4Bb5BFVgPAvY0G5shQGfxMHoQ/CAgcCKGdpTw0EcHuq589WLxl0vn1/oTAHHA4g4rE1rBExBq4+tFt7GtpBbGGahfW3NTZX97M2lBW/3rv4ItGKDvON0="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "refused": "no provider called 'cloud provider'; ours are stripe, twilio, sendgrid, cloudflare, aws"
+          },
+          "id": "call_161381"
+         }
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "aws"
+          },
+          "id": "call_85810"
+         },
+         "thoughtSignature": "EoACCv0BAWkUfRMYETqZPulU8s967j2xNZpg4TmYf/+Xa9Mjmzezr/5WM4MJPzOMiz/CBHNo8IWCmuGDYSopbblBCiUEyy0qhLiLnPVh9Yz4um2G1uIpX6bKTTLyFfB5iu3yrpdpmGmrKF+LBoR0mHYZN3a8Tv3dHvKzVlVTnbqZ31fTjV6R1KXLjdJ6UhUtR9D8Rxw56ADE7VfSGlPDbjVqEzTcXxU92xj2A8HZSzCnfpMuX0Vj0OSm+JotwJoFBVcKFtFajVOWhImDZ7loKfa4CLwKgS4YctuHxRfkQVFV758nAuSR/CvGCb4GI1Rcygay36lIEYrJpIQcSpctf+8iPQ=="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "status": "incident reported"
+          },
+          "id": "call_85810"
+         }
+        }
+       ]
+      }
+     ],
+     "tools": [
+      {
+       "functionDeclarations": [
+        {
+         "name": "read_logs",
+         "description": "Read one of our services' recent log lines.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "minutes": {
+            "type": "integer",
+            "description": "how far back to read, 1 to 60"
+           }
+          },
+          "required": [
+           "service",
+           "minutes"
+          ]
+         }
+        },
+        {
+         "name": "list_deploys",
+         "description": "List one of our services' recent deploys, newest first, with their ids.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service"
+          ]
+         }
+        },
+        {
+         "name": "roll_back",
+         "description": "Undo one deploy of one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "deploy_id": {
+            "type": "string",
+            "description": "the id of the deploy to undo"
+           }
+          },
+          "required": [
+           "service",
+           "deploy_id"
+          ]
+         }
+        },
+        {
+         "name": "check_provider",
+         "description": "Check the status of an outside provider we depend on.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "provider": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "provider"
+          ]
+         }
+        },
+        {
+         "name": "page_owner",
+         "description": "Wake the person who owns one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "reason": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service",
+           "reason"
+          ]
+         }
+        },
+        {
+         "name": "no_action",
+         "description": "Write the alert down and take no action.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "note": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "note"
+          ]
+         }
+        }
+       ]
+      }
+     ],
+     "generationConfig": {
+      "thinkingConfig": {
+       "thinkingLevel": "low"
+      }
+     }
+    },
+    "retries": 0,
+    "utc": "2026-10-01T11:52:15+00:00",
+    "status": 200,
+    "response": {
+     "candidates": [
+      {
+       "content": {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "check_provider",
+           "args": {
+            "provider": "aws"
+           },
+           "id": "call_85810"
+          },
+          "thoughtSignature": "EoACCv0BAWkUfRMYETqZPulU8s967j2xNZpg4TmYf/+Xa9Mjmzezr/5WM4MJPzOMiz/CBHNo8IWCmuGDYSopbblBCiUEyy0qhLiLnPVh9Yz4um2G1uIpX6bKTTLyFfB5iu3yrpdpmGmrKF+LBoR0mHYZN3a8Tv3dHvKzVlVTnbqZ31fTjV6R1KXLjdJ6UhUtR9D8Rxw56ADE7VfSGlPDbjVqEzTcXxU92xj2A8HZSzCnfpMuX0Vj0OSm+JotwJoFBVcKFtFajVOWhImDZ7loKfa4CLwKgS4YctuHxRfkQVFV758nAuSR/CvGCb4GI1Rcygay36lIEYrJpIQcSpctf+8iPQ=="
+         }
+        ],
+        "role": "model"
+       },
+       "finishReason": "STOP",
+       "index": 0,
+       "finishMessage": "Model generated function call(s)."
+      }
+     ],
+     "usageMetadata": {
+      "promptTokenCount": 959,
+      "candidatesTokenCount": 16,
+      "totalTokenCount": 1017,
+      "promptTokensDetails": [
+       {
+        "modality": "TEXT",
+        "tokenCount": 959
+       }
+      ],
+      "thoughtsTokenCount": 42,
+      "serviceTier": "standard"
+     },
+     "modelVersion": "gemini-3.8-flash",
+     "responseId": "b0m-ao_lMaz62roP59ZS"
+    },
+    "latency_s": 1.04
+   },
+   {
+    "tag": "loop/free/AUTO/payments-region-cloud",
+    "model": "gemini-3.8-flash",
+    "think": "low",
+    "request": {
+     "systemInstruction": {
+      "parts": [
+       {
+        "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+       }
+      ]
+     },
+     "contents": [
+      {
+       "role": "user",
+       "parts": [
+        {
+         "text": "Alert:\npayments: all requests in us-east failing for 9 min, the cloud provider's status page reports a networking incident in us-east, 11 customer reports, last deploy 2 days ago.\nMake your first move by calling one of the functions."
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "cloud provider"
+          },
+          "id": "call_161381"
+         },
+         "thoughtSignature": "ErcLCrQLAWkUfRP0LTQOif5p4v/D7SW4CNuVN2BCSGfVN96jRbXvbfGJmKBVrTk7zABP+SDgDM9gYEaNoHGVdaWCp5JpQHpFzMuizWKaCKZJb1g20EALmXKuc0CqW1pmPTho+8dx3gnmWcCln33gzz0IMfGU35CnScQRchSTmQT1TMupCWZTuK3TEnbiW+JU2Lp/TptgGU6qAffLF7FjetcWMY8q8lHBNFkU9vEFdeoW9KvI5YOaRIgxljai83UZf1FfoiUBjc/DWdhqQaoSi4eFEqPL10gnkZpLDc5bf2v+Tuu6GJAWtZBtUw8P3Ea74AbV9BeljPuJ14Ax3gySpQMNmKjvY9eR9y1XeQleHJFLxYEfmjBsnUCZgGJJzgF401dd10sXM6nyM/mKF59Uk2AtMh6aB+4nDvu9F+M1gnrwilx+7V6dTa6HOWbPnTkkVBdryrtIuLXw/y+qKnhbMS3abkft9L/mq16hKttwTf2H/o9HEE0MuJg+Ma6y+uDbi14r6mc/FO1knv1LxIiuE29zhj7PIGMUfZRCplX7ptL/RhYFg5eM4trm3eAJ/VznTIkI7v6v3541KNWQVzgehcy4OszXvvppuARTLRe9zQ+4Ls5iChIZeU8sDM99abrlB6ERpt9FpCt3GOWiKq7nONO43gwNp+kqnWzPjBTvB2dLUU318qpTZH9OvzXKArW0MWQvCGMtACRIwbxU7jf8f9VQq+uEGqAUFsg6ee05DVD1QW0aT0Vh0ouxa0Dq8DY+QBgRiaF/PGsrT+wvKGDvDi7GhUqT2KKri0S6sXbqZiOVe3r2a/c7dynHQb1EqZEsXMDPFZJoYd0+6ccsMYR59CiIYJfI0CWQgoksa1836+Wbc2ksGyr1HmWkO8VH45t/oYCi8tX3zPDkhcLZ8Ql27kA8o3hE3U3Xw1jMYmLOaJvacIrd7q4pPAsnLwgLYuEmHgShRg2IxxFtK/5gZ6UCVMCEroLth+XdjdgNuh+XSLE2ZCUvW9ZAzIc5tZhN+52CjjgaRwYi9kIsAL3D9xBktszrUHTqvofdUerKDcWCLXiSKCUDnaiS3UatQgupIbnQk7sMVQcdxUL2b2dL1yzrPah2Gr8ncXVWNzadttqSUBpZUaCZy75EkL4KEY3txU5u+C+CD6y8UD1Hs59Ux9f3TCWSZdQ4bX27WTKgqkKGbN7Ifit+NtJTG7J3IPNk/G7/okHdwC3DV1gXCJhrR67FpErZhlY8w59IZd3vDnfBBmXglM0m6uCpBM1p2qd3/x0y2roXINq7Okzqhlsdx6bH01q82iFE3x1FPvsCNOkjeR0wfPxixQLY3i0dz/UNzNhydJ2hg+537ua1zgcHUcvQBM/qBvn5dAB3cuXTQpXtyUGJIPRU+LZQaZCBIuF6C7vjUIhymlArH8LQch2oZ6y+M97dLyO0E94a6JfaiGpAuhPCBzC1i3Cu9wRkMNjHD7NGyLRNKGbvZPBBu1It3FUfdMPYcWfeegJqjCH8gJUSDvjrHQaWCCtry55OesaCGvH2ZxLHSLUn7GWVB4mJOpIZg/YoenBAcJJ7hLSbJ8SE9CtDKxRTrun8XQiAQEEFP1lby2EqRiKYvvQA5o4xDjuXUTVQzJA84gFSzv3aQ9giqUcXl6KRke5IwAbFF6opDKmQ9iWWQnaVzKXF/jkPYhHbf7OGwQVlfz/6Ka2VM1Wosai/cUHpcG0+SJoMG7l/dWwlHvKnw3XCGRDWLwg7vqWJE01r3TDCCK1NHMwCSnSrSJCLyPhmdAmGQvinr47q8oGn4US9hcvCqqwECG2qCZ+AKBw/gT0UyeP4cq6Z6RdR+u0pvdi4Bb5BFVgPAvY0G5shQGfxMHoQ/CAgcCKGdpTw0EcHuq589WLxl0vn1/oTAHHA4g4rE1rBExBq4+tFt7GtpBbGGahfW3NTZX97M2lBW/3rv4ItGKDvON0="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "refused": "no provider called 'cloud provider'; ours are stripe, twilio, sendgrid, cloudflare, aws"
+          },
+          "id": "call_161381"
+         }
+        }
+       ]
+      },
+      {
+       "parts": [
+        {
+         "functionCall": {
+          "name": "check_provider",
+          "args": {
+           "provider": "aws"
+          },
+          "id": "call_85810"
+         },
+         "thoughtSignature": "EoACCv0BAWkUfRMYETqZPulU8s967j2xNZpg4TmYf/+Xa9Mjmzezr/5WM4MJPzOMiz/CBHNo8IWCmuGDYSopbblBCiUEyy0qhLiLnPVh9Yz4um2G1uIpX6bKTTLyFfB5iu3yrpdpmGmrKF+LBoR0mHYZN3a8Tv3dHvKzVlVTnbqZ31fTjV6R1KXLjdJ6UhUtR9D8Rxw56ADE7VfSGlPDbjVqEzTcXxU92xj2A8HZSzCnfpMuX0Vj0OSm+JotwJoFBVcKFtFajVOWhImDZ7loKfa4CLwKgS4YctuHxRfkQVFV758nAuSR/CvGCb4GI1Rcygay36lIEYrJpIQcSpctf+8iPQ=="
+        }
+       ],
+       "role": "model"
+      },
+      {
+       "role": "user",
+       "parts": [
+        {
+         "functionResponse": {
+          "name": "check_provider",
+          "response": {
+           "status": "incident reported"
+          },
+          "id": "call_85810"
+         }
+        }
+       ]
+      }
+     ],
+     "tools": [
+      {
+       "functionDeclarations": [
+        {
+         "name": "read_logs",
+         "description": "Read one of our services' recent log lines.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "minutes": {
+            "type": "integer",
+            "description": "how far back to read, 1 to 60"
+           }
+          },
+          "required": [
+           "service",
+           "minutes"
+          ]
+         }
+        },
+        {
+         "name": "list_deploys",
+         "description": "List one of our services' recent deploys, newest first, with their ids.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service"
+          ]
+         }
+        },
+        {
+         "name": "roll_back",
+         "description": "Undo one deploy of one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "deploy_id": {
+            "type": "string",
+            "description": "the id of the deploy to undo"
+           }
+          },
+          "required": [
+           "service",
+           "deploy_id"
+          ]
+         }
+        },
+        {
+         "name": "check_provider",
+         "description": "Check the status of an outside provider we depend on.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "provider": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "provider"
+          ]
+         }
+        },
+        {
+         "name": "page_owner",
+         "description": "Wake the person who owns one of our services.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "service": {
+            "type": "string"
+           },
+           "reason": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "service",
+           "reason"
+          ]
+         }
+        },
+        {
+         "name": "no_action",
+         "description": "Write the alert down and take no action.",
+         "parameters": {
+          "type": "object",
+          "properties": {
+           "note": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "note"
+          ]
+         }
+        }
+       ]
+      }
+     ],
+     "generationConfig": {
+      "thinkingConfig": {
+       "thinkingLevel": "low"
+      }
+     }
+    },
+    "retries": 0,
+    "utc": "2026-10-01T11:52:16+00:00",
+    "status": 200,
+    "response": {
+     "candidates": [
+      {
+       "content": {
+        "parts": [
+         {
+          "text": "I have checked the status of the cloud provider (**AWS**), which confirms an active incident reported in their networking infrastructure affecting `us-east`.",
+          "thoughtSignature": "EuYBCuMBAWkUfRM0wbW6dZITinIEPuCgsECQIAX8jeFYUbYUMbixIb/M7EtflPYfjoJaEKi+EwEO6IjkRawetA2mAFUWl41eg3KlZh4wQMDCJb1tFc74zsQBRpI9Hofsv7qRVRLFKytuYfVe+elC9qpbuQIaLct0gZfrs4G80S2bKVHdGi01O5LYA73JPN+98qnJDN6ehdf7PEb6AFDILLDSk/6BYAm/iZ2AAkc+DaJnpg3x/WvL+/qSTCfq+Dt5pxXfz9jfqHq1WPgUviWhZ9BmGsXbNCg6VXW21mxlfGftCUV8AWHHU8c="
+         }
+        ],
+        "role": "model"
+       },
+       "finishReason": "STOP",
+       "index": 0
+      }
+     ],
+     "usageMetadata": {
+      "promptTokenCount": 1032,
+      "candidatesTokenCount": 29,
+      "totalTokenCount": 1089,
+      "promptTokensDetails": [
+       {
+        "modality": "TEXT",
+        "tokenCount": 1032
+       }
+      ],
+      "thoughtsTokenCount": 28,
+      "serviceTier": "standard"
+     },
+     "modelVersion": "gemini-3.8-flash",
+     "responseId": "cEm-ao2sNf3A0-kP_-uVsAQ"
+    },
+    "latency_s": 1.12
+   }
+  ]
+ }
+]

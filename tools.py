@@ -55,8 +55,8 @@ def check(name, args, case):
     return None
 
 
-def call(contents):
-    body = {"systemInstruction": {"parts": [{"text": SYSTEM}]}, "contents": contents,
+def ask_model(conversation):
+    body = {"systemInstruction": {"parts": [{"text": SYSTEM}]}, "contents": conversation,
             "tools": [{"functionDeclarations": FUNCTIONS}],
             "generationConfig": {"thinkingConfig": {"thinkingLevel": "low"}}}
     req = urllib.request.Request(URL, json.dumps(body).encode(),
@@ -66,40 +66,40 @@ def call(contents):
 
 
 def handle(case, show=print):
-    """Send the alert, then run or refuse each call the model asks for, until it answers in words."""
-    contents = [{"role": "user", "parts": [{"text": f"Alert:\n{case['alert']}\n"
+    """Send the alert, then run or refuse each tool call the model asks for, until it answers in words."""
+    conversation = [{"role": "user", "parts": [{"text": f"Alert:\n{case['alert']}\n"
                                                     "Make your first move by calling one of the functions."}]}]
-    refused, n_in, n_out, calls = [], 0, 0, 0
+    refused, n_in, n_out, requests = [], 0, 0, 0
     for _ in range(5):
-        r = call(contents)
-        calls += 1
+        r = ask_model(conversation)
+        requests += 1
         usage = r["usageMetadata"]
         n_in += usage["promptTokenCount"]
         n_out += usage.get("candidatesTokenCount", 0) + usage.get("thoughtsTokenCount", 0)
         turn = r["candidates"][0]["content"]
-        asks = [p["functionCall"] for p in turn["parts"] if "functionCall" in p]
-        if not asks:
+        tool_calls = [p["functionCall"] for p in turn["parts"] if "functionCall" in p]
+        if not tool_calls:
             show("model  " + "".join(p.get("text", "") for p in turn["parts"]).strip())
             break
-        contents.append(turn)   # send the model's answer back exactly as it came
+        conversation.append(turn)   # send the model's answer back exactly as it came
         replies = []
-        for a in asks:
-            show(f"model  {a['name']}({', '.join(f'{k}={v!r}' for k, v in a['args'].items())})")
-            why = check(a["name"], a["args"], case)
-            result = {"refused": why} if why else run(a["name"], a["args"], case)
+        for tool_call in tool_calls:
+            show(f"model  {tool_call['name']}({', '.join(f'{k}={v!r}' for k, v in tool_call['args'].items())})")
+            why = check(tool_call["name"], tool_call["args"], case)
+            result = {"refused": why} if why else run(tool_call["name"], tool_call["args"], case)
             show(f"code   refused: {why}" if why else f"code   ran: {result}")
             if why:
-                refused.append((a["name"], a["args"]))
-            reply = {"name": a["name"], "response": result}
-            if a.get("id"):
-                reply["id"] = a["id"]
+                refused.append((tool_call["name"], tool_call["args"]))
+            reply = {"name": tool_call["name"], "response": result}
+            if tool_call.get("id"):
+                reply["id"] = tool_call["id"]
             replies.append({"functionResponse": reply})
-        contents.append({"role": "user", "parts": replies})
-    return refused, n_in, n_out, calls
+        conversation.append({"role": "user", "parts": replies})
+    return refused, n_in, n_out, requests
 
 
-def cost_line(n_in, n_out, calls, secs):
-    return (f"{MODEL} · {calls} calls · {n_in:,} in / {n_out:,} out · "
+def cost_line(n_in, n_out, requests, secs):
+    return (f"{MODEL} · {requests} requests · {n_in:,} in / {n_out:,} out · "
             f"${(n_in * PRICE_IN + n_out * PRICE_OUT) / 1e6:.4f} · {secs:.1f} s")
 
 
@@ -108,8 +108,8 @@ if __name__ == "__main__":
     if "--all" not in sys.argv:
         case = CASES[sys.argv[1]]
         print("alert  " + case["alert"])
-        _, n_in, n_out, calls = handle(case)
-        print(cost_line(n_in, n_out, calls, time.time() - t0))
+        _, n_in, n_out, requests = handle(case)
+        print(cost_line(n_in, n_out, requests, time.time() - t0))
         sys.exit()
     total, refusals = [0, 0, 0], 0
     for case in CASES.values():

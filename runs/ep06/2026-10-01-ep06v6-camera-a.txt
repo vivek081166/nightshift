@@ -1,0 +1,21 @@
+➜  nightshift git:(main) python3 tools.py payments-provider-timeout
+alert  payments: 22 % of charge attempts timing out for 11 min, our own latency normal, the card provider's status page reports a partial outage, 6 customer reports, last deploy 3 days ago.
+model  check_provider(provider='card provider')
+code   refused: no provider called 'card provider'; ours are stripe, twilio, sendgrid, cloudflare, aws
+model  check_provider(provider='stripe')
+code   ran: {'status': 'incident reported'}
+model  I have checked our card provider, Stripe, which confirms an active incident ("incident reported"). 
+
+Since this aligns with the timeout alert (our own latency is normal and the last deploy was 3 days ago), the elevated charge attempt timeouts are stemming from the upstream Stripe outage. We should monitor Stripe's status updates and inform support/customers accordingly.
+gemini-3.8-flash · 3 requests · 2,590 in / 491 out · $0.0038 · 6.1 s
+➜  nightshift git:(main) 
+
+
+
+
+
+
+
+
+
+

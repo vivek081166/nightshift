@@ -121,15 +121,20 @@ comes from a file below.
 
 ## ep06
 
-Measured 2026-09-29/30 before the script was final, then run on camera 2026-09-30. Every number the episode speaks
-comes from a file below.
+Measured 2026-09-29/30, re-measured 2026-10-01 with the real provider names, and run on camera 2026-10-01. The
+episode is tool calls only; `triage.py` and the `shape` runs are for the next one (structured output). Every number
+the episode speaks comes from a file below.
 
-- Camera runs, terminal verbatim: `runs/ep06/2026-09-30-ep06-camera-a.txt` (`tools.py payments-provider-timeout`:
-  `check_provider('card provider')` refused, `'card-provider'` ran, 3 calls), `-camera-b.txt` (`triage.py`: the answer
-  in a ```json fence, JSONDecodeError; `-camera-b-r1.txt` is the first take, same result, re-recorded for framing),
-  `-camera-c.txt` (`triage.py schema`: bare JSON, parsed), `-camera-d.txt` (`tools.py payments-latency --list`:
-  `list_deploys`, then `roll_back('d-2989')`, the id the lookup printed).
-- The two tables on screen are `measure/ep06_screen.py shape` and `names`, printed from the saved runs below (no API call).
+- Camera runs in the episode, terminal verbatim (2026-10-01): `runs/ep06/2026-10-01-ep06v6-camera-a.txt`
+  (`tools.py payments-provider-timeout`: `check_provider('card provider')` refused with our names, `'stripe'` ran,
+  3 requests), `-ep06v6-camera-alist.txt` (the same alert with `--list`: `'stripe'` on the first request),
+  `-ep06v6-camera-d.txt` (`tools.py payments-latency --list`: `read_logs`, then `roll_back('d-2989')`, the id the
+  logs printed), `-ep06v6-table-fixes.txt` (`measure/ep06_screen.py fixes`: each made-up name and the next try).
+- (2026-09-30, the old made-up ids, not in the episode) `runs/ep06/2026-09-30-ep06-camera-a.txt` (`'card-provider'`
+  ran), `-camera-b.txt` (`triage.py`: the answer in a ```json fence, JSONDecodeError; `-camera-b-r1.txt` is the
+  first take), `-camera-c.txt` (`triage.py schema`: bare JSON, parsed), `-camera-d.txt` (`list_deploys` first).
+- `measure/ep06_screen.py fixes` is the screen in the episode and `names` prints the counts in its description, both
+  from the saved runs below (no API call). `shape` prints the structured output tables.
 - Run files, `runs/ep06/`, all `gemini-3.8-flash` at thinkingLevel low, the thirty alerts, `rules.py` SYSTEM:
   - `*-shape-prompt-*` (3 runs): JSON asked for in the prompt only, 0 of 30 parsed each run, all 90 in a fence.
   - `*-shape-json-*`, `*-shape-schema-*`: JSON mode, and JSON mode + responseSchema: 30 of 30 parsed, 28 first moves right.

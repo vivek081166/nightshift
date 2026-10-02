@@ -1,0 +1,1319 @@
+{
+ "utc": "2026-10-02T12:34:14+00:00",
+ "model_id": "mlx-community/Qwen3-8B-4bit",
+ "note": "open model on the M3 via mlx_lm (4-bit), NOT Gemini; softmax at temperature 1",
+ "thinking": "off (enable_thinking=False)",
+ "case": "payments-latency",
+ "system": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n",
+ "mask_rule": "a token is allowed only if the text so far + the token can still be continued into a JSON object that matches\ntriage.py's SCHEMA (the four keys, each once, any order; enum values exact; reason any string; JSON whitespace allowed).",
+ "runs": {
+  "tight/unconstrained": {
+   "generated_text": "{\n  \"severity\": \"",
+   "spots": {
+    "spot1_first_piece": {
+     "prefix_text": "",
+     "unconstrained_top10": [
+      {
+       "id": 515,
+       "piece": "{\n",
+       "visible": "{\\n",
+       "p": 0.999831,
+       "allowed_by_shape_if_same_prefix": true
+      },
+      {
+       "id": 73594,
+       "piece": "```",
+       "visible": "```",
+       "p": 0.000158,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 90,
+       "piece": "{",
+       "visible": "{",
+       "p": 1e-05,
+       "allowed_by_shape_if_same_prefix": true
+      },
+      {
+       "id": 4913,
+       "piece": "{\"",
+       "visible": "{\"",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": true
+      },
+      {
+       "id": 1666,
+       "piece": "{\r\n",
+       "visible": "{\r\\n",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": true
+      },
+      {
+       "id": 341,
+       "piece": " {\n",
+       "visible": " {\\n",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": true
+      },
+      {
+       "id": 13874,
+       "piece": "``",
+       "visible": "``",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 13608,
+       "piece": "{'",
+       "visible": "{'",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 4257,
+       "piece": "{\n\n",
+       "visible": "{\\n\\n",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": true
+      },
+      {
+       "id": 2262,
+       "piece": "({\n",
+       "visible": "({\\n",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      }
+     ]
+    },
+    "spot2_colon": {
+     "prefix_text": "{\n  \"severity\":",
+     "unconstrained_top10": [
+      {
+       "id": 330,
+       "piece": " \"",
+       "visible": " \"",
+       "p": 1.0,
+       "allowed_by_shape_if_same_prefix": true
+      },
+      {
+       "id": 8324,
+       "piece": " \"\",\n",
+       "visible": " \"\",\\n",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 27244,
+       "piece": " \"?",
+       "visible": " \"?",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 67681,
+       "piece": "\"P",
+       "visible": "\"P",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": true
+      },
+      {
+       "id": 13265,
+       "piece": " \"__",
+       "visible": " \"__",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 5201,
+       "piece": " \"$",
+       "visible": " \"$",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 5869,
+       "piece": " \"#",
+       "visible": " \"#",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 220,
+       "piece": " ",
+       "visible": " ",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": true
+      },
+      {
+       "id": 364,
+       "piece": " '",
+       "visible": " '",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 7178,
+       "piece": " \"'",
+       "visible": " \"'",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      }
+     ]
+    },
+    "spot2_severity_value": {
+     "prefix_text": "{\n  \"severity\": \"",
+     "unconstrained_top10": [
+      {
+       "id": 47,
+       "piece": "P",
+       "visible": "P",
+       "p": 1.0,
+       "allowed_by_shape_if_same_prefix": true
+      },
+      {
+       "id": 79,
+       "piece": "p",
+       "visible": "p",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 393,
+       "piece": " P",
+       "visible": " P",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 50,
+       "piece": "S",
+       "visible": "S",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 35,
+       "piece": "D",
+       "visible": "D",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 44,
+       "piece": "M",
+       "visible": "M",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 33,
+       "piece": "B",
+       "visible": "B",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 4406,
+       "piece": "PP",
+       "visible": "PP",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 16,
+       "piece": "1",
+       "visible": "1",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 17,
+       "piece": "2",
+       "visible": "2",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      }
+     ]
+    }
+   },
+   "chat_template_text": "<|im_start|>system\nYou are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n<|im_end|>\n<|im_start|>user\nAlert:\npayments-api: p95 latency 4.8 s for 6 min, error rate 0.9 %, 3 customer reports of failed checkout, last deploy 14 min ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+  },
+  "tight/schema-mask": {
+   "generated_text": "{\n  \"severity\": \"",
+   "spots": {
+    "spot1_first_piece": {
+     "prefix_text": "",
+     "unconstrained_top10": [
+      {
+       "id": 515,
+       "piece": "{\n",
+       "visible": "{\\n",
+       "p": 0.999831,
+       "allowed_by_shape": true
+      },
+      {
+       "id": 73594,
+       "piece": "```",
+       "visible": "```",
+       "p": 0.000158,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 90,
+       "piece": "{",
+       "visible": "{",
+       "p": 1e-05,
+       "allowed_by_shape": true
+      },
+      {
+       "id": 4913,
+       "piece": "{\"",
+       "visible": "{\"",
+       "p": 0.0,
+       "allowed_by_shape": true
+      },
+      {
+       "id": 1666,
+       "piece": "{\r\n",
+       "visible": "{\r\\n",
+       "p": 0.0,
+       "allowed_by_shape": true
+      },
+      {
+       "id": 341,
+       "piece": " {\n",
+       "visible": " {\\n",
+       "p": 0.0,
+       "allowed_by_shape": true
+      },
+      {
+       "id": 13874,
+       "piece": "``",
+       "visible": "``",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 13608,
+       "piece": "{'",
+       "visible": "{'",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 4257,
+       "piece": "{\n\n",
+       "visible": "{\\n\\n",
+       "p": 0.0,
+       "allowed_by_shape": true
+      },
+      {
+       "id": 2262,
+       "piece": "({\n",
+       "visible": "({\\n",
+       "p": 0.0,
+       "allowed_by_shape": false
+      }
+     ],
+     "mask_allowed_tokens": 439,
+     "mass_kept_by_mask": 0.999842,
+     "masked_renormalised_top10": [
+      {
+       "id": 515,
+       "piece": "{\n",
+       "visible": "{\\n",
+       "p": 0.99999
+      },
+      {
+       "id": 90,
+       "piece": "{",
+       "visible": "{",
+       "p": 1e-05
+      },
+      {
+       "id": 4913,
+       "piece": "{\"",
+       "visible": "{\"",
+       "p": 0.0
+      },
+      {
+       "id": 1666,
+       "piece": "{\r\n",
+       "visible": "{\r\\n",
+       "p": 0.0
+      },
+      {
+       "id": 341,
+       "piece": " {\n",
+       "visible": " {\\n",
+       "p": 0.0
+      },
+      {
+       "id": 4257,
+       "piece": "{\n\n",
+       "visible": "{\\n\\n",
+       "p": 0.0
+      },
+      {
+       "id": 314,
+       "piece": " {",
+       "visible": " {",
+       "p": 0.0
+      },
+      {
+       "id": 53632,
+       "piece": "{\n\n\n",
+       "visible": "{\\n\\n\\n",
+       "p": 0.0
+      },
+      {
+       "id": 972,
+       "piece": " {\r\n",
+       "visible": " {\r\\n",
+       "p": 0.0
+      },
+      {
+       "id": 25289,
+       "piece": "{\r\n\r\n",
+       "visible": "{\r\\n\r\\n",
+       "p": 0.0
+      }
+     ]
+    },
+    "spot2_colon": {
+     "prefix_text": "{\n  \"severity\":",
+     "unconstrained_top10": [
+      {
+       "id": 330,
+       "piece": " \"",
+       "visible": " \"",
+       "p": 1.0,
+       "allowed_by_shape": true
+      },
+      {
+       "id": 8324,
+       "piece": " \"\",\n",
+       "visible": " \"\",\\n",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 27244,
+       "piece": " \"?",
+       "visible": " \"?",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 67681,
+       "piece": "\"P",
+       "visible": "\"P",
+       "p": 0.0,
+       "allowed_by_shape": true
+      },
+      {
+       "id": 13265,
+       "piece": " \"__",
+       "visible": " \"__",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 5201,
+       "piece": " \"$",
+       "visible": " \"$",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 5869,
+       "piece": " \"#",
+       "visible": " \"#",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 220,
+       "piece": " ",
+       "visible": " ",
+       "p": 0.0,
+       "allowed_by_shape": true
+      },
+      {
+       "id": 364,
+       "piece": " '",
+       "visible": " '",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 7178,
+       "piece": " \"'",
+       "visible": " \"'",
+       "p": 0.0,
+       "allowed_by_shape": false
+      }
+     ],
+     "mask_allowed_tokens": 425,
+     "mass_kept_by_mask": 1.0,
+     "masked_renormalised_top10": [
+      {
+       "id": 330,
+       "piece": " \"",
+       "visible": " \"",
+       "p": 1.0
+      },
+      {
+       "id": 67681,
+       "piece": "\"P",
+       "visible": "\"P",
+       "p": 0.0
+      },
+      {
+       "id": 220,
+       "piece": " ",
+       "visible": " ",
+       "p": 0.0
+      },
+      {
+       "id": 257,
+       "piece": "    ",
+       "visible": "    ",
+       "p": 0.0
+      },
+      {
+       "id": 262,
+       "piece": "   ",
+       "visible": "   ",
+       "p": 0.0
+      },
+      {
+       "id": 256,
+       "piece": "  ",
+       "visible": "  ",
+       "p": 0.0
+      },
+      {
+       "id": 197,
+       "piece": "\t",
+       "visible": "\t",
+       "p": 0.0
+      },
+      {
+       "id": 414,
+       "piece": "     ",
+       "visible": "     ",
+       "p": 0.0
+      },
+      {
+       "id": 286,
+       "piece": "       ",
+       "visible": "       ",
+       "p": 0.0
+      },
+      {
+       "id": 981,
+       "piece": "      ",
+       "visible": "      ",
+       "p": 0.0
+      }
+     ]
+    },
+    "spot2_severity_value": {
+     "prefix_text": "{\n  \"severity\": \"",
+     "unconstrained_top10": [
+      {
+       "id": 47,
+       "piece": "P",
+       "visible": "P",
+       "p": 1.0,
+       "allowed_by_shape": true
+      },
+      {
+       "id": 79,
+       "piece": "p",
+       "visible": "p",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 393,
+       "piece": " P",
+       "visible": " P",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 50,
+       "piece": "S",
+       "visible": "S",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 35,
+       "piece": "D",
+       "visible": "D",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 44,
+       "piece": "M",
+       "visible": "M",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 33,
+       "piece": "B",
+       "visible": "B",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 4406,
+       "piece": "PP",
+       "visible": "PP",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 16,
+       "piece": "1",
+       "visible": "1",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 17,
+       "piece": "2",
+       "visible": "2",
+       "p": 0.0,
+       "allowed_by_shape": false
+      }
+     ],
+     "mask_allowed_tokens": 1,
+     "mass_kept_by_mask": 1.0,
+     "masked_renormalised_top10": [
+      {
+       "id": 47,
+       "piece": "P",
+       "visible": "P",
+       "p": 1.0
+      },
+      {
+       "id": 0,
+       "piece": "!",
+       "visible": "!",
+       "p": 0.0
+      },
+      {
+       "id": 1,
+       "piece": "\"",
+       "visible": "\"",
+       "p": 0.0
+      },
+      {
+       "id": 2,
+       "piece": "#",
+       "visible": "#",
+       "p": 0.0
+      },
+      {
+       "id": 3,
+       "piece": "$",
+       "visible": "$",
+       "p": 0.0
+      },
+      {
+       "id": 4,
+       "piece": "%",
+       "visible": "%",
+       "p": 0.0
+      },
+      {
+       "id": 5,
+       "piece": "&",
+       "visible": "&",
+       "p": 0.0
+      },
+      {
+       "id": 6,
+       "piece": "'",
+       "visible": "'",
+       "p": 0.0
+      },
+      {
+       "id": 7,
+       "piece": "(",
+       "visible": "(",
+       "p": 0.0
+      },
+      {
+       "id": 8,
+       "piece": ")",
+       "visible": ")",
+       "p": 0.0
+      }
+     ]
+    }
+   },
+   "chat_template_text": "<|im_start|>system\nYou are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n<|im_end|>\n<|im_start|>user\nAlert:\npayments-api: p95 latency 4.8 s for 6 min, error rate 0.9 %, 3 customer reports of failed checkout, last deploy 14 min ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+  },
+  "loose/unconstrained": {
+   "generated_text": "{\n  \"severity\": \"",
+   "spots": {
+    "spot1_first_piece": {
+     "prefix_text": "",
+     "unconstrained_top10": [
+      {
+       "id": 515,
+       "piece": "{\n",
+       "visible": "{\\n",
+       "p": 0.99752,
+       "allowed_by_shape_if_same_prefix": true
+      },
+      {
+       "id": 73594,
+       "piece": "```",
+       "visible": "```",
+       "p": 0.002473,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 90,
+       "piece": "{",
+       "visible": "{",
+       "p": 8e-06,
+       "allowed_by_shape_if_same_prefix": true
+      },
+      {
+       "id": 4913,
+       "piece": "{\"",
+       "visible": "{\"",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": true
+      },
+      {
+       "id": 13874,
+       "piece": "``",
+       "visible": "``",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 1666,
+       "piece": "{\r\n",
+       "visible": "{\r\\n",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": true
+      },
+      {
+       "id": 13608,
+       "piece": "{'",
+       "visible": "{'",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 334,
+       "piece": "**",
+       "visible": "**",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 341,
+       "piece": " {\n",
+       "visible": " {\\n",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": true
+      },
+      {
+       "id": 4257,
+       "piece": "{\n\n",
+       "visible": "{\\n\\n",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": true
+      }
+     ]
+    },
+    "spot2_colon": {
+     "prefix_text": "{\n  \"severity\":",
+     "unconstrained_top10": [
+      {
+       "id": 330,
+       "piece": " \"",
+       "visible": " \"",
+       "p": 1.0,
+       "allowed_by_shape_if_same_prefix": true
+      },
+      {
+       "id": 220,
+       "piece": " ",
+       "visible": " ",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": true
+      },
+      {
+       "id": 13265,
+       "piece": " \"__",
+       "visible": " \"__",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 364,
+       "piece": " '",
+       "visible": " '",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 428,
+       "piece": "=\"",
+       "visible": "=\"",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 1036,
+       "piece": " “",
+       "visible": " “",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 3521,
+       "piece": " \"/",
+       "visible": " \"/",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 9000,
+       "piece": " \"_",
+       "visible": " \"_",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 5201,
+       "piece": " \"$",
+       "visible": " \"$",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 8324,
+       "piece": " \"\",\n",
+       "visible": " \"\",\\n",
+       "p": 0.0,
+       "allowed_by_shape_if_same_prefix": false
+      }
+     ]
+    },
+    "spot2_severity_value": {
+     "prefix_text": "{\n  \"severity\": \"",
+     "unconstrained_top10": [
+      {
+       "id": 11892,
+       "piece": "high",
+       "visible": "high",
+       "p": 0.990142,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 41541,
+       "piece": "critical",
+       "visible": "critical",
+       "p": 0.004046,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 11976,
+       "piece": "High",
+       "visible": "High",
+       "p": 0.002454,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 36505,
+       "piece": "major",
+       "visible": "major",
+       "p": 0.001489,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 85053,
+       "piece": "urgent",
+       "visible": "urgent",
+       "p": 0.000903,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 93327,
+       "piece": "serious",
+       "visible": "serious",
+       "p": 0.000548,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 325,
+       "piece": "se",
+       "visible": "se",
+       "p": 0.000259,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 42008,
+       "piece": "Critical",
+       "visible": "Critical",
+       "p": 5.1e-05,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 101120,
+       "piece": "严重",
+       "visible": "严重",
+       "p": 4.5e-05,
+       "allowed_by_shape_if_same_prefix": false
+      },
+      {
+       "id": 12087,
+       "piece": "Warning",
+       "visible": "Warning",
+       "p": 1.1e-05,
+       "allowed_by_shape_if_same_prefix": false
+      }
+     ]
+    }
+   },
+   "chat_template_text": "<|im_start|>system\nYou are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n<|im_end|>\n<|im_start|>user\nAlert:\npayments-api: p95 latency 4.8 s for 6 min, error rate 0.9 %, 3 customer reports of failed checkout, last deploy 14 min ago.\nReply in JSON with the severity, the service, the first move, and why.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+  },
+  "loose/schema-mask": {
+   "generated_text": "{\n  \"severity\": \"",
+   "spots": {
+    "spot1_first_piece": {
+     "prefix_text": "",
+     "unconstrained_top10": [
+      {
+       "id": 515,
+       "piece": "{\n",
+       "visible": "{\\n",
+       "p": 0.99752,
+       "allowed_by_shape": true
+      },
+      {
+       "id": 73594,
+       "piece": "```",
+       "visible": "```",
+       "p": 0.002473,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 90,
+       "piece": "{",
+       "visible": "{",
+       "p": 8e-06,
+       "allowed_by_shape": true
+      },
+      {
+       "id": 4913,
+       "piece": "{\"",
+       "visible": "{\"",
+       "p": 0.0,
+       "allowed_by_shape": true
+      },
+      {
+       "id": 13874,
+       "piece": "``",
+       "visible": "``",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 1666,
+       "piece": "{\r\n",
+       "visible": "{\r\\n",
+       "p": 0.0,
+       "allowed_by_shape": true
+      },
+      {
+       "id": 13608,
+       "piece": "{'",
+       "visible": "{'",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 334,
+       "piece": "**",
+       "visible": "**",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 341,
+       "piece": " {\n",
+       "visible": " {\\n",
+       "p": 0.0,
+       "allowed_by_shape": true
+      },
+      {
+       "id": 4257,
+       "piece": "{\n\n",
+       "visible": "{\\n\\n",
+       "p": 0.0,
+       "allowed_by_shape": true
+      }
+     ],
+     "mask_allowed_tokens": 439,
+     "mass_kept_by_mask": 0.997527,
+     "masked_renormalised_top10": [
+      {
+       "id": 515,
+       "piece": "{\n",
+       "visible": "{\\n",
+       "p": 0.999992
+      },
+      {
+       "id": 90,
+       "piece": "{",
+       "visible": "{",
+       "p": 8e-06
+      },
+      {
+       "id": 4913,
+       "piece": "{\"",
+       "visible": "{\"",
+       "p": 0.0
+      },
+      {
+       "id": 1666,
+       "piece": "{\r\n",
+       "visible": "{\r\\n",
+       "p": 0.0
+      },
+      {
+       "id": 341,
+       "piece": " {\n",
+       "visible": " {\\n",
+       "p": 0.0
+      },
+      {
+       "id": 4257,
+       "piece": "{\n\n",
+       "visible": "{\\n\\n",
+       "p": 0.0
+      },
+      {
+       "id": 53632,
+       "piece": "{\n\n\n",
+       "visible": "{\\n\\n\\n",
+       "p": 0.0
+      },
+      {
+       "id": 314,
+       "piece": " {",
+       "visible": " {",
+       "p": 0.0
+      },
+      {
+       "id": 25289,
+       "piece": "{\r\n\r\n",
+       "visible": "{\r\\n\r\\n",
+       "p": 0.0
+      },
+      {
+       "id": 972,
+       "piece": " {\r\n",
+       "visible": " {\r\\n",
+       "p": 0.0
+      }
+     ]
+    },
+    "spot2_colon": {
+     "prefix_text": "{\n  \"severity\":",
+     "unconstrained_top10": [
+      {
+       "id": 330,
+       "piece": " \"",
+       "visible": " \"",
+       "p": 1.0,
+       "allowed_by_shape": true
+      },
+      {
+       "id": 220,
+       "piece": " ",
+       "visible": " ",
+       "p": 0.0,
+       "allowed_by_shape": true
+      },
+      {
+       "id": 13265,
+       "piece": " \"__",
+       "visible": " \"__",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 364,
+       "piece": " '",
+       "visible": " '",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 428,
+       "piece": "=\"",
+       "visible": "=\"",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 1036,
+       "piece": " “",
+       "visible": " “",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 3521,
+       "piece": " \"/",
+       "visible": " \"/",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 9000,
+       "piece": " \"_",
+       "visible": " \"_",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 5201,
+       "piece": " \"$",
+       "visible": " \"$",
+       "p": 0.0,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 8324,
+       "piece": " \"\",\n",
+       "visible": " \"\",\\n",
+       "p": 0.0,
+       "allowed_by_shape": false
+      }
+     ],
+     "mask_allowed_tokens": 425,
+     "mass_kept_by_mask": 1.0,
+     "masked_renormalised_top10": [
+      {
+       "id": 330,
+       "piece": " \"",
+       "visible": " \"",
+       "p": 1.0
+      },
+      {
+       "id": 220,
+       "piece": " ",
+       "visible": " ",
+       "p": 0.0
+      },
+      {
+       "id": 257,
+       "piece": "    ",
+       "visible": "    ",
+       "p": 0.0
+      },
+      {
+       "id": 262,
+       "piece": "   ",
+       "visible": "   ",
+       "p": 0.0
+      },
+      {
+       "id": 256,
+       "piece": "  ",
+       "visible": "  ",
+       "p": 0.0
+      },
+      {
+       "id": 286,
+       "piece": "       ",
+       "visible": "       ",
+       "p": 0.0
+      },
+      {
+       "id": 197,
+       "piece": "\t",
+       "visible": "\t",
+       "p": 0.0
+      },
+      {
+       "id": 981,
+       "piece": "      ",
+       "visible": "      ",
+       "p": 0.0
+      },
+      {
+       "id": 260,
+       "piece": "        ",
+       "visible": "        ",
+       "p": 0.0
+      },
+      {
+       "id": 1,
+       "piece": "\"",
+       "visible": "\"",
+       "p": 0.0
+      }
+     ]
+    },
+    "spot2_severity_value": {
+     "prefix_text": "{\n  \"severity\": \"",
+     "unconstrained_top10": [
+      {
+       "id": 11892,
+       "piece": "high",
+       "visible": "high",
+       "p": 0.990142,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 41541,
+       "piece": "critical",
+       "visible": "critical",
+       "p": 0.004046,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 11976,
+       "piece": "High",
+       "visible": "High",
+       "p": 0.002454,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 36505,
+       "piece": "major",
+       "visible": "major",
+       "p": 0.001489,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 85053,
+       "piece": "urgent",
+       "visible": "urgent",
+       "p": 0.000903,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 93327,
+       "piece": "serious",
+       "visible": "serious",
+       "p": 0.000548,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 325,
+       "piece": "se",
+       "visible": "se",
+       "p": 0.000259,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 42008,
+       "piece": "Critical",
+       "visible": "Critical",
+       "p": 5.1e-05,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 101120,
+       "piece": "严重",
+       "visible": "严重",
+       "p": 4.5e-05,
+       "allowed_by_shape": false
+      },
+      {
+       "id": 12087,
+       "piece": "Warning",
+       "visible": "Warning",
+       "p": 1.1e-05,
+       "allowed_by_shape": false
+      }
+     ],
+     "mask_allowed_tokens": 1,
+     "mass_kept_by_mask": 0.0,
+     "masked_renormalised_top10": [
+      {
+       "id": 47,
+       "piece": "P",
+       "visible": "P",
+       "p": 1.0
+      },
+      {
+       "id": 0,
+       "piece": "!",
+       "visible": "!",
+       "p": 0.0
+      },
+      {
+       "id": 1,
+       "piece": "\"",
+       "visible": "\"",
+       "p": 0.0
+      },
+      {
+       "id": 2,
+       "piece": "#",
+       "visible": "#",
+       "p": 0.0
+      },
+      {
+       "id": 3,
+       "piece": "$",
+       "visible": "$",
+       "p": 0.0
+      },
+      {
+       "id": 4,
+       "piece": "%",
+       "visible": "%",
+       "p": 0.0
+      },
+      {
+       "id": 5,
+       "piece": "&",
+       "visible": "&",
+       "p": 0.0
+      },
+      {
+       "id": 6,
+       "piece": "'",
+       "visible": "'",
+       "p": 0.0
+      },
+      {
+       "id": 7,
+       "piece": "(",
+       "visible": "(",
+       "p": 0.0
+      },
+      {
+       "id": 8,
+       "piece": ")",
+       "visible": ")",
+       "p": 0.0
+      }
+     ]
+    }
+   },
+   "chat_template_text": "<|im_start|>system\nYou are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n<|im_end|>\n<|im_start|>user\nAlert:\npayments-api: p95 latency 4.8 s for 6 min, error rate 0.9 %, 3 customer reports of failed checkout, last deploy 14 min ago.\nReply in JSON with the severity, the service, the first move, and why.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+  }
+ }
+}

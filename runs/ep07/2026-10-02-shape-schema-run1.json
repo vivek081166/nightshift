@@ -1,0 +1,3310 @@
+[
+ {
+  "case": "payments-latency",
+  "want": "roll back",
+  "rec": {
+   "tag": "shape/schema/payments-latency",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\npayments-api: p95 latency 4.8 s for 6 min, error rate 0.9 %, 3 customer reports of failed checkout, last deploy 14 min ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:30:36+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments\",\n  \"first_move\": \"roll back\",\n  \"reason\": \"Payment checkout failures and elevated latency started right after the deploy 14 minutes ago, which is recent enough to be the direct cause.\"\n}",
+         "thoughtSignature": "EmkKZwFpFH0TcWOpB30Pahs2nVRvg9Dnwxd0pjNJSLs9aCiH7vhW3OdMHqM5/02naJloSh94krWgNTjryYyzkyj9UOKGKV4zakUKMUT7WyTxQx6MEWs9EIvLGNlWrX4w+FvEJHWxyk6G1ao="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 263,
+     "candidatesTokenCount": 64,
+     "totalTokenCount": 327,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 263
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "7KO_aqWVFPDg1e8P8e2LgAY"
+   },
+   "latency_s": 1.63
+  }
+ },
+ {
+  "case": "payments-partial",
+  "want": "read logs",
+  "rec": {
+   "tag": "shape/schema/payments-partial",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\npayments: checkout failures 12 % in eu-west only, other regions clean, p95 latency normal, 1 customer report, no deploy in 5 days, upstream provider status page green.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:30:37+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P2\",\n  \"service\": \"payments\",\n  \"first_move\": \"read logs\",\n  \"reason\": \"There were no recent deploys to roll back and the upstream provider status is green, so service logs must be inspected to investigate why checkout is failing in eu-west.\"\n}",
+         "thoughtSignature": "EmkKZwFpFH0TJ/xyO0HfKQkrboXqXNPKVBdEqTbEF6Tau/M8CxhZoor8hV7N4nz9dOycV8Lua0zDo2Tk+0XjWBkvIFlQZLhqjqPHSi1yqCgtRmtPjh3NNpelrxNIv0BGfXign6PQdxRBQwU="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 264,
+     "candidatesTokenCount": 71,
+     "totalTokenCount": 335,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 264
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "7aO_aoGLOvDa1e8PvbieiAw"
+   },
+   "latency_s": 1.7
+  }
+ },
+ {
+  "case": "api-slo-edge",
+  "want": "read logs",
+  "rec": {
+   "tag": "shape/schema/api-slo-edge",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\napi: error rate 0.4 % for 40 min against a 0.5 % monthly SLO budget, p95 latency normal, 1 customer report, last deploy 6 h ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:30:39+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P3\",\n  \"service\": \"api\",\n  \"first_move\": \"read logs\",\n  \"reason\": \"The error rate is below the monthly SLO budget threshold and latency is normal with minimal customer impact, but the underlying cause of the errors is not yet known.\"\n}",
+         "thoughtSignature": "EmkKZwFpFH0TRxzqYH/evsPP5L+naRTphY5dpXBy8nWEytwgN1DnPsP4dan1KylpMpKJfjmNY9d/OZBWQWeLCRQz9ttDNwdCmRAz5yJ3MTSDxaevduixiDd4ZSSr8Ls1UAIMHZ/OqnPMCc4="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 265,
+     "candidatesTokenCount": 68,
+     "totalTokenCount": 333,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 265
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "76O_asmwKPDN0-kProKn8QM"
+   },
+   "latency_s": 1.55
+  }
+ },
+ {
+  "case": "disk-slow-burn",
+  "want": "no action",
+  "rec": {
+   "tag": "shape/schema/disk-slow-burn",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nweb: disk usage 81 % climbing ~1 % per hour on 2 of 6 nodes, no errors, no latency change, no customer reports, last deploy 2 days ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:30:40+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P3\",\n  \"service\": \"web\",\n  \"first_move\": \"read logs\",\n  \"reason\": \"Disk usage is gradually increasing on 2 nodes without customer impact or immediate failure, and the cause is unknown so investigating the service's logs and output is needed.\"\n}",
+         "thoughtSignature": "EmkKZwFpFH0TVWesX7Rh+sHCX0baG8E/BQ1VTz5nDilPVKCuJaCqKqvAVDzpnC8lgzttflXsExvXmDfrZ2tcajn6nITO/WnpSTVV4aNK3XzJo+ryaCnXbjDTz2mb23k/2WWGJ0hy+IciBrE="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 262,
+     "candidatesTokenCount": 70,
+     "totalTokenCount": 332,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 262
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "8aO_asn1C9-q9tMPxMeewA8"
+   },
+   "latency_s": 5.95
+  }
+ },
+ {
+  "case": "web-cosmetic",
+  "want": "no action",
+  "rec": {
+   "tag": "shape/schema/web-cosmetic",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nweb: 404 rate up from 0.2 % to 1.1 % for 15 min, all on /favicon.ico, no other errors, no latency change, no customer reports, last deploy 20 min ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:30:46+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P3\",\n  \"service\": \"web\",\n  \"first_move\": \"no action\",\n  \"reason\": \"The 404 error increase is exclusively on /favicon.ico with no other errors, no latency impact, and no customer impact reported.\"\n}",
+         "thoughtSignature": "EmkKZwFpFH0TG6FA6OxJd8HkDUVTmz9bO8CRmo8GBUvl17Ypf9WrviHKp9eFaCceb9+0srQbXZzHuGaGtk0U4M0qUuL+hcLxWXC3mZTnuoZ7AQpp7p45fwBatgEvEGiuPv5KsCV6oduieC4="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 275,
+     "candidatesTokenCount": 66,
+     "totalTokenCount": 341,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 275
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "96O_auL6CMie2roPm_Cn2Ao"
+   },
+   "latency_s": 1.48
+  }
+ },
+ {
+  "case": "notifier-night",
+  "want": "no action",
+  "rec": {
+   "tag": "shape/schema/notifier-night",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nnotifier: queue depth 1,200 and rising for 25 min, no errors logged, delivery still succeeding, 03:10 local time, no customer reports, last deploy 3 days ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:30:48+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\"severity\":\"P3\",\"service\":\"notifier\",\"first_move\":\"read logs\",\"reason\":\"Queue depth is increasing without logged errors or recent deploys, so we need to inspect the service's logs to understand the processing bottleneck before taking further action.\"}",
+         "thoughtSignature": "EmkKZwFpFH0Ty31LJSWdS3WxXSNeJdPYwaiY8HK5B+IfoZKGihOkT2HKyXIveVaCvIFJFCF1nFl+v8/zExLK2pOW1B7t4cUx7NCSDbYO6JEK3dlvgqgH98P5GPmumIo1LbgZzEkiCpGGlS0="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 268,
+     "candidatesTokenCount": 52,
+     "totalTokenCount": 320,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 268
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "-KO_atOUKKv32roP7-iW6QQ"
+   },
+   "latency_s": 1.7
+  }
+ },
+ {
+  "case": "notifier-vendor-5xx",
+  "want": "check provider",
+  "rec": {
+   "tag": "shape/schema/notifier-vendor-5xx",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nnotifier: 100 % of SMS sends failing for 8 min, the SMS vendor's API returning 503, 12 customer reports of missing codes, last deploy 4 days ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:30:50+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"notifier\",\n  \"first_move\": \"check provider\",\n  \"reason\": \"100% of SMS sends are failing due to 503 errors from the third-party SMS vendor, directly pointing to an external provider outage affecting customer verification codes.\"\n}",
+         "thoughtSignature": "EmkKZwFpFH0T2GRjAm/5wvVCKU1KtxnaeuikuKLFyvw11Athj9xVDew9KRKM/IfqWGTjsP+DwqbqR7ClZDOLB9QDGyHf1mBt+BUcwbHrr5tV9jAmqxUJjv3W3EsQ1ISh1fKJyBWwTXA5J/c="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 266,
+     "candidatesTokenCount": 73,
+     "totalTokenCount": 339,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 266
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "-qO_arH8EO-G0-kPlYmssAQ"
+   },
+   "latency_s": 1.32
+  }
+ },
+ {
+  "case": "api-deploy-5xx",
+  "want": "roll back",
+  "rec": {
+   "tag": "shape/schema/api-deploy-5xx",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\napi: error rate up from 0 % to 6.5 % for 4 min, 9 customer reports, last deploy 7 min ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:30:51+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\"severity\":\"P2\",\"service\":\"api\",\"first_move\":\"roll back\",\"reason\":\"The error rate increased to 6.5% right after a deploy 7 minutes ago, causing customer reports; rolling back the recent deploy is the appropriate immediate fix.\"}",
+         "thoughtSignature": "EoIGCv8FAWkUfROPmL3k7En6mCTOk6t2+4tXL0P9F87LTFAT/yuXi710MU43PWg0tzpvxp3cstGItLE0ri9OTnJbhyr42g+4utC7A+CX2s9927SaddfM33g828VSVRw7xEjMeDoSU9ug57BhT5/Uy49+O8HvsxTdGyaq1gZWzsxq0rDR4adjvRKHFs9cEFtltQnWm/o9HOOFiA8PCICyoh9mZYkfTY7t9oEUBu+zoodLdEMWM8DZwZiq0+hWBlazSYLyDFx1VI2CyMEKg8ey8Xed+SuSNoF1CULO+zA1c1ZkFoDft/T3jMeu6POdEViwPRlzH/Dr/IckxZ+XlJHNvpM3sL2AwpfI7705Frj0frC5RB325t5uAZJEI7q9f6nqoFBjiXzZCM65kp+diJhA+7u7L4wOrCXJzVyjxj/zuGNcMX0Dc/FGSykFCOhJiaL1Wddm1z3LQW2ZyBCVbK4/LKkwRc6rNez507+nXz021DoFe+5k175kCJL/WCc+2m4RcPTnqMm8py0DO2g0tbDspZifv6xJ88cvRl/b+Dj9NL9Jr6cmB/clc3ncLrebTkDFJD7rdqa2J/S9Qn823hmCSsUpGWJa91PzHc1T1qSwo1FBrdAGakVYgXS9/lhD+C2ajOS9MnLYEoO9ve4lPRMgnjz7eX2CfMVq2jVLkFTyekxpcdPAWBnzvAaNiOPEj6kHdUVypSoupVonYlJv2yrUtIomZccB5PnLAhckuRluAhNK0kvsVPG92P7oEPAGDsXsTdj4K1IXOzSw56fKm09aDMVFPFx6OSYl9wRrSOkOkIDGJzBmnoXoX0lFtJQT3Hgl41nIFXtptGggWY3G5Ehk79x8pl0spqqk9XdKpZTu7auGwE0Vl6ecxFji1lTtjMfcX0a9C4UpoPDBCPswPduSH+njfyp/XwQZeTmQDfljBBZ2c9yx081PhHSrJcFOcw61dVOwKvnKS/oZCa5L8fu5qwXYnCN0PxxRmuYtg8QGX17uifeV6Fwd5xKBUqV/TpyZD/cQxS4="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 254,
+     "candidatesTokenCount": 54,
+     "totalTokenCount": 493,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 254
+      }
+     ],
+     "thoughtsTokenCount": 185,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "-6O_auW8JrXa9tMPm-b7uAU"
+   },
+   "latency_s": 2.33
+  }
+ },
+ {
+  "case": "payments-provider-timeout",
+  "want": "check provider",
+  "rec": {
+   "tag": "shape/schema/payments-provider-timeout",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\npayments: 22 % of charge attempts timing out for 11 min, our own latency normal, the card provider's status page reports a partial outage, 6 customer reports, last deploy 3 days ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:30:53+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P2\",\n  \"service\": \"payments\",\n  \"first_move\": \"check provider\",\n  \"reason\": \"The card provider's status page indicates a partial outage, and the issue directly points to external dependency timeouts.\"\n}",
+         "thoughtSignature": "EmkKZwFpFH0TbPmB0umJ2APvlz5+p2ar3RNOYzeUL8zdyd8zq7bKPLm7xdTTAKqe98RHduqPzvheEE4BglqV39iIVKxO4ZQf+anZM4DLlZduTShlLL04Jc7fh3naOUb2so7ZxJINZg2CJBM="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 268,
+     "candidatesTokenCount": 59,
+     "totalTokenCount": 327,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 268
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "_aO_avKYPMO3vr0P75WD8Ak"
+   },
+   "latency_s": 1.36
+  }
+ },
+ {
+  "case": "web-node-restart",
+  "want": "read logs",
+  "rec": {
+   "tag": "shape/schema/web-node-restart",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nweb: node 3 restarted twice in 20 min, memory at 94 % before each restart, the other five nodes serving normally, no customer reports, last deploy 5 days ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:30:55+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\"severity\":\"P3\",\"service\":\"web\",\"first_move\":\"read logs\",\"reason\":\"Only one node is restarting due to high memory while others serve normally without customer impact, and the cause is unknown with the last deploy being 5 days ago.\"}",
+         "thoughtSignature": "EmkKZwFpFH0T0cnJTmIiP03ZRZl0oiJnyYf/2UC6JJNQFRR/nN9kXDi10wBBCBUXJTbhqDJ76jodp1ZKSmQVnIMz+tpx5CazqPesCow8bcKUPEzsFqBZ6FZHC0nc1CPQiCY09luxJHACA/k="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 263,
+     "candidatesTokenCount": 52,
+     "totalTokenCount": 315,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 263
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "_6O_aqqMFa7mrfcPpensqAQ"
+   },
+   "latency_s": 1.65
+  }
+ },
+ {
+  "case": "api-data-leak",
+  "want": "page owner",
+  "rec": {
+   "tag": "shape/schema/api-data-leak",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\napi: 340 requests in 5 min returned another customer's booking details, 1 customer report, last deploy 2 days ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:30:56+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"api\",\n  \"first_move\": \"page owner\",\n  \"reason\": \"Customer booking details have been exposed to other users, which is an irreversible data breach requiring the service owner to be alerted immediately.\"\n}",
+         "thoughtSignature": "EvkECvYEAWkUfRNHd4DfCcLksBPxiAARFKOpBAdoe2YpqTd0472wqm9FQZgDUJwGBJY2JmO0BM3Ya+C0VUGHUUSw6I+uYXKR+eY0UMeYrxnk2LuzCYVhNPLcAsMCAgJK2DOeklry4R6Ak9LgT71ThGdClM7IBribvG2HPyKXp09ZhnwzbB4jNPgV+uL9S1vT/p04bAon2d2av9nnnZFUPWVr22o1EmlWRvjpExhUUb+pBi+6kl+lFuv8R5NR5gKy0g9f12A4xEXpoJldHrcKXmS57Y7SG9lq5m1XOqiMmNhtwG629Oyk/ND3Aj/ESUlZZ4CGguRpq66ZK7+Ms8jnY1ettq4Waqd3psKxdMRnOhStP2DZznX9Jv/02mZEmSgUPhSq9r3fmaUCnl6pGgnguzINOGRNPTr+0rwffyY8ND4Z6e/pWY6Pe1BHHy4LOyMLE4nt+iymiD9RhGQmozJAjzvSn01/VpFrhAl2SUX0c1RvInxMJS599EERXoziCB2QUKGO/kK0WpG503U1apyJpniHr6Sm2tDXtdVmgY1W3HjeERWjO4MolrFPnbH3kh9gb5E6pazlNJiKSvvIUSnuTk8P8syxg4pEi+jufgJeUA2BvOTBVGv1wZbrOp8DeC9wSBqbEEjz3GAkvpDMhCrWR5Rm9mBP7eVq8hkDK1GZAt1NERVZJ+dZewT0XyifL6gHaqI3lNeZGH54vTEB6NkyoAw3vUSkB51BpLOub1sdngcXfi3U1E+fTD5PYtYz9dozt9g4PuIZtiX1H24rd+pyCmiLtERW/vJcEAtnsRZdbteFl1kLmNO/Oul4Vvw8hZVpP1Piegf0ELq6OWWM"
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 253,
+     "candidatesTokenCount": 62,
+     "totalTokenCount": 437,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 253
+      }
+     ],
+     "thoughtsTokenCount": 122,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "AKS_av_4Oq-F0-kPnYTIqAQ"
+   },
+   "latency_s": 1.73
+  }
+ },
+ {
+  "case": "payments-double-refund",
+  "want": "page owner",
+  "rec": {
+   "tag": "shape/schema/payments-double-refund",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\npayments: 14 refunds issued twice in the last hour, 182,000 yen total, no errors logged, last deploy 6 days ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:30:58+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments\",\n  \"first_move\": \"page owner\",\n  \"reason\": \"Money has already been moved via duplicate refunds that cannot be undone automatically, requiring owner intervention.\"\n}",
+         "thoughtSignature": "EmkKZwFpFH0TNM2UCDg8CVAtKveWSd4utiQwL+JZcE/g1ApS/fSmuaxOlcMuRr+KzVCr+8bsTmicDjlqUVNKpoyug9BB+JNV9f+NitsB4J9FefC9mMNWKYw34QNCPqN1rpbCQOwqONq0bto="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 257,
+     "candidatesTokenCount": 55,
+     "totalTokenCount": 312,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 257
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "AqS_atP6LtOZ0-kPmOucwQ4"
+   },
+   "latency_s": 1.54
+  }
+ },
+ {
+  "case": "web-deploy-blank",
+  "want": "roll back",
+  "rec": {
+   "tag": "shape/schema/web-deploy-blank",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nweb: 5 % of page loads rendering blank for 3 min, 4 customer reports, last deploy 9 min ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:31:00+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\"severity\":\"P2\",\"service\":\"web\",\"first_move\":\"roll back\",\"reason\":\"A significant percentage of page loads are rendering blank shortly after a deploy 9 minutes ago, indicating the recent deploy is the likely cause.\"}",
+         "thoughtSignature": "EmkKZwFpFH0TfgJ+1eMnxR0DzLzdBn/DRRmGRcvhzDSFH7EdkLaC6iU1Gks3xyt31d1FaYbRATcX5hEoUIjRfebhzvA5GHPiXX/RCNDZKnMF8xITItj8+MtbNYQY3HWzKcmRYiVnuwuvBpQ="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 249,
+     "candidatesTokenCount": 48,
+     "totalTokenCount": 297,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 249
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "BKS_aqe2EeuA2roPk_6O6AY"
+   },
+   "latency_s": 1.54
+  }
+ },
+ {
+  "case": "notifier-queue-stuck",
+  "want": "read logs",
+  "rec": {
+   "tag": "shape/schema/notifier-queue-stuck",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nnotifier: queue depth flat at 4,300 for 35 min, nothing delivered in that window, 3 customer reports of missing email, last deploy 2 days ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:31:01+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P2\",\n  \"service\": \"notifier\",\n  \"first_move\": \"read logs\",\n  \"reason\": \"Queue delivery is stalled and customer impact is occurring without a recent deploy or clear external provider alert, so investigating service logs is needed to identify the root cause.\"\n}",
+         "thoughtSignature": "Eo0GCooGAWkUfRNozk/3ulsnqSQ/4lzAgh/CWV3E1fVwzCNsJPOUd3DLgBXBv2z5zRNoTKOKx7NpgwcHkRMUvEJ8HcGi1Sgf7FUGuEhmxs+oy8/y7Zkm9XCOqBRCv8Ca38/431cC5Q1k4pDd1B/3lD8EBvMIfwz2rmfMxTWuOwPatyamKSck0nQj58y3Qk7utnlz6kWhDvdChu0rJDZfYYzsUPm8pHxEflGN1DRpgMb7+s52o/CDwbTWAbA3YTfQ69+ucWe50PpXEEO8v1KLCXhkm9rq/wMzF34pZFO0+ScJZRjJCzWdmQbqAR2s6VlarAPx7c4dgKoeplwy/BDg8ciTMFfpTp84jgINK5ybSunu1vrl3KTZPU6o+GSecZF6XvdayaSbL9ubLhyoFYT8LCvRswWNAzaiCoyI/XlB5Wmjj5VSibNWg0jlvUMTR7N+E5NQs1HCMpA4PmEooPRS7x8vL00OwDSpueN6F2QrGZADIaQyIB7NUcqLs2NjeCpe2T8LzZgKcQXMBnQs0FQ4I4azTO5Eqhgngs68s9C/d6s/QOBNKTTMaN4Oevqs/wg/n7XYuz610Y5QEkzkGgLjn6O7Kxqsm+USv91hPh0MR3MHxsgZb/HQl82mXA9OY7QhCY4P6fi3Fe9x0ARFQCkLDFkRvmZbvTmON4juR26BugwDaSNw1l16xS2xrWwmoClPz9NgoOrtFG+cdBDJvRBf01+3pbyvst90puBpVyKytXgYz0sluiYyL8PqdH74jo/zpAZIxtSdbkbguiRSrXiK8Z0OzA7hIuDGqKOE9SfD02UdgizOVlC0zGDyz2ieZXFNZs4YcH629k+Eh1wYfVnLonG8H0SUe3w4k3VVukNuAQ5WZwg7B/vY7j4ueRq/KBjsWGsgRBW/9h4ZEtSqn/sZZVueNMR2LHuws5q1r1tfy64fsVW2hrIcL3uk3B77Uc9+/0dtOL7O9PUsmFWAhyuNBL+S8nIAQ1OX4+kL0bVSkiypIFV7PZCIf2SL3ZAsQiqDCWuFJX7eDJ/GvJ4VF0tFDw=="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 261,
+     "candidatesTokenCount": 68,
+     "totalTokenCount": 490,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 261
+      }
+     ],
+     "thoughtsTokenCount": 161,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "BaS_aoeZMY--0-kPr56u4AQ"
+   },
+   "latency_s": 2.08
+  }
+ },
+ {
+  "case": "api-region-dns",
+  "want": "check provider",
+  "rec": {
+   "tag": "shape/schema/api-region-dns",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\napi: all requests from ap-northeast failing to resolve for 6 min, other regions clean, the cloud provider reports a DNS incident in that region, 5 customer reports.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:31:03+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P2\",\n  \"service\": \"api\",\n  \"first_move\": \"check provider\",\n  \"reason\": \"The failure is localized to ap-northeast and directly correlates with an external cloud provider DNS incident already flagged in the alert.\"\n}",
+         "thoughtSignature": "EmkKZwFpFH0TGV/vkcA0g3P2ddpmLMBYaJw9+IXKZASMxTf1QzCPpUifIbdEZxlH8AoimWVMfuyjwqqNziw4RoLizaEd4ulAX1sEsWFLU0muxXhnCDn7mOxYiXVZxDFGp6khA0ctst0uy2s="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 259,
+     "candidatesTokenCount": 62,
+     "totalTokenCount": 321,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 259
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "B6S_apjzM8_Y9tMP9tuU2Ao"
+   },
+   "latency_s": 1.6
+  }
+ },
+ {
+  "case": "web-cdn-purge",
+  "want": "check provider",
+  "rec": {
+   "tag": "shape/schema/web-cdn-purge",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nweb: static assets returning 404 worldwide for 12 min, the CDN dashboard shows a purge still in progress, 8 customer reports, last deploy 3 days ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:31:05+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"web\",\n  \"first_move\": \"check provider\",\n  \"reason\": \"Static assets are failing globally causing customer impact, and the alert explicitly points to an external dependency issue with the CDN purge in progress.\"\n}",
+         "thoughtSignature": "EmkKZwFpFH0T35FUt002VOkDe5rbAyja2o3OVsRBZrvE0T6DxqCQLocQcaSjyqbFopRwDwJsKCkDbszUDqfrRmuzJdOHPDPoAMIL9Eh5wupMg5fWfIazgtJ8o+y9pqfq2q6+GiJK6opoewM="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 260,
+     "candidatesTokenCount": 63,
+     "totalTokenCount": 323,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 260
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "CaS_auz8Go2x2roPiKeM0QQ"
+   },
+   "latency_s": 1.35
+  }
+ },
+ {
+  "case": "payments-deploy-validation",
+  "want": "roll back",
+  "rec": {
+   "tag": "shape/schema/payments-deploy-validation",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\npayments: 3 % of checkout submissions returning a validation error, 2 customer reports, last deploy 22 min ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:31:06+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P2\",\n  \"service\": \"payments\",\n  \"first_move\": \"roll back\",\n  \"reason\": \"Payments are failing validation errors affecting customers shortly after a recent deployment 22 minutes ago, making the deploy the likely cause.\"\n}",
+         "thoughtSignature": "EmkKZwFpFH0TmcIr5rLNNCSkYiiNAVcH0oUh/McMT+3moAWh+ILVXUK/wOguxXK6PxupRKfa5GDKLv7S2btnvEoR6zhi9u96SXz2OVxs1GyXkHv96FU6n54TEAosmiNlLkA8q+4YRvqrUe8="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 248,
+     "candidatesTokenCount": 62,
+     "totalTokenCount": 310,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 248
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "CqS_atecNM722roP9cO4gQU"
+   },
+   "latency_s": 1.72
+  }
+ },
+ {
+  "case": "api-slow-search",
+  "want": "read logs",
+  "rec": {
+   "tag": "shape/schema/api-slow-search",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\napi: p95 latency up from 1.2 s to 3.9 s for 18 min, error rate normal, 2 customer reports of slow search, last deploy 4 h ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:31:08+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P2\",\n  \"service\": \"api\",\n  \"first_move\": \"read logs\",\n  \"reason\": \"Latency has degraded significantly affecting customers, but the last deploy was 4 hours ago and the cause is unknown, so logs should be inspected.\"\n}",
+         "thoughtSignature": "ErUGCrIGAWkUfRNrOqhI59GRW8y99+O/dcUB6EBPNJW+tf+e8EX32zoGoNdxL3Uu4+3iKJsVPKx9v70PM8GvZmZleORjbPcKOb6x1g429HWbkuobOae/MhBIajGBQn3RN25S7uFH+ZcimDIkCjzwA8r/md1Sbc16l9p51YeVsJlY5rWn0g5O4zVqW/8MxtdK5QOe1m4ZZ7xEEs5AiZvVg+/pnmV3ut7XWI+qkVhxhIdl3UPUEz3q6Flj57iZNsUdruNhBIhvAqD8pSLXhH+dMUq57Uclt4blJgnw/nWjdBRNI3SZbf29ZpDl8klWls/O+nBwNn0s0eybhE7v3Uv6lfYA5qP9brd+BpnHejU2pvCG1Z07x6N3xA7APmPUmLeNOSE/WWn7iLHw8BTyxiO3ND8SmWMOA1UL/+lRGqIHZQ5g81Hx0x+YCRotMKkHfvuNEbiArWo7n6jy+7QNMWO8oS/uGrhzTHqwSMk1YFMiWvXxBMqnVbdOK2+gZmobGaA5//m9+0GN7T44rbKuF2sFVSFEewKlE5nys8o3APbS4R7lJ6BqGI5UeskZdLYq9WqSTvyjL9TUiZpHyQbE5cvQf0PAcIdFaMXK6l1Gd6Kj62B3Qlkou52MeXm/fOUA52ACCoTFVEdg1M7tj8d25cQBSsHyhXcjVP5IxLZKZU8H1BBD23QRUNe5qRD+l9ZLAchpnuhKvSf8zw/xoiaT13IxnJnd+CvLtIob2PubykbrjyLk8+9S9el9oMhZ9t/Mbb7sKzCD12Wkos7geZMEyLNlSR5SBjdHbkrxxYtBmOeFTJvx8l1I8zNXvcSNu4yNmd7ZFgy9eggwikDl8PiuNqA1D9/3uA7D1V42g2A6gUOp2DoCqPSl6LSFwok17susMyugl4//xkJpXHeTYd/TcoPklYWgY0aNiH4um9PDwZyIrjYMydxVf0yaJcSQE85pqorweBezt1VuCZRlRSf3jBgIT8AYat1PhQ7udn0eqGS/ll4vTGART4HlpDjzuwbR1NENFIFCaEe8a0p0nFzGK5Jk7MjcHk1NNREaBa9/Fy43geN7edHWfZjiRPoipittmTI/eUYqocUHYMA="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 266,
+     "candidatesTokenCount": 65,
+     "totalTokenCount": 518,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 266
+      }
+     ],
+     "thoughtsTokenCount": 187,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "DKS_aoHeH5Lm1e8PpMOs0AU"
+   },
+   "latency_s": 2.49
+  }
+ },
+ {
+  "case": "web-crawler",
+  "want": "no action",
+  "rec": {
+   "tag": "shape/schema/web-crawler",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nweb: request volume 4x normal for 30 min from one address range matching a known search-engine crawler, latency unchanged, no errors, no customer reports, last deploy 3 days ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:31:10+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P3\",\n  \"service\": \"web\",\n  \"first_move\": \"no action\",\n  \"reason\": \"Traffic spike is from a known search-engine crawler with unchanged latency, no errors, and no customer impact.\"\n}",
+         "thoughtSignature": "EmkKZwFpFH0TOwHQSQ1DdiavZtbELbnMWbSrKazAPCE9k1655WrQXfMcf2l6C77chhd8i3DNu8xonpwLnIeMVIxRA0SSRlSzVg7jGSGCGU72D+OZzL/jCzL/NWISe9+Ks9jysHTbLeLSoFs="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 264,
+     "candidatesTokenCount": 59,
+     "totalTokenCount": 323,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 264
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "DqS_aorOPLTa9tMP4dqvqQQ"
+   },
+   "latency_s": 1.29
+  }
+ },
+ {
+  "case": "payments-webhook-retry",
+  "want": "no action",
+  "rec": {
+   "tag": "shape/schema/payments-webhook-retry",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\npayments: 18 % of provider webhooks retried at least once in the last hour, all of them delivered in the end, no customer reports, last deploy 2 days ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:31:12+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P3\",\n  \"service\": \"payments\",\n  \"first_move\": \"no action\",\n  \"reason\": \"All webhooks were ultimately delivered successfully and no customers are affected, so write it down and move on.\"\n}",
+         "thoughtSignature": "EmkKZwFpFH0TBNH8tVyYxWoNwqmd4o7T0WIvTe4RvMfohwFA9qV+tBhvr6EBNfhElzDKVKcWsW1kBtzljsOuQSbRuG50k9A6B3x2HXRilkUN4qzwoiPWcP1EBto93icnRgNVsrta/gIpHsE="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 261,
+     "candidatesTokenCount": 58,
+     "totalTokenCount": 319,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 261
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "EKS_avjZEdOZ0-kPmOucwQ4"
+   },
+   "latency_s": 1.18
+  }
+ },
+ {
+  "case": "api-partner-limit",
+  "want": "page owner",
+  "rec": {
+   "tag": "shape/schema/api-partner-limit",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\napi: one integration partner's requests all rejected for 25 min after their contract limit was reduced overnight, 1 customer report from that partner, last deploy 8 days ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:31:13+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P3\",\n  \"service\": \"api\",\n  \"first_move\": \"page owner\",\n  \"reason\": \"Requests are failing because the partner's contract limit was reduced overnight, requiring a business decision on their limit or account status that an on-call engineer cannot make.\"\n}",
+         "thoughtSignature": "ErcGCrQGAWkUfROgEOgi1+2O+7rkvCMiHVYq4VyP1c2Pyb08np9oLjuHOcAjNQj08A8tRv4cWa5FYehRecar4Q5o0BEL6KnTbWtD/MycgZ86TA4TbrhEAt9q6qSnkI42N/wWcIhFGn7Z2f8Ql3PLTAq5xA6cTE8aURUXYpM1sKlsVIo01TqoT/tUwf2XTpATsjKN4wEha7s4MxOSfkOAIRWqUld1wqmA4thuiRtDeLNFPz/jAFK0EYf+otxY9EAjCezbQpvxl6zQOiRUMEn7W1DLoMz9V2hwaZ2I6YSNRshanQn5qae8AS1lpKRv8QzTGgc5gDlMk5cSca1q5ti770e6/o3Ak8CRaHoI1SQaSXzuSb1wW9yu6hZyDimHAsJHNC6lIUtXO6pI5PognuNFPCUjVQVns2D8yaYHYVjMNv6gvXuQ6/KhEm8O5QiL4emC5a/eqBLh2UwnuIcs9txl9b+xih98S/upwvni62qXbmsOuCqjQfoEbsFOEjRdTfPk+HwsXtYi8scboKL82yJnSXejQd8KnIid9+rW1S5A/288JiDOCfFStCP1iHkXviA1k7LMU5aeTmm0I5avE+WCUaRKI4a8ul+qOmJTMrOPuc3fqUOhjM+yQ9s9pm2vSJHIRa/Jd5wDAIxJi8QEN0n8l8hyuKoMZL37Irn0g7ndrXdeVQmn3YHr6B4iMhsM5TMY4OlP2W8AWsAVlmWCewGaRj/4MEpS8rxNGdou2VR26XjWxOMgLiXNytfB49Jaqtbfgur8C3yFFpu12EUTncVCh7x7TctP14G7ynzJEhByBAQgTl/Ra9NwEe4vTpdXTECBSht72K7nATxn5LivI9dy42D6HFh8E15hQM7MUSGoZiWRS971DkHAXzsDwAGeX63GyND2QqOCqyaDuPQEGasdNXaSoMhPOihD/rfZRMEPgaGvbB9saFbHXOg2GeHJWtA0ZXtc8sZUIFtUiCgCqretix4COrNJCK3nrSRSIJG/qN453z9x5yLYZi5r1nzWE3xvVWHefdHhI/uzlh+PwGpuXz99ZnIxjpdnmQ9CRdzsXa7cyz0Gm0MACBC7s0WgTqtCItz97NI2zhpmrg=="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 260,
+     "candidatesTokenCount": 70,
+     "totalTokenCount": 502,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 260
+      }
+     ],
+     "thoughtsTokenCount": 172,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "EaS_apfOH7rEvr0P_aav6Qk"
+   },
+   "latency_s": 2.31
+  }
+ },
+ {
+  "case": "web-deploy-layout",
+  "want": "roll back",
+  "rec": {
+   "tag": "shape/schema/web-deploy-layout",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nweb: 1.4 % of sessions reporting a broken checkout layout, 3 customer reports, last deploy 25 min ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:31:15+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P2\",\n  \"service\": \"web\",\n  \"first_move\": \"roll back\",\n  \"reason\": \"A broken checkout layout affecting users started shortly after the last deploy 25 minutes ago, making the recent deploy the likely cause.\"\n}",
+         "thoughtSignature": "EmkKZwFpFH0TWrBKp1T92rPM3BBoNXbfW+lc6Q5wzS2dtKEOmCd611AJHgn1RfYZqiACsc+TtXAF+Z56PLhRjmb2kebvo9nO3mzqwUru8DhARoZC6qlUswEh4C1qZseawieVwpa3PLXo0pU="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 250,
+     "candidatesTokenCount": 63,
+     "totalTokenCount": 313,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 250
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "E6S_as2BMNykvr0PxsTb2AU"
+   },
+   "latency_s": 1.4
+  }
+ },
+ {
+  "case": "notifier-vendor-quota",
+  "want": "check provider",
+  "rec": {
+   "tag": "shape/schema/notifier-vendor-quota",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nnotifier: the email vendor returning \"daily quota exceeded\" for 14 min, 20 customer reports of missing confirmations, last deploy 5 days ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:31:17+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P2\",\n  \"service\": \"notifier\",\n  \"first_move\": \"check provider\",\n  \"reason\": \"The alert directly identifies an external email vendor error indicating a daily quota has been exceeded.\"\n}",
+         "thoughtSignature": "EmkKZwFpFH0Tk/9LqOfpLSU6M+60M7LqtH520wqBOPHeMzICeOURaFFdsh7d2M85CLOjJtjNWX+jzQ6THPOMx3dzEIO8Fxfymw156jhzYLQnIgszMvyFc/o27KrHZsedftXTKzcGzh4KAfc="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 255,
+     "candidatesTokenCount": 54,
+     "totalTokenCount": 309,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 255
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "FaS_apyOC7P22roPq7ndAQ"
+   },
+   "latency_s": 1.2
+  }
+ },
+ {
+  "case": "api-db-pool",
+  "want": "read logs",
+  "rec": {
+   "tag": "shape/schema/api-db-pool",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\napi: database connection pool at 95 % for 12 min, 3 requests timed out, 1 customer report, last deploy 3 days ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:31:18+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P2\",\n  \"service\": \"api\",\n  \"first_move\": \"read logs\",\n  \"reason\": \"The deploy occurred 3 days ago so rolling back is not appropriate, and the underlying cause of the connection pool saturation and timeouts is unknown.\"\n}",
+         "thoughtSignature": "EmkKZwFpFH0T3Z1wOJRGZm59k6AiW9lqj82Jcwd/JeK8KUfxD10ULLYF4sxHzxQXeaizBN9MpPFrIoi3/QRTjksVwgj7e01X4G30CdQRO5RovAP3rFiPSST1WhxI6vuucZ9ruoeobSqq/pQ="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 256,
+     "candidatesTokenCount": 65,
+     "totalTokenCount": 321,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 256
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "FqS_asGkGMXs2roP9_G78QY"
+   },
+   "latency_s": 1.37
+  }
+ },
+ {
+  "case": "payments-key-in-logs",
+  "want": "page owner",
+  "rec": {
+   "tag": "shape/schema/payments-key-in-logs",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\npayments: a provider API key appears in plain text in the last hour of application logs, no errors, no customer reports, last deploy 4 days ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:31:19+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments\",\n  \"first_move\": \"page owner\",\n  \"reason\": \"A secret API key has been exposed in plain text logs, meaning data or credentials have been seen and security decisions regarding credential rotation and potential exposure must be made by the owner.\"\n}",
+         "thoughtSignature": "EmkKZwFpFH0TO2tmiPfUvFqdsTD5feEEyJikcnTtJWOxjEK1GoROonNAgcSUrzfgNmaL7YGrfJrfaND0VskptxzNOxJZHEvMWP1mGgQqQYIB0uy9qBygsZdtFh/S3RYhbUUxnteuveCw7KA="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 254,
+     "candidatesTokenCount": 72,
+     "totalTokenCount": 326,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 254
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "F6S_avv9MNbbrfcPydOJqQQ"
+   },
+   "latency_s": 3.93
+  }
+ },
+ {
+  "case": "web-deploy-slow",
+  "want": "roll back",
+  "rec": {
+   "tag": "shape/schema/web-deploy-slow",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nweb: p95 page load up from 0.9 s to 2.6 s for 5 min, no errors, 1 customer report, last deploy 11 min ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:31:23+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P2\",\n  \"service\": \"web\",\n  \"first_move\": \"roll back\",\n  \"reason\": \"Latency spiked significantly immediately following a recent deploy 11 minutes ago, with customer impact observed.\"\n}",
+         "thoughtSignature": "EmkKZwFpFH0Tf94xyAQcSVqk9pZuvD1iUFTUwynJJYvOkthBABZWHyfEez7QhI/hF5a3/PYf2xWfvQgg2NbbM1e6jWPIqyRyb/gTEg+uCWhTkuHNEHmVhbJrhaGDlUWDxy/vIxdPb6RO0zU="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 263,
+     "candidatesTokenCount": 56,
+     "totalTokenCount": 319,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 263
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "G6S_ap2bLveOrfcP_eP2uQg"
+   },
+   "latency_s": 1.43
+  }
+ },
+ {
+  "case": "api-audit-gap",
+  "want": "read logs",
+  "rec": {
+   "tag": "shape/schema/api-audit-gap",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\napi: the audit log has no entries for a 40 min window this morning, the service was serving normally throughout, no customer reports, last deploy 6 days ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:31:24+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P3\",\n  \"service\": \"api\",\n  \"first_move\": \"read logs\",\n  \"reason\": \"The service was serving normally and no customers were affected, but audit log entries went missing for 40 minutes with no recent deploy, requiring investigation into api logs to find out what happened.\"\n}",
+         "thoughtSignature": "EmkKZwFpFH0T1Z8l04f7PzllZdwWOzZlg+HyC3CKahTbtRKLwW61wecoNegc2x6gIGjzcAJidUqgCs8wvT3b7aGou/5gQ0pSZkEQA1SiAivPpns0fG/FbIk2AgCYmWpQ5qEoFidPncenDKM="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 258,
+     "candidatesTokenCount": 75,
+     "totalTokenCount": 333,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 258
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "HaS_areMBpDfrfcPv-6luAQ"
+   },
+   "latency_s": 1.54
+  }
+ },
+ {
+  "case": "notifier-duplicate-sends",
+  "want": "read logs",
+  "rec": {
+   "tag": "shape/schema/notifier-duplicate-sends",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nnotifier: 2,100 duplicate confirmation emails sent in 10 min, 15 customer reports, last deploy 4 h ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:31:26+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P2\",\n  \"service\": \"notifier\",\n  \"first_move\": \"read logs\",\n  \"reason\": \"The deploy was four hours ago and the sudden surge in duplicate emails requires checking the service logs to understand what triggered the loop.\"\n}",
+         "thoughtSignature": "Eq0NCqoNAWkUfRMtm3UWzV8tq4vg8Dy+2eFsgHBzkZ3oG+w9aVcuHYZWFINOtRCTNOl2J43ZVs+KZCDz+rACA3Vdxn6N5LmWrpSmoqVpBGoXNOrXiau30W4KF1zWGJ2ruYFd5+ePrBxEUEpjSkIg4QmvPTXRxhpLJShyTQERqFh1mcrRrSxK8wEXGzHMPyZo56KurkJiTunK8UfURcmJFps5leNfg7XFfjHxbw3rogDom6A3Y2MINPImo5xLyhYE/Ibi9GRf9UePDUlSuW/My4bhhyyCqTcYwRDcMahYG6G1v+djaiB+dAZ7GihzhFtoTTWoarCuA7D+mM8nXlccT3pHrDsDuVJsXlWQt4861quMqauux56TNuW9f36zsuCF+5YUnKjsXxmnE6SR5lbFVh95wWrARm73P3Ik3cF5IBBiePnoQ1vjY+PkZiKAZurZjuA1Xt6ITOm1chtC7CEyWJJhc4myHoZRpcZ9ReinJ4VcqCjr3TYW8mDJ9ZVKhHJPv6gbeOv71iqaTQb4kGpXHab6Bwb9hbfQBPr27r3kNnWpD8WZ761XP2+wBe8/NMlmBBX10sNZiTFtVa7eoGt5vkfot2nbo+b50Ml55MQihWiNYrf8k5MRiqzW8CX7TiSwyNynycKSvGgmgxPSQ0RsLPF6CqX1XMuMrcc+1pMgBAbh59pf+PFq3FlXzO1MfxtsxR85349fXYSVFjFVLHelvoUSACPrUMsI64T8Z+26nX+S2rVbMXeWS3BqXKg10M2plxWn6KRTPDjRkFiIFRWMoBYYj3wY8v2sRdPGfZumE/12bz2Tay+rT3U026WHkBYHoDK6mCLGq3Ol1/sXnqqgrPlEsj67Trds35mOIPbfANgLCe0JG2TdhypGaNbSCfwC+LChDyx+Cay3sgVKIFgEld9FqBL/OmWw4g4CKhz2dyNJLj3uDP1XBycLwuJbkszdGqZ/g8J3ZYcZPZeU9a4ZxP8QTe3SqtglqRTfz3oaVkq7Y7dnH1aygbK5O8HW0bIURTUALV8+YlwIdgyJHQusI8Y0H4a60eMR7uB/ZUL0dsTwynMYvZeKIEPOFx5TvgcqNzvKp+Sf8xD4DK4NmXhcCFBTegVIetis51rckOsNq2pyzNkcBZhKwOiKFfXFRudQ7BNUlfaxB5jSxjlehGhmC0TZSf1Ay5XQm6W7MZG3nnLRJGZ77ONOYH5AXE9B01G5Fleip8RLAKnG0SWgdPKRe5U8KOYdvKB3DYxYj+lxzIqFwWa/Vlgv5MaXWXrrXcJndtguSbAF1UKRB6c2SvccdToomeHrZxHuhHYkSZCfuWAjeyqO3QIr6nFFeyG0gaa54bFCsW01YSvsYlnY7QNmmBWpXgqNCWCp7kvM0fRTWSSh6u1UbRtY9uTFNGOrjojqE3AoxoZMEvdxjzk/KLVZ4Phnk9NgKkZg3vZeUd7RN95nuJ/cgGSIFEbBsQRu1ZHJ79kjR+jv7qgXE5OvhnU+Eh8zDKuuDgNL6kHQETkuUYSqkUgzVyd+7UL/QlOMue/zlBHGGxUMadV8rAg320MKRzQSpLRsN5c8eaPuObJEvwW2D32Y4tsxwLCPV0rv+wII8jv/WL7hl8PkO9BdjCUt5Qh2cMisKad8aMs1HX9SDhkfHszhNFuJwX2RhWHHlcYRWzwQnshwfRcHL9p9ypz7Ve45e6wGrZHDsJzkCnx+gNi5e/U1gzJWF1VTwR3dzTY5cIFDOUxEBnKpvQrGY2iLeX/E8QTCGJsrqnYb5+4m4lhC6OLB0GCP2Z+EGtUrBm0MPXbCHgX2po4E+tvuO1tCSMZB6IJh0MR1l9o56p5R/Fdy9k4r5o0o1NNzFD5pCTYkGMhFti7yTi9JWC595k6SivkmB1PHBoDJlRX7G6apIRKVQDIjnX6OlQYew7mrrAXXa4s5MXvC63eqSDqN5MmhGzJnqpPx+M3shEbEc2ufJ9gp9mgSJbhF6l//Asse2/Jm+ih9Mn6/SKWTj06+CGG/9O8d4/LlkRN7S1uFQ5XaqHSQdnKsCkL93s7M1oWjVXBQJbZTHLutyKszaYoxcuQ+5QI/NuEku95ViwWSFVynGJK7Lll/wHRFrKRd1ZfiZNcCRbzQDeeVP6F4jx16agMZgz3R8DLFqlVRYOHqsIyx531zMlbWDHbJSINdxtC/qe4kgQq2by2q51Dk+hVUsV8UOerFggnZ2YhsOkM1XLQsRC9e6NelZJ37wC4J+sX4G4xbxeDd5bsUze8iFjgJb2ry89JXtCNLQ4QFmKihY1R4SMY="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 253,
+     "candidatesTokenCount": 62,
+     "totalTokenCount": 695,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 253
+      }
+     ],
+     "thoughtsTokenCount": 380,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "HqS_as3TJ6XCvr0PwKKayQ4"
+   },
+   "latency_s": 3.04
+  }
+ },
+ {
+  "case": "payments-region-cloud",
+  "want": "check provider",
+  "rec": {
+   "tag": "shape/schema/payments-region-cloud",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\npayments: all requests in us-east failing for 9 min, the cloud provider's status page reports a networking incident in us-east, 11 customer reports, last deploy 2 days ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:31:29+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments\",\n  \"first_move\": \"check provider\",\n  \"reason\": \"All payment requests in us-east are failing due to an identified external cloud provider networking incident.\"\n}",
+         "thoughtSignature": "Ev8FCvwFAWkUfRMyVb9vmG4VTKMwQ5sPRNiMa0B/XdxteR2B8ggWtExHxcJNhBgEnuHNfmXkUNu17TA98UV+FWQsaK9W29DpJwrkiDJ8gccwIWW9gioQMEcfy1+qO3DpAOp7+/3qwCdlI3ly7Utd9efDUgaCp/dkUPG2sz6kEMgrufTMHffh5PGxSeE4NBSYTIOVu8AhEtaDJEQUJhnoipzq4kZTHjxj3ylx7VnP29p92s7OseUWqf/EXbL9A/HIgAPTmaDUOlWe0GqiY0KUZEBh/hZB2041oiOOMHcOYU/mKRTtmsorYRBnZ/azdt1q0HY2GPd5ZZWaByV0/z0wVkv2i4osgCA678cdFiPfFWi1HLzeIL/jBD9RuUT2o8KK+EHQ2oj4f+jUkNDSSlVb2zIHtfJhNAhmXyzXTFs25RyRqB1NZ5uuez4TERT8R36XSmrc5bpMVUgUAQiUlBntz5JZ9XSrn2XkqQlf1IOgv6FR8Le6CcNpNncazrhI1IUgYWtpHElQbdbeWwDQ7V5YoibRmURUriWLKw1MU8e13VS3OgvjaTM91IlGxbwtBQGTeMIYCWTmszhmCcLiyODElyLt/r+Q+oMLSlWYRxAeAvalNC1R3nv6rA05fVn52JyWDGBaTczhQelO9+6Kw3ZQZNdUvlFJn2J2XaiRcKLeJStA/bRCdCVWVvUTzoeBz1tNAej/kDxBhwuPW01dO2VxjNjJJ6M1TFWn4NFq/Ppe9IexlgPdJzeqpNxh8z+1rGnnaapItrjFozHZ3+bpaLarm15ZupH0k0os9Fhp7GP63fgm9Kf6EaF0oxi/IDCkwE/Jt5sppGC1k+krP612VmjSaPbBymXrwsiNPe8ylKsiYMfqV9SbX7flU1CVVHoraaO+TxdLrOS+YuZVm9kK70aP17PoWjaG6tGzsz/s5oWOCRrkGqydL0oGwUyigsMAWY1ZE/D3DvRLoK2uaPNIh68LrNNu5OChcEeyW6WNUIXPasiRjMKMp1B7bkKWbZSlozQb/hA="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 265,
+     "candidatesTokenCount": 56,
+     "totalTokenCount": 473,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 265
+      }
+     ],
+     "thoughtsTokenCount": 152,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "IaS_aqn8KdHMrfcPsabp4AI"
+   },
+   "latency_s": 1.85
+  }
+ },
+ {
+  "case": "web-bulk-delete",
+  "want": "page owner",
+  "rec": {
+   "tag": "shape/schema/web-bulk-delete",
+   "model": "gemini-3.8-flash",
+   "think": "low",
+   "request": {
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+      }
+     ]
+    },
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nweb: 38 accounts deleted in 4 min from a single admin session, no errors, no customer reports yet, last deploy 7 days ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     },
+     "responseMimeType": "application/json",
+     "responseSchema": {
+      "type": "object",
+      "properties": {
+       "severity": {
+        "type": "string",
+        "enum": [
+         "P1",
+         "P2",
+         "P3"
+        ]
+       },
+       "service": {
+        "type": "string",
+        "enum": [
+         "web",
+         "api",
+         "payments",
+         "notifier"
+        ]
+       },
+       "first_move": {
+        "type": "string",
+        "enum": [
+         "roll back",
+         "read logs",
+         "check provider",
+         "page owner",
+         "no action"
+        ]
+       },
+       "reason": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "severity",
+       "service",
+       "first_move",
+       "reason"
+      ]
+     }
+    }
+   },
+   "retries": 0,
+   "utc": "2026-10-02T12:31:31+00:00",
+   "status": 200,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "{\n  \"severity\": \"P1\",\n  \"service\": \"web\",\n  \"first_move\": \"page owner\",\n  \"reason\": \"Multiple accounts have already been permanently deleted in a short timeframe, which cannot be undone and requires immediate decision-making by the owner.\"\n}",
+         "thoughtSignature": "Eq8DCqwDAWkUfRNSK94jOvOjhb8/U+ORuzmkNhZi77qokzVBwE+vavvmMZMfncvAGXMChoc5oJ7zVjfReseJ5C3y8dPTvDtHC+SRxP8vaXVZe2+pdPZ51gFLkcttOZVlOhLZET4j5i/x3csdWBchnY8xsF+9Y+HZMm7833nZeH6/my+FUEAbfMrGQZh68hsRrjVQn5Ckk+6bt25PtPyLxM7pcu9e1C3u74FQLJAUJxYJ3IOJd6Lg35sXjN2d8QnNFSlY7LtgEWXesU0VGYdbpZP4YaGDZdQlEEnQDVJCySrATH8miTFQ9AToJDfSh/liQzewIVE/LfyyY20373TU1lbyy+gPJY7nLh1vrSUvzrjEZ3t/iFTnQ+hks6y7WLX+YqsaM93NSK+FW1HeoU10GmGpbIYsD9CYfrMLWaejEYEtqvQirlCzXJLyv7FK8vuZSYPV1oR9KSST+Y4x9JsKpAR7k9xyBoU0We74pHtP5X7isao+P8sIx2D/XMM869GSOSUJ3UNvjM/sW5AhhE98h7bjb9N0xEFlbzauo/K895VV6OB8Szil5V6lXc8e5DrGaTg="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 254,
+     "candidatesTokenCount": 63,
+     "totalTokenCount": 387,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 254
+      }
+     ],
+     "thoughtsTokenCount": 70,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "I6S_asDKI9-q9tMPxMeewA8"
+   },
+   "latency_s": 1.61
+  }
+ }
+]

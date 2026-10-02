@@ -1,0 +1,117 @@
+{
+ "case": "payments-latency",
+ "prompt": {
+  "tag": "logprobs/prompt/payments-latency",
+  "model": "gemini-3.8-flash",
+  "think": "low",
+  "request": {
+   "systemInstruction": {
+    "parts": [
+     {
+      "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+     }
+    ]
+   },
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "text": "Alert:\npayments-api: p95 latency 4.8 s for 6 min, error rate 0.9 %, 3 customer reports of failed checkout, last deploy 14 min ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    },
+    "responseLogprobs": true,
+    "logprobs": 10
+   }
+  },
+  "retries": 0,
+  "utc": "2026-10-02T12:32:08+00:00",
+  "status": 400,
+  "error": "{\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"Logprobs is not enabled for this model\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n",
+  "latency_s": 0.29
+ },
+ "schema": {
+  "tag": "logprobs/schema/payments-latency",
+  "model": "gemini-3.8-flash",
+  "think": "low",
+  "request": {
+   "systemInstruction": {
+    "parts": [
+     {
+      "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+     }
+    ]
+   },
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "text": "Alert:\npayments-api: p95 latency 4.8 s for 6 min, error rate 0.9 %, 3 customer reports of failed checkout, last deploy 14 min ago.\nReply with a JSON object with these fields: severity (P1, P2 or P3), service, first_move (one of: roll back, read logs, check provider, page owner, no action), reason."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    },
+    "responseMimeType": "application/json",
+    "responseSchema": {
+     "type": "object",
+     "properties": {
+      "severity": {
+       "type": "string",
+       "enum": [
+        "P1",
+        "P2",
+        "P3"
+       ]
+      },
+      "service": {
+       "type": "string",
+       "enum": [
+        "web",
+        "api",
+        "payments",
+        "notifier"
+       ]
+      },
+      "first_move": {
+       "type": "string",
+       "enum": [
+        "roll back",
+        "read logs",
+        "check provider",
+        "page owner",
+        "no action"
+       ]
+      },
+      "reason": {
+       "type": "string"
+      }
+     },
+     "required": [
+      "severity",
+      "service",
+      "first_move",
+      "reason"
+     ]
+    },
+    "responseLogprobs": true,
+    "logprobs": 10
+   }
+  },
+  "retries": 0,
+  "utc": "2026-10-02T12:32:08+00:00",
+  "status": 400,
+  "error": "{\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"Logprobs is not enabled for this model\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n",
+  "latency_s": 0.28
+ }
+}

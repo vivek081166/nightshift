@@ -30,6 +30,9 @@ You can write a Python function and call an HTTP API. No machine learning needed
     python3 tools.py payments-latency --list     # the names as a list: it looks around, then rolls back
     python3 tools.py --all            # all thirty: what the check refused, and what came next (--list for the names as a list)
     python3 measure/ep06_screen.py fixes   # each made-up name and the next try, from runs/ep06 (also: names, shape)
+    python3 read.py answer.json       # my on-call code: wake someone now? and the first move (KeyError if the field is missing)
+    python3 measure/ep07_screen.py values   # the names and values the answers had, from runs/ep07 (also: choices)
+    python3 measure/ep07_shape.py count     # recount the episode's numbers from the saved runs, no API call
 
 The `ep03` tag holds `score.py` as the episode leaves it, with RULES filled in. The first five runs in
 the video used the same file with `RULES = ""` on line 14. Replace the RULES block with that one line
@@ -49,6 +52,7 @@ the course depends on the vendor.
 | `ep04` | [Tokens and the Context Window](https://youtu.be/VFQ0xTwhi3Y) | Count a 40,000-line log (generated, `sorrel/make_logs.py`), send it whole and get refused, send the tail, then only the lines around the errors, with the cost of each |
 | `ep05` | [Your LLM Cut Its Own Answer Short and Said OK](https://youtu.be/KRcB3oFzEWU) | `plan.py` gets cut off at 512 and still says HTTP 200; the finish-reason check; thinking low/default/high and four models on the thirty; the page owner line that every model followed too far |
 | `ep06` | [LLM Tool Calling Explained: It Made Up a Name, My Code Said No](https://youtu.be/0qm6Zav9udM) | `tools.py`: six function descriptions, the check before any tool call runs, and the loop. A made-up provider name refused with the real ones and fixed on the next try; `--list` sends the names as an enum; roll back gets the strictest check. `triage.py` is the start of the next episode |
+| `ep07` | [LLM Structured Output Explained: Valid JSON, and My Code Still Crashed (JSON Mode vs Schema)](https://youtu.be/N99lJy9cojs) | `triage.py` asks for the same answer three ways: in words only (backticks, valid JSON 0 of 30), with JSON mode (valid 30 of 30, in my shape 0 of 30) and with the shape (30 of 30, first move right 28 of 30). `read.py` is the on-call code that crashed. `measure/ep07_screen.py choices` shows an open model's choices crossed out by the shape |
 
 The map the course follows: [Andrew Ng's AI Engineering Skills Map](https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map)
 

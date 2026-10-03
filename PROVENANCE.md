@@ -156,3 +156,31 @@ the episode speaks comes from a file below.
 - Harness (not episode code): `measure/ep06.py` records every call; `measure/ep06_table.py` counts from the files.
 - Prices as for ep05 (gemini-3.8-flash $0.75 in / $3.75 out per million, thinking billed as output). Spend for all of
   it: 654 calls, $0.98.
+
+## ep07
+
+Structured output. Measured 2026-10-02, run on camera 2026-10-03. One prompt for the whole episode: `triage.py`'s
+`ASK` (line 19) is the natural request, "Reply in JSON with the severity, the service, the first move, and why."
+Every number the episode speaks comes from a file below.
+
+- Camera runs in the episode, terminal verbatim (2026-10-03), `runs/ep07/2026-10-03-ep07-camera-*`:
+  `-a.txt` (`cat answer.json` + `read.py`: the saved JSON-mode answer for payments-latency, `wake someone now: False`,
+  `KeyError: 'first_move'`; no API call), `-b.txt` + `-b-read.txt` (`triage.py`, words only: the answer in a ```json
+  fence, `JSONDecodeError ... line 1 column 1`), `-ball.txt` (`triage.py --all`: valid JSON 0 / 30), `-call.txt`
+  (`triage.py json --all`: valid JSON 30 / 30, in my shape 0 / 30), `-d.txt` (`triage.py schema` + `read.py`: P1,
+  roll back, `reason`; `wake someone now: True`), `-eall.txt` (`triage.py schema --all`: 30 / 30, 30 / 30, first move
+  right 28 / 30; disk-slow-burn and notifier-night wanted no action, got read logs), `-values.txt` and `-choices.txt`
+  (the two `measure/ep07_screen.py` screens, no API call). `-*-answer.json` / `-*-answers.json` = what each run saved.
+- Run files, `runs/ep07/2026-10-02-*`, `gemini-3.8-flash` at thinkingLevel low, the thirty alerts, `rules.py` SYSTEM:
+  - `shape-loose-prompt-run1`: the natural words only: 0 of 30 valid JSON, 30 of 30 open with ```json.
+  - `shape-loose-json-run{1,2}`: JSON mode + the natural words: 30 of 30 valid both runs, 0 of 30 in my shape; severity
+    never P1/P2/P3 in 60 of 60, the last field `why` in 60 of 60, run1 has 5 answers keyed `action` / `first move`.
+  - `shape-loose-schema-run{1,2}`: the shape (responseSchema): 30 of 30 in my shape, 28 first moves right both runs,
+    the same two wrong.
+  - `shape-{prompt,json,schema}-run1`: the same three with every field and value spelled out in the words; there JSON
+    mode alone already got 30 of 30 in my shape, so the episode never says the shape beat careful words.
+  - `logprobs-gemini-3.8-flash.json`: Gemini refuses to show its choices (HTTP 400, "Logprobs is not enabled").
+  - `candidates-qwen3-8b-4bit.json`: the choices screen, an open model (mlx-community/Qwen3-8B-4bit) on a laptop, not
+    Gemini: after `{"severity": "` the top choice is `high` (0.990); with only P1/P2/P3 allowed, `P` is the one left.
+  - `dry-2026-10-02/`: the on-screen commands run once before the camera takes.
+- Spend: the measurement runs $0.17, the five camera runs that call the model $0.07.

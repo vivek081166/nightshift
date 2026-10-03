@@ -1,0 +1,25 @@
+➜  nightshift git:(main) cat answer.json
+{
+  "severity": "high",
+  "service": "payments",
+  "action": "roll back",
+  "why": "A deploy occurred 14 minutes ago, which aligns with the onset of high latency and checkout failures over the last 6 minutes."
+}                                                                                          ➜  nightshift git:(main) python3 read.py answer.json
+wake someone now: False
+Traceback (most recent call last):
+  File "/Users/vivek/Projects/nightshift/read.py", line 6, in <module>
+    print("first move:", triage["first_move"])
+                         ~~~~~~^^^^^^^^^^^^^^
+KeyError: 'first_move'
+➜  nightshift git:(main) 
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,152 @@
+[
+ {
+  "id": "payments-latency",
+  "want": "roll back",
+  "answer": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments\",\n  \"first_move\": \"roll back\",\n  \"reason\": \"The payments service has elevated latency and failed checkouts, and the most recent deploy happened just 14 minutes ago, making it recent enough to be the likely cause.\"\n}"
+ },
+ {
+  "id": "payments-partial",
+  "want": "read logs",
+  "answer": "{\n  \"severity\": \"P2\",\n  \"service\": \"payments\",\n  \"first_move\": \"read logs\",\n  \"reason\": \"There has been no recent deploy to roll back, the provider status page is green, and the exact cause of region-specific checkout failures is unknown, requiring investigation of the service logs.\"\n}"
+ },
+ {
+  "id": "api-slo-edge",
+  "want": "read logs",
+  "answer": "{\n  \"severity\": \"P3\",\n  \"service\": \"api\",\n  \"first_move\": \"read logs\",\n  \"reason\": \"The error rate is below the SLO budget threshold and latency is normal with only one customer report, but the cause is unknown and the last deploy was too long ago to justify an immediate rollback.\"\n}"
+ },
+ {
+  "id": "disk-slow-burn",
+  "want": "no action",
+  "answer": "{\n  \"severity\": \"P3\",\n  \"service\": \"web\",\n  \"first_move\": \"read logs\",\n  \"reason\": \"Disk usage is gradually climbing on 2 of 6 nodes with no immediate customer impact, so nobody knows yet what is filling up the disk space and we need to investigate the service's own output.\"\n}"
+ },
+ {
+  "id": "web-cosmetic",
+  "want": "no action",
+  "answer": "{\n  \"severity\": \"P3\",\n  \"service\": \"web\",\n  \"first_move\": \"no action\",\n  \"reason\": \"The 404 error increase is isolated to /favicon.ico with no latency impact, no customer reports, and no functional failure affecting users.\"\n}"
+ },
+ {
+  "id": "notifier-night",
+  "want": "no action",
+  "answer": "{\n  \"severity\": \"P3\",\n  \"service\": \"notifier\",\n  \"first_move\": \"read logs\",\n  \"reason\": \"Queue depth is increasing while deliveries succeed without errors, and the cause is unknown since the last deploy was three days ago.\"\n}"
+ },
+ {
+  "id": "notifier-vendor-5xx",
+  "want": "check provider",
+  "answer": "{\n  \"severity\": \"P1\",\n  \"service\": \"notifier\",\n  \"first_move\": \"check provider\",\n  \"reason\": \"100% of SMS sends are failing due to 503 errors from the external SMS vendor's API, directly pointing to an outside service issue.\"\n}"
+ },
+ {
+  "id": "api-deploy-5xx",
+  "want": "roll back",
+  "answer": "{\n  \"severity\": \"P1\",\n  \"service\": \"api\",\n  \"first_move\": \"roll back\",\n  \"reason\": \"The error rate spiked immediately following a deploy 7 minutes ago and has affected multiple customers, making the recent deploy the likely cause.\"\n}"
+ },
+ {
+  "id": "payments-provider-timeout",
+  "want": "check provider",
+  "answer": "{\n  \"severity\": \"P2\",\n  \"service\": \"payments\",\n  \"first_move\": \"check provider\",\n  \"reason\": \"The card provider's status page explicitly reports an ongoing partial outage coinciding with the charge timeouts, pointing directly to an external dependency issue.\"\n}"
+ },
+ {
+  "id": "web-node-restart",
+  "want": "read logs",
+  "answer": "{\n  \"severity\": \"P3\",\n  \"service\": \"web\",\n  \"first_move\": \"read logs\",\n  \"reason\": \"Only a single node restarted due to high memory while others are serving normally without customer impact; since the last deploy was 5 days ago and the root cause is unclear, inspect the service's own output to see what triggered the high memory usage.\"\n}"
+ },
+ {
+  "id": "api-data-leak",
+  "want": "page owner",
+  "answer": "{\n  \"severity\": \"P1\",\n  \"service\": \"api\",\n  \"first_move\": \"page owner\",\n  \"reason\": \"Unauthorized customer data has already been exposed and seen by other users, which cannot be undone.\"\n}"
+ },
+ {
+  "id": "payments-double-refund",
+  "want": "page owner",
+  "answer": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments\",\n  \"first_move\": \"page owner\",\n  \"reason\": \"Duplicate refunds have already moved money irreversibly without errors logged, requiring the service owner to intervene and decide on remediation.\"\n}"
+ },
+ {
+  "id": "web-deploy-blank",
+  "want": "roll back",
+  "answer": "{\n  \"severity\": \"P2\",\n  \"service\": \"web\",\n  \"first_move\": \"roll back\",\n  \"reason\": \"A significant percentage of page loads are failing directly following a recent deploy 9 minutes ago, making the deploy the likely cause.\"\n}"
+ },
+ {
+  "id": "notifier-queue-stuck",
+  "want": "read logs",
+  "answer": "{\n  \"severity\": \"P2\",\n  \"service\": \"notifier\",\n  \"first_move\": \"read logs\",\n  \"reason\": \"Outbound notifications are stalled affecting customers, the last deploy was two days ago so rollback is not appropriate, and logs are needed to determine why delivery stopped.\"\n}"
+ },
+ {
+  "id": "api-region-dns",
+  "want": "check provider",
+  "answer": "{\"severity\":\"P2\",\"service\":\"api\",\"first_move\":\"check provider\",\"reason\":\"The cloud provider has an active DNS incident in ap-northeast that already explains the failure.\"}"
+ },
+ {
+  "id": "web-cdn-purge",
+  "want": "check provider",
+  "answer": "{\n  \"severity\": \"P1\",\n  \"service\": \"web\",\n  \"first_move\": \"check provider\",\n  \"reason\": \"Static assets are failing worldwide and the alert specifically points to an ongoing purge in the CDN external provider dashboard.\"\n}"
+ },
+ {
+  "id": "payments-deploy-validation",
+  "want": "roll back",
+  "answer": "{\n  \"severity\": \"P2\",\n  \"service\": \"payments\",\n  \"first_move\": \"roll back\",\n  \"reason\": \"Checkout validation errors began following a deploy 22 minutes ago, which is recent enough to be the direct cause.\"\n}"
+ },
+ {
+  "id": "api-slow-search",
+  "want": "read logs",
+  "answer": "{\n  \"severity\": \"P2\",\n  \"service\": \"api\",\n  \"first_move\": \"read logs\",\n  \"reason\": \"Latency has significantly degraded and customers are reporting slowness, but the deploy was 4 hours ago and the cause is unknown.\"\n}"
+ },
+ {
+  "id": "web-crawler",
+  "want": "no action",
+  "answer": "{\n  \"severity\": \"P3\",\n  \"service\": \"web\",\n  \"first_move\": \"no action\",\n  \"reason\": \"Traffic spike is due to a known search-engine crawler, latency remains normal, there are no errors, and no customers are impacted.\"\n}"
+ },
+ {
+  "id": "payments-webhook-retry",
+  "want": "no action",
+  "answer": "{\n  \"severity\": \"P3\",\n  \"service\": \"payments\",\n  \"first_move\": \"no action\",\n  \"reason\": \"All webhooks eventually delivered successfully, no customer is affected, and no failure has occurred.\"\n}"
+ },
+ {
+  "id": "api-partner-limit",
+  "want": "page owner",
+  "answer": "{\n  \"severity\": \"P3\",\n  \"service\": \"api\",\n  \"first_move\": \"page owner\",\n  \"reason\": \"Requests are being rejected following an overnight contract limit reduction, which requires a business or account decision about partner limits that on-call is not authorized to make.\"\n}"
+ },
+ {
+  "id": "web-deploy-layout",
+  "want": "roll back",
+  "answer": "{\n  \"severity\": \"P2\",\n  \"service\": \"web\",\n  \"first_move\": \"roll back\",\n  \"reason\": \"A broken checkout layout affecting users is likely caused by the recent deployment 25 minutes ago, so rolling back the deploy is the best immediate remedy.\"\n}"
+ },
+ {
+  "id": "notifier-vendor-quota",
+  "want": "check provider",
+  "answer": "{\n  \"severity\": \"P2\",\n  \"service\": \"notifier\",\n  \"first_move\": \"check provider\",\n  \"reason\": \"The alert specifically points to an outside service issue (email vendor returning 'daily quota exceeded') causing customer impact, with no recent deploys to roll back.\"\n}"
+ },
+ {
+  "id": "api-db-pool",
+  "want": "read logs",
+  "answer": "{\n  \"severity\": \"P2\",\n  \"service\": \"api\",\n  \"first_move\": \"read logs\",\n  \"reason\": \"The last deploy was 3 days ago, so a rollback is not appropriate, and it is not yet known what is exhausting the connection pool.\"\n}"
+ },
+ {
+  "id": "payments-key-in-logs",
+  "want": "page owner",
+  "answer": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments\",\n  \"first_move\": \"page owner\",\n  \"reason\": \"A secret provider API key was exposed in plain text in logs, constituting a security compromise that cannot be undone and requires the owner to revoke and rotate credentials immediately.\"\n}"
+ },
+ {
+  "id": "web-deploy-slow",
+  "want": "roll back",
+  "answer": "{\n  \"severity\": \"P2\",\n  \"service\": \"web\",\n  \"first_move\": \"roll back\",\n  \"reason\": \"Latency spiked significantly right after a deploy 11 minutes ago, making the recent deploy the likely cause.\"\n}"
+ },
+ {
+  "id": "api-audit-gap",
+  "want": "read logs",
+  "answer": "{\n  \"severity\": \"P3\",\n  \"service\": \"api\",\n  \"first_move\": \"read logs\",\n  \"reason\": \"The service was serving normally and no customers were affected, but the missing audit logs are unexplained and need investigation by inspecting the service's own output.\"\n}"
+ },
+ {
+  "id": "notifier-duplicate-sends",
+  "want": "read logs",
+  "answer": "{\n  \"severity\": \"P2\",\n  \"service\": \"notifier\",\n  \"first_move\": \"read logs\",\n  \"reason\": \"The deploy occurred 4 hours ago so it is not an immediate culprit, and we do not yet know what triggered the duplicate email loop, so reading the service logs is necessary to diagnose the issue.\"\n}"
+ },
+ {
+  "id": "payments-region-cloud",
+  "want": "check provider",
+  "answer": "{\n  \"severity\": \"P1\",\n  \"service\": \"payments\",\n  \"first_move\": \"check provider\",\n  \"reason\": \"Payments are completely failing in us-east affecting customers, and the alert points directly to a known networking incident on the cloud provider's status page.\"\n}"
+ },
+ {
+  "id": "web-bulk-delete",
+  "want": "page owner",
+  "answer": "{\n  \"severity\": \"P1\",\n  \"service\": \"web\",\n  \"first_move\": \"page owner\",\n  \"reason\": \"Accounts have already been deleted from an admin session, representing irreversible data loss or a potential security incident that requires the owner's immediate decision.\"\n}"
+ }
+]

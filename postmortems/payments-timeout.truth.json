@@ -1,0 +1,118 @@
+{
+ "timeline": [
+  {
+   "time": "02:14",
+   "what": "Payments v2.31 deployed. The release cuts the database connection pool from 50 to 20.",
+   "who": "Mei"
+  },
+  {
+   "time": "02:21",
+   "what": "First support ticket: the checkout spinner does not finish.",
+   "who": "Hana (Support)"
+  },
+  {
+   "time": "02:30",
+   "what": "Alert fires: payments p95 above 2 s for 2 minutes. Page sent to on-call.",
+   "who": "PagerDuty"
+  },
+  {
+   "time": "02:34",
+   "what": "Page acknowledged.",
+   "who": "Ravi"
+  },
+  {
+   "time": "02:39",
+   "what": "Payments logs show requests waiting for a database connection.",
+   "who": "Ravi"
+  },
+  {
+   "time": "02:43",
+   "what": "Incident declared (SEV-2). Aiko takes incident commander.",
+   "who": "Aiko"
+  },
+  {
+   "time": "02:47",
+   "what": "Mei joins and points at the pool size change in v2.31.",
+   "who": "Mei"
+  },
+  {
+   "time": "02:50",
+   "what": "Payments p95 peaks at 3.7 s. Client retries push the request rate up by about 80%.",
+   "who": "Ravi"
+  },
+  {
+   "time": "02:56",
+   "what": "Decision to roll back payments to v2.30.",
+   "who": "Aiko"
+  },
+  {
+   "time": "02:58",
+   "what": "Rollback to v2.30 started.",
+   "who": "Mei"
+  },
+  {
+   "time": "03:04",
+   "what": "Rollback complete on all payments pods.",
+   "who": "Mei"
+  },
+  {
+   "time": "03:07",
+   "what": "Payments p95 back under 500 ms. Payments restored.",
+   "who": "Ravi"
+  },
+  {
+   "time": "03:12",
+   "what": "1,184 failed payments replayed from the retry queue.",
+   "who": "Mei"
+  },
+  {
+   "time": "03:20",
+   "what": "Receipt emails for the replayed payments sent.",
+   "who": "Tom"
+  }
+ ],
+ "questions": {
+  "P1": {
+   "answer": "03:07"
+  },
+  "P2": {
+   "answer": "Mei"
+  },
+  "P3": {
+   "answer": 28,
+   "why": "alert 02:30 -> rollback started 02:58"
+  },
+  "P4": {
+   "answer": {
+    "time": "02:47",
+    "who": "Mei"
+   },
+   "why": "row after 02:43 Incident declared"
+  },
+  "P5": {
+   "answer": {
+    "who": "Ravi",
+    "time": "02:34"
+   }
+  },
+  "P6": {
+   "answer": {
+    "who": "Tom",
+    "what": "receipt emails for the replayed payments sent"
+   }
+  },
+  "P7": {
+   "answer": 1184
+  },
+  "P8": {
+   "answer": "v2.30"
+  },
+  "P9": {
+   "answer": 5,
+   "why": "rows 02:14, 02:47, 02:58, 03:04, 03:12"
+  },
+  "P10": {
+   "answer": "Aiko"
+  }
+ }
+}

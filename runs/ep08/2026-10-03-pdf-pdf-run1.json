@@ -1,0 +1,648 @@
+[
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "application/pdf",
+        "data": "<base64 omitted: postmortems/payments-timeout.pdf, 4767 bytes, md5 1a244ad4ce2ffce04ce5aac276e5eb8a>"
+       }
+      },
+      {
+       "text": "This is the postmortem for last night's payments incident. At what time were payments restored?\nReply with only the answer, as short as possible. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:20:51+00:00",
+  "latency_s": 3.79,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1100,
+   "candidatesTokenCount": 7,
+   "totalTokenCount": 1186,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 36
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1064
+    }
+   ],
+   "thoughtsTokenCount": 79,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "03:07 JST",
+  "cost_usd": 0.0011475,
+  "tag": "pdf",
+  "qid": "P1",
+  "score": {
+   "parsed": "03:07",
+   "truth": "03:07",
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "application/pdf",
+        "data": "<base64 omitted: postmortems/payments-timeout.pdf, 4767 bytes, md5 1a244ad4ce2ffce04ce5aac276e5eb8a>"
+       }
+      },
+      {
+       "text": "This is the postmortem for last night's payments incident. Who rolled back payments?\nReply with only the answer, as short as possible. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:20:51+00:00",
+  "latency_s": 2.66,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1098,
+   "candidatesTokenCount": 1,
+   "totalTokenCount": 1188,
+   "promptTokensDetails": [
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1064
+    },
+    {
+     "modality": "TEXT",
+     "tokenCount": 34
+    }
+   ],
+   "thoughtsTokenCount": 89,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "Mei",
+  "cost_usd": 0.001161,
+  "tag": "pdf",
+  "qid": "P2",
+  "score": {
+   "parsed": [
+    "Mei"
+   ],
+   "truth": "Mei",
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "application/pdf",
+        "data": "<base64 omitted: postmortems/payments-timeout.pdf, 4767 bytes, md5 1a244ad4ce2ffce04ce5aac276e5eb8a>"
+       }
+      },
+      {
+       "text": "This is the postmortem for last night's payments incident. How many minutes passed from the first alert to the start of the rollback?\nReply with only the answer, as short as possible. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:20:51+00:00",
+  "latency_s": 2.19,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1108,
+   "candidatesTokenCount": 3,
+   "totalTokenCount": 1111,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 44
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1064
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "28 minutes",
+  "cost_usd": 0.00084225,
+  "tag": "pdf",
+  "qid": "P3",
+  "score": {
+   "parsed": 28,
+   "truth": 28,
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "application/pdf",
+        "data": "<base64 omitted: postmortems/payments-timeout.pdf, 4767 bytes, md5 1a244ad4ce2ffce04ce5aac276e5eb8a>"
+       }
+      },
+      {
+       "text": "This is the postmortem for last night's payments incident. In the timeline, what is the entry right after the incident was declared? Give its time and who.\nReply with only the answer, as short as possible. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:20:51+00:00",
+  "latency_s": 2.21,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1114,
+   "candidatesTokenCount": 7,
+   "totalTokenCount": 1224,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 50
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1064
+    }
+   ],
+   "thoughtsTokenCount": 103,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "02:47, Mei",
+  "cost_usd": 0.001248,
+  "tag": "pdf",
+  "qid": "P4",
+  "score": {
+   "parsed": {
+    "time": "02:47",
+    "named": [
+     "Mei"
+    ]
+   },
+   "truth": {
+    "time": "02:47",
+    "who": "Mei"
+   },
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "application/pdf",
+        "data": "<base64 omitted: postmortems/payments-timeout.pdf, 4767 bytes, md5 1a244ad4ce2ffce04ce5aac276e5eb8a>"
+       }
+      },
+      {
+       "text": "This is the postmortem for last night's payments incident. Who acknowledged the page, and at what time?\nReply with only the answer, as short as possible. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:20:53+00:00",
+  "latency_s": 1.72,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1103,
+   "candidatesTokenCount": 11,
+   "totalTokenCount": 1165,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 39
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1064
+    }
+   ],
+   "thoughtsTokenCount": 51,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "Ravi, 02:34 JST",
+  "cost_usd": 0.00105975,
+  "tag": "pdf",
+  "qid": "P5",
+  "score": {
+   "parsed": {
+    "time": "02:34",
+    "named": [
+     "Ravi"
+    ]
+   },
+   "truth": {
+    "who": "Ravi",
+    "time": "02:34"
+   },
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "application/pdf",
+        "data": "<base64 omitted: postmortems/payments-timeout.pdf, 4767 bytes, md5 1a244ad4ce2ffce04ce5aac276e5eb8a>"
+       }
+      },
+      {
+       "text": "This is the postmortem for last night's payments incident. What happened at 03:20, and who did it?\nReply with only the answer, as short as possible. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:20:53+00:00",
+  "latency_s": 1.95,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1108,
+   "candidatesTokenCount": 11,
+   "totalTokenCount": 1180,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 44
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1064
+    }
+   ],
+   "thoughtsTokenCount": 61,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "Receipt emails for the replayed payments sent; Tom.",
+  "cost_usd": 0.001101,
+  "tag": "pdf",
+  "qid": "P6",
+  "score": {
+   "parsed": [
+    "Tom"
+   ],
+   "truth": {
+    "who": "Tom",
+    "what": "receipt emails for the replayed payments sent"
+   },
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "application/pdf",
+        "data": "<base64 omitted: postmortems/payments-timeout.pdf, 4767 bytes, md5 1a244ad4ce2ffce04ce5aac276e5eb8a>"
+       }
+      },
+      {
+       "text": "This is the postmortem for last night's payments incident. How many payments failed?\nReply with only the answer, as short as possible. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:20:54+00:00",
+  "latency_s": 1.78,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1098,
+   "candidatesTokenCount": 5,
+   "totalTokenCount": 1143,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 34
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1064
+    }
+   ],
+   "thoughtsTokenCount": 40,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "1,184",
+  "cost_usd": 0.00099225,
+  "tag": "pdf",
+  "qid": "P7",
+  "score": {
+   "parsed": 1184,
+   "truth": 1184,
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "application/pdf",
+        "data": "<base64 omitted: postmortems/payments-timeout.pdf, 4767 bytes, md5 1a244ad4ce2ffce04ce5aac276e5eb8a>"
+       }
+      },
+      {
+       "text": "This is the postmortem for last night's payments incident. Which version was payments rolled back to?\nReply with only the answer, as short as possible. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:20:55+00:00",
+  "latency_s": 1.86,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1101,
+   "candidatesTokenCount": 5,
+   "totalTokenCount": 1179,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 37
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1064
+    }
+   ],
+   "thoughtsTokenCount": 73,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "v2.30",
+  "cost_usd": 0.00111825,
+  "tag": "pdf",
+  "qid": "P8",
+  "score": {
+   "parsed": [
+    "v2.30"
+   ],
+   "truth": "v2.30",
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "application/pdf",
+        "data": "<base64 omitted: postmortems/payments-timeout.pdf, 4767 bytes, md5 1a244ad4ce2ffce04ce5aac276e5eb8a>"
+       }
+      },
+      {
+       "text": "This is the postmortem for last night's payments incident. How many timeline entries list Mei under Who?\nReply with only the answer, as short as possible. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:20:55+00:00",
+  "latency_s": 2.1,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1102,
+   "candidatesTokenCount": 1,
+   "totalTokenCount": 1358,
+   "promptTokensDetails": [
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1064
+    },
+    {
+     "modality": "TEXT",
+     "tokenCount": 38
+    }
+   ],
+   "thoughtsTokenCount": 255,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "5",
+  "cost_usd": 0.0017865,
+  "tag": "pdf",
+  "qid": "P9",
+  "score": {
+   "parsed": 5,
+   "truth": 5,
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "application/pdf",
+        "data": "<base64 omitted: postmortems/payments-timeout.pdf, 4767 bytes, md5 1a244ad4ce2ffce04ce5aac276e5eb8a>"
+       }
+      },
+      {
+       "text": "This is the postmortem for last night's payments incident. Who is listed for the 02:56 entry in the timeline?\nReply with only the answer, as short as possible. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:20:55+00:00",
+  "latency_s": 2.37,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1109,
+   "candidatesTokenCount": 2,
+   "totalTokenCount": 1167,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 45
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1064
+    }
+   ],
+   "thoughtsTokenCount": 56,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "Aiko",
+  "cost_usd": 0.00104925,
+  "tag": "pdf",
+  "qid": "P10",
+  "score": {
+   "parsed": [
+    "Aiko"
+   ],
+   "truth": "Aiko",
+   "ok": true
+  }
+ }
+]

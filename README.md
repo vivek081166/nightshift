@@ -34,6 +34,12 @@ You can write a Python function and call an HTTP API. No machine learning needed
     python3 measure/ep07_screen.py values   # the names and values the answers had, from runs/ep07 (also: choices)
     python3 measure/ep07_shape.py count     # recount the episode's numbers from the saved runs, no API call
 
+    python3 look.py arch/latency.png "For how many minutes in total was the payments p95 latency above 2 seconds?"   # the picture: a reading
+    python3 look.py arch/latency.csv "For how many minutes in total was the payments p95 latency above 2 seconds?"   # the numbers as text
+    python3 look.py postmortems/payments-timeout.pdf "How many payments failed?"   # the PDF: the number it prints
+    python3 look.py arch/latency.png "At what time was payments v2.31 deployed?" --detail low   # fewer tokens for the picture
+    python3 measure/ep08_screen.py readings   # every answer from five runs of the picture, and the truth, from runs/ep08 (also: pdf)
+
 The `ep03` tag holds `score.py` as the episode leaves it, with RULES filled in. The first five runs in
 the video used the same file with `RULES = ""` on line 14. Replace the RULES block with that one line
 to run them yourself.
@@ -53,6 +59,7 @@ the course depends on the vendor.
 | `ep05` | [Your LLM Cut Its Own Answer Short and Said OK](https://youtu.be/KRcB3oFzEWU) | `plan.py` gets cut off at 512 and still says HTTP 200; the finish-reason check; thinking low/default/high and four models on the thirty; the page owner line that every model followed too far |
 | `ep06` | [LLM Tool Calling Explained: It Made Up a Name, My Code Said No](https://youtu.be/0qm6Zav9udM) | `tools.py`: six function descriptions, the check before any tool call runs, and the loop. A made-up provider name refused with the real ones and fixed on the next try; `--list` sends the names as an enum; roll back gets the strictest check. `triage.py` is the start of the next episode |
 | `ep07` | [LLM Structured Output Explained: Valid JSON, and My Code Still Crashed (JSON Mode vs Schema)](https://youtu.be/N99lJy9cojs) | `triage.py` asks for the same answer three ways: in words only (backticks, valid JSON 0 of 30), with JSON mode (valid 30 of 30, in my shape 0 of 30) and with the shape (30 of 30, first move right 28 of 30). `read.py` is the on-call code that crashed. `measure/ep07_screen.py choices` shows an open model's choices crossed out by the shape |
+| `ep08` | [Send Images and PDFs to an LLM: Why Chart Readings Change](https://youtu.be/_c2H98LSzKc) | `look.py` sends a picture or a PDF as its bytes in base64 plus a label for its type, next to the question. The dashboard picture gives a reading that moves (33, 35, 35; the truth is 34); the numbers as text give 34 every time; the PDF gives the number it prints (1,184), 30 of 30 right. `--detail low` sets how many tokens the picture becomes. `measure/ep08_screen.py` shows the readings and the PDF count |
 
 The map the course follows: [Andrew Ng's AI Engineering Skills Map](https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map)
 

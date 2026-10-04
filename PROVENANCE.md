@@ -184,3 +184,40 @@ Every number the episode speaks comes from a file below.
     Gemini: after `{"severity": "` the top choice is `high` (0.990); with only P1/P2/P3 allowed, `P` is the one left.
   - `dry-2026-10-02/`: the on-screen commands run once before the camera takes.
 - Spend: the measurement runs $0.17, the five camera runs that call the model $0.07.
+
+## ep08
+
+Images and PDFs. Measured 2026-10-03, run on camera 2026-10-04. `look.py` sends the file as the first part (its bytes
+in base64 + `mime_type` from `TYPES`; a `.csv` goes as text) and the question second, `gemini-3.8-flash` at
+thinkingLevel low. The dashboard (`arch/latency.png`, from `arch/make_graph.py`) and the postmortem
+(`postmortems/payments-timeout.pdf`, from `postmortems/make_pdf.py`) are synthetic; the answers come from
+`arch/latency.csv` and `postmortems/payments-timeout.truth.json`. Every number the episode speaks comes from a file below.
+
+- Camera runs in the episode, terminal verbatim (2026-10-04), `runs/ep08/2026-10-04-ep08-camera-*`:
+  `-a.txt` (`look.py arch/latency.png`, the duration question three times: 33, 35, 35 minutes; no 34, so "None of the
+  three was right"; `(image 1,100)` on every cost line), `-d.txt` (`look.py arch/latency.csv`, the same question three
+  times: 34, 34, 34), `-e.txt` (`look.py postmortems/payments-timeout.pdf "How many payments failed?"`: 1,184, sent as
+  `application/pdf`, `(image 1,064)` for the 2 pages; then `measure/ep08_screen.py pdf`: 10 questions, 3 runs, right
+  30 / 30, no API call), `-readings.txt` (`measure/ep08_screen.py readings`, no API call).
+- The truth, 34 minutes: `arch/latency.csv` has 34 rows with `payments_p95_ms` over 2,000, one run of minutes from 02:28
+  to 03:01. "Two seconds" is the question's threshold.
+- Twenty minutes between time labels: `arch/make_graph.py` sets the x axis to `MultipleLocator(20)`, one minute per row.
+- 1,184: the PDF's page 2 timeline prints "03:12 1,184 failed payments replayed from the retry queue."
+  (`runs/ep08/2026-10-03-pdf-extracted.txt`); question P7 answered 1,184 in all 3 PDF runs and in both PDF calls of `look-probe2`.
+- Run files, `runs/ep08/2026-10-03-*`, the file first and the question second:
+  - `graph-A-run{1,2,3}`, `graph-res-high-run{1,2}`: `arch/latency.png` at 1,100 image tokens, the ten dashboard
+    questions (Q1-Q10), 50 of 50 inside the tolerances fixed before any call (times +-2 min, ms +-10%, minutes +-3),
+    0 exact. Minutes above 2 s: 35, 34, 35, 33, 34. These five are the readings screen.
+  - `look-probe2`: `look.py`'s exact request bodies. The picture: 1,100 image tokens, 34 text tokens for the question;
+    with graph-A and res-high, the duration answers on `latency.png` are 33 x3, 34 x4, 35 x4.
+  - `look-probe`: `look.py`'s exact bodies for the deploy question, 10 at `--detail low` (264 image tokens), 5 at the
+    default.
+  - `graph-res-low-run{1,2}` (264 image tokens) and `graph-res-medium-run{1,2}` (527): 9 of 10 inside tolerance in each
+    run; the default (1,100) had none outside.
+  - `graph-csv-run1`: the numbers as text, 12 of 12 exact, minutes above 2 s = 34.
+  - `pdf-pdf-run{1,2,3}`: the PDF, 1,064 image tokens, 10 questions, 30 of 30 right. `pdf-text-run1`: the extracted
+    text instead, 10 of 10.
+  - `graph-B-run{1,2,3}` is a different picture (`arch/latency-rate.png`), `graph-800-run{1,2}` the dashboard at 800 px,
+    `graph-tokens.json` countTokens and the per-part resolution probe; none of them is a number in the episode.
+- Harness (not episode code): `measure/ep08.py` records every call (requests saved without the base64, md5 kept).
+- Spend: the measurement runs $0.66 (`2026-10-03-spend.json`), the two look.py probes $0.10, the seven camera calls $0.04.

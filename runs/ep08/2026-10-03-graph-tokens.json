@@ -1,0 +1,702 @@
+[
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "countTokens",
+  "url_path": "/v1beta/models/gemini-3.8-flash:countTokens",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency.png, 82630 bytes, md5 3f4f2eb531e7e88dccb276af9e096ba2>"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:16:03+00:00",
+  "latency_s": 0.29,
+  "retries": [],
+  "error": null,
+  "countTokens": {
+   "totalTokens": 1101,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 1
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1100
+    }
+   ]
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "countTokens",
+  "url_path": "/v1beta/models/gemini-3.8-flash:countTokens",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency-rate.png, 122320 bytes, md5 434c6a939c417420b58b73aa6239322b>"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:16:03+00:00",
+  "latency_s": 0.3,
+  "retries": [],
+  "error": null,
+  "countTokens": {
+   "totalTokens": 1101,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 1
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1100
+    }
+   ]
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "countTokens",
+  "url_path": "/v1beta/models/gemini-3.8-flash:countTokens",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency-800.png, 64695 bytes, md5 c524c7c546c52c020876ae9f42d575ee>"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:16:04+00:00",
+  "latency_s": 0.27,
+  "retries": [],
+  "error": null,
+  "countTokens": {
+   "totalTokens": 1101,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 1
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1100
+    }
+   ]
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "countTokens",
+  "url_path": "/v1beta/models/gemini-3.8-flash:countTokens",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "application/pdf",
+        "data": "<base64 omitted: postmortems/payments-timeout.pdf, 4767 bytes, md5 1a244ad4ce2ffce04ce5aac276e5eb8a>"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:16:04+00:00",
+  "latency_s": 0.72,
+  "retries": [],
+  "error": null,
+  "countTokens": {
+   "totalTokens": 1121,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 1
+    },
+    {
+     "modality": "DOCUMENT",
+     "tokenCount": 1120
+    }
+   ]
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "countTokens",
+  "url_path": "/v1beta/models/gemini-3.8-flash:countTokens",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "text": "x"
+      }
+     ]
+    }
+   ]
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:16:05+00:00",
+  "latency_s": 0.16,
+  "retries": [],
+  "error": null,
+  "countTokens": {
+   "totalTokens": 2,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 2
+    }
+   ]
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency.png, 82630 bytes, md5 3f4f2eb531e7e88dccb276af9e096ba2>"
+       },
+       "media_resolution": {
+        "level": "media_resolution_low"
+       }
+      },
+      {
+       "text": "This is a screenshot of our latency dashboard from last night. What was the highest payments p95 latency of the night, in milliseconds?\nReply with only the answer: a time as HH:MM, a latency in ms, a rate in req/s, a number of minutes, or one word. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:16:05+00:00",
+  "latency_s": 3.91,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 331,
+   "candidatesTokenCount": 5,
+   "totalTokenCount": 1016,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 67
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 264
+    }
+   ],
+   "thoughtsTokenCount": 680,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "3750 ms",
+  "cost_usd": 0.002817,
+  "tag": "per-part media_resolution_low on v1beta",
+  "score": {
+   "parsed": 3750.0,
+   "truth": 3709,
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency.png, 82630 bytes, md5 3f4f2eb531e7e88dccb276af9e096ba2>"
+       },
+       "media_resolution": {
+        "level": "media_resolution_medium"
+       }
+      },
+      {
+       "text": "This is a screenshot of our latency dashboard from last night. What was the highest payments p95 latency of the night, in milliseconds?\nReply with only the answer: a time as HH:MM, a latency in ms, a rate in req/s, a number of minutes, or one word. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:16:09+00:00",
+  "latency_s": 3.81,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 594,
+   "candidatesTokenCount": 5,
+   "totalTokenCount": 1173,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 67
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 527
+    }
+   ],
+   "thoughtsTokenCount": 574,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "3750 ms",
+  "cost_usd": 0.00261675,
+  "tag": "per-part media_resolution_medium on v1beta",
+  "score": {
+   "parsed": 3750.0,
+   "truth": 3709,
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency.png, 82630 bytes, md5 3f4f2eb531e7e88dccb276af9e096ba2>"
+       },
+       "media_resolution": {
+        "level": "media_resolution_high"
+       }
+      },
+      {
+       "text": "This is a screenshot of our latency dashboard from last night. What was the highest payments p95 latency of the night, in milliseconds?\nReply with only the answer: a time as HH:MM, a latency in ms, a rate in req/s, a number of minutes, or one word. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:16:13+00:00",
+  "latency_s": 4.42,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1167,
+   "candidatesTokenCount": 5,
+   "totalTokenCount": 1876,
+   "promptTokensDetails": [
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1100
+    },
+    {
+     "modality": "TEXT",
+     "tokenCount": 67
+    }
+   ],
+   "thoughtsTokenCount": 704,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "3700 ms",
+  "cost_usd": 0.003534,
+  "tag": "per-part media_resolution_high on v1beta",
+  "score": {
+   "parsed": 3700.0,
+   "truth": 3709,
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency.png, 82630 bytes, md5 3f4f2eb531e7e88dccb276af9e096ba2>"
+       },
+       "media_resolution": {
+        "level": "media_resolution_ultra_high"
+       }
+      },
+      {
+       "text": "This is a screenshot of our latency dashboard from last night. What was the highest payments p95 latency of the night, in milliseconds?\nReply with only the answer: a time as HH:MM, a latency in ms, a rate in req/s, a number of minutes, or one word. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:16:17+00:00",
+  "latency_s": 6.0,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 2272,
+   "candidatesTokenCount": 5,
+   "totalTokenCount": 3209,
+   "promptTokensDetails": [
+    {
+     "modality": "IMAGE",
+     "tokenCount": 2205
+    },
+    {
+     "modality": "TEXT",
+     "tokenCount": 67
+    }
+   ],
+   "thoughtsTokenCount": 932,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "3700 ms",
+  "cost_usd": 0.00521775,
+  "tag": "per-part media_resolution_ultra_high on v1beta",
+  "score": {
+   "parsed": 3700.0,
+   "truth": 3709,
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1alpha",
+  "method": "generateContent",
+  "url_path": "/v1alpha/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency.png, 82630 bytes, md5 3f4f2eb531e7e88dccb276af9e096ba2>"
+       },
+       "media_resolution": {
+        "level": "media_resolution_low"
+       }
+      },
+      {
+       "text": "This is a screenshot of our latency dashboard from last night. What was the highest payments p95 latency of the night, in milliseconds?\nReply with only the answer: a time as HH:MM, a latency in ms, a rate in req/s, a number of minutes, or one word. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:16:23+00:00",
+  "latency_s": 2.35,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 331,
+   "candidatesTokenCount": 5,
+   "totalTokenCount": 629,
+   "promptTokensDetails": [
+    {
+     "modality": "IMAGE",
+     "tokenCount": 264
+    },
+    {
+     "modality": "TEXT",
+     "tokenCount": 67
+    }
+   ],
+   "thoughtsTokenCount": 293,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "3750 ms",
+  "cost_usd": 0.00136575,
+  "tag": "per-part media_resolution_low on v1alpha",
+  "score": {
+   "parsed": 3750.0,
+   "truth": 3709,
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1alpha",
+  "method": "generateContent",
+  "url_path": "/v1alpha/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency.png, 82630 bytes, md5 3f4f2eb531e7e88dccb276af9e096ba2>"
+       },
+       "media_resolution": {
+        "level": "media_resolution_medium"
+       }
+      },
+      {
+       "text": "This is a screenshot of our latency dashboard from last night. What was the highest payments p95 latency of the night, in milliseconds?\nReply with only the answer: a time as HH:MM, a latency in ms, a rate in req/s, a number of minutes, or one word. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:16:25+00:00",
+  "latency_s": 5.24,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 594,
+   "candidatesTokenCount": 5,
+   "totalTokenCount": 1753,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 67
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 527
+    }
+   ],
+   "thoughtsTokenCount": 1154,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "3750 ms",
+  "cost_usd": 0.00479175,
+  "tag": "per-part media_resolution_medium on v1alpha",
+  "score": {
+   "parsed": 3750.0,
+   "truth": 3709,
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1alpha",
+  "method": "generateContent",
+  "url_path": "/v1alpha/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency.png, 82630 bytes, md5 3f4f2eb531e7e88dccb276af9e096ba2>"
+       },
+       "media_resolution": {
+        "level": "media_resolution_high"
+       }
+      },
+      {
+       "text": "This is a screenshot of our latency dashboard from last night. What was the highest payments p95 latency of the night, in milliseconds?\nReply with only the answer: a time as HH:MM, a latency in ms, a rate in req/s, a number of minutes, or one word. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:16:31+00:00",
+  "latency_s": 5.18,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1167,
+   "candidatesTokenCount": 5,
+   "totalTokenCount": 2030,
+   "promptTokensDetails": [
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1100
+    },
+    {
+     "modality": "TEXT",
+     "tokenCount": 67
+    }
+   ],
+   "thoughtsTokenCount": 858,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "3750 ms",
+  "cost_usd": 0.0041115,
+  "tag": "per-part media_resolution_high on v1alpha",
+  "score": {
+   "parsed": 3750.0,
+   "truth": 3709,
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1alpha",
+  "method": "generateContent",
+  "url_path": "/v1alpha/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency.png, 82630 bytes, md5 3f4f2eb531e7e88dccb276af9e096ba2>"
+       },
+       "media_resolution": {
+        "level": "media_resolution_ultra_high"
+       }
+      },
+      {
+       "text": "This is a screenshot of our latency dashboard from last night. What was the highest payments p95 latency of the night, in milliseconds?\nReply with only the answer: a time as HH:MM, a latency in ms, a rate in req/s, a number of minutes, or one word. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:16:36+00:00",
+  "latency_s": 4.73,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 2272,
+   "candidatesTokenCount": 5,
+   "totalTokenCount": 3036,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 67
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 2205
+    }
+   ],
+   "thoughtsTokenCount": 759,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "3700 ms",
+  "cost_usd": 0.004569,
+  "tag": "per-part media_resolution_ultra_high on v1alpha",
+  "score": {
+   "parsed": 3700.0,
+   "truth": 3709,
+   "ok": true
+  }
+ }
+]

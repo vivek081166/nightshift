@@ -1,0 +1,746 @@
+[
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency-rate.png, 122320 bytes, md5 434c6a939c417420b58b73aa6239322b>"
+       }
+      },
+      {
+       "text": "This is a screenshot of our latency dashboard from last night. At what time did the payments p95 latency first go above 2 seconds?\nReply with only the answer: a time as HH:MM, a latency in ms, a rate in req/s, a number of minutes, or one word. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:18:13+00:00",
+  "latency_s": 5.27,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1168,
+   "candidatesTokenCount": 5,
+   "totalTokenCount": 2357,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 68
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1100
+    }
+   ],
+   "thoughtsTokenCount": 1184,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "02:27",
+  "cost_usd": 0.00533475,
+  "tag": "arch/latency-rate.png",
+  "qid": "Q1",
+  "score": {
+   "parsed": "02:27",
+   "truth": "02:28",
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency-rate.png, 122320 bytes, md5 434c6a939c417420b58b73aa6239322b>"
+       }
+      },
+      {
+       "text": "This is a screenshot of our latency dashboard from last night. What was the highest payments p95 latency of the night, in milliseconds?\nReply with only the answer: a time as HH:MM, a latency in ms, a rate in req/s, a number of minutes, or one word. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:18:13+00:00",
+  "latency_s": 4.77,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1167,
+   "candidatesTokenCount": 5,
+   "totalTokenCount": 2001,
+   "promptTokensDetails": [
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1100
+    },
+    {
+     "modality": "TEXT",
+     "tokenCount": 67
+    }
+   ],
+   "thoughtsTokenCount": 829,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "3800 ms",
+  "cost_usd": 0.00400275,
+  "tag": "arch/latency-rate.png",
+  "qid": "Q2",
+  "score": {
+   "parsed": 3800.0,
+   "truth": 3709,
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency-rate.png, 122320 bytes, md5 434c6a939c417420b58b73aa6239322b>"
+       }
+      },
+      {
+       "text": "This is a screenshot of our latency dashboard from last night. At what time did the payments p95 latency reach its highest point?\nReply with only the answer: a time as HH:MM, a latency in ms, a rate in req/s, a number of minutes, or one word. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:18:13+00:00",
+  "latency_s": 3.06,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1166,
+   "candidatesTokenCount": 5,
+   "totalTokenCount": 1581,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 66
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1100
+    }
+   ],
+   "thoughtsTokenCount": 410,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "02:50",
+  "cost_usd": 0.00243075,
+  "tag": "arch/latency-rate.png",
+  "qid": "Q3",
+  "score": {
+   "parsed": "02:50",
+   "truth": "02:50",
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency-rate.png, 122320 bytes, md5 434c6a939c417420b58b73aa6239322b>"
+       }
+      },
+      {
+       "text": "This is a screenshot of our latency dashboard from last night. At what time was payments v2.31 deployed?\nReply with only the answer: a time as HH:MM, a latency in ms, a rate in req/s, a number of minutes, or one word. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:18:13+00:00",
+  "latency_s": 4.39,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1163,
+   "candidatesTokenCount": 5,
+   "totalTokenCount": 1962,
+   "promptTokensDetails": [
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1100
+    },
+    {
+     "modality": "TEXT",
+     "tokenCount": 63
+    }
+   ],
+   "thoughtsTokenCount": 794,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "02:15",
+  "cost_usd": 0.0038685,
+  "tag": "arch/latency-rate.png",
+  "qid": "Q4",
+  "score": {
+   "parsed": "02:15",
+   "truth": "02:14",
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency-rate.png, 122320 bytes, md5 434c6a939c417420b58b73aa6239322b>"
+       }
+      },
+      {
+       "text": "This is a screenshot of our latency dashboard from last night. Did the payments p95 latency first go above 1 second before or after the deploy?\nReply with only the answer: a time as HH:MM, a latency in ms, a rate in req/s, a number of minutes, or one word. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:18:16+00:00",
+  "latency_s": 2.69,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1170,
+   "candidatesTokenCount": 1,
+   "totalTokenCount": 1322,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 70
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1100
+    }
+   ],
+   "thoughtsTokenCount": 151,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "After",
+  "cost_usd": 0.0014475,
+  "tag": "arch/latency-rate.png",
+  "qid": "Q5",
+  "score": {
+   "parsed": "after",
+   "truth": "after",
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency-rate.png, 122320 bytes, md5 434c6a939c417420b58b73aa6239322b>"
+       }
+      },
+      {
+       "text": "This is a screenshot of our latency dashboard from last night. At what time did the rollback start?\nReply with only the answer: a time as HH:MM, a latency in ms, a rate in req/s, a number of minutes, or one word. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:18:17+00:00",
+  "latency_s": 4.18,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1159,
+   "candidatesTokenCount": 5,
+   "totalTokenCount": 2072,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 59
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1100
+    }
+   ],
+   "thoughtsTokenCount": 908,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "02:58",
+  "cost_usd": 0.004293,
+  "tag": "arch/latency-rate.png",
+  "qid": "Q6",
+  "score": {
+   "parsed": "02:58",
+   "truth": "02:58",
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency-rate.png, 122320 bytes, md5 434c6a939c417420b58b73aa6239322b>"
+       }
+      },
+      {
+       "text": "This is a screenshot of our latency dashboard from last night. After the peak, at what time did the payments p95 latency drop back under 500 ms and stay there?\nReply with only the answer: a time as HH:MM, a latency in ms, a rate in req/s, a number of minutes, or one word. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:18:18+00:00",
+  "latency_s": 6.3,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1177,
+   "candidatesTokenCount": 5,
+   "totalTokenCount": 2436,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 77
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1100
+    }
+   ],
+   "thoughtsTokenCount": 1254,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "03:08",
+  "cost_usd": 0.005604,
+  "tag": "arch/latency-rate.png",
+  "qid": "Q7",
+  "score": {
+   "parsed": "03:08",
+   "truth": "03:07",
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency-rate.png, 122320 bytes, md5 434c6a939c417420b58b73aa6239322b>"
+       }
+      },
+      {
+       "text": "This is a screenshot of our latency dashboard from last night. At the moment payments p95 latency peaked, what was the api p95 latency, in milliseconds?\nReply with only the answer: a time as HH:MM, a latency in ms, a rate in req/s, a number of minutes, or one word. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:18:18+00:00",
+  "latency_s": 6.56,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1173,
+   "candidatesTokenCount": 4,
+   "totalTokenCount": 2694,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 73
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1100
+    }
+   ],
+   "thoughtsTokenCount": 1517,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "550 ms",
+  "cost_usd": 0.0065835,
+  "tag": "arch/latency-rate.png",
+  "qid": "Q8",
+  "score": {
+   "parsed": 550.0,
+   "truth": 533,
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency-rate.png, 122320 bytes, md5 434c6a939c417420b58b73aa6239322b>"
+       }
+      },
+      {
+       "text": "This is a screenshot of our latency dashboard from last night. What was the payments p95 latency at 01:30, in milliseconds?\nReply with only the answer: a time as HH:MM, a latency in ms, a rate in req/s, a number of minutes, or one word. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:18:19+00:00",
+  "latency_s": 3.82,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1170,
+   "candidatesTokenCount": 4,
+   "totalTokenCount": 1785,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 70
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1100
+    }
+   ],
+   "thoughtsTokenCount": 611,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "300 ms",
+  "cost_usd": 0.00318375,
+  "tag": "arch/latency-rate.png",
+  "qid": "Q9",
+  "score": {
+   "parsed": 300.0,
+   "truth": 309,
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency-rate.png, 122320 bytes, md5 434c6a939c417420b58b73aa6239322b>"
+       }
+      },
+      {
+       "text": "This is a screenshot of our latency dashboard from last night. For how many minutes in total was the payments p95 latency above 2 seconds?\nReply with only the answer: a time as HH:MM, a latency in ms, a rate in req/s, a number of minutes, or one word. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:18:21+00:00",
+  "latency_s": 7.2,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1169,
+   "candidatesTokenCount": 3,
+   "totalTokenCount": 2701,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 69
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1100
+    }
+   ],
+   "thoughtsTokenCount": 1529,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "36 minutes",
+  "cost_usd": 0.00662175,
+  "tag": "arch/latency-rate.png",
+  "qid": "Q10",
+  "score": {
+   "parsed": 36.0,
+   "truth": 34,
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency-rate.png, 122320 bytes, md5 434c6a939c417420b58b73aa6239322b>"
+       }
+      },
+      {
+       "text": "This is a screenshot of our latency dashboard from last night. What was the payments request rate at the moment payments p95 latency peaked, in requests per second?\nReply with only the answer: a time as HH:MM, a latency in ms, a rate in req/s, a number of minutes, or one word. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:18:22+00:00",
+  "latency_s": 3.81,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1172,
+   "candidatesTokenCount": 6,
+   "totalTokenCount": 1827,
+   "promptTokensDetails": [
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1100
+    },
+    {
+     "modality": "TEXT",
+     "tokenCount": 72
+    }
+   ],
+   "thoughtsTokenCount": 649,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "270 req/s",
+  "cost_usd": 0.00333525,
+  "tag": "arch/latency-rate.png",
+  "qid": "R1",
+  "score": {
+   "parsed": 270.0,
+   "truth": 271.0,
+   "ok": true
+  }
+ },
+ {
+  "model": "gemini-3.8-flash",
+  "api": "v1beta",
+  "method": "generateContent",
+  "url_path": "/v1beta/models/gemini-3.8-flash:generateContent",
+  "request": {
+   "contents": [
+    {
+     "role": "user",
+     "parts": [
+      {
+       "inline_data": {
+        "mime_type": "image/png",
+        "data": "<base64 omitted: arch/latency-rate.png, 122320 bytes, md5 434c6a939c417420b58b73aa6239322b>"
+       }
+      },
+      {
+       "text": "This is a screenshot of our latency dashboard from last night. What was the payments request rate at 01:30, in requests per second?\nReply with only the answer: a time as HH:MM, a latency in ms, a rate in req/s, a number of minutes, or one word. No explanation."
+      }
+     ]
+    }
+   ],
+   "generationConfig": {
+    "thinkingConfig": {
+     "thinkingLevel": "low"
+    }
+   }
+  },
+  "http": 200,
+  "utc": "2026-10-03T13:18:24+00:00",
+  "latency_s": 3.2,
+  "retries": [],
+  "error": null,
+  "finishReason": "STOP",
+  "usageMetadata": {
+   "promptTokenCount": 1170,
+   "candidatesTokenCount": 5,
+   "totalTokenCount": 1527,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 70
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1100
+    }
+   ],
+   "thoughtsTokenCount": 352,
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "text": "150 req/s",
+  "cost_usd": 0.00221625,
+  "tag": "arch/latency-rate.png",
+  "qid": "R2",
+  "score": {
+   "parsed": 150.0,
+   "truth": 150.2,
+   "ok": true
+  }
+ }
+]

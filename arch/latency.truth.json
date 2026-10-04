@@ -1,0 +1,77 @@
+{
+ "source": "arch/latency.csv",
+ "questions": {
+  "Q1": {
+   "q": "At what time did the payments p95 latency first go above 2 seconds?",
+   "kind": "time",
+   "tol": 2,
+   "truth": "02:28"
+  },
+  "Q2": {
+   "q": "What was the highest payments p95 latency of the night, in milliseconds?",
+   "kind": "ms",
+   "tol": 0.1,
+   "truth": 3709
+  },
+  "Q3": {
+   "q": "At what time did the payments p95 latency reach its highest point?",
+   "kind": "time",
+   "tol": 2,
+   "truth": "02:50"
+  },
+  "Q4": {
+   "q": "At what time was payments v2.31 deployed?",
+   "kind": "time",
+   "tol": 2,
+   "truth": "02:14"
+  },
+  "Q5": {
+   "q": "Did the payments p95 latency first go above 1 second before or after the deploy?",
+   "kind": "word",
+   "tol": null,
+   "truth": "after"
+  },
+  "Q6": {
+   "q": "At what time did the rollback start?",
+   "kind": "time",
+   "tol": 2,
+   "truth": "02:58"
+  },
+  "Q7": {
+   "q": "After the peak, at what time did the payments p95 latency drop back under 500 ms and stay there?",
+   "kind": "time",
+   "tol": 2,
+   "truth": "03:07"
+  },
+  "Q8": {
+   "q": "At the moment payments p95 latency peaked, what was the api p95 latency, in milliseconds?",
+   "kind": "ms",
+   "tol": 0.1,
+   "truth": 533
+  },
+  "Q9": {
+   "q": "What was the payments p95 latency at 01:30, in milliseconds?",
+   "kind": "ms",
+   "tol": 0.1,
+   "truth": 309
+  },
+  "Q10": {
+   "q": "For how many minutes in total was the payments p95 latency above 2 seconds?",
+   "kind": "minutes",
+   "tol": 3,
+   "truth": 34
+  },
+  "R1": {
+   "q": "What was the payments request rate at the moment payments p95 latency peaked, in requests per second?",
+   "kind": "rps",
+   "tol": 0.1,
+   "truth": 271.0
+  },
+  "R2": {
+   "q": "What was the payments request rate at 01:30, in requests per second?",
+   "kind": "rps",
+   "tol": 0.1,
+   "truth": 150.2
+  }
+ }
+}

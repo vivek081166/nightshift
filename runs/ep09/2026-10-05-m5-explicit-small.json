@@ -1,0 +1,18 @@
+{
+ "request": {
+  "model": "models/gemini-3.8-flash",
+  "systemInstruction": {
+   "parts": [
+    {
+     "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n"
+    }
+   ]
+  },
+  "ttl": "300s"
+ },
+ "http": 400,
+ "wall_s": 0.207,
+ "response": null,
+ "error": "{\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"Cached content is too small. total_token_count=171, min_total_token_count=1024\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n",
+ "SYSTEM_tokens": 172
+}

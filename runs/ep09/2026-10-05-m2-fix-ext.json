@@ -1,0 +1,1386 @@
+{
+ "meta": {
+  "extra": true,
+  "variant": "fix",
+  "revision_tag": "Revision 2026-10-05d",
+  "handbook": "md5 df25d9adff5af6478380b25c9786b6b0, 13168 tokens by countTokens",
+  "order": "alerts 11-30, serial, continuing m2-fix"
+ },
+ "started_utc": "2026-10-04T16:06:57+00:00",
+ "calls": [
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\napi: 340 requests in 5 min returned another customer's booking details, 1 customer report, last deploy 2 days ago.\nReply in JSON with the severity, the service, the first move, and why.\nIt is now 01:06:57."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 df25d9adff5af6478380b25c9786b6b0, 13168 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T16:06:57.832+00:00",
+   "wall_s": 5.729,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P1\",\n  \"service\": \"api\",\n  \"first move\": \"page owner\",\n  \"why\": \"Customer data has already been exposed to the wrong people, which cannot be undone and requires immediate notification to the service owner.\"\n}\n```",
+         "thoughtSignature": "ErYKCrMKAWkUfRMJqxrlH3Bdjij9PT35RLss9ycjrH7OXYiooh2XO2OKuH1n2iVRQkmtm0TmqpHjN2CzCOVDNN/f/eKQuoa/riFC123K8fFgdfGgmltJiCkA0rSabW8X36AqY/n0KHo/mMGVpTRaDeeLrD9UcZqJJyBmWVdzCJrGdso8PQ4LaL0SWwzkJyw3+ZVGzdBF8opsiLxULTc3ffgf0q1QnPAPjuHMm/aQQH/77tfnOtsdP1exWWLAf3GWIbh8Djm+8GIORO5T/gv+1Q1FKohB+UyhDtRH+QbHB2YIzzpeze/DoKJ5ex07mqEAVqOU0opHZnuYLgQswCp5A8xTzKPSrKr4wLeznBibbvIVpOiMoeuwoQ+XOzmxC0Qzrg04jKo0tuVMKuINAkRRShU6opHDpCauj3qE0WKKJps7QwV82jc7unkVCzYmZazRSEKNkVFO47GL5rEb0R+kSEbJ9kaayEv3PQlaz6L0tiZnvqLpiIiqOKyjLaEvbgMLLyxsvYZ+y4MXNnKfO2kNB4HInlvjyZC83QmpDgRwD8mTN483b88feN8Nr45HPnaBwszta3te0nVaPDj1xru/OF1A0M60rkw6FerkItrXJYxjOZUj6OVnuiboWwJHb5DeFE/WPLbQHFf6SU7qsqyAA2EOMe+BcZVDlPhAl8XCN0rSc+JkoWDpZ9jgoT+doiexRifQgax7uPzdA1VftiwoRUe+/8b59XN9NsJtXM/I9BTcFeNFfB/JQSZ3bUU98AfXSg42DoPcqTc5p+VxWy888REqCjlqv0GvCspyUfRCm5940b8ARSiWBeTRYKxi/mHyHhN3UY2K6KntJHOrssI5yTJTDTZB1GCEPeQF3XK6RN4qGbjPkk5JOF6+X0ega5G3al3FQQiztpUkrpA0+fZydDKyKtpJks7vGu1ISlWAThlxJkktEkg71FIBM2PIhA759qeu9HC7nTGBinsTbMU3Av0E+g/u7vmvNpDYWNnELiFRUZJJZxgI58GfInXF56gZnf8S8/IJDGu0q46nbtId/XJUfym/SAdQ0A/cLL7n8gAAOQdcde7y0vOfCqz4E8QsdT/GRAvmMcAZBnd6deg5aeBlv5NAjstbNJdN9lnyosyiEUYmkRQ2oMAkGcysCilIewftvJIvb//93CTxBNvyxJ27TRRcnSqK1jv5A+iC8G/lKE+2K5qC0xvvE5aJUNA8xMJnanwkGf1186hBeui3mCbp+i9EV2ZXD9h4q/4O7CQfO+4cGB8z9ZdeX3O3OhuGa+G65WGTXQ9ThSIXw06FBt3+XCLOvWB0efhGMtey/F2ESVGBGfMg6XxYjVTywzlwPafqOYaWnmZHrNmUvjKPgYAbesLZkarKp8KV1kLPImPgtuTSTlnZYhfgw35P3xuy2i35wE49jsW8T5gNOcMCuU6Cb4YaTFBkibtM+R0spP6RyFTSxxCKbS8RYwUKjWv/PiKHs/fMrGkx3gmle7B830ow75EqNsUNJiia7BzcqmpvXlwaHeOJN8EQCiP9lUZcxmCsu69QOR6aJUDlWeFml8Lnlx78v0qC5Sdo9SjzsCbMnLEx/0LZyhw37p6oXygpHCp39AvWhbwpf014YvTnOrnG2i98ALxut5NC6KU+D7glMYOQE80Zavhv9CK4vLTRiXRYGrHCFrwsbRCEpYuCbVwde6+HgWXhIBMjKQnrTDXKjHqb/1Ab5OVjMmLlSsPvQ1jPSTc3j2pf4zeefIfgD1opd4u/LYs+9SvQ1lGjiX47IU02sjpa5vQ="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 13405,
+     "candidatesTokenCount": 65,
+     "totalTokenCount": 13779,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 13405
+      }
+     ],
+     "thoughtsTokenCount": 309,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "onnCaq_fDq6v2roP6-etYQ"
+   },
+   "text": "```json\n{\n  \"severity\": \"P1\",\n  \"service\": \"api\",\n  \"first move\": \"page owner\",\n  \"why\": \"Customer data has already been exposed to the wrong people, which cannot be undone and requires immediate notification to the service owner.\"\n}\n```",
+   "prompt": 13405,
+   "cached": 0,
+   "cost_usd": 0.01145625,
+   "id": "api-data-leak"
+  },
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\npayments: 14 refunds issued twice in the last hour, 182,000 yen total, no errors logged, last deploy 6 days ago.\nReply in JSON with the severity, the service, the first move, and why.\nIt is now 01:07:03."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 df25d9adff5af6478380b25c9786b6b0, 13168 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T16:07:03.568+00:00",
+   "wall_s": 1.521,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P1\",\n  \"service\": \"payments\",\n  \"first_move\": \"page owner\",\n  \"why\": \"Money has already moved wrongly with 14 refunds issued twice (totaling 182,000 yen), an irreversible action requiring Mei's intervention.\"\n}\n```",
+         "thoughtSignature": "EmkKZwFpFH0TPYZGoc7F/EY3DtjO0XG/fRbd/0otmgilEoGIvdDb9SvcwOqW2tpuOeVI7HUUSzD+cgcE8zj+R0bU/L+y1J+9atywJpoMO+m5QPDwdYLXYkrrUutP68Qq9zIp2WYyl/VgsAk="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 13409,
+     "candidatesTokenCount": 76,
+     "totalTokenCount": 13485,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 13409
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "qHnCarhX1ITaug-Clq2YBQ"
+   },
+   "text": "```json\n{\n  \"severity\": \"P1\",\n  \"service\": \"payments\",\n  \"first_move\": \"page owner\",\n  \"why\": \"Money has already moved wrongly with 14 refunds issued twice (totaling 182,000 yen), an irreversible action requiring Mei's intervention.\"\n}\n```",
+   "prompt": 13409,
+   "cached": 0,
+   "cost_usd": 0.01034175,
+   "id": "payments-double-refund"
+  },
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nweb: 5 % of page loads rendering blank for 3 min, 4 customer reports, last deploy 9 min ago.\nReply in JSON with the severity, the service, the first move, and why.\nIt is now 01:07:05."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 df25d9adff5af6478380b25c9786b6b0, 13168 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T16:07:05.091+00:00",
+   "wall_s": 2.965,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"web\",\n  \"first_move\": \"roll back\",\n  \"why\": \"A minority of page loads are rendering blank following a deploy of the web service 9 minutes ago, making the recent deploy the likely cause.\"\n}\n```",
+         "thoughtSignature": "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"
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 13401,
+     "candidatesTokenCount": 70,
+     "totalTokenCount": 13998,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 13401
+      }
+     ],
+     "thoughtsTokenCount": 527,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "qXnCat_HHcyy9tMPk9uU0Ao"
+   },
+   "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"web\",\n  \"first_move\": \"roll back\",\n  \"why\": \"A minority of page loads are rendering blank following a deploy of the web service 9 minutes ago, making the recent deploy the likely cause.\"\n}\n```",
+   "prompt": 13401,
+   "cached": 0,
+   "cost_usd": 0.0122895,
+   "id": "web-deploy-blank"
+  },
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nnotifier: queue depth flat at 4,300 for 35 min, nothing delivered in that window, 3 customer reports of missing email, last deploy 2 days ago.\nReply in JSON with the severity, the service, the first move, and why.\nIt is now 01:07:08."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 df25d9adff5af6478380b25c9786b6b0, 13168 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T16:07:08.058+00:00",
+   "wall_s": 16.692,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"notifier\",\n  \"first_move\": \"read logs\",\n  \"why\": \"The last deploy was 2 days ago so it is not the cause, and the alert does not point to a specific external provider. Messages are stuck on the queue with workers not delivering, which fits P2 (a queue trend that will become a P1 if not resolved), so reading notifier logs is the first move to find out why workers are stuck.\"\n}\n```",
+         "thoughtSignature": "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"
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 13413,
+     "candidatesTokenCount": 114,
+     "totalTokenCount": 17853,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 13413
+      }
+     ],
+     "thoughtsTokenCount": 4326,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "rHnCapeUIoCs2roP9p3EkQU"
+   },
+   "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"notifier\",\n  \"first_move\": \"read logs\",\n  \"why\": \"The last deploy was 2 days ago so it is not the cause, and the alert does not point to a specific external provider. Messages are stuck on the queue with workers not delivering, which fits P2 (a queue trend that will become a P1 if not resolved), so reading notifier logs is the first move to find out why workers are stuck.\"\n}\n```",
+   "prompt": 13413,
+   "cached": 0,
+   "cost_usd": 0.02670975,
+   "id": "notifier-queue-stuck"
+  },
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\napi: all requests from ap-northeast failing to resolve for 6 min, other regions clean, the cloud provider reports a DNS incident in that region, 5 customer reports.\nReply in JSON with the severity, the service, the first move, and why.\nIt is now 01:07:24."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 df25d9adff5af6478380b25c9786b6b0, 13168 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T16:07:24.755+00:00",
+   "wall_s": 2.598,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P1\",\n  \"service\": \"api\",\n  \"first_move\": \"check provider\",\n  \"why\": \"All requests are failing in ap-northeast, making a whole region down (P1), and the alert explicitly points to an external cloud provider DNS incident in that region.\"\n}\n```",
+         "thoughtSignature": "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"
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 13411,
+     "candidatesTokenCount": 77,
+     "totalTokenCount": 13954,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 13411
+      }
+     ],
+     "thoughtsTokenCount": 466,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "vXnCaoT8B8KG0-kPpI6vmQQ"
+   },
+   "text": "```json\n{\n  \"severity\": \"P1\",\n  \"service\": \"api\",\n  \"first_move\": \"check provider\",\n  \"why\": \"All requests are failing in ap-northeast, making a whole region down (P1), and the alert explicitly points to an external cloud provider DNS incident in that region.\"\n}\n```",
+   "prompt": 13411,
+   "cached": 0,
+   "cost_usd": 0.0120945,
+   "id": "api-region-dns"
+  },
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nweb: static assets returning 404 worldwide for 12 min, the CDN dashboard shows a purge still in progress, 8 customer reports, last deploy 3 days ago.\nReply in JSON with the severity, the service, the first move, and why.\nIt is now 01:07:27."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 df25d9adff5af6478380b25c9786b6b0, 13168 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T16:07:27.357+00:00",
+   "wall_s": 6.546,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P1\",\n  \"service\": \"web\",\n  \"first move\": \"check provider\",\n  \"why\": \"The alert points directly to an outside provider (the CDN dashboard showing an ongoing purge causing static assets to return 404 worldwide). Per policy, when an alert already points at an outside provider, the first move is to check the provider's status.\"\n}\n```",
+         "thoughtSignature": "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"
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 13412,
+     "candidatesTokenCount": 93,
+     "totalTokenCount": 14990,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 13412
+      }
+     ],
+     "thoughtsTokenCount": 1485,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "v3nCar_eLpbu2roPuYGN0QY"
+   },
+   "text": "```json\n{\n  \"severity\": \"P1\",\n  \"service\": \"web\",\n  \"first move\": \"check provider\",\n  \"why\": \"The alert points directly to an outside provider (the CDN dashboard showing an ongoing purge causing static assets to return 404 worldwide). Per policy, when an alert already points at an outside provider, the first move is to check the provider's status.\"\n}\n```",
+   "prompt": 13412,
+   "cached": 0,
+   "cost_usd": 0.0159765,
+   "id": "web-cdn-purge"
+  },
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\npayments: 3 % of checkout submissions returning a validation error, 2 customer reports, last deploy 22 min ago.\nReply in JSON with the severity, the service, the first move, and why.\nIt is now 01:07:33."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 df25d9adff5af6478380b25c9786b6b0, 13168 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T16:07:33.911+00:00",
+   "wall_s": 3.245,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"payments\",\n  \"first_move\": \"roll back\",\n  \"why\": \"Validation errors on checkout began following a deploy made 22 minutes ago (within the 30-minute window for deploy-related issues), affecting a minority of customers without money moving wrongly.\"\n}\n```",
+         "thoughtSignature": "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"
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 13400,
+     "candidatesTokenCount": 81,
+     "totalTokenCount": 14037,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 13400
+      }
+     ],
+     "thoughtsTokenCount": 556,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "xnnCarjQEvb22roPl5-fgQU"
+   },
+   "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"payments\",\n  \"first_move\": \"roll back\",\n  \"why\": \"Validation errors on checkout began following a deploy made 22 minutes ago (within the 30-minute window for deploy-related issues), affecting a minority of customers without money moving wrongly.\"\n}\n```",
+   "prompt": 13400,
+   "cached": 0,
+   "cost_usd": 0.01243875,
+   "id": "payments-deploy-validation"
+  },
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\napi: p95 latency up from 1.2 s to 3.9 s for 18 min, error rate normal, 2 customer reports of slow search, last deploy 4 h ago.\nReply in JSON with the severity, the service, the first move, and why.\nIt is now 01:07:37."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 df25d9adff5af6478380b25c9786b6b0, 13168 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T16:07:37.173+00:00",
+   "wall_s": 3.279,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"api\",\n  \"first move\": \"read logs\",\n  \"why\": \"Latency has degraded enough for customers to notice and report slow search, but requests are completing without elevated errors. Because the last deploy was 4 hours ago and no outside provider is indicated, read the api logs to identify the cause of the slow requests (such as a slow query or stale search index).\"\n}\n```",
+         "thoughtSignature": "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"
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 13418,
+     "candidatesTokenCount": 101,
+     "totalTokenCount": 14046,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 13418
+      }
+     ],
+     "thoughtsTokenCount": 527,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "yXnCaomhIu_NrfcP7qLAgA0"
+   },
+   "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"api\",\n  \"first move\": \"read logs\",\n  \"why\": \"Latency has degraded enough for customers to notice and report slow search, but requests are completing without elevated errors. Because the last deploy was 4 hours ago and no outside provider is indicated, read the api logs to identify the cause of the slow requests (such as a slow query or stale search index).\"\n}\n```",
+   "prompt": 13418,
+   "cached": 0,
+   "cost_usd": 0.0124185,
+   "id": "api-slow-search"
+  },
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nweb: request volume 4x normal for 30 min from one address range matching a known search-engine crawler, latency unchanged, no errors, no customer reports, last deploy 3 days ago.\nReply in JSON with the severity, the service, the first move, and why.\nIt is now 01:07:40."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 df25d9adff5af6478380b25c9786b6b0, 13168 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T16:07:40.457+00:00",
+   "wall_s": 1.999,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P3\",\n  \"service\": \"web\",\n  \"first_move\": \"no action\",\n  \"why\": \"The surge in request volume is from a known search-engine crawler, latency and error rates remain normal, and no customers are affected.\"\n}\n```",
+         "thoughtSignature": "Eo4HCosHAWkUfRNfvRLY7WMtZ/jzdHVXiaKGSRalnKgWdFInb0uir17HxSSLvArq6Yc352Rh9g94BweB6Y6pXSoBUq/tNA73zUQ+1UsWV8D++7FwfBdczofckcB99fjwCB8W5DQ6YXkzD/Js59zbxQ8hhVn7/8dyGzyVG89VPAL7jRJmFN3ROXcfk0z5ur8MUu0ZGop7FJRQfq6Ezq7NCkoa+YkOS6O4PI0j9qoNU42P/tqdIlqb5rfRpdkHJDWC6pr4p4mcaYcBX2qU/sCiuMZcEGBMnSSL8CgZMisPWIWCBQPUs+jiPLlWq9OBXQkAgZDQupi3akGS9bhqjEtxPTWA771teiKq1YFYrxbl97hzws+q3U7/OxB9Ed7Um5oqMHi+GQWYKn8W+vT4dFhkVaDI8drq6GUstHMvSb7OjHayKVq3KLZ5bZ53N1C8M8FTJeBV5LOgwxact8Sk5HZuAUQ8j3JClAYU+IpQUH+BjCYV5Q2BX1+bnZmaf6kBAUb8c8vhze0B+gs1YHmrBgVMD6Cg9klnv275UoXVGLkxjCx8/0fdv0VIDVpvzKrdymh3g2H2FJLsR/cFob9Vmj12vnhG89VCxmr+7VDVd5ErpqW9S0EEafeUKSb7bcx6VmFtr7EtcSviQM90OV/YeOvnaWFk3uMTm9TjxUBdzXo1F1vpzuoGrqqyGG3No6ZXYpiXVpjow4QslU0zNtK6+KbAbPR/IazVSUQWK+rJpELbwGRV/ctGhDrBhIGNnoSxfpaSKhuk/hM0J6chyyxfRQjpr1p85XZlw5idaiDALMISoQOBoA3A2XAnL+PcEuH4J++QXvH+kE4/EcMubh9jOKehr5Y0I0JkYuhgbTscDd3kzLF+rUsoOLFVx/6dNYkSul3lBd+1XYH9u9DytItWLIW8uLraW7HBLknft6q7++fLmj9i/SvWNhV6NVqwxX5frSK4ZGGALDpsxOvg6OsOi5AfV/l8vwTU5Dsh4he5Z97327XQ49fs3TNhNLtBJFkHf6eFpUqUxld83OCwErLgNvc0LxeCOFVOWiysdJOsLJt2ekNmY7HiP9wsRQWBlXbjm5hDM26tzoPxbY3PKPoIk2euXq6SJZw3NeDiG3mwrQNin31LgQqVXqMzj39q0i+yq3BIjASMbHhAlvSmsZGLSrY9Ae3NTGQg/1tLffABUNFCUO1vrvbuyCP8ExRDR7kl9bdbBg=="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 13416,
+     "candidatesTokenCount": 69,
+     "totalTokenCount": 13689,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 13416
+      }
+     ],
+     "thoughtsTokenCount": 204,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "zHnCaoOANsyy9tMPk9uU0Ao"
+   },
+   "text": "```json\n{\n  \"severity\": \"P3\",\n  \"service\": \"web\",\n  \"first_move\": \"no action\",\n  \"why\": \"The surge in request volume is from a known search-engine crawler, latency and error rates remain normal, and no customers are affected.\"\n}\n```",
+   "prompt": 13416,
+   "cached": 0,
+   "cost_usd": 0.01108575,
+   "id": "web-crawler"
+  },
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\npayments: 18 % of provider webhooks retried at least once in the last hour, all of them delivered in the end, no customer reports, last deploy 2 days ago.\nReply in JSON with the severity, the service, the first move, and why.\nIt is now 01:07:42."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 df25d9adff5af6478380b25c9786b6b0, 13168 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T16:07:42.459+00:00",
+   "wall_s": 2.925,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P3\",\n  \"service\": \"payments\",\n  \"first_move\": \"no action\",\n  \"why\": \"All webhooks were ultimately delivered successfully, no customers are affected, and webhook retries without failure are a known normal occurrence that requires no immediate intervention.\"\n}\n```",
+         "thoughtSignature": "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"
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 13413,
+     "candidatesTokenCount": 72,
+     "totalTokenCount": 14112,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 13413
+      }
+     ],
+     "thoughtsTokenCount": 627,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "znnCaunxMZ7p1e8P95jhmAY"
+   },
+   "text": "```json\n{\n  \"severity\": \"P3\",\n  \"service\": \"payments\",\n  \"first_move\": \"no action\",\n  \"why\": \"All webhooks were ultimately delivered successfully, no customers are affected, and webhook retries without failure are a known normal occurrence that requires no immediate intervention.\"\n}\n```",
+   "prompt": 13413,
+   "cached": 0,
+   "cost_usd": 0.012681,
+   "id": "payments-webhook-retry"
+  },
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\napi: one integration partner's requests all rejected for 25 min after their contract limit was reduced overnight, 1 customer report from that partner, last deploy 8 days ago.\nReply in JSON with the severity, the service, the first move, and why.\nIt is now 01:07:45."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 df25d9adff5af6478380b25c9786b6b0, 13168 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T16:07:45.390+00:00",
+   "wall_s": 3.666,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"api\",\n  \"first_move\": \"page owner\",\n  \"why\": \"One partner's requests are failing due to a contract limit change. Decisions regarding partner limits and contracts cannot be made by the on-call engineer and must be decided by the owner (Ravi) and the partnerships team.\"\n}\n```",
+         "thoughtSignature": "EpgZCpUZAWkUfRONstS5+L4r9AjbGsXO2Cr2Dr4w/Xc873gnDRm0znCtfBrX2txLIZGA/VJOfkobn+OzN6ZN3pNaqrESDVNjz3qUbuNMxB/8sUonWz5TFjnxZuzifeYI35l1zrYB1tiOmTyYBOyh7yJJJkF/6QAY/YC+Uee6NFy9uET/AucgjL997ToT3FKyND0NP6MgH3V7d5hjdpdtR0iOBllAXUVeZ+f7gsnIDWfnUAYwNiNqWm7PUwL+axpGYhFcXx7rCJcyneL4jtLyUOProUWwwYA4U0zncBIbx22yE9aydd/20/ibFK5KnQtP4ZajRNYYkCUnIU/LdinJCFt6m6h4US0rJtt1jjCTJ6F/xrswY+FMv+Pmoq9y48z7k+YgqGGCQvVHdZvi88ju70x8/K9grTUZF6T1JbTBI19MdTSdMWslIM53PKr/NUtU1JivfOFlPuJZutBz0Yeka8ACXIeuia7tHZZQPYG0LwD6iPu+WVhcp6TiDIcCynxg9k5ccqYIg8ZuG/gn1hpJ9qH9NH7J8zKDj33MvbOM3fTQa/Io7TPtVQgLPswI3iBfQONOll2NmQrbmyNyt+nGXq5CHkEvcamim/SnOMampZuxRdZPVoGtBgofO7UBP/vCKlJDT2ZdXzJ1qM3ySkf4UhvzaA2Znymjk1LRgGkdIbfyJfF5BtnTcQK0Ef4xEBipR/H2mCjBatsucO6tdH/lguK63iMc5mh+eoM5TFjj0YiU/7E3b7Z7lpvoTlgzEMWMx9TiK/8SrEShFelRMxSBYPp5ppANe9WVeL5QJbAdvtVPTdHEn3hfqLuKQxF5PZKRZNz76eOuC/yEabyLS1gyMji7C6d9o9fSksjM1kqiVLe6Sp8T5+q5sMnmfB6KY67vVv06pi/vrvHWZf07KuuBKHlFSRrs0WwarEO/uDp7hK47rYjZySBH7OijNGx66Cw9ubLDb8KuwfdjcS1Zr7zVSCi6xWx1TU4YdqeCJJ2mhyE8qhBZV/QFNIQurUKGSRvBTDHNReZ7T/JGfqbiTTDQ6cak9XfNQOsvcQaYm5fFGqJh24UqFU5U7smhen3B8o5g77d0XztM8HH95lWJpDaflYzPVd915b6u6tYnkdxuFjQgd7ySizZJAbOdpyDKzOE7+Ri7Nm5XU5VV7bbd0AppWbF5mpIdVJnJgRWfpfkzSpeGFDSkQTuVK87SCfjgI4wSaEPe7mPGhRWOZzZt7agArA5huvyPJnJWoDE6STBESVQvDygT8Y/R55Sq6DcrTY/pTcxFiYAHvDj72Gg5OKHmMt5DHG/hHnj5iO4RHvTlxHUPUnRb22lBz+BacfhQ+BWkfn62haXOZt5wIw31YDvXCSoBOzkTeL85G47vD7kL/f1Lhw8TpoASR7V0/j3a00/kDIpdBOVCiqD+7SoUF4uDpRK5SxHSywCde4hafyTWDpb3cdKiAWBMsY6+v4tqybON0mAclqr1rWH9nvwQEUSoUpoJwxM/Gu4heVsxYag8yTfsJOI+dx0OfT2o4CjNy7RU1bPWoBEfK/cu0IaAJIN6vrmXhDCGCZtZ1Eir0m+O/svRk2oJo5/QOyuj1c58KdJdj5/k2WRq4y+cw0RDXZ6pkt5dOuxQTme49O4lZLp43NRJACZJXyMRpu6WF2g2vxYnaiCmfTKnPos6kiK09mVGg2ls+9ogJTTa8jNK8PXMdagCd7SnK8pL7yKcjc5VypWfhUjWw/Mynt690t1BCD9BIZEQKytBusKHNIfYtV6ePZKmLRgD6ASqrdHjBmul+HpLN9G0SyqTOSyDdGDKZs5mxjhbRUEFqI+fMtAKTIacA2S2OvXp+T4A/kCNVCxKwGn5J1uZvOZ6EsBGz9sLUyKDc5HwLZI1yJyAcv76CWvt9CjbwFpZ2kNgHXTCIGm6Iw8XVoVawXdpBauWnPCN+erTd/qoCjdrH5HBQIuRk2rLo9qu8nnglfSfSZeU1FxnvIqnrwSwiI7xt/M3HGPP8/XjZ2ocTcmnhmjkkwQjxhE1JrP8K4nVt8zMHZdZ6bCVwaYPtGJioavDn8DKrqAjhyNkVCXVsLtMZ3EqD4x8VpBIn7aS21jp8HVM3y1eXIHob4fbquW+TgBC87c2KuqTm8kfNHjQ6EC7gHsDGRYmyL2PWL2ysMRO8odF62YUfxlimcQ3DwP6jsLVTVBUSJc0XQAAYIXNMYUzRdNkIZLaQT1ZQ7OD7c1TN3grC3cSFTXy3pBiVucnBzcwCoSJxyv2B8p4JMhcYYd1pCDja6U5qjbrILz08/eIvgzyPIHytvKZ2e5s708O7eDwd9vc2NkJs5GENNkzXcQLFy+FMX7Znl8VvM02hA8pgyQrB0FgAhsaXknmSA3sFVlA9q+Yh2Ihzeat0CIfawnumk2LIqu3pmGqAz9yEerDEirCS/Y+cCCXvmQCXs5HdpuM7R1Uh7ZRwQYSu651gIBtxVt0pG29PsedGAq4pMsR1gEZ32ZXk1cndbEKbh7eVjYO76CRKIKWwh4Vxc12Ms+qRFBhjhVEhB5MJISM7wQKJJ4MLBt0kDo0MOC6Raql9Yx99RWMwS/BezDTc1hegmBzomk2X+f5fbXLM4LGsxWjYNxweU1j2+JwifZ3HEhCmhLPQLG0VBVDAkPD1w3TWgb8FjpW7kvH1YNmuPf4jtHwtMJ90X/W7ouXgw0nA2XWG36w6imaXopgD31Wn76Cbpp4EUwG/KmJRmt079FQHrUVEriWCsXyEGcdD3GQ4VVZb5H+/NT0udFE5Bkg1F1hjQEdV3AYRk49dn0mhYUlGK0ARJb6dYHhqJLRdwifmcwOIRNCtEl/IJNRdebiFXJj0mnJ+y2O65OKV1efMIqkttvAZgdBAb/beth86rELXCaiq0cnZhGhpPfmIrrQZGV2sJ4SOLOmy9mJ2rytPqIQkGSWcqvks3z7EcJzoo902+VvK3U4PNEUQSmNquh6bEMKJ10tSudx8YQIcg8UJWpScFeaDhnun+PFlbdkoiE44Cg2QYHOnkFX4dGEyeFYNJlipXlJjTjAyFuR1K7SCEys7UmHejX+w4ntPFvLYF9KS/n7tltlzm3IWiwFD9cqOzHtdcg0KPcmFCGAM83dBNvDA8d4wejTKh6+ZlCUNTvS6ic/VTb8Fnwu1XZkp1Fb5ZVEFqDIQcigzYGBEP35KBQxSZ9PHI1rs4HnF9apwee14wBxjF9jLfKRmHtAB8deTyAsyqPEhM5vKJBS9hUOIHaxnome+B8xyZoGyVcHqcBus7CR6k0AWml/DKnv0s54wVGXA44Gy9EIbfMk6o4ZyykzaAXVQjVPXEWvQ6C8SIyRjw4qsXbtSThRikHBmo4FoEoqPHdFcnWLz0uCeLG9vMn5uneInE/rNTGWfbaoNXa2tMaoNih2ii1L8wgeB6dzl28VXkTbOxSxXOCk6aZA46AWzikjjWX8oPxXOp+RtE8OqVN0Nu4ecy4R63IQ6uFlaoGcopUFC65rzu/Zv0Y6cpfpZltBP9juTpwlX5RL/9vueU+hejnFxAj1W/QDRe+C2bKVAg9TuTeLfmPLQiTkp4CVmNfwjJeHgy2evFcYAPOXqGkSFRng8n1ByoPoZogWdqJb3GZqS1pLy9dr19+MuoL5yGXMbIMOe8gsAvYpzn03PNfQvBXQKOx4YQXHlqBONIG9O4u8ZidtH06kH3kIPUexT5xaNAMOClWpTnxHJmd3UfU3jbEyKOPVjR40KBI4arEJXH2GySQky2ocaypF1KvKLLFxUJovi1H6WJyyPP5Vr6Q9AxVl5MUsirUUZ6qLDViXSeN5lv5wjixNLV0IHuNQZ4X4Hq4s0WeuMot3+BrqVvZiDjx90uCfMIM2LO3JoKjI/uOv5PLa8oOfZw4YGZANWYuqjUBWjNUZcANg4jpQ9wAqT9BqvWKdNBWiGBw/X5U8g04vQzv8Jm3rJaXUu5qFqXqQSFVuDWNFD/J0dZHOsja5S/4TCBlgme+DuegSjb0Koh19CEkNOplghWgwVrezyx377pklnv08WC7FlUPInuIj3ezCRFUD5vqybBlKawpDe/gZ0G4bQRe8e4aAJ2RvSqbo2CjgrY+r3nBEE7tXMmyrMsBm8aS/IfLJT/To3RQ72/AATkarHkHQKy0bFX9z7YTIoqAamSaB5mxfhxBujHAsHMyFYxmUywGjr39SgTw3Pjz5PJcmnZ6rnsLTxDDwlhk8+NgayZnCa98NaRyDutvf0ZcHhKHnCOENGRBHqbcn3lbTrm+nvGmIpSUFCKDH2QLMkxp0OzHoXrNVIv4Bq5lDpZdQkzMwNKI="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 13412,
+     "candidatesTokenCount": 87,
+     "totalTokenCount": 14224,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 13412
+      }
+     ],
+     "thoughtsTokenCount": 725,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "0XnCaqiJMKPW1e8PicWakAY"
+   },
+   "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"api\",\n  \"first_move\": \"page owner\",\n  \"why\": \"One partner's requests are failing due to a contract limit change. Decisions regarding partner limits and contracts cannot be made by the on-call engineer and must be decided by the owner (Ravi) and the partnerships team.\"\n}\n```",
+   "prompt": 13412,
+   "cached": 0,
+   "cost_usd": 0.013104,
+   "id": "api-partner-limit"
+  },
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nweb: 1.4 % of sessions reporting a broken checkout layout, 3 customer reports, last deploy 25 min ago.\nReply in JSON with the severity, the service, the first move, and why.\nIt is now 01:07:49."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 df25d9adff5af6478380b25c9786b6b0, 13168 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T16:07:49.058+00:00",
+   "wall_s": 2.428,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"web\",\n  \"first_move\": \"roll back\",\n  \"why\": \"A broken checkout layout is affecting a minority of users (1.4% of sessions) following a deploy 25 minutes ago, making the recent deploy the likely cause.\"\n}\n```",
+         "thoughtSignature": "EvUKCvIKAWkUfRM+2LyPOk1/qo2ZrByoaQwktmlXVWy1kbN+r9LhBqXPmXSfreAaf84LPLzljP0qFELWilv+fahHt6EEd6203r6XviOswz9N6Gtcztp0bdZOdUvByDmwxPwvrFiNYVgrDIEjN3gHuirKjex3p6XWzGeTGq/ruKmgHPY4BpKQiSgF6nrbTWRxlE5NuFeDm6eiCoLl925i8k9YP1/8OT0/QjdKpQNIgBFSsmN5Gb6AaWedhRkv3hAkQJ34+wzS+HM10NXlX++ajK+bOzZTR3eMld9HCRcCzpML9F56ryKzzMXlaWZ+fCSvqC1qugTKAruPgJDfBqDGDEY+Cp7tsjIrgyIWegZ126l735fOTmwqMTRLJXBAd/hUxNHYQ38OOcAmip3LBmqCXVOYBU1vacuuSt5i+/PwKgNp6GuAwGRi2PZ8ljBXKaEg4+ux9YraH5h9gEKUoY68NmqT1R3K9CofCjH/nOkE0DGUgqk1QR3rKdtrZvb8QJ0sbTLXDPIrarMdM+dxjz7MgBkIqkwSWSQ0vuwVz666dK2kQjG/RAj5npGAHxgGg3YIr5pxUhWZAxeo5nK/d9coeWABT+H0fseT4puG5Obtag5TvqZtDsy5FyzkPv+MnaeS+rp6WwMkCEC80sj/z/PJsORbp86PYWqYPLOV+o0kLScreFzsHTRNgOjeFKoJGg2mYpUuuEGDUNwijw3HZsang5+f3Q8NU+2Mnm36rC9SP7Lk/hJGTw64bjlLUvsX913QJbIaY93L4+BATCcWeybLionNnSalfBkGxkrcs5PJqrhMuzsm1tTT/Tb+WAXN1CTdfwCboV80iOzLO5oyr8PQqejEPk4y52b/e3l2kA+YGlZW5YCQyuKWU71PKsdnB0ebttU0kEU6l39dNX8nDk/LrQcyR3Ah3uTuGcXM+etZuiJnAitbr+ZmaCCVohrfVMg4SEa66cgVUlo8j7W6jZVbnZQXPOqFjytqVcKEQHUrx0ky9STqr7bv8gpEmJUWVQ79/lvvYq5iEiL2izUis/E2kl2jMxcIBmfoe6EFqDgotfJ8jUxw/JLYSC9vBsbGq4I0+U9VPukuu4rATQtMyGrKfdbiMlAu1CbqmOoFhbuCF/kIztsgCscU/5qu74VsC/U9fXjQKqEKKDBCcZntyhWefIizj26F0LeVKnL50HRzJpGk/w/gEswETRGLz27AaLWSVIlcldKPjXI7eCVSfqlvR4hzv+tutg9pEB/qtAzo7AMKfo0WKdOaC/GcWE5/zUMhTt0rGjwldN0f4YglGs2LggzfNklKh7S4L8gn2FknCK2Upzb9ZpK88h+fTYOULCT8dxqIANeUtcs/bNdly1yEIGRhijfbvWwtgtbYQLuD3hIfJbaCysxk9EmdYaOCsoZ9eTyvB1u8/hK9lujM1I865zlxMWKWbqA2jTyP1da1q2rAV9QELnU2wt7lxj9Ls+ii2OgqF3IAtS8KRxNfbxfMDWOHKqQMQtHb19Bnxbwqt3hVpzIjJsJUHx6nhqlz3DYgBsemb+CeuxtQzBjzBVwOR0E3oRrFoT0YVCrMM74wz6jUiPyzY58hr7HlwrhEzJW+6F3iSa5Za/wVrdcgWlDZsfrFHV3cS5AUoZwbdFMXUnFwwHlfPAWdKFZ0luGdNcxA7D824Lt9i8O/fPhGJpqQCphwyu/+nSLFBzko1ytyfkLf33MSzHsy7+HWcruI46aOv2KnnmJxJrPMkaz3quseT9395jzrmnBZDnR6zjgh3LumHPPGEx+/Og2+AIproEYJIV7hKxRbaW3MEV0NXocYFmYWb3yhGgksLH5R3QpCgzU3YysTBHh4Um8bFErxqduHNdoBNOfmzbo="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 13402,
+     "candidatesTokenCount": 77,
+     "totalTokenCount": 13799,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 13402
+      }
+     ],
+     "thoughtsTokenCount": 320,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "1XnCaryOHJio2roPrtGFaA"
+   },
+   "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"web\",\n  \"first_move\": \"roll back\",\n  \"why\": \"A broken checkout layout is affecting a minority of users (1.4% of sessions) following a deploy 25 minutes ago, making the recent deploy the likely cause.\"\n}\n```",
+   "prompt": 13402,
+   "cached": 0,
+   "cost_usd": 0.01154025,
+   "id": "web-deploy-layout"
+  },
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nnotifier: the email vendor returning \"daily quota exceeded\" for 14 min, 20 customer reports of missing confirmations, last deploy 5 days ago.\nReply in JSON with the severity, the service, the first move, and why.\nIt is now 01:07:51."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 df25d9adff5af6478380b25c9786b6b0, 13168 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T16:07:51.489+00:00",
+   "wall_s": 9.109,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P1\",\n  \"service\": \"notifier\",\n  \"first move\": \"page owner\",\n  \"why\": \"The daily email quota has been exceeded, blocking customers from receiving booking confirmations. Raising the vendor sending quota is a purchasing decision that only the service owner (Tom) is authorized to make.\"\n}\n```",
+         "thoughtSignature": "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"
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 13407,
+     "candidatesTokenCount": 78,
+     "totalTokenCount": 15982,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 13407
+      }
+     ],
+     "thoughtsTokenCount": 2497,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "13nCatbnNsPOrfcP5IyJqAQ"
+   },
+   "text": "```json\n{\n  \"severity\": \"P1\",\n  \"service\": \"notifier\",\n  \"first move\": \"page owner\",\n  \"why\": \"The daily email quota has been exceeded, blocking customers from receiving booking confirmations. Raising the vendor sending quota is a purchasing decision that only the service owner (Tom) is authorized to make.\"\n}\n```",
+   "prompt": 13407,
+   "cached": 0,
+   "cost_usd": 0.0197115,
+   "id": "notifier-vendor-quota"
+  },
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\napi: database connection pool at 95 % for 12 min, 3 requests timed out, 1 customer report, last deploy 3 days ago.\nReply in JSON with the severity, the service, the first move, and why.\nIt is now 01:08:00."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 df25d9adff5af6478380b25c9786b6b0, 13168 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T16:08:00.604+00:00",
+   "wall_s": 3.653,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"api\",\n  \"first move\": \"read logs\",\n  \"why\": \"The connection pool is near capacity and causing timeouts for a small number of requests, but the deploy was 3 days ago and no outside provider or irreversible harm is indicated, so reading api logs is needed to identify what is holding database connections.\"\n}\n```",
+         "thoughtSignature": "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"
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 13408,
+     "candidatesTokenCount": 89,
+     "totalTokenCount": 14161,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 13408
+      }
+     ],
+     "thoughtsTokenCount": 664,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "4XnCaqGeA8_Y9tMP9tuU2Ao"
+   },
+   "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"api\",\n  \"first move\": \"read logs\",\n  \"why\": \"The connection pool is near capacity and causing timeouts for a small number of requests, but the deploy was 3 days ago and no outside provider or irreversible harm is indicated, so reading api logs is needed to identify what is holding database connections.\"\n}\n```",
+   "prompt": 13408,
+   "cached": 0,
+   "cost_usd": 0.01287975,
+   "id": "api-db-pool"
+  },
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\npayments: a provider API key appears in plain text in the last hour of application logs, no errors, no customer reports, last deploy 4 days ago.\nReply in JSON with the severity, the service, the first move, and why.\nIt is now 01:08:04."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 df25d9adff5af6478380b25c9786b6b0, 13168 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T16:08:04.260+00:00",
+   "wall_s": 4.343,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P1\",\n  \"service\": \"payments\",\n  \"first_move\": \"page owner\",\n  \"why\": \"A provider API key has been exposed in plain text logs, which is an irreversible secret exposure and a P1 incident; rotating production credentials can break running systems and is a decision reserved for the service owner (Mei).\"\n}\n```",
+         "thoughtSignature": "EsMLCsALAWkUfRMsx0FgCoIqICs212sPYTQsi9HpX31eggYGkze/dIefoDTlhLwqOiANiq9yp9AnLpB1sJPc3nrdQNXyxkJaqW9OB+FTnydR1aU+FciYpwuBnhRIaFpVPmZzOZnlBLx07HemL2ERPbngdhk3nieB5T6coHmU5oIMrmamIiFjMEUkn/+aWRA4Ls3Eu58ki1H+gdTqbfsALlRZy7WS3WGuVhCv5wYwPSRV7qlh3lZwO2n2GZ51dOrEFDqiYRIF9Uz2p3WHV6mzOiRz1odXIYMrDWpgN5uE7Dopme7Kf2igIy7OSLqYHOvBzK5RfUoru6+Z9K7LP4Ax4gHCcThUVdHcld5I3jQ2wsHE8ySNY1FWjfK/QW2SARcBy2Yz2LHbG8dyM+WjrI8ZELTvucvO0ZKpE1QIGmVpOHovEVoKOsiJRfgE8bvRT7vfIo1cRDlbWeL7WvPb9Wv2xwqxbuVOGLWdWNnK82fhvM4FiA5VONxUZn5ze3mR6k2bTIz5XuwbFAUCOxYk+IU1pvuC2niN85DGhyPIvLhKKqT3GIeSmfCWX0vX7NjhGZJMTUtg3nYDaUS0kPGVyNOfTmWtiFeFt6qQrg4324ul9A1gnGL5XF25tWZI093ZomrS6oxRlHDmAI1qJNFZn/co1MRTv4CVC7sTqkJtefvl2XeTgNw3B8hJRnXdbEw+AYiXoXxfNEVOeW2zFJS1ayam1V3GVZRAa3pdNw6MWyIl4DLjzcOj6CsquBwKUorRRfRNBGtnFNqK7AtQaKLaHqt2jke6cw4UeMqqXpxx92VJFdOtMSlgsSLrFxggpCoQ8L70l1VwOUDXy8CB9h2xS1qgguwDNkO9kKgXhf/f+AUWi2TCWKVm87AkMOeyfLobkrd6pZAXQeGR5f3caFGWsk2oqHX3rAnJWwcTsTNJYZhhDa0Mp15z65x8IFZ4xg492J1Pf0z1dWPWWS63+Vt4cqVtpBUOYS/aK+MbacM5CcAq1/XOBtoKO4qJSOkYmasr8JMd3AWET0b5Y1zcCFdL6gL2S71NGIE2IA7x57y9sGveSNLG96J3qme4ElsmBHGAgQK62H4eiJc0EWcoxPGPHsgGK78/YqxXv7szb+Iwk27l3chGCBzvD2eeytoTHyqZRiCaqbh0lS9vUWUP43yW0AVciNvxAT6CQ8lNP6rI9/GaJRQHRNCyjx/KoWGQfuE4dzUpc2UEJHgXHO5RnzAAgQnjyfDA2LaE0c+eI0/A6/ljRlgogY/UBXZBiwd1FzqA02RAxlsUuoJW7E9LwswJOvgj0kHRG8xD3Gqmwtqw5s6DAJDfCUq5CzwlWljeNAVzKYVZNjdpVtfPFmM8a/mj5pQsNu6UrUfN227AgltQ9dT/1SitxxkE7+3mbsZTP9lzOCKO7YFP+N469d8Rf/2MYgbxjnC2R2fPbB4l+7YlR4V1aC8bn9kAt+taX/6WmG8Q2zVeFodgjzshrs8WD0pH2IXAarlPV+UNdURsPomYVSweo7Uy4oIxDXYXcMAN/G62ktFq3UYm6QRoPp9Rxmo6WQSx2lEQRWDSSeTLBgYrpu5NBn4duIATF+N9o0xYfMotvIenDj6Ms/lo3xHoOD779VUJpZz8ZYooo3dBW+Xt+KgZOJgZETyZ3lspAo3g2cHeizx4IF+kJ8C2wAW9EoQAFw7g7ax0quQIDj9W87TamfEble6yUmh6xphhu5Y5pKy20Dov9YYk9mEL8++ld4NRsnY6hUxi6tCL4ZL3UXh6I9gnvxnzD0WJzG/qJEQhBcXHzMEu5YCqSGMBDtqCDq/f2ISde/r+i9TY1L5oEpz8Yas0NpLr0kHjOO6/SZ18pTWhw/K1WpdksvDNwu8BFqU0I6MaYwS+q/zRHed+sI0iUbqcdzBk/WOLJxtLnNHRCQkeFP9lMowM88ipTUkmIDBqqTQu6YYAYql843UxEZLYTYW0uJHp22q3D/Y="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 13406,
+     "candidatesTokenCount": 86,
+     "totalTokenCount": 13814,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 13406
+      }
+     ],
+     "thoughtsTokenCount": 322,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "5HnCas78JrCB2roPsM-D2QQ"
+   },
+   "text": "```json\n{\n  \"severity\": \"P1\",\n  \"service\": \"payments\",\n  \"first_move\": \"page owner\",\n  \"why\": \"A provider API key has been exposed in plain text logs, which is an irreversible secret exposure and a P1 incident; rotating production credentials can break running systems and is a decision reserved for the service owner (Mei).\"\n}\n```",
+   "prompt": 13406,
+   "cached": 0,
+   "cost_usd": 0.0115845,
+   "id": "payments-key-in-logs"
+  },
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nweb: p95 page load up from 0.9 s to 2.6 s for 5 min, no errors, 1 customer report, last deploy 11 min ago.\nReply in JSON with the severity, the service, the first move, and why.\nIt is now 01:08:08."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 df25d9adff5af6478380b25c9786b6b0, 13168 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T16:08:08.605+00:00",
+   "wall_s": 4.727,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"web\",\n  \"first move\": \"roll back\",\n  \"why\": \"p95 latency degraded significantly enough for a customer to complain while requests still complete (P2), and the symptom started right after a deploy of web 11 minutes ago, making the recent deploy the likely cause.\"\n}\n```",
+         "thoughtSignature": "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"
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 13415,
+     "candidatesTokenCount": 85,
+     "totalTokenCount": 14086,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 13415
+      }
+     ],
+     "thoughtsTokenCount": 586,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "6XnCaqRit7faug_-w4aJBQ"
+   },
+   "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"web\",\n  \"first move\": \"roll back\",\n  \"why\": \"p95 latency degraded significantly enough for a customer to complain while requests still complete (P2), and the symptom started right after a deploy of web 11 minutes ago, making the recent deploy the likely cause.\"\n}\n```",
+   "prompt": 13415,
+   "cached": 0,
+   "cost_usd": 0.0125775,
+   "id": "web-deploy-slow"
+  },
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\napi: the audit log has no entries for a 40 min window this morning, the service was serving normally throughout, no customer reports, last deploy 6 days ago.\nReply in JSON with the severity, the service, the first move, and why.\nIt is now 01:08:13."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 df25d9adff5af6478380b25c9786b6b0, 13168 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T16:08:13.334+00:00",
+   "wall_s": 3.833,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"api\",\n  \"first move\": \"read logs\",\n  \"why\": \"An internal safety net (the audit trail) failed while customer traffic was served normally, making this a P2. Because the last deploy was 6 days ago and no outside provider is indicated, the first move is to read the service logs to find out why the audit writer stopped producing entries.\"\n}\n```",
+         "thoughtSignature": "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"
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 13410,
+     "candidatesTokenCount": 100,
+     "totalTokenCount": 14259,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 13410
+      }
+     ],
+     "thoughtsTokenCount": 749,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "7XnCasKrLsie2roPm_Cn2Ao"
+   },
+   "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"api\",\n  \"first move\": \"read logs\",\n  \"why\": \"An internal safety net (the audit trail) failed while customer traffic was served normally, making this a P2. Because the last deploy was 6 days ago and no outside provider is indicated, the first move is to read the service logs to find out why the audit writer stopped producing entries.\"\n}\n```",
+   "prompt": 13410,
+   "cached": 0,
+   "cost_usd": 0.01324125,
+   "id": "api-audit-gap"
+  },
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nnotifier: 2,100 duplicate confirmation emails sent in 10 min, 15 customer reports, last deploy 4 h ago.\nReply in JSON with the severity, the service, the first move, and why.\nIt is now 01:08:17."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 df25d9adff5af6478380b25c9786b6b0, 13168 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T16:08:17.173+00:00",
+   "wall_s": 4.268,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"notifier\",\n  \"first_move\": \"read logs\",\n  \"why\": \"Duplicate confirmation emails are degrading customer experience, but the deploy was 4 hours ago and the alert does not point to a provider or irreversible harm like data exposure or moved money. We must read the service logs to find out what is generating or resending duplicate messages before taking further action.\"\n}\n```",
+         "thoughtSignature": "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"
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 13405,
+     "candidatesTokenCount": 99,
+     "totalTokenCount": 14393,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 13405
+      }
+     ],
+     "thoughtsTokenCount": 889,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "8XnCauC6H-bp2roP8YSZ6AQ"
+   },
+   "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"notifier\",\n  \"first_move\": \"read logs\",\n  \"why\": \"Duplicate confirmation emails are degrading customer experience, but the deploy was 4 hours ago and the alert does not point to a provider or irreversible harm like data exposure or moved money. We must read the service logs to find out what is generating or resending duplicate messages before taking further action.\"\n}\n```",
+   "prompt": 13405,
+   "cached": 0,
+   "cost_usd": 0.01375875,
+   "id": "notifier-duplicate-sends"
+  },
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\npayments: all requests in us-east failing for 9 min, the cloud provider's status page reports a networking incident in us-east, 11 customer reports, last deploy 2 days ago.\nReply in JSON with the severity, the service, the first move, and why.\nIt is now 01:08:21."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 df25d9adff5af6478380b25c9786b6b0, 13168 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T16:08:21.447+00:00",
+   "wall_s": 8.56,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"payments\",\n  \"first_move\": \"check provider\",\n  \"why\": \"Payments is failing in one region (us-east) while other regions remain operational, making this a P2 degraded incident. The alert directly references a cloud provider networking incident on their status page, so checking the outside provider is the required first move.\"\n}\n```",
+         "thoughtSignature": "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"
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 13417,
+     "candidatesTokenCount": 92,
+     "totalTokenCount": 15929,
+     "cachedContentTokenCount": 8169,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 13417
+      }
+     ],
+     "cacheTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 8169
+      }
+     ],
+     "thoughtsTokenCount": 2420,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "9XnCapauNoeB2roPvvW0gAU"
+   },
+   "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"payments\",\n  \"first_move\": \"check provider\",\n  \"why\": \"Payments is failing in one region (us-east) while other regions remain operational, making this a P2 degraded incident. The alert directly references a cloud provider networking incident on their status page, so checking the outside provider is the required first move.\"\n}\n```",
+   "prompt": 13417,
+   "cached": 8169,
+   "cost_usd": 0.013968675,
+   "id": "payments-region-cloud"
+  },
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\nweb: 38 accounts deleted in 4 min from a single admin session, no errors, no customer reports yet, last deploy 7 days ago.\nReply in JSON with the severity, the service, the first move, and why.\nIt is now 01:08:30."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 df25d9adff5af6478380b25c9786b6b0, 13168 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T16:08:30.012+00:00",
+   "wall_s": 2.604,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P1\",\n  \"service\": \"web\",\n  \"first_move\": \"page owner\",\n  \"why\": \"Accounts have already been deleted in a bulk admin action, which is an irreversible data loss event that cannot be undone by on-call and requires the service owner (Aiko) to investigate and restore from backups.\"\n}\n```",
+         "thoughtSignature": "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"
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 13406,
+     "candidatesTokenCount": 84,
+     "totalTokenCount": 13969,
+     "cachedContentTokenCount": 8169,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 13406
+      }
+     ],
+     "cacheTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 8169
+      }
+     ],
+     "thoughtsTokenCount": 479,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "_nnCarahGb6e2roPheqlsAQ"
+   },
+   "text": "```json\n{\n  \"severity\": \"P1\",\n  \"service\": \"web\",\n  \"first_move\": \"page owner\",\n  \"why\": \"Accounts have already been deleted in a bulk admin action, which is an irreversible data loss event that cannot be undone by on-call and requires the service owner (Aiko) to investigate and restore from backups.\"\n}\n```",
+   "prompt": 13406,
+   "cached": 8169,
+   "cost_usd": 0.006651675,
+   "id": "web-bulk-delete"
+  }
+ ],
+ "wall_total_s": 94.79
+}

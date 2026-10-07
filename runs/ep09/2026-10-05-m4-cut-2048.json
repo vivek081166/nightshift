@@ -1,0 +1,218 @@
+{
+ "meta": {
+  "target_tokens": 2048,
+  "revision_tag": "Revision 2026-10-05h2048",
+  "handbook_cut": "md5 ec90e0cfec548cfe1b391ed58e43ef86, 2012 tokens by countTokens",
+  "cut_tokens": 2012,
+  "cut_ends_before": "- Section 6 lists every provider, what we use it for, and where its status page ",
+  "layout": "systemInstruction = SYSTEM + '\\n' + handbook cut at a section boundary; 3 alerts in a row"
+ },
+ "started_utc": "2026-10-04T15:53:22+00:00",
+ "calls": [
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\npayments-api: p95 latency 4.8 s for 6 min, error rate 0.9 %, 3 customer reports of failed checkout, last deploy 14 min ago.\nReply in JSON with the severity, the service, the first move, and why."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 ec90e0cfec548cfe1b391ed58e43ef86, 2012 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T15:53:22.619+00:00",
+   "wall_s": 2.811,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"payments\",\n  \"action\": \"roll back\",\n  \"why\": \"High latency and checkout failures started shortly after a deploy 14 minutes ago. The deploy is recent enough to be the likely cause, and rolling back will quickly mitigate degradation for customers without irreversible harm having occurred.\"\n}\n```",
+         "thoughtSignature": "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"
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 2245,
+     "candidatesTokenCount": 82,
+     "totalTokenCount": 2794,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 2245
+      }
+     ],
+     "thoughtsTokenCount": 467,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "cnbCapSSM-Xv1e8PqLiP2A8"
+   },
+   "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"payments\",\n  \"action\": \"roll back\",\n  \"why\": \"High latency and checkout failures started shortly after a deploy 14 minutes ago. The deploy is recent enough to be the likely cause, and rolling back will quickly mitigate degradation for customers without irreversible harm having occurred.\"\n}\n```",
+   "prompt": 2245,
+   "cached": 0,
+   "cost_usd": 0.0037425,
+   "id": "payments-latency"
+  },
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\npayments: checkout failures 12 % in eu-west only, other regions clean, p95 latency normal, 1 customer report, no deploy in 5 days, upstream provider status page green.\nReply in JSON with the severity, the service, the first move, and why."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 ec90e0cfec548cfe1b391ed58e43ef86, 2012 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T15:53:25.431+00:00",
+   "wall_s": 3.831,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"payments\",\n  \"first_move\": \"read logs\",\n  \"why\": \"Failures are isolated to a minority of requests in a single region (eu-west). With no recent deploy in 5 days and the upstream provider reporting green, the cause is unknown and requires inspecting the service's log output.\"\n}\n```",
+         "thoughtSignature": "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"
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 2246,
+     "candidatesTokenCount": 89,
+     "totalTokenCount": 2931,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 2246
+      }
+     ],
+     "thoughtsTokenCount": 596,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "dXbCaq-kJoeB2roPvvW0gAU"
+   },
+   "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"payments\",\n  \"first_move\": \"read logs\",\n  \"why\": \"Failures are isolated to a minority of requests in a single region (eu-west). With no recent deploy in 5 days and the upstream provider reporting green, the cause is unknown and requires inspecting the service's log output.\"\n}\n```",
+   "prompt": 2246,
+   "cached": 0,
+   "cost_usd": 0.00425325,
+   "id": "payments-partial"
+  },
+  {
+   "request": {
+    "contents": [
+     {
+      "role": "user",
+      "parts": [
+       {
+        "text": "Alert:\napi: error rate 0.4 % for 40 min against a 0.5 % monthly SLO budget, p95 latency normal, 1 customer report, last deploy 6 h ago.\nReply in JSON with the severity, the service, the first move, and why."
+       }
+      ]
+     }
+    ],
+    "generationConfig": {
+     "thinkingConfig": {
+      "thinkingLevel": "low"
+     }
+    },
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\n<handbook omitted: md5 ec90e0cfec548cfe1b391ed58e43ef86, 2012 tokens by countTokens>"
+      }
+     ]
+    }
+   },
+   "http": 200,
+   "sent_utc": "2026-10-04T15:53:29.263+00:00",
+   "wall_s": 4.443,
+   "retries": [],
+   "error": null,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"api\",\n  \"first_move\": \"read logs\",\n  \"why\": \"Requests are failing for a small minority of users (0.4% error rate with 1 customer report). The last deploy was 6 hours ago so it is too old to roll back, no provider is mentioned in the alert, and no irreversible harm has occurred, so checking the service's logs is the right first move to determine what is failing.\"\n}\n```",
+         "thoughtSignature": "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"
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 2247,
+     "candidatesTokenCount": 114,
+     "totalTokenCount": 3166,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 2247
+      }
+     ],
+     "thoughtsTokenCount": 805,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "eXbCat2_Hq6v2roP6-etYQ"
+   },
+   "text": "```json\n{\n  \"severity\": \"P2\",\n  \"service\": \"api\",\n  \"first_move\": \"read logs\",\n  \"why\": \"Requests are failing for a small minority of users (0.4% error rate with 1 customer report). The last deploy was 6 hours ago so it is too old to roll back, no provider is mentioned in the alert, and no irreversible harm has occurred, so checking the service's logs is the right first move to determine what is failing.\"\n}\n```",
+   "prompt": 2247,
+   "cached": 0,
+   "cost_usd": 0.0051315,
+   "id": "api-slo-edge"
+  }
+ ],
+ "wall_total_s": 11.09
+}

@@ -221,3 +221,42 @@ thinkingLevel low. The dashboard (`arch/latency.png`, from `arch/make_graph.py`)
     `graph-tokens.json` countTokens and the per-part resolution probe; none of them is a number in the episode.
 - Harness (not episode code): `measure/ep08.py` records every call (requests saved without the base64, md5 kept).
 - Spend: the measurement runs $0.66 (`2026-10-03-spend.json`), the two look.py probes $0.10, the seven camera calls $0.04.
+
+## ep09
+
+Prompt caching. Measured and run on camera 2026-10-05. `cache.py` sends `runbooks/handbook.md` (the five-action rules,
+then the handbook: 13,338 tokens) as the systemInstruction and the ask above the alert as the contents,
+`gemini-3.8-flash` at thinkingLevel low. The handbook is synthetic, written for the course (its company is made up); a
+frozen copy is `runs/ep09/2026-10-05-handbook-frozen.md`. Every number the episode speaks comes from a file below.
+
+- Camera runs in the episode, terminal verbatim (2026-10-05), `runs/ep09/2026-10-05-ep09-camera-*`:
+  `-a.txt` (`cache.py`, thirty alerts: `cached 0` on all 30, so "not one of the thirty"), `-b.txt` (`cache.py
+  --time-first`, ten alerts: `cached 0` on all 10), `-c.txt` (`cache.py --make`, ttl 300 s: `cached 13,338` on all 30),
+  `-d.txt` (`cache.py --again` after the five minutes, before the fix: `403 PERMISSION_DENIED: CachedContent not found
+  (or permission denied)`), `-e.txt` (the same terminal after the fix lines went into `again()`: the 403 from d, then
+  `cache ran out: making it again`, a new cache, `cached 13,338`).
+- "An earlier run", "a bit more than half": `m1-baseline` (`measure/ep09_screen.py hits`), the handbook first and nothing
+  else changed: 7 of 30 calls reused 8,169 tokens of 13,386-13,413 sent (61 %), the first at call 15 (`api-region-dns`).
+  The other runs set up the same way: `m3-serial` 5 of 30 (8,169 each), `m6-fixed` 7 of 30 (8,006 each, JSON schema
+  mode), `m2-fix` + `m2-fix-ext` 2 of 30 (8,169 each): 21 of 120 across the four, none of them the whole handbook.
+- "About a tenth": `2026-10-05-m0-docs-pricing.md`, gemini-3.8-flash input $0.75 per 1M tokens, context caching $0.075
+  (both double on 2027-01-01; the ratio holds).
+- "Doesn't guarantee you'll pay less": `2026-10-05-m0-docs-caching.md`, "Implicit caching (automatically enabled on
+  Gemini 2.5 and newer models, no cost saving guarantee)". "The limit is an hour": the same page, "If not set, the TTL
+  defaults to 1 hour".
+- One changing line on top: `m2-time` 0 of 10 + `m2-time-ext` 0 of 20 (`It is now HH:MM:SS.` as the first line), and
+  camera b.
+- The cache you make: `m5-explicit` (ttl 300 s), 30 of 30 calls reused 13,338 tokens each; after `expireTime` the call, a
+  GET and a DELETE each returned 403 PERMISSION_DENIED "CachedContent not found (or permission denied)". It never says
+  the cache ran out.
+- Module close (`measure/ep09_screen.py close`): `m6-fixed` (the automatic cache only, 7 of 30 reused) and
+  `m7-explicit-scored` (the same prompt text, every call pointed at a cache made with it, 30 of 30 reused): both 27 of 30
+  right against `tickets/incidents.json`, the same three missed (api-slo-edge, disk-slow-burn, notifier-vendor-quota).
+  Bill $0.274 and $0.050 (18 %, "about a fifth"); the second counts making the cache ($0.0100, its tokens at the input
+  rate: the docs list no charge for making one, so this is the run's assumption) and keeping it 82 s.
+- Not numbers in the episode: calls that reused the handbook were not faster (`m1-baseline` median 3.07 s against
+  2.96 s); `m4-*` (handbook cut to sizes from 0.7k to 9.2k tokens: nothing reused at 4.7k or below), `m3-burst-*`, `m6-bust`,
+  `m6-plain`, `m5-explicit-small` (400 under the 1,024-token floor for a cache you make).
+- Harness (not episode code): `measure/ep09.py` records every call.
+- Spend: the measurement runs $3.33 (`2026-10-05-spend.json`), the camera takes $0.64 (a $0.3890, b $0.1387, c $0.1123,
+  e $0.0036; d failed before any tokens).

@@ -1,0 +1,27 @@
+➜  nightshift git:(main) python3 cache.py --again
+Traceback (most recent call last):
+  File "/Users/vivek/Projects/nightshift/cache.py", line 79, in <module>
+    again()
+    ~~~~~^^
+  File "/Users/vivek/Projects/nightshift/cache.py", line 65, in again
+    row(case, call(case["alert"], cache=LAST_CACHE.read_text()))
+              ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vivek/Projects/nightshift/cache.py", line 53, in call
+    usage = post(f"models/{MODEL}:generateContent", body)["usageMetadata"]
+            ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/vivek/Projects/nightshift/cache.py", line 35, in post
+    raise APIError(err["code"], err["status"], err["message"]) from None
+APIError: 403 PERMISSION_DENIED: CachedContent not found (or permission denied)
+➜  nightshift git:(main) 
+
+
+
+
+
+
+
+
+
+
+
+

@@ -40,6 +40,12 @@ You can write a Python function and call an HTTP API. No machine learning needed
     python3 look.py arch/latency.png "At what time was payments v2.31 deployed?" --detail low   # fewer tokens for the picture
     python3 measure/ep08_screen.py readings   # every answer from five runs of the picture, and the truth, from runs/ep08 (also: pdf)
 
+    python3 cache.py                  # thirty alerts, the handbook first: how much of each call the model reused (the automatic cache)
+    python3 cache.py --time-first     # the current time on the first line, above the handbook: ten alerts
+    python3 cache.py --make           # make a cache with the handbook (it lives 5 minutes), then point all thirty calls at it
+    python3 cache.py --again          # one call to that cache; once it has run out: a 403, then it makes the cache again
+    python3 measure/ep09_screen.py hits   # an earlier run of the thirty, from runs/ep09, no API call (also: close, the module close)
+
 The `ep03` tag holds `score.py` as the episode leaves it, with RULES filled in. The first five runs in
 the video used the same file with `RULES = ""` on line 14. Replace the RULES block with that one line
 to run them yourself.
@@ -60,6 +66,7 @@ the course depends on the vendor.
 | `ep06` | [LLM Tool Calling Explained: It Made Up a Name, My Code Said No](https://youtu.be/0qm6Zav9udM) | `tools.py`: six function descriptions, the check before any tool call runs, and the loop. A made-up provider name refused with the real ones and fixed on the next try; `--list` sends the names as an enum; roll back gets the strictest check. `triage.py` is the start of the next episode |
 | `ep07` | [LLM Structured Output Explained: Valid JSON, and My Code Still Crashed (JSON Mode vs Schema)](https://youtu.be/N99lJy9cojs) | `triage.py` asks for the same answer three ways: in words only (backticks, valid JSON 0 of 30), with JSON mode (valid 30 of 30, in my shape 0 of 30) and with the shape (30 of 30, first move right 28 of 30). `read.py` is the on-call code that crashed. `measure/ep07_screen.py choices` shows an open model's choices crossed out by the shape |
 | `ep08` | [Send Images and PDFs to an LLM: Why Chart Readings Change](https://youtu.be/_c2H98LSzKc) | `look.py` sends a picture or a PDF as its bytes in base64 plus a label for its type, next to the question. The dashboard picture gives a reading that moves (33, 35, 35; the truth is 34); the numbers as text give 34 every time; the PDF gives the number it prints (1,184), 30 of 30 right. `--detail low` sets how many tokens the picture becomes. `measure/ep08_screen.py` shows the readings and the PDF count |
+| `ep09` | [Prompt Caching: Make a Cache That Hits Every Call (LLM Context Caching)](https://youtu.be/Cwb9SbTJCOk) | `cache.py` sends the handbook (`runbooks/handbook.md`, the five rules on top) first and the alert last, and prints how many tokens each call sent and how many the model reused. The automatic cache reused nothing on camera (0 of 30; 21 of 120 across four earlier runs, never the whole handbook); the time on the first line stops it (0 of 30); a cache you make (`--make`) is reused on 30 of 30; after its 5 minutes the call fails with 403 "CachedContent not found (or permission denied)", and `--again` makes the cache again. `measure/ep09_screen.py` shows the earlier run and the module close: 27 of 30 right both ways, the bill about a fifth |
 
 The map the course follows: [Andrew Ng's AI Engineering Skills Map](https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map)
 

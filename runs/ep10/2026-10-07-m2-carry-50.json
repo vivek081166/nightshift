@@ -1,0 +1,1918 @@
+{
+ "meta": {
+  "what": "M2 question set, shape carry-50",
+  "shape": "systemInstruction = handbook.md + all 49 other documents whole, sent through an explicit cache (cachedContents, as cache.py) to save money; the cache holds exactly that systemInstruction, so answers do not depend on it",
+  "user_template": "Question from the on-call engineer:\n{q}\nAnswer from the pages. If the pages do not say, say so.",
+  "order": "tickets/questions.json order, once each, one call at a time"
+ },
+ "items": [
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nweb-admin-bulk just paged me. What exactly makes that alert fire?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/a9w5184eqj0idzdb58bkpqk5l9mvjz7b0rmkuwbn"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:08:58.262+00:00",
+     "wall_s": 7.74,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to Section 14 (*Alert rules reference*) of the On-Call Handbook, the **`web-admin-bulk`** alert fires when:\n\n* **More than 20 account deletions or changes occur in 10 minutes from one session.**",
+           "thoughtSignature": "EmkKZwFpFH0TI6M4LZNo4eva00WVkO0KH06yp2ZZ54ZjQitgrWCvPzhjKUxVuUukvFeSB9ap8DabHSxccRstm/agA6C2+X7ZQ/PNTsqHPAwiiLeUbjKIhhsqkQKOMbXF5LMyuM3eopGXGFY="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162030,
+       "candidatesTokenCount": 54,
+       "totalTokenCount": 162084,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162030
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "6tPFatKmJfew0-kP1NGE4AE"
+     },
+     "text": "According to Section 14 (*Alert rules reference*) of the On-Call Handbook, the **`web-admin-bulk`** alert fires when:\n\n* **More than 20 account deletions or changes occur in 10 minutes from one session.**",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162030,
+     "cached": 161987,
+     "out": 54,
+     "cost_usd": 0.012383775,
+     "cost_full_rate_usd": 0.121725
+    }
+   ],
+   "text": "According to Section 14 (*Alert rules reference*) of the On-Call Handbook, the **`web-admin-bulk`** alert fires when:\n\n* **More than 20 account deletions or changes occur in 10 minutes from one session.**",
+   "error": null,
+   "grade": {
+    "code_verdict": "right",
+    "truth_ok": true,
+    "wrong_terms": [],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162030,
+    "cached_tokens": 161987,
+    "out_tokens": 54,
+    "cost_usd": 0.012383775,
+    "cost_full_rate_usd": 0.121725,
+    "wall_s": 7.74
+   },
+   "qid": "hb-admin-bulk"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhat threshold fires the payments-checkout alert?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/a9w5184eqj0idzdb58bkpqk5l9mvjz7b0rmkuwbn"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:09:06.024+00:00",
+     "wall_s": 2.535,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to Section 14 (Alert rules reference) of the On-Call Handbook, the **`payments-checkout`** alert fires when:\n\n- **Checkout failure rate is above 2 % for 3 minutes, in any region.**",
+           "thoughtSignature": "EmkKZwFpFH0TogyVEp5ZBuT+RQZZ7sE/SJhY26CuzL1VHhMeOhxW6lpN6sSg59rr70brEQ/Nm2QnJ45oKxGHp3gCt2YULC94TbN9AAG4dxcJZC2UONI89fq/rJdtc8UbhqfOS4nEW3y2JGY="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162022,
+       "candidatesTokenCount": 50,
+       "totalTokenCount": 162072,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162022
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "8tPFaua5Fde12roPw5T06AQ"
+     },
+     "text": "According to Section 14 (Alert rules reference) of the On-Call Handbook, the **`payments-checkout`** alert fires when:\n\n- **Checkout failure rate is above 2 % for 3 minutes, in any region.**",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162022,
+     "cached": 161987,
+     "out": 50,
+     "cost_usd": 0.012362775,
+     "cost_full_rate_usd": 0.121704
+    }
+   ],
+   "text": "According to Section 14 (Alert rules reference) of the On-Call Handbook, the **`payments-checkout`** alert fires when:\n\n- **Checkout failure rate is above 2 % for 3 minutes, in any region.**",
+   "error": null,
+   "grade": {
+    "code_verdict": "right",
+    "truth_ok": true,
+    "wrong_terms": [],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162022,
+    "cached_tokens": 161987,
+    "out_tokens": 50,
+    "cost_usd": 0.012362775,
+    "cost_full_rate_usd": 0.121704,
+    "wall_s": 2.535
+   },
+   "qid": "hb-checkout-threshold"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhich kinds of businesses get the March booking peak?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/a9w5184eqj0idzdb58bkpqk5l9mvjz7b0rmkuwbn"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:09:08.564+00:00",
+     "wall_s": 3.392,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the handbook and handover notes, the March booking peak (driven by graduation and preparations for the school year starting in April) impacts:\n\n- **Hair salons**\n- **Photo / photography studios**\n- **Tutors** (including private tutors and test-prep academies)",
+           "thoughtSignature": "EmkKZwFpFH0TzUbPVNi/8hQa+KNuflms3w1iY3amXM1Q9pHcjWjWgrZUD340oiOuQ9pxG2BcG7dXkCQjk0UTI5XnA3Chfuva7XmijgpT8BEpZHzWY0zF+RpJJFuUHA9T8ufFC77pjpBFr7E="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162023,
+       "candidatesTokenCount": 58,
+       "totalTokenCount": 162081,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162023
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "9NPFat-nNdqo2roPybGC2AM"
+     },
+     "text": "According to the handbook and handover notes, the March booking peak (driven by graduation and preparations for the school year starting in April) impacts:\n\n- **Hair salons**\n- **Photo / photography studios**\n- **Tutors** (including private tutors and test-prep academies)",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162023,
+     "cached": 161987,
+     "out": 58,
+     "cost_usd": 0.012393524999999999,
+     "cost_full_rate_usd": 0.12173475
+    }
+   ],
+   "text": "According to the handbook and handover notes, the March booking peak (driven by graduation and preparations for the school year starting in April) impacts:\n\n- **Hair salons**\n- **Photo / photography studios**\n- **Tutors** (including private tutors and test-prep academies)",
+   "error": null,
+   "grade": {
+    "code_verdict": "wrong",
+    "truth_ok": false,
+    "wrong_terms": [],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162023,
+    "cached_tokens": 161987,
+    "out_tokens": 58,
+    "cost_usd": 0.012393524999999999,
+    "cost_full_rate_usd": 0.12173475,
+    "wall_s": 3.392
+   },
+   "qid": "hb-march-peak"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nCan I paste a customer's allergy note from a booking into the incident thread so the team sees it?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/a9w5184eqj0idzdb58bkpqk5l9mvjz7b0rmkuwbn"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:09:11.962+00:00",
+     "wall_s": 3.747,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "**No.** \n\nAccording to the handbook (Section 12, *Data and privacy basics for on-call*):\n- Notes written by a business about a customer (specifically citing \"for example allergies before a salon treatment\") are classified as customer data.\n- The rule strictly states: **\"Never copy customer data into chat, tickets or postmortems. Refer to booking ids.\"**",
+           "thoughtSignature": "EmkKZwFpFH0T8/bvtKxXyaHZvKodyxu92fFFdz7jMxw1wk2ptHapAW3bcYoAa3GzzjFXg526gZx5TCHoUrWLnpg3T/NTzYlf7IcFnC+e3fcdJ1+4QakzMCPQY4JndE1KCtf0cphv/rNHAcA="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162035,
+       "candidatesTokenCount": 82,
+       "totalTokenCount": 162117,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162035
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "-NPFapr3D_ew0-kPs9eE4AE"
+     },
+     "text": "**No.** \n\nAccording to the handbook (Section 12, *Data and privacy basics for on-call*):\n- Notes written by a business about a customer (specifically citing \"for example allergies before a salon treatment\") are classified as customer data.\n- The rule strictly states: **\"Never copy customer data into chat, tickets or postmortems. Refer to booking ids.\"**",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162035,
+     "cached": 161987,
+     "out": 82,
+     "cost_usd": 0.012492524999999999,
+     "cost_full_rate_usd": 0.12183375
+    }
+   ],
+   "text": "**No.** \n\nAccording to the handbook (Section 12, *Data and privacy basics for on-call*):\n- Notes written by a business about a customer (specifically citing \"for example allergies before a salon treatment\") are classified as customer data.\n- The rule strictly states: **\"Never copy customer data into chat, tickets or postmortems. Refer to booking ids.\"**",
+   "error": null,
+   "grade": {
+    "code_verdict": "right",
+    "truth_ok": true,
+    "wrong_terms": [],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162035,
+    "cached_tokens": 161987,
+    "out_tokens": 82,
+    "cost_usd": 0.012492524999999999,
+    "cost_full_rate_usd": 0.12183375,
+    "wall_s": 3.747
+   },
+   "qid": "hb-allergy-note"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nDuring my on-call week, how soon after a page do I have to be at a keyboard?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/a9w5184eqj0idzdb58bkpqk5l9mvjz7b0rmkuwbn"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:09:15.724+00:00",
+     "wall_s": 3.115,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to section 10.3 (*During your shift*) of the On-Call Handbook, you should be at a keyboard **within fifteen minutes** (and be able to acknowledge within five minutes).",
+           "thoughtSignature": "EmkKZwFpFH0TwCgwcE6lWqG++ulBv9ghN5trNuNKjWpPOW/ChqrpakttjDVmm2YtKmeNZbu7Co/BSD3pzVXUq3ViI0JX10mcJJcdvcxoDIsfTI5L8sBlmu1xIBW1Va59DuvQ/Dr9C5O4aZA="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162034,
+       "candidatesTokenCount": 41,
+       "totalTokenCount": 162075,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162034
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "_NPFaoGnAt3prfcP1rrI6QE"
+     },
+     "text": "According to section 10.3 (*During your shift*) of the On-Call Handbook, you should be at a keyboard **within fifteen minutes** (and be able to acknowledge within five minutes).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162034,
+     "cached": 161987,
+     "out": 41,
+     "cost_usd": 0.012338024999999999,
+     "cost_full_rate_usd": 0.12167925
+    }
+   ],
+   "text": "According to section 10.3 (*During your shift*) of the On-Call Handbook, you should be at a keyboard **within fifteen minutes** (and be able to acknowledge within five minutes).",
+   "error": null,
+   "grade": {
+    "code_verdict": "right",
+    "truth_ok": true,
+    "wrong_terms": [],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162034,
+    "cached_tokens": 161987,
+    "out_tokens": 41,
+    "cost_usd": 0.012338024999999999,
+    "cost_full_rate_usd": 0.12167925,
+    "wall_s": 3.115
+   },
+   "qid": "hb-keyboard"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nI need to be away for two hours during my on-call shift. What do I have to do?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/a9w5184eqj0idzdb58bkpqk5l9mvjz7b0rmkuwbn"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:09:18.857+00:00",
+     "wall_s": 2.716,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to Section 10.3 of the **Sorrel On-Call Handbook** (\"During your shift\"):\n\nIf you need to be away for more than an hour, you must swap with your secondary on-call engineer and announce the swap in the on-call channel (`#on-call`).",
+           "thoughtSignature": "EmkKZwFpFH0TyL/tRkxzrF00u4V5z+gdG8CY/8ZzY9MiX84TF6XJMZP56BDuaCyBgpoqcV3zBN9P6e0Z5BU2Xp6upPh+kEw+1v8iabefb4tjLIyKVHXMT1i8CXFxJ/RnPnni9PyY88eMXNo="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162035,
+       "candidatesTokenCount": 62,
+       "totalTokenCount": 162097,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162035
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "_9PFavq_CoSj9tMP7LTo4Qo"
+     },
+     "text": "According to Section 10.3 of the **Sorrel On-Call Handbook** (\"During your shift\"):\n\nIf you need to be away for more than an hour, you must swap with your secondary on-call engineer and announce the swap in the on-call channel (`#on-call`).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162035,
+     "cached": 161987,
+     "out": 62,
+     "cost_usd": 0.012417525,
+     "cost_full_rate_usd": 0.12175875
+    }
+   ],
+   "text": "According to Section 10.3 of the **Sorrel On-Call Handbook** (\"During your shift\"):\n\nIf you need to be away for more than an hour, you must swap with your secondary on-call engineer and announce the swap in the on-call channel (`#on-call`).",
+   "error": null,
+   "grade": {
+    "code_verdict": "right",
+    "truth_ok": true,
+    "wrong_terms": [],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162035,
+    "cached_tokens": 161987,
+    "out_tokens": 62,
+    "cost_usd": 0.012417525,
+    "cost_full_rate_usd": 0.12175875,
+    "wall_s": 2.716
+   },
+   "qid": "hb-away"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nSMS delivery receipts for KDDI numbers look late tonight. How late can they normally be?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/a9w5184eqj0idzdb58bkpqk5l9mvjz7b0rmkuwbn"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:09:21.589+00:00",
+     "wall_s": 3.021,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the **\"twilio: Japan carrier notes\"** page, delivery receipts for KDDI numbers in Japan can arrive **up to 40 minutes** after the SMS was delivered. \n\nDuring this window, `notifier` marks the messages as `pending`, not `failed`, while the customer usually receives the SMS on their device within seconds.",
+           "thoughtSignature": "EmkKZwFpFH0TC68dNf2viFcGS/8fntpKLWNMR1hQGzYqJjc+riLbJeJfrexQES/DKoipWZUkl7vOEWMGBBpD3SgcvI0Vq+FKPwmFXsvehzbvJMy925NFuotqz3DTd/dBaSCv5csg6urxaUg="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162031,
+       "candidatesTokenCount": 71,
+       "totalTokenCount": 162102,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162031
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "AdTFaq2JNca90-kPwLSxsAk"
+     },
+     "text": "According to the **\"twilio: Japan carrier notes\"** page, delivery receipts for KDDI numbers in Japan can arrive **up to 40 minutes** after the SMS was delivered. \n\nDuring this window, `notifier` marks the messages as `pending`, not `failed`, while the customer usually receives the SMS on their device within seconds.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162031,
+     "cached": 161987,
+     "out": 71,
+     "cost_usd": 0.012448275,
+     "cost_full_rate_usd": 0.1217895
+    }
+   ],
+   "text": "According to the **\"twilio: Japan carrier notes\"** page, delivery receipts for KDDI numbers in Japan can arrive **up to 40 minutes** after the SMS was delivered. \n\nDuring this window, `notifier` marks the messages as `pending`, not `failed`, while the customer usually receives the SMS on their device within seconds.",
+   "error": null,
+   "grade": {
+    "code_verdict": "right",
+    "truth_ok": true,
+    "wrong_terms": [],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162031,
+    "cached_tokens": 161987,
+    "out_tokens": 71,
+    "cost_usd": 0.012448275,
+    "cost_full_rate_usd": 0.1217895,
+    "wall_s": 3.021
+   },
+   "qid": "pg-kddi-lag"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nHow many failed payments were replayed after the November 2025 payments checkout timeout incident?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/a9w5184eqj0idzdb58bkpqk5l9mvjz7b0rmkuwbn"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:09:24.698+00:00",
+     "wall_s": 2.707,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the postmortem for the incident (**Postmortem: payments checkout timeouts after the v2.31 pool change** on 2025-11-18), **1,184** failed payments were replayed from the retry queue (and all 1,184 completed).",
+           "thoughtSignature": "EmkKZwFpFH0TU4TsF2Yt1EDTGu1ZY+kFZuYeHp4w/ZJt5yarsrlp/dFDAGarQVD9lKC5Cr/riwCgBRr8farj2JsSvderKmo5KpsNvPosVaNt5m4WLKNPXnKDGLomsxza3/yLCYXhrQFwkMo="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162033,
+       "candidatesTokenCount": 65,
+       "totalTokenCount": 162098,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162033
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "BNTFarKBPfew0-kPs9eE4AE"
+     },
+     "text": "According to the postmortem for the incident (**Postmortem: payments checkout timeouts after the v2.31 pool change** on 2025-11-18), **1,184** failed payments were replayed from the retry queue (and all 1,184 completed).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162033,
+     "cached": 161987,
+     "out": 65,
+     "cost_usd": 0.012427275,
+     "cost_full_rate_usd": 0.1217685
+    }
+   ],
+   "text": "According to the postmortem for the incident (**Postmortem: payments checkout timeouts after the v2.31 pool change** on 2025-11-18), **1,184** failed payments were replayed from the retry queue (and all 1,184 completed).",
+   "error": null,
+   "grade": {
+    "code_verdict": "right",
+    "truth_ok": true,
+    "wrong_terms": [],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162033,
+    "cached_tokens": 161987,
+    "out_tokens": 65,
+    "cost_usd": 0.012427275,
+    "cost_full_rate_usd": 0.1217685,
+    "wall_s": 2.707
+   },
+   "qid": "pg-replayed"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nIs there a game day this week, and who runs it?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/a9w5184eqj0idzdb58bkpqk5l9mvjz7b0rmkuwbn"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:09:27.415+00:00",
+     "wall_s": 2.985,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Yes, there is a game day this week:\n\n- **Exercise:** `payments` `eu-west` failover test\n- **When:** Friday, 2026-10-09, 15:00–16:00 JST\n- **Who runs it:** Sara (platform)",
+           "thoughtSignature": "EmkKZwFpFH0THYicIlNgFr38094uS51OkKf+rt1njBz57Rw+TPWgzSImSww00Hf9KrMFFKcW+zGDD1Ixp+01o5kPjZJRLbO6XpvSFNId/aYfRvp7kOEGrDzN2GGbzU7eky+BpC676PWBtjw="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162026,
+       "candidatesTokenCount": 70,
+       "totalTokenCount": 162096,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162026
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "B9TFaomlKbTD0-kPve2g2AQ"
+     },
+     "text": "Yes, there is a game day this week:\n\n- **Exercise:** `payments` `eu-west` failover test\n- **When:** Friday, 2026-10-09, 15:00–16:00 JST\n- **Who runs it:** Sara (platform)",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162026,
+     "cached": 161987,
+     "out": 70,
+     "cost_usd": 0.012440775,
+     "cost_full_rate_usd": 0.121782
+    }
+   ],
+   "text": "Yes, there is a game day this week:\n\n- **Exercise:** `payments` `eu-west` failover test\n- **When:** Friday, 2026-10-09, 15:00–16:00 JST\n- **Who runs it:** Sara (platform)",
+   "error": null,
+   "grade": {
+    "code_verdict": "right",
+    "truth_ok": true,
+    "wrong_terms": [],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162026,
+    "cached_tokens": 161987,
+    "out_tokens": 70,
+    "cost_usd": 0.012440775,
+    "cost_full_rate_usd": 0.121782,
+    "wall_s": 2.985
+   },
+   "qid": "pg-game-day"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhen the partner API certificate expired in April 2025, how long were partner connections failing, and how many partners were affected?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/a9w5184eqj0idzdb58bkpqk5l9mvjz7b0rmkuwbn"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:09:30.406+00:00",
+     "wall_s": 3.331,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the **Postmortem: partner API certificate expired** page:\n\n* **Duration:** Partner connections were failing for **47 minutes** (from 09:00 JST to 09:47 JST on 2025-04-14).\n* **Partners affected:** A total of **three integration partners** were affected.",
+           "thoughtSignature": "EmkKZwFpFH0TnhJFFPNtYIX32NeCLxVu9wvK5Ik8ZHMxWGxMhtKIA734WGb+M3mY2imsn2SiYGSVvSVPgD4zg75wdc8tI5P/D1IokQ69k5T4Z5p2pZ4t3Pv4b40kVn+AY8W8IQw2U7Ud+mA="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162041,
+       "candidatesTokenCount": 78,
+       "totalTokenCount": 162119,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162041
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "CtTFas7HLKOw2roPpaeA0AE"
+     },
+     "text": "Based on the **Postmortem: partner API certificate expired** page:\n\n* **Duration:** Partner connections were failing for **47 minutes** (from 09:00 JST to 09:47 JST on 2025-04-14).\n* **Partners affected:** A total of **three integration partners** were affected.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162041,
+     "cached": 161987,
+     "out": 78,
+     "cost_usd": 0.012482024999999999,
+     "cost_full_rate_usd": 0.12182325
+    }
+   ],
+   "text": "Based on the **Postmortem: partner API certificate expired** page:\n\n* **Duration:** Partner connections were failing for **47 minutes** (from 09:00 JST to 09:47 JST on 2025-04-14).\n* **Partners affected:** A total of **three integration partners** were affected.",
+   "error": null,
+   "grade": {
+    "code_verdict": "right",
+    "truth_ok": true,
+    "wrong_terms": [],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162041,
+    "cached_tokens": 161987,
+    "out_tokens": 78,
+    "cost_usd": 0.012482024999999999,
+    "cost_full_rate_usd": 0.12182325,
+    "wall_s": 3.331
+   },
+   "qid": "pg-cert-outage"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nHow do I get log search access before my first shadow shift, and who approves it?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/a9w5184eqj0idzdb58bkpqk5l9mvjz7b0rmkuwbn"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:09:33.748+00:00",
+     "wall_s": 3.543,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the **Access requests for on-call** and **On-call onboarding** documentation:\n\n* **How to request it:** Open an internal IT access ticket using the template `Access Request: On-Call Observability`, request membership in the group `oncall-readers` (which grants log search and dashboard access), and post the ticket link in `#access` in chat noting your scheduled shadow shift start date. You should submit this at least one full working day (or at least a week) before your first shadow shift.\n* **Who approves it:** **Kenji Sato** (platform lead) approves the request (taking one working day). During planned absences when Kenji is unavailable, Sara handles operational access ticket reviews on the platform team's behalf.",
+           "thoughtSignature": "EmkKZwFpFH0TZS/7eCX5MVc1zM+t1kfsJ7U5G2CecnLUlQjelmJBbSwD4963yqRGXS9o+VJ4laqpq+APkAMh6kP2HDY+QgesmZ/8gBZ1lY5BN/+cBw4cUZkBi5P8Avr6KQRJ3ksCV2Th7+w="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162031,
+       "candidatesTokenCount": 157,
+       "totalTokenCount": 162188,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162031
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "DtTFatyGA_yivr0PvMuZ2Q0"
+     },
+     "text": "Based on the **Access requests for on-call** and **On-call onboarding** documentation:\n\n* **How to request it:** Open an internal IT access ticket using the template `Access Request: On-Call Observability`, request membership in the group `oncall-readers` (which grants log search and dashboard access), and post the ticket link in `#access` in chat noting your scheduled shadow shift start date. You should submit this at least one full working day (or at least a week) before your first shadow shift.\n* **Who approves it:** **Kenji Sato** (platform lead) approves the request (taking one working day). During planned absences when Kenji is unavailable, Sara handles operational access ticket reviews on the platform team's behalf.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162031,
+     "cached": 161987,
+     "out": 157,
+     "cost_usd": 0.012770775,
+     "cost_full_rate_usd": 0.122112
+    }
+   ],
+   "text": "Based on the **Access requests for on-call** and **On-call onboarding** documentation:\n\n* **How to request it:** Open an internal IT access ticket using the template `Access Request: On-Call Observability`, request membership in the group `oncall-readers` (which grants log search and dashboard access), and post the ticket link in `#access` in chat noting your scheduled shadow shift start date. You should submit this at least one full working day (or at least a week) before your first shadow shift.\n* **Who approves it:** **Kenji Sato** (platform lead) approves the request (taking one working day). During planned absences when Kenji is unavailable, Sara handles operational access ticket reviews on the platform team's behalf.",
+   "error": null,
+   "grade": {
+    "code_verdict": "right",
+    "truth_ok": true,
+    "wrong_terms": [],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162031,
+    "cached_tokens": 161987,
+    "out_tokens": 157,
+    "cost_usd": 0.012770775,
+    "cost_full_rate_usd": 0.122112,
+    "wall_s": 3.543
+   },
+   "qid": "pg-log-access"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nHow many reminders went out twice in the September 2024 notifier scheduler incident?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/a9w5184eqj0idzdb58bkpqk5l9mvjz7b0rmkuwbn"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:09:37.307+00:00",
+     "wall_s": 3.035,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the postmortem *\"duplicate appointment reminders after a scheduler restart\"* (dated 2024-09-06), **8,412** appointment reminders went out twice (queued and delivered a second time to 8,412 customers).",
+           "thoughtSignature": "EmkKZwFpFH0Tj3NBKnMt8wpus6TRuEWMwRHAkICqUwmCq/pmhjljVYHiXDM7zuzPvrq93XyaTAAkeg2fT1+/29o9cqdVWr6+4CyuVJ/OoSVQcjo43jSrLnG/GltVn3qHLcj6lYzhzCTIAlA="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162031,
+       "candidatesTokenCount": 56,
+       "totalTokenCount": 162087,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162031
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "EdTFaqnfKvfAvr0Pms-twQ0"
+     },
+     "text": "According to the postmortem *\"duplicate appointment reminders after a scheduler restart\"* (dated 2024-09-06), **8,412** appointment reminders went out twice (queued and delivered a second time to 8,412 customers).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162031,
+     "cached": 161987,
+     "out": 56,
+     "cost_usd": 0.012392025,
+     "cost_full_rate_usd": 0.12173325
+    }
+   ],
+   "text": "According to the postmortem *\"duplicate appointment reminders after a scheduler restart\"* (dated 2024-09-06), **8,412** appointment reminders went out twice (queued and delivered a second time to 8,412 customers).",
+   "error": null,
+   "grade": {
+    "code_verdict": "right",
+    "truth_ok": true,
+    "wrong_terms": [],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162031,
+    "cached_tokens": 161987,
+    "out_tokens": 56,
+    "cost_usd": 0.012392025,
+    "cost_full_rate_usd": 0.12173325,
+    "wall_s": 3.035
+   },
+   "qid": "pg-dup-reminders"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\npayments checkout errors jumped right after the last deploy, 12 minutes ago. How exactly do I roll payments back?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/a9w5184eqj0idzdb58bkpqk5l9mvjz7b0rmkuwbn"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:09:40.351+00:00",
+     "wall_s": 6.186,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Since 2026-09-28, **payments** deploys and rolls back using **Shipyard** (the old deploy tool / `dtool` no longer controls payments). \n\nBefore rolling back, verify on the dashboard that money has not already moved wrongly (such as duplicate charges or refunds); if money has already moved, do not roll back first—page Mei instead. Also confirm that the checkout failures are on our side rather than due to a card provider (Stripe) outage.\n\nTo roll payments back to the previous release (pre-approved for on-call without additional approval):\n\n### Option 1: Via the Command Line\n1. View recent releases to find the release just below the `live` one:\n   ```bash\n   shipyard releases payments\n   ```\n2. Run the rollback command pointing to that previous release (releases are named like `r-211`):\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n3. Type the service name (`payments`) when prompted to confirm.\n\n---\n\n### Option 2: Via the Browser\n1. Open `shipyard.sorrel.internal`.\n2. Select the **payments** service and navigate to the **Releases** tab.\n3. Find the release just below the `live` one and click **\"Roll back to this release\"**.\n4. Type `payments` in the confirmation box to confirm.\n\n---\n\n### What to Expect & Next Steps\n- **Execution:** Shipyard drains in-flight checkouts first, then switches nodes; the rollback takes about five minutes (or ~6 minutes).\n- **Communication & Monitoring:** \n  - Copy both release names (the bad release and the one rolled back to) into the incident thread in `#inc-live`.\n  - Watch the \"Sorrel / payments\" dashboard to verify that checkout success returns to baseline levels.\n  - Notify Mei in the morning, or page her if the service remains unhealthy 10 minutes after the rollback finishes. *(Note: Rolling back two or more releases requires Mei’s approval in Shipyard).*",
+           "thoughtSignature": "EmkKZwFpFH0T3DwSv6VPNFb6/pbyHGrOeB6tZrmSeU6gtHYfHILKN6HbjBOdlM2bym7v9RTrFb4+GUCET7o5hfoJ+4g3mBmA1aK9ZHLClFGoLng05Rg9QgFuBsKvWxOOkmZ+tRJADdZdqj0="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162037,
+       "candidatesTokenCount": 450,
+       "totalTokenCount": 162487,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162037
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "FNTFao3zM9X92roP75PE0AE"
+     },
+     "text": "Since 2026-09-28, **payments** deploys and rolls back using **Shipyard** (the old deploy tool / `dtool` no longer controls payments). \n\nBefore rolling back, verify on the dashboard that money has not already moved wrongly (such as duplicate charges or refunds); if money has already moved, do not roll back first—page Mei instead. Also confirm that the checkout failures are on our side rather than due to a card provider (Stripe) outage.\n\nTo roll payments back to the previous release (pre-approved for on-call without additional approval):\n\n### Option 1: Via the Command Line\n1. View recent releases to find the release just below the `live` one:\n   ```bash\n   shipyard releases payments\n   ```\n2. Run the rollback command pointing to that previous release (releases are named like `r-211`):\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n3. Type the service name (`payments`) when prompted to confirm.\n\n---\n\n### Option 2: Via the Browser\n1. Open `shipyard.sorrel.internal`.\n2. Select the **payments** service and navigate to the **Releases** tab.\n3. Find the release just below the `live` one and click **\"Roll back to this release\"**.\n4. Type `payments` in the confirmation box to confirm.\n\n---\n\n### What to Expect & Next Steps\n- **Execution:** Shipyard drains in-flight checkouts first, then switches nodes; the rollback takes about five minutes (or ~6 minutes).\n- **Communication & Monitoring:** \n  - Copy both release names (the bad release and the one rolled back to) into the incident thread in `#inc-live`.\n  - Watch the \"Sorrel / payments\" dashboard to verify that checkout success returns to baseline levels.\n  - Notify Mei in the morning, or page her if the service remains unhealthy 10 minutes after the rollback finishes. *(Note: Rolling back two or more releases requires Mei’s approval in Shipyard).*",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162037,
+     "cached": 161987,
+     "out": 450,
+     "cost_usd": 0.013874025,
+     "cost_full_rate_usd": 0.12321525
+    }
+   ],
+   "text": "Since 2026-09-28, **payments** deploys and rolls back using **Shipyard** (the old deploy tool / `dtool` no longer controls payments). \n\nBefore rolling back, verify on the dashboard that money has not already moved wrongly (such as duplicate charges or refunds); if money has already moved, do not roll back first—page Mei instead. Also confirm that the checkout failures are on our side rather than due to a card provider (Stripe) outage.\n\nTo roll payments back to the previous release (pre-approved for on-call without additional approval):\n\n### Option 1: Via the Command Line\n1. View recent releases to find the release just below the `live` one:\n   ```bash\n   shipyard releases payments\n   ```\n2. Run the rollback command pointing to that previous release (releases are named like `r-211`):\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n3. Type the service name (`payments`) when prompted to confirm.\n\n---\n\n### Option 2: Via the Browser\n1. Open `shipyard.sorrel.internal`.\n2. Select the **payments** service and navigate to the **Releases** tab.\n3. Find the release just below the `live` one and click **\"Roll back to this release\"**.\n4. Type `payments` in the confirmation box to confirm.\n\n---\n\n### What to Expect & Next Steps\n- **Execution:** Shipyard drains in-flight checkouts first, then switches nodes; the rollback takes about five minutes (or ~6 minutes).\n- **Communication & Monitoring:** \n  - Copy both release names (the bad release and the one rolled back to) into the incident thread in `#inc-live`.\n  - Watch the \"Sorrel / payments\" dashboard to verify that checkout success returns to baseline levels.\n  - Notify Mei in the morning, or page her if the service remains unhealthy 10 minutes after the rollback finishes. *(Note: Rolling back two or more releases requires Mei’s approval in Shipyard).*",
+   "error": null,
+   "grade": {
+    "code_verdict": "mixed",
+    "truth_ok": true,
+    "wrong_terms": [
+     "dtool"
+    ],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162037,
+    "cached_tokens": 161987,
+    "out_tokens": 450,
+    "cost_usd": 0.013874025,
+    "cost_full_rate_usd": 0.12321525,
+    "wall_s": 6.186
+   },
+   "qid": "sy-trap-how"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhat's the command to revert payments to the previous deploy?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/a9w5184eqj0idzdb58bkpqk5l9mvjz7b0rmkuwbn"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:09:46.593+00:00",
+     "wall_s": 4.117,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Since 2026-09-28, `payments` deploys and rolls back using **Shipyard** (the old deploy tool and `dtool` are no longer used for payments). \n\nTo roll back `payments` to the previous release using the CLI:\n\n1. List the releases to find the previous release name (the one just below `live`, e.g., `r-211`):\n   ```bash\n   shipyard releases payments\n   ```\n2. Run the rollback command pointing to that release:\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n   *(Shipyard will prompt you to type the service name to confirm).*\n\nAlternatively, you can do this in the browser at `shipyard.sorrel.internal` by selecting **payments**, opening the **Releases** tab, and clicking **\"Roll back to this release\"** on the release just below the live one.",
+           "thoughtSignature": "EmkKZwFpFH0Tdd4lrfSo8TquOYCy669uKp4pbgZobVovafNJyO634eV5aZWyKhu4ankWSq8SlcmRrH6kYYtXPMG97yz33dVP1l+8lIXqiGkSrGQaP9NQbgN7ouNp4gNQuH/8i5BWthHVf8M="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162026,
+       "candidatesTokenCount": 204,
+       "totalTokenCount": 162230,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162026
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "G9TFatuCBabY9tMP5arDuAc"
+     },
+     "text": "Since 2026-09-28, `payments` deploys and rolls back using **Shipyard** (the old deploy tool and `dtool` are no longer used for payments). \n\nTo roll back `payments` to the previous release using the CLI:\n\n1. List the releases to find the previous release name (the one just below `live`, e.g., `r-211`):\n   ```bash\n   shipyard releases payments\n   ```\n2. Run the rollback command pointing to that release:\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n   *(Shipyard will prompt you to type the service name to confirm).*\n\nAlternatively, you can do this in the browser at `shipyard.sorrel.internal` by selecting **payments**, opening the **Releases** tab, and clicking **\"Roll back to this release\"** on the release just below the live one.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162026,
+     "cached": 161987,
+     "out": 204,
+     "cost_usd": 0.012943274999999999,
+     "cost_full_rate_usd": 0.1222845
+    }
+   ],
+   "text": "Since 2026-09-28, `payments` deploys and rolls back using **Shipyard** (the old deploy tool and `dtool` are no longer used for payments). \n\nTo roll back `payments` to the previous release using the CLI:\n\n1. List the releases to find the previous release name (the one just below `live`, e.g., `r-211`):\n   ```bash\n   shipyard releases payments\n   ```\n2. Run the rollback command pointing to that release:\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n   *(Shipyard will prompt you to type the service name to confirm).*\n\nAlternatively, you can do this in the browser at `shipyard.sorrel.internal` by selecting **payments**, opening the **Releases** tab, and clicking **\"Roll back to this release\"** on the release just below the live one.",
+   "error": null,
+   "grade": {
+    "code_verdict": "mixed",
+    "truth_ok": true,
+    "wrong_terms": [
+     "dtool"
+    ],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162026,
+    "cached_tokens": 161987,
+    "out_tokens": 204,
+    "cost_usd": 0.012943274999999999,
+    "cost_full_rate_usd": 0.1222845,
+    "wall_s": 4.117
+   },
+   "qid": "sy-trap-command"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWho has to approve rolling payments back two releases?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/a9w5184eqj0idzdb58bkpqk5l9mvjz7b0rmkuwbn"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:09:50.718+00:00",
+     "wall_s": 2.948,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the documentation (specifically the **Deploying with Shipyard** page), rolling back two or more releases of `payments` requires the approval of the service owner: **Mei**.",
+           "thoughtSignature": "EmkKZwFpFH0TPiYo+I4xj3tqzIjfq8euJ3HcwPOrKwPBkBfmBoDGOPLOBIs9aP2fKtQ7QiNaIQQr41s7Z5R/Zx7wKhzg87WYdzrjh9+1POKQuClduPDc02l4WXg8vB7lH0fYMKouc36LwMg="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162023,
+       "candidatesTokenCount": 38,
+       "totalTokenCount": 162061,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162023
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "H9TFaue1C6Po2roP3_-KiQY"
+     },
+     "text": "Based on the documentation (specifically the **Deploying with Shipyard** page), rolling back two or more releases of `payments` requires the approval of the service owner: **Mei**.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162023,
+     "cached": 161987,
+     "out": 38,
+     "cost_usd": 0.012318525,
+     "cost_full_rate_usd": 0.12165975
+    }
+   ],
+   "text": "Based on the documentation (specifically the **Deploying with Shipyard** page), rolling back two or more releases of `payments` requires the approval of the service owner: **Mei**.",
+   "error": null,
+   "grade": {
+    "code_verdict": "right",
+    "truth_ok": true,
+    "wrong_terms": [],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162023,
+    "cached_tokens": 161987,
+    "out_tokens": 38,
+    "cost_usd": 0.012318525,
+    "cost_full_rate_usd": 0.12165975,
+    "wall_s": 2.948
+   },
+   "qid": "sy-approve"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhere can I see the list of recent api releases?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/a9w5184eqj0idzdb58bkpqk5l9mvjz7b0rmkuwbn"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:10:13.981+00:00",
+     "wall_s": 3.033,
+     "retries": [
+      {
+       "why": "HTTP 429",
+       "at": "2026-10-07T05:09:53.677+00:00",
+       "body": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_paid_tier_input_token_count, limit: 2000000, model: gemini-3.8-flash\\nPlease retry in 6.032103169s.\",\n    \"status\": \"RESOURCE_EXHA"
+      }
+     ],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the **Deploying with Shipyard** page, you can see the list of recent `api` releases in two places:\n\n* **In the browser:** Go to `shipyard.sorrel.internal`, select **api**, and open the **Releases** tab.\n* **On the command line:** Run `shipyard releases api` (which prints the last 30 releases, newest first, with state, age, and author).",
+           "thoughtSignature": "EmkKZwFpFH0Ti9IixPesCURdOZcfymYwp22yFNNTJ5Tz4oJbcGjBTwkK5JbWF4OH8eAVYRwTWhkVyYeXB4S8HOTBT4rVo+IOCj7KrZ0NGftMfoTIAj3rZJiJZumCFShbpBSkijihda37AFs="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162024,
+       "candidatesTokenCount": 94,
+       "totalTokenCount": 162118,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162024
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "NtTFavD1Ffa40-kP_9uEqAg"
+     },
+     "text": "According to the **Deploying with Shipyard** page, you can see the list of recent `api` releases in two places:\n\n* **In the browser:** Go to `shipyard.sorrel.internal`, select **api**, and open the **Releases** tab.\n* **On the command line:** Run `shipyard releases api` (which prints the last 30 releases, newest first, with state, age, and author).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162024,
+     "cached": 161987,
+     "out": 94,
+     "cost_usd": 0.012529275,
+     "cost_full_rate_usd": 0.1218705
+    }
+   ],
+   "text": "According to the **Deploying with Shipyard** page, you can see the list of recent `api` releases in two places:\n\n* **In the browser:** Go to `shipyard.sorrel.internal`, select **api**, and open the **Releases** tab.\n* **On the command line:** Run `shipyard releases api` (which prints the last 30 releases, newest first, with state, age, and author).",
+   "error": null,
+   "grade": {
+    "code_verdict": "right",
+    "truth_ok": true,
+    "wrong_terms": [],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162024,
+    "cached_tokens": 161987,
+    "out_tokens": 94,
+    "cost_usd": 0.012529275,
+    "cost_full_rate_usd": 0.1218705,
+    "wall_s": 3.033
+   },
+   "qid": "sy-release-list"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhat is Stripe's emergency support phone number?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/a9w5184eqj0idzdb58bkpqk5l9mvjz7b0rmkuwbn"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:10:17.052+00:00",
+     "wall_s": 2.768,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the documentation provided, Stripe's emergency support phone number is not mentioned. \n\nThe pages only provide Stripe's status page (`status.stripe.com`) and note that external communications or provider settings are managed through the service owner (Mei).",
+           "thoughtSignature": "EmkKZwFpFH0TZvOvhbwlSNleyoQKB5YpCAiohMKsTYtnmWF1jHkQBZLlTOITfGzROh5Mzf/LFRtisW/wb2WEb4NxYr/Rv4G9MITh14hZj04giwGwcsVpRs8Dtee81jjR+AMytCV01Qmm/30="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162023,
+       "candidatesTokenCount": 53,
+       "totalTokenCount": 162076,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162023
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "OdTFatTxEoT-2roPhZKK2AQ"
+     },
+     "text": "Based on the documentation provided, Stripe's emergency support phone number is not mentioned. \n\nThe pages only provide Stripe's status page (`status.stripe.com`) and note that external communications or provider settings are managed through the service owner (Mei).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162023,
+     "cached": 161987,
+     "out": 53,
+     "cost_usd": 0.012374775,
+     "cost_full_rate_usd": 0.121716
+    }
+   ],
+   "text": "Based on the documentation provided, Stripe's emergency support phone number is not mentioned. \n\nThe pages only provide Stripe's status page (`status.stripe.com`) and note that external communications or provider settings are managed through the service owner (Mei).",
+   "error": null,
+   "grade": {
+    "code_verdict": "said-not-in-pages",
+    "truth_ok": false,
+    "wrong_terms": [],
+    "says_not_in_pages": true
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162023,
+    "cached_tokens": 161987,
+    "out_tokens": 53,
+    "cost_usd": 0.012374775,
+    "cost_full_rate_usd": 0.121716,
+    "wall_s": 2.768
+   },
+   "qid": "none-stripe-phone"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nHow much is the on-call allowance for a week of primary shifts?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/a9w5184eqj0idzdb58bkpqk5l9mvjz7b0rmkuwbn"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:10:19.826+00:00",
+     "wall_s": 2.629,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "The provided pages do not say how much the on-call allowance is for a week of primary shifts.",
+           "thoughtSignature": "EmkKZwFpFH0TiB0F2f/ZkpxJzNzb2tpzHASblqRh5zILBA6OOGXwucWTXx2vBfxE8Ot+9i6sMWgzL7F/kSqMOmOs9WGH2lC1W8FF1i34CGZYa68G7jCFSj96EYVBRNGfX6QLYe/caH6DG4w="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162028,
+       "candidatesTokenCount": 21,
+       "totalTokenCount": 162049,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162028
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "PNTFarCGBv-m1e8PksGtmQk"
+     },
+     "text": "The provided pages do not say how much the on-call allowance is for a week of primary shifts.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162028,
+     "cached": 161987,
+     "out": 21,
+     "cost_usd": 0.012258525,
+     "cost_full_rate_usd": 0.12159975
+    }
+   ],
+   "text": "The provided pages do not say how much the on-call allowance is for a week of primary shifts.",
+   "error": null,
+   "grade": {
+    "code_verdict": "said-not-in-pages",
+    "truth_ok": false,
+    "wrong_terms": [],
+    "says_not_in_pages": true
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162028,
+    "cached_tokens": 161987,
+    "out_tokens": 21,
+    "cost_usd": 0.012258525,
+    "cost_full_rate_usd": 0.12159975,
+    "wall_s": 2.629
+   },
+   "qid": "none-allowance"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nHow many booking requests failed in the 2026-08-20 api incident, and who has to approve rolling api back two releases today?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/a9w5184eqj0idzdb58bkpqk5l9mvjz7b0rmkuwbn"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:10:22.472+00:00",
+     "wall_s": 3.001,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the provided documentation:\n\n1. **Failed booking requests in the 2026-08-20 `api` incident:**\n   About **2,940** booking requests failed (from the postmortem *\"api rollback stuck in the deploy queue\"*).\n\n2. **Who must approve rolling `api` back two releases today:**\n   **Ravi** (the service owner for `api`) must approve it in Shipyard (from the *\"Deploying with Shipyard\"* guide).",
+           "thoughtSignature": "EmkKZwFpFH0TPSFW3Tgd7KrTKwvGaJEnS1qVJobcqc6+ygNTJxgZzmYup6GFGnPUCBzVMpyOLmDlXyKM54mmy+a6w2WaV5xi7F+1T1i989ikEb9aza+UgcDYUqKfT+T4QLm7TiEUbOKg6IY="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162046,
+       "candidatesTokenCount": 107,
+       "totalTokenCount": 162153,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162046
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "PtTFavvvKtSy2roPr_aM-AY"
+     },
+     "text": "Based on the provided documentation:\n\n1. **Failed booking requests in the 2026-08-20 `api` incident:**\n   About **2,940** booking requests failed (from the postmortem *\"api rollback stuck in the deploy queue\"*).\n\n2. **Who must approve rolling `api` back two releases today:**\n   **Ravi** (the service owner for `api`) must approve it in Shipyard (from the *\"Deploying with Shipyard\"* guide).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162046,
+     "cached": 161987,
+     "out": 107,
+     "cost_usd": 0.012594524999999999,
+     "cost_full_rate_usd": 0.12193575
+    }
+   ],
+   "text": "Based on the provided documentation:\n\n1. **Failed booking requests in the 2026-08-20 `api` incident:**\n   About **2,940** booking requests failed (from the postmortem *\"api rollback stuck in the deploy queue\"*).\n\n2. **Who must approve rolling `api` back two releases today:**\n   **Ravi** (the service owner for `api`) must approve it in Shipyard (from the *\"Deploying with Shipyard\"* guide).",
+   "error": null,
+   "grade": {
+    "code_verdict": "right",
+    "truth_ok": true,
+    "wrong_terms": [],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162046,
+    "cached_tokens": 161987,
+    "out_tokens": 107,
+    "cost_usd": 0.012594524999999999,
+    "cost_full_rate_usd": 0.12193575,
+    "wall_s": 3.001
+   },
+   "qid": "two-api-incident"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nThe CDN purge got stuck in July 2025. How long did it take, and how long does a normal purge take according to the handbook?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/a9w5184eqj0idzdb58bkpqk5l9mvjz7b0rmkuwbn"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:10:25.543+00:00",
+     "wall_s": 3.545,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the documentation:\n\n* **How long the July 2025 purge took:** The CDN edge purge pipeline stalled for **34 minutes** (from 14:18 JST to 14:52 JST on 2025-07-22) before Cloudflare completed the purge job.\n* **How long a normal purge takes according to the handbook:** A normal purge completes **within a minute** (section 6.4 of the handbook notes: *\"A purge normally completes within a minute; a purge that is still running after several minutes is a provider-side delay\"*).",
+           "thoughtSignature": "EmkKZwFpFH0T1usATm3ZwI7q22fwowwRkY3+Ela2/9VVJCbD6FU4pMt7m0U63aagx1bTcZ2kG125SuXUXZnjhH3frWV7iYiJKK9ErNNb43MCOdeH+IBf6h1bMZNhcUY+rPBbrLdXcSOIBHo="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162045,
+       "candidatesTokenCount": 132,
+       "totalTokenCount": 162177,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162045
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "QdTFaqW4MvTSrfcPhN3lmQk"
+     },
+     "text": "Based on the documentation:\n\n* **How long the July 2025 purge took:** The CDN edge purge pipeline stalled for **34 minutes** (from 14:18 JST to 14:52 JST on 2025-07-22) before Cloudflare completed the purge job.\n* **How long a normal purge takes according to the handbook:** A normal purge completes **within a minute** (section 6.4 of the handbook notes: *\"A purge normally completes within a minute; a purge that is still running after several minutes is a provider-side delay\"*).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162045,
+     "cached": 161987,
+     "out": 132,
+     "cost_usd": 0.012687525,
+     "cost_full_rate_usd": 0.12202875
+    }
+   ],
+   "text": "Based on the documentation:\n\n* **How long the July 2025 purge took:** The CDN edge purge pipeline stalled for **34 minutes** (from 14:18 JST to 14:52 JST on 2025-07-22) before Cloudflare completed the purge job.\n* **How long a normal purge takes according to the handbook:** A normal purge completes **within a minute** (section 6.4 of the handbook notes: *\"A purge normally completes within a minute; a purge that is still running after several minutes is a provider-side delay\"*).",
+   "error": null,
+   "grade": {
+    "code_verdict": "right",
+    "truth_ok": true,
+    "wrong_terms": [],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162045,
+    "cached_tokens": 161987,
+    "out_tokens": 132,
+    "cost_usd": 0.012687525,
+    "cost_full_rate_usd": 0.12202875,
+    "wall_s": 3.545
+   },
+   "qid": "two-purge"
+  }
+ ],
+ "cache": {
+  "create": {
+   "request": {
+    "model": "models/gemini-3.8-flash",
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "<omitted handbook.md: md5 505f2fd9217c71f3805f736e2b8cc1d0, 13443 tokens by countTokens>\n\nThe team's other pages follow.\n\n----- page: On-call onboarding -----\n\n<omitted team-oncall-onboarding: md5 e0c5681328bdc0b2baff6132d78e89fe, 3513 tokens by countTokens>\n----- page: Postmortem: web blank pages after a font upload -----\n\n<omitted postmortem-web-font-upload: md5 9554aaa5052f81c606a8d03ad5e53dc4, 3242 tokens by countTokens>\n----- page: web runbook (2024 edition) -----\n\n<omitted web-runbook-2024: md5 b4e4a54195d87363c83a0272a04db818, 3171 tokens by countTokens>\n----- page: Payments rollback runbook -----\n\n<omitted payments-rollback-runbook: md5 6d2e7edf0b95bb16d87c36033bdde812, 1556 tokens by countTokens>\n----- page: On-call handover, week of 2024-03-25 -----\n\n<omitted handover-2024-03-25: md5 1707afffe9f0589c7961597fe823c6a5, 3617 tokens by countTokens>\n----- page: Postmortem: SMS sign-in codes delayed in Japan -----\n\n<omitted postmortem-notifier-sms-codes-japan: md5 16facedbeb7bd655d0f9024824e35ee0, 2737 tokens by countTokens>\n----- page: notifier runbook (2024 edition) -----\n\n<omitted notifier-runbook-2024: md5 a6d6f8e29e3e4bb5f6ef8177057bff51, 4006 tokens by countTokens>\n----- page: Alert tuning process -----\n\n<omitted team-alert-tuning: md5 59fe957d882acee091361926b34edb55, 3062 tokens by countTokens>\n----- page: Postmortem: api search index stale for a day -----\n\n<omitted postmortem-api-search-index-stale: md5 18e64ce83d7e794670cdb579235fd501, 2908 tokens by countTokens>\n----- page: stripe: notes for on-call -----\n\n<omitted provider-stripe-notes: md5 edb6c80baaf620e0addd400db74c2849, 3582 tokens by countTokens>\n----- page: On-call handover, week of 2024-08-19 -----\n\n<omitted handover-2024-08-19: md5 63e24953dfce0d5b62f83a6acca7ed17, 3000 tokens by countTokens>\n----- page: Postmortem: duplicate appointment reminders after a scheduler restart -----\n\n<omitted postmortem-notifier-duplicate-reminders: md5 3bd2103a5b25da00bfc7b44c5c1dd82b, 2938 tokens by countTokens>\n----- page: How to rebuild the api search index -----\n\n<omitted howto-api-search-index-rebuild: md5 f497a0ac80abc2fda71945f80537684e, 3122 tokens by countTokens>\n----- page: Postmortem: bookings an hour off after the US clock change -----\n\n<omitted postmortem-api-dst-us-east: md5 64fb861253fea01f529d6a2e0a7c7ab9, 2949 tokens by countTokens>\n----- page: Dashboards guide -----\n\n<omitted team-dashboards-guide: md5 1cf3a7f4a9b5251d478002227613afc3, 3306 tokens by countTokens>\n----- page: On-call handover, week of 2025-01-06 -----\n\n<omitted handover-2025-01-06: md5 3b49e16796892129d251da97db287529, 2996 tokens by countTokens>\n----- page: How to read the notifier queue panels -----\n\n<omitted howto-notifier-queue-panels: md5 4c426557e935d840e8b288541e19df4b, 2558 tokens by countTokens>\n----- page: Postmortem: admin tool session left open on a shared laptop -----\n\n<omitted postmortem-web-admin-session: md5 0cf7129d2e59b26a75b721ffaca7cdbc, 2787 tokens by countTokens>\n----- page: twilio: Japan carrier notes -----\n\n<omitted provider-twilio-japan: md5 931428d7740d52886fa3b608e55b3c70, 3241 tokens by countTokens>\n----- page: Postmortem: partner API certificate expired -----\n\n<omitted postmortem-api-partner-certificate: md5 f99dd0cdeaca1ad30d72476593b403be, 2039 tokens by countTokens>\n----- page: Access requests for on-call -----\n\n<omitted team-access-requests: md5 458beba02896d7cb1077fffa18d14807, 3026 tokens by countTokens>\n----- page: How to purge the CDN by hand -----\n\n<omitted howto-cdn-purge-by-hand: md5 e54ec6f882bb8b4baf2d9958910e9d25, 2915 tokens by countTokens>\n----- page: On-call handover, week of 2025-06-30 -----\n\n<omitted handover-2025-06-30: md5 16bf3bc329ffb9a8a97582fbb7f8bd04, 3333 tokens by countTokens>\n----- page: Postmortem: CDN purge stuck after the summer campaign release -----\n\n<omitted postmortem-web-cdn-purge-stuck: md5 6bda1108cd1de640d46944af791f5098, 2878 tokens by countTokens>\n----- page: How to trace one refund through the logs -----\n\n<omitted howto-trace-a-refund: md5 712e29a5f3bbd348650cd92715b1345b, 3183 tokens by countTokens>\n----- page: Status page process -----\n\n<omitted team-status-page-process: md5 5e4f7ca9ac324b689e4c69ae65dd79bb, 3766 tokens by countTokens>\n----- page: Postmortem: sendgrid daily quota reached during a marketing send -----\n\n<omitted postmortem-notifier-sendgrid-quota: md5 89dcfe9f4683ce296a174bd357f3c5d3, 3142 tokens by countTokens>\n----- page: sendgrid: quota and streams -----\n\n<omitted provider-sendgrid-quota: md5 5d3267d4e9c4af8eae82ad0f7f6a324f, 3022 tokens by countTokens>\n----- page: Game days -----\n\n<omitted team-game-days: md5 1fa61399280fa79517ad7a446b627bb3, 4320 tokens by countTokens>\n----- page: Postmortem: payments checkout timeouts after the v2.31 pool change -----\n\n<omitted postmortem-payments-pool-timeout: md5 81c7472cd123a80cc67f341d2b09fc3d, 1563 tokens by countTokens>\n----- page: On-call handover, week of 2025-11-24 -----\n\n<omitted handover-2025-11-24: md5 17e2f0160292887399964c35bcc5051b, 2650 tokens by countTokens>\n----- page: cloudflare: purge and firewall notes -----\n\n<omitted provider-cloudflare-notes: md5 e79f3fdd5ab4e6099cbcbbf1a6e48c38, 3230 tokens by countTokens>\n----- page: Postmortem: api audit log writer stopped after a disk filled -----\n\n<omitted postmortem-api-audit-disk: md5 bf30b8c17605f91f65a8cc7eeca1e37c, 3455 tokens by countTokens>\n----- page: Incident commander guide -----\n\n<omitted team-incident-commander-guide: md5 bfe91339c9f8c5fa02ec8144e7e4af91, 2825 tokens by countTokens>\n----- page: How to check replica lag on api -----\n\n<omitted howto-api-replica-lag: md5 16a0527aac155484dce1fd3362039658, 3405 tokens by countTokens>\n----- page: aws: health dashboard and regions -----\n\n<omitted provider-aws-health: md5 731ae0e5b2cd72c2b4af49d4bd95f226, 3826 tokens by countTokens>\n----- page: Postmortem: stripe webhooks rejected after the signing secret rotation -----\n\n<omitted postmortem-payments-webhook-secret: md5 d433e3ab7e2ecee03ee0446095199783, 3110 tokens by countTokens>\n----- page: Postmortem review meeting -----\n\n<omitted team-postmortem-review: md5 5f1749fb0e5ae9218c890356ea5d4fdb, 2937 tokens by countTokens>\n----- page: On-call handover, week of 2026-04-06 -----\n\n<omitted handover-2026-04-06: md5 d345334b637ff15551dd52d6124ab276, 3230 tokens by countTokens>\n----- page: Postmortem: aws DNS incident in ap-northeast-1 -----\n\n<omitted postmortem-api-aws-dns-apne1: md5 2cf9926ba7471b2cd42b6b981cdd4390, 3320 tokens by countTokens>\n----- page: How to stop a load test that nobody owns -----\n\n<omitted howto-stop-unowned-load-test: md5 44eeb56fde1a1254fd9e9957e60ea4c3, 3621 tokens by countTokens>\n----- page: Postmortem: api replica lag double-booked slots in eu-west -----\n\n<omitted postmortem-api-replica-lag-double-booking: md5 eadedc40f4fcfe87af21acfdf2269bc9, 3325 tokens by countTokens>\n----- page: Secrets manager for on-call -----\n\n<omitted team-secrets-manager: md5 80f6a5aebddbd20dccccf736c4fb5e60, 2924 tokens by countTokens>\n----- page: Postmortem: notifier queue stalled by a template error -----\n\n<omitted postmortem-notifier-template-crash: md5 df34af9b4220f396786f68c697d387dc, 3370 tokens by countTokens>\n----- page: stripe: API version upgrade notes (2026) -----\n\n<omitted provider-stripe-api-version: md5 add92266302bc8a3d33180b1cfe78574, 3504 tokens by countTokens>\n----- page: Postmortem: api rollback stuck in the deploy queue -----\n\n<omitted postmortem-api-rollback-queue: md5 b041a4999362c06e03960c9a1ab37e2c, 1565 tokens by countTokens>\n----- page: On-call handover, week of 2026-09-21 -----\n\n<omitted handover-2026-09-21: md5 1935c5640d661bf21ecba5d639bfa789, 2117 tokens by countTokens>\n----- page: Deploying with Shipyard -----\n\n<omitted deploying-with-shipyard: md5 5025e43384a5856acef5ad58555c4509, 1780 tokens by countTokens>\n----- page: On-call handover, week of 2026-10-05 -----\n\n<omitted handover-2026-10-05: md5 56a41f226d7dfc6c94916359ea4b7da1, 2191 tokens by countTokens>"
+      }
+     ]
+    },
+    "ttl": "3600s"
+   },
+   "http": 200,
+   "sent_utc": "2026-10-07T05:08:55.012+00:00",
+   "wall_s": 3.164,
+   "response": {
+    "name": "cachedContents/a9w5184eqj0idzdb58bkpqk5l9mvjz7b0rmkuwbn",
+    "model": "models/gemini-3.8-flash",
+    "createTime": "2026-10-07T05:08:58.095145Z",
+    "updateTime": "2026-10-07T05:08:58.095145Z",
+    "expireTime": "2026-10-07T06:08:56.492425857Z",
+    "displayName": "",
+    "usageMetadata": {
+     "totalTokenCount": 161987
+    }
+   },
+   "error": null
+  },
+  "name": "cachedContents/a9w5184eqj0idzdb58bkpqk5l9mvjz7b0rmkuwbn",
+  "tokens": 161987,
+  "create_cost_counted_usd": 0.12149025,
+  "alive_s": 95.1,
+  "storage_cost_usd": 0.002140122026211222,
+  "storage_arithmetic": "161987 tokens x $0.50 / 1M / hour x 95 s / 3600 s = $0.002140",
+  "delete_http": 200,
+  "delete_error": null
+ }
+}

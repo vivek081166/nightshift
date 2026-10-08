@@ -1,0 +1,36 @@
+➜  nightshift git:(main) python3 lookup.py --carry "payments checkout errors jumped right after the last deploy, 12 minutes ago. How exactly do I roll payments back?"
+carried  every page
+Since 2026-09-28, **payments** deploys and rolls back using **Shipyard** (the old deploy
+tool and `dtool` can no longer roll back payments).
+
+As the on-call engineer, rolling back one release is pre-approved and requires no
+additional approval. You can perform the rollback via the command line or the browser:
+
+### Option 1: Command Line
+1. Check the recent releases:
+   ```bash
+   shipyard releases payments
+   ```
+2. Run the rollback to the release just below the `live` one (e.g., `r-211`):
+   ```bash
+   shipyard rollback payments --to <previous release>
+   ```
+3. Type `payments` when prompted to confirm.
+
+### Option 2: Browser
+1. Open `shipyard.sorrel.internal`.
+2. Select the service **payments** and open the **Releases** tab.
+3. Find the release directly below the `live` release and click **"Roll back to this
+  release"**.
+4. Type `payments` in the box to confirm.
+
+---
+
+### What to expect & next steps
+- **Execution:** payments will drain in-flight checkouts first before switching nodes,
+  taking about 5 minutes.
+- **Incident thread:** Copy both release names (the bad release and the target release)
+... 5 more lines
+gemini-3.8-flash · 1 calls · 162,037 sent / 361 out · $0.1229 · 8 s
+➜  nightshift git:(main) 
+

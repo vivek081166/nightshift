@@ -260,3 +260,48 @@ frozen copy is `runs/ep09/2026-10-05-handbook-frozen.md`. Every number the episo
 - Harness (not episode code): `measure/ep09.py` records every call.
 - Spend: the measurement runs $3.33 (`2026-10-05-spend.json`), the camera takes $0.64 (a $0.3890, b $0.1387, c $0.1123,
   e $0.0036; d failed before any tokens).
+
+## ep10
+
+Carry it, or look it up. Measured 2026-10-07, run on camera 2026-10-07 and 2026-10-08. `gemini-3.8-flash` at
+thinkingLevel low, raw HTTP. The team's pages are `runbooks/handbook.md` (revision 2026-10-07a) split into its 18 `## `
+sections, plus the 49 pages in `library/` (old runbooks, handover notes, outage write-ups), listed in `library/INDEX.json`
+order: 67 pages, 67 lines in the contents list. All of it is synthetic, written for the course (the company is made up);
+`runs/ep10/2026-10-07-a-freeze.json` holds the md5 of every page as measured, and `measure/ep10_screen.py gate` checks
+`lookup.py` against it (13 checks). The question is `sy-trap-how` in `tickets/questions.json`: "payments checkout errors
+jumped right after the last deploy, 12 minutes ago. How exactly do I roll payments back?" Right and wrong are the hand
+grades (`m4-hand-grades.json`, `m2-hand-grades.json`), not the code grades.
+
+- Camera runs in the episode, terminal verbatim, `runs/ep10/*-ep10-camera-*`: `-a.txt` (looked up: `opened
+  payments-rollback-runbook` alone, then `dtool revert sorrel/payments --to <previous deploy id> --drain-checkouts`),
+  `-c.txt` (`--carry`: `carried  every page`, 162,037 sent, `shipyard rollback payments`), `-d.txt` (`--dates`: the old
+  runbook first, then the Shipyard page, a Shipyard answer), `-e.txt` (the RETIRED line on line 1 of
+  `library/payments-rollback-runbook.md`: old runbook, then Shipyard, a Shipyard answer), `-f.txt` (the old runbook moved
+  to `retired/`: `opened  deploying-with-shipyard` first, a Shipyard answer), and the no-API screens `-list.txt`,
+  `-sizes.txt`, `-questions.txt`. After the takes the notice came out and the page went back, so `library/` is the
+  measured one.
+- "Every time I asked, the model opened that page, and only that page": `m4-model-50`, both wordings of the trap x 5 runs,
+  10 of 10 opened only `payments-rollback-runbook` and answered with `dtool`; 4,749-4,771 tokens sent a question.
+- "Right, on every run": `m4-carry-50`, 10 of 10 right (Shipyard), 162,026-162,037 tokens sent a question.
+- "More than thirty times as much text" (this question only): 162,037 / 4,771 = 34 (`measure/ep10_screen.py sizes`, run
+  1 of `m4-carry-5`, `m4-carry-50`, `m4-model-50`; carrying the handbook + 4 pages sent 20,015). Over all twenty questions
+  (`m2-carry-50` against `m2-model-50`) carrying sent about 17 times the text in total (median 28 times; 9 of 20 over 30).
+  The input limit is 1,048,576 (`m0-models-get.json`), so every page fits.
+- "Twenty different questions ... only two came back wrong": `m2-model-50`, 15 right, 2 wrong (the two trap wordings),
+  1 half answered (`two-api-incident`: it said the pages don't give the count; the rollback-queue write-up does, and it
+  never opened it), 2 the pages don't cover, where it said so. Carried (`m2-carry-50`): 18 right and the same 2 said so.
+- The three changes, ten runs each, both wordings x 5: `m4-fix-dates` (`(last updated YYYY-MM-DD)` on every list line):
+  7 right, 3 wrong, the old runbook opened first 10 of 10, then the Shipyard page 7. `m4-fix-notice` (`> RETIRED
+  2026-09-28: payments no longer deploys or rolls back with dtool. See the page "Deploying with Shipyard".` above the
+  title): 10 right, old runbook then Shipyard 10 of 10. `m4-fix-archived` (the old runbook out of the list and out of
+  `read_page`): 10 right, the Shipyard page first 10 of 10 (once it also opened `handbook-11`).
+- "When it opened only the old page, the answer was old too": 15 of 15 runs that opened only the old runbook were wrong
+  (`m4-model-50` 10, `m4-fix-dates` 3, `m2-model-50` 2); 18 of 18 that also opened the Shipyard page were right
+  (`m4-fix-dates` 7, `m4-fix-notice` 10, `m2-model-50` 1).
+- Not numbers in the episode: with only the handbook, on the thirty alerts (`m3-carry-1` 29 of 30, `m3-model-1` 30 of 30,
+  14,128 against 8,794 tokens an alert). My code picking pages by service name (`m4-code-50`, `m2-code-50`) never gave
+  the old command, but found no page for 11 of 18 answerable questions. Median wall time over the twenty: carry 3.0 s,
+  look it up 4.9 s.
+- Harness (not episode code): `measure/ep10.py` records every call; `measure/ep10_screen.py` replays the saved runs.
+- Spend: the measurement runs $3.05 (`2026-10-07-spend.json`: drafting the pages $1.03, M1 $0.16, M2 $0.62, M3 $0.60,
+  M4 $0.64), the camera takes $0.17 (a $0.0057, c $0.1229, d $0.0231, e $0.0087, f $0.0051).

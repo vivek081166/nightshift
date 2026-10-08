@@ -1,0 +1,2002 @@
+{
+ "meta": {
+  "what": "M2 question set, shape code-50",
+  "shape": "code picks every page whose title names a service/provider/Shipyard named in the question, plus handbook-5 when a service is named; one call with SYSTEM + the picked pages",
+  "user_template": "Question from the on-call engineer:\n{q}\nAnswer from the pages. If the pages do not say, say so.",
+  "order": "tickets/questions.json order, once each, one call at a time"
+ },
+ "items": [
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nweb-admin-bulk just paged me. What exactly makes that alert fire?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe pages your code picked for this question:\n\n----- page: Postmortem: web blank pages after a font upload -----\n\n<omitted postmortem-web-font-upload: md5 9554aaa5052f81c606a8d03ad5e53dc4, 3242 tokens by countTokens>\n----- page: web runbook (2024 edition) -----\n\n<omitted web-runbook-2024: md5 b4e4a54195d87363c83a0272a04db818, 3171 tokens by countTokens>\n----- page: Handbook 5. Service runbooks -----\n\n<omitted handbook-5: md5 8700b1e28b741a388e672c7b49fafda4, 3049 tokens by countTokens>"
+        }
+       ]
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:12:32.494+00:00",
+     "wall_s": 2.956,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the **web runbook (2024 edition)** (Section 7.1), the alert rule `web-admin-bulk` flags:\n\n- **Abnormal account modifications or deletions from a single admin session** in the internal admin console.\n\n*(Note: The pages do not provide the exact numerical thresholds or detailed rule syntax for the alert).*",
+           "thoughtSignature": "EmkKZwFpFH0T1XgI48KoIe8OjTjA5uzTHfRDmTB0qDS3AdeiSzWSSX9TnHtWh+Avz5xtbi3/6Ni0++he4QBPwQQMU2sW00YNNgUSQhtwIOKNJcNYeiORSii8vV9/m2zsxmo+e24+qAhWAZg="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 9725,
+       "candidatesTokenCount": 75,
+       "totalTokenCount": 9800,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 9725
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "wNTFasz-O4js2roPwpqIwAE"
+     },
+     "text": "According to the **web runbook (2024 edition)** (Section 7.1), the alert rule `web-admin-bulk` flags:\n\n- **Abnormal account modifications or deletions from a single admin session** in the internal admin console.\n\n*(Note: The pages do not provide the exact numerical thresholds or detailed rule syntax for the alert).*",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 9725,
+     "cached": 0,
+     "out": 75,
+     "cost_usd": 0.007575,
+     "cost_full_rate_usd": 0.007575
+    }
+   ],
+   "text": "According to the **web runbook (2024 edition)** (Section 7.1), the alert rule `web-admin-bulk` flags:\n\n- **Abnormal account modifications or deletions from a single admin session** in the internal admin console.\n\n*(Note: The pages do not provide the exact numerical thresholds or detailed rule syntax for the alert).*",
+   "error": null,
+   "names_found": [
+    "web"
+   ],
+   "picked": [
+    "postmortem-web-font-upload",
+    "web-runbook-2024",
+    "handbook-5"
+   ],
+   "grade": {
+    "code_verdict": "said-not-in-pages",
+    "truth_ok": false,
+    "wrong_terms": [],
+    "says_not_in_pages": true
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 9725,
+    "cached_tokens": 0,
+    "out_tokens": 75,
+    "cost_usd": 0.007575,
+    "cost_full_rate_usd": 0.007575,
+    "wall_s": 2.956
+   },
+   "qid": "hb-admin-bulk"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhat threshold fires the payments-checkout alert?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe pages your code picked for this question:\n\n----- page: Payments rollback runbook -----\n\n<omitted payments-rollback-runbook: md5 6d2e7edf0b95bb16d87c36033bdde812, 1556 tokens by countTokens>\n----- page: Postmortem: payments checkout timeouts after the v2.31 pool change -----\n\n<omitted postmortem-payments-pool-timeout: md5 81c7472cd123a80cc67f341d2b09fc3d, 1563 tokens by countTokens>\n----- page: Handbook 5. Service runbooks -----\n\n<omitted handbook-5: md5 8700b1e28b741a388e672c7b49fafda4, 3049 tokens by countTokens>"
+        }
+       ]
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:12:35.491+00:00",
+     "wall_s": 2.707,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the postmortem for the payments checkout incident (*Postmortem: payments checkout timeouts after the v2.31 pool change*):\n\n* **Current/updated threshold:** **p95 latency above 3 s for 5 minutes** (updated via an action item on 2025-12-02 to prevent firing on short bursts).\n* **Previous threshold:** p95 latency above 2 s for 2 minutes.",
+           "thoughtSignature": "EmkKZwFpFH0T3Q/LFydZrbvYQsMg1Ko4Nkq2gLqx/zBv4vrs6hvPfI7iFBVobMhQuPvmIGmERBPMhm1GkcJnCFonXtniCq1S5lelXxlovaE4dbkS5wimX/Yp6KHqke9qdYL0ERHz4Y/r85g="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 6422,
+       "candidatesTokenCount": 94,
+       "totalTokenCount": 6516,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 6422
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "w9TFatKjMLG6vr0PwZPUqAk"
+     },
+     "text": "Based on the postmortem for the payments checkout incident (*Postmortem: payments checkout timeouts after the v2.31 pool change*):\n\n* **Current/updated threshold:** **p95 latency above 3 s for 5 minutes** (updated via an action item on 2025-12-02 to prevent firing on short bursts).\n* **Previous threshold:** p95 latency above 2 s for 2 minutes.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 6422,
+     "cached": 0,
+     "out": 94,
+     "cost_usd": 0.005169,
+     "cost_full_rate_usd": 0.005169
+    }
+   ],
+   "text": "Based on the postmortem for the payments checkout incident (*Postmortem: payments checkout timeouts after the v2.31 pool change*):\n\n* **Current/updated threshold:** **p95 latency above 3 s for 5 minutes** (updated via an action item on 2025-12-02 to prevent firing on short bursts).\n* **Previous threshold:** p95 latency above 2 s for 2 minutes.",
+   "error": null,
+   "names_found": [
+    "payments"
+   ],
+   "picked": [
+    "payments-rollback-runbook",
+    "postmortem-payments-pool-timeout",
+    "handbook-5"
+   ],
+   "grade": {
+    "code_verdict": "wrong",
+    "truth_ok": false,
+    "wrong_terms": [],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 6422,
+    "cached_tokens": 0,
+    "out_tokens": 94,
+    "cost_usd": 0.005169,
+    "cost_full_rate_usd": 0.005169,
+    "wall_s": 2.707
+   },
+   "qid": "hb-checkout-threshold"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhich kinds of businesses get the March booking peak?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nYour code found no page whose title matches this question."
+        }
+       ]
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:12:38.221+00:00",
+     "wall_s": 2.552,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "The pages do not say.",
+           "thoughtSignature": "EssCCsgCAWkUfRO7dCg4b25/6PGeYOx1xqRRcAEdq4T+J8YCY3mCn8yTAv5W8SgWD+bt1lvu3PHKxr+6MKKCWkoV4o0zZ/BnHxKqTRNRRKcHlIosVx8m+p0KNpcn7TXuhDw2P+XPGHipBYgZqjlB3zIrrRrYX4gXfwX+ERlSRmTm3zVgajHxO05FxfWJANj3Oo9zk4CM8QMkpwJf7U+KjU+7FMrO5diBhd+VgPZOnCg1RBF7fw4D1rooeASxtCWfN8qsWC5YtsJ3yRwo/nkgKxPhwIswnNyg+McgYVe4yu4s/C0JhRLRipeAGC32689ZII5bP6ZozWdgrxsAT6opgPJTQprL+vfp6/eMC4b9Y6RG2XNKWRUMhjDLxVRpsIqfG+MIXjH5qWWubCSx52MzWwp/TP2XEQoci0w4ZmygX5XanJn61GQaIy+I0ROsmQ=="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 218,
+       "candidatesTokenCount": 6,
+       "totalTokenCount": 276,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 218
+        }
+       ],
+       "thoughtsTokenCount": 52,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "xtTFaofsJ6Po2roP3_-KiQY"
+     },
+     "text": "The pages do not say.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 218,
+     "cached": 0,
+     "out": 58,
+     "cost_usd": 0.000381,
+     "cost_full_rate_usd": 0.000381
+    }
+   ],
+   "text": "The pages do not say.",
+   "error": null,
+   "names_found": [],
+   "picked": [],
+   "grade": {
+    "code_verdict": "said-not-in-pages",
+    "truth_ok": false,
+    "wrong_terms": [],
+    "says_not_in_pages": true
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 218,
+    "cached_tokens": 0,
+    "out_tokens": 58,
+    "cost_usd": 0.000381,
+    "cost_full_rate_usd": 0.000381,
+    "wall_s": 2.552
+   },
+   "qid": "hb-march-peak"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nCan I paste a customer's allergy note from a booking into the incident thread so the team sees it?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nYour code found no page whose title matches this question."
+        }
+       ]
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:12:40.798+00:00",
+     "wall_s": 1.773,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "The pages do not say.",
+           "thoughtSignature": "EmkKZwFpFH0TsbbAAHBefwc8vvv3EwVo/YYh3cJN4X1OugByUQtGfhC+iKcdDyxt9cEgpEBsGLccmW07AQPQNbTj7JKZnTKdlRL1PY7TtVD4YuoHWJDdOwn+DqxO0v4Wxj5t2wsboXMEUDI="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 230,
+       "candidatesTokenCount": 6,
+       "totalTokenCount": 236,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 230
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "ydTFauWrEcaZ0-kP1b2IgAg"
+     },
+     "text": "The pages do not say.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 230,
+     "cached": 0,
+     "out": 6,
+     "cost_usd": 0.000195,
+     "cost_full_rate_usd": 0.000195
+    }
+   ],
+   "text": "The pages do not say.",
+   "error": null,
+   "names_found": [],
+   "picked": [],
+   "grade": {
+    "code_verdict": "said-not-in-pages",
+    "truth_ok": false,
+    "wrong_terms": [],
+    "says_not_in_pages": true
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 230,
+    "cached_tokens": 0,
+    "out_tokens": 6,
+    "cost_usd": 0.000195,
+    "cost_full_rate_usd": 0.000195,
+    "wall_s": 1.773
+   },
+   "qid": "hb-allergy-note"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nDuring my on-call week, how soon after a page do I have to be at a keyboard?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nYour code found no page whose title matches this question."
+        }
+       ]
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:12:42.578+00:00",
+     "wall_s": 2.735,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "The pages do not say.",
+           "thoughtSignature": "Et8ECtwEAWkUfRNp2BkP8kutxLZf6jPZV1Y6ilVGW1n/WAsuHem9D/PWTSFMfSFQry8GVDysM4kMs1BVoaJ750USqRJf3rHC3ISCGjwhiOuYr7K43d9SfPelot/f29AfQmA3PH0AuAJkyLt+8dDeEqBH9BBtzYq3Avdt9cJw1TXalf9hx52034g14eOghjtZom3SiPCpCG03E78RdE5qzoVMk0ITnZ00K35uyURz08CT3jJ94jZrLjpOnLjhSWbPxUB0oAXbiMxalZf0SafGrc8fdaXrFotAqbI30Wskm0hqsZn/CkzkUfvNpp8IpJjDNPD7cu245J0+WMoHrwo0E4hna3GZY5ysryZysiyp5QVsT/m+frwB25zU9WQ6f2trbHjBMHzPwz39wS0+tikReV8Kzf9uUxOrvyViunRgyfF951DU7PKFYm+y7fhnB7XrjZVrj93pUGyDhTcWsLz3cXpHSDYfRZG8iSXS8Rq5fCTyMGSxgrT1Ti1xGA5zLDmwibheuOa16iemPt9mn35tSFk9QIlkl/dyJnPwpNaO6NID0XEFAyjSDa94SLQm7jDNuxfsWj/fC6rgzrxDurUcXVaFc8w22vy96tDquCEIgIo55Tf1Dk5GlrWWmUWaFq/AgH7UNS1YA7DIBpQVCcgdcmCUAlDzj6LFrN8I1LJUetJWS3f5Ufu+VcBEjdboW5hLCpoq3d7GFsKLnsGO3ZRO5GqMHJ22HBHaM/vN16BO45u8L6UnH8q8MDmmgDVjeRLgu0LnhFXBYz9+Jl/46JCf4N+jbZCLZz+xsjqVhiKu/eJcOQ=="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 229,
+       "candidatesTokenCount": 6,
+       "totalTokenCount": 362,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 229
+        }
+       ],
+       "thoughtsTokenCount": 127,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "y9TFaqf-AfWL0-kPkMXFyQc"
+     },
+     "text": "The pages do not say.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 229,
+     "cached": 0,
+     "out": 133,
+     "cost_usd": 0.0006705,
+     "cost_full_rate_usd": 0.0006705
+    }
+   ],
+   "text": "The pages do not say.",
+   "error": null,
+   "names_found": [],
+   "picked": [],
+   "grade": {
+    "code_verdict": "said-not-in-pages",
+    "truth_ok": false,
+    "wrong_terms": [],
+    "says_not_in_pages": true
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 229,
+    "cached_tokens": 0,
+    "out_tokens": 133,
+    "cost_usd": 0.0006705,
+    "cost_full_rate_usd": 0.0006705,
+    "wall_s": 2.735
+   },
+   "qid": "hb-keyboard"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nI need to be away for two hours during my on-call shift. What do I have to do?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nYour code found no page whose title matches this question."
+        }
+       ]
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:12:45.379+00:00",
+     "wall_s": 2.201,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "The documentation does not say what to do if you need to be away during your on-call shift.",
+           "thoughtSignature": "EuwCCukCAWkUfROBRisT9+RYP13U61JP7cKHpl2WIWNsBgXLUfqsqG93inWzX5jyYLG3+N/EQh6cqNSc2Z+mge8mMb+pIcIEuX3xNM4w5WEDjmTRnxhi93l3r/Cd6adOYOa+wdQnB1aDBoTr735tMahwmOjnneJtrpYs6BbNDHkHyn1klDsXalQLjLwDwAtzjmo3SxeyhGN/0275QhOSD9Rv/ywX7ilAEvzGcnMTvZJlU0Fym6oZiGRpYCt4RxpMLhs03DTbPi865pdGSkTOI3ybHRwAnNhZKryVEy9YsGdKvWF2SxkyZXuDRr2c8dfP1jBqNNDm2ILmrKYj0m2z11mK0VbYe9D4GTOV9kpveFTAVWzw3E/v/K83dSB52vxdaYjPaN4DY+blxdnDTmvJ7B8+XINQY68T3DwDngqdWDxkiqmhmoKVwTeFWPLTk77GuMTHDlFI+IvAxLVVQAB+WlAvu0SoAhWQG3IkVBEmsg=="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 230,
+       "candidatesTokenCount": 21,
+       "totalTokenCount": 316,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 230
+        }
+       ],
+       "thoughtsTokenCount": 65,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "zdTFapCtNeWN0-kP8p6KiAE"
+     },
+     "text": "The documentation does not say what to do if you need to be away during your on-call shift.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 230,
+     "cached": 0,
+     "out": 86,
+     "cost_usd": 0.000495,
+     "cost_full_rate_usd": 0.000495
+    }
+   ],
+   "text": "The documentation does not say what to do if you need to be away during your on-call shift.",
+   "error": null,
+   "names_found": [],
+   "picked": [],
+   "grade": {
+    "code_verdict": "said-not-in-pages",
+    "truth_ok": false,
+    "wrong_terms": [],
+    "says_not_in_pages": true
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 230,
+    "cached_tokens": 0,
+    "out_tokens": 86,
+    "cost_usd": 0.000495,
+    "cost_full_rate_usd": 0.000495,
+    "wall_s": 2.201
+   },
+   "qid": "hb-away"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nSMS delivery receipts for KDDI numbers look late tonight. How late can they normally be?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nYour code found no page whose title matches this question."
+        }
+       ]
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:12:47.596+00:00",
+     "wall_s": 2.039,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "The pages do not say how late SMS delivery receipts for KDDI numbers can normally be.",
+           "thoughtSignature": "EvUDCvIDAWkUfRPxI1PhdfAfHruHxqkz75YfJWTB6N5Nfff7t4sSuzU3hG4FhO1ciAeGXD8hlSN/USNPWy7nJMpXPYf7rvsn2TTj4B66RSDX7HiEkv6Emi35b5yqdw9m0PaXASRBp7owPLjKdPipCgHN7I1koRbNAo6C0dNRQZu0caYl2GMcJ78Mx9szyaD8tnVGAAXOArYbbOzerLarCID1voQYZ9C4bbTHxqKlyb6FmdNeCjxlFNzMuVBAVtlLeIjUR3n43UgXfI6SWIMLqMzP+bpndtxLqqAuOot1RYlhmBgX/ZNlnVza+O/ZsJYXbhYlF09OOLju9IUCGnWKercJru/hA67uxPi7WYvAfRk4GAoDWVO3CPZMDBt75LrmTMPajgjdsXNtFDYjLnl5kBxs6SKVHzaqIJIhkl/samEzKiHUOMd4ogZ0jazo+gmQy2JLLKp+qb8Nk7/EVpy8t13Dtah5h5fbj6nH7r0wpWdT1hKxejW0KeMgSScL+OzG5a/FZ6fcboaXa7bakdrR+zoowSA9d7m1rSuESSMNucQBfbiJsganVV2a67ER9ILd4meWBrA0e1luGr4zWcI7ETnhaAPuQWsC/7S0xTGuxOvibdZmwO64FAzb81ZGavSIsfhIrW3qr/4UQy0bSzjGWbeNZQY6fp/R"
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 226,
+       "candidatesTokenCount": 18,
+       "totalTokenCount": 333,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 226
+        }
+       ],
+       "thoughtsTokenCount": 89,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "z9TFarfRPKna2roPufHDwAs"
+     },
+     "text": "The pages do not say how late SMS delivery receipts for KDDI numbers can normally be.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 226,
+     "cached": 0,
+     "out": 107,
+     "cost_usd": 0.00057075,
+     "cost_full_rate_usd": 0.00057075
+    }
+   ],
+   "text": "The pages do not say how late SMS delivery receipts for KDDI numbers can normally be.",
+   "error": null,
+   "names_found": [],
+   "picked": [],
+   "grade": {
+    "code_verdict": "said-not-in-pages",
+    "truth_ok": false,
+    "wrong_terms": [],
+    "says_not_in_pages": true
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 226,
+    "cached_tokens": 0,
+    "out_tokens": 107,
+    "cost_usd": 0.00057075,
+    "cost_full_rate_usd": 0.00057075,
+    "wall_s": 2.039
+   },
+   "qid": "pg-kddi-lag"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nHow many failed payments were replayed after the November 2025 payments checkout timeout incident?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe pages your code picked for this question:\n\n----- page: Payments rollback runbook -----\n\n<omitted payments-rollback-runbook: md5 6d2e7edf0b95bb16d87c36033bdde812, 1556 tokens by countTokens>\n----- page: Postmortem: payments checkout timeouts after the v2.31 pool change -----\n\n<omitted postmortem-payments-pool-timeout: md5 81c7472cd123a80cc67f341d2b09fc3d, 1563 tokens by countTokens>\n----- page: Handbook 5. Service runbooks -----\n\n<omitted handbook-5: md5 8700b1e28b741a388e672c7b49fafda4, 3049 tokens by countTokens>"
+        }
+       ]
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:12:49.702+00:00",
+     "wall_s": 2.154,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the postmortem for the November 2025 payments incident, **1,184** failed payments were replayed from the retry queue (and all 1,184 completed).",
+           "thoughtSignature": "EmkKZwFpFH0TojJOMOCGFQrULTX1fzQa64pxFUJ7/oaRQN+T1zLcYbmY6VoQ/aR44mWpc2fGkSH4Ud6cPbpGOt1kHtm6rwv68q7N35WoUa8StSqzINtynW/+HrdfZolrAWjs6PtxhrL6608="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 6433,
+       "candidatesTokenCount": 43,
+       "totalTokenCount": 6476,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 6433
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "0tTFapkegu3aug_D_7eRBA"
+     },
+     "text": "Based on the postmortem for the November 2025 payments incident, **1,184** failed payments were replayed from the retry queue (and all 1,184 completed).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 6433,
+     "cached": 0,
+     "out": 43,
+     "cost_usd": 0.004986,
+     "cost_full_rate_usd": 0.004986
+    }
+   ],
+   "text": "Based on the postmortem for the November 2025 payments incident, **1,184** failed payments were replayed from the retry queue (and all 1,184 completed).",
+   "error": null,
+   "names_found": [
+    "payments"
+   ],
+   "picked": [
+    "payments-rollback-runbook",
+    "postmortem-payments-pool-timeout",
+    "handbook-5"
+   ],
+   "grade": {
+    "code_verdict": "right",
+    "truth_ok": true,
+    "wrong_terms": [],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 6433,
+    "cached_tokens": 0,
+    "out_tokens": 43,
+    "cost_usd": 0.004986,
+    "cost_full_rate_usd": 0.004986,
+    "wall_s": 2.154
+   },
+   "qid": "pg-replayed"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nIs there a game day this week, and who runs it?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nYour code found no page whose title matches this question."
+        }
+       ]
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:12:51.868+00:00",
+     "wall_s": 3.004,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "The available pages do not mention whether there is a game day this week or who runs it.",
+           "thoughtSignature": "Ev4CCvsCAWkUfRM5xYgXlzS9CJ0VywmNu3OcvH2J/erYsC7AEAkN9X8zKcj2bK/FThPAIpm5i47R3XYNrKQOqyGRAn3lya5kDYIQI1t0Ix9rtIYR1pmwe30d9gCFkcQfBE4/aJpWqsQosawLmmyvreqSULOCMPYE8ErQj9olVa85QrMTDdgJkd+7RSRNCtAERYBBZsdzoiCHEiot+8E9h/tRmTs5uqp6juXmmO3jPFhGOUdQYvSc92tS/2bNUI0QlMPdn60PD6d8XdCFq6NliKz0YO+uptrK+AoHfOtLkrAJEGUD9wi2yiB1JFvyVrmm3nA7/+suxiro56uBSWbxthji9l2sgwPn1nFxYt7N/5gQHTiZAyn9QYqo4dZvpW9r4C3E4IUPuAwaxYFDmsNBfZZgaec8EZRcLsKIQlSmFEGKDh7MFHzCOP6aBewKcN/mcxn8g5Nh+H9ccyRy9TQL1JEErsN3kjj8xdF2WwLuiPLW+Ckx5uqCOEwZSLJybEoKkQ=="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 221,
+       "candidatesTokenCount": 19,
+       "totalTokenCount": 305,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 221
+        }
+       ],
+       "thoughtsTokenCount": 65,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "1NTFap7SFNe12roPw5T06AQ"
+     },
+     "text": "The available pages do not mention whether there is a game day this week or who runs it.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 221,
+     "cached": 0,
+     "out": 84,
+     "cost_usd": 0.00048075,
+     "cost_full_rate_usd": 0.00048075
+    }
+   ],
+   "text": "The available pages do not mention whether there is a game day this week or who runs it.",
+   "error": null,
+   "names_found": [],
+   "picked": [],
+   "grade": {
+    "code_verdict": "said-not-in-pages",
+    "truth_ok": false,
+    "wrong_terms": [],
+    "says_not_in_pages": true
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 221,
+    "cached_tokens": 0,
+    "out_tokens": 84,
+    "cost_usd": 0.00048075,
+    "cost_full_rate_usd": 0.00048075,
+    "wall_s": 3.004
+   },
+   "qid": "pg-game-day"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhen the partner API certificate expired in April 2025, how long were partner connections failing, and how many partners were affected?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe pages your code picked for this question:\n\n----- page: Postmortem: api search index stale for a day -----\n\n<omitted postmortem-api-search-index-stale: md5 18e64ce83d7e794670cdb579235fd501, 2908 tokens by countTokens>\n----- page: How to rebuild the api search index -----\n\n<omitted howto-api-search-index-rebuild: md5 f497a0ac80abc2fda71945f80537684e, 3122 tokens by countTokens>\n----- page: Postmortem: partner API certificate expired -----\n\n<omitted postmortem-api-partner-certificate: md5 f99dd0cdeaca1ad30d72476593b403be, 2039 tokens by countTokens>\n----- page: Postmortem: api audit log writer stopped after a disk filled -----\n\n<omitted postmortem-api-audit-disk: md5 bf30b8c17605f91f65a8cc7eeca1e37c, 3455 tokens by countTokens>\n----- page: How to check replica lag on api -----\n\n<omitted howto-api-replica-lag: md5 16a0527aac155484dce1fd3362039658, 3405 tokens by countTokens>\n----- page: Postmortem: api replica lag double-booked slots in eu-west -----\n\n<omitted postmortem-api-replica-lag-double-booking: md5 eadedc40f4fcfe87af21acfdf2269bc9, 3325 tokens by countTokens>\n----- page: stripe: API version upgrade notes (2026) -----\n\n<omitted provider-stripe-api-version: md5 add92266302bc8a3d33180b1cfe78574, 3504 tokens by countTokens>\n----- page: Postmortem: api rollback stuck in the deploy queue -----\n\n<omitted postmortem-api-rollback-queue: md5 b041a4999362c06e03960c9a1ab37e2c, 1565 tokens by countTokens>\n----- page: Handbook 5. Service runbooks -----\n\n<omitted handbook-5: md5 8700b1e28b741a388e672c7b49fafda4, 3049 tokens by countTokens>"
+        }
+       ]
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:12:54.985+00:00",
+     "wall_s": 2.807,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the postmortem (*Postmortem: partner API certificate expired*):\n\n- **Duration:** Partner connections were failing for **47 minutes** (from 09:00 JST to 09:47 JST on 2025-04-14).\n- **Partners affected:** A total of **3 integration partners** were affected.",
+           "thoughtSignature": "EmkKZwFpFH0TnPrrtAH2CMDn7ZXZ1V9MWNtbU2vcXh+yuAILaS2NUBOnsnRT6R9ol+eEk8JDuCrqu4/WCjqXyKlkgysBDW2MTRacFX/C6WOOUvybTaWgcmOZ3iueRTOHH6w48FQ7Zqk1Tzc="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 26729,
+       "candidatesTokenCount": 79,
+       "totalTokenCount": 26808,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 26729
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "19TFas2ULMaZ0-kP0ruIgAg"
+     },
+     "text": "Based on the postmortem (*Postmortem: partner API certificate expired*):\n\n- **Duration:** Partner connections were failing for **47 minutes** (from 09:00 JST to 09:47 JST on 2025-04-14).\n- **Partners affected:** A total of **3 integration partners** were affected.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 26729,
+     "cached": 0,
+     "out": 79,
+     "cost_usd": 0.020343,
+     "cost_full_rate_usd": 0.020343
+    }
+   ],
+   "text": "Based on the postmortem (*Postmortem: partner API certificate expired*):\n\n- **Duration:** Partner connections were failing for **47 minutes** (from 09:00 JST to 09:47 JST on 2025-04-14).\n- **Partners affected:** A total of **3 integration partners** were affected.",
+   "error": null,
+   "names_found": [
+    "api"
+   ],
+   "picked": [
+    "postmortem-api-search-index-stale",
+    "howto-api-search-index-rebuild",
+    "postmortem-api-partner-certificate",
+    "postmortem-api-audit-disk",
+    "howto-api-replica-lag",
+    "postmortem-api-replica-lag-double-booking",
+    "provider-stripe-api-version",
+    "postmortem-api-rollback-queue",
+    "handbook-5"
+   ],
+   "grade": {
+    "code_verdict": "right",
+    "truth_ok": true,
+    "wrong_terms": [],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 26729,
+    "cached_tokens": 0,
+    "out_tokens": 79,
+    "cost_usd": 0.020343,
+    "cost_full_rate_usd": 0.020343,
+    "wall_s": 2.807
+   },
+   "qid": "pg-cert-outage"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nHow do I get log search access before my first shadow shift, and who approves it?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nYour code found no page whose title matches this question."
+        }
+       ]
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:12:57.938+00:00",
+     "wall_s": 2.268,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "The available pages do not contain information on how to get log search access or who approves it.",
+           "thoughtSignature": "EugCCuUCAWkUfRPt6m1ra+cxOVs26D1KbBGGoFCdFbvRduoOrRGzqtHSSBa3fpXhkreaNIztSnkk8u063sAov06c1vr8C7undFxVjI65uyJoE5rRvjhv34XUbaAG4v9h7iInbhEwtc+/sROk3EAviPiHnB+A2V4Oj1cUrBSPIS8JloXEgwptOV3UV8W1CT1jnJU4CXsO8+exjaryBE0u72DbT2dJYksK9pg4QrwQmZWLaIehm48UflhOWrlDO9f+PmCu8sFZhPfd7ZoIBGTxqtkZyZ7MRTIXhj4rmdAapPuzVpa905yyw5PFpbJ9tzU7r88KWhpPaxsqmfcTDnYOMBtIsV6nEATnjAa434/GoUSyrhlX4zGtG3YWikqTAtXEr+/moEWjGYfELqFERL7bv5nbdMWbUruc4jgoS5+q0EMbCUbFHAbutr5WarJj2eRM5hbw4xasQtsobAwFBGz9dEpcezCKCxp0Zjyo"
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 226,
+       "candidatesTokenCount": 19,
+       "totalTokenCount": 305,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 226
+        }
+       ],
+       "thoughtsTokenCount": 60,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "2tTFatuoEN7QosUPvPrw4Qo"
+     },
+     "text": "The available pages do not contain information on how to get log search access or who approves it.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 226,
+     "cached": 0,
+     "out": 79,
+     "cost_usd": 0.00046575,
+     "cost_full_rate_usd": 0.00046575
+    }
+   ],
+   "text": "The available pages do not contain information on how to get log search access or who approves it.",
+   "error": null,
+   "names_found": [],
+   "picked": [],
+   "grade": {
+    "code_verdict": "said-not-in-pages",
+    "truth_ok": false,
+    "wrong_terms": [],
+    "says_not_in_pages": true
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 226,
+    "cached_tokens": 0,
+    "out_tokens": 79,
+    "cost_usd": 0.00046575,
+    "cost_full_rate_usd": 0.00046575,
+    "wall_s": 2.268
+   },
+   "qid": "pg-log-access"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nHow many reminders went out twice in the September 2024 notifier scheduler incident?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe pages your code picked for this question:\n\n----- page: notifier runbook (2024 edition) -----\n\n<omitted notifier-runbook-2024: md5 a6d6f8e29e3e4bb5f6ef8177057bff51, 4006 tokens by countTokens>\n----- page: How to read the notifier queue panels -----\n\n<omitted howto-notifier-queue-panels: md5 4c426557e935d840e8b288541e19df4b, 2558 tokens by countTokens>\n----- page: Postmortem: notifier queue stalled by a template error -----\n\n<omitted postmortem-notifier-template-crash: md5 df34af9b4220f396786f68c697d387dc, 3370 tokens by countTokens>\n----- page: Handbook 5. Service runbooks -----\n\n<omitted handbook-5: md5 8700b1e28b741a388e672c7b49fafda4, 3049 tokens by countTokens>"
+        }
+       ]
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:13:00.227+00:00",
+     "wall_s": 2.916,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the provided pages, this information is not mentioned. The documentation includes details about a July 2026 template error incident and general operational procedures, but it does not mention a September 2024 notifier scheduler incident or how many reminders went out twice.",
+           "thoughtSignature": "EmkKZwFpFH0TDgpnvvPJ/1I1V/FE79NmDkk3/o0w10LwpN3eLiWC4g0gOoqFKaOnYP71ck/p+nAbXk1/Z2ydrkGigvz3MP2r39mvpGOIf3tRMnDVA68Jnh+qr7coFsFu9DJHtWR88qgHF2Q="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 13258,
+       "candidatesTokenCount": 55,
+       "totalTokenCount": 13313,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 13258
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "3NTFao-cO_ew0-kPodeE4AE"
+     },
+     "text": "Based on the provided pages, this information is not mentioned. The documentation includes details about a July 2026 template error incident and general operational procedures, but it does not mention a September 2024 notifier scheduler incident or how many reminders went out twice.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 13258,
+     "cached": 0,
+     "out": 55,
+     "cost_usd": 0.01014975,
+     "cost_full_rate_usd": 0.01014975
+    }
+   ],
+   "text": "Based on the provided pages, this information is not mentioned. The documentation includes details about a July 2026 template error incident and general operational procedures, but it does not mention a September 2024 notifier scheduler incident or how many reminders went out twice.",
+   "error": null,
+   "names_found": [
+    "notifier"
+   ],
+   "picked": [
+    "notifier-runbook-2024",
+    "howto-notifier-queue-panels",
+    "postmortem-notifier-template-crash",
+    "handbook-5"
+   ],
+   "grade": {
+    "code_verdict": "said-not-in-pages",
+    "truth_ok": false,
+    "wrong_terms": [],
+    "says_not_in_pages": true
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 13258,
+    "cached_tokens": 0,
+    "out_tokens": 55,
+    "cost_usd": 0.01014975,
+    "cost_full_rate_usd": 0.01014975,
+    "wall_s": 2.916
+   },
+   "qid": "pg-dup-reminders"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\npayments checkout errors jumped right after the last deploy, 12 minutes ago. How exactly do I roll payments back?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe pages your code picked for this question:\n\n----- page: Payments rollback runbook -----\n\n<omitted payments-rollback-runbook: md5 6d2e7edf0b95bb16d87c36033bdde812, 1556 tokens by countTokens>\n----- page: Postmortem: payments checkout timeouts after the v2.31 pool change -----\n\n<omitted postmortem-payments-pool-timeout: md5 81c7472cd123a80cc67f341d2b09fc3d, 1563 tokens by countTokens>\n----- page: Handbook 5. Service runbooks -----\n\n<omitted handbook-5: md5 8700b1e28b741a388e672c7b49fafda4, 3049 tokens by countTokens>"
+        }
+       ]
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:13:03.150+00:00",
+     "wall_s": 3.817,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the current service runbook (Handbook section 5.3):\n\n1. **Verify before rolling back:** Ensure that money has not already moved wrongly (such as refunds or charges being counted more than once). If money has moved wrongly, do not roll back first—page Mei instead.\n2. **Execute the rollback using Shipyard** (as of 2026-09-28, payments uses Shipyard, not the older deploy tool):\n   - Run the command:\n     ```bash\n     shipyard rollback payments --to <previous release>\n     ```\n     *(Releases are named like `r-212`)*\n   - **OR** go to the **Releases** page for payments in Shipyard and click **\"Roll back to this release\"** on the previous release.\n3. **Wait for draining:** Payments drains in-flight checkouts before switching nodes, taking about 5 minutes.\n4. **Follow up:**\n   - Watch the \"Sorrel / payments\" board to confirm checkout success returns to pre-deploy levels.\n   - Post both release names in the incident thread in `#inc-live` (and notify `#deploys`).",
+           "thoughtSignature": "EmkKZwFpFH0T/nIwm60x9ZYrWQFBioacdA4UC8dFPZp00XQXmh1HMN9bT5Mt465fB+1L36MOal+7F4ILFLw3pLbdakkxtCL053RG4UDUp5Ta8H/d2uoVuMeprrgeMRHkA81Xwq1fJT+bL3g="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 6437,
+       "candidatesTokenCount": 254,
+       "totalTokenCount": 6691,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 6437
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "39TFatWkJcqY0-kPsKytkQs"
+     },
+     "text": "Based on the current service runbook (Handbook section 5.3):\n\n1. **Verify before rolling back:** Ensure that money has not already moved wrongly (such as refunds or charges being counted more than once). If money has moved wrongly, do not roll back first—page Mei instead.\n2. **Execute the rollback using Shipyard** (as of 2026-09-28, payments uses Shipyard, not the older deploy tool):\n   - Run the command:\n     ```bash\n     shipyard rollback payments --to <previous release>\n     ```\n     *(Releases are named like `r-212`)*\n   - **OR** go to the **Releases** page for payments in Shipyard and click **\"Roll back to this release\"** on the previous release.\n3. **Wait for draining:** Payments drains in-flight checkouts before switching nodes, taking about 5 minutes.\n4. **Follow up:**\n   - Watch the \"Sorrel / payments\" board to confirm checkout success returns to pre-deploy levels.\n   - Post both release names in the incident thread in `#inc-live` (and notify `#deploys`).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 6437,
+     "cached": 0,
+     "out": 254,
+     "cost_usd": 0.00578025,
+     "cost_full_rate_usd": 0.00578025
+    }
+   ],
+   "text": "Based on the current service runbook (Handbook section 5.3):\n\n1. **Verify before rolling back:** Ensure that money has not already moved wrongly (such as refunds or charges being counted more than once). If money has moved wrongly, do not roll back first—page Mei instead.\n2. **Execute the rollback using Shipyard** (as of 2026-09-28, payments uses Shipyard, not the older deploy tool):\n   - Run the command:\n     ```bash\n     shipyard rollback payments --to <previous release>\n     ```\n     *(Releases are named like `r-212`)*\n   - **OR** go to the **Releases** page for payments in Shipyard and click **\"Roll back to this release\"** on the previous release.\n3. **Wait for draining:** Payments drains in-flight checkouts before switching nodes, taking about 5 minutes.\n4. **Follow up:**\n   - Watch the \"Sorrel / payments\" board to confirm checkout success returns to pre-deploy levels.\n   - Post both release names in the incident thread in `#inc-live` (and notify `#deploys`).",
+   "error": null,
+   "names_found": [
+    "payments"
+   ],
+   "picked": [
+    "payments-rollback-runbook",
+    "postmortem-payments-pool-timeout",
+    "handbook-5"
+   ],
+   "grade": {
+    "code_verdict": "right",
+    "truth_ok": true,
+    "wrong_terms": [],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 6437,
+    "cached_tokens": 0,
+    "out_tokens": 254,
+    "cost_usd": 0.00578025,
+    "cost_full_rate_usd": 0.00578025,
+    "wall_s": 3.817
+   },
+   "qid": "sy-trap-how"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhat's the command to revert payments to the previous deploy?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe pages your code picked for this question:\n\n----- page: Payments rollback runbook -----\n\n<omitted payments-rollback-runbook: md5 6d2e7edf0b95bb16d87c36033bdde812, 1556 tokens by countTokens>\n----- page: Postmortem: payments checkout timeouts after the v2.31 pool change -----\n\n<omitted postmortem-payments-pool-timeout: md5 81c7472cd123a80cc67f341d2b09fc3d, 1563 tokens by countTokens>\n----- page: Handbook 5. Service runbooks -----\n\n<omitted handbook-5: md5 8700b1e28b741a388e672c7b49fafda4, 3049 tokens by countTokens>"
+        }
+       ]
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:13:06.990+00:00",
+     "wall_s": 2.703,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the most recent service runbook instructions (Handbook section 5.3, updated for Shipyard as of 2026-09-28), the command is:\n\n```bash\nshipyard rollback payments --to <previous release>\n```\n*(where releases are named like `r-212`)*\n\nAlternatively, in the older runbook using `dtool` (prior to Shipyard), the command was:\n\n```bash\ndtool revert sorrel/payments --to <previous deploy id> --drain-checkouts\n```",
+           "thoughtSignature": "EmkKZwFpFH0TMi2s5iyXPkReyXQ3ZC+ljLWNcCtnUd4xCrJOaiMYJQm+lOUQ44wgKUWc0/AoicEygUUC3OmPB3GyRYWS8IK/80XTFP19UyYCzaiC1XJIAgaWL8xbYxZWCJZPvTsBfZIJg9s="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 6426,
+       "candidatesTokenCount": 118,
+       "totalTokenCount": 6544,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 6426
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "49TFavPPGsjZ9tMPhO3w8Qo"
+     },
+     "text": "According to the most recent service runbook instructions (Handbook section 5.3, updated for Shipyard as of 2026-09-28), the command is:\n\n```bash\nshipyard rollback payments --to <previous release>\n```\n*(where releases are named like `r-212`)*\n\nAlternatively, in the older runbook using `dtool` (prior to Shipyard), the command was:\n\n```bash\ndtool revert sorrel/payments --to <previous deploy id> --drain-checkouts\n```",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 6426,
+     "cached": 0,
+     "out": 118,
+     "cost_usd": 0.005262,
+     "cost_full_rate_usd": 0.005262
+    }
+   ],
+   "text": "According to the most recent service runbook instructions (Handbook section 5.3, updated for Shipyard as of 2026-09-28), the command is:\n\n```bash\nshipyard rollback payments --to <previous release>\n```\n*(where releases are named like `r-212`)*\n\nAlternatively, in the older runbook using `dtool` (prior to Shipyard), the command was:\n\n```bash\ndtool revert sorrel/payments --to <previous deploy id> --drain-checkouts\n```",
+   "error": null,
+   "names_found": [
+    "payments"
+   ],
+   "picked": [
+    "payments-rollback-runbook",
+    "postmortem-payments-pool-timeout",
+    "handbook-5"
+   ],
+   "grade": {
+    "code_verdict": "mixed",
+    "truth_ok": true,
+    "wrong_terms": [
+     "dtool",
+     "drain-checkouts"
+    ],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 6426,
+    "cached_tokens": 0,
+    "out_tokens": 118,
+    "cost_usd": 0.005262,
+    "cost_full_rate_usd": 0.005262,
+    "wall_s": 2.703
+   },
+   "qid": "sy-trap-command"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWho has to approve rolling payments back two releases?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe pages your code picked for this question:\n\n----- page: Payments rollback runbook -----\n\n<omitted payments-rollback-runbook: md5 6d2e7edf0b95bb16d87c36033bdde812, 1556 tokens by countTokens>\n----- page: Postmortem: payments checkout timeouts after the v2.31 pool change -----\n\n<omitted postmortem-payments-pool-timeout: md5 81c7472cd123a80cc67f341d2b09fc3d, 1563 tokens by countTokens>\n----- page: Handbook 5. Service runbooks -----\n\n<omitted handbook-5: md5 8700b1e28b741a388e672c7b49fafda4, 3049 tokens by countTokens>"
+        }
+       ]
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:13:09.704+00:00",
+     "wall_s": 2.863,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the provided pages, it is not explicitly stated who must approve rolling **payments** back two releases. \n\nThe runbooks mention:\n- For **api**, rolling back two or more releases requires **Ravi**.\n- For **payments**, the runbook states you must \"talk to the payments team first\" when going back more than one deploy, and references the page \"Deploying with Shipyard\" for approvals and the release list, but the provided text does not specify a specific person who must approve a two-release rollback for payments.",
+           "thoughtSignature": "EmkKZwFpFH0T9LkTxFT4Hi7medRwTPUZbcorNQ2XfomecGSaLZuCPu0j8Gu6tHR+NdNxZqwWHRqyoqk0yG3DbpUkV5KyZyazJYckMbVoTtLSU4Ll5Wlsc9uozbXsJjg2xPKNDZzDdqd0OH8="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 6423,
+       "candidatesTokenCount": 113,
+       "totalTokenCount": 6536,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 6423
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "5tTFasHVCJzY9tMP8oqiyQQ"
+     },
+     "text": "Based on the provided pages, it is not explicitly stated who must approve rolling **payments** back two releases. \n\nThe runbooks mention:\n- For **api**, rolling back two or more releases requires **Ravi**.\n- For **payments**, the runbook states you must \"talk to the payments team first\" when going back more than one deploy, and references the page \"Deploying with Shipyard\" for approvals and the release list, but the provided text does not specify a specific person who must approve a two-release rollback for payments.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 6423,
+     "cached": 0,
+     "out": 113,
+     "cost_usd": 0.005241,
+     "cost_full_rate_usd": 0.005241
+    }
+   ],
+   "text": "Based on the provided pages, it is not explicitly stated who must approve rolling **payments** back two releases. \n\nThe runbooks mention:\n- For **api**, rolling back two or more releases requires **Ravi**.\n- For **payments**, the runbook states you must \"talk to the payments team first\" when going back more than one deploy, and references the page \"Deploying with Shipyard\" for approvals and the release list, but the provided text does not specify a specific person who must approve a two-release rollback for payments.",
+   "error": null,
+   "names_found": [
+    "payments"
+   ],
+   "picked": [
+    "payments-rollback-runbook",
+    "postmortem-payments-pool-timeout",
+    "handbook-5"
+   ],
+   "grade": {
+    "code_verdict": "said-not-in-pages",
+    "truth_ok": false,
+    "wrong_terms": [
+     "talk to the payments team"
+    ],
+    "says_not_in_pages": true
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 6423,
+    "cached_tokens": 0,
+    "out_tokens": 113,
+    "cost_usd": 0.005241,
+    "cost_full_rate_usd": 0.005241,
+    "wall_s": 2.863
+   },
+   "qid": "sy-approve"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhere can I see the list of recent api releases?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe pages your code picked for this question:\n\n----- page: Postmortem: api search index stale for a day -----\n\n<omitted postmortem-api-search-index-stale: md5 18e64ce83d7e794670cdb579235fd501, 2908 tokens by countTokens>\n----- page: How to rebuild the api search index -----\n\n<omitted howto-api-search-index-rebuild: md5 f497a0ac80abc2fda71945f80537684e, 3122 tokens by countTokens>\n----- page: Postmortem: partner API certificate expired -----\n\n<omitted postmortem-api-partner-certificate: md5 f99dd0cdeaca1ad30d72476593b403be, 2039 tokens by countTokens>\n----- page: Postmortem: api audit log writer stopped after a disk filled -----\n\n<omitted postmortem-api-audit-disk: md5 bf30b8c17605f91f65a8cc7eeca1e37c, 3455 tokens by countTokens>\n----- page: How to check replica lag on api -----\n\n<omitted howto-api-replica-lag: md5 16a0527aac155484dce1fd3362039658, 3405 tokens by countTokens>\n----- page: Postmortem: api replica lag double-booked slots in eu-west -----\n\n<omitted postmortem-api-replica-lag-double-booking: md5 eadedc40f4fcfe87af21acfdf2269bc9, 3325 tokens by countTokens>\n----- page: stripe: API version upgrade notes (2026) -----\n\n<omitted provider-stripe-api-version: md5 add92266302bc8a3d33180b1cfe78574, 3504 tokens by countTokens>\n----- page: Postmortem: api rollback stuck in the deploy queue -----\n\n<omitted postmortem-api-rollback-queue: md5 b041a4999362c06e03960c9a1ab37e2c, 1565 tokens by countTokens>\n----- page: Handbook 5. Service runbooks -----\n\n<omitted handbook-5: md5 8700b1e28b741a388e672c7b49fafda4, 3049 tokens by countTokens>"
+        }
+       ]
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:13:12.634+00:00",
+     "wall_s": 16.144,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the documentation (Handbook Section 5.2, under **Rollback**):\n\nYou can see the list of releases for `api` on **api's Releases page in Shipyard** (or refer to the documentation page titled **\"Deploying with Shipyard\"**).",
+           "thoughtSignature": "EmkKZwFpFH0T0rOrWMe29bXuHFaFO+PqmZw1lwRK/U5weAUcM408sQqugbjfqpsVMfhFDRli1toKF9XKPgn0jMzaKgQb/dv/ZT1OQl3Zc0cfwqsw79FHCAQc/hPormZ2ukchQSxbJsgsbiw="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 26712,
+       "candidatesTokenCount": 59,
+       "totalTokenCount": 26771,
+       "cachedContentTokenCount": 24542,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 26712
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 24542
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "6dTFat-kE6na2roPufHDwAs"
+     },
+     "text": "Based on the documentation (Handbook Section 5.2, under **Rollback**):\n\nYou can see the list of releases for `api` on **api's Releases page in Shipyard** (or refer to the documentation page titled **\"Deploying with Shipyard\"**).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 26712,
+     "cached": 24542,
+     "out": 59,
+     "cost_usd": 0.0036894,
+     "cost_full_rate_usd": 0.02025525
+    }
+   ],
+   "text": "Based on the documentation (Handbook Section 5.2, under **Rollback**):\n\nYou can see the list of releases for `api` on **api's Releases page in Shipyard** (or refer to the documentation page titled **\"Deploying with Shipyard\"**).",
+   "error": null,
+   "names_found": [
+    "api"
+   ],
+   "picked": [
+    "postmortem-api-search-index-stale",
+    "howto-api-search-index-rebuild",
+    "postmortem-api-partner-certificate",
+    "postmortem-api-audit-disk",
+    "howto-api-replica-lag",
+    "postmortem-api-replica-lag-double-booking",
+    "provider-stripe-api-version",
+    "postmortem-api-rollback-queue",
+    "handbook-5"
+   ],
+   "grade": {
+    "code_verdict": "right",
+    "truth_ok": true,
+    "wrong_terms": [],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 26712,
+    "cached_tokens": 24542,
+    "out_tokens": 59,
+    "cost_usd": 0.0036894,
+    "cost_full_rate_usd": 0.02025525,
+    "wall_s": 16.144
+   },
+   "qid": "sy-release-list"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhat is Stripe's emergency support phone number?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe pages your code picked for this question:\n\n----- page: stripe: notes for on-call -----\n\n<omitted provider-stripe-notes: md5 edb6c80baaf620e0addd400db74c2849, 3582 tokens by countTokens>\n----- page: Postmortem: stripe webhooks rejected after the signing secret rotation -----\n\n<omitted postmortem-payments-webhook-secret: md5 d433e3ab7e2ecee03ee0446095199783, 3110 tokens by countTokens>\n----- page: stripe: API version upgrade notes (2026) -----\n\n<omitted provider-stripe-api-version: md5 add92266302bc8a3d33180b1cfe78574, 3504 tokens by countTokens>"
+        }
+       ]
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:13:28.803+00:00",
+     "wall_s": 2.597,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the provided pages, Stripe's emergency support phone number is not mentioned. (The documentation only references Stripe's status page at `status.stripe.com`.)",
+           "thoughtSignature": "EmkKZwFpFH0TnxP9uN6wKAGHJDV+R7cEYbnB2LvS4yrrAkmF1mZx2VRXxE2sJ1yo0bQKMspQs1J4yxj31+gfp1FhQ8wRPjLY1wZD1+37ew4nwd9U/RFds95nA1IeClwszS3C7kQEjjofcSg="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 10456,
+       "candidatesTokenCount": 36,
+       "totalTokenCount": 10492,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 10456
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "-dTFaoiLH6ew2roPp8CDoAM"
+     },
+     "text": "Based on the provided pages, Stripe's emergency support phone number is not mentioned. (The documentation only references Stripe's status page at `status.stripe.com`.)",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 10456,
+     "cached": 0,
+     "out": 36,
+     "cost_usd": 0.007977,
+     "cost_full_rate_usd": 0.007977
+    }
+   ],
+   "text": "Based on the provided pages, Stripe's emergency support phone number is not mentioned. (The documentation only references Stripe's status page at `status.stripe.com`.)",
+   "error": null,
+   "names_found": [
+    "stripe"
+   ],
+   "picked": [
+    "provider-stripe-notes",
+    "postmortem-payments-webhook-secret",
+    "provider-stripe-api-version"
+   ],
+   "grade": {
+    "code_verdict": "said-not-in-pages",
+    "truth_ok": false,
+    "wrong_terms": [],
+    "says_not_in_pages": true
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 10456,
+    "cached_tokens": 0,
+    "out_tokens": 36,
+    "cost_usd": 0.007977,
+    "cost_full_rate_usd": 0.007977,
+    "wall_s": 2.597
+   },
+   "qid": "none-stripe-phone"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nHow much is the on-call allowance for a week of primary shifts?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nYour code found no page whose title matches this question."
+        }
+       ]
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:13:31.448+00:00",
+     "wall_s": 2.495,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "The pages do not say.",
+           "thoughtSignature": "Et8CCtwCAWkUfRMN2EI5rz9bOrs1Hxr7asT5rtpMnubZJAEDxTB2S+vSnzL/hf2/mERmv24Ea9gRcoAVvSUm8btorvA9iOKVYKZhF3BxuuiMf4Nc+o/KvQ/1bh3veuprTWzZuCJ+ySfUX34TQWxWyrPTkvDAKS1iBDhAkzleTwaKDE/1ld8OnQ2qK+BSdQZNj0wmkEHhrwXbXrJ/CjmqsyUGWxsiSy/d66433DLfMwSCR+xOpayQX6M4W+Sgwy2a/mt5H/n5HoG3V95U8O624vCyQUetUinZbol+eY0KR1sJsq7/t2xQBEzHiuOhSy84C3TYLA3KVyng4SrftW7fir7Vk7bYMJknF09nqfLu/jQ/V3F0uqqIXWPrFnaiDCFQ9w2XDxKBgQqmMHxQrF3XsdQCS+TUBuu8UlFF46xb0Wruwvf1vnJICVLZU1nLXItQdSiOBsPvqQkq7JtjuNITIIOz"
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 223,
+       "candidatesTokenCount": 6,
+       "totalTokenCount": 287,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 223
+        }
+       ],
+       "thoughtsTokenCount": 58,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "_NTFaoHLAoHtrfcPoqeh-Ao"
+     },
+     "text": "The pages do not say.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 223,
+     "cached": 0,
+     "out": 64,
+     "cost_usd": 0.00040725,
+     "cost_full_rate_usd": 0.00040725
+    }
+   ],
+   "text": "The pages do not say.",
+   "error": null,
+   "names_found": [],
+   "picked": [],
+   "grade": {
+    "code_verdict": "said-not-in-pages",
+    "truth_ok": false,
+    "wrong_terms": [],
+    "says_not_in_pages": true
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 223,
+    "cached_tokens": 0,
+    "out_tokens": 64,
+    "cost_usd": 0.00040725,
+    "cost_full_rate_usd": 0.00040725,
+    "wall_s": 2.495
+   },
+   "qid": "none-allowance"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nHow many booking requests failed in the 2026-08-20 api incident, and who has to approve rolling api back two releases today?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe pages your code picked for this question:\n\n----- page: Postmortem: api search index stale for a day -----\n\n<omitted postmortem-api-search-index-stale: md5 18e64ce83d7e794670cdb579235fd501, 2908 tokens by countTokens>\n----- page: How to rebuild the api search index -----\n\n<omitted howto-api-search-index-rebuild: md5 f497a0ac80abc2fda71945f80537684e, 3122 tokens by countTokens>\n----- page: Postmortem: partner API certificate expired -----\n\n<omitted postmortem-api-partner-certificate: md5 f99dd0cdeaca1ad30d72476593b403be, 2039 tokens by countTokens>\n----- page: Postmortem: api audit log writer stopped after a disk filled -----\n\n<omitted postmortem-api-audit-disk: md5 bf30b8c17605f91f65a8cc7eeca1e37c, 3455 tokens by countTokens>\n----- page: How to check replica lag on api -----\n\n<omitted howto-api-replica-lag: md5 16a0527aac155484dce1fd3362039658, 3405 tokens by countTokens>\n----- page: Postmortem: api replica lag double-booked slots in eu-west -----\n\n<omitted postmortem-api-replica-lag-double-booking: md5 eadedc40f4fcfe87af21acfdf2269bc9, 3325 tokens by countTokens>\n----- page: stripe: API version upgrade notes (2026) -----\n\n<omitted provider-stripe-api-version: md5 add92266302bc8a3d33180b1cfe78574, 3504 tokens by countTokens>\n----- page: Postmortem: api rollback stuck in the deploy queue -----\n\n<omitted postmortem-api-rollback-queue: md5 b041a4999362c06e03960c9a1ab37e2c, 1565 tokens by countTokens>\n----- page: Handbook 5. Service runbooks -----\n\n<omitted handbook-5: md5 8700b1e28b741a388e672c7b49fafda4, 3049 tokens by countTokens>"
+        }
+       ]
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:13:33.955+00:00",
+     "wall_s": 3.484,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the provided pages:\n\n* **Booking requests failed in the 2026-08-20 api incident:** About 2,940 booking requests failed.\n* **Who has to approve rolling api back two releases today:** **Ravi** (api service owner). Per Section 5.2 of the Service Runbooks: *\"Database migrations are written to be backward compatible for one release, so rolling back one release is always safe. Rolling back two or more releases needs Ravi.\"*",
+           "thoughtSignature": "EmkKZwFpFH0T3btO1r7P/KAYXIq2qndDf2kKpWbH+5PXo7GsowSkTIEH9v8kmg9l2M52Fzs/FSn68WAvvul0AjAlTenRZrjltSkOeKb50OZvY68zVAm81FOccsb4r+zz2xd74YIZcwwCqLM="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 26734,
+       "candidatesTokenCount": 106,
+       "totalTokenCount": 26840,
+       "cachedContentTokenCount": 24542,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 26734
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 24542
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "_tTFatK3KMaZ0-kPzb2IgAg"
+     },
+     "text": "Based on the provided pages:\n\n* **Booking requests failed in the 2026-08-20 api incident:** About 2,940 booking requests failed.\n* **Who has to approve rolling api back two releases today:** **Ravi** (api service owner). Per Section 5.2 of the Service Runbooks: *\"Database migrations are written to be backward compatible for one release, so rolling back one release is always safe. Rolling back two or more releases needs Ravi.\"*",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 26734,
+     "cached": 24542,
+     "out": 106,
+     "cost_usd": 0.0038821499999999996,
+     "cost_full_rate_usd": 0.020448
+    }
+   ],
+   "text": "Based on the provided pages:\n\n* **Booking requests failed in the 2026-08-20 api incident:** About 2,940 booking requests failed.\n* **Who has to approve rolling api back two releases today:** **Ravi** (api service owner). Per Section 5.2 of the Service Runbooks: *\"Database migrations are written to be backward compatible for one release, so rolling back one release is always safe. Rolling back two or more releases needs Ravi.\"*",
+   "error": null,
+   "names_found": [
+    "api"
+   ],
+   "picked": [
+    "postmortem-api-search-index-stale",
+    "howto-api-search-index-rebuild",
+    "postmortem-api-partner-certificate",
+    "postmortem-api-audit-disk",
+    "howto-api-replica-lag",
+    "postmortem-api-replica-lag-double-booking",
+    "provider-stripe-api-version",
+    "postmortem-api-rollback-queue",
+    "handbook-5"
+   ],
+   "grade": {
+    "code_verdict": "right",
+    "truth_ok": true,
+    "wrong_terms": [],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 26734,
+    "cached_tokens": 24542,
+    "out_tokens": 106,
+    "cost_usd": 0.0038821499999999996,
+    "cost_full_rate_usd": 0.020448,
+    "wall_s": 3.484
+   },
+   "qid": "two-api-incident"
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nThe CDN purge got stuck in July 2025. How long did it take, and how long does a normal purge take according to the handbook?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nYour code found no page whose title matches this question."
+        }
+       ]
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:13:37.457+00:00",
+     "wall_s": 2.637,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "The pages do not contain information about the July 2025 CDN purge incident or the handbook's expected duration for a normal purge.",
+           "thoughtSignature": "EqgDCqUDAWkUfRNRylcpkUXkkOwcIKBIoUjM1Q9ZzZlO2oXQfI2QELu3out97ULGnsqLDzcJRl9N5gDbcWO+D8v7uz2BdKXQrtf1HInFkyZHDY8nPZatA8+RGjOwMmjUuJMVRBMJFUT+dTf3YN6E0RVJr6S0DqRUS1dWgvwN9i4t40ule6d/QsSdjJtAx8fXrszhaBqVVbY8dPzOGVivzcGrhnSlVWWFmG8PxD1PMsPCJt4YwEf3bu7mz0uMQPifRdGPEK3I5OyqgMMY1ZW8ymCb5huBJ7X6ZWigrM5TEAEgZp+oLqSMwl3fsxd2PDMlSeE8OKeh0pVeXUyOT4PJ2xSvpGMSta9sK6QAUn+Np40qfAHB5Bxhbe1oiHa7YaCNyl5/Z/MUkiYwAEOLuhr8leM+U/PcY9hfKxp+iroXAETFabV9126a6Ya4xrkuVgSnR8urfDBa2MU1PfJc/xIynAZG0DQsUM2y3wUZwDyiDvE1Fu22xEiTMZkLUMheV5NIlSSPZmrSVRcqYeuWUkc4oLR3fg6e1mcBe0ubbgT9s942afYYPw4/hc287Q=="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 240,
+       "candidatesTokenCount": 29,
+       "totalTokenCount": 346,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 240
+        }
+       ],
+       "thoughtsTokenCount": 77,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "AdXFasTTOsqY0-kPsKytkQs"
+     },
+     "text": "The pages do not contain information about the July 2025 CDN purge incident or the handbook's expected duration for a normal purge.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 240,
+     "cached": 0,
+     "out": 106,
+     "cost_usd": 0.0005775,
+     "cost_full_rate_usd": 0.0005775
+    }
+   ],
+   "text": "The pages do not contain information about the July 2025 CDN purge incident or the handbook's expected duration for a normal purge.",
+   "error": null,
+   "names_found": [],
+   "picked": [],
+   "grade": {
+    "code_verdict": "said-not-in-pages",
+    "truth_ok": false,
+    "wrong_terms": [],
+    "says_not_in_pages": true
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 240,
+    "cached_tokens": 0,
+    "out_tokens": 106,
+    "cost_usd": 0.0005775,
+    "cost_full_rate_usd": 0.0005775,
+    "wall_s": 2.637
+   },
+   "qid": "two-purge"
+  }
+ ]
+}

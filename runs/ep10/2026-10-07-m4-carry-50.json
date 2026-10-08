@@ -1,0 +1,1011 @@
+{
+ "meta": {
+  "what": "M4 trap, shape carry-50",
+  "shape": "systemInstruction = handbook.md + all 49 other documents whole, sent through an explicit cache (cachedContents, as cache.py) to save money; the cache holds exactly that systemInstruction, so answers do not depend on it",
+  "user_template": "Question from the on-call engineer:\n{q}\nAnswer from the pages. If the pages do not say, say so.",
+  "order": "run 1..5, both trap questions per run, one call at a time"
+ },
+ "items": [
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\npayments checkout errors jumped right after the last deploy, 12 minutes ago. How exactly do I roll payments back?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/d6nbevuvhivjmprcatdbxi57xm26oh864taehr4h"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:01:32.348+00:00",
+     "wall_s": 5.515,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the documentation (specifically **Handbook Section 5.3** and **Deploying with Shipyard**), `payments` deploys and rolls back using **Shipyard** (not the old deploy tool or `dtool`). \n\nRolling back one release is pre-approved for the on-call engineer and requires no additional approval. You can perform the rollback via either the command line or the browser:\n\n### Option 1: Command Line (CLI)\n1. Check the recent releases to find the previous release name (the one right below the `live` release):\n   ```bash\n   shipyard releases payments\n   ```\n2. Run the rollback command to the target release (for example, `r-211`):\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n3. Type the service name (`payments`) when prompted to confirm.\n\n---\n\n### Option 2: Browser\n1. Open `shipyard.sorrel.internal`.\n2. Select **payments**, then go to the **Releases** tab.\n3. Find the release immediately below the one marked `live` and click **\"Roll back to this release\"**.\n4. Type `payments` in the confirmation box.\n\n---\n\n### What to expect & next steps\n- **Execution:** Shipyard will first drain in-flight checkouts before switching the nodes; the entire process takes about five minutes.\n- **Verification:** Watch the **\"Sorrel / payments\"** dashboard to confirm checkout success returns to baseline.\n- **Communication:** Copy both release names (the rolled-back release and the active target release) into the incident thread in `#inc-live`. Notify Mei in the morning, or page her if the rollback does not resolve the issue.",
+           "thoughtSignature": "EmkKZwFpFH0TL87Waw3IkKwnbXeWoAo/5EvECSXWwTLuecGOEKrdSaJ64LBRsqu7dIBrKV0zFopG7P8nQMjrvGHOc03f8i3GoNuVqd9sgBmdHkhn5rkHnDEPDVNEklGOrMLWYUlPtL2274E="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162037,
+       "candidatesTokenCount": 375,
+       "totalTokenCount": 162412,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162037
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "LNLFaq_WKJib0-kP8OOHGA"
+     },
+     "text": "Based on the documentation (specifically **Handbook Section 5.3** and **Deploying with Shipyard**), `payments` deploys and rolls back using **Shipyard** (not the old deploy tool or `dtool`). \n\nRolling back one release is pre-approved for the on-call engineer and requires no additional approval. You can perform the rollback via either the command line or the browser:\n\n### Option 1: Command Line (CLI)\n1. Check the recent releases to find the previous release name (the one right below the `live` release):\n   ```bash\n   shipyard releases payments\n   ```\n2. Run the rollback command to the target release (for example, `r-211`):\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n3. Type the service name (`payments`) when prompted to confirm.\n\n---\n\n### Option 2: Browser\n1. Open `shipyard.sorrel.internal`.\n2. Select **payments**, then go to the **Releases** tab.\n3. Find the release immediately below the one marked `live` and click **\"Roll back to this release\"**.\n4. Type `payments` in the confirmation box.\n\n---\n\n### What to expect & next steps\n- **Execution:** Shipyard will first drain in-flight checkouts before switching the nodes; the entire process takes about five minutes.\n- **Verification:** Watch the **\"Sorrel / payments\"** dashboard to confirm checkout success returns to baseline.\n- **Communication:** Copy both release names (the rolled-back release and the active target release) into the incident thread in `#inc-live`. Notify Mei in the morning, or page her if the rollback does not resolve the issue.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162037,
+     "cached": 161987,
+     "out": 375,
+     "cost_usd": 0.013592775,
+     "cost_full_rate_usd": 0.122934
+    }
+   ],
+   "text": "Based on the documentation (specifically **Handbook Section 5.3** and **Deploying with Shipyard**), `payments` deploys and rolls back using **Shipyard** (not the old deploy tool or `dtool`). \n\nRolling back one release is pre-approved for the on-call engineer and requires no additional approval. You can perform the rollback via either the command line or the browser:\n\n### Option 1: Command Line (CLI)\n1. Check the recent releases to find the previous release name (the one right below the `live` release):\n   ```bash\n   shipyard releases payments\n   ```\n2. Run the rollback command to the target release (for example, `r-211`):\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n3. Type the service name (`payments`) when prompted to confirm.\n\n---\n\n### Option 2: Browser\n1. Open `shipyard.sorrel.internal`.\n2. Select **payments**, then go to the **Releases** tab.\n3. Find the release immediately below the one marked `live` and click **\"Roll back to this release\"**.\n4. Type `payments` in the confirmation box.\n\n---\n\n### What to expect & next steps\n- **Execution:** Shipyard will first drain in-flight checkouts before switching the nodes; the entire process takes about five minutes.\n- **Verification:** Watch the **\"Sorrel / payments\"** dashboard to confirm checkout success returns to baseline.\n- **Communication:** Copy both release names (the rolled-back release and the active target release) into the incident thread in `#inc-live`. Notify Mei in the morning, or page her if the rollback does not resolve the issue.",
+   "error": null,
+   "grade": {
+    "code_verdict": "mixed",
+    "truth_ok": true,
+    "wrong_terms": [
+     "dtool"
+    ],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162037,
+    "cached_tokens": 161987,
+    "out_tokens": 375,
+    "cost_usd": 0.013592775,
+    "cost_full_rate_usd": 0.122934,
+    "wall_s": 5.515
+   },
+   "qid": "sy-trap-how",
+   "run": 1
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhat's the command to revert payments to the previous deploy?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/d6nbevuvhivjmprcatdbxi57xm26oh864taehr4h"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:01:37.870+00:00",
+     "wall_s": 4.951,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Since 2026-09-28, `payments` deploys and rolls back using **Shipyard** (the old deploy tool and `dtool` no longer control it).\n\nTo roll back `payments` to the previous release:\n\n1. Check the release list to find the previous release name (the one just below `live`):\n   ```bash\n   shipyard releases payments\n   ```\n\n2. Run the rollback command:\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n   *(For example: `shipyard rollback payments --to r-211`)*\n\nShipyard will ask you to type the service name to confirm. \n\nAlternatively, you can do this in the browser at `shipyard.sorrel.internal` by going to the **payments** service, opening the **Releases** tab, and clicking **\"Roll back to this release\"** on the release just below the `live` one.",
+           "thoughtSignature": "EmkKZwFpFH0TP8/usn/mCGA2cw3j0Lxvpg0ik+6cJZDUz8SBvAHBbEUCSrrlwS4BdQU07OQ2XvsmXykxNf6QYJ8CGEfUizq+cZ/lXCwTfVpmn1wflViUoHWcwxQ4vptzuj3wF0e2tLJWMcc="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162026,
+       "candidatesTokenCount": 209,
+       "totalTokenCount": 162235,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162026
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "MtLFar7SDqPo2roP3_-KiQY"
+     },
+     "text": "Since 2026-09-28, `payments` deploys and rolls back using **Shipyard** (the old deploy tool and `dtool` no longer control it).\n\nTo roll back `payments` to the previous release:\n\n1. Check the release list to find the previous release name (the one just below `live`):\n   ```bash\n   shipyard releases payments\n   ```\n\n2. Run the rollback command:\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n   *(For example: `shipyard rollback payments --to r-211`)*\n\nShipyard will ask you to type the service name to confirm. \n\nAlternatively, you can do this in the browser at `shipyard.sorrel.internal` by going to the **payments** service, opening the **Releases** tab, and clicking **\"Roll back to this release\"** on the release just below the `live` one.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162026,
+     "cached": 161987,
+     "out": 209,
+     "cost_usd": 0.012962025,
+     "cost_full_rate_usd": 0.12230325
+    }
+   ],
+   "text": "Since 2026-09-28, `payments` deploys and rolls back using **Shipyard** (the old deploy tool and `dtool` no longer control it).\n\nTo roll back `payments` to the previous release:\n\n1. Check the release list to find the previous release name (the one just below `live`):\n   ```bash\n   shipyard releases payments\n   ```\n\n2. Run the rollback command:\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n   *(For example: `shipyard rollback payments --to r-211`)*\n\nShipyard will ask you to type the service name to confirm. \n\nAlternatively, you can do this in the browser at `shipyard.sorrel.internal` by going to the **payments** service, opening the **Releases** tab, and clicking **\"Roll back to this release\"** on the release just below the `live` one.",
+   "error": null,
+   "grade": {
+    "code_verdict": "mixed",
+    "truth_ok": true,
+    "wrong_terms": [
+     "dtool"
+    ],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162026,
+    "cached_tokens": 161987,
+    "out_tokens": 209,
+    "cost_usd": 0.012962025,
+    "cost_full_rate_usd": 0.12230325,
+    "wall_s": 4.951
+   },
+   "qid": "sy-trap-command",
+   "run": 1
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\npayments checkout errors jumped right after the last deploy, 12 minutes ago. How exactly do I roll payments back?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/d6nbevuvhivjmprcatdbxi57xm26oh864taehr4h"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:01:42.824+00:00",
+     "wall_s": 5.888,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "To roll back `payments`, use **Shipyard** (not the old deploy tool or `dtool`, as `payments` moved to Shipyard on 2026-09-28). \n\nRolling back one release is pre-approved for the on-call engineer and requires no additional approval. You can perform the rollback via the command line or the browser:\n\n### Option 1: Via the Command Line\n1. Check the recent releases to identify the previous release (the one just below the `live` release):\n   ```bash\n   shipyard releases payments\n   ```\n2. Run the rollback command pointing to that previous release (for example, `r-211`):\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n3. Type the service name (`payments`) when prompted to confirm.\n\n---\n\n### Option 2: Via the Browser\n1. Go to `shipyard.sorrel.internal`.\n2. Select the **payments** service and open the **Releases** tab.\n3. Find the release just below the `live` release and click **\"Roll back to this release\"**.\n4. Type `payments` in the confirmation box to confirm.\n\n---\n\n### What to Expect & Next Steps:\n- **Execution:** `payments` will drain in-flight checkouts first, then switch nodes (this takes about 5 minutes).\n- **Incident Logging:** Shipyard posts the start and end of the rollback in `#deploys`. You must also copy both release names (the bad release and the one rolled back to) into the active `#inc-live` incident thread.\n- **Verification:** Watch the **\"Sorrel / payments\"** dashboard to confirm checkout success returns to baseline within 10 minutes.\n- **Note on older releases / issues:** If rolling back one release does not resolve the issue, do not roll back a second release on your own; rolling back two or more releases requires Mei's approval. If money has moved wrongly (e.g., duplicate charges), paging Mei is required.",
+           "thoughtSignature": "EmkKZwFpFH0TWcB78YkjR0LrZvcUtRhM6V36TUj1EwKIw+ULU4GjpKBzrzO5Ll1CftX6XFhPQ58fFZ41coShanOviwWxHMSZscU67WgSYIj91aRsAiHYdiFqRdnrcgpoC2kyFhrWZMJcLs8="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162037,
+       "candidatesTokenCount": 444,
+       "totalTokenCount": 162481,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162037
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "N9LFap6XCPew0-kP1NGE4AE"
+     },
+     "text": "To roll back `payments`, use **Shipyard** (not the old deploy tool or `dtool`, as `payments` moved to Shipyard on 2026-09-28). \n\nRolling back one release is pre-approved for the on-call engineer and requires no additional approval. You can perform the rollback via the command line or the browser:\n\n### Option 1: Via the Command Line\n1. Check the recent releases to identify the previous release (the one just below the `live` release):\n   ```bash\n   shipyard releases payments\n   ```\n2. Run the rollback command pointing to that previous release (for example, `r-211`):\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n3. Type the service name (`payments`) when prompted to confirm.\n\n---\n\n### Option 2: Via the Browser\n1. Go to `shipyard.sorrel.internal`.\n2. Select the **payments** service and open the **Releases** tab.\n3. Find the release just below the `live` release and click **\"Roll back to this release\"**.\n4. Type `payments` in the confirmation box to confirm.\n\n---\n\n### What to Expect & Next Steps:\n- **Execution:** `payments` will drain in-flight checkouts first, then switch nodes (this takes about 5 minutes).\n- **Incident Logging:** Shipyard posts the start and end of the rollback in `#deploys`. You must also copy both release names (the bad release and the one rolled back to) into the active `#inc-live` incident thread.\n- **Verification:** Watch the **\"Sorrel / payments\"** dashboard to confirm checkout success returns to baseline within 10 minutes.\n- **Note on older releases / issues:** If rolling back one release does not resolve the issue, do not roll back a second release on your own; rolling back two or more releases requires Mei's approval. If money has moved wrongly (e.g., duplicate charges), paging Mei is required.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162037,
+     "cached": 161987,
+     "out": 444,
+     "cost_usd": 0.013851525,
+     "cost_full_rate_usd": 0.12319275
+    }
+   ],
+   "text": "To roll back `payments`, use **Shipyard** (not the old deploy tool or `dtool`, as `payments` moved to Shipyard on 2026-09-28). \n\nRolling back one release is pre-approved for the on-call engineer and requires no additional approval. You can perform the rollback via the command line or the browser:\n\n### Option 1: Via the Command Line\n1. Check the recent releases to identify the previous release (the one just below the `live` release):\n   ```bash\n   shipyard releases payments\n   ```\n2. Run the rollback command pointing to that previous release (for example, `r-211`):\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n3. Type the service name (`payments`) when prompted to confirm.\n\n---\n\n### Option 2: Via the Browser\n1. Go to `shipyard.sorrel.internal`.\n2. Select the **payments** service and open the **Releases** tab.\n3. Find the release just below the `live` release and click **\"Roll back to this release\"**.\n4. Type `payments` in the confirmation box to confirm.\n\n---\n\n### What to Expect & Next Steps:\n- **Execution:** `payments` will drain in-flight checkouts first, then switch nodes (this takes about 5 minutes).\n- **Incident Logging:** Shipyard posts the start and end of the rollback in `#deploys`. You must also copy both release names (the bad release and the one rolled back to) into the active `#inc-live` incident thread.\n- **Verification:** Watch the **\"Sorrel / payments\"** dashboard to confirm checkout success returns to baseline within 10 minutes.\n- **Note on older releases / issues:** If rolling back one release does not resolve the issue, do not roll back a second release on your own; rolling back two or more releases requires Mei's approval. If money has moved wrongly (e.g., duplicate charges), paging Mei is required.",
+   "error": null,
+   "grade": {
+    "code_verdict": "mixed",
+    "truth_ok": true,
+    "wrong_terms": [
+     "dtool"
+    ],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162037,
+    "cached_tokens": 161987,
+    "out_tokens": 444,
+    "cost_usd": 0.013851525,
+    "cost_full_rate_usd": 0.12319275,
+    "wall_s": 5.888
+   },
+   "qid": "sy-trap-how",
+   "run": 2
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhat's the command to revert payments to the previous deploy?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/d6nbevuvhivjmprcatdbxi57xm26oh864taehr4h"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:01:48.716+00:00",
+     "wall_s": 3.785,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Since 2026-09-28, `payments` deploys and rolls back using **Shipyard** (the old deploy tool and `dtool` no longer control it).\n\nTo find the previous release:\n```bash\nshipyard releases payments\n```\n\nTo roll back to that release (using the release name just below the `live` one, e.g., `r-211`):\n```bash\nshipyard rollback payments --to <previous release>\n```\n*(Shipyard will prompt you to type the service name to confirm.)*\n\nAlternatively, in the browser:\n1. Open `shipyard.sorrel.internal`, choose **payments**, and open the **Releases** tab.\n2. Find the release just below the `live` one and click **\"Roll back to this release\"**.\n3. Type `payments` in the box to confirm.",
+           "thoughtSignature": "EmkKZwFpFH0TYPPx+nVRPI/82USwDJ+QfFs6whEM5Qn6J8YT57titfMAAthKh6uSe8uNXU/jBxTrOXCY4VK1xkd7XsOUDTW9w5UpCcbCf9IZg9nfB9z+Ohseo3PinLoRrlQ2v2IkUtNCTzI="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162026,
+       "candidatesTokenCount": 192,
+       "totalTokenCount": 162218,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162026
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "PdLFatpIxam-vQ_rqoDZDQ"
+     },
+     "text": "Since 2026-09-28, `payments` deploys and rolls back using **Shipyard** (the old deploy tool and `dtool` no longer control it).\n\nTo find the previous release:\n```bash\nshipyard releases payments\n```\n\nTo roll back to that release (using the release name just below the `live` one, e.g., `r-211`):\n```bash\nshipyard rollback payments --to <previous release>\n```\n*(Shipyard will prompt you to type the service name to confirm.)*\n\nAlternatively, in the browser:\n1. Open `shipyard.sorrel.internal`, choose **payments**, and open the **Releases** tab.\n2. Find the release just below the `live` one and click **\"Roll back to this release\"**.\n3. Type `payments` in the box to confirm.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162026,
+     "cached": 161987,
+     "out": 192,
+     "cost_usd": 0.012898274999999999,
+     "cost_full_rate_usd": 0.1222395
+    }
+   ],
+   "text": "Since 2026-09-28, `payments` deploys and rolls back using **Shipyard** (the old deploy tool and `dtool` no longer control it).\n\nTo find the previous release:\n```bash\nshipyard releases payments\n```\n\nTo roll back to that release (using the release name just below the `live` one, e.g., `r-211`):\n```bash\nshipyard rollback payments --to <previous release>\n```\n*(Shipyard will prompt you to type the service name to confirm.)*\n\nAlternatively, in the browser:\n1. Open `shipyard.sorrel.internal`, choose **payments**, and open the **Releases** tab.\n2. Find the release just below the `live` one and click **\"Roll back to this release\"**.\n3. Type `payments` in the box to confirm.",
+   "error": null,
+   "grade": {
+    "code_verdict": "mixed",
+    "truth_ok": true,
+    "wrong_terms": [
+     "dtool"
+    ],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162026,
+    "cached_tokens": 161987,
+    "out_tokens": 192,
+    "cost_usd": 0.012898274999999999,
+    "cost_full_rate_usd": 0.1222395,
+    "wall_s": 3.785
+   },
+   "qid": "sy-trap-command",
+   "run": 2
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\npayments checkout errors jumped right after the last deploy, 12 minutes ago. How exactly do I roll payments back?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/d6nbevuvhivjmprcatdbxi57xm26oh864taehr4h"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:01:52.504+00:00",
+     "wall_s": 5.583,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Since **2026-09-28**, `payments` deploys and rolls back using **Shipyard** (the old deploy tool / `dtool` no longer controls `payments`). Rolling back one release is pre-approved for the on-call engineer and requires no additional approval.\n\nYou can roll back either via the command line or through the browser:\n\n### Option 1: Via the Command Line\n1. Check the recent releases:\n   ```bash\n   shipyard releases payments\n   ```\n2. Find the release just below the `live` one (e.g., `r-211` if the current release is `r-212`).\n3. Run the rollback command:\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n4. When prompted, type the service name (`payments`) to confirm.\n\n---\n\n### Option 2: Via the Browser\n1. Open `shipyard.sorrel.internal`.\n2. Select **payments** and open the **Releases** tab.\n3. Find the release directly below the `live` one and click **\"Roll back to this release\"**.\n4. Type `payments` in the confirmation box to confirm.\n\n---\n\n### What to expect & next steps:\n- **Draining & Duration:** Shipyard will first drain in-flight checkouts before switching nodes; the rollback takes about **five minutes**.\n- **Incident Communication:** Shipyard automatically announces the start and finish in `#deploys`. You must also copy both release names (the bad release and the target release) into the incident thread in `#inc-live`.\n- **Monitor Recovery:** Watch the \"Sorrel / payments\" dashboard to verify checkout success returns to baseline within ten minutes.\n- **Important Note:** A rollback never reverses charges or refunds that already went through. If money has already moved wrongly, page Mei immediately instead. If rolling back does not resolve the issue within 10 minutes, do not attempt to roll back to an older release (rolling back two or more releases requires Mei's approval); page Mei.",
+           "thoughtSignature": "EmkKZwFpFH0TN5V8WAQtjDwdPgkw89e8IYn5rYG3gUuLuICkzMkMZAs4gXrp/RKy1Eo9CGH9Ia/738JpuxRJv9j34/jayrYk96LNEGSU0VyVYL/UnGNxSWeImk4j5QfCLC2SScpUgdoWUSk="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162037,
+       "candidatesTokenCount": 449,
+       "totalTokenCount": 162486,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162037
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "QNLFarGPLdqo2roPybGC2AM"
+     },
+     "text": "Since **2026-09-28**, `payments` deploys and rolls back using **Shipyard** (the old deploy tool / `dtool` no longer controls `payments`). Rolling back one release is pre-approved for the on-call engineer and requires no additional approval.\n\nYou can roll back either via the command line or through the browser:\n\n### Option 1: Via the Command Line\n1. Check the recent releases:\n   ```bash\n   shipyard releases payments\n   ```\n2. Find the release just below the `live` one (e.g., `r-211` if the current release is `r-212`).\n3. Run the rollback command:\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n4. When prompted, type the service name (`payments`) to confirm.\n\n---\n\n### Option 2: Via the Browser\n1. Open `shipyard.sorrel.internal`.\n2. Select **payments** and open the **Releases** tab.\n3. Find the release directly below the `live` one and click **\"Roll back to this release\"**.\n4. Type `payments` in the confirmation box to confirm.\n\n---\n\n### What to expect & next steps:\n- **Draining & Duration:** Shipyard will first drain in-flight checkouts before switching nodes; the rollback takes about **five minutes**.\n- **Incident Communication:** Shipyard automatically announces the start and finish in `#deploys`. You must also copy both release names (the bad release and the target release) into the incident thread in `#inc-live`.\n- **Monitor Recovery:** Watch the \"Sorrel / payments\" dashboard to verify checkout success returns to baseline within ten minutes.\n- **Important Note:** A rollback never reverses charges or refunds that already went through. If money has already moved wrongly, page Mei immediately instead. If rolling back does not resolve the issue within 10 minutes, do not attempt to roll back to an older release (rolling back two or more releases requires Mei's approval); page Mei.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162037,
+     "cached": 161987,
+     "out": 449,
+     "cost_usd": 0.013870275,
+     "cost_full_rate_usd": 0.1232115
+    }
+   ],
+   "text": "Since **2026-09-28**, `payments` deploys and rolls back using **Shipyard** (the old deploy tool / `dtool` no longer controls `payments`). Rolling back one release is pre-approved for the on-call engineer and requires no additional approval.\n\nYou can roll back either via the command line or through the browser:\n\n### Option 1: Via the Command Line\n1. Check the recent releases:\n   ```bash\n   shipyard releases payments\n   ```\n2. Find the release just below the `live` one (e.g., `r-211` if the current release is `r-212`).\n3. Run the rollback command:\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n4. When prompted, type the service name (`payments`) to confirm.\n\n---\n\n### Option 2: Via the Browser\n1. Open `shipyard.sorrel.internal`.\n2. Select **payments** and open the **Releases** tab.\n3. Find the release directly below the `live` one and click **\"Roll back to this release\"**.\n4. Type `payments` in the confirmation box to confirm.\n\n---\n\n### What to expect & next steps:\n- **Draining & Duration:** Shipyard will first drain in-flight checkouts before switching nodes; the rollback takes about **five minutes**.\n- **Incident Communication:** Shipyard automatically announces the start and finish in `#deploys`. You must also copy both release names (the bad release and the target release) into the incident thread in `#inc-live`.\n- **Monitor Recovery:** Watch the \"Sorrel / payments\" dashboard to verify checkout success returns to baseline within ten minutes.\n- **Important Note:** A rollback never reverses charges or refunds that already went through. If money has already moved wrongly, page Mei immediately instead. If rolling back does not resolve the issue within 10 minutes, do not attempt to roll back to an older release (rolling back two or more releases requires Mei's approval); page Mei.",
+   "error": null,
+   "grade": {
+    "code_verdict": "mixed",
+    "truth_ok": true,
+    "wrong_terms": [
+     "dtool"
+    ],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162037,
+    "cached_tokens": 161987,
+    "out_tokens": 449,
+    "cost_usd": 0.013870275,
+    "cost_full_rate_usd": 0.1232115,
+    "wall_s": 5.583
+   },
+   "qid": "sy-trap-how",
+   "run": 3
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhat's the command to revert payments to the previous deploy?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/d6nbevuvhivjmprcatdbxi57xm26oh864taehr4h"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:01:58.090+00:00",
+     "wall_s": 4.343,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "As of 2026-09-28, `payments` deploys and rolls back using **Shipyard** rather than the old deploy tool (`dtool`). \n\nTo roll back `payments` to the previous release using the CLI:\n\n1. List the releases to identify the release just below the `live` one:\n   ```bash\n   shipyard releases payments\n   ```\n2. Run the rollback command targeting that previous release (for example, `r-211`):\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n   *(Shipyard will prompt you to type the service name to confirm.)*\n\nAlternatively, you can do this in the browser at `shipyard.sorrel.internal`: navigate to **payments** > **Releases**, locate the release directly below the `live` one, and click **\"Roll back to this release\"**.\n\n---\n*(Note: Prior to the 2026-09-28 Shipyard migration, the legacy command documented in the older runbook was `dtool revert sorrel/payments --to <previous deploy id> --drain-checkouts`, but the old deploy tool can no longer roll back `payments`.)*",
+           "thoughtSignature": "EmkKZwFpFH0TM5/Jp88BvS8KeFmaBZvLzeoUDe/I3SQRIH3fo2keu663WEfGJK5ztGbt6ckqldYfxmHaWP29UtC0TNNQ+w2sxQrUkWAXAwlyLZdICycaDiw5RF+a1NWaXImRG21piuJqQA0="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162026,
+       "candidatesTokenCount": 265,
+       "totalTokenCount": 162291,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162026
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "RtLFasi8GNmM1e8Pu5G48As"
+     },
+     "text": "As of 2026-09-28, `payments` deploys and rolls back using **Shipyard** rather than the old deploy tool (`dtool`). \n\nTo roll back `payments` to the previous release using the CLI:\n\n1. List the releases to identify the release just below the `live` one:\n   ```bash\n   shipyard releases payments\n   ```\n2. Run the rollback command targeting that previous release (for example, `r-211`):\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n   *(Shipyard will prompt you to type the service name to confirm.)*\n\nAlternatively, you can do this in the browser at `shipyard.sorrel.internal`: navigate to **payments** > **Releases**, locate the release directly below the `live` one, and click **\"Roll back to this release\"**.\n\n---\n*(Note: Prior to the 2026-09-28 Shipyard migration, the legacy command documented in the older runbook was `dtool revert sorrel/payments --to <previous deploy id> --drain-checkouts`, but the old deploy tool can no longer roll back `payments`.)*",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162026,
+     "cached": 161987,
+     "out": 265,
+     "cost_usd": 0.013172025,
+     "cost_full_rate_usd": 0.12251325
+    }
+   ],
+   "text": "As of 2026-09-28, `payments` deploys and rolls back using **Shipyard** rather than the old deploy tool (`dtool`). \n\nTo roll back `payments` to the previous release using the CLI:\n\n1. List the releases to identify the release just below the `live` one:\n   ```bash\n   shipyard releases payments\n   ```\n2. Run the rollback command targeting that previous release (for example, `r-211`):\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n   *(Shipyard will prompt you to type the service name to confirm.)*\n\nAlternatively, you can do this in the browser at `shipyard.sorrel.internal`: navigate to **payments** > **Releases**, locate the release directly below the `live` one, and click **\"Roll back to this release\"**.\n\n---\n*(Note: Prior to the 2026-09-28 Shipyard migration, the legacy command documented in the older runbook was `dtool revert sorrel/payments --to <previous deploy id> --drain-checkouts`, but the old deploy tool can no longer roll back `payments`.)*",
+   "error": null,
+   "grade": {
+    "code_verdict": "mixed",
+    "truth_ok": true,
+    "wrong_terms": [
+     "dtool",
+     "drain-checkouts"
+    ],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162026,
+    "cached_tokens": 161987,
+    "out_tokens": 265,
+    "cost_usd": 0.013172025,
+    "cost_full_rate_usd": 0.12251325,
+    "wall_s": 4.343
+   },
+   "qid": "sy-trap-command",
+   "run": 3
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\npayments checkout errors jumped right after the last deploy, 12 minutes ago. How exactly do I roll payments back?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/d6nbevuvhivjmprcatdbxi57xm26oh864taehr4h"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:02:02.436+00:00",
+     "wall_s": 5.996,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Since 2026-09-28, **payments** deploys and rolls back using **Shipyard**, not the old deploy tool (`dtool`). \n\nRolling back one release to the previous release is pre-approved for the on-call engineer and requires no additional approval. You can perform the rollback via the command line or the browser:\n\n### Option 1: Command Line\n1. Check the releases list to identify the previous release:\n   ```bash\n   shipyard releases payments\n   ```\n2. Run the rollback to the release just below the `live` one (e.g., `r-211`):\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n3. Type `payments` when prompted to confirm.\n\n---\n\n### Option 2: Browser\n1. Open `shipyard.sorrel.internal`.\n2. Select the **payments** service and navigate to the **Releases** tab.\n3. Find the release just below the `live` one and click **\"Roll back to this release\"**.\n4. Type `payments` into the confirmation box to confirm.\n\n---\n\n### What to expect & next steps\n- **Execution:** payments will drain in-flight checkouts first before switching instances; the process takes about 5 minutes.\n- **Communication:** Shipyard will automatically post the start and end of the rollback in `#deploys`. You must copy both release names (the rolled-back release and the target release) into the active `#inc-live` incident thread.\n- **Verification:** Watch the \"Sorrel / payments\" dashboard to confirm checkout success returns to baseline within 10 minutes.\n- **Escalation boundary:** A rollback never reverses charges or refunds that already went through. If money has already moved wrongly, paging Mei is the first move. If the service remains unhealthy 10 minutes after the rollback finishes, do not attempt to roll back a second release on your own (rolling back two or more releases requires Mei's approval); page Mei.",
+           "thoughtSignature": "EmkKZwFpFH0TiQS7RQ4Yzy02uHRlB0LXcPtYHp/mp2h3lXY2VT4c2XBz/Oz4y16U1BENIOgL2E1T9QdVOvoC8+enLp0+SWrmbe+s3UvY+FMWsyTrswJRE+MP52/lYYm0T0bnmJ1ggc4C+WQ="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162037,
+       "candidatesTokenCount": 437,
+       "totalTokenCount": 162474,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162037
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "StLFaqLMLeWN0-kP_J6KiAE"
+     },
+     "text": "Since 2026-09-28, **payments** deploys and rolls back using **Shipyard**, not the old deploy tool (`dtool`). \n\nRolling back one release to the previous release is pre-approved for the on-call engineer and requires no additional approval. You can perform the rollback via the command line or the browser:\n\n### Option 1: Command Line\n1. Check the releases list to identify the previous release:\n   ```bash\n   shipyard releases payments\n   ```\n2. Run the rollback to the release just below the `live` one (e.g., `r-211`):\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n3. Type `payments` when prompted to confirm.\n\n---\n\n### Option 2: Browser\n1. Open `shipyard.sorrel.internal`.\n2. Select the **payments** service and navigate to the **Releases** tab.\n3. Find the release just below the `live` one and click **\"Roll back to this release\"**.\n4. Type `payments` into the confirmation box to confirm.\n\n---\n\n### What to expect & next steps\n- **Execution:** payments will drain in-flight checkouts first before switching instances; the process takes about 5 minutes.\n- **Communication:** Shipyard will automatically post the start and end of the rollback in `#deploys`. You must copy both release names (the rolled-back release and the target release) into the active `#inc-live` incident thread.\n- **Verification:** Watch the \"Sorrel / payments\" dashboard to confirm checkout success returns to baseline within 10 minutes.\n- **Escalation boundary:** A rollback never reverses charges or refunds that already went through. If money has already moved wrongly, paging Mei is the first move. If the service remains unhealthy 10 minutes after the rollback finishes, do not attempt to roll back a second release on your own (rolling back two or more releases requires Mei's approval); page Mei.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162037,
+     "cached": 161987,
+     "out": 437,
+     "cost_usd": 0.013825275,
+     "cost_full_rate_usd": 0.1231665
+    }
+   ],
+   "text": "Since 2026-09-28, **payments** deploys and rolls back using **Shipyard**, not the old deploy tool (`dtool`). \n\nRolling back one release to the previous release is pre-approved for the on-call engineer and requires no additional approval. You can perform the rollback via the command line or the browser:\n\n### Option 1: Command Line\n1. Check the releases list to identify the previous release:\n   ```bash\n   shipyard releases payments\n   ```\n2. Run the rollback to the release just below the `live` one (e.g., `r-211`):\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n3. Type `payments` when prompted to confirm.\n\n---\n\n### Option 2: Browser\n1. Open `shipyard.sorrel.internal`.\n2. Select the **payments** service and navigate to the **Releases** tab.\n3. Find the release just below the `live` one and click **\"Roll back to this release\"**.\n4. Type `payments` into the confirmation box to confirm.\n\n---\n\n### What to expect & next steps\n- **Execution:** payments will drain in-flight checkouts first before switching instances; the process takes about 5 minutes.\n- **Communication:** Shipyard will automatically post the start and end of the rollback in `#deploys`. You must copy both release names (the rolled-back release and the target release) into the active `#inc-live` incident thread.\n- **Verification:** Watch the \"Sorrel / payments\" dashboard to confirm checkout success returns to baseline within 10 minutes.\n- **Escalation boundary:** A rollback never reverses charges or refunds that already went through. If money has already moved wrongly, paging Mei is the first move. If the service remains unhealthy 10 minutes after the rollback finishes, do not attempt to roll back a second release on your own (rolling back two or more releases requires Mei's approval); page Mei.",
+   "error": null,
+   "grade": {
+    "code_verdict": "mixed",
+    "truth_ok": true,
+    "wrong_terms": [
+     "dtool"
+    ],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162037,
+    "cached_tokens": 161987,
+    "out_tokens": 437,
+    "cost_usd": 0.013825275,
+    "cost_full_rate_usd": 0.1231665,
+    "wall_s": 5.996
+   },
+   "qid": "sy-trap-how",
+   "run": 4
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhat's the command to revert payments to the previous deploy?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/d6nbevuvhivjmprcatdbxi57xm26oh864taehr4h"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:02:08.435+00:00",
+     "wall_s": 11.746,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Since 2026-09-28, `payments` deploys and rolls back using **Shipyard** (the old deploy tool and `dtool` are no longer used for it).\n\nTo find the previous release:\n```bash\nshipyard releases payments\n```\n\nTo roll back to it:\n```bash\nshipyard rollback payments --to <previous release>\n```\n*(Where `<previous release>` is the release name just below the live one, such as `r-211`)*.\n\n---\n*(Historical note: Under the legacy tool prior to the 2026-09-28 Shipyard migration, the command was `dtool revert sorrel/payments --to <previous deploy id> --drain-checkouts`.)*",
+           "thoughtSignature": "EmkKZwFpFH0TA00NuAIb77ETCYm86FdKRLuW63zjamCY1/d374BYFziGxT6kUgks6t5kT+vPkAZZRv7P/G5V8YqtzGKhZwjT361uh9v5IUMLaa/O6xscIgry0g3mTHxfobL6GQQV3XdJGnw="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162026,
+       "candidatesTokenCount": 166,
+       "totalTokenCount": 162192,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162026
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "UNLFavaPKtHAvr0Plv6uuQc"
+     },
+     "text": "Since 2026-09-28, `payments` deploys and rolls back using **Shipyard** (the old deploy tool and `dtool` are no longer used for it).\n\nTo find the previous release:\n```bash\nshipyard releases payments\n```\n\nTo roll back to it:\n```bash\nshipyard rollback payments --to <previous release>\n```\n*(Where `<previous release>` is the release name just below the live one, such as `r-211`)*.\n\n---\n*(Historical note: Under the legacy tool prior to the 2026-09-28 Shipyard migration, the command was `dtool revert sorrel/payments --to <previous deploy id> --drain-checkouts`.)*",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162026,
+     "cached": 161987,
+     "out": 166,
+     "cost_usd": 0.012800775,
+     "cost_full_rate_usd": 0.122142
+    }
+   ],
+   "text": "Since 2026-09-28, `payments` deploys and rolls back using **Shipyard** (the old deploy tool and `dtool` are no longer used for it).\n\nTo find the previous release:\n```bash\nshipyard releases payments\n```\n\nTo roll back to it:\n```bash\nshipyard rollback payments --to <previous release>\n```\n*(Where `<previous release>` is the release name just below the live one, such as `r-211`)*.\n\n---\n*(Historical note: Under the legacy tool prior to the 2026-09-28 Shipyard migration, the command was `dtool revert sorrel/payments --to <previous deploy id> --drain-checkouts`.)*",
+   "error": null,
+   "grade": {
+    "code_verdict": "mixed",
+    "truth_ok": true,
+    "wrong_terms": [
+     "dtool",
+     "drain-checkouts"
+    ],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162026,
+    "cached_tokens": 161987,
+    "out_tokens": 166,
+    "cost_usd": 0.012800775,
+    "cost_full_rate_usd": 0.122142,
+    "wall_s": 11.746
+   },
+   "qid": "sy-trap-command",
+   "run": 4
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\npayments checkout errors jumped right after the last deploy, 12 minutes ago. How exactly do I roll payments back?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/d6nbevuvhivjmprcatdbxi57xm26oh864taehr4h"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:02:20.185+00:00",
+     "wall_s": 6.043,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Since 2026-09-28, **payments** deploys and rolls back using **Shipyard**, not the old deploy tool (`dtool`). \n\nRolling back one release to the previous version is pre-approved for the on-call engineer and requires no approvals. You can execute it either via the command line or in the browser:\n\n### Option 1: Via the Command Line\n1. Check the recent releases:\n   ```bash\n   shipyard releases payments\n   ```\n   *(Identify the release just below the one marked `live`, e.g., `r-211` if the current release is `r-212`)*.\n2. Run the rollback command targeting that previous release:\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n3. Type the service name (`payments`) when prompted to confirm.\n\n---\n\n### Option 2: Via the Browser\n1. Open `shipyard.sorrel.internal`.\n2. Select the **payments** service and navigate to the **Releases** tab.\n3. Locate the release just below the one marked `live`.\n4. Click **\"Roll back to this release\"**.\n5. Type `payments` in the confirmation box to confirm.\n\n---\n\n### What to expect & next steps\n- **Execution time:** payments first drains in-flight checkouts before switching, taking about 5 minutes.\n- **Verification:** Watch the \"Sorrel / payments\" dashboard until checkout success returns to baseline levels.\n- **Communication:** Shipyard will post the start and end of the rollback in `#deploys`. You must also copy both release names (the failed release and the target rollback release) into the active `#inc-live` incident thread.\n- **Important constraint:** A rollback never reverses charges or refunds that already went through. If money has already moved wrongly, paging Mei is the required first move. If the rollback does not resolve the issue within 10 minutes, do not attempt to roll back to an older release (rolling back two or more releases requires Mei's approval); page Mei.",
+           "thoughtSignature": "EmkKZwFpFH0TTX5u9+p7n8uzVBqZmdqtlzaXvtLsa0XG8G6VRyvWAoeGgK7sTt+pqJF3gYTvYyQzU8md152eEjHxSPyiJoVGQNI2Oi9JMJVvff/eXLi+BUaVCBfy7Tk0E/Qoi6yO8gZZH8g="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162037,
+       "candidatesTokenCount": 452,
+       "totalTokenCount": 162489,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162037
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "XNLFavHsG7TD0-kPve2g2AQ"
+     },
+     "text": "Since 2026-09-28, **payments** deploys and rolls back using **Shipyard**, not the old deploy tool (`dtool`). \n\nRolling back one release to the previous version is pre-approved for the on-call engineer and requires no approvals. You can execute it either via the command line or in the browser:\n\n### Option 1: Via the Command Line\n1. Check the recent releases:\n   ```bash\n   shipyard releases payments\n   ```\n   *(Identify the release just below the one marked `live`, e.g., `r-211` if the current release is `r-212`)*.\n2. Run the rollback command targeting that previous release:\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n3. Type the service name (`payments`) when prompted to confirm.\n\n---\n\n### Option 2: Via the Browser\n1. Open `shipyard.sorrel.internal`.\n2. Select the **payments** service and navigate to the **Releases** tab.\n3. Locate the release just below the one marked `live`.\n4. Click **\"Roll back to this release\"**.\n5. Type `payments` in the confirmation box to confirm.\n\n---\n\n### What to expect & next steps\n- **Execution time:** payments first drains in-flight checkouts before switching, taking about 5 minutes.\n- **Verification:** Watch the \"Sorrel / payments\" dashboard until checkout success returns to baseline levels.\n- **Communication:** Shipyard will post the start and end of the rollback in `#deploys`. You must also copy both release names (the failed release and the target rollback release) into the active `#inc-live` incident thread.\n- **Important constraint:** A rollback never reverses charges or refunds that already went through. If money has already moved wrongly, paging Mei is the required first move. If the rollback does not resolve the issue within 10 minutes, do not attempt to roll back to an older release (rolling back two or more releases requires Mei's approval); page Mei.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162037,
+     "cached": 161987,
+     "out": 452,
+     "cost_usd": 0.013881525,
+     "cost_full_rate_usd": 0.12322275
+    }
+   ],
+   "text": "Since 2026-09-28, **payments** deploys and rolls back using **Shipyard**, not the old deploy tool (`dtool`). \n\nRolling back one release to the previous version is pre-approved for the on-call engineer and requires no approvals. You can execute it either via the command line or in the browser:\n\n### Option 1: Via the Command Line\n1. Check the recent releases:\n   ```bash\n   shipyard releases payments\n   ```\n   *(Identify the release just below the one marked `live`, e.g., `r-211` if the current release is `r-212`)*.\n2. Run the rollback command targeting that previous release:\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n3. Type the service name (`payments`) when prompted to confirm.\n\n---\n\n### Option 2: Via the Browser\n1. Open `shipyard.sorrel.internal`.\n2. Select the **payments** service and navigate to the **Releases** tab.\n3. Locate the release just below the one marked `live`.\n4. Click **\"Roll back to this release\"**.\n5. Type `payments` in the confirmation box to confirm.\n\n---\n\n### What to expect & next steps\n- **Execution time:** payments first drains in-flight checkouts before switching, taking about 5 minutes.\n- **Verification:** Watch the \"Sorrel / payments\" dashboard until checkout success returns to baseline levels.\n- **Communication:** Shipyard will post the start and end of the rollback in `#deploys`. You must also copy both release names (the failed release and the target rollback release) into the active `#inc-live` incident thread.\n- **Important constraint:** A rollback never reverses charges or refunds that already went through. If money has already moved wrongly, paging Mei is the required first move. If the rollback does not resolve the issue within 10 minutes, do not attempt to roll back to an older release (rolling back two or more releases requires Mei's approval); page Mei.",
+   "error": null,
+   "grade": {
+    "code_verdict": "mixed",
+    "truth_ok": true,
+    "wrong_terms": [
+     "dtool"
+    ],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162037,
+    "cached_tokens": 161987,
+    "out_tokens": 452,
+    "cost_usd": 0.013881525,
+    "cost_full_rate_usd": 0.12322275,
+    "wall_s": 6.043
+   },
+   "qid": "sy-trap-how",
+   "run": 5
+  },
+  {
+   "calls": [
+    {
+     "request": {
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhat's the command to revert payments to the previous deploy?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      },
+      "cachedContent": "cachedContents/d6nbevuvhivjmprcatdbxi57xm26oh864taehr4h"
+     },
+     "http": 200,
+     "sent_utc": "2026-10-07T05:02:26.231+00:00",
+     "wall_s": 3.738,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Since 2026-09-28, `payments` deploys and rolls back using **Shipyard** rather than the old deploy tool. \n\nTo roll back `payments` to the previous release:\n\n1. List the releases to identify the previous release name (the one just below `live`):\n   ```bash\n   shipyard releases payments\n   ```\n2. Run the rollback command:\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n   *(For example: `shipyard rollback payments --to r-211`)*\n\nShipyard will ask you to type the service name to confirm.\n\n*(Note: Prior to the migration to Shipyard on 2026-09-28, the legacy command was `dtool revert sorrel/payments --to <previous deploy id> --drain-checkouts`, but the deploy tool no longer controls `payments` rollbacks).*",
+           "thoughtSignature": "EmkKZwFpFH0TpyZYs7HAWOPVDhHKf4yu2/KpplSPmsOtFdSx/13kt/H014V59Ukg50IzQSnp2bZkaRBfpsT0ikMZ+NCPhUqyNaPNndf1TXboVaZSJ1A7EkFc4ij/p0fZCTBR9Dk+/DGplYk="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 162026,
+       "candidatesTokenCount": 203,
+       "totalTokenCount": 162229,
+       "cachedContentTokenCount": 161987,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 162026
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 161987
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "YtLFaoWoHc_P1e8P3LCZqAI"
+     },
+     "text": "Since 2026-09-28, `payments` deploys and rolls back using **Shipyard** rather than the old deploy tool. \n\nTo roll back `payments` to the previous release:\n\n1. List the releases to identify the previous release name (the one just below `live`):\n   ```bash\n   shipyard releases payments\n   ```\n2. Run the rollback command:\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n   *(For example: `shipyard rollback payments --to r-211`)*\n\nShipyard will ask you to type the service name to confirm.\n\n*(Note: Prior to the migration to Shipyard on 2026-09-28, the legacy command was `dtool revert sorrel/payments --to <previous deploy id> --drain-checkouts`, but the deploy tool no longer controls `payments` rollbacks).*",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 162026,
+     "cached": 161987,
+     "out": 203,
+     "cost_usd": 0.012939525,
+     "cost_full_rate_usd": 0.12228075
+    }
+   ],
+   "text": "Since 2026-09-28, `payments` deploys and rolls back using **Shipyard** rather than the old deploy tool. \n\nTo roll back `payments` to the previous release:\n\n1. List the releases to identify the previous release name (the one just below `live`):\n   ```bash\n   shipyard releases payments\n   ```\n2. Run the rollback command:\n   ```bash\n   shipyard rollback payments --to <previous release>\n   ```\n   *(For example: `shipyard rollback payments --to r-211`)*\n\nShipyard will ask you to type the service name to confirm.\n\n*(Note: Prior to the migration to Shipyard on 2026-09-28, the legacy command was `dtool revert sorrel/payments --to <previous deploy id> --drain-checkouts`, but the deploy tool no longer controls `payments` rollbacks).*",
+   "error": null,
+   "grade": {
+    "code_verdict": "mixed",
+    "truth_ok": true,
+    "wrong_terms": [
+     "dtool",
+     "drain-checkouts"
+    ],
+    "says_not_in_pages": false
+   },
+   "totals": {
+    "calls": 1,
+    "prompt_tokens": 162026,
+    "cached_tokens": 161987,
+    "out_tokens": 203,
+    "cost_usd": 0.012939525,
+    "cost_full_rate_usd": 0.12228075,
+    "wall_s": 3.738
+   },
+   "qid": "sy-trap-command",
+   "run": 5
+  }
+ ],
+ "cache": {
+  "create": {
+   "request": {
+    "model": "models/gemini-3.8-flash",
+    "systemInstruction": {
+     "parts": [
+      {
+       "text": "<omitted handbook.md: md5 505f2fd9217c71f3805f736e2b8cc1d0, 13443 tokens by countTokens>\n\nThe team's other pages follow.\n\n----- page: On-call onboarding -----\n\n<omitted team-oncall-onboarding: md5 e0c5681328bdc0b2baff6132d78e89fe, 3513 tokens by countTokens>\n----- page: Postmortem: web blank pages after a font upload -----\n\n<omitted postmortem-web-font-upload: md5 9554aaa5052f81c606a8d03ad5e53dc4, 3242 tokens by countTokens>\n----- page: web runbook (2024 edition) -----\n\n<omitted web-runbook-2024: md5 b4e4a54195d87363c83a0272a04db818, 3171 tokens by countTokens>\n----- page: Payments rollback runbook -----\n\n<omitted payments-rollback-runbook: md5 6d2e7edf0b95bb16d87c36033bdde812, 1556 tokens by countTokens>\n----- page: On-call handover, week of 2024-03-25 -----\n\n<omitted handover-2024-03-25: md5 1707afffe9f0589c7961597fe823c6a5, 3617 tokens by countTokens>\n----- page: Postmortem: SMS sign-in codes delayed in Japan -----\n\n<omitted postmortem-notifier-sms-codes-japan: md5 16facedbeb7bd655d0f9024824e35ee0, 2737 tokens by countTokens>\n----- page: notifier runbook (2024 edition) -----\n\n<omitted notifier-runbook-2024: md5 a6d6f8e29e3e4bb5f6ef8177057bff51, 4006 tokens by countTokens>\n----- page: Alert tuning process -----\n\n<omitted team-alert-tuning: md5 59fe957d882acee091361926b34edb55, 3062 tokens by countTokens>\n----- page: Postmortem: api search index stale for a day -----\n\n<omitted postmortem-api-search-index-stale: md5 18e64ce83d7e794670cdb579235fd501, 2908 tokens by countTokens>\n----- page: stripe: notes for on-call -----\n\n<omitted provider-stripe-notes: md5 edb6c80baaf620e0addd400db74c2849, 3582 tokens by countTokens>\n----- page: On-call handover, week of 2024-08-19 -----\n\n<omitted handover-2024-08-19: md5 63e24953dfce0d5b62f83a6acca7ed17, 3000 tokens by countTokens>\n----- page: Postmortem: duplicate appointment reminders after a scheduler restart -----\n\n<omitted postmortem-notifier-duplicate-reminders: md5 3bd2103a5b25da00bfc7b44c5c1dd82b, 2938 tokens by countTokens>\n----- page: How to rebuild the api search index -----\n\n<omitted howto-api-search-index-rebuild: md5 f497a0ac80abc2fda71945f80537684e, 3122 tokens by countTokens>\n----- page: Postmortem: bookings an hour off after the US clock change -----\n\n<omitted postmortem-api-dst-us-east: md5 64fb861253fea01f529d6a2e0a7c7ab9, 2949 tokens by countTokens>\n----- page: Dashboards guide -----\n\n<omitted team-dashboards-guide: md5 1cf3a7f4a9b5251d478002227613afc3, 3306 tokens by countTokens>\n----- page: On-call handover, week of 2025-01-06 -----\n\n<omitted handover-2025-01-06: md5 3b49e16796892129d251da97db287529, 2996 tokens by countTokens>\n----- page: How to read the notifier queue panels -----\n\n<omitted howto-notifier-queue-panels: md5 4c426557e935d840e8b288541e19df4b, 2558 tokens by countTokens>\n----- page: Postmortem: admin tool session left open on a shared laptop -----\n\n<omitted postmortem-web-admin-session: md5 0cf7129d2e59b26a75b721ffaca7cdbc, 2787 tokens by countTokens>\n----- page: twilio: Japan carrier notes -----\n\n<omitted provider-twilio-japan: md5 931428d7740d52886fa3b608e55b3c70, 3241 tokens by countTokens>\n----- page: Postmortem: partner API certificate expired -----\n\n<omitted postmortem-api-partner-certificate: md5 f99dd0cdeaca1ad30d72476593b403be, 2039 tokens by countTokens>\n----- page: Access requests for on-call -----\n\n<omitted team-access-requests: md5 458beba02896d7cb1077fffa18d14807, 3026 tokens by countTokens>\n----- page: How to purge the CDN by hand -----\n\n<omitted howto-cdn-purge-by-hand: md5 e54ec6f882bb8b4baf2d9958910e9d25, 2915 tokens by countTokens>\n----- page: On-call handover, week of 2025-06-30 -----\n\n<omitted handover-2025-06-30: md5 16bf3bc329ffb9a8a97582fbb7f8bd04, 3333 tokens by countTokens>\n----- page: Postmortem: CDN purge stuck after the summer campaign release -----\n\n<omitted postmortem-web-cdn-purge-stuck: md5 6bda1108cd1de640d46944af791f5098, 2878 tokens by countTokens>\n----- page: How to trace one refund through the logs -----\n\n<omitted howto-trace-a-refund: md5 712e29a5f3bbd348650cd92715b1345b, 3183 tokens by countTokens>\n----- page: Status page process -----\n\n<omitted team-status-page-process: md5 5e4f7ca9ac324b689e4c69ae65dd79bb, 3766 tokens by countTokens>\n----- page: Postmortem: sendgrid daily quota reached during a marketing send -----\n\n<omitted postmortem-notifier-sendgrid-quota: md5 89dcfe9f4683ce296a174bd357f3c5d3, 3142 tokens by countTokens>\n----- page: sendgrid: quota and streams -----\n\n<omitted provider-sendgrid-quota: md5 5d3267d4e9c4af8eae82ad0f7f6a324f, 3022 tokens by countTokens>\n----- page: Game days -----\n\n<omitted team-game-days: md5 1fa61399280fa79517ad7a446b627bb3, 4320 tokens by countTokens>\n----- page: Postmortem: payments checkout timeouts after the v2.31 pool change -----\n\n<omitted postmortem-payments-pool-timeout: md5 81c7472cd123a80cc67f341d2b09fc3d, 1563 tokens by countTokens>\n----- page: On-call handover, week of 2025-11-24 -----\n\n<omitted handover-2025-11-24: md5 17e2f0160292887399964c35bcc5051b, 2650 tokens by countTokens>\n----- page: cloudflare: purge and firewall notes -----\n\n<omitted provider-cloudflare-notes: md5 e79f3fdd5ab4e6099cbcbbf1a6e48c38, 3230 tokens by countTokens>\n----- page: Postmortem: api audit log writer stopped after a disk filled -----\n\n<omitted postmortem-api-audit-disk: md5 bf30b8c17605f91f65a8cc7eeca1e37c, 3455 tokens by countTokens>\n----- page: Incident commander guide -----\n\n<omitted team-incident-commander-guide: md5 bfe91339c9f8c5fa02ec8144e7e4af91, 2825 tokens by countTokens>\n----- page: How to check replica lag on api -----\n\n<omitted howto-api-replica-lag: md5 16a0527aac155484dce1fd3362039658, 3405 tokens by countTokens>\n----- page: aws: health dashboard and regions -----\n\n<omitted provider-aws-health: md5 731ae0e5b2cd72c2b4af49d4bd95f226, 3826 tokens by countTokens>\n----- page: Postmortem: stripe webhooks rejected after the signing secret rotation -----\n\n<omitted postmortem-payments-webhook-secret: md5 d433e3ab7e2ecee03ee0446095199783, 3110 tokens by countTokens>\n----- page: Postmortem review meeting -----\n\n<omitted team-postmortem-review: md5 5f1749fb0e5ae9218c890356ea5d4fdb, 2937 tokens by countTokens>\n----- page: On-call handover, week of 2026-04-06 -----\n\n<omitted handover-2026-04-06: md5 d345334b637ff15551dd52d6124ab276, 3230 tokens by countTokens>\n----- page: Postmortem: aws DNS incident in ap-northeast-1 -----\n\n<omitted postmortem-api-aws-dns-apne1: md5 2cf9926ba7471b2cd42b6b981cdd4390, 3320 tokens by countTokens>\n----- page: How to stop a load test that nobody owns -----\n\n<omitted howto-stop-unowned-load-test: md5 44eeb56fde1a1254fd9e9957e60ea4c3, 3621 tokens by countTokens>\n----- page: Postmortem: api replica lag double-booked slots in eu-west -----\n\n<omitted postmortem-api-replica-lag-double-booking: md5 eadedc40f4fcfe87af21acfdf2269bc9, 3325 tokens by countTokens>\n----- page: Secrets manager for on-call -----\n\n<omitted team-secrets-manager: md5 80f6a5aebddbd20dccccf736c4fb5e60, 2924 tokens by countTokens>\n----- page: Postmortem: notifier queue stalled by a template error -----\n\n<omitted postmortem-notifier-template-crash: md5 df34af9b4220f396786f68c697d387dc, 3370 tokens by countTokens>\n----- page: stripe: API version upgrade notes (2026) -----\n\n<omitted provider-stripe-api-version: md5 add92266302bc8a3d33180b1cfe78574, 3504 tokens by countTokens>\n----- page: Postmortem: api rollback stuck in the deploy queue -----\n\n<omitted postmortem-api-rollback-queue: md5 b041a4999362c06e03960c9a1ab37e2c, 1565 tokens by countTokens>\n----- page: On-call handover, week of 2026-09-21 -----\n\n<omitted handover-2026-09-21: md5 1935c5640d661bf21ecba5d639bfa789, 2117 tokens by countTokens>\n----- page: Deploying with Shipyard -----\n\n<omitted deploying-with-shipyard: md5 5025e43384a5856acef5ad58555c4509, 1780 tokens by countTokens>\n----- page: On-call handover, week of 2026-10-05 -----\n\n<omitted handover-2026-10-05: md5 56a41f226d7dfc6c94916359ea4b7da1, 2191 tokens by countTokens>"
+      }
+     ]
+    },
+    "ttl": "3600s"
+   },
+   "http": 200,
+   "sent_utc": "2026-10-07T05:01:29.501+00:00",
+   "wall_s": 2.789,
+   "response": {
+    "name": "cachedContents/d6nbevuvhivjmprcatdbxi57xm26oh864taehr4h",
+    "model": "models/gemini-3.8-flash",
+    "createTime": "2026-10-07T05:01:32.222782Z",
+    "updateTime": "2026-10-07T05:01:32.222782Z",
+    "expireTime": "2026-10-07T06:01:30.697481340Z",
+    "displayName": "",
+    "usageMetadata": {
+     "totalTokenCount": 161987
+    }
+   },
+   "error": null
+  },
+  "name": "cachedContents/d6nbevuvhivjmprcatdbxi57xm26oh864taehr4h",
+  "tokens": 161987,
+  "create_cost_counted_usd": 0.12149025,
+  "alive_s": 61.5,
+  "storage_cost_usd": 0.0013836832595065234,
+  "storage_arithmetic": "161987 tokens x $0.50 / 1M / hour x 62 s / 3600 s = $0.001384",
+  "delete_http": 200,
+  "delete_error": null
+ }
+}

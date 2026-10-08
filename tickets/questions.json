@@ -1,0 +1,297 @@
+{
+ "written": "2026-10-07, before any measured call",
+ "grading": "case-insensitive substring. truth = list of groups; every group must match (any one alternative in a group). wrong = any term present marks a wrong-term hit. NOT_IN_PAGES = graded by hand. page = the page id(s) in library/INDEX.json that hold the answer.",
+ "questions": [
+  {
+   "id": "hb-admin-bulk",
+   "kind": "handbook",
+   "question": "web-admin-bulk just paged me. What exactly makes that alert fire?",
+   "truth": [
+    [
+     "20"
+    ],
+    [
+     "10 min"
+    ]
+   ],
+   "wrong": [],
+   "page": "handbook-14"
+  },
+  {
+   "id": "hb-checkout-threshold",
+   "kind": "handbook",
+   "question": "What threshold fires the payments-checkout alert?",
+   "truth": [
+    [
+     "2 %",
+     "2%"
+    ],
+    [
+     "3 min"
+    ]
+   ],
+   "wrong": [],
+   "page": "handbook-14"
+  },
+  {
+   "id": "hb-march-peak",
+   "kind": "handbook",
+   "question": "Which kinds of businesses get the March booking peak?",
+   "truth": [
+    [
+     "photo stud"
+    ],
+    [
+     "tutor"
+    ]
+   ],
+   "wrong": [],
+   "page": "handbook-13"
+  },
+  {
+   "id": "hb-allergy-note",
+   "kind": "handbook",
+   "question": "Can I paste a customer's allergy note from a booking into the incident thread so the team sees it?",
+   "truth": [
+    [
+     "booking id"
+    ]
+   ],
+   "wrong": [],
+   "page": "handbook-12"
+  },
+  {
+   "id": "hb-keyboard",
+   "kind": "handbook",
+   "question": "During my on-call week, how soon after a page do I have to be at a keyboard?",
+   "truth": [
+    [
+     "15 min",
+     "fifteen"
+    ]
+   ],
+   "wrong": [],
+   "page": "handbook-10"
+  },
+  {
+   "id": "hb-away",
+   "kind": "handbook",
+   "question": "I need to be away for two hours during my on-call shift. What do I have to do?",
+   "truth": [
+    [
+     "secondary"
+    ]
+   ],
+   "wrong": [],
+   "page": "handbook-10"
+  },
+  {
+   "id": "pg-kddi-lag",
+   "kind": "other",
+   "question": "SMS delivery receipts for KDDI numbers look late tonight. How late can they normally be?",
+   "truth": [
+    [
+     "40 min"
+    ]
+   ],
+   "wrong": [],
+   "page": "provider-twilio-japan"
+  },
+  {
+   "id": "pg-replayed",
+   "kind": "other",
+   "question": "How many failed payments were replayed after the November 2025 payments checkout timeout incident?",
+   "truth": [
+    [
+     "1,184",
+     "1184"
+    ]
+   ],
+   "wrong": [],
+   "page": "postmortem-payments-pool-timeout"
+  },
+  {
+   "id": "pg-game-day",
+   "kind": "other",
+   "question": "Is there a game day this week, and who runs it?",
+   "truth": [
+    [
+     "Sara"
+    ],
+    [
+     "10-09",
+     "October 9",
+     "9 October",
+     "Friday"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2026-10-05"
+  },
+  {
+   "id": "pg-cert-outage",
+   "kind": "other",
+   "question": "When the partner API certificate expired in April 2025, how long were partner connections failing, and how many partners were affected?",
+   "truth": [
+    [
+     "47"
+    ],
+    [
+     "3 partners",
+     "three partners",
+     "3 integration partners",
+     "three integration partners",
+     "three of",
+     "3 of"
+    ]
+   ],
+   "wrong": [],
+   "page": "postmortem-api-partner-certificate"
+  },
+  {
+   "id": "pg-log-access",
+   "kind": "other",
+   "question": "How do I get log search access before my first shadow shift, and who approves it?",
+   "truth": [
+    [
+     "oncall-readers"
+    ],
+    [
+     "Kenji"
+    ]
+   ],
+   "wrong": [],
+   "page": "team-access-requests"
+  },
+  {
+   "id": "pg-dup-reminders",
+   "kind": "other",
+   "question": "How many reminders went out twice in the September 2024 notifier scheduler incident?",
+   "truth": [
+    [
+     "8,412",
+     "8412"
+    ]
+   ],
+   "wrong": [],
+   "page": "postmortem-notifier-duplicate-reminders"
+  },
+  {
+   "id": "sy-trap-how",
+   "kind": "trap",
+   "question": "payments checkout errors jumped right after the last deploy, 12 minutes ago. How exactly do I roll payments back?",
+   "truth": [
+    [
+     "shipyard"
+    ]
+   ],
+   "wrong": [
+    "dtool",
+    "drain-checkouts"
+   ],
+   "page": "deploying-with-shipyard"
+  },
+  {
+   "id": "sy-trap-command",
+   "kind": "trap",
+   "question": "What's the command to revert payments to the previous deploy?",
+   "truth": [
+    [
+     "shipyard"
+    ]
+   ],
+   "wrong": [
+    "dtool",
+    "drain-checkouts"
+   ],
+   "page": "deploying-with-shipyard"
+  },
+  {
+   "id": "sy-approve",
+   "kind": "shipyard",
+   "question": "Who has to approve rolling payments back two releases?",
+   "truth": [
+    [
+     "Mei"
+    ]
+   ],
+   "wrong": [
+    "talk to the payments team"
+   ],
+   "page": "deploying-with-shipyard"
+  },
+  {
+   "id": "sy-release-list",
+   "kind": "shipyard",
+   "question": "Where can I see the list of recent api releases?",
+   "truth": [
+    [
+     "shipyard"
+    ]
+   ],
+   "wrong": [
+    "dtool"
+   ],
+   "page": "deploying-with-shipyard"
+  },
+  {
+   "id": "none-stripe-phone",
+   "kind": "none",
+   "question": "What is Stripe's emergency support phone number?",
+   "truth": [
+    "NOT_IN_PAGES"
+   ],
+   "wrong": [],
+   "page": null
+  },
+  {
+   "id": "none-allowance",
+   "kind": "none",
+   "question": "How much is the on-call allowance for a week of primary shifts?",
+   "truth": [
+    "NOT_IN_PAGES"
+   ],
+   "wrong": [],
+   "page": null
+  },
+  {
+   "id": "two-api-incident",
+   "kind": "two",
+   "question": "How many booking requests failed in the 2026-08-20 api incident, and who has to approve rolling api back two releases today?",
+   "truth": [
+    [
+     "2,940",
+     "2940"
+    ],
+    [
+     "Ravi"
+    ]
+   ],
+   "wrong": [],
+   "page": [
+    "postmortem-api-rollback-queue",
+    "deploying-with-shipyard"
+   ]
+  },
+  {
+   "id": "two-purge",
+   "kind": "two",
+   "question": "The CDN purge got stuck in July 2025. How long did it take, and how long does a normal purge take according to the handbook?",
+   "truth": [
+    [
+     "34"
+    ],
+    [
+     "a minute",
+     "one minute",
+     "1 minute"
+    ]
+   ],
+   "wrong": [],
+   "page": [
+    "postmortem-web-cdn-purge-stuck",
+    "handbook-6"
+   ]
+  }
+ ]
+}

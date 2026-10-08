@@ -1,0 +1,587 @@
+[
+ {
+  "file": "library/postmortem-web-font-upload.md",
+  "title": "Postmortem: web blank pages after a font upload",
+  "kind": "postmortem",
+  "date": "2024-01-23",
+  "owner": "Aiko (web)",
+  "facts": [
+   "A web deploy uploaded an asset set that was missing two font files; pages that waited on the fonts rendered blank in Safari only.",
+   "Lasted 31 minutes, from 19:12 to 19:43 JST; 9 customer reports.",
+   "Fixed by re-uploading the complete asset set; the deploy build now fails if the asset manifest lists a file that is not uploaded.",
+   "Priya (web engineer) found the missing files by comparing the asset manifest with the bucket listing."
+  ]
+ },
+ {
+  "file": "library/postmortem-notifier-sms-codes-japan.md",
+  "title": "Postmortem: SMS sign-in codes delayed in Japan",
+  "kind": "postmortem",
+  "date": "2024-04-08",
+  "owner": "Tom (notifier)",
+  "facts": [
+   "twilio reported carrier delays for Japanese mobile numbers; sign-in codes arrived 5 to 20 minutes late.",
+   "Lasted 1 hour 12 minutes; 1,930 customers signed in with the email fallback during the window.",
+   "No change on our side helped; the on-call engineer confirmed the provider incident and wrote it down.",
+   "Action item: add a line to the sign-in page telling customers the email option exists (done by Aiko's team)."
+  ]
+ },
+ {
+  "file": "library/postmortem-api-search-index-stale.md",
+  "title": "Postmortem: api search index stale for a day",
+  "kind": "postmortem",
+  "date": "2024-06-14",
+  "owner": "Ravi (api)",
+  "facts": [
+   "The nightly search index rebuild failed silently; 'find a slot near me' returned results 26 hours old.",
+   "Customers saw slots that were already booked; 112 booking attempts failed at the last step with 'slot no longer available'.",
+   "Fix: the rebuild job now reports to the job monitor, and an index-freshness panel was added to the api board.",
+   "Daniel (api engineer) ran a manual rebuild during working hours; it took 70 minutes."
+  ]
+ },
+ {
+  "file": "library/postmortem-notifier-duplicate-reminders.md",
+  "title": "Postmortem: duplicate appointment reminders after a scheduler restart",
+  "kind": "postmortem",
+  "date": "2024-09-02",
+  "owner": "Tom (notifier)",
+  "facts": [
+   "The notifier scheduler restarted at 02:40 JST during the nightly reminder batch and queued the batch a second time.",
+   "8,412 reminders went out twice; 37 customer reports; no reminders were lost.",
+   "Fix: every reminder now carries a dedupe key of the form reminder:<booking id>:<date>, and notifier drops a message whose key it has seen in the last 24 hours.",
+   "Yuki (notifier engineer) wrote the fix; it shipped on 2024-09-05."
+  ]
+ },
+ {
+  "file": "library/postmortem-api-dst-us-east.md",
+  "title": "Postmortem: bookings an hour off after the US clock change",
+  "kind": "postmortem",
+  "date": "2024-11-05",
+  "owner": "Ravi (api)",
+  "facts": [
+   "After the US clock change on 2024-11-03, 1,407 bookings at us-east businesses were shown one hour off in the business dashboard.",
+   "Cause: an outdated time zone database in one api image; bookings were stored correctly in UTC, only the display was wrong.",
+   "Fixed by updating the time zone data; no booking had to be moved.",
+   "Action item: a calendar reminder for the platform team two weeks before every March and November clock change."
+  ]
+ },
+ {
+  "file": "library/postmortem-web-admin-session.md",
+  "title": "Postmortem: admin tool session left open on a shared laptop",
+  "kind": "postmortem",
+  "date": "2025-02-17",
+  "owner": "Aiko (web)",
+  "facts": [
+   "A support laptop in the office was left signed in to the admin tool overnight; a security review found the open session the next morning.",
+   "No accounts were changed or deleted during the open session; the audit log confirmed it.",
+   "Admin tool sessions now time out after 2 hours of inactivity instead of 12.",
+   "Hana (support lead) changed the support team's shared-laptop rules the same week."
+  ]
+ },
+ {
+  "file": "library/postmortem-api-partner-certificate.md",
+  "title": "Postmortem: partner API certificate expired",
+  "kind": "postmortem",
+  "date": "2025-04-14",
+  "owner": "Ravi (api)",
+  "facts": [
+   "The certificate on the partner API name expired at 09:00 JST; partners' systems refused to connect.",
+   "Renewal had been failing for a month because the DNS validation record pointed at an old DNS zone; the two-week expiry warnings went to a mailbox nobody read.",
+   "Partner API connections failed for 47 minutes; 3 partners were affected.",
+   "Ravi renewed the certificate by hand; expiry warnings now go to #platform and page the platform team."
+  ]
+ },
+ {
+  "file": "library/postmortem-web-cdn-purge-stuck.md",
+  "title": "Postmortem: CDN purge stuck after the summer campaign release",
+  "kind": "postmortem",
+  "date": "2025-07-22",
+  "owner": "Aiko (web)",
+  "facts": [
+   "After a web release for the summer campaign, the cloudflare purge did not complete for 34 minutes; new pages asked for assets the edge did not have and showed broken layouts.",
+   "cloudflare later confirmed a delay in their purge pipeline for our region.",
+   "The on-call engineer confirmed the purge status in the CDN dashboard and waited; rolling web back would not have helped because the old assets were already purged too.",
+   "Action item: the release checklist now waits for the purge to report complete before announcing a campaign."
+  ]
+ },
+ {
+  "file": "library/postmortem-notifier-sendgrid-quota.md",
+  "title": "Postmortem: sendgrid daily quota reached during a marketing send",
+  "kind": "postmortem",
+  "date": "2025-09-09",
+  "owner": "Tom (notifier)",
+  "facts": [
+   "A marketing email was sent through the same sendgrid stream as booking confirmations; the daily quota was reached at 16:40 JST.",
+   "Booking confirmations were delayed for about 3 hours until the quota reset; notifier kept them on the queue and sent them all.",
+   "Fix: marketing email moved to its own sendgrid stream with its own quota (done on 2025-09-30).",
+   "Raising the quota was considered and rejected as a purchasing decision; Tom decided."
+  ]
+ },
+ {
+  "file": "library/postmortem-api-audit-disk.md",
+  "title": "Postmortem: api audit log writer stopped after a disk filled",
+  "kind": "postmortem",
+  "date": "2025-12-15",
+  "owner": "Ravi (api)",
+  "facts": [
+   "The audit writer's local spool disk filled up and the writer stopped; no audit entries were written for 2 hours 5 minutes.",
+   "Bookings and accounts kept working the whole time; no customer noticed.",
+   "The missing entries were reconstructed from api request logs by Daniel over the next two days; 18,320 entries restored.",
+   "Fix: a disk alert for the audit writer and a spool that drops to object storage when the disk passes 70 %."
+  ]
+ },
+ {
+  "file": "library/postmortem-payments-webhook-secret.md",
+  "title": "Postmortem: stripe webhooks rejected after the signing secret rotation",
+  "kind": "postmortem",
+  "date": "2026-03-03",
+  "owner": "Mei (payments)",
+  "facts": [
+   "Mei rotated the stripe webhook signing secret as planned; the new secret reached the ap-northeast and eu-west nodes but not us-east.",
+   "us-east rejected stripe webhooks for 41 minutes; bookings there stayed 'payment pending' longer than usual.",
+   "No money moved wrongly: stripe retries webhooks, and every rejected webhook was delivered after the fix.",
+   "Fix: the secret is now read from the secrets manager at start-up on every node, with a check that all regions report the same secret version."
+  ]
+ },
+ {
+  "file": "library/postmortem-api-aws-dns-apne1.md",
+  "title": "Postmortem: aws DNS incident in ap-northeast-1",
+  "kind": "postmortem",
+  "date": "2026-04-21",
+  "owner": "Ravi (api)",
+  "facts": [
+   "aws reported a DNS resolution incident in ap-northeast-1; api requests from that region failed to resolve internal names for 23 minutes.",
+   "us-east and eu-west were unaffected.",
+   "Nothing on our side needed to change; the on-call engineer confirmed it on the aws health dashboard and kept the incident thread updated.",
+   "Moving traffic out of the region was discussed with the incident commander and decided against because aws reported recovery within 20 minutes."
+  ]
+ },
+ {
+  "file": "library/postmortem-api-replica-lag-double-booking.md",
+  "title": "Postmortem: api replica lag double-booked slots in eu-west",
+  "kind": "postmortem",
+  "date": "2026-06-09",
+  "owner": "Ravi (api)",
+  "facts": [
+   "Replica lag in eu-west reached 41 seconds during a heavy write burst; slot availability was read from the replica, so 63 slots were booked twice.",
+   "Ravi was paged because double bookings needed customer contact, which on-call cannot do.",
+   "Fix: availability checks at the final booking step now read from the primary (the feature flag booking_reads_primary, now on everywhere).",
+   "Hana's support team contacted all 63 affected customers within a day."
+  ]
+ },
+ {
+  "file": "library/postmortem-notifier-template-crash.md",
+  "title": "Postmortem: notifier queue stalled by a template error",
+  "kind": "postmortem",
+  "date": "2026-07-28",
+  "owner": "Tom (notifier)",
+  "facts": [
+   "A business name containing an unusual character crashed the confirmation template; each worker crashed on the same message and restarted.",
+   "Nothing was delivered for 48 minutes; 2,750 messages were waiting at the peak.",
+   "Yuki moved the bad message aside and the queue drained in 15 minutes.",
+   "Fix: a message that crashes a worker twice is now moved to a 'parked' queue automatically."
+  ]
+ },
+ {
+  "file": "library/web-runbook-2024.md",
+  "title": "web runbook (2024 edition)",
+  "kind": "runbook",
+  "date": "2024-02-19",
+  "owner": "Aiko (web)",
+  "facts": [
+   "This is the 2024 version of the web runbook, before it was merged into the handbook.",
+   "web then ran four nodes per region (it is six now).",
+   "Board 'Sorrel / web' then had no browser-error panel; front-end errors were read from a separate error tracker.",
+   "Rollback for web used the deploy tool's 'Roll back to this' button, about four minutes."
+  ]
+ },
+ {
+  "file": "library/notifier-runbook-2024.md",
+  "title": "notifier runbook (2024 edition)",
+  "kind": "runbook",
+  "date": "2024-05-27",
+  "owner": "Tom (notifier)",
+  "facts": [
+   "The 2024 version of the notifier runbook.",
+   "notifier then ran two worker nodes per region (it is three now).",
+   "The nightly reminder batch for ap-northeast then ran from 01:00 to 03:00 JST (it now runs 02:00 to 04:00).",
+   "The duplicate panel did not exist yet; duplicates were found by searching logs."
+  ]
+ },
+ {
+  "file": "library/howto-api-search-index-rebuild.md",
+  "title": "How to rebuild the api search index",
+  "kind": "how-to",
+  "date": "2024-10-14",
+  "owner": "Daniel (api)",
+  "facts": [
+   "Rebuilding the search index is a working-hours job, never a night move for on-call.",
+   "A full rebuild takes about 70 minutes; searches keep using the old index until the new one is ready.",
+   "Check the index-freshness panel on the api board first; an index under 6 hours old does not need a rebuild.",
+   "The rebuild is started from the job console, job 'search-reindex-full', by the api team."
+  ]
+ },
+ {
+  "file": "library/howto-notifier-queue-panels.md",
+  "title": "How to read the notifier queue panels",
+  "kind": "how-to",
+  "date": "2025-01-20",
+  "owner": "Yuki (notifier)",
+  "facts": [
+   "Depth alone means nothing; compare 'added per minute' with 'delivered per minute'.",
+   "Oldest message age above 30 minutes while delivered per minute is zero means the workers are stuck.",
+   "During the nightly reminder batch, depth commonly reaches 1,000 to 1,500 and drains by 06:00 JST.",
+   "The parked queue (added 2026-07) is shown on a separate panel; anything there needs Tom's team in working hours."
+  ]
+ },
+ {
+  "file": "library/howto-cdn-purge-by-hand.md",
+  "title": "How to purge the CDN by hand",
+  "kind": "how-to",
+  "date": "2025-05-12",
+  "owner": "Aiko (web)",
+  "facts": [
+   "On-call may re-run a purge for web assets from the CDN dashboard; firewall rules are never changed without Aiko.",
+   "A normal purge completes within a minute; check its status on the CDN dashboard's purge panel.",
+   "Purge by URL prefix, not 'purge everything'; purging everything sends all traffic to the origin at once.",
+   "Write the purge id in the incident thread."
+  ]
+ },
+ {
+  "file": "library/howto-trace-a-refund.md",
+  "title": "How to trace one refund through the logs",
+  "kind": "how-to",
+  "date": "2025-08-18",
+  "owner": "Leo (payments)",
+  "facts": [
+   "Search service=payments msg=\"refund sent\" ref=<ref> to see when a refund went to stripe.",
+   "A refund has three log lines: requested, sent, settled; settled comes from the stripe webhook and can arrive hours later.",
+   "Never search for card numbers; they are never logged.",
+   "If one reference shows two 'sent' lines, money may have moved twice: stop and page Mei."
+  ]
+ },
+ {
+  "file": "library/howto-api-replica-lag.md",
+  "title": "How to check replica lag on api",
+  "kind": "how-to",
+  "date": "2026-01-26",
+  "owner": "Daniel (api)",
+  "facts": [
+   "Replica lag is on the 'Database' row of the api board, one line per region.",
+   "Normal lag is under 1 second; over 10 seconds for more than a few minutes is worth reading logs about.",
+   "Replica lag does not page on its own; it shows up as stale reads.",
+   "Promoting a replica is a decision for Ravi, never an on-call move."
+  ]
+ },
+ {
+  "file": "library/howto-stop-unowned-load-test.md",
+  "title": "How to stop a load test that nobody owns",
+  "kind": "how-to",
+  "date": "2026-05-04",
+  "owner": "Sara (platform)",
+  "facts": [
+   "Load test traffic carries the X-Sorrel-Loadtest header and comes from our own address ranges.",
+   "Check the game day calendar first; if the test is on it, ask its owner before stopping it.",
+   "If nobody owns it, stop it with the load test tool: loadctl stop <test id>, and tell #platform.",
+   "In 2026-04 a forgotten soak test ran for 9 hours against api in us-east before anyone noticed."
+  ]
+ },
+ {
+  "file": "library/handover-2024-03-25.md",
+  "title": "On-call handover, week of 2024-03-25",
+  "kind": "handover",
+  "date": "2024-03-25",
+  "owner": "Priya (web), outgoing on-call",
+  "facts": [
+   "Quiet week: 6 alerts, all P3, none woke anyone after midnight.",
+   "web-4xx fired twice for a renamed help page; ticket opened for Aiko's team to add a redirect.",
+   "Spring school-term bookings for tutors are up about 30 % on last month; expect higher api writes on Monday mornings.",
+   "Taken by Leo (payments)."
+  ]
+ },
+ {
+  "file": "library/handover-2024-08-19.md",
+  "title": "On-call handover, week of 2024-08-19",
+  "kind": "handover",
+  "date": "2024-08-19",
+  "owner": "Leo (payments), outgoing on-call",
+  "facts": [
+   "Obon week: clinic bookings down, leisure bookings up, nothing unusual on the boards.",
+   "One P2: sendgrid delays for 50 minutes on 2024-08-15, confirmed on their status page, everything delivered afterwards.",
+   "stripe announced a maintenance window on 2024-08-27 02:00-02:30 JST; payments deploys are not allowed during it.",
+   "Taken by Yuki (notifier)."
+  ]
+ },
+ {
+  "file": "library/handover-2025-01-06.md",
+  "title": "On-call handover, week of 2025-01-06",
+  "kind": "handover",
+  "date": "2025-01-06",
+  "owner": "Yuki (notifier), outgoing on-call",
+  "facts": [
+   "First week after the year-end deploy freeze; the deploy queue is busy, expect many deploys on Tuesday and Thursday.",
+   "notifier sent 41,000 New Year greeting emails for businesses on 2025-01-01 without trouble.",
+   "web-disk on node 4 at 78 %; ticket for Aiko's team to clean the render cache.",
+   "Taken by Daniel (api)."
+  ]
+ },
+ {
+  "file": "library/handover-2025-06-30.md",
+  "title": "On-call handover, week of 2025-06-30",
+  "kind": "handover",
+  "date": "2025-06-30",
+  "owner": "Daniel (api), outgoing on-call",
+  "facts": [
+   "api-pool fired twice on 2025-06-26 during the morning booking peak; both cleared within 15 minutes; Ravi has a ticket to raise the pool size.",
+   "A partner calendar-sync tool re-synced all its businesses on 2025-06-28 and quadrupled partner traffic for an hour; harmless.",
+   "No open incidents.",
+   "Taken by Sara (platform)."
+  ]
+ },
+ {
+  "file": "library/handover-2025-11-24.md",
+  "title": "On-call handover, week of 2025-11-24",
+  "kind": "handover",
+  "date": "2025-11-24",
+  "owner": "Sara (platform), outgoing on-call",
+  "facts": [
+   "The payments pool incident of 2025-11-18 is closed; postmortem reviewed on 2025-11-20.",
+   "The combined our-latency / provider-latency panel on the payments board is live since 2025-11-26 (note: the handover is written on the Monday after; it was built during the week).",
+   "November partner sync season: partner traffic is high all week; api-partner-reject has not fired.",
+   "Taken by Priya (web)."
+  ]
+ },
+ {
+  "file": "library/handover-2026-04-06.md",
+  "title": "On-call handover, week of 2026-04-06",
+  "kind": "handover",
+  "date": "2026-04-06",
+  "owner": "Leo (payments), outgoing on-call",
+  "facts": [
+   "New school year: tutor and hair salon bookings peaked on 2026-04-01 and 2026-04-02, no alerts.",
+   "One P3: web-traffic fired for a search-engine crawler on 2026-04-03; no customers affected; written down.",
+   "Noor joined the rotation; she shadows two shifts starting 2026-04-13.",
+   "Taken by Noor (SRE) as shadow, with Daniel as primary."
+  ]
+ },
+ {
+  "file": "library/handover-2026-09-21.md",
+  "title": "On-call handover, week of 2026-09-21",
+  "kind": "handover",
+  "date": "2026-09-21",
+  "owner": "Noor (SRE), outgoing on-call",
+  "facts": [
+   "api and payments move to Shipyard, the new deploy pipeline, on Monday 2026-09-28; the platform team will post the Shipyard page that day. Mention only; give no commands.",
+   "All on-call laptops got the September laptop update on 2026-09-24.",
+   "No open incidents; two P3 tickets for alert tuning (web-4xx on a retired help page, notifier-queue-depth during the reminder batch).",
+   "Taken by Leo (payments)."
+  ]
+ },
+ {
+  "file": "library/handover-2026-10-05.md",
+  "title": "On-call handover, week of 2026-10-05",
+  "kind": "handover",
+  "date": "2026-10-05",
+  "owner": "Leo (payments), outgoing on-call",
+  "facts": [
+   "First week of api and payments on Shipyard went fine. On 2026-10-02 payments release r-209 was rolled back to r-208 after validation errors went up; it took 6 minutes. Past tense only; give no commands or steps.",
+   "Game day this week: payments eu-west failover test on Friday 2026-10-09, 15:00-16:00 JST, run by Sara. Expect payments alerts from eu-west during that hour; they are part of the test.",
+   "stripe webhook retries were higher than usual on 2026-10-03 (a Saturday sale); all delivered.",
+   "Taken by Noor (SRE)."
+  ]
+ },
+ {
+  "file": "library/provider-stripe-notes.md",
+  "title": "stripe: notes for on-call",
+  "kind": "provider note",
+  "date": "2024-07-08",
+  "owner": "Mei (payments)",
+  "facts": [
+   "stripe retries a webhook it could not deliver for up to 3 days, with growing gaps between attempts.",
+   "Disputes arrive as webhooks and are handled by Mei's team in working hours, never by on-call.",
+   "Never change anything in the stripe dashboard during an incident; payment settings are Mei's decision.",
+   "status.stripe.com is the status page; subscribe the incident thread to it during a payments incident."
+  ]
+ },
+ {
+  "file": "library/provider-twilio-japan.md",
+  "title": "twilio: Japan carrier notes",
+  "kind": "provider note",
+  "date": "2025-03-31",
+  "owner": "Tom (notifier)",
+  "facts": [
+   "Delivery receipts for KDDI numbers in Japan can arrive up to 40 minutes after the SMS was delivered; notifier marks such messages 'pending', not 'failed'.",
+   "A pending count rising on the notifier board for KDDI only is usually receipt lag, not failure.",
+   "Sender numbers and sending limits are changed by Tom only.",
+   "twilio's status page lists Japanese carriers separately; check the carrier line, not only the overall status."
+  ]
+ },
+ {
+  "file": "library/provider-sendgrid-quota.md",
+  "title": "sendgrid: quota and streams",
+  "kind": "provider note",
+  "date": "2025-10-06",
+  "owner": "Tom (notifier)",
+  "facts": [
+   "The sendgrid daily quota resets at 09:00 JST (00:00 UTC).",
+   "Since 2025-09-30 transactional email (confirmations, receipts) and marketing email use separate streams with separate quotas.",
+   "Raising the quota is a purchasing decision for Tom, not an on-call action.",
+   "When the quota is reached, notifier keeps emails on the queue and sends them after the reset."
+  ]
+ },
+ {
+  "file": "library/provider-cloudflare-notes.md",
+  "title": "cloudflare: purge and firewall notes",
+  "kind": "provider note",
+  "date": "2025-12-01",
+  "owner": "Aiko (web)",
+  "facts": [
+   "Purges normally complete within a minute; a purge running for several minutes is a provider-side delay.",
+   "The firewall's rate-limit rules for api were raised for the November partner sync season and lowered again on 2025-12-01.",
+   "Firewall rules are never changed during an incident without Aiko.",
+   "The cloudflare status page lists the Tokyo and Osaka data centres separately."
+  ]
+ },
+ {
+  "file": "library/provider-aws-health.md",
+  "title": "aws: health dashboard and regions",
+  "kind": "provider note",
+  "date": "2026-02-16",
+  "owner": "Kenji (platform)",
+  "facts": [
+   "Personal health dashboard notifications for our account are posted automatically in #aws-health.",
+   "We run in ap-northeast-1, us-east-1 and eu-west-1; ap-northeast-1 carries the most traffic.",
+   "Moving traffic out of a region is decided by the incident commander with the owners of the affected services.",
+   "Billing and limit increases go through Ravi."
+  ]
+ },
+ {
+  "file": "library/provider-stripe-api-version.md",
+  "title": "stripe: API version upgrade notes (2026)",
+  "kind": "provider note",
+  "date": "2026-08-03",
+  "owner": "Leo (payments)",
+  "facts": [
+   "payments moved to a newer stripe API version on 2026-07-14 after testing in stripe's test mode for two weeks.",
+   "One webhook event type changed its field names; the webhook handler accepts both shapes until 2026-12-31.",
+   "Live keys are only in the secrets manager; test keys are in the staging config and never work against live accounts.",
+   "Any key seen outside the secrets manager is treated as exposed and goes to Mei."
+  ]
+ },
+ {
+  "file": "library/team-oncall-onboarding.md",
+  "title": "On-call onboarding",
+  "kind": "team page",
+  "date": "2024-01-15",
+  "owner": "Kenji (platform)",
+  "facts": [
+   "New engineers shadow two full shifts before taking a primary shift.",
+   "After shadowing, they do a pager drill with Sara: a fake P2 page at an agreed time, acknowledged and handled end to end.",
+   "The onboarding checklist has 14 items; the last one is reading the handbook end to end.",
+   "Get log search and dashboard access at least a week before the first shadow shift (see 'Access requests for on-call')."
+  ]
+ },
+ {
+  "file": "library/team-alert-tuning.md",
+  "title": "Alert tuning process",
+  "kind": "team page",
+  "date": "2024-06-03",
+  "owner": "Kenji (platform)",
+  "facts": [
+   "Any alert that should be tuned gets a ticket with the label alert-tuning.",
+   "Tickets are reviewed on the first Wednesday of each month in the alert review.",
+   "An alert that led only to 'no action' ten times in a month is downgraded to a dashboard or removed.",
+   "Alert changes are made by the service owner's team, never during a night shift."
+  ]
+ },
+ {
+  "file": "library/team-dashboards-guide.md",
+  "title": "Dashboards guide",
+  "kind": "team page",
+  "date": "2024-12-09",
+  "owner": "Sara (platform)",
+  "facts": [
+   "The board 'Sorrel / Overview' shows one row per service: request rate, error rate, latency.",
+   "The board 'Sorrel / On-call' shows pager load: pages per week, pages per night, time to acknowledge.",
+   "Every board's time picker defaults to the last hour; widen it before comparing with a deploy.",
+   "Do not describe the per-service boards here; they are in the handbook."
+  ]
+ },
+ {
+  "file": "library/team-access-requests.md",
+  "title": "Access requests for on-call",
+  "kind": "team page",
+  "date": "2025-04-28",
+  "owner": "Kenji (platform)",
+  "facts": [
+   "Log search and dashboard access come with the group oncall-readers.",
+   "Request it in #access with a ticket; Kenji approves; it takes one working day.",
+   "Paging tool access is set up by the platform team when you join the rotation.",
+   "On-call never gets write access to customer data; that is by design."
+  ]
+ },
+ {
+  "file": "library/team-status-page-process.md",
+  "title": "Status page process",
+  "kind": "team page",
+  "date": "2025-08-25",
+  "owner": "Kenji (platform)",
+  "facts": [
+   "Only the incident commander publishes to status.sorrel.app.",
+   "On-call drafts the wording in the incident thread using the handbook templates; the commander edits and publishes.",
+   "The first public update goes out within 20 minutes of a P1 that customers can see.",
+   "Resolved notices stay on the page for 7 days."
+  ]
+ },
+ {
+  "file": "library/team-game-days.md",
+  "title": "Game days",
+  "kind": "team page",
+  "date": "2025-10-20",
+  "owner": "Sara (platform)",
+  "facts": [
+   "Game days are planned exercises; every one is on the game day calendar at least 48 hours ahead.",
+   "2025 game days were: 2025-03-12 notifier worker loss, 2025-06-18 api replica failover, 2025-10-15 web node loss.",
+   "Alerts during a game day still get acknowledged; the game day owner tells on-call which ones are expected.",
+   "Synthetic traffic in a game day carries the X-Sorrel-Loadtest header."
+  ]
+ },
+ {
+  "file": "library/team-incident-commander-guide.md",
+  "title": "Incident commander guide",
+  "kind": "team page",
+  "date": "2026-01-12",
+  "owner": "Kenji (platform)",
+  "facts": [
+   "The incident commander rotation is paged for any P1 still open after 15 minutes.",
+   "The commander keeps the timeline, updates the status page, decides who talks to whom, and calls the incident over; the commander does not debug.",
+   "Hand the commander role over out loud in the thread: 'Kenji is IC from 03:10'.",
+   "After the incident the commander opens the postmortem document and names its author."
+  ]
+ },
+ {
+  "file": "library/team-postmortem-review.md",
+  "title": "Postmortem review meeting",
+  "kind": "team page",
+  "date": "2026-03-16",
+  "owner": "Kenji (platform)",
+  "facts": [
+   "The review meets every Thursday at 16:00 JST and is run by the platform team.",
+   "Each postmortem gets 30 minutes; the service owner attends.",
+   "Action items need an owner and a date before the meeting ends.",
+   "Postmortems are blameless: the question is what made the mistake easy and hard to notice."
+  ]
+ },
+ {
+  "file": "library/team-secrets-manager.md",
+  "title": "Secrets manager for on-call",
+  "kind": "team page",
+  "date": "2026-06-22",
+  "owner": "Sara (platform)",
+  "facts": [
+   "Every production credential lives in the secrets manager; on-call can see which secrets exist but not their values.",
+   "Never rotate a production credential yourself; rotation is the credential owner's decision.",
+   "If a key appears in logs, chat or a ticket: do not copy it anywhere else, link to where it appears, and page the owner of the credential.",
+   "Owners: stripe keys Mei; twilio and sendgrid keys Tom; cloudflare Aiko; aws the platform team."
+  ]
+ }
+]

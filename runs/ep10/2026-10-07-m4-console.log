@@ -1,0 +1,77 @@
+== carry-5
+  14:00:49 carry-5 run 1 sy-trap-how        mixed  reads None $0.0054
+  14:00:52 carry-5 run 1 sy-trap-command    mixed  reads None $0.0047
+  14:00:58 carry-5 run 2 sy-trap-how        mixed  reads None $0.0056
+  14:01:01 carry-5 run 2 sy-trap-command    mixed  reads None $0.0156
+  14:01:07 carry-5 run 3 sy-trap-how        mixed  reads None $0.0055
+  14:01:10 carry-5 run 3 sy-trap-command    mixed  reads None $0.0047
+  14:01:15 carry-5 run 4 sy-trap-how        mixed  reads None $0.0054
+  14:01:19 carry-5 run 4 sy-trap-command    mixed  reads None $0.0049
+  14:01:24 carry-5 run 5 sy-trap-how        mixed  reads None $0.0056
+  14:01:28 carry-5 run 5 sy-trap-command    mixed  reads None $0.0047
+== carry-50
+  14:01:37 carry-50 run 1 sy-trap-how        mixed  reads None $0.0136
+  14:01:42 carry-50 run 1 sy-trap-command    mixed  reads None $0.0130
+  14:01:48 carry-50 run 2 sy-trap-how        mixed  reads None $0.0139
+  14:01:52 carry-50 run 2 sy-trap-command    mixed  reads None $0.0129
+  14:01:58 carry-50 run 3 sy-trap-how        mixed  reads None $0.0139
+  14:02:02 carry-50 run 3 sy-trap-command    mixed  reads None $0.0132
+  14:02:08 carry-50 run 4 sy-trap-how        mixed  reads None $0.0138
+  14:02:20 carry-50 run 4 sy-trap-command    mixed  reads None $0.0128
+  14:02:26 carry-50 run 5 sy-trap-how        mixed  reads None $0.0139
+  14:02:29 carry-50 run 5 sy-trap-command    mixed  reads None $0.0129
+== model-50
+  14:02:38 model-50 run 1 sy-trap-how        wrong  reads ['payments-rollback-runbook'] $0.0055
+  14:02:44 model-50 run 1 sy-trap-command    wrong  reads ['payments-rollback-runbook'] $0.0040
+  14:02:51 model-50 run 2 sy-trap-how        wrong  reads ['payments-rollback-runbook'] $0.0056
+  14:02:55 model-50 run 2 sy-trap-command    wrong  reads ['payments-rollback-runbook'] $0.0043
+  14:03:02 model-50 run 3 sy-trap-how        wrong  reads ['payments-rollback-runbook'] $0.0054
+  14:03:08 model-50 run 3 sy-trap-command    wrong  reads ['payments-rollback-runbook'] $0.0040
+  14:03:16 model-50 run 4 sy-trap-how        wrong  reads ['payments-rollback-runbook'] $0.0056
+  14:03:21 model-50 run 4 sy-trap-command    wrong  reads ['payments-rollback-runbook'] $0.0040
+  14:03:28 model-50 run 5 sy-trap-how        wrong  reads ['payments-rollback-runbook'] $0.0051
+  14:03:36 model-50 run 5 sy-trap-command    wrong  reads ['payments-rollback-runbook'] $0.0040
+== code-50
+  14:03:39 code-50 run 1 sy-trap-how        mixed  reads ['payments-rollback-runbook', 'postmortem-payments-pool-timeout', 'handbook-5'] $0.0057
+  14:03:42 code-50 run 1 sy-trap-command    mixed  reads ['payments-rollback-runbook', 'postmortem-payments-pool-timeout', 'handbook-5'] $0.0053
+  14:03:46 code-50 run 2 sy-trap-how        right  reads ['payments-rollback-runbook', 'postmortem-payments-pool-timeout', 'handbook-5'] $0.0029
+  14:03:50 code-50 run 2 sy-trap-command    mixed  reads ['payments-rollback-runbook', 'postmortem-payments-pool-timeout', 'handbook-5'] $0.0025
+  14:03:53 code-50 run 3 sy-trap-how        right  reads ['payments-rollback-runbook', 'postmortem-payments-pool-timeout', 'handbook-5'] $0.0030
+  14:03:55 code-50 run 3 sy-trap-command    mixed  reads ['payments-rollback-runbook', 'postmortem-payments-pool-timeout', 'handbook-5'] $0.0025
+  14:03:59 code-50 run 4 sy-trap-how        right  reads ['payments-rollback-runbook', 'postmortem-payments-pool-timeout', 'handbook-5'] $0.0030
+  14:04:02 code-50 run 4 sy-trap-command    mixed  reads ['payments-rollback-runbook', 'postmortem-payments-pool-timeout', 'handbook-5'] $0.0026
+  14:04:05 code-50 run 5 sy-trap-how        right  reads ['payments-rollback-runbook', 'postmortem-payments-pool-timeout', 'handbook-5'] $0.0030
+  14:04:08 code-50 run 5 sy-trap-command    mixed  reads ['payments-rollback-runbook', 'postmortem-payments-pool-timeout', 'handbook-5'] $0.0026
+== fix-dates
+  14:04:15 fix-dates run 1 sy-trap-how        wrong  reads ['payments-rollback-runbook'] $0.0068
+  14:04:22 fix-dates run 1 sy-trap-command    mixed  reads ['payments-rollback-runbook', 'deploying-with-shipyard'] $0.0105
+  14:04:29 fix-dates run 2 sy-trap-how        wrong  reads ['payments-rollback-runbook'] $0.0068
+  14:04:47 fix-dates run 2 sy-trap-command    mixed  reads ['payments-rollback-runbook', 'deploying-with-shipyard'] $0.0104
+  14:05:02 fix-dates run 3 sy-trap-how        mixed  reads ['payments-rollback-runbook', 'deploying-with-shipyard', 'handbook-11', 'handbook-4'] $0.0216
+  14:05:34 fix-dates run 3 sy-trap-command    mixed  reads ['payments-rollback-runbook', 'deploying-with-shipyard'] $0.0106
+  14:05:43 fix-dates run 4 sy-trap-how        right  reads ['payments-rollback-runbook', 'deploying-with-shipyard'] $0.0113
+  14:05:50 fix-dates run 4 sy-trap-command    mixed  reads ['payments-rollback-runbook', 'deploying-with-shipyard'] $0.0105
+  14:05:58 fix-dates run 5 sy-trap-how        wrong  reads ['payments-rollback-runbook'] $0.0073
+  14:06:06 fix-dates run 5 sy-trap-command    mixed  reads ['payments-rollback-runbook', 'deploying-with-shipyard'] $0.0104
+== fix-archived
+  14:06:16 fix-archived run 1 sy-trap-how        right  reads ['deploying-with-shipyard'] $0.0052
+  14:06:22 fix-archived run 1 sy-trap-command    right  reads ['deploying-with-shipyard'] $0.0045
+  14:06:28 fix-archived run 2 sy-trap-how        right  reads ['deploying-with-shipyard'] $0.0051
+  14:06:33 fix-archived run 2 sy-trap-command    right  reads ['deploying-with-shipyard'] $0.0045
+  14:06:40 fix-archived run 3 sy-trap-how        right  reads ['deploying-with-shipyard'] $0.0053
+  14:06:50 fix-archived run 3 sy-trap-command    right  reads ['deploying-with-shipyard', 'handbook-11'] $0.0091
+  14:06:57 fix-archived run 4 sy-trap-how        right  reads ['deploying-with-shipyard'] $0.0053
+  14:07:03 fix-archived run 4 sy-trap-command    right  reads ['deploying-with-shipyard'] $0.0046
+  14:07:10 fix-archived run 5 sy-trap-how        right  reads ['deploying-with-shipyard'] $0.0053
+  14:07:14 fix-archived run 5 sy-trap-command    right  reads ['deploying-with-shipyard'] $0.0043
+== fix-notice
+  14:07:24 fix-notice run 1 sy-trap-how        mixed  reads ['payments-rollback-runbook', 'deploying-with-shipyard'] $0.0091
+  14:07:30 fix-notice run 1 sy-trap-command    mixed  reads ['payments-rollback-runbook', 'deploying-with-shipyard'] $0.0080
+  14:07:40 fix-notice run 2 sy-trap-how        mixed  reads ['payments-rollback-runbook', 'deploying-with-shipyard'] $0.0090
+  14:07:47 fix-notice run 2 sy-trap-command    mixed  reads ['payments-rollback-runbook', 'deploying-with-shipyard'] $0.0082
+  14:07:56 fix-notice run 3 sy-trap-how        mixed  reads ['payments-rollback-runbook', 'deploying-with-shipyard'] $0.0092
+  14:08:08 fix-notice run 3 sy-trap-command    mixed  reads ['payments-rollback-runbook', 'deploying-with-shipyard'] $0.0080
+  14:08:17 fix-notice run 4 sy-trap-how        mixed  reads ['payments-rollback-runbook', 'deploying-with-shipyard'] $0.0089
+  14:08:24 fix-notice run 4 sy-trap-command    mixed  reads ['payments-rollback-runbook', 'deploying-with-shipyard'] $0.0084
+  14:08:32 fix-notice run 5 sy-trap-how        mixed  reads ['payments-rollback-runbook', 'deploying-with-shipyard'] $0.0089
+  14:08:39 fix-notice run 5 sy-trap-command    mixed  reads ['payments-rollback-runbook', 'deploying-with-shipyard'] $0.0081

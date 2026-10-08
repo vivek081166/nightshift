@@ -46,6 +46,11 @@ You can write a Python function and call an HTTP API. No machine learning needed
     python3 cache.py --again          # one call to that cache; once it has run out: a 403, then it makes the cache again
     python3 measure/ep09_screen.py hits   # an earlier run of the thirty, from runs/ep09, no API call (also: close, the module close)
 
+    python3 lookup.py "payments checkout errors jumped right after the last deploy, 12 minutes ago. How exactly do I roll payments back?"   # look it up: the contents list, the pages it opened, the answer
+    python3 lookup.py --carry "<the same question>"   # carry it all: every page in the call
+    python3 lookup.py --list                          # the contents list, exactly as the call sends it (--dates adds each page's last-updated day)
+    python3 measure/ep10_screen.py sizes              # text sent with that question, from runs/ep10, no API call (also: trap, questions, tally, gate)
+
 The `ep03` tag holds `score.py` as the episode leaves it, with RULES filled in. The first five runs in
 the video used the same file with `RULES = ""` on line 14. Replace the RULES block with that one line
 to run them yourself.
@@ -67,6 +72,7 @@ the course depends on the vendor.
 | `ep07` | [LLM Structured Output Explained: Valid JSON, and My Code Still Crashed (JSON Mode vs Schema)](https://youtu.be/N99lJy9cojs) | `triage.py` asks for the same answer three ways: in words only (backticks, valid JSON 0 of 30), with JSON mode (valid 30 of 30, in my shape 0 of 30) and with the shape (30 of 30, first move right 28 of 30). `read.py` is the on-call code that crashed. `measure/ep07_screen.py choices` shows an open model's choices crossed out by the shape |
 | `ep08` | [Send Images and PDFs to an LLM: Why Chart Readings Change](https://youtu.be/_c2H98LSzKc) | `look.py` sends a picture or a PDF as its bytes in base64 plus a label for its type, next to the question. The dashboard picture gives a reading that moves (33, 35, 35; the truth is 34); the numbers as text give 34 every time; the PDF gives the number it prints (1,184), 30 of 30 right. `--detail low` sets how many tokens the picture becomes. `measure/ep08_screen.py` shows the readings and the PDF count |
 | `ep09` | [Prompt Caching: Make a Cache That Hits Every Call (LLM Context Caching)](https://youtu.be/Cwb9SbTJCOk) | `cache.py` sends the handbook (`runbooks/handbook.md`, the five rules on top) first and the alert last, and prints how many tokens each call sent and how many the model reused. The automatic cache reused nothing on camera (0 of 30; 21 of 120 across four earlier runs, never the whole handbook); the time on the first line stops it (0 of 30); a cache you make (`--make`) is reused on 30 of 30; after its 5 minutes the call fails with 403 "CachedContent not found (or permission denied)", and `--again` makes the cache again. `measure/ep09_screen.py` shows the earlier run and the module close: 27 of 30 right both ways, the bill about a fifth |
+| `ep10` | [RAG vs Long Context: I Tested Both on the Same Question](https://youtu.be/7BOy-hvyrlA) | `lookup.py` gives the model the team's 67 pages two ways: every page in the call (`--carry`), or a contents list of titles plus one function, `read_page`, and it prints each page the model opened. Looked up, the rollback question opened only the 2024 runbook and gave the retired command 10 of 10; carried, 10 of 10 right at 34 times the text. Dates in the list (`--dates`) 7 of 10, a RETIRED line on the old page 10 of 10, the old page moved out 10 of 10. `measure/ep10_screen.py` replays the saved runs |
 
 The map the course follows: [Andrew Ng's AI Engineering Skills Map](https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map)
 

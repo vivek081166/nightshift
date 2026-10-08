@@ -1,0 +1,126 @@
+== m2 carry-50
+  14:09:06 carry-50 hb-admin-bulk        right              reads None $0.0124
+  14:09:08 carry-50 hb-checkout-threshold right              reads None $0.0124
+  14:09:11 carry-50 hb-march-peak        wrong              reads None $0.0124
+  14:09:15 carry-50 hb-allergy-note      right              reads None $0.0125
+  14:09:18 carry-50 hb-keyboard          right              reads None $0.0123
+  14:09:21 carry-50 hb-away              right              reads None $0.0124
+  14:09:24 carry-50 pg-kddi-lag          right              reads None $0.0124
+  14:09:27 carry-50 pg-replayed          right              reads None $0.0124
+  14:09:30 carry-50 pg-game-day          right              reads None $0.0124
+  14:09:33 carry-50 pg-cert-outage       right              reads None $0.0125
+  14:09:37 carry-50 pg-log-access        right              reads None $0.0128
+  14:09:40 carry-50 pg-dup-reminders     right              reads None $0.0124
+  14:09:46 carry-50 sy-trap-how          mixed              reads None $0.0139
+  14:09:50 carry-50 sy-trap-command      mixed              reads None $0.0129
+  14:09:53 carry-50 sy-approve           right              reads None $0.0123
+  14:10:17 carry-50 sy-release-list      right              reads None $0.0125
+  14:10:19 carry-50 none-stripe-phone    said-not-in-pages  reads None $0.0124
+  14:10:22 carry-50 none-allowance       said-not-in-pages  reads None $0.0123
+  14:10:25 carry-50 two-api-incident     right              reads None $0.0126
+  14:10:29 carry-50 two-purge            right              reads None $0.0127
+== m2 model-50
+  14:10:41 model-50 hb-admin-bulk        right              reads ['handbook-14', 'web-runbook-2024'] $0.0098
+  14:10:45 model-50 hb-checkout-threshold right              reads ['handbook-14'] $0.0037
+  14:10:49 model-50 hb-march-peak        right              reads ['handbook-13'] $0.0035
+  14:10:54 model-50 hb-allergy-note      right              reads ['handbook-12'] $0.0029
+  14:10:58 model-50 hb-keyboard          right              reads ['handbook-10'] $0.0029
+  14:11:02 model-50 hb-away              right              reads ['handbook-10'] $0.0029
+  14:11:07 model-50 pg-kddi-lag          right              reads ['provider-twilio-japan'] $0.0059
+  14:11:12 model-50 pg-replayed          right              reads ['postmortem-payments-pool-timeout'] $0.0049
+  14:11:17 model-50 pg-game-day          right              reads ['handover-2026-10-05'] $0.0044
+  14:11:21 model-50 pg-cert-outage       wrong              reads ['postmortem-api-partner-certificate'] $0.0043
+  14:11:25 model-50 pg-log-access        right              reads ['team-access-requests'] $0.0054
+  14:11:30 model-50 pg-dup-reminders     right              reads ['postmortem-notifier-duplicate-reminders'] $0.0049
+  14:11:38 model-50 sy-trap-how          wrong              reads ['payments-rollback-runbook'] $0.0058
+  14:11:44 model-50 sy-trap-command      wrong              reads ['payments-rollback-runbook'] $0.0040
+  14:11:52 model-50 sy-approve           right              reads ['payments-rollback-runbook', 'handbook-11', 'deploying-with-shipyard'] $0.0106
+  14:11:58 model-50 sy-release-list      right              reads ['handbook-11', 'deploying-with-shipyard'] $0.0061
+  14:12:07 model-50 none-stripe-phone    said-not-in-pages  reads ['provider-stripe-notes', 'handbook-6', 'payments-rollback-runbook', 'postmortem-payments-webhook-secret'] $0.0247
+  14:12:15 model-50 none-allowance       said-not-in-pages  reads ['handbook-10', 'team-oncall-onboarding', 'handbook-17'] $0.0114
+  14:12:19 model-50 two-api-incident     said-not-in-pages  reads ['deploying-with-shipyard', 'handbook-11', 'postmortem-api-replica-lag-double-booking', 'handover-2026-09-21'] $0.0089
+  14:12:31 model-50 two-purge            right              reads ['postmortem-web-cdn-purge-stuck', 'provider-cloudflare-notes', 'web-runbook-2024', 'howto-cdn-purge-by-hand'] $0.0301
+== m2 code-50
+  14:12:35 code-50 hb-admin-bulk        said-not-in-pages  reads ['postmortem-web-font-upload', 'web-runbook-2024', 'handbook-5'] $0.0076
+  14:12:38 code-50 hb-checkout-threshold wrong              reads ['payments-rollback-runbook', 'postmortem-payments-pool-timeout', 'handbook-5'] $0.0052
+  14:12:40 code-50 hb-march-peak        said-not-in-pages  reads [] $0.0004
+  14:12:42 code-50 hb-allergy-note      said-not-in-pages  reads [] $0.0002
+  14:12:45 code-50 hb-keyboard          said-not-in-pages  reads [] $0.0007
+  14:12:47 code-50 hb-away              said-not-in-pages  reads [] $0.0005
+  14:12:49 code-50 pg-kddi-lag          said-not-in-pages  reads [] $0.0006
+  14:12:51 code-50 pg-replayed          right              reads ['payments-rollback-runbook', 'postmortem-payments-pool-timeout', 'handbook-5'] $0.0050
+  14:12:54 code-50 pg-game-day          said-not-in-pages  reads [] $0.0005
+  14:12:57 code-50 pg-cert-outage       right              reads ['postmortem-api-search-index-stale', 'howto-api-search-index-rebuild', 'postmortem-api-partner-certificate', 'postmortem-api-audit-disk', 'howto-api-replica-lag', 'postmortem-api-replica-lag-double-booking', 'provider-stripe-api-version', 'postmortem-api-rollback-queue', 'handbook-5'] $0.0203
+  14:13:00 code-50 pg-log-access        said-not-in-pages  reads [] $0.0005
+  14:13:03 code-50 pg-dup-reminders     said-not-in-pages  reads ['notifier-runbook-2024', 'howto-notifier-queue-panels', 'postmortem-notifier-template-crash', 'handbook-5'] $0.0101
+  14:13:06 code-50 sy-trap-how          right              reads ['payments-rollback-runbook', 'postmortem-payments-pool-timeout', 'handbook-5'] $0.0058
+  14:13:09 code-50 sy-trap-command      mixed              reads ['payments-rollback-runbook', 'postmortem-payments-pool-timeout', 'handbook-5'] $0.0053
+  14:13:12 code-50 sy-approve           said-not-in-pages  reads ['payments-rollback-runbook', 'postmortem-payments-pool-timeout', 'handbook-5'] $0.0052
+  14:13:28 code-50 sy-release-list      right              reads ['postmortem-api-search-index-stale', 'howto-api-search-index-rebuild', 'postmortem-api-partner-certificate', 'postmortem-api-audit-disk', 'howto-api-replica-lag', 'postmortem-api-replica-lag-double-booking', 'provider-stripe-api-version', 'postmortem-api-rollback-queue', 'handbook-5'] $0.0037
+  14:13:31 code-50 none-stripe-phone    said-not-in-pages  reads ['provider-stripe-notes', 'postmortem-payments-webhook-secret', 'provider-stripe-api-version'] $0.0080
+  14:13:33 code-50 none-allowance       said-not-in-pages  reads [] $0.0004
+  14:13:37 code-50 two-api-incident     right              reads ['postmortem-api-search-index-stale', 'howto-api-search-index-rebuild', 'postmortem-api-partner-certificate', 'postmortem-api-audit-disk', 'howto-api-replica-lag', 'postmortem-api-replica-lag-double-booking', 'provider-stripe-api-version', 'postmortem-api-rollback-queue', 'handbook-5'] $0.0039
+  14:13:40 code-50 two-purge            said-not-in-pages  reads [] $0.0006
+== m3 carry-1
+  14:13:47 carry-1 payments-latency             want roll back       got roll back reads None $0.0124
+  14:13:50 carry-1 payments-partial             want read logs       got read logs reads None $0.0104
+  14:14:00 carry-1 api-slo-edge                 want read logs       got read logs reads None $0.0137
+  14:14:28 carry-1 disk-slow-burn               want no action       got read logs reads None $0.0236
+  14:14:32 carry-1 web-cosmetic                 want no action       got no action reads None $0.0104
+  14:14:35 carry-1 notifier-night               want no action       got no action reads None $0.0104
+  14:14:39 carry-1 notifier-vendor-5xx          want check provider  got check provider reads None $0.0104
+  14:15:03 carry-1 api-deploy-5xx               want roll back       got roll back reads None $0.0203
+  14:15:07 carry-1 payments-provider-timeout    want check provider  got check provider reads None $0.0113
+  14:15:10 carry-1 web-node-restart             want read logs       got read logs reads None $0.0104
+  14:15:16 carry-1 api-data-leak                want page owner      got page owner reads None $0.0104
+  14:15:20 carry-1 payments-double-refund       want page owner      got page owner reads None $0.0115
+  14:15:23 carry-1 web-deploy-blank             want roll back       got roll back reads None $0.0104
+  14:15:39 carry-1 notifier-queue-stuck         want read logs       got read logs reads None $0.0166
+  14:15:46 carry-1 api-region-dns               want check provider  got check provider reads None $0.0123
+  14:15:53 carry-1 web-cdn-purge                want check provider  got check provider reads None $0.0119
+  14:15:58 carry-1 payments-deploy-validation   want roll back       got roll back reads None $0.0118
+  14:16:03 carry-1 api-slow-search              want read logs       got read logs reads None $0.0113
+  14:16:07 carry-1 web-crawler                  want no action       got no action reads None $0.0110
+  14:16:10 carry-1 payments-webhook-retry       want no action       got no action reads None $0.0104
+  14:16:16 carry-1 api-partner-limit            want page owner      got page owner reads None $0.0118
+  14:16:23 carry-1 web-deploy-layout            want roll back       got roll back reads None $0.0113
+  14:16:41 carry-1 notifier-vendor-quota        want check provider  got check provider reads None $0.0195
+  14:16:47 carry-1 api-db-pool                  want read logs       got read logs reads None $0.0115
+  14:16:53 carry-1 payments-key-in-logs         want page owner      got page owner reads None $0.0125
+  14:16:58 carry-1 web-deploy-slow              want roll back       got roll back reads None $0.0112
+  14:17:04 carry-1 api-audit-gap                want read logs       got read logs reads None $0.0123
+  14:17:12 carry-1 notifier-duplicate-sends     want read logs       got read logs reads None $0.0124
+  14:17:15 carry-1 payments-region-cloud        want check provider  got check provider reads None $0.0104
+  14:17:18 carry-1 web-bulk-delete              want page owner      got page owner reads None $0.0104
+== m3 model-1
+  14:17:30 model-1 payments-latency             want roll back       got roll back reads ['handbook-2', 'handbook-3', 'handbook-14', 'handbook-5'] $0.0111
+  14:17:37 model-1 payments-partial             want read logs       got read logs reads ['handbook-2', 'handbook-3', 'handbook-5', 'handbook-14'] $0.0059
+  14:17:53 model-1 api-slo-edge                 want read logs       got read logs reads ['handbook-2', 'handbook-3', 'handbook-14', 'handbook-5'] $0.0131
+  14:18:00 model-1 disk-slow-burn               want no action       got no action reads ['handbook-2', 'handbook-14', 'handbook-5', 'handbook-3'] $0.0099
+  14:18:10 model-1 web-cosmetic                 want no action       got no action reads ['handbook-2', 'handbook-3', 'handbook-14', 'handbook-7'] $0.0071
+  14:18:20 model-1 notifier-night               want no action       got no action reads ['handbook-14', 'handbook-2', 'handbook-5', 'handbook-3'] $0.0129
+  14:18:25 model-1 notifier-vendor-5xx          want check provider  got check provider reads ['handbook-2', 'handbook-5', 'handbook-6'] $0.0055
+  14:18:40 model-1 api-deploy-5xx               want roll back       got roll back reads ['handbook-2', 'handbook-3', 'handbook-14', 'handbook-5'] $0.0135
+  14:18:46 model-1 payments-provider-timeout    want check provider  got check provider reads ['handbook-2', 'handbook-3', 'handbook-5', 'handbook-6'] $0.0060
+  14:18:57 model-1 web-node-restart             want read logs       got read logs reads ['handbook-2', 'handbook-3', 'handbook-5', 'handbook-7'] $0.0132
+  14:19:02 model-1 api-data-leak                want page owner      got page owner reads ['handbook-2', 'handbook-3'] $0.0025
+  14:19:07 model-1 payments-double-refund       want page owner      got page owner reads ['handbook-2', 'handbook-3', 'handbook-5'] $0.0050
+  14:19:14 model-1 web-deploy-blank             want roll back       got roll back reads ['handbook-2', 'handbook-3', 'handbook-14'] $0.0051
+  14:19:22 model-1 notifier-queue-stuck         want read logs       got read logs reads ['handbook-2', 'handbook-5', 'handbook-6', 'handbook-7'] $0.0066
+  14:19:32 model-1 api-region-dns               want check provider  got check provider reads ['handbook-2', 'handbook-3', 'handbook-6'] $0.0064
+  14:19:40 model-1 web-cdn-purge                want check provider  got check provider reads ['handbook-2', 'handbook-6', 'handbook-5'] $0.0084
+  14:19:45 model-1 payments-deploy-validation   want roll back       got roll back reads ['handbook-2', 'handbook-5', 'handbook-11', 'handbook-3'] $0.0052
+  14:19:56 model-1 api-slow-search              want read logs       got read logs reads ['handbook-2', 'handbook-3'] $0.0056
+  14:20:05 model-1 web-crawler                  want no action       got no action reads ['handbook-2', 'handbook-3', 'handbook-13'] $0.0043
+  14:20:10 model-1 payments-webhook-retry       want no action       got no action reads ['handbook-2', 'handbook-14', 'handbook-5'] $0.0050
+  14:20:18 model-1 api-partner-limit            want page owner      got page owner reads ['handbook-2', 'handbook-3'] $0.0038
+  14:20:27 model-1 web-deploy-layout            want roll back       got roll back reads ['handbook-2', 'handbook-3', 'handbook-5'] $0.0079
+  14:20:31 model-1 notifier-vendor-quota        want check provider  got check provider reads ['handbook-2', 'handbook-3', 'handbook-6', 'handbook-7'] $0.0047
+  14:20:39 model-1 api-db-pool                  want read logs       got read logs reads ['handbook-2', 'handbook-5', 'handbook-3'] $0.0096
+  14:20:48 model-1 payments-key-in-logs         want page owner      got page owner reads ['handbook-2', 'handbook-3', 'handbook-12', 'handbook-7'] $0.0061
+  14:20:58 model-1 web-deploy-slow              want roll back       got roll back reads ['handbook-2', 'handbook-3', 'handbook-11', 'handbook-14'] $0.0053
+  14:21:09 model-1 api-audit-gap                want read logs       got read logs reads ['handbook-2', 'handbook-3', 'handbook-5', 'handbook-14'] $0.0127
+  14:21:14 model-1 notifier-duplicate-sends     want read logs       got read logs reads ['handbook-2', 'handbook-5', 'handbook-7', 'handbook-3'] $0.0064
+  14:21:29 model-1 payments-region-cloud        want check provider  got check provider reads ['handbook-2', 'handbook-3', 'handbook-5', 'handbook-6'] $0.0155
+  14:21:35 model-1 web-bulk-delete              want page owner      got page owner reads ['handbook-2', 'handbook-3', 'handbook-12'] $0.0029
+ALLDONE

@@ -1,0 +1,43 @@
+➜  nightshift git:(main) python3 lookup.py --list --dates | grep -i -e rollback -e shipyard
+payments-rollback-runbook: Payments rollback runbook (last updated 2024-03-11)
+postmortem-api-rollback-queue: Postmortem: api rollback stuck in the deploy queue (last updated 2026-08-27)
+deploying-with-shipyard: Deploying with Shipyard (last updated 2026-09-28)
+➜  nightshift git:(main) python3 lookup.py --dates "payments checkout errors jumped right after the last deploy, 12 minutes ago. How exactly do I roll payments back?"
+opened  payments-rollback-runbook
+opened  deploying-with-shipyard
+opened  payments-rollback-runbook
+opened  handbook-11
+As of **2026-09-28**, **payments** (along with `api`) moved to **Shipyard**. The old
+deployment tool (`dtool`) can no longer roll payments back.
+
+Rolling back payments to the previous release is pre-approved for the on-call engineer
+and does not require an approver.
+
+### Option 1: Via the Command Line
+1. Check the recent releases to identify the release immediately below the `live` one:
+   ```bash
+   shipyard releases payments
+   ```
+2. Run the rollback command pointing to that previous release (for example, `r-211`):
+   ```bash
+   shipyard rollback payments --to <previous-release-id>
+   ```
+3. Type the service name (`payments`) when prompted to confirm.
+
+### Option 2: Via the Browser
+1. Go to `shipyard.sorrel.internal`.
+2. Select **payments** and open the **Releases** tab.
+3. Find the release immediately below the `live` one and click **Roll back to this
+  release**.
+4. Type `payments` in the confirmation box to confirm.
+
+---
+
+### During & After Rollback
+- **What happens:** Shipyard will automatically drain in-flight checkouts first, then
+  switch nodes (takes about 5 minutes).
+- **Communication:** Shipyard posts start/end messages in `#deploys`. You should also
+... 8 more lines
+gemini-3.8-flash · 5 calls · 28,357 sent / 500 out · $0.0231 · 17 s
+➜  nightshift git:(main) 
+

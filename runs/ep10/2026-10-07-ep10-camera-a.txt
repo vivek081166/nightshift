@@ -1,0 +1,37 @@
+➜  nightshift git:(main) python3 lookup.py "payments checkout errors jumped right after the last deploy, 12 minutes ago. How exactly do I roll payments back?"
+opened  payments-rollback-runbook
+According to the **Payments rollback runbook**, here are the exact steps to roll
+payments back:
+
+### 1. Before you start
+* **Check the cause & money movement**: Make sure latency/checkout failures started
+  after the deploy (not before, which would indicate card provider issues). Verify money
+  has not moved wrongly (if charges/refunds are being counted twice, stop and page Mei).
+* **Communicate**:
+  * Open a thread in `#inc-live` stating you are about to roll back payments.
+  * Post one line in `#deploys`: `"reverting sorrel/payments to d-XXXX"` so nobody
+    starts another deploy while the lock is held.
+
+---
+
+### 2. Find the target deploy ID
+On your laptop, run:
+```bash
+dtool history sorrel/payments --last 5
+```
+* The newest deploy at the top is the bad one.
+* Note the deploy ID directly below it (e.g., `d-3917`). That is the version you are
+  rolling back to.
+
+---
+
+### 3. Run the rollback
+Run the revert command pointing to the previous deploy ID, including the mandatory
+`--drain-checkouts` flag:
+```bash
+dtool revert sorrel/payments --to <previous deploy id> --drain-checkouts
+```
+... 21 more lines
+gemini-3.8-flash · 2 calls · 4,771 sent / 565 out · $0.0057 · 12 s
+➜  nightshift git:(main) 
+

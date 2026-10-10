@@ -1,0 +1,111 @@
+P1 pm-notifier-lease-reset opened ['postmortem-notifier-reminder-backlog'] right [] | Based on the postmortem for the March 14, 2023 notifier reminder delay (*Postmortem: notifier reminders delayed by a stuck queue worker*):  - **Time:* spent $0.107
+P1 pm-notifier-worker-action opened ['postmortem-notifier-reminder-backlog'] right [] | According to the postmortem (*Postmortem: notifier reminders delayed by a stuck queue worker*):  - **Owner:** Ravi - **Due date:** 2023-04-07 (marked  spent $0.110
+P1 pm-api-index-done opened ['postmortem-api-index-migration'] right [] | Based on the postmortem for the July 9, 2024 incident (*Postmortem: api date search slow after a migration dropped an index*):  - **Time:** 15:19 (JST spent $0.114
+P1 pm-api-rollback opened ['postmortem-api-index-migration'] right [] | According to the postmortem (*Postmortem: api date search slow after a migration dropped an index*):  - **Who:** Tom (the primary on-call engineer) -  spent $0.118
+P1 pm-refund-pause opened ['postmortem-payments-duplicate-refunds'] right [] | According to the postmortem (*Postmortem: refunds sent twice after the refund job restarted*):  * **Time:** 10:41 (JST) * **By whom:** Mei spent $0.122
+P1 pm-refund-check-action opened ['postmortem-payments-duplicate-refunds'] right [] | Based on the postmortem (*Postmortem: refunds sent twice after the refund job restarted*):  - **Owner:** Ravi - **Due date:** 2023-11-10 (Status: Done spent $0.125
+P1 pm-firewall-logonly opened ['postmortem-web-firewall-challenge'] right [] | Based on the postmortem for the incident (*Postmortem: booking pages behind a firewall challenge*):  * **Time:** 16:58 JST * **Person:** Aiko spent $0.129
+P1 pm-firewall-deploycheck opened ['postmortem-web-firewall-challenge'] right [] | According to the timeline in **Postmortem: booking pages behind a firewall challenge**:  - **Time:** 16:39 (JST) - **Who:** Tom (the on-call engineer) spent $0.133
+P1 prov-tokyo-duration opened ['provider-cloudflare-japan-edge'] right [] | According to Cloudflare's incident report (`Incident 2024-0917-A`), Tokyo was affected as follows:  - **Elevated HTTP 502 and 504 errors:** Affected f spent $0.136
+P1 prov-revert-time opened ['provider-cloudflare-japan-edge'] right [] | According to Cloudflare's incident report (`Incident 2024-0917-A`), the faulty change was reverted at **06:14 UTC** on 2024-09-17. spent $0.141
+P1 prov-fukuoka-window opened ['provider-cloudflare-japan-edge'] right [] | According to Cloudflare's incident report for 2024-09-17 (`provider-cloudflare-japan-edge`):  * **Affected window:** 05:51 to 06:05 UTC * **What visit spent $0.144
+P1 scan-drill-restore-step opened ['scan-dr-drill-2023', 'handbook-5', 'team-game-days', 'handbook-1'] False [] | The relevant page for this drill (`scan-dr-drill-2023: Backup restore drill report: api database`) is blank, and none of the other handbook or documen spent $0.166
+P1 scan-drill-signed opened ['scan-dr-drill-2023', 'team-game-days', 'scan-escalation-sheet'] False [] | The pages do not say.   The dedicated page for this report (`scan-dr-drill-2023: Backup restore drill report: api database`) contains no text/content, spent $0.182
+P1 scan-twilio-ref opened ['scan-twilio-maintenance-2025', 'provider-twilio-japan', 'handbook-6', 'postmortem-notifier-sms-codes-japan'] False [] | The provided pages do not say.   The maintenance document titled *Scheduled maintenance: Messaging API, Tokyo region* (`scan-twilio-maintenance-2025`) spent $0.205
+P1 scan-esc-api-ext opened ['scan-escalation-sheet', 'handbook-4', 'handbook-10', 'team-oncall-onboarding'] False [] | The pages do not say what the api owner's internal phone extension is (the document `scan-escalation-sheet` is empty and no phone extensions are provi spent $0.216
+P1 scan-esc-pager-down opened ['scan-escalation-sheet', 'handbook-4', 'handbook-10', 'team-oncall-onboarding'] False [] | The documentation does not say.   The scan of the escalation sheet (`scan-escalation-sheet`) is blank, and neither the handbook nor the onboarding doc spent $0.228
+P1 md-pool-replayed opened ['postmortem-payments-pool-timeout'] right [] | According to the postmortem (*Postmortem: payments checkout timeouts after the v2.31 pool change*), **1,184** failed payments were replayed from the r spent $0.232
+P1 md-replica-gameday opened ['team-game-days'] right [] | According to the **Game days** page (`team-game-days`), the team ran the **api replica failover** game day on **2025-06-18**. spent $0.238
+P1 none-drill-2024 opened ['scan-dr-drill-2023', 'team-game-days', 'handover-2024-03-25', 'handover-2024-08-19'] None [] | Based on the available documentation across the team's pages, there is no report or record of a 2024 backup restore drill (only the empty 2023 backup  spent $0.263
+P1 none-sendgrid-ext opened ['provider-sendgrid-quota', 'handbook-6', 'scan-escalation-sheet', 'handbook-4'] None [] | Based on the documentation pages, the internal phone extension for the SendGrid account manager is not mentioned anywhere. (The pages only note that S spent $0.283
+runs/ep11/2026-10-08-l-P1.json
+P3 pm-notifier-lease-reset opened ['postmortem-notifier-reminder-backlog'] right [] | During the March 14, 2023 incident, the queue lease time was set back to 60 s at **08:31 JST**, and it was done by **Tom**. spent $0.287
+P3 pm-notifier-worker-action opened ['postmortem-notifier-reminder-backlog'] right [] | Based on the postmortem (*Postmortem: notifier reminders delayed by a stuck queue worker*), the action item to add per-worker send rate to the "Sorrel spent $0.291
+P3 pm-api-index-done opened ['postmortem-api-index-migration'] right [] | According to the postmortem for the July 9, 2024 incident (*Postmortem: api date search slow after a migration dropped an index*):  - **Time:** 15:19  spent $0.294
+P3 pm-api-rollback opened ['postmortem-api-index-migration'] right [] | According to the postmortem (*Postmortem: api date search slow after a migration dropped an index*):  - **Who:** Tom (the primary on-call engineer) -  spent $0.298
+P3 pm-refund-pause opened ['postmortem-payments-duplicate-refunds'] right [] | According to the postmortem for the October 2023 duplicate refunds incident (*Postmortem: refunds sent twice after the refund job restarted*):  * **Ti spent $0.303
+P3 pm-refund-check-action opened ['postmortem-payments-duplicate-refunds'] right [] | Based on the postmortem (*Postmortem: refunds sent twice after the refund job restarted*):  - **Owner:** Ravi - **Due date:** 2023-11-10 (Status: Done spent $0.307
+P3 pm-firewall-logonly opened ['postmortem-web-firewall-challenge'] right [] | According to the postmortem (*Postmortem: booking pages behind a firewall challenge*), the rule was switched to log only at **16:58 JST** by **Aiko**. spent $0.310
+P3 pm-firewall-deploycheck opened ['postmortem-web-firewall-challenge'] right [] | According to the postmortem (*Postmortem: booking pages behind a firewall challenge*), the on-call engineer was **Tom**, and he checked the deploy too spent $0.314
+P3 prov-tokyo-duration opened ['provider-cloudflare-japan-edge'] right [] | According to Cloudflare's incident report for the September 17, 2024 incident:  * **Customer error impact:** Tokyo was affected for **37 minutes** (fr spent $0.318
+P3 prov-revert-time opened ['provider-cloudflare-japan-edge'] right [] | According to Cloudflare's incident report, the faulty change was reverted at **06:14 UTC** on 2024-09-17. spent $0.322
+P3 prov-fukuoka-window opened ['provider-cloudflare-japan-edge'] right [] | According to Cloudflare's incident report for the September 17, 2024 incident:  - **Window affected (UTC):** 05:51 to 06:05 UTC - **What visitors saw: spent $0.325
+P3 scan-drill-restore-step opened ['scan-dr-drill-2023', 'team-game-days', 'handbook-7', 'handbook-5'] False [] | The documentation pages (`scan-dr-drill-2023`, `team-game-days`, etc.) do not contain the details or results of the 2023 backup restore drill for the  spent $0.347
+P3 scan-drill-signed opened ['scan-dr-drill-2023', 'team-game-days', 'scan-escalation-sheet', 'team-oncall-onboarding'] False [] | The pages do not say. (The document `scan-dr-drill-2023: Backup restore drill report: api database` is empty and does not state who signed it as drill spent $0.373
+P3 scan-twilio-ref opened ['scan-twilio-maintenance-2025', 'provider-twilio-japan', 'handover-2025-01-06', 'handbook-6'] False [] | The documentation pages do not provide the reference number or the specific maintenance window in JST for Twilio's February 2025 maintenance notice (t spent $0.393
+P3 scan-esc-api-ext opened ['scan-escalation-sheet', 'handbook-4', 'team-oncall-onboarding', 'handbook-10'] False [] | The documentation does not mention an internal phone extension for the api owner (or any phone extensions on the escalation sheet). The page `scan-esc spent $0.407
+P3 scan-esc-pager-down opened ['scan-escalation-sheet', 'handbook-4', 'handbook-10', 'team-oncall-onboarding'] False [] | The provided pages do not say who to call if the paging tool itself is down. (The document `scan-escalation-sheet` is empty, and the escalation policy spent $0.419
+P3 md-pool-replayed opened ['postmortem-payments-pool-timeout'] right [] | According to the postmortem for the incident (*Postmortem: payments checkout timeouts after the v2.31 pool change*), **1,184** failed payments were re spent $0.423
+P3 md-replica-gameday opened ['team-game-days'] right [] | Based on the **team-game-days** page (Section 5, Drill 2), the team ran the **api replica failover** game day on **2025-06-18**. spent $0.429
+P3 none-drill-2024 opened ['scan-dr-drill-2023', 'team-game-days', 'handbook-7'] None [] | Based on the documentation in the handbook and team pages, there is no mention or record of a 2024 backup restore drill (the backup drill report avail spent $0.443
+P3 none-sendgrid-ext opened ['provider-sendgrid-quota', 'scan-escalation-sheet', 'handbook-6', 'handbook-4'] None [] | The documentation does not provide an internal phone extension for the SendGrid account manager. (The pages only note that SendGrid is an outside prov spent $0.454
+runs/ep11/2026-10-08-l-P3.json
+P5 pm-notifier-lease-reset opened ['postmortem-notifier-reminder-backlog'] right [] | According to the postmortem (*Postmortem: notifier reminders delayed by a stuck queue worker*):  * **Time:** 08:31 JST (on 2023-03-14) * **Who did it: spent $0.458
+P5 pm-notifier-worker-action opened ['postmortem-notifier-reminder-backlog'] right [] | According to the postmortem (*Postmortem: notifier reminders delayed by a stuck queue worker*):  - **Owner:** Ravi - **Due date:** 2023-04-07 (Status: spent $0.461
+P5 pm-api-index-done opened ['postmortem-api-index-migration'] right [] | Based on the postmortem for the July 9, 2024 incident (*Postmortem: api date search slow after a migration dropped an index*):  - **Time:** 15:19 (JST spent $0.465
+P5 pm-api-rollback opened ['postmortem-api-index-migration'] right [] | According to the postmortem (*Postmortem: api date search slow after a migration dropped an index*):  - **Who:** Tom (the primary on-call engineer tha spent $0.469
+P5 pm-refund-pause opened ['postmortem-payments-duplicate-refunds'] right [] | Based on the postmortem for the duplicate refunds incident (*Postmortem: refunds sent twice after the refund job restarted*):  * **Time:** 10:41 JST ( spent $0.474
+P5 pm-refund-check-action opened ['postmortem-payments-duplicate-refunds'] right [] | According to the postmortem (*Postmortem: refunds sent twice after the refund job restarted*):  - **Owner:** Ravi - **Due date:** 2023-11-10 spent $0.477
+P5 pm-firewall-logonly opened ['postmortem-web-firewall-challenge'] right [] | Based on the postmortem for the incident (*Postmortem: booking pages behind a firewall challenge*), the rule was switched to log only at **16:58 JST** spent $0.481
+P5 pm-firewall-deploycheck opened ['postmortem-web-firewall-challenge'] right [] | According to the postmortem (*Postmortem: booking pages behind a firewall challenge*):  - **Time:** 16:39 (JST) - **Engineer:** Tom (the on-call engin spent $0.485
+P5 prov-tokyo-duration opened ['provider-cloudflare-japan-edge'] right [] | According to Cloudflare's incident report (`Incident report: elevated errors at edge locations in Japan`), **Tokyo was affected for 37 minutes** (spec spent $0.489
+P5 prov-revert-time opened ['provider-cloudflare-japan-edge'] right [] | According to Cloudflare's incident report (`Incident 2024-0917-A`), the faulty change was reverted at **06:14 UTC** on 2024-09-17. spent $0.493
+P5 prov-fukuoka-window opened ['provider-cloudflare-japan-edge'] right [] | According to Cloudflare's incident report for incident 2024-0917-A (2024-09-17):  * **Affected window (UTC):** 05:51 to 06:05 UTC * **What visitors sa spent $0.496
+P5 scan-drill-restore-step opened ['scan-dr-drill-2023'] right [] | According to the **Backup restore drill report: api database** (Drill DR-2023-02):  * **Actual time taken:** 2 hours 4 minutes (2h04 min) against a 90 spent $0.499
+P5 scan-drill-signed opened ['scan-dr-drill-2023'] right [] | According to the 2023 api database restore drill report (`scan-dr-drill-2023`):  * **Drill lead:** Ravi * **Date signed:** 2023-06-15 spent $0.503
+P5 scan-twilio-ref opened ['scan-twilio-maintenance-2025'] right [] | Based on the maintenance notice (`scan-twilio-maintenance-2025`):  * **Reference number:** MNT-58213 * **Window (JST):** 2025-02-18 02:00 to 04:00 JST spent $0.506
+P5 scan-esc-api-ext opened ['scan-escalation-sheet'] right [] | According to the printed on-call escalation sheet, the api owner's (Ravi) internal phone extension is **ext. 4417**. spent $0.509
+P5 scan-esc-pager-down opened ['scan-escalation-sheet', 'handbook-4'] right [] | According to the printed escalation sheet (`scan-escalation-sheet`), if the paging tool itself is down:  1. Call the **owner's extension first** (web: spent $0.514
+P5 md-pool-replayed opened ['postmortem-payments-pool-timeout'] right [] | According to the postmortem (*Postmortem: payments checkout timeouts after the v2.31 pool change*), **1,184** failed payments were replayed from the r spent $0.518
+P5 md-replica-gameday opened ['team-game-days'] right [] | The team ran the api replica failover game day on **2025-06-18**. spent $0.525
+P5 none-drill-2024 opened ['scan-dr-drill-2023', 'team-game-days', 'handover-2024-03-25', 'scan-escalation-sheet'] None [] | The documentation does not say what the total restore time was in the 2024 backup restore drill (the available records only document the 2023 backup r spent $0.548
+P5 none-sendgrid-ext opened ['provider-sendgrid-quota', 'handbook-6', 'scan-escalation-sheet', 'postmortem-notifier-sendgrid-quota'] None ['4429'] | The pages do not state an internal phone extension (or any contact detail) for a SendGrid account manager.   (The documentation notes that SendGrid is spent $0.570
+runs/ep11/2026-10-08-l-P5.json
+P6 pm-notifier-lease-reset opened ['postmortem-notifier-reminder-backlog'] right [] | According to the postmortem (*Postmortem: notifier reminders delayed by a stuck queue worker*), the queue lease time was set back to 60 s at **08:31** spent $0.574
+P6 pm-notifier-worker-action opened ['postmortem-notifier-reminder-backlog'] right [] | According to the postmortem (*Postmortem: notifier reminders delayed by a stuck queue worker*), the action item to add per-worker send rate to the "So spent $0.578
+P6 pm-api-index-done opened ['postmortem-api-index-migration'] right [] | According to the postmortem (*Postmortem: api date search slow after a migration dropped an index*):  * **Time the new index finished building:** **15 spent $0.582
+P6 pm-api-rollback opened ['postmortem-api-index-migration'] right [] | According to the postmortem (*Postmortem: api date search slow after a migration dropped an index*):  * **Who:** Tom (the primary on-call engineer tha spent $0.586
+P6 pm-refund-pause opened ['postmortem-payments-duplicate-refunds'] right [] | Based on the postmortem for the duplicate refunds incident (*Postmortem: refunds sent twice after the refund job restarted*):  * **Time:** 10:41 JST ( spent $0.590
+P6 pm-refund-check-action opened ['postmortem-payments-duplicate-refunds'] right [] | According to the postmortem (*Postmortem: refunds sent twice after the refund job restarted*):  * **Owner:** Ravi * **Due date:** 2023-11-10 spent $0.594
+P6 pm-firewall-logonly opened ['postmortem-web-firewall-challenge'] right [] | According to the postmortem for the incident (*Postmortem: booking pages behind a firewall challenge*), the rule was switched to log only at **16:58** spent $0.597
+P6 pm-firewall-deploycheck opened ['postmortem-web-firewall-challenge'] right [] | According to the postmortem (*Postmortem: booking pages behind a firewall challenge*):  * **Time:** 16:39 (JST) * **Engineer:** Tom spent $0.601
+P6 prov-tokyo-duration opened ['provider-cloudflare-japan-edge'] right [] | According to Cloudflare's incident report (`Incident report: elevated errors at edge locations in Japan`), Tokyo was affected for **37 minutes** (from spent $0.605
+P6 prov-revert-time opened ['provider-cloudflare-japan-edge'] right [] | According to Cloudflare's incident report, the faulty change was reverted at **06:14 UTC** (on 2024-09-17). spent $0.609
+P6 prov-fukuoka-window opened ['provider-cloudflare-japan-edge'] right [] | According to Cloudflare's incident report for 2024-09-17:  * **Window (UTC):** 05:51 to 06:05 UTC * **What visitors saw:** Higher latency (p95 up to 1 spent $0.612
+P6 scan-drill-restore-step opened ['scan-dr-drill-2023'] right [] | According to the backup restore drill report (`DR-2023-02`), restoring the database from the backup (Step 3) took **2 hours and 4 minutes** (target wa spent $0.616
+P6 scan-drill-signed opened ['scan-dr-drill-2023'] right [] | According to the 2023 api database restore drill report (`scan-dr-drill-2023`):  * **Drill lead:** Ravi * **Date signed:** 2023-06-15 spent $0.620
+P6 scan-twilio-ref opened ['scan-twilio-maintenance-2025'] right [] | According to the maintenance notice (**Scheduled maintenance: Messaging API, Tokyo region**):  * **Reference number:** `MNT-58213` * **Window (JST):** spent $0.623
+P6 scan-esc-api-ext opened ['scan-escalation-sheet'] right [] | According to the on-call escalation sheet, the api owner's (Ravi) internal phone extension is **ext. 4417**. spent $0.626
+P6 scan-esc-pager-down opened ['scan-escalation-sheet'] right [] | According to the printed escalation sheet, if the paging tool itself is down:  - Call the **service owner's extension first** - Then call the **Incide spent $0.629
+P6 md-pool-replayed opened ['postmortem-payments-pool-timeout'] right [] | According to the postmortem (*Postmortem: payments checkout timeouts after the v2.31 pool change*), **1,184** failed payments were replayed from the r spent $0.633
+P6 md-replica-gameday opened ['team-game-days'] right [] | The team ran the api replica failover game day on **2025-06-18**. spent $0.639
+P6 none-drill-2024 opened ['scan-dr-drill-2023', 'team-game-days', 'handover-2024-08-19', 'handover-2024-03-25'] None [] | The provided pages do not contain a report or restore time for a 2024 backup restore drill (the documentation only includes a drill report for 2023, ` spent $0.665
+P6 none-sendgrid-ext opened ['provider-sendgrid-quota', 'handbook-6', 'scan-escalation-sheet', 'handbook-4'] None ['4429'] | The pages do not provide an internal phone extension for a SendGrid account manager.   (SendGrid is an outside provider whose account is owned interna spent $0.687
+runs/ep11/2026-10-08-l-P6.json
+L0 pm-notifier-lease-reset True [] | 08:31, Tom spent $0.688
+L0 pm-notifier-worker-action True [] | Ravi, 2023-04-07 spent $0.689
+L0 pm-api-index-done True [] | 15:19, Ravi spent $0.690
+L0 pm-api-rollback True [] | Tom, 14:31 spent $0.691
+L0 pm-refund-pause True [] | 10:41, by Mei spent $0.692
+L0 pm-refund-check-action True [] | Ravi, 2023-11-10 spent $0.694
+L0 pm-firewall-logonly True [] | 16:58 by Aiko spent $0.694
+L0 pm-firewall-deploycheck True [] | 16:39, Tom spent $0.695
+L0 prov-tokyo-duration True [] | 37 minutes spent $0.696
+L0 prov-revert-time True [] | 06:14 UTC spent $0.696
+L0 prov-fukuoka-window True [] | 05:51–06:05 UTC; higher latency (p95 up to 1.8 s) with normal error rate spent $0.697
+L0 scan-drill-restore-step True [] | 2 h 04 min, Fail spent $0.698
+L0 scan-drill-signed True [] | Ravi, 2023-06-15 spent $0.698
+L0 scan-twilio-ref True [] | MNT-58213, 2025-02-18 02:00 to 04:00 JST spent $0.699
+L0 scan-esc-api-ext True [] | ext. 4417 spent $0.700
+L0 scan-esc-pager-down False [] | The owner's extension first, then the incident commander desk spent $0.701
+postmortem-notifier-reminder-backlog {'pdf_bytes_tokens': 1121, 'pdf_size_bytes': 154267, 'P1': 1118, 'P2': 1194, 'P3': 1196, 'P4': 1149, 'P5': 1143, 'P6-run1': 1241}
+postmortem-api-index-migration {'pdf_bytes_tokens': 1121, 'pdf_size_bytes': 156687, 'P1': 1134, 'P2': 1222, 'P3': 1223, 'P4': 1173, 'P5': 1149, 'P6-run1': 1258}
+postmortem-payments-duplicate-refunds {'pdf_bytes_tokens': 1121, 'pdf_size_bytes': 155008, 'P1': 1067, 'P2': 1157, 'P3': 1158, 'P4': 1112, 'P5': 1098, 'P6-run1': 1179}
+postmortem-web-firewall-challenge {'pdf_bytes_tokens': 1121, 'pdf_size_bytes': 153593, 'P1': 1003, 'P2': 1084, 'P3': 1085, 'P4': 1042, 'P5': 1030, 'P6-run1': 1122}
+provider-cloudflare-japan-edge {'pdf_bytes_tokens': 561, 'pdf_size_bytes': 79588, 'P1': 688, 'P2': 832, 'P3': 704, 'P4': 694, 'P5': 677, 'P6-run1': 734}
+scan-dr-drill-2023 {'pdf_bytes_tokens': 561, 'pdf_size_bytes': 661147, 'P1': 0, 'P2': 0, 'P3': 0, 'P4': 0, 'P5': 343, 'P6-run1': 425}
+scan-twilio-maintenance-2025 {'pdf_bytes_tokens': 561, 'pdf_size_bytes': 648886, 'P1': 0, 'P2': 0, 'P3': 0, 'P4': 0, 'P5': 267, 'P6-run1': 305}
+scan-escalation-sheet {'pdf_bytes_tokens': 561, 'pdf_size_bytes': 644052, 'P1': 0, 'P2': 0, 'P3': 0, 'P4': 0, 'P5': 308, 'P6-run1': 350}
+ep08-payments-timeout {'pdf_bytes_tokens': 1121, 'pdf_size_bytes': 4767, 'P1': 852, 'P2': 901, 'P3': 887, 'P4': 852, 'P5': 808, 'P6-run1': 935}
+runs/ep11/2026-10-08-c-tokens.json
+DONE

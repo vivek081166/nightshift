@@ -5,7 +5,7 @@
     python3 lookup.py --list                  # the contents list, exactly as the call sends it
     python3 lookup.py --dates ...             # each line of the list ends with the day the page last changed
 """
-import json, os, re, sys, textwrap, time, urllib.request
+import json, os, re, shutil, sys, textwrap, time, urllib.request
 from pathlib import Path
 from rules import SYSTEM
 
@@ -19,6 +19,7 @@ READ_PAGE = {"name": "read_page", "description": "Read one of the team's pages b
                  "id": {"type": "string", "description": "the page id, exactly as the contents list gives it"}},
                  "required": ["id"]}}
 used = []
+SCREEN = shutil.get_terminal_size((89, 24)).columns   # the terminal's width; 89 under a pipe
 
 
 def handbook():
@@ -106,7 +107,7 @@ def show(answer, most=30):
             lines.append((line, True))
         else:
             indent = " " * (len(line) - len(line.lstrip()) + (2 if re.match(r"\s*([*-]|\d+\.) ", line) else 0))
-            lines += [(w, False) for w in textwrap.wrap(line, 88, subsequent_indent=indent) or [""]]
+            lines += [(w, False) for w in textwrap.wrap(line, min(88, SCREEN - 1), subsequent_indent=indent, break_on_hyphens=SCREEN > 88) or [""]]
     shown = 0
     for i, (line, code) in enumerate(lines):
         if shown >= most and not code:
@@ -120,7 +121,9 @@ def cost_line(secs):
     sent = sum(u["promptTokenCount"] for u in used)
     out = sum(u.get("candidatesTokenCount", 0) + u.get("thoughtsTokenCount", 0) for u in used)
     usd = (sent * PRICE_IN + out * PRICE_OUT) / 1e6
-    return f"{MODEL} · {len(used)} calls · {sent:,} sent / {out:,} out · ${usd:.4f} · {secs:.0f} s"
+    line = f"{MODEL} · {len(used)} calls · {sent:,} sent / {out:,} out · ${usd:.4f} · {secs:.0f} s"
+    cut = line.rfind(" · ", 0, SCREEN + 2)                 # a narrow screen: two rows, split at the last " · " that fits
+    return line[:cut] + "\n" + line[cut + 3:] if len(line) > SCREEN - 1 and cut > 0 else line
 
 
 if __name__ == "__main__":

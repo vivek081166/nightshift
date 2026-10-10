@@ -1,0 +1,98 @@
+{
+ "scan-dr-drill-2023": {
+  "1_print": {
+   "cmd": [
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "--headless=new",
+    "--disable-gpu",
+    "--no-first-run",
+    "--user-data-dir=<fresh temp dir>",
+    "--use-mock-keychain",
+    "--password-store=basic",
+    "--no-pdf-header-footer",
+    "--print-to-pdf=/Users/vivek/Projects/nightshift/library/pdf/build/scan-dr-drill-2023.printed.pdf",
+    "file:///Users/vivek/Projects/nightshift/library/pdf/scan-dr-drill-2023.html"
+   ],
+   "written": true,
+   "chrome_says": "168514 bytes written to file /Users/vivek/Projects/nightshift/library/pdf/build/scan-dr-drill-2023.printed.pdf",
+   "secs_to_pdf": 0.6,
+   "exited_on_its_own": false
+  },
+  "2_rasterise": "pdftoppm -r 200 -gray -png /Users/vivek/Projects/nightshift/library/pdf/build/scan-dr-drill-2023.printed.pdf /Users/vivek/Projects/nightshift/library/pdf/build/scan-dr-drill-2023.raster",
+  "3_degrade": {
+   "rotate_deg": 0.7,
+   "blur_radius": 0.6,
+   "noise_sigma": 6.0,
+   "paper": 236,
+   "jpeg_quality": 74,
+   "seed": 11,
+   "order": "rotate (bicubic, white fill) -> GaussianBlur -> multiply by paper/255 -> add N(0, noise_sigma) -> JPEG at jpeg_quality"
+  },
+  "4_wrap": "reportlab canvas.drawImage of each JPEG, full A4 page, no text layer",
+  "pages": 1
+ },
+ "scan-twilio-maintenance-2025": {
+  "1_print": {
+   "cmd": [
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "--headless=new",
+    "--disable-gpu",
+    "--no-first-run",
+    "--user-data-dir=<fresh temp dir>",
+    "--use-mock-keychain",
+    "--password-store=basic",
+    "--no-pdf-header-footer",
+    "--print-to-pdf=/Users/vivek/Projects/nightshift/library/pdf/build/scan-twilio-maintenance-2025.printed.pdf",
+    "file:///Users/vivek/Projects/nightshift/library/pdf/scan-twilio-maintenance-2025.html"
+   ],
+   "written": true,
+   "chrome_says": "159555 bytes written to file /Users/vivek/Projects/nightshift/library/pdf/build/scan-twilio-maintenance-2025.printed.pdf",
+   "secs_to_pdf": 0.6,
+   "exited_on_its_own": false
+  },
+  "2_rasterise": "pdftoppm -r 200 -gray -png /Users/vivek/Projects/nightshift/library/pdf/build/scan-twilio-maintenance-2025.printed.pdf /Users/vivek/Projects/nightshift/library/pdf/build/scan-twilio-maintenance-2025.raster",
+  "3_degrade": {
+   "rotate_deg": -0.5,
+   "blur_radius": 0.5,
+   "noise_sigma": 5.0,
+   "paper": 240,
+   "jpeg_quality": 78,
+   "seed": 12,
+   "order": "rotate (bicubic, white fill) -> GaussianBlur -> multiply by paper/255 -> add N(0, noise_sigma) -> JPEG at jpeg_quality"
+  },
+  "4_wrap": "reportlab canvas.drawImage of each JPEG, full A4 page, no text layer",
+  "pages": 1
+ },
+ "scan-escalation-sheet": {
+  "1_print": {
+   "cmd": [
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "--headless=new",
+    "--disable-gpu",
+    "--no-first-run",
+    "--user-data-dir=<fresh temp dir>",
+    "--use-mock-keychain",
+    "--password-store=basic",
+    "--no-pdf-header-footer",
+    "--print-to-pdf=/Users/vivek/Projects/nightshift/library/pdf/build/scan-escalation-sheet.printed.pdf",
+    "file:///Users/vivek/Projects/nightshift/library/pdf/scan-escalation-sheet.html"
+   ],
+   "written": true,
+   "chrome_says": "129674 bytes written to file /Users/vivek/Projects/nightshift/library/pdf/build/scan-escalation-sheet.printed.pdf",
+   "secs_to_pdf": 0.6,
+   "exited_on_its_own": false
+  },
+  "2_rasterise": "pdftoppm -r 200 -gray -png /Users/vivek/Projects/nightshift/library/pdf/build/scan-escalation-sheet.printed.pdf /Users/vivek/Projects/nightshift/library/pdf/build/scan-escalation-sheet.raster",
+  "3_degrade": {
+   "rotate_deg": 1.1,
+   "blur_radius": 0.7,
+   "noise_sigma": 7.0,
+   "paper": 232,
+   "jpeg_quality": 71,
+   "seed": 13,
+   "order": "rotate (bicubic, white fill) -> GaussianBlur -> multiply by paper/255 -> add N(0, noise_sigma) -> JPEG at jpeg_quality"
+  },
+  "4_wrap": "reportlab canvas.drawImage of each JPEG, full A4 page, no text layer",
+  "pages": 1
+ }
+}

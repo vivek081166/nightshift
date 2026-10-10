@@ -1,0 +1,73 @@
+{
+ "request": {
+  "contents": [
+   {
+    "role": "user",
+    "parts": [
+     {
+      "inline_data": {
+       "mime_type": "application/pdf",
+       "data": "<omitted file bytes: base64 md5 bd5253c5875b4525532fcc24f527d1b3>"
+      }
+     },
+     {
+      "text": "Write this whole document out as Markdown, word for word, in reading order. Every table becomes a Markdown table with the same rows and columns. Do not summarise, do not leave anything out, and do not add anything that is not in the document."
+     }
+    ]
+   }
+  ],
+  "generationConfig": {
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  }
+ },
+ "http": 200,
+ "sent_utc": "2026-10-08T12:26:33.307+00:00",
+ "wall_s": 5.267,
+ "retries": [],
+ "error": null,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "text": "## Backup restore drill report: api database\n\nSorrel platform team · Drill DR-2023-02\n\n| Drill | DR-2023-02 |\n| :--- | :--- |\n| Date | 2023-06-13 (Tuesday) |\n| Scope | Restore the api primary database from the nightly backup into the restore account in eu-west-1 |\n| Recovery point | Nightly backup of 2023-06-13 01:00 JST |\n| Drill lead | Ravi |\n| Observer | Mei |\n\n### Results\n\n| Step | Target | Actual | Result |\n| :--- | :--- | :--- | :--- |\n| 1. Find the latest nightly backup in object storage | 10 min | 6 min | Pass |\n| 2. Copy the backup to the restore account in eu-west-1 | 45 min | 38 min | Pass |\n| 3. Restore the database from the backup | 90 min | 2 h 04 min | Fail |\n| 4. Check row counts against the production snapshot | 20 min | 17 min | Pass |\n| 5. Start api against the restored database and make a test booking | 30 min | 22 min | Pass |\n| Total time to a working api | 4 h | 3 h 27 min | Pass |\n\nStep 3 was slow because the restore used the default instance size. The bookings table came back with 41,880,112 rows, matching the production snapshot exactly.\n\nFollow-up: restore to a larger instance size and repeat the drill in December.\n\n*Ravi*  \nDrill lead: Ravi Date: 2023-06-15\n\n*Mei*  \nReviewed: Mei Date: 2023-06-16",
+       "thoughtSignature": "EmkKZwFpFH0TdslEyiA7GRRt2RKtgfywpRcj6dsHX/e6kkpRBGYFmLAhEqtTW1nc4XdlIKh/6zViWMUoAYkwBddT4PUiQSDzI3q7+Fnl11MZK9VOD0yPvbahyRGRdLXOknNfN3yMJY0u/DA="
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 584,
+   "candidatesTokenCount": 424,
+   "totalTokenCount": 1008,
+   "promptTokensDetails": [
+    {
+     "modality": "IMAGE",
+     "tokenCount": 532
+    },
+    {
+     "modality": "TEXT",
+     "tokenCount": 52
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "responseId": "-YvHaqOTNY791e8PrZWOoAg"
+ },
+ "text": "## Backup restore drill report: api database\n\nSorrel platform team · Drill DR-2023-02\n\n| Drill | DR-2023-02 |\n| :--- | :--- |\n| Date | 2023-06-13 (Tuesday) |\n| Scope | Restore the api primary database from the nightly backup into the restore account in eu-west-1 |\n| Recovery point | Nightly backup of 2023-06-13 01:00 JST |\n| Drill lead | Ravi |\n| Observer | Mei |\n\n### Results\n\n| Step | Target | Actual | Result |\n| :--- | :--- | :--- | :--- |\n| 1. Find the latest nightly backup in object storage | 10 min | 6 min | Pass |\n| 2. Copy the backup to the restore account in eu-west-1 | 45 min | 38 min | Pass |\n| 3. Restore the database from the backup | 90 min | 2 h 04 min | Fail |\n| 4. Check row counts against the production snapshot | 20 min | 17 min | Pass |\n| 5. Start api against the restored database and make a test booking | 30 min | 22 min | Pass |\n| Total time to a working api | 4 h | 3 h 27 min | Pass |\n\nStep 3 was slow because the restore used the default instance size. The bookings table came back with 41,880,112 rows, matching the production snapshot exactly.\n\nFollow-up: restore to a larger instance size and repeat the drill in December.\n\n*Ravi*  \nDrill lead: Ravi Date: 2023-06-15\n\n*Mei*  \nReviewed: Mei Date: 2023-06-16",
+ "function_calls": [],
+ "finishReason": "STOP",
+ "cost_usd": 0.002028,
+ "slug": "scan-dr-drill-2023",
+ "run": 1,
+ "pdf": "library/pdf/scan-dr-drill-2023.pdf",
+ "pdf_md5": "f4cdd040d6a066754530512287d0282b"
+}

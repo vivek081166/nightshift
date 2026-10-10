@@ -1,0 +1,131 @@
+{
+ "slug": "scan-dr-drill-2023",
+ "title": "Backup restore drill report: api database",
+ "kind": "scan",
+ "written": "from the HTML's source data, before any extractor ran",
+ "pages": 1,
+ "tables": [
+  {
+   "name": "meta",
+   "rows": [
+    [
+     "Drill",
+     "DR-2023-02"
+    ],
+    [
+     "Date",
+     "2023-06-13 (Tuesday)"
+    ],
+    [
+     "Scope",
+     "Restore the api primary database from the nightly backup into the restore account in eu-west-1"
+    ],
+    [
+     "Recovery point",
+     "Nightly backup of 2023-06-13 01:00 JST"
+    ],
+    [
+     "Drill lead",
+     "Ravi"
+    ],
+    [
+     "Observer",
+     "Mei"
+    ]
+   ],
+   "page_of_row": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "name": "main",
+   "rows": [
+    [
+     "1. Find the latest nightly backup in object storage",
+     "10 min",
+     "6 min",
+     "Pass"
+    ],
+    [
+     "2. Copy the backup to the restore account in eu-west-1",
+     "45 min",
+     "38 min",
+     "Pass"
+    ],
+    [
+     "3. Restore the database from the backup",
+     "90 min",
+     "2 h 04 min",
+     "Fail"
+    ],
+    [
+     "4. Check row counts against the production snapshot",
+     "20 min",
+     "17 min",
+     "Pass"
+    ],
+    [
+     "5. Start api against the restored database and make a test booking",
+     "30 min",
+     "22 min",
+     "Pass"
+    ],
+    [
+     "Total time to a working api",
+     "4 h",
+     "3 h 27 min",
+     "Pass"
+    ]
+   ],
+   "page_of_row": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  }
+ ],
+ "facts": [
+  {
+   "text": "DR-2023-02",
+   "page": 1
+  },
+  {
+   "text": "2023-06-13",
+   "page": 1
+  },
+  {
+   "text": "eu-west-1",
+   "page": 1
+  },
+  {
+   "text": "2 h 04 min",
+   "page": 1
+  },
+  {
+   "text": "3 h 27 min",
+   "page": 1
+  },
+  {
+   "text": "41,880,112 rows",
+   "page": 1
+  },
+  {
+   "text": "2023-06-15",
+   "page": 1
+  },
+  {
+   "text": "2023-06-16",
+   "page": 1
+  }
+ ],
+ "source_text": "Backup restore drill report: api database Sorrel platform team · Drill DR-2023-02 Drill DR-2023-02 Date 2023-06-13 (Tuesday) Scope Restore the api primary database from the nightly backup into the restore account in eu-west-1 Recovery point Nightly backup of 2023-06-13 01:00 JST Drill lead Ravi Observer Mei Results Step Target Actual Result 1. Find the latest nightly backup in object storage 10 min 6 min Pass 2. Copy the backup to the restore account in eu-west-1 45 min 38 min Pass 3. Restore the database from the backup 90 min 2 h 04 min Fail 4. Check row counts against the production snapshot 20 min 17 min Pass 5. Start api against the restored database and make a test booking 30 min 22 min Pass Total time to a working api 4 h 3 h 27 min Pass Step 3 was slow because the restore used the default instance size. The bookings table came back with 41,880,112 rows, matching the production snapshot exactly. Follow-up: restore to a larger instance size and repeat the drill in December. Ravi Drill lead: Ravi Date: 2023-06-15 Mei Reviewed: Mei Date: 2023-06-16",
+ "page_map_how": "by eye from low-resolution renders of the frozen PDF, before any extractor ran"
+}

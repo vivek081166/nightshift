@@ -1,0 +1,63 @@
+Source: postmortem-payments-duplicate-refunds.pdf · md5 94852b1c · converted 2026-10-08
+
+Sorrel Engineering / Postmortems / 2023
+
+# Postmortem: refunds sent twice after the refund job restarted
+
+| Incident date | 2023-10-24 (Tuesday, morning JST) |
+| :--- | :--- |
+| Severity | SEV-1 |
+| Service | payments |
+| Incident commander | Ravi |
+| Author | Mei |
+| Status | Final, reviewed 2023-10-26 |
+
+## Summary
+
+The daily refund job lost its database connection partway through its 10:00 run. The scheduler started it again from the beginning, and because the job built each refund's idempotency key from the time the run started, stripe treated the repeated requests as new refunds. 400 refunds went out twice, worth ¥2,836,400 in total. The extra refunds were written off; no customer was charged again.
+
+## Impact
+
+* Money: 400 refunds sent twice, ¥2,836,400 in total, written off by decision of Mei and finance on 2023-10-24.
+* Customers: none charged. 400 customers received an extra refund, and all 1,318 refunds in the run arrived at least once.
+* Businesses: 9 businesses wrote to support about refund lines they did not expect.
+* Data: none exposed or lost.
+
+## Timeline (JST)
+
+| Time | What happened | Who |
+| :--- | :--- | :--- |
+| 10:00 | The daily refund job starts. It sends the 1,318 refunds approved the day before to stripe in batches of 50. | refund job |
+| 10:07 | The job's connection to the payments database drops during batch 9. The job exits, and the scheduler starts it again from the beginning. | scheduler |
+| 10:08 | The second run sends batches 1 to 8 again. stripe accepts them as new refunds, because the idempotency keys are built from the run's start time. | refund job |
+| 10:19 | The second run finishes all 27 batches. 400 refunds have now gone out twice. | refund job |
+| 10:26 | Support receives the first message from a business: a customer was refunded twice for the same cancelled lesson. | Support |
+| 10:31 | Tom, on call, sees the support message in #inc-live and opens the refund job's logs, which show two runs starting at 10:00 and 10:07. | Tom |
+| 10:36 | Money has already moved, so Tom pages Mei as the payments owner and changes nothing himself. | Tom |
+| 10:41 | Mei acknowledges and pauses the refund job in the scheduler, so no third run can start. | Mei |
+| 10:49 | Incident declared (SEV-1). Ravi takes incident commander. | Ravi |
+| 11:05 | Mei counts the duplicates from the stripe dashboard export: 400 refunds sent twice, ¥2,836,400 in total. | Mei |
+| 11:12 | Ravi updates status.sorrel.app: refunds are paused while a payments problem is fixed; charges at checkout work normally. | Ravi |
+| 12:15 | Mei and finance decide the extra refunds stay with the customers and are written off. No customer will be charged again. | Mei |
+| 13:40 | Mei changes the idempotency key to use the refund id instead of the run's start time. Ravi reviews the change and it is deployed. | Mei |
+| 14:10 | The fixed job is run against a copy of the day's list in the stripe test account. No refund is sent twice. | Mei |
+| 14:35 | Incident closed. Refunds resume with the next daily run, on 2023-10-25 at 10:00. | Ravi |
+
+## What went well
+
+* Tom did not try to reverse anything himself; money had moved, so he paged Mei, as the handbook says.
+* The stripe dashboard export made the duplicates countable within half an hour.
+
+## What went badly
+
+* The scheduler restarted a job that moves money from the beginning, with no check of what the first run had already sent.
+* Nothing on our side noticed; a business told support 19 minutes after the second run began.
+
+## Action items
+
+| Action | Owner | Due | Status |
+| :--- | :--- | :--- | :--- |
+| Build the refund idempotency key from the refund id, never from the run's start time. | Mei | 2023-10-24 | Done |
+| Make the scheduler alert instead of restarting a job that moves money. | Mei | 2023-11-03 | Done |
+| Add a daily check that no refund id was sent to stripe twice. | Ravi | 2023-11-10 | Done |
+| Write down in the payments runbook how to pause a job that moves money. | Mei | 2023-11-17 | Open |

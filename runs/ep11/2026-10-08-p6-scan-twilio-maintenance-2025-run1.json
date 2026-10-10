@@ -1,0 +1,73 @@
+{
+ "request": {
+  "contents": [
+   {
+    "role": "user",
+    "parts": [
+     {
+      "inline_data": {
+       "mime_type": "application/pdf",
+       "data": "<omitted file bytes: base64 md5 aadc72fb7b7b1643d02ec7e8df5d242b>"
+      }
+     },
+     {
+      "text": "Write this whole document out as Markdown, word for word, in reading order. Every table becomes a Markdown table with the same rows and columns. Do not summarise, do not leave anything out, and do not add anything that is not in the document."
+     }
+    ]
+   }
+  ],
+  "generationConfig": {
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  }
+ },
+ "http": 200,
+ "sent_utc": "2026-10-08T12:26:38.587+00:00",
+ "wall_s": 4.472,
+ "retries": [],
+ "error": null,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "text": "# Scheduled maintenance: Messaging API, Tokyo region\n\ntwilio · Maintenance notice · Sent 2025-02-04\n\n| Reference | MNT-58213 |\n| :--- | :--- |\n| **Window (JST)** | 2025-02-18 02:00 to 04:00 JST |\n| **Window (UTC)** | 2025-02-17 17:00 to 19:00 UTC |\n| **Action required** | None |\n\nWe will carry out planned maintenance on the Messaging API in our Tokyo region. During the window, SMS sends may be delayed by up to 10 minutes. Messages will be queued, not dropped. Delivery receipts may arrive up to 30 minutes late.\n\n### Affected products\n\n| Product | Expected impact |\n| :--- | :--- |\n| Messaging API: SMS to Japanese numbers | Sends delayed by up to 10 minutes |\n| Delivery receipts (status callbacks) | Up to 30 minutes late |\n| One-time sign-in codes sent as SMS | Delayed by up to 10 minutes |\n| Voice | Not affected |\n\nIf you have questions about this maintenance, reply to this notice and quote reference MNT-58213.\n\nnotifier deploy freeze booked for this window. Tom 2/5",
+       "thoughtSignature": "EmkKZwFpFH0TB1/2RmzMlUWDJ8dDYLQhNR3RzPoBKKsI4kFy2yizfCRMgr2v0BpKyFuqx3YKcyOZG/kEynNvRlAH5t9i0vfLBFTGmcjeJ7XMx2U/SwgyJJFzmHj/pRAldGOQn9ShfZmo2Po="
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 584,
+   "candidatesTokenCount": 304,
+   "totalTokenCount": 888,
+   "promptTokensDetails": [
+    {
+     "modality": "IMAGE",
+     "tokenCount": 532
+    },
+    {
+     "modality": "TEXT",
+     "tokenCount": 52
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "responseId": "_4vHaqqKCu311e8P6crYqAc"
+ },
+ "text": "# Scheduled maintenance: Messaging API, Tokyo region\n\ntwilio · Maintenance notice · Sent 2025-02-04\n\n| Reference | MNT-58213 |\n| :--- | :--- |\n| **Window (JST)** | 2025-02-18 02:00 to 04:00 JST |\n| **Window (UTC)** | 2025-02-17 17:00 to 19:00 UTC |\n| **Action required** | None |\n\nWe will carry out planned maintenance on the Messaging API in our Tokyo region. During the window, SMS sends may be delayed by up to 10 minutes. Messages will be queued, not dropped. Delivery receipts may arrive up to 30 minutes late.\n\n### Affected products\n\n| Product | Expected impact |\n| :--- | :--- |\n| Messaging API: SMS to Japanese numbers | Sends delayed by up to 10 minutes |\n| Delivery receipts (status callbacks) | Up to 30 minutes late |\n| One-time sign-in codes sent as SMS | Delayed by up to 10 minutes |\n| Voice | Not affected |\n\nIf you have questions about this maintenance, reply to this notice and quote reference MNT-58213.\n\nnotifier deploy freeze booked for this window. Tom 2/5",
+ "function_calls": [],
+ "finishReason": "STOP",
+ "cost_usd": 0.001578,
+ "slug": "scan-twilio-maintenance-2025",
+ "run": 1,
+ "pdf": "library/pdf/scan-twilio-maintenance-2025.pdf",
+ "pdf_md5": "52e64b6354c3a1c7739c68ea1067d189"
+}

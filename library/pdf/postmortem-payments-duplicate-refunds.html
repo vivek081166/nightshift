@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Postmortem: refunds sent twice after the refund job restarted</title><style>
+@page { size: A4; margin: 20mm 18mm 20mm 18mm; }
+body { font-family: Arial, Helvetica, sans-serif; font-size: 10.5pt; line-height: 1.38; color: #202124; margin: 0; }
+.crumb { font-size: 8.5pt; color: #5f6368; margin-bottom: 6pt; }
+h1 { font-size: 19pt; font-weight: normal; margin: 0 0 10pt 0; color: #111; }
+h2 { font-size: 13pt; font-weight: bold; margin: 16pt 0 5pt 0; color: #111; }
+p { margin: 0 0 7pt 0; }
+ul { margin: 0 0 7pt 0; padding-left: 20pt; }
+li { margin-bottom: 3pt; }
+table { border-collapse: collapse; width: 100%; font-size: 9.5pt; line-height: 1.32; }
+th, td { border: 1px solid #b7b7b7; padding: 4pt 6pt; text-align: left; vertical-align: top; }
+th { background: #efefef; font-weight: bold; }
+tr { break-inside: avoid; }
+table.meta { width: 72%; margin-bottom: 4pt; }
+table.meta td.k { background: #f3f3f3; font-weight: bold; width: 34%; }
+col.time { width: 11%; } col.what { width: 69%; } col.who { width: 20%; }
+col.item { width: 62%; } col.owner { width: 12%; } col.due { width: 14%; } col.status { width: 12%; }
+</style></head><body>
+<div class="crumb">Sorrel Engineering / Postmortems / 2023</div>
+<h1>Postmortem: refunds sent twice after the refund job restarted</h1>
+<table class="meta"><tbody><tr><td class="k">Incident date</td><td>2023-10-24 (Tuesday, morning JST)</td></tr><tr><td class="k">Severity</td><td>SEV-1</td></tr><tr><td class="k">Service</td><td>payments</td></tr><tr><td class="k">Incident commander</td><td>Ravi</td></tr><tr><td class="k">Author</td><td>Mei</td></tr><tr><td class="k">Status</td><td>Final, reviewed 2023-10-26</td></tr></tbody></table>
+<h2>Summary</h2>
+<p>The daily refund job lost its database connection partway through its 10:00 run. The scheduler started it again from the beginning, and because the job built each refund&#x27;s idempotency key from the time the run started, stripe treated the repeated requests as new refunds. 400 refunds went out twice, worth ¥2,836,400 in total. The extra refunds were written off; no customer was charged again.</p>
+<h2>Impact</h2>
+<ul><li>Money: 400 refunds sent twice, ¥2,836,400 in total, written off by decision of Mei and finance on 2023-10-24.</li><li>Customers: none charged. 400 customers received an extra refund, and all 1,318 refunds in the run arrived at least once.</li><li>Businesses: 9 businesses wrote to support about refund lines they did not expect.</li><li>Data: none exposed or lost.</li></ul>
+<h2>Timeline (JST)</h2>
+<table><colgroup><col class="time"><col class="what"><col class="who"></colgroup><thead><tr><th>Time</th><th>What happened</th><th>Who</th></tr></thead><tbody><tr><td>10:00</td><td>The daily refund job starts. It sends the 1,318 refunds approved the day before to stripe in batches of 50.</td><td>refund job</td></tr><tr><td>10:07</td><td>The job&#x27;s connection to the payments database drops during batch 9. The job exits, and the scheduler starts it again from the beginning.</td><td>scheduler</td></tr><tr><td>10:08</td><td>The second run sends batches 1 to 8 again. stripe accepts them as new refunds, because the idempotency keys are built from the run&#x27;s start time.</td><td>refund job</td></tr><tr><td>10:19</td><td>The second run finishes all 27 batches. 400 refunds have now gone out twice.</td><td>refund job</td></tr><tr><td>10:26</td><td>Support receives the first message from a business: a customer was refunded twice for the same cancelled lesson.</td><td>Support</td></tr><tr><td>10:31</td><td>Tom, on call, sees the support message in #inc-live and opens the refund job&#x27;s logs, which show two runs starting at 10:00 and 10:07.</td><td>Tom</td></tr><tr><td>10:36</td><td>Money has already moved, so Tom pages Mei as the payments owner and changes nothing himself.</td><td>Tom</td></tr><tr><td>10:41</td><td>Mei acknowledges and pauses the refund job in the scheduler, so no third run can start.</td><td>Mei</td></tr><tr><td>10:49</td><td>Incident declared (SEV-1). Ravi takes incident commander.</td><td>Ravi</td></tr><tr><td>11:05</td><td>Mei counts the duplicates from the stripe dashboard export: 400 refunds sent twice, ¥2,836,400 in total.</td><td>Mei</td></tr><tr><td>11:12</td><td>Ravi updates status.sorrel.app: refunds are paused while a payments problem is fixed; charges at checkout work normally.</td><td>Ravi</td></tr><tr><td>12:15</td><td>Mei and finance decide the extra refunds stay with the customers and are written off. No customer will be charged again.</td><td>Mei</td></tr><tr><td>13:40</td><td>Mei changes the idempotency key to use the refund id instead of the run&#x27;s start time. Ravi reviews the change and it is deployed.</td><td>Mei</td></tr><tr><td>14:10</td><td>The fixed job is run against a copy of the day&#x27;s list in the stripe test account. No refund is sent twice.</td><td>Mei</td></tr><tr><td>14:35</td><td>Incident closed. Refunds resume with the next daily run, on 2023-10-25 at 10:00.</td><td>Ravi</td></tr></tbody></table>
+<h2>What went well</h2>
+<ul><li>Tom did not try to reverse anything himself; money had moved, so he paged Mei, as the handbook says.</li><li>The stripe dashboard export made the duplicates countable within half an hour.</li></ul>
+<h2>What went badly</h2>
+<ul><li>The scheduler restarted a job that moves money from the beginning, with no check of what the first run had already sent.</li><li>Nothing on our side noticed; a business told support 19 minutes after the second run began.</li></ul>
+<h2>Action items</h2>
+<table><colgroup><col class="item"><col class="owner"><col class="due"><col class="status"></colgroup><thead><tr><th>Action</th><th>Owner</th><th>Due</th><th>Status</th></tr></thead><tbody><tr><td>Build the refund idempotency key from the refund id, never from the run&#x27;s start time.</td><td>Mei</td><td>2023-10-24</td><td>Done</td></tr><tr><td>Make the scheduler alert instead of restarting a job that moves money.</td><td>Mei</td><td>2023-11-03</td><td>Done</td></tr><tr><td>Add a daily check that no refund id was sent to stripe twice.</td><td>Ravi</td><td>2023-11-10</td><td>Done</td></tr><tr><td>Write down in the payments runbook how to pause a job that moves money.</td><td>Mei</td><td>2023-11-17</td><td>Open</td></tr></tbody></table>
+</body></html>

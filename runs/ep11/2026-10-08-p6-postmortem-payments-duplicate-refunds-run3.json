@@ -1,0 +1,73 @@
+{
+ "request": {
+  "contents": [
+   {
+    "role": "user",
+    "parts": [
+     {
+      "inline_data": {
+       "mime_type": "application/pdf",
+       "data": "<omitted file bytes: base64 md5 bae5f93e9766b3bfbdbe2e4597b31d2f>"
+      }
+     },
+     {
+      "text": "Write this whole document out as Markdown, word for word, in reading order. Every table becomes a Markdown table with the same rows and columns. Do not summarise, do not leave anything out, and do not add anything that is not in the document."
+     }
+    ]
+   }
+  ],
+  "generationConfig": {
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  }
+ },
+ "http": 200,
+ "sent_utc": "2026-10-08T12:28:11.676+00:00",
+ "wall_s": 8.817,
+ "retries": [],
+ "error": null,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "text": "Sorrel Engineering / Postmortems / 2023\n\n# Postmortem: refunds sent twice after the refund job restarted\n\n| Incident date | 2023-10-24 (Tuesday, morning JST) |\n| :--- | :--- |\n| Severity | SEV-1 |\n| Service | payments |\n| Incident commander | Ravi |\n| Author | Mei |\n| Status | Final, reviewed 2023-10-26 |\n\n## Summary\n\nThe daily refund job lost its database connection partway through its 10:00 run. The scheduler started it again from the beginning, and because the job built each refund's idempotency key from the time the run started, stripe treated the repeated requests as new refunds. 400 refunds went out twice, worth ¥2,836,400 in total. The extra refunds were written off; no customer was charged again.\n\n## Impact\n\n* Money: 400 refunds sent twice, ¥2,836,400 in total, written off by decision of Mei and finance on 2023-10-24.\n* Customers: none charged. 400 customers received an extra refund, and all 1,318 refunds in the run arrived at least once.\n* Businesses: 9 businesses wrote to support about refund lines they did not expect.\n* Data: none exposed or lost.\n\n## Timeline (JST)\n\n| Time | What happened | Who |\n| :--- | :--- | :--- |\n| 10:00 | The daily refund job starts. It sends the 1,318 refunds approved the day before to stripe in batches of 50. | refund job |\n| 10:07 | The job's connection to the payments database drops during batch 9. The job exits, and the scheduler starts it again from the beginning. | scheduler |\n| 10:08 | The second run sends batches 1 to 8 again. stripe accepts them as new refunds, because the idempotency keys are built from the run's start time. | refund job |\n| 10:19 | The second run finishes all 27 batches. 400 refunds have now gone out twice. | refund job |\n| 10:26 | Support receives the first message from a business: a customer was refunded twice for the same cancelled lesson. | Support |\n| 10:31 | Tom, on call, sees the support message in #inc-live and opens the refund job's logs, which show two runs starting at 10:00 and 10:07. | Tom |\n| 10:36 | Money has already moved, so Tom pages Mei as the payments owner and changes nothing himself. | Tom |\n| 10:41 | Mei acknowledges and pauses the refund job in the scheduler, so no third run can start. | Mei |\n| 10:49 | Incident declared (SEV-1). Ravi takes incident commander. | Ravi |\n| 11:05 | Mei counts the duplicates from the stripe dashboard export: 400 refunds sent twice, ¥2,836,400 in total. | Mei |\n| 11:12 | Ravi updates status.sorrel.app: refunds are paused while a payments problem is fixed; charges at checkout work normally. | Ravi |\n| 12:15 | Mei and finance decide the extra refunds stay with the customers and are written off. No customer will be charged again. | Mei |\n| 13:40 | Mei changes the idempotency key to use the refund id instead of the run's start time. Ravi reviews the change and it is deployed. | Mei |\n| 14:10 | The fixed job is run against a copy of the day's list in the stripe test account. No refund is sent twice. | Mei |\n| 14:35 | Incident closed. Refunds resume with the next daily run, on 2023-10-25 at 10:00. | Ravi |\n\n## What went well\n\n* Tom did not try to reverse anything himself; money had moved, so he paged Mei, as the handbook says.\n* The stripe dashboard export made the duplicates countable within half an hour.\n\n## What went badly\n\n* The scheduler restarted a job that moves money from the beginning, with no check of what the first run had already sent.\n* Nothing on our side noticed; a business told support 19 minutes after the second run began.\n\n## Action items\n\n| Action | Owner | Due | Status |\n| :--- | :--- | :--- | :--- |\n| Build the refund idempotency key from the refund id, never from the run's start time. | Mei | 2023-10-24 | Done |\n| Make the scheduler alert instead of restarting a job that moves money. | Mei | 2023-11-03 | Done |\n| Add a daily check that no refund id was sent to stripe twice. | Ravi | 2023-11-10 | Done |\n| Write down in the payments runbook how to pause a job that moves money. | Mei | 2023-11-17 | Open |",
+       "thoughtSignature": "EmkKZwFpFH0TCwbr8c1IwS3TMBkxfsuVy4Gk3kXorA48k40/pWVkYUeCSihllfdkWYum+LjJwloZzcQZkjIjW/Su638O32W9ovGa/egRz//NPoBm6Xq2VadBCEMT28N9AMa6A4bqbZtXnH0="
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 1116,
+   "candidatesTokenCount": 1178,
+   "totalTokenCount": 2294,
+   "promptTokensDetails": [
+    {
+     "modality": "IMAGE",
+     "tokenCount": 1064
+    },
+    {
+     "modality": "TEXT",
+     "tokenCount": 52
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "responseId": "XIzHatrTB4nQ1e8Pwe5_"
+ },
+ "text": "Sorrel Engineering / Postmortems / 2023\n\n# Postmortem: refunds sent twice after the refund job restarted\n\n| Incident date | 2023-10-24 (Tuesday, morning JST) |\n| :--- | :--- |\n| Severity | SEV-1 |\n| Service | payments |\n| Incident commander | Ravi |\n| Author | Mei |\n| Status | Final, reviewed 2023-10-26 |\n\n## Summary\n\nThe daily refund job lost its database connection partway through its 10:00 run. The scheduler started it again from the beginning, and because the job built each refund's idempotency key from the time the run started, stripe treated the repeated requests as new refunds. 400 refunds went out twice, worth ¥2,836,400 in total. The extra refunds were written off; no customer was charged again.\n\n## Impact\n\n* Money: 400 refunds sent twice, ¥2,836,400 in total, written off by decision of Mei and finance on 2023-10-24.\n* Customers: none charged. 400 customers received an extra refund, and all 1,318 refunds in the run arrived at least once.\n* Businesses: 9 businesses wrote to support about refund lines they did not expect.\n* Data: none exposed or lost.\n\n## Timeline (JST)\n\n| Time | What happened | Who |\n| :--- | :--- | :--- |\n| 10:00 | The daily refund job starts. It sends the 1,318 refunds approved the day before to stripe in batches of 50. | refund job |\n| 10:07 | The job's connection to the payments database drops during batch 9. The job exits, and the scheduler starts it again from the beginning. | scheduler |\n| 10:08 | The second run sends batches 1 to 8 again. stripe accepts them as new refunds, because the idempotency keys are built from the run's start time. | refund job |\n| 10:19 | The second run finishes all 27 batches. 400 refunds have now gone out twice. | refund job |\n| 10:26 | Support receives the first message from a business: a customer was refunded twice for the same cancelled lesson. | Support |\n| 10:31 | Tom, on call, sees the support message in #inc-live and opens the refund job's logs, which show two runs starting at 10:00 and 10:07. | Tom |\n| 10:36 | Money has already moved, so Tom pages Mei as the payments owner and changes nothing himself. | Tom |\n| 10:41 | Mei acknowledges and pauses the refund job in the scheduler, so no third run can start. | Mei |\n| 10:49 | Incident declared (SEV-1). Ravi takes incident commander. | Ravi |\n| 11:05 | Mei counts the duplicates from the stripe dashboard export: 400 refunds sent twice, ¥2,836,400 in total. | Mei |\n| 11:12 | Ravi updates status.sorrel.app: refunds are paused while a payments problem is fixed; charges at checkout work normally. | Ravi |\n| 12:15 | Mei and finance decide the extra refunds stay with the customers and are written off. No customer will be charged again. | Mei |\n| 13:40 | Mei changes the idempotency key to use the refund id instead of the run's start time. Ravi reviews the change and it is deployed. | Mei |\n| 14:10 | The fixed job is run against a copy of the day's list in the stripe test account. No refund is sent twice. | Mei |\n| 14:35 | Incident closed. Refunds resume with the next daily run, on 2023-10-25 at 10:00. | Ravi |\n\n## What went well\n\n* Tom did not try to reverse anything himself; money had moved, so he paged Mei, as the handbook says.\n* The stripe dashboard export made the duplicates countable within half an hour.\n\n## What went badly\n\n* The scheduler restarted a job that moves money from the beginning, with no check of what the first run had already sent.\n* Nothing on our side noticed; a business told support 19 minutes after the second run began.\n\n## Action items\n\n| Action | Owner | Due | Status |\n| :--- | :--- | :--- | :--- |\n| Build the refund idempotency key from the refund id, never from the run's start time. | Mei | 2023-10-24 | Done |\n| Make the scheduler alert instead of restarting a job that moves money. | Mei | 2023-11-03 | Done |\n| Add a daily check that no refund id was sent to stripe twice. | Ravi | 2023-11-10 | Done |\n| Write down in the payments runbook how to pause a job that moves money. | Mei | 2023-11-17 | Open |",
+ "function_calls": [],
+ "finishReason": "STOP",
+ "cost_usd": 0.0052545,
+ "slug": "postmortem-payments-duplicate-refunds",
+ "run": 3,
+ "pdf": "library/pdf/postmortem-payments-duplicate-refunds.pdf",
+ "pdf_md5": "94852b1c327ace0ca36eabfbd5a1364f"
+}

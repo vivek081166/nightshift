@@ -1,0 +1,183 @@
+Sorrel Engineering / Postmortems / 2023
+
+Postmortem: refunds sent twice after the refund job
+
+restarted
+
+Incident date 2023-10-24 (Tuesday, morning JST)
+
+Severity SEV-1
+
+Service payments
+
+Incident commander Ravi
+
+Author Mei
+
+Status Final, reviewed 2023-10-26
+Summary
+
+The daily refund job lost its database connection partway through its 10:00 run. The scheduler started it
+again from the beginning, and because the job built each refund's idempotency key from the time the run
+
+started, stripe treated the repeated requests as new refunds. 400 refunds went out twice, worth
+¥2,836,400 in total. The extra refunds were written off; no customer was charged again.
+
+Impact
+
+e Money: 400 refunds sent twice, ¥2,836,400 in total, written off by decision of Mei and finance on
+
+2023-10-24.
+
+e Customers: none charged. 400 customers received an extra refund, and all 1,318 refunds in the run
+
+arrived at least once.
+
+e Businesses: 9 businesses wrote to support about refund lines they did not expect.
+
+e Data: none exposed or lost.
+
+Timeline (JST)
+
+Time
+
+10:00
+
+10:07
+
+10:08
+
+10:19
+
+10:26
+
+10:31
+
+10:36
+
+What happened
+
+The daily refund job starts. It sends the 1,318 refunds approved the day
+before to stripe in batches of 50.
+
+The job's connection to the payments database drops during batch 9. The job
+exits, and the scheduler starts it again from the beginning.
+
+The second run sends batches 1 to 8 again. stripe accepts them as new
+refunds, because the idempotency keys are built from the run's start time.
+
+The second run finishes all 27 batches. 400 refunds have now gone out twice.
+
+Support receives the first message from a business: a customer was
+refunded twice for the same cancelled lesson.
+
+Tom, on call, sees the support message in #inc-live and opens the refund
+job's logs, which show two runs starting at 10:00 and 10:07.
+
+Money has already moved, so Tom pages Mei as the payments owner and
+changes nothing himself.
+
+Who
+
+refund job
+
+scheduler
+
+refund job
+
+refund job
+
+Support
+
+Tom
+
+Tom
+Time
+
+10:41
+
+10:49
+
+11:05
+
+11:12
+
+12:15
+
+13:40
+
+14:10
+
+14:35
+
+What happened
+
+Mei acknowledges and pauses the refund job in the scheduler, so no third run
+can start.
+
+Incident declared (SEV-1). Ravi takes incident commander.
+
+Mei counts the duplicates from the stripe dashboard export: 400 refunds sent
+twice, ¥2,836,400 in total.
+
+Ravi updates status.sorrel.app: refunds are paused while a payments
+problem is fixed; charges at checkout work normally.
+
+Mei and finance decide the extra refunds stay with the customers and are
+written off. No customer will be charged again.
+
+Mei changes the idempotency key to use the refund id instead of the run's
+start time. Ravi reviews the change and it is deployed.
+
+The fixed job is run against a copy of the day's list in the stripe test account.
+No refund is sent twice.
+
+Incident closed. Refunds resume with the next daily run, on 2023-10-25 at
+10:00.
+
+What went well
+
+Who
+
+Mei
+
+Ravi
+
+Mei
+
+Ravi
+
+Mei
+
+Mei
+
+Mei
+
+Ravi
+
+e Tom did not try to reverse anything himself; money had moved, so he paged Mei, as the handbook
+
+says.
+
+e The stripe dashboard export made the duplicates countable within half an hour.
+
+What went badly
+
+e The scheduler restarted a job that moves money from the beginning, with no check of what the first
+run had already sent.
+
+e Nothing on our side noticed; a business told support 19 minutes after the second run began.
+
+Action items
+
+Action Owner Due Status
+Build the refund idempotency key from the refund id, never from the Mei 2023-10-24 Done
+run's start time.
+
+Make the scheduler alert instead of restarting a job that moves Mei 2023-11-03 Done
+money.
+
+Add a daily check that no refund id was sent to stripe twice. Ravi 2023-11-10 Done
+Write down in the payments runbook how to pause a job that moves Mei 2023-11-17 Open
+
+money.

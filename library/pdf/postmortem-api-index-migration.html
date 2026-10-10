@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Postmortem: api date search slow after a migration dropped an index</title><style>
+@page { size: A4; margin: 20mm 18mm 20mm 18mm; }
+body { font-family: Arial, Helvetica, sans-serif; font-size: 10.5pt; line-height: 1.38; color: #202124; margin: 0; }
+.crumb { font-size: 8.5pt; color: #5f6368; margin-bottom: 6pt; }
+h1 { font-size: 19pt; font-weight: normal; margin: 0 0 10pt 0; color: #111; }
+h2 { font-size: 13pt; font-weight: bold; margin: 16pt 0 5pt 0; color: #111; }
+p { margin: 0 0 7pt 0; }
+ul { margin: 0 0 7pt 0; padding-left: 20pt; }
+li { margin-bottom: 3pt; }
+table { border-collapse: collapse; width: 100%; font-size: 9.5pt; line-height: 1.32; }
+th, td { border: 1px solid #b7b7b7; padding: 4pt 6pt; text-align: left; vertical-align: top; }
+th { background: #efefef; font-weight: bold; }
+tr { break-inside: avoid; }
+table.meta { width: 72%; margin-bottom: 4pt; }
+table.meta td.k { background: #f3f3f3; font-weight: bold; width: 34%; }
+col.time { width: 11%; } col.what { width: 69%; } col.who { width: 20%; }
+col.item { width: 62%; } col.owner { width: 12%; } col.due { width: 14%; } col.status { width: 12%; }
+</style></head><body>
+<div class="crumb">Sorrel Engineering / Postmortems / 2024</div>
+<h1>Postmortem: api date search slow after a migration dropped an index</h1>
+<table class="meta"><tbody><tr><td class="k">Incident date</td><td>2024-07-09 (Tuesday, afternoon JST)</td></tr><tr><td class="k">Severity</td><td>SEV-2</td></tr><tr><td class="k">Service</td><td>api</td></tr><tr><td class="k">Incident commander</td><td>Mei</td></tr><tr><td class="k">Author</td><td>Ravi</td></tr><tr><td class="k">Status</td><td>Final, reviewed 2024-07-11</td></tr></tbody></table>
+<h2>Summary</h2>
+<p>api deploy d-4471 carried migration 0193, which dropped the old index on bookings (business_id, starts_at) before its replacement had finished building. Every date search on a booking page then read the bookings table without an index, the primary database ran hot, and date search was slow for 69 minutes. Rolling back the code did not help, because a rollback does not bring back a dropped index. Date search recovered when the new index finished building at 15:19.</p>
+<h2>Impact</h2>
+<ul><li>Customers: date search on booking pages took 2 to 6 seconds between 14:12 and 15:21 JST, and some searches timed out. Support received 212 tickets.</li><li>Bookings made in that window were about 35 % lower than in the same hour the week before.</li><li>Money and data: no payments affected, nothing lost or exposed.</li></ul>
+<h2>Timeline (JST)</h2>
+<table><colgroup><col class="time"><col class="what"><col class="who"></colgroup><thead><tr><th>Time</th><th>What happened</th><th>Who</th></tr></thead><tbody><tr><td>14:05</td><td>api deploy d-4471 goes out. It carries migration 0193, which drops the old index on bookings (business_id, starts_at) and starts building a new composite index in the background.</td><td>Ravi</td></tr><tr><td>14:09</td><td>The background index build starts on the primary database in ap-northeast-1. The old index is already gone, so date searches now read the whole bookings table.</td><td>deploy tool</td></tr><tr><td>14:12</td><td>api p95 latency for the availability endpoint rises from 180 ms to 1.9 s. CPU on the primary database reaches 92 %.</td><td>metrics tool</td></tr><tr><td>14:16</td><td>Alert fires: api p95 above 1.5 s for 3 minutes. The paging tool pages the on-call engineer.</td><td>paging tool</td></tr><tr><td>14:18</td><td>Page acknowledged by Tom, the primary on-call engineer that week.</td><td>Tom</td></tr><tr><td>14:23</td><td>Tom notes the last api deploy is 18 minutes old, and the slow queries in the api logs all read bookings by business and start time.</td><td>Tom</td></tr><tr><td>14:27</td><td>Incident declared (SEV-2). Mei takes incident commander. Support reports customers saying the booking page spins when they pick a date.</td><td>Mei</td></tr><tr><td>14:31</td><td>Tom rolls api back to the previous deploy, d-4466. The code goes back, but the dropped index does not come back with it.</td><td>Tom</td></tr><tr><td>14:38</td><td>Latency has not recovered seven minutes after the rollback. Tom pages Ravi, because the database now needs the owner&#x27;s decision.</td><td>Tom</td></tr><tr><td>14:44</td><td>Ravi joins and finds the background index build at 41 %, with about 35 minutes left at its current speed.</td><td>Ravi</td></tr><tr><td>14:52</td><td>Ravi decides not to recreate the old index by hand, because two index builds would compete for the same disk. The team waits for the build.</td><td>Ravi</td></tr><tr><td>15:06</td><td>Support has 190 tickets so far. Mei posts a notice on status.sorrel.app that date search is slow and that bookings still go through.</td><td>Mei</td></tr><tr><td>15:19</td><td>The new index finishes building. p95 for the availability endpoint falls to 240 ms within two minutes.</td><td>Ravi</td></tr><tr><td>15:24</td><td>Ravi deploys d-4471 again, so the code matches the new index.</td><td>Ravi</td></tr><tr><td>15:40</td><td>Mei closes the incident after 15 minutes of normal latency and updates the status page.</td><td>Mei</td></tr></tbody></table>
+<h2>What went well</h2>
+<ul><li>Tom connected the slow queries to the 18-minute-old deploy within seven minutes of the page.</li><li>Ravi&#x27;s call not to build a second index by hand kept the disk from becoming the next problem.</li></ul>
+<h2>What went badly</h2>
+<ul><li>The migration dropped the old index before the new one existed. Rolling back the code could not undo that, and nobody on the incident knew it until the rollback had failed.</li><li>The api-wide p95 alert hid how slow the availability endpoint alone had become.</li></ul>
+<h2>Action items</h2>
+<table><colgroup><col class="item"><col class="owner"><col class="due"><col class="status"></colgroup><thead><tr><th>Action</th><th>Owner</th><th>Due</th><th>Status</th></tr></thead><tbody><tr><td>Never drop an index in the same deploy that builds its replacement: drop the old one in a later deploy, after the new one is ready.</td><td>Ravi</td><td>2024-07-19</td><td>Done</td></tr><tr><td>Run index builds on tables over 10 million rows outside 09:00 to 21:00 JST.</td><td>Ravi</td><td>2024-07-26</td><td>Done</td></tr><tr><td>Give the availability endpoint its own p95 alert, separate from the api-wide one.</td><td>Tom</td><td>2024-08-02</td><td>Open</td></tr><tr><td>Add a line to the api runbook: a rollback does not undo a migration.</td><td>Ravi</td><td>2024-07-31</td><td>Done</td></tr></tbody></table>
+</body></html>

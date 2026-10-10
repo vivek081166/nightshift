@@ -305,3 +305,53 @@ grades (`m4-hand-grades.json`, `m2-hand-grades.json`), not the code grades.
 - Harness (not episode code): `measure/ep10.py` records every call; `measure/ep10_screen.py` replays the saved runs.
 - Spend: the measurement runs $3.05 (`2026-10-07-spend.json`: drafting the pages $1.03, M1 $0.16, M2 $0.62, M3 $0.60,
   M4 $0.64), the camera takes $0.17 (a $0.0057, c $0.1229, d $0.0231, e $0.0087, f $0.0051).
+
+## ep11
+
+PDFs and scans into pages. Measured 2026-10-08; live takes 2026-10-09 (first at 91 columns ~01:00, again at a
+large font ~23:30); no-API takes 2026-10-09 and 2026-10-10. `gemini-3.8-flash` at thinkingLevel low, raw HTTP, the
+ep10 look-up loop (`lookup.py`: the rules, a contents list of 75 titles, up to 4 `read_page` calls). pypdf 6.14.2.
+
+- Made up for the course: the company, its pages and every PDF in `pdf/` (the same 8 files as `library/pdf/`, rev 1).
+  `measure/ep11_docs.py` writes each document as HTML (`library/pdf/<slug>.html`, with `<slug>.truth.json` for the
+  grader), and headless Chrome prints it to PDF (`library/pdf/PROVENANCE.json` holds every md5).
+- Nothing was printed or scanned. The three scans (`scan-dr-drill-2023`, `scan-escalation-sheet`,
+  `scan-twilio-maintenance-2025`) were MADE to look scanned: Chrome print to PDF, `pdftoppm -r 200 -gray` to an image,
+  then rotate (0.7 degrees on the drill report), Gaussian blur, a paper tint, noise, JPEG, and reportlab wraps the
+  JPEG as an image-only PDF with no text inside. Every command and setting is in `library/pdf/build/scan-steps.json`;
+  the in-between files are in `library/pdf/build/`.
+- Camera runs, terminal verbatim, `runs/ep11/camera/`: `-a2.txt` (cold: opened `scan-escalation-sheet` first, then
+  three more pages, "the escalation sheet page `scan-escalation-sheet` is empty"), `-m2.txt` (`topage.py --write` on
+  the sheet: `| api owner | Ravi | ext. 4417 |`), `-k2.txt` (`topage.py pdf/`: made text x5, made scan x3 `-> the
+  model`; then the cold question opened only the sheet and answered `ext. 4417`). `-a/-m/-k/-f1/-f2.txt` are the
+  first takes of the same beats at 91 columns (f1, f2: the freshness beat the episode cut). No-API screens: `-wc`
+  (`pages/scan-escalation-sheet.md` is 0 bytes), `-text1`, `-count`, `-questions`, and `-v2` copies at the large
+  font. `pages-after-k2/` holds the pages take K2 made. One A2 attempt that died on a billing 402 before any output
+  is left out.
+- "My code took out nothing. Not one character" and "no error, no warning": take W prints 0; pypdf gives 0 characters,
+  no warning, no log record and no exception on all 3 scans.
+- "The typed PDFs gave thousands. Every scan gave zero": take T, `topage.py --count pdf/`: 3,994 · 3,902 · 3,697 ·
+  3,572 · 2,173 · 0 · 0 · 0 (`l-P1` `new_pages`, checked by `measure/ep11_screen.py gate`).
+- "On most of our PDFs, the text came out whole, every table row too": the typed PDFs, checked by hand
+  (`p-handcheck.json`); the strict scorer (`p-scores.json`) flagged 3 rows, all line-end hyphens or one ligature with
+  the row still whole.
+- "As a test, I had it write out every PDF three times. It got every one right, and I found nothing it made up":
+  `p6-*-run{1,2,3}.json`, the 8 PDFs here plus ep08's, three runs each; every page whole each run, every cell of the
+  three scans right, and every word the scorer flagged is in the PDF's own text.
+- "Before the check, every question about a scan came back wrong. With the check, all of them came back right":
+  `l-P1` (text taken out only) missed all 5 scan questions with "the pages don't have it"; `l-mix` (count first, a
+  scan goes to the model) 18 of 18 right, plus the 2 questions the pages don't cover, where it said so (graded by
+  hand). `measure/ep11_screen.py questions` prints both columns.
+- Not in the episode (the description carries these): handing the model the PDF itself answered 16 of 16
+  (`l0-pdf-bytes.json`); the "layout" setting (pypdf `extraction_mode="layout"`, P2, and
+  `pdftotext -layout`, P3) split table rows: 0 of 9 typed pages whole, against 9 of 9 for the plain call
+  (`p-scores.json`, `p-handcheck.json`); tesseract at 300 dpi (P5) read the scans but dumped some tables column by
+  column, and the model still answered right (`l-P5`, `parsed/P5*`); a corrected firewall postmortem (`library/pdf/*.rev2.pdf`): the stale page answered 17:01 3 of 3, the
+  page made again from the new PDF 17:03 3 of 3 (`f-*.json`). The count is per PDF, so a PDF that mixes typed and
+  scanned pages is not covered.
+- Harness (not episode code): `measure/ep11.py` records every call; `measure/ep11_mix.py`, `ep11_score.py`,
+  `ep11_handcheck.py` grade; `measure/ep11_screen.py` replays the saved runs and gates `topage.py` and `lookup.py`
+  (16 checks; `lookup.py` must match tag ep10 outside its screen wrapping). The vendor docs read on 2026-10-08 are
+  in `runs/ep11/m0/*.txt`.
+- Spend: the measurement runs $0.93 (`2026-10-08-spend.json`, 338 calls), the camera takes $0.0243 (a2 $0.0141, m2
+  $0.0017, k2 $0.0085) and the first takes $0.0317.

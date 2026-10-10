@@ -1,0 +1,135 @@
+{
+ "slug": "provider-cloudflare-japan-edge",
+ "title": "Incident report: elevated errors at edge locations in Japan",
+ "kind": "provider",
+ "written": "from the HTML's source data, before any extractor ran",
+ "pages": 1,
+ "tables": [
+  {
+   "name": "meta",
+   "rows": [
+    [
+     "Incident",
+     "2024-0917-A"
+    ],
+    [
+     "Date",
+     "2024-09-17"
+    ],
+    [
+     "Status",
+     "Resolved"
+    ],
+    [
+     "Products",
+     "CDN, proxy"
+    ],
+    [
+     "Prepared for",
+     "Sorrel"
+    ]
+   ],
+   "page_of_row": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "name": "windows",
+   "rows": [
+    [
+     "05:42",
+     "06:19",
+     "Tokyo (NRT)",
+     "HTTP 502 and 504 errors on proxied requests, up to 7.4 % of requests"
+    ],
+    [
+     "05:44",
+     "06:11",
+     "Osaka (KIX)",
+     "HTTP 502 errors on proxied requests, up to 3.1 % of requests"
+    ],
+    [
+     "05:51",
+     "06:05",
+     "Fukuoka (FUK)",
+     "Higher latency, p95 up to 1.8 s; error rate normal"
+    ],
+    [
+     "06:02",
+     "06:40",
+     "Seoul (ICN)",
+     "Traffic rerouted from Tokyo; higher latency for visitors in Japan"
+    ],
+    [
+     "06:21",
+     "07:03",
+     "Tokyo (NRT)",
+     "Cache purge requests delayed by up to 9 minutes"
+    ]
+   ],
+   "page_of_row": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  }
+ ],
+ "facts": [
+  {
+   "text": "2024-0917-A",
+   "page": 1
+  },
+  {
+   "text": "05:42 UTC",
+   "page": 1
+  },
+  {
+   "text": "37 minutes",
+   "page": 1
+  },
+  {
+   "text": "27 minutes",
+   "page": 1
+  },
+  {
+   "text": "7.4 %",
+   "page": 1
+  },
+  {
+   "text": "05:38 UTC",
+   "page": 1
+  },
+  {
+   "text": "06:09 UTC",
+   "page": 1
+  },
+  {
+   "text": "06:14 UTC",
+   "page": 1
+  },
+  {
+   "text": "06:19 UTC",
+   "page": 1
+  },
+  {
+   "text": "2024-10-31",
+   "page": 1
+  },
+  {
+   "text": "3.1 %",
+   "page": 1
+  },
+  {
+   "text": "1.8 s",
+   "page": 1
+  }
+ ],
+ "source_text": "cloudflare · Customer incident report · Published 2024-09-20 Incident report: elevated errors at edge locations in Japan Incident 2024-0917-A Date 2024-09-17 Status Resolved Products CDN, proxy Prepared for Sorrel Summary Between 05:42 and 06:40 UTC on 2024-09-17, customers whose visitors were served from our Tokyo and Osaka edge locations saw elevated HTTP 502 and 504 errors and higher latency. At the worst point, 7.4 % of proxied requests in Tokyo failed. Part of the traffic was rerouted to Seoul, which kept most requests working but added latency for visitors in Japan. Customer impact Errors began at 05:42 UTC. Tokyo was affected for 37 minutes and Osaka for 27 minutes. Cache purge requests for zones served from Tokyo were delayed by up to 9 minutes until 07:03 UTC. No customer data was lost or exposed, and no configuration on customer accounts was changed. Root cause At 05:38 UTC an automated change to the load balancing on a backbone link between Tokyo and Osaka was released to production. The change set a weight of zero for one of the two link groups, which sent all traffic between the two sites over a single group and saturated it. Health checks then marked healthy servers as unreachable, which caused the 502 and 504 errors. Remediation Our network team identified the change at 06:09 UTC and reverted it at 06:14 UTC. Errors in Tokyo were back to normal levels by 06:19 UTC. We are adding a validation step that rejects zero weights on backbone links, and changes to backbone load balancing will be released to one site at a time. Both changes will be complete by 2024-10-31. Affected windows (all times UTC, 2024-09-17) Start End Location Impact 05:42 06:19 Tokyo (NRT) HTTP 502 and 504 errors on proxied requests, up to 7.4 % of requests 05:44 06:11 Osaka (KIX) HTTP 502 errors on proxied requests, up to 3.1 % of requests 05:51 06:05 Fukuoka (FUK) Higher latency, p95 up to 1.8 s; error rate normal 06:02 06:40 Seoul (ICN) Traffic rerouted from Tokyo; higher latency for visitors in Japan 06:21 07:03 Tokyo (NRT) Cache purge requests delayed by up to 9 minutes Questions about this report: contact your account team and quote incident 2024-0917-A.",
+ "page_map_how": "by eye from low-resolution renders of the frozen PDF, before any extractor ran"
+}

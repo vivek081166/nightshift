@@ -1,0 +1,815 @@
+{
+ "how": "look.look(path, question): the one PDF that answers it, as bytes + type label, no look-up; look.py appends its SHORT line",
+ "questions": [
+  {
+   "id": "pm-notifier-lease-reset",
+   "kind": "postmortem-table",
+   "question": "During the March 2023 notifier reminder delay, at what time was the queue lease time set back to 60 s, and who did it?",
+   "pdf": "library/pdf/postmortem-notifier-reminder-backlog.pdf",
+   "http": 200,
+   "error": null,
+   "retries": [],
+   "wall_s": 2.671,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "08:31, Tom",
+         "thoughtSignature": "EosECogEAWkUfROG4wmZVfL/nVIi5m1+j34xCZEnztHKbh31HTkWKtngu6wRWkeuizV4F3J6U/yrHQ2jl+iOE+4zL2DnGoJE+Mx6VI2tc/jGUwW8pT+M0bYUMBgEpQxK08UbgG/anHb9hJ6kJlZx/GckNxpZjEGiIiPuLC9hecGRggJW1eWDysLtotPquF1jJd1ATBKrR/5cdfudBMctEIrCXWMCoZOL5MnUbTZbdBjY+xOQ1m203vogn+4zSt64EQ23tdmX+DlxapVOTZwfVfr/G0lJGwm5Vh+oPCXg13z9pTF/ltTxRogPNb9r193b4buekYDj2KcF9U7HF08vNETzO2asI2HTQOfD7wdKo6LjLIc29I4tqko2vsRNTQ9NPVjpWT/nR/o61hty8aWbQzCCcNlkspuSCunmru72mF00T+DozkixJwTB6wlvJ3Fb5ipwlNoKGxGaW4C8cNVRwAq4oz7WYZiM/rPH+zLZgr1sl/kuB+ZBmZSj6pMY3Bz7spR7E09eNo00X+CTL9muuTwecYGZv/etI2lQfvPt7UVNOcDFCoD4zKLTaQikPxssKNF3Wt1Hac0p5lgto7pSb0gNVKwDhKXmSTdpFfDIEF8UNRAkCeUtfdgmeFr2AeNzDXBkWgMDK0YrfW0ksqLEagdTToZl8Wvl231rsuoIaA3Csp8t6oTnclJfdBiAGA=="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 1113,
+     "candidatesTokenCount": 7,
+     "totalTokenCount": 1249,
+     "promptTokensDetails": [
+      {
+       "modality": "IMAGE",
+       "tokenCount": 1064
+      },
+      {
+       "modality": "TEXT",
+       "tokenCount": 49
+      }
+     ],
+     "thoughtsTokenCount": 129,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "vI7HaoSMKN_C0-kP9Oae6AY"
+   },
+   "answer": "08:31, Tom",
+   "cost_usd": 0.00134475,
+   "code_right": true,
+   "wrong_terms": [],
+   "says_not_in_pages": false
+  },
+  {
+   "id": "pm-notifier-worker-action",
+   "kind": "postmortem-action",
+   "question": "In the notifier reminder delay postmortem, who owns the action item to add per-worker send rate to the notifier board, and when is it due?",
+   "pdf": "library/pdf/postmortem-notifier-reminder-backlog.pdf",
+   "http": 200,
+   "error": null,
+   "retries": [],
+   "wall_s": 4.394,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "Ravi, 2023-04-07",
+         "thoughtSignature": "EmkKZwFpFH0TLHZ//ANHpzOXAbPvCyzYnze21dE+Tjzlpj9l1GoaxcZeZmFBzu/KQKjk3wbmBmqJan7VJouVsInjyx5KtKftiJZdksVNT3yVLTqOgni828i0miKUkxgcYyvtzniApAaiKLo="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 1111,
+     "candidatesTokenCount": 14,
+     "totalTokenCount": 1125,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 47
+      },
+      {
+       "modality": "IMAGE",
+       "tokenCount": 1064
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "v47HauerFdjKrfcP7-Le4Ag"
+   },
+   "answer": "Ravi, 2023-04-07",
+   "cost_usd": 0.00088575,
+   "code_right": true,
+   "wrong_terms": [],
+   "says_not_in_pages": false
+  },
+  {
+   "id": "pm-api-index-done",
+   "kind": "postmortem-table",
+   "question": "In the July 2024 api date search incident, at what time did the new index finish building, and who is listed for that timeline entry?",
+   "pdf": "library/pdf/postmortem-api-index-migration.pdf",
+   "http": 200,
+   "error": null,
+   "retries": [],
+   "wall_s": 2.955,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "15:19, Ravi",
+         "thoughtSignature": "EqkDCqYDAWkUfRN/2TQalK1OSvY4HEVbBZeJwVRt6xKBU4DXhMAM0CW/k9BVJ32vgkJEXdvkthuIiGc5tFbb54agDslaxGp9QRAWNup6E/bQfF2btBMBQzE7+DGBjj1ejGqvNrKrNm+Q8jTSt6kCgPFZqiX1/H9yYzjFdydMpWvLSlD98twev/Z8trVPOBvgte8JhayHIfoMQaacw4MTNmNtjY5Z1p/lwcj2zurLJEgiJZbGMRpJoAxNoxiWBOO7yzqbrVIIberZYEcoG5Mo2a08U6Qz3MpWEu3ZgHlx42b8GcXrVqqrcPlS3APzHioLZ//A0m0uvsoizayuTctJbvLWBiBhWhNJUJUFJionT5Um592e89dNIekAQVHaI3fmNVImhpZPgxut6xlYxWdmrLjFFPmkqerIduYbRTze4cxFvjkhztisNcxBfeZ17XpylKeWFfJxIckHrgF9CPRqDuQQKbdY78rvCo5ZctzdwgDoTwzli+4aVVuo/hv6j90wf1uWWACFKvzFXSCg/+02YBdT21qunscnYf7wrYxmSYf3AC1rJz7zo7geImY="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 1112,
+     "candidatesTokenCount": 6,
+     "totalTokenCount": 1211,
+     "promptTokensDetails": [
+      {
+       "modality": "IMAGE",
+       "tokenCount": 1064
+      },
+      {
+       "modality": "TEXT",
+       "tokenCount": 48
+      }
+     ],
+     "thoughtsTokenCount": 93,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "w47HauahML_s2roPv-jC8Ac"
+   },
+   "answer": "15:19, Ravi",
+   "cost_usd": 0.00120525,
+   "code_right": true,
+   "wrong_terms": [],
+   "says_not_in_pages": false
+  },
+  {
+   "id": "pm-api-rollback",
+   "kind": "postmortem-table",
+   "question": "In the postmortem about the migration that dropped an index, who rolled api back to d-4466, and at what time?",
+   "pdf": "library/pdf/postmortem-api-index-migration.pdf",
+   "http": 200,
+   "error": null,
+   "retries": [],
+   "wall_s": 2.452,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "Tom, 14:31",
+         "thoughtSignature": "EpoDCpcDAWkUfRMCJm239iHBOr3LPFZCcoEZmMBzRtRhr/YFiWyYJ32rvWZnzAPiHiKEunHE15POMj4cWgJ3RqzOqdjuqM90v/9phF1iFlE5mzR9bDp5yqOgM46wYxhOnSrvhST3JZh9/1letRaUMxZdGMxWjGiKzOKk/SupwFuozeHVhVUrzptHCrCP/Xz76Etc9QlH7jJh+vQxK8PGjiMXmTDKD8TaYAe2gx94mE1zX1TclSgvrkPbuquVDIJAafYpAGMcAeJDJPU3cPjukUNPHmdDoQVdKQhIoeJHObcwyANbiTiQcWo0qTjllcfkWDm6FZVLi9Vf79vp0jKT/Cg+c5hVXOxOmq/wwLVoT7mNnwrGHF1OwjXTeeEdGIvhs9TQk7VqRZMQgP2phyzZKWyHCC/UPSxl8iqPONG0CukFejB1sNSxBfQIBJPVmGJrGmoedHKRtTHHPomTlzSUqit3Ac/iDBJkYH1ot/WbDnWT7OQUskjXeUJhAW96jSL5GnUR/eWPC5Rfu2bIN9w2LZQ2R4J/WEugf8Wvb6Y="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 1109,
+     "candidatesTokenCount": 8,
+     "totalTokenCount": 1222,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 45
+      },
+      {
+       "modality": "IMAGE",
+       "tokenCount": 1064
+      }
+     ],
+     "thoughtsTokenCount": 105,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "xo7HaoO0Kbu21e8P3MK0qQQ"
+   },
+   "answer": "Tom, 14:31",
+   "cost_usd": 0.0012555,
+   "code_right": true,
+   "wrong_terms": [],
+   "says_not_in_pages": false
+  },
+  {
+   "id": "pm-refund-pause",
+   "kind": "postmortem-table",
+   "question": "In the duplicate refunds incident of October 2023, at what time was the refund job paused in the scheduler, and by whom?",
+   "pdf": "library/pdf/postmortem-payments-duplicate-refunds.pdf",
+   "http": 200,
+   "error": null,
+   "retries": [],
+   "wall_s": 2.426,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "10:41, by Mei",
+         "thoughtSignature": "EmkKZwFpFH0T1HSQh9cB1Der7Q9t7CNkF5IHDgGyJfm0YD8+gS3IfpOSvLnTXEEfhsEX9ICGXRnToBdJCd5gpa2qhcIdl3VnwBIsb5cICgPrzwDxBxyT+cfpBnfxZRHiBn7PSTBDcNxCvOg="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 1109,
+     "candidatesTokenCount": 8,
+     "totalTokenCount": 1117,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 45
+      },
+      {
+       "modality": "IMAGE",
+       "tokenCount": 1064
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "yY7HapHvDMjXrfcP6veZ2As"
+   },
+   "answer": "10:41, by Mei",
+   "cost_usd": 0.00086175,
+   "code_right": true,
+   "wrong_terms": [],
+   "says_not_in_pages": false
+  },
+  {
+   "id": "pm-refund-check-action",
+   "kind": "postmortem-action",
+   "question": "In the duplicate refunds postmortem, who owns the action item to add a daily check that no refund id was sent to stripe twice, and when was it due?",
+   "pdf": "library/pdf/postmortem-payments-duplicate-refunds.pdf",
+   "http": 200,
+   "error": null,
+   "retries": [],
+   "wall_s": 2.707,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "Ravi, 2023-11-10",
+         "thoughtSignature": "Eq8DCqwDAWkUfRMtDhzuuoaADJkFlBmmQ3NZ9x1KVJKzqexivBBhqtsWAydBunTjdFarfmPeHipvstn42zmYKic2h/BtCS787cTGQ1YMQ1Q0DSzH6IBUm0h5D/J6fV3j/qN9gtQ5OM/N3nxBScDdgnbV8hnFWLAGxVM2KZSHJFjb0L0pkw2YsDjV6FYEVRucc3KJGlf8LBZFxNlKIUTec+7/sgdg3gTHpwrVrkinSPUSzNLmsYPAjUeEpws7lWh7FWW9dymIsgrgi4j4PyBOyQCuIz3lg4mU7jNIvxe/qSB2poJ9pj3gif6JGIHsfWr8pa9DxxVd/2/zO9WOu3EY1ptrp4GDEL8YoOIor0RQdW+d42yTXDaXjh0bVxaNs9H3fJ7t25IRg3fS+2cfAKJfyWng5AaJa5wk0F7WX1Lm7h/vJvEcMOZj+AY405ar2qjYkdctJKPx58deSyw1AKK7+V6bbZ/pBCt/1u/0jWW8zhBwn7YbnRGm5bbgR92qKUE1kra45nRcBJ722FxY8dp2a6HMWk95u2Q+6RHq3JY+m4XAAO/uI/3cR/+HRhXAQlshev8="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 1113,
+     "candidatesTokenCount": 14,
+     "totalTokenCount": 1215,
+     "promptTokensDetails": [
+      {
+       "modality": "IMAGE",
+       "tokenCount": 1064
+      },
+      {
+       "modality": "TEXT",
+       "tokenCount": 49
+      }
+     ],
+     "thoughtsTokenCount": 88,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "y47HavvlIdjKrfcP7-Le4Ag"
+   },
+   "answer": "Ravi, 2023-11-10",
+   "cost_usd": 0.00121725,
+   "code_right": true,
+   "wrong_terms": [],
+   "says_not_in_pages": false
+  },
+  {
+   "id": "pm-firewall-logonly",
+   "kind": "postmortem-table",
+   "question": "In the May 2025 incident where booking pages were behind a firewall challenge, at what time was the rule switched to log only, and by whom?",
+   "pdf": "library/pdf/postmortem-web-firewall-challenge.pdf",
+   "http": 200,
+   "error": null,
+   "retries": [],
+   "wall_s": 3.936,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "16:58 by Aiko",
+         "thoughtSignature": "EmkKZwFpFH0TVUOctn2dsFdUeIPvwyPxtXNTo5iRlT50Y/q9odcC1PbWza44pCXndnFdOAoh0SKCsNRpbshOyCwrMZ8veDZSLm0ctPfv26EMlZwMQQQcZAtZRRbUm7yH/Cj6DN7VIlO/N+c="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 1113,
+     "candidatesTokenCount": 8,
+     "totalTokenCount": 1121,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 49
+      },
+      {
+       "modality": "IMAGE",
+       "tokenCount": 1064
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "zo7Har6rEIXZrfcPg6misAo"
+   },
+   "answer": "16:58 by Aiko",
+   "cost_usd": 0.00086475,
+   "code_right": true,
+   "wrong_terms": [],
+   "says_not_in_pages": false
+  },
+  {
+   "id": "pm-firewall-deploycheck",
+   "kind": "postmortem-table",
+   "question": "In the firewall challenge postmortem, at what time did the on-call engineer check the deploy tool and find the last web deploy was 2 days old, and who was it?",
+   "pdf": "library/pdf/postmortem-web-firewall-challenge.pdf",
+   "http": 200,
+   "error": null,
+   "retries": [],
+   "wall_s": 2.56,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "16:39, Tom",
+         "thoughtSignature": "EmkKZwFpFH0TqLLBKMQk9obwZ0VFRYc+H0zi5ZEKS22gArs+TaXrBZE4V8NmMEvoks+sZxtaGUNRNY7Xb90Saco11+FbeYqzy0Xj3TMT7ZTLfAKuLAcmg9kpeORbElsXwPTBmbLqRtfPaDg="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 1117,
+     "candidatesTokenCount": 7,
+     "totalTokenCount": 1124,
+     "promptTokensDetails": [
+      {
+       "modality": "IMAGE",
+       "tokenCount": 1064
+      },
+      {
+       "modality": "TEXT",
+       "tokenCount": 53
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "0o7Hat2dDPKp2roP-L2FwQs"
+   },
+   "answer": "16:39, Tom",
+   "cost_usd": 0.000864,
+   "code_right": true,
+   "wrong_terms": [],
+   "says_not_in_pages": false
+  },
+  {
+   "id": "prov-tokyo-duration",
+   "kind": "provider-left-column",
+   "question": "According to cloudflare's incident report on the September 2024 edge errors in Japan, for how long was Tokyo affected?",
+   "pdf": "library/pdf/provider-cloudflare-japan-edge.pdf",
+   "http": 200,
+   "error": null,
+   "retries": [],
+   "wall_s": 2.616,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "37 minutes",
+         "thoughtSignature": "EmkKZwFpFH0Tpxq8EyCn/wMOxFKDo8FvAOvzUE3410U6i0i0cmfvLY0NsusPkEwU6YbPXxOZGoDX+ych+D4n8P6dacXUuCxwxDxYD3X3BlUDnCzmbRxSPL5mzSkTv3kNKvjs4/weTgmwTtk="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 576,
+     "candidatesTokenCount": 3,
+     "totalTokenCount": 579,
+     "promptTokensDetails": [
+      {
+       "modality": "IMAGE",
+       "tokenCount": 532
+      },
+      {
+       "modality": "TEXT",
+       "tokenCount": 44
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "1I7HavTYJ-7arfcP5K2ZsAo"
+   },
+   "answer": "37 minutes",
+   "cost_usd": 0.00044325,
+   "code_right": true,
+   "wrong_terms": [],
+   "says_not_in_pages": false
+  },
+  {
+   "id": "prov-revert-time",
+   "kind": "provider-right-column",
+   "question": "According to cloudflare's incident report on the September 2024 edge errors in Japan, at what time UTC was the faulty change reverted?",
+   "pdf": "library/pdf/provider-cloudflare-japan-edge.pdf",
+   "http": 200,
+   "error": null,
+   "retries": [],
+   "wall_s": 1.996,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "06:14 UTC",
+         "thoughtSignature": "EmkKZwFpFH0TGhE+KFfxlWi4CWDoV+58WQmxtUl9ePdfaRE/26fQYnaKYn+vTROgU0zvGiZGrhhi+kSAAfPVmDyMWLfKZb+T3SxaBZaoyRS/FGcGPoLxgRdDDbP3CyRewVic0/ABj52xJLA="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 579,
+     "candidatesTokenCount": 6,
+     "totalTokenCount": 585,
+     "promptTokensDetails": [
+      {
+       "modality": "IMAGE",
+       "tokenCount": 532
+      },
+      {
+       "modality": "TEXT",
+       "tokenCount": 47
+      }
+     ],
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "147Haq2eEcP11e8P-ai_4Ag"
+   },
+   "answer": "06:14 UTC",
+   "cost_usd": 0.00045675,
+   "code_right": true,
+   "wrong_terms": [],
+   "says_not_in_pages": false
+  },
+  {
+   "id": "prov-fukuoka-window",
+   "kind": "provider-table",
+   "question": "According to cloudflare's incident report on the September 2024 edge errors in Japan, during which window (UTC) was Fukuoka affected, and what did visitors there see?",
+   "pdf": "library/pdf/provider-cloudflare-japan-edge.pdf",
+   "http": 200,
+   "error": null,
+   "retries": [],
+   "wall_s": 2.724,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "05:51–06:05 UTC; higher latency (p95 up to 1.8 s) with normal error rate",
+         "thoughtSignature": "EokECoYEAWkUfRPy4qlj8a7S7trdw92U55WEcrI3efWuE0PKK6oFo1azbWQitoldMc362/B08L+CPJ6PWqXqQUxl47nQcbjEcYPHrsckru/jilPiidVQa5460SAdb82teQhCbN2GsHo35q1pzCeSUvAUNwgFTplPbI0yUKfdIESRJLkEUvpwGEu3gxTf9Z9rLOV/UbCDZWuWc9B+sGtMI9A5ruFPizz3pE2ly64fXVPCGrka6Hauk3a5ImTiuiuHrRYXaHyXyLOae7xlnBo/b/6uLqucCMBxvwn0lYaceoFi7dxrIYuLUXYWWX4X9H873zJT+BpJ+KJ4YY2Tu3wveZNceDLXqqHfA5betKpgwcUQ6al+ARqR684Wxtpjrrmvu0YdvmMPC/Z3tziuprKbErrR30TNv7Tar98etFW49HC06Ia4UgKWSlJssvOrNFcidBP7AV1QgIEuHbfXn/0gvqiDOkID7EwCRTk299vrq93jy9tOGVkhRTlBJc/WqFp+LCGYbD5iX4cf33WlWkd/nH3aTz5iiUMWsc+Rpt7UqoP9DtrZWlVctchURIK6xLToEAdj7RZQ6Ma+FB6/S/fEH3eBf9rs/BRGEw3XzKKQWe2w6Nq2CRLBWZqAU+Gb162BQc4VQGVcy1BV4LyI2y4yzZHWJ9TBJ1ToxUaHYSVBmY3DzfTC2Als5SdMzpc="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 586,
+     "candidatesTokenCount": 31,
+     "totalTokenCount": 735,
+     "promptTokensDetails": [
+      {
+       "modality": "IMAGE",
+       "tokenCount": 532
+      },
+      {
+       "modality": "TEXT",
+       "tokenCount": 54
+      }
+     ],
+     "thoughtsTokenCount": 118,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "2Y7HaobAFaf91e8PyYjdSQ"
+   },
+   "answer": "05:51–06:05 UTC; higher latency (p95 up to 1.8 s) with normal error rate",
+   "cost_usd": 0.00099825,
+   "code_right": true,
+   "wrong_terms": [],
+   "says_not_in_pages": false
+  },
+  {
+   "id": "scan-drill-restore-step",
+   "kind": "scan",
+   "question": "In the 2023 backup restore drill of the api database, how long did restoring the database from the backup actually take, and did that step pass?",
+   "pdf": "library/pdf/scan-dr-drill-2023.pdf",
+   "http": 200,
+   "error": null,
+   "retries": [],
+   "wall_s": 3.652,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "2 h 04 min, Fail",
+         "thoughtSignature": "EscBCsQBAWkUfROURhWN3RRiwIxqGcmH5oZmlpsmndYoaejPX9cQBKqiKII9iPUScspch6Fsdq7wZcx5SBidHp2O9jfT6H0RtvbOUE0/i1woiYJdofx3+VVGQwGBPTLFKOj2RezV1AoLrMhnHIL3VzOv2WyoQh3MGxgO01U4GjgILImWX1iI1evq+ragJxT8aNHCOA81yKWDrPHNAUnlmHsq5NmK0n0YkBSd4TXmZeNGfCgfO8hBG4pX5shfeQT2SvzQPm9tVvwBCg=="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 581,
+     "candidatesTokenCount": 8,
+     "totalTokenCount": 622,
+     "promptTokensDetails": [
+      {
+       "modality": "IMAGE",
+       "tokenCount": 532
+      },
+      {
+       "modality": "TEXT",
+       "tokenCount": 49
+      }
+     ],
+     "thoughtsTokenCount": 33,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "3I7HarzYE9K11e8PzoXr2AQ"
+   },
+   "answer": "2 h 04 min, Fail",
+   "cost_usd": 0.0005895,
+   "code_right": true,
+   "wrong_terms": [],
+   "says_not_in_pages": false
+  },
+  {
+   "id": "scan-drill-signed",
+   "kind": "scan",
+   "question": "Who signed the 2023 api database restore drill report as drill lead, and on what date?",
+   "pdf": "library/pdf/scan-dr-drill-2023.pdf",
+   "http": 200,
+   "error": null,
+   "retries": [],
+   "wall_s": 2.878,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "Ravi, 2023-06-15",
+         "thoughtSignature": "ErkCCrYCAWkUfROBf50N33KuyMUEIAcW0yUxRUNsIxrAOz/6feskTbDx8uann710MCRw0/fPbduWqzdcStYFBzRbcRu+4qCJyhzyF758Bwe0WaSWi3KlwNyjQkU4XP63wKmFM3NVkHCxMY6xYO4r5YbumHjGfhGDOmPBpynuNzcOjxnZPWUPQrCbpPnmL3GxhjSTgA/nNAt927xlLgL0BFUSr5HtbAXubWm+Q2V82yK74FlTQuaQrc0tF97QN7+TLZtcaJI6Smw+dm875IDigWm7d6/gMqWYB9LVyfFvtUrZqSExE02p5RmrK8KKy6XRrKZ2ZgThF0/9hiGRJ6BBzN2Hy6D8qSw8WVALDsIc6JW51do1LAY0OoYpNLyNi51SYK9o48XKKgf17xkzrODB542wJ92F02ZgYnBF5g=="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 570,
+     "candidatesTokenCount": 14,
+     "totalTokenCount": 649,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 38
+      },
+      {
+       "modality": "IMAGE",
+       "tokenCount": 532
+      }
+     ],
+     "thoughtsTokenCount": 65,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "347Hao20Oo-N1e8PmqLvyQc"
+   },
+   "answer": "Ravi, 2023-06-15",
+   "cost_usd": 0.00072375,
+   "code_right": true,
+   "wrong_terms": [],
+   "says_not_in_pages": false
+  },
+  {
+   "id": "scan-twilio-ref",
+   "kind": "scan",
+   "question": "What is the reference number of twilio's February 2025 maintenance notice for the Messaging API, and what is the window in JST?",
+   "pdf": "library/pdf/scan-twilio-maintenance-2025.pdf",
+   "http": 200,
+   "error": null,
+   "retries": [],
+   "wall_s": 3.591,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "MNT-58213, 2025-02-18 02:00 to 04:00 JST",
+         "thoughtSignature": "EuECCt4CAWkUfRO+nZdOxOYzouim8GZbiv8b2joXTzutnH2AToT/P5f6nG8AFtYmVUxGMYYErV/dZb/aQuFDldgPJTWETHbFoIlEuUh/D6yt7vJMawQNr6QyHptaWL0aN7zQYDBMYWT9BEG6iCMvfuWZOgvmRWqLQ3nVSKizjRVGBSsai1253mLBRWkPL8LJZUwFWYcL1L9Xgy8sm/Yb2xYd8lhrrA4fmCzRjAR/xCDxe/lV3QI9l5pWVaJqBD7jVnObI5ND5ZVK1iTy02SjuAoUhADxYPwYUVui3ivm1o3S2hGBhD5U6eQpYbAzJP9yw7NHv0LMv8XMRe28ilwWjeFvw9paXR/f9L1LuwRtpnHzgDthy7IKrbgNwQ8XG8CBoLtIVp8wJiWOU7hQGiODQ59AQhBfUEkK0r68cUnCIyu7MBlr/t43el4HzHcInv1uiH8raZez1oDUJG7qRD0E/GyftFg="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 580,
+     "candidatesTokenCount": 35,
+     "totalTokenCount": 726,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 48
+      },
+      {
+       "modality": "IMAGE",
+       "tokenCount": 532
+      }
+     ],
+     "thoughtsTokenCount": 111,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "4o7Haq-NM76U9tMP1_CdEA"
+   },
+   "answer": "MNT-58213, 2025-02-18 02:00 to 04:00 JST",
+   "cost_usd": 0.0009825,
+   "code_right": true,
+   "wrong_terms": [],
+   "says_not_in_pages": false
+  },
+  {
+   "id": "scan-esc-api-ext",
+   "kind": "scan",
+   "question": "On the printed on-call escalation sheet, what is the api owner's internal phone extension?",
+   "pdf": "library/pdf/scan-escalation-sheet.pdf",
+   "http": 200,
+   "error": null,
+   "retries": [],
+   "wall_s": 2.424,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "ext. 4417",
+         "thoughtSignature": "EogCCoUCAWkUfRO8jZHeATV9oYJEx7aGFTUUNzo+pCMVNvFD4uoA6zSLFPqooc4IBsYQhB75NNtha41pJ5YQnGxvuvYMKhShs1HNDiTD5trAyDJhtF7fTzzIThWi024gkm8TJ/IwxD0qpdxEqI2rgpB1NBREJXhDLLQquAaI0Qpf8c1CVGVc31rBPzaCAOmOe+9ivqQhSIE4z62mwKO04L3LIHZmhi24C41MqSO+1wugEs2ew0UW69eq39z6K+M0rrfTS/d6n6mPRR3tphnulvZ3sgaUETYJMmTRypDukMaoYGLl8nwjUene0j+fXHlH6thIZb1dw5r4udHlkpYYo0cW3jY8S/0MlZNb"
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 568,
+     "candidatesTokenCount": 7,
+     "totalTokenCount": 617,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 36
+      },
+      {
+       "modality": "IMAGE",
+       "tokenCount": 532
+      }
+     ],
+     "thoughtsTokenCount": 42,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "5o7Hau6VGqrF0-kPn8Cq8A8"
+   },
+   "answer": "ext. 4417",
+   "cost_usd": 0.00060975,
+   "code_right": true,
+   "wrong_terms": [],
+   "says_not_in_pages": false
+  },
+  {
+   "id": "scan-esc-pager-down",
+   "kind": "scan",
+   "question": "According to the printed escalation sheet, who do I call if the paging tool itself is down?",
+   "pdf": "library/pdf/scan-escalation-sheet.pdf",
+   "http": 200,
+   "error": null,
+   "retries": [],
+   "wall_s": 2.792,
+   "response": {
+    "candidates": [
+     {
+      "content": {
+       "parts": [
+        {
+         "text": "The owner's extension first, then the incident commander desk",
+         "thoughtSignature": "EsQECsEEAWkUfRO3EXtfS6c8EvJYGtDqZTMA2mrkHVeoIIKttVgv76ueB7cbdRJy4Bvn3p/dhURwsccL7qdMzsbFyQ8DhEk4i5x79BCtJkl4q9p+qI26twvcoSjHpTf9uH1H2SJZud027xu6Hzr06mQH+SQ+vuzY/uoomNidMGolKtUnTkk24v6zS6JwpO4pwd3VLBCxWk3HLrm76u3W1i3y0x9e2QrWTDYmquQvXcEE/fCnGEsL9qwlNBhCSy+GLTX9Smkg2jSsinAaN3b0fBuUblM71J9FkZtYmytbpC5Whbvdie4VV6rBz5AJh7LsH2ALO3sqVeyPYxKzBjEl2jq1NTGhjMJmkYquOrO8CUPFwMOvhIsdDWk/6G7VOXH1WCuoWL8VWydK3v4/jB3ovZjRnaQaIx5O//JbXfWuL9BnPxU0PTzjirnMSKfJBBlf4aOsUSuPgh3B0ikCv4pDbQCkoXvF1r2BqbEyOTX6XZBd8r7MkGypwK9aNE3hCKh/w5y3ps9x8X4NPsjf0VYxN3CSs61vD3b1+IhEZq7/Dqj3I8iOW2iixcrzlqJ6kkF/OQaZyPAQSQff/jP1lWc8hhD5qRSS+tjHdgx3eVFZNPUvqMCBKgLSaMRQH4wZrQbJgMcvsTbySE3F4fZySkACqQOOCZfjeAQtZ/Nzhvo1BY7neyC14sKtMohuE5dDbq7hDqJIBuJhr9lNIoFwKPIZh0IOegLJOhcIZ8G3MBqYL4Lx8EPXwlxIGWxxkAdMMiVlu1r7fCujlA=="
+        }
+       ],
+       "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+     }
+    ],
+    "usageMetadata": {
+     "promptTokenCount": 567,
+     "candidatesTokenCount": 12,
+     "totalTokenCount": 692,
+     "promptTokensDetails": [
+      {
+       "modality": "TEXT",
+       "tokenCount": 35
+      },
+      {
+       "modality": "IMAGE",
+       "tokenCount": 532
+      }
+     ],
+     "thoughtsTokenCount": 113,
+     "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.8-flash",
+    "responseId": "6I7HaovBOZ601e8P4uKAiQg"
+   },
+   "answer": "The owner's extension first, then the incident commander desk",
+   "cost_usd": 0.000894,
+   "code_right": false,
+   "wrong_terms": [],
+   "says_not_in_pages": false
+  }
+ ]
+}

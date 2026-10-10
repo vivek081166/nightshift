@@ -1,0 +1,69 @@
+Postmortem: payments timeouts after the v2.31 deploy
+
+Incident date 2026-10-02, night (JST)
+
+Severity SEV-2
+
+Incident commander Aiko
+
+Author Mei
+
+Status Final, reviewed 2026-10-05
+Summary
+
+At 02:14 JST we deployed payments v2.31. The release cut the database connection pool for payments
+from 50 to 20. Even at night traffic, checkout requests began to wait for a free connection, and the
+payments p95 latency went above 2 seconds at 02:28. Client retries added load and made the wait longer.
+We rolled back to v2.30 starting at 02:58, and payments were restored at 03:07.
+
+Impact
+
+* Customer impact window: 02:18 to 03:07 JST (49 minutes).
+
+* Failed payments: 1,184. All were replayed from the retry queue by 03:12. No customer was charged
+twice.
+
+* Delayed payments (completed, but slower than 2 seconds): 3,907.
+
+* Support tickets: 23.
+
+* The api p95 latency rose to about 530 ms, because checkout calls in api wait on payments.
+
+Root cause
+
+The pool size lives in a config file. The change was reviewed as "no functional change" and was not load
+tested. With 20 connections, each slow database call held a connection longer, the queue grew, and
+retries from the app added more requests to the same queue.
+
+Action items
+
+1. Alert on payments connection wait time, not only on p95 latency (owner: Ravi, due 2026-10-16).
+2. Any change to pool sizes needs a load test before deploy (owner: Mei, due 2026-10-16).
+3. Client retries for checkout use backoff with jitter (owner: Aiko, due 2026-10-23).
+
+Sorrel engineering - internal Page 1 of 2
+Timeline (JST)
+
+Time What happened Who
+02:14 Payments v2.31 deployed. The release cuts the database connection pool Mei
+
+from 50 to 20.
+02:21 First support ticket: the checkout spinner does not finish. Hana (Support)
+02:30 Alert fires: payments p95 above 2 s for 2 minutes. Page sent to on-call. PagerDuty
+02:34 Page acknowledged. Ravi
+02:39 Payments logs show requests waiting for a database connection. Ravi
+02:43 Incident declared (SEV-2). Aiko takes incident commander. Aiko
+02:47 Mei joins and points at the pool size change in v2.31. Mei
+02:50 Payments p95 peaks at 3.7 s. Client retries push the request rate up by about = Ravi
+
+80%.
+02:56 Decision to roll back payments to v2.30. Aiko
+02:58 Rollback to v2.30 started. Mei
+03:04 Rollback complete on all payments pods. Mei
+03:07 Payments p95 back under 500 ms. Payments restored. Ravi
+03:12 1,184 failed payments replayed from the retry queue. Mei
+03:20 Receipt emails for the replayed payments sent. Tom
+
+Sorrel engineering - internal
+
+Page 2 of 2

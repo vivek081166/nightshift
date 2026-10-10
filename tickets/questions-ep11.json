@@ -1,0 +1,355 @@
+{
+ "written": "2026-10-08, before any extractor ran on the EP11 PDFs and before any measured call",
+ "grading": "case-insensitive substring. truth = list of groups; every group must match (any one alternative in a group). wrong = any term present marks a wrong-term hit, and the answer is hand-checked. kind not-in-pages = right only if the answer says the pages do not say; graded by hand. page = the page id that holds the answer.",
+ "questions": [
+  {
+   "id": "pm-notifier-lease-reset",
+   "kind": "postmortem-table",
+   "question": "During the March 2023 notifier reminder delay, at what time was the queue lease time set back to 60 s, and who did it?",
+   "truth": [
+    [
+     "08:31"
+    ],
+    [
+     "Tom"
+    ]
+   ],
+   "wrong": [
+    "08:24",
+    "08:16",
+    "08:47"
+   ],
+   "page": "postmortem-notifier-reminder-backlog"
+  },
+  {
+   "id": "pm-notifier-worker-action",
+   "kind": "postmortem-action",
+   "question": "In the notifier reminder delay postmortem, who owns the action item to add per-worker send rate to the notifier board, and when is it due?",
+   "truth": [
+    [
+     "Ravi"
+    ],
+    [
+     "2023-04-07"
+    ]
+   ],
+   "wrong": [
+    "2023-04-14",
+    "2023-03-31"
+   ],
+   "page": "postmortem-notifier-reminder-backlog"
+  },
+  {
+   "id": "pm-api-index-done",
+   "kind": "postmortem-table",
+   "question": "In the July 2024 api date search incident, at what time did the new index finish building, and who is listed for that timeline entry?",
+   "truth": [
+    [
+     "15:19"
+    ],
+    [
+     "Ravi"
+    ]
+   ],
+   "wrong": [
+    "15:06",
+    "15:24"
+   ],
+   "page": "postmortem-api-index-migration"
+  },
+  {
+   "id": "pm-api-rollback",
+   "kind": "postmortem-table",
+   "question": "In the postmortem about the migration that dropped an index, who rolled api back to d-4466, and at what time?",
+   "truth": [
+    [
+     "Tom"
+    ],
+    [
+     "14:31"
+    ]
+   ],
+   "wrong": [
+    "14:38",
+    "14:27",
+    "15:24"
+   ],
+   "page": "postmortem-api-index-migration"
+  },
+  {
+   "id": "pm-refund-pause",
+   "kind": "postmortem-table",
+   "question": "In the duplicate refunds incident of October 2023, at what time was the refund job paused in the scheduler, and by whom?",
+   "truth": [
+    [
+     "10:41"
+    ],
+    [
+     "Mei"
+    ]
+   ],
+   "wrong": [
+    "10:36",
+    "10:49"
+   ],
+   "page": "postmortem-payments-duplicate-refunds"
+  },
+  {
+   "id": "pm-refund-check-action",
+   "kind": "postmortem-action",
+   "question": "In the duplicate refunds postmortem, who owns the action item to add a daily check that no refund id was sent to stripe twice, and when was it due?",
+   "truth": [
+    [
+     "Ravi"
+    ],
+    [
+     "2023-11-10"
+    ]
+   ],
+   "wrong": [
+    "2023-11-03",
+    "2023-11-17"
+   ],
+   "page": "postmortem-payments-duplicate-refunds"
+  },
+  {
+   "id": "pm-firewall-logonly",
+   "kind": "postmortem-table",
+   "question": "In the May 2025 incident where booking pages were behind a firewall challenge, at what time was the rule switched to log only, and by whom?",
+   "truth": [
+    [
+     "16:58"
+    ],
+    [
+     "Aiko"
+    ]
+   ],
+   "wrong": [
+    "16:47",
+    "17:01",
+    "17:40"
+   ],
+   "page": "postmortem-web-firewall-challenge"
+  },
+  {
+   "id": "pm-firewall-deploycheck",
+   "kind": "postmortem-table",
+   "question": "In the firewall challenge postmortem, at what time did the on-call engineer check the deploy tool and find the last web deploy was 2 days old, and who was it?",
+   "truth": [
+    [
+     "16:39"
+    ],
+    [
+     "Tom"
+    ]
+   ],
+   "wrong": [
+    "16:34",
+    "16:44"
+   ],
+   "page": "postmortem-web-firewall-challenge"
+  },
+  {
+   "id": "prov-tokyo-duration",
+   "kind": "provider-left-column",
+   "question": "According to cloudflare's incident report on the September 2024 edge errors in Japan, for how long was Tokyo affected?",
+   "truth": [
+    [
+     "37 min"
+    ]
+   ],
+   "wrong": [
+    "27 min"
+   ],
+   "page": "provider-cloudflare-japan-edge"
+  },
+  {
+   "id": "prov-revert-time",
+   "kind": "provider-right-column",
+   "question": "According to cloudflare's incident report on the September 2024 edge errors in Japan, at what time UTC was the faulty change reverted?",
+   "truth": [
+    [
+     "06:14"
+    ]
+   ],
+   "wrong": [
+    "06:09",
+    "06:19"
+   ],
+   "page": "provider-cloudflare-japan-edge"
+  },
+  {
+   "id": "prov-fukuoka-window",
+   "kind": "provider-table",
+   "question": "According to cloudflare's incident report on the September 2024 edge errors in Japan, during which window (UTC) was Fukuoka affected, and what did visitors there see?",
+   "truth": [
+    [
+     "05:51"
+    ],
+    [
+     "06:05"
+    ],
+    [
+     "latency"
+    ]
+   ],
+   "wrong": [
+    "05:44",
+    "06:11",
+    "502"
+   ],
+   "page": "provider-cloudflare-japan-edge"
+  },
+  {
+   "id": "scan-drill-restore-step",
+   "kind": "scan",
+   "question": "In the 2023 backup restore drill of the api database, how long did restoring the database from the backup actually take, and did that step pass?",
+   "truth": [
+    [
+     "2 h 04",
+     "2h 04",
+     "2 h 4 ",
+     "2 hours 4",
+     "2 hours and 4",
+     "124 min"
+    ],
+    [
+     "fail"
+    ]
+   ],
+   "wrong": [
+    "3 h 27",
+    "38 min"
+   ],
+   "page": "scan-dr-drill-2023"
+  },
+  {
+   "id": "scan-drill-signed",
+   "kind": "scan",
+   "question": "Who signed the 2023 api database restore drill report as drill lead, and on what date?",
+   "truth": [
+    [
+     "Ravi"
+    ],
+    [
+     "2023-06-15"
+    ]
+   ],
+   "wrong": [
+    "2023-06-16",
+    "2023-06-13"
+   ],
+   "page": "scan-dr-drill-2023"
+  },
+  {
+   "id": "scan-twilio-ref",
+   "kind": "scan",
+   "question": "What is the reference number of twilio's February 2025 maintenance notice for the Messaging API, and what is the window in JST?",
+   "truth": [
+    [
+     "MNT-58213"
+    ],
+    [
+     "02:00"
+    ],
+    [
+     "04:00"
+    ]
+   ],
+   "wrong": [
+    "17:00",
+    "19:00"
+   ],
+   "page": "scan-twilio-maintenance-2025"
+  },
+  {
+   "id": "scan-esc-api-ext",
+   "kind": "scan",
+   "question": "On the printed on-call escalation sheet, what is the api owner's internal phone extension?",
+   "truth": [
+    [
+     "4417"
+    ]
+   ],
+   "wrong": [
+    "4411",
+    "4423",
+    "4429"
+   ],
+   "page": "scan-escalation-sheet"
+  },
+  {
+   "id": "scan-esc-pager-down",
+   "kind": "scan",
+   "question": "According to the printed escalation sheet, who do I call if the paging tool itself is down?",
+   "truth": [
+    [
+     "owner"
+    ],
+    [
+     "4400"
+    ]
+   ],
+   "wrong": [
+    "4450",
+    "4460"
+   ],
+   "page": "scan-escalation-sheet"
+  },
+  {
+   "id": "md-pool-replayed",
+   "kind": "markdown",
+   "question": "After the payments checkout timeouts in November 2025, how many failed payments were replayed from the retry queue?",
+   "truth": [
+    [
+     "1,184",
+     "1184"
+    ]
+   ],
+   "wrong": [
+    "3,907"
+   ],
+   "page": "postmortem-payments-pool-timeout"
+  },
+  {
+   "id": "md-replica-gameday",
+   "kind": "markdown",
+   "question": "On what date did the team run the api replica failover game day?",
+   "truth": [
+    [
+     "2025-06-18",
+     "June 18"
+    ]
+   ],
+   "wrong": [
+    "2025-03-12",
+    "2025-10-15"
+   ],
+   "page": "team-game-days"
+  },
+  {
+   "id": "none-drill-2024",
+   "kind": "not-in-pages",
+   "question": "What was the total restore time in the 2024 backup restore drill?",
+   "truth": [],
+   "wrong": [
+    "3 h 27",
+    "3h 27"
+   ],
+   "page": null
+  },
+  {
+   "id": "none-sendgrid-ext",
+   "kind": "not-in-pages",
+   "question": "What is the internal phone extension for our sendgrid account manager?",
+   "truth": [],
+   "wrong": [
+    "4429",
+    "4460",
+    "4450",
+    "4400"
+   ],
+   "page": null
+  }
+ ]
+}

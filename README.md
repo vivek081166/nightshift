@@ -51,11 +51,21 @@ You can write a Python function and call an HTTP API. No machine learning needed
     python3 lookup.py --list                          # the contents list, exactly as the call sends it (--dates adds each page's last-updated day)
     python3 measure/ep10_screen.py sizes              # text sent with that question, from runs/ep10, no API call (also: trap, questions, tally, gate)
 
+    pip install pypdf                                 # ep11: topage.py takes the text out of a PDF with it
+    python3 topage.py --count pdf/                    # how many characters came out of each PDF: thousands for the typed ones, 0 for each scan
+    python3 topage.py pdf/                            # a page in pages/ for each PDF; a PDF with no text goes to the model once, and what it writes out is the page
+    python3 lookup.py "On the printed on-call escalation sheet, what is the api owner's internal phone extension?"   # look it up on those pages
+    python3 measure/ep11_screen.py pages              # the pages as they were before the check (the scans' pages are empty), no API call; then ask again
+    python3 measure/ep11_screen.py questions          # my questions, before and after the check, from runs/ep11, no API call (also: cold, gate)
+
+`lookup.py` wraps its answer to your terminal's width from ep11 on. At 89 columns or wider, and under a pipe,
+it prints exactly what ep10 printed.
+
 The `ep03` tag holds `score.py` as the episode leaves it, with RULES filled in. The first five runs in
 the video used the same file with `RULES = ""` on line 14. Replace the RULES block with that one line
 to run them yourself.
 
-Every call is raw HTTP on purpose. No SDK, nothing to install past the key.
+Every call is raw HTTP on purpose. No SDK, nothing to install past the key, except pypdf for ep11's `topage.py`.
 The demo calls Gemini. The OpenAI and Anthropic APIs take the same kind of request, and nothing in
 the course depends on the vendor.
 
@@ -73,6 +83,7 @@ the course depends on the vendor.
 | `ep08` | [Send Images and PDFs to an LLM: Why Chart Readings Change](https://youtu.be/_c2H98LSzKc) | `look.py` sends a picture or a PDF as its bytes in base64 plus a label for its type, next to the question. The dashboard picture gives a reading that moves (33, 35, 35; the truth is 34); the numbers as text give 34 every time; the PDF gives the number it prints (1,184), 30 of 30 right. `--detail low` sets how many tokens the picture becomes. `measure/ep08_screen.py` shows the readings and the PDF count |
 | `ep09` | [Prompt Caching: Make a Cache That Hits Every Call (LLM Context Caching)](https://youtu.be/Cwb9SbTJCOk) | `cache.py` sends the handbook (`runbooks/handbook.md`, the five rules on top) first and the alert last, and prints how many tokens each call sent and how many the model reused. The automatic cache reused nothing on camera (0 of 30; 21 of 120 across four earlier runs, never the whole handbook); the time on the first line stops it (0 of 30); a cache you make (`--make`) is reused on 30 of 30; after its 5 minutes the call fails with 403 "CachedContent not found (or permission denied)", and `--again` makes the cache again. `measure/ep09_screen.py` shows the earlier run and the module close: 27 of 30 right both ways, the bill about a fifth |
 | `ep10` | [RAG vs Long Context: I Tested Both on the Same Question](https://youtu.be/7BOy-hvyrlA) | `lookup.py` gives the model the team's 67 pages two ways: every page in the call (`--carry`), or a contents list of titles plus one function, `read_page`, and it prints each page the model opened. Looked up, the rollback question opened only the 2024 runbook and gave the retired command 10 of 10; carried, 10 of 10 right at 34 times the text. Dates in the list (`--dates`) 7 of 10, a RETIRED line on the old page 10 of 10, the old page moved out 10 of 10. `measure/ep10_screen.py` replays the saved runs |
+| `ep11` | [PDF Parsing for RAG: My Scanned PDF Came Back Empty (PDF to Text for LLMs)](https://youtu.be/bD8vp5NGc7A) | `topage.py` turns each PDF in `pdf/` into a page for `lookup.py`. It takes the text out with pypdf and counts the characters: the five typed PDFs gave thousands, the three scans gave 0, with no error. A PDF with 0 goes to the model once, as the PDF itself, and what the model writes out becomes the page. Before the check, the escalation sheet question came back saying the sheet's page was empty; after it, `ext. 4417`. Each page's first line carries a tag of its PDF's bytes, so a PDF that changes gets its page made again. The count is per PDF: a PDF that mixes typed and scanned pages is not caught. The PDFs are made up for the course, and the scans were made to look scanned (see PROVENANCE) |
 
 The map the course follows: [Andrew Ng's AI Engineering Skills Map](https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map)
 

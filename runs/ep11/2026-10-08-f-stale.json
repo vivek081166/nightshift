@@ -1,0 +1,2414 @@
+{
+ "method": "P6",
+ "page_kept_from": "revision 1",
+ "pdf_now": "revision 2 (md5 928df5c72e5747099dc08a65a701cef2)",
+ "asks": [
+  {
+   "answer": "According to the timeline in the firewall challenge postmortem (*Postmortem: booking pages behind a firewall challenge*), challenges on `/book/*` fell back to normal at **17:01** (JST).",
+   "opened": [
+    "postmortem-web-firewall-challenge"
+   ],
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages are listed below, one per line as id: title. To read a page, call read_page with its id. You may read up to 4 pages.\n\nhandbook-1: Handbook 1. How to use this handbook\nhandbook-2: Handbook 2. Severity\nhandbook-3: Handbook 3. The five actions, in more detail\nhandbook-4: Handbook 4. Escalation policy\nhandbook-5: Handbook 5. Service runbooks\nhandbook-6: Handbook 6. Outside providers\nhandbook-7: Handbook 7. Known failure modes\nhandbook-8: Handbook 8. Communication\nhandbook-9: Handbook 9. After an incident\nhandbook-10: Handbook 10. Shift practicalities\nhandbook-11: Handbook 11. Deploy practice\nhandbook-12: Handbook 12. Data and privacy basics for on-call\nhandbook-13: Handbook 13. Traffic patterns and the business calendar\nhandbook-14: Handbook 14. Alert rules reference\nhandbook-15: Handbook 15. Useful log searches\nhandbook-16: Handbook 16. Dependencies between services\nhandbook-17: Handbook 17. Access and permissions\nhandbook-18: Handbook 18. Glossary\nteam-oncall-onboarding: On-call onboarding\npostmortem-web-font-upload: Postmortem: web blank pages after a font upload\nweb-runbook-2024: web runbook (2024 edition)\npayments-rollback-runbook: Payments rollback runbook\nhandover-2024-03-25: On-call handover, week of 2024-03-25\npostmortem-notifier-sms-codes-japan: Postmortem: SMS sign-in codes delayed in Japan\nnotifier-runbook-2024: notifier runbook (2024 edition)\nteam-alert-tuning: Alert tuning process\npostmortem-api-search-index-stale: Postmortem: api search index stale for a day\nprovider-stripe-notes: stripe: notes for on-call\nhandover-2024-08-19: On-call handover, week of 2024-08-19\npostmortem-notifier-duplicate-reminders: Postmortem: duplicate appointment reminders after a scheduler restart\nhowto-api-search-index-rebuild: How to rebuild the api search index\npostmortem-api-dst-us-east: Postmortem: bookings an hour off after the US clock change\nteam-dashboards-guide: Dashboards guide\nhandover-2025-01-06: On-call handover, week of 2025-01-06\nhowto-notifier-queue-panels: How to read the notifier queue panels\npostmortem-web-admin-session: Postmortem: admin tool session left open on a shared laptop\nprovider-twilio-japan: twilio: Japan carrier notes\npostmortem-api-partner-certificate: Postmortem: partner API certificate expired\nteam-access-requests: Access requests for on-call\nhowto-cdn-purge-by-hand: How to purge the CDN by hand\nhandover-2025-06-30: On-call handover, week of 2025-06-30\npostmortem-web-cdn-purge-stuck: Postmortem: CDN purge stuck after the summer campaign release\nhowto-trace-a-refund: How to trace one refund through the logs\nteam-status-page-process: Status page process\npostmortem-notifier-sendgrid-quota: Postmortem: sendgrid daily quota reached during a marketing send\nprovider-sendgrid-quota: sendgrid: quota and streams\nteam-game-days: Game days\npostmortem-payments-pool-timeout: Postmortem: payments checkout timeouts after the v2.31 pool change\nhandover-2025-11-24: On-call handover, week of 2025-11-24\nprovider-cloudflare-notes: cloudflare: purge and firewall notes\npostmortem-api-audit-disk: Postmortem: api audit log writer stopped after a disk filled\nteam-incident-commander-guide: Incident commander guide\nhowto-api-replica-lag: How to check replica lag on api\nprovider-aws-health: aws: health dashboard and regions\npostmortem-payments-webhook-secret: Postmortem: stripe webhooks rejected after the signing secret rotation\nteam-postmortem-review: Postmortem review meeting\nhandover-2026-04-06: On-call handover, week of 2026-04-06\npostmortem-api-aws-dns-apne1: Postmortem: aws DNS incident in ap-northeast-1\nhowto-stop-unowned-load-test: How to stop a load test that nobody owns\npostmortem-api-replica-lag-double-booking: Postmortem: api replica lag double-booked slots in eu-west\nteam-secrets-manager: Secrets manager for on-call\npostmortem-notifier-template-crash: Postmortem: notifier queue stalled by a template error\nprovider-stripe-api-version: stripe: API version upgrade notes (2026)\npostmortem-api-rollback-queue: Postmortem: api rollback stuck in the deploy queue\nhandover-2026-09-21: On-call handover, week of 2026-09-21\ndeploying-with-shipyard: Deploying with Shipyard\nhandover-2026-10-05: On-call handover, week of 2026-10-05\npostmortem-notifier-reminder-backlog: Postmortem: notifier reminders delayed by a stuck queue worker\npostmortem-api-index-migration: Postmortem: api date search slow after a migration dropped an index\npostmortem-payments-duplicate-refunds: Postmortem: refunds sent twice after the refund job restarted\npostmortem-web-firewall-challenge: Postmortem: booking pages behind a firewall challenge\nprovider-cloudflare-japan-edge: Incident report: elevated errors at edge locations in Japan\nscan-dr-drill-2023: Backup restore drill report: api database\nscan-twilio-maintenance-2025: Scheduled maintenance: Messaging API, Tokyo region\nscan-escalation-sheet: On-call escalation sheet"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nIn the firewall challenge postmortem, at what time did challenges on /book/* fall back to normal?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "tools": [
+       {
+        "functionDeclarations": [
+         {
+          "name": "read_page",
+          "description": "Read one of the team's pages by its id from the contents list.",
+          "parameters": {
+           "type": "object",
+           "properties": {
+            "id": {
+             "type": "string",
+             "description": "the page id, exactly as the contents list gives it"
+            }
+           },
+           "required": [
+            "id"
+           ]
+          }
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-08T12:40:13.025+00:00",
+     "wall_s": 1.401,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "functionCall": {
+            "name": "read_page",
+            "args": {
+             "id": "postmortem-web-firewall-challenge"
+            },
+            "id": "call_496001"
+           },
+           "thoughtSignature": "EmkKZwFpFH0Tq7zWUUkMYxVCJi5lDPu0VDoqIXtmEJDonFEpGgqRJZ1KuaW5KC/uadiv/Lv0aWO8PATB4lb7zfWk5eonEZ8sKVhFNrV9RqxME1B5bmu6CCODu/vw9iNvdxaZgO34cFFQ1+M="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0,
+        "finishMessage": "Model generated function call(s)."
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 1736,
+       "candidatesTokenCount": 24,
+       "totalTokenCount": 1760,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 1736
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "LY_Hatv5FI3nrfcPz4vCqAo"
+     },
+     "text": "",
+     "function_calls": [
+      {
+       "name": "read_page",
+       "args": {
+        "id": "postmortem-web-firewall-challenge"
+       },
+       "id": "call_496001"
+      }
+     ],
+     "finishReason": "STOP",
+     "cost_usd": 0.001392
+    },
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages are listed below, one per line as id: title. To read a page, call read_page with its id. You may read up to 4 pages.\n\nhandbook-1: Handbook 1. How to use this handbook\nhandbook-2: Handbook 2. Severity\nhandbook-3: Handbook 3. The five actions, in more detail\nhandbook-4: Handbook 4. Escalation policy\nhandbook-5: Handbook 5. Service runbooks\nhandbook-6: Handbook 6. Outside providers\nhandbook-7: Handbook 7. Known failure modes\nhandbook-8: Handbook 8. Communication\nhandbook-9: Handbook 9. After an incident\nhandbook-10: Handbook 10. Shift practicalities\nhandbook-11: Handbook 11. Deploy practice\nhandbook-12: Handbook 12. Data and privacy basics for on-call\nhandbook-13: Handbook 13. Traffic patterns and the business calendar\nhandbook-14: Handbook 14. Alert rules reference\nhandbook-15: Handbook 15. Useful log searches\nhandbook-16: Handbook 16. Dependencies between services\nhandbook-17: Handbook 17. Access and permissions\nhandbook-18: Handbook 18. Glossary\nteam-oncall-onboarding: On-call onboarding\npostmortem-web-font-upload: Postmortem: web blank pages after a font upload\nweb-runbook-2024: web runbook (2024 edition)\npayments-rollback-runbook: Payments rollback runbook\nhandover-2024-03-25: On-call handover, week of 2024-03-25\npostmortem-notifier-sms-codes-japan: Postmortem: SMS sign-in codes delayed in Japan\nnotifier-runbook-2024: notifier runbook (2024 edition)\nteam-alert-tuning: Alert tuning process\npostmortem-api-search-index-stale: Postmortem: api search index stale for a day\nprovider-stripe-notes: stripe: notes for on-call\nhandover-2024-08-19: On-call handover, week of 2024-08-19\npostmortem-notifier-duplicate-reminders: Postmortem: duplicate appointment reminders after a scheduler restart\nhowto-api-search-index-rebuild: How to rebuild the api search index\npostmortem-api-dst-us-east: Postmortem: bookings an hour off after the US clock change\nteam-dashboards-guide: Dashboards guide\nhandover-2025-01-06: On-call handover, week of 2025-01-06\nhowto-notifier-queue-panels: How to read the notifier queue panels\npostmortem-web-admin-session: Postmortem: admin tool session left open on a shared laptop\nprovider-twilio-japan: twilio: Japan carrier notes\npostmortem-api-partner-certificate: Postmortem: partner API certificate expired\nteam-access-requests: Access requests for on-call\nhowto-cdn-purge-by-hand: How to purge the CDN by hand\nhandover-2025-06-30: On-call handover, week of 2025-06-30\npostmortem-web-cdn-purge-stuck: Postmortem: CDN purge stuck after the summer campaign release\nhowto-trace-a-refund: How to trace one refund through the logs\nteam-status-page-process: Status page process\npostmortem-notifier-sendgrid-quota: Postmortem: sendgrid daily quota reached during a marketing send\nprovider-sendgrid-quota: sendgrid: quota and streams\nteam-game-days: Game days\npostmortem-payments-pool-timeout: Postmortem: payments checkout timeouts after the v2.31 pool change\nhandover-2025-11-24: On-call handover, week of 2025-11-24\nprovider-cloudflare-notes: cloudflare: purge and firewall notes\npostmortem-api-audit-disk: Postmortem: api audit log writer stopped after a disk filled\nteam-incident-commander-guide: Incident commander guide\nhowto-api-replica-lag: How to check replica lag on api\nprovider-aws-health: aws: health dashboard and regions\npostmortem-payments-webhook-secret: Postmortem: stripe webhooks rejected after the signing secret rotation\nteam-postmortem-review: Postmortem review meeting\nhandover-2026-04-06: On-call handover, week of 2026-04-06\npostmortem-api-aws-dns-apne1: Postmortem: aws DNS incident in ap-northeast-1\nhowto-stop-unowned-load-test: How to stop a load test that nobody owns\npostmortem-api-replica-lag-double-booking: Postmortem: api replica lag double-booked slots in eu-west\nteam-secrets-manager: Secrets manager for on-call\npostmortem-notifier-template-crash: Postmortem: notifier queue stalled by a template error\nprovider-stripe-api-version: stripe: API version upgrade notes (2026)\npostmortem-api-rollback-queue: Postmortem: api rollback stuck in the deploy queue\nhandover-2026-09-21: On-call handover, week of 2026-09-21\ndeploying-with-shipyard: Deploying with Shipyard\nhandover-2026-10-05: On-call handover, week of 2026-10-05\npostmortem-notifier-reminder-backlog: Postmortem: notifier reminders delayed by a stuck queue worker\npostmortem-api-index-migration: Postmortem: api date search slow after a migration dropped an index\npostmortem-payments-duplicate-refunds: Postmortem: refunds sent twice after the refund job restarted\npostmortem-web-firewall-challenge: Postmortem: booking pages behind a firewall challenge\nprovider-cloudflare-japan-edge: Incident report: elevated errors at edge locations in Japan\nscan-dr-drill-2023: Backup restore drill report: api database\nscan-twilio-maintenance-2025: Scheduled maintenance: Messaging API, Tokyo region\nscan-escalation-sheet: On-call escalation sheet"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nIn the firewall challenge postmortem, at what time did challenges on /book/* fall back to normal?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       },
+       {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "read_page",
+           "args": {
+            "id": "postmortem-web-firewall-challenge"
+           },
+           "id": "call_496001"
+          },
+          "thoughtSignature": "EmkKZwFpFH0Tq7zWUUkMYxVCJi5lDPu0VDoqIXtmEJDonFEpGgqRJZ1KuaW5KC/uadiv/Lv0aWO8PATB4lb7zfWk5eonEZ8sKVhFNrV9RqxME1B5bmu6CCODu/vw9iNvdxaZgO34cFFQ1+M="
+         }
+        ],
+        "role": "model"
+       },
+       {
+        "role": "user",
+        "parts": [
+         {
+          "functionResponse": {
+           "name": "read_page",
+           "response": {
+            "id": "postmortem-web-firewall-challenge",
+            "title": "Postmortem: booking pages behind a firewall challenge",
+            "text": "<omitted page postmortem-web-firewall-challenge (P6): md5 5ff1c58a7d929bcf973b0a8acdc1c019, 1122 tokens by countTokens>"
+           },
+           "id": "call_496001"
+          }
+         }
+        ]
+       }
+      ],
+      "tools": [
+       {
+        "functionDeclarations": [
+         {
+          "name": "read_page",
+          "description": "Read one of the team's pages by its id from the contents list.",
+          "parameters": {
+           "type": "object",
+           "properties": {
+            "id": {
+             "type": "string",
+             "description": "the page id, exactly as the contents list gives it"
+            }
+           },
+           "required": [
+            "id"
+           ]
+          }
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-08T12:40:14.439+00:00",
+     "wall_s": 3.307,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the timeline in the firewall challenge postmortem (*Postmortem: booking pages behind a firewall challenge*), challenges on `/book/*` fell back to normal at **17:01** (JST).",
+           "thoughtSignature": "EmkKZwFpFH0T+Xtk7ld+lH+fkFnHdwR+pUCbyg/MbhhJg8wQ9jJB1CGf/AfgO7sJfT3XZtTS6Hnd4G7xt0Z1Lb+7e9tUnrjkSyX5Kk/BimwzN2ihHBByhQEPYPne3J5Sck1JSe09YZRrkxs="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 2922,
+       "candidatesTokenCount": 44,
+       "totalTokenCount": 2966,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 2922
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "Lo_Haui3OYuM1e8P0PHO4Ac"
+     },
+     "text": "According to the timeline in the firewall challenge postmortem (*Postmortem: booking pages behind a firewall challenge*), challenges on `/book/*` fell back to normal at **17:01** (JST).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "cost_usd": 0.0023565
+    }
+   ],
+   "wall_s": 4.733,
+   "prompt_tokens": 4658,
+   "out_tokens": 68,
+   "cost_usd": 0.0037485,
+   "id": "f-challenges-normal",
+   "run": 1,
+   "question": "In the firewall challenge postmortem, at what time did challenges on /book/* fall back to normal?",
+   "has_rev1": true,
+   "has_rev2": false
+  },
+  {
+   "answer": "According to the postmortem (*Postmortem: booking pages behind a firewall challenge*), challenges on `/book/*` fell back to normal at **17:01** (JST).",
+   "opened": [
+    "postmortem-web-firewall-challenge"
+   ],
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages are listed below, one per line as id: title. To read a page, call read_page with its id. You may read up to 4 pages.\n\nhandbook-1: Handbook 1. How to use this handbook\nhandbook-2: Handbook 2. Severity\nhandbook-3: Handbook 3. The five actions, in more detail\nhandbook-4: Handbook 4. Escalation policy\nhandbook-5: Handbook 5. Service runbooks\nhandbook-6: Handbook 6. Outside providers\nhandbook-7: Handbook 7. Known failure modes\nhandbook-8: Handbook 8. Communication\nhandbook-9: Handbook 9. After an incident\nhandbook-10: Handbook 10. Shift practicalities\nhandbook-11: Handbook 11. Deploy practice\nhandbook-12: Handbook 12. Data and privacy basics for on-call\nhandbook-13: Handbook 13. Traffic patterns and the business calendar\nhandbook-14: Handbook 14. Alert rules reference\nhandbook-15: Handbook 15. Useful log searches\nhandbook-16: Handbook 16. Dependencies between services\nhandbook-17: Handbook 17. Access and permissions\nhandbook-18: Handbook 18. Glossary\nteam-oncall-onboarding: On-call onboarding\npostmortem-web-font-upload: Postmortem: web blank pages after a font upload\nweb-runbook-2024: web runbook (2024 edition)\npayments-rollback-runbook: Payments rollback runbook\nhandover-2024-03-25: On-call handover, week of 2024-03-25\npostmortem-notifier-sms-codes-japan: Postmortem: SMS sign-in codes delayed in Japan\nnotifier-runbook-2024: notifier runbook (2024 edition)\nteam-alert-tuning: Alert tuning process\npostmortem-api-search-index-stale: Postmortem: api search index stale for a day\nprovider-stripe-notes: stripe: notes for on-call\nhandover-2024-08-19: On-call handover, week of 2024-08-19\npostmortem-notifier-duplicate-reminders: Postmortem: duplicate appointment reminders after a scheduler restart\nhowto-api-search-index-rebuild: How to rebuild the api search index\npostmortem-api-dst-us-east: Postmortem: bookings an hour off after the US clock change\nteam-dashboards-guide: Dashboards guide\nhandover-2025-01-06: On-call handover, week of 2025-01-06\nhowto-notifier-queue-panels: How to read the notifier queue panels\npostmortem-web-admin-session: Postmortem: admin tool session left open on a shared laptop\nprovider-twilio-japan: twilio: Japan carrier notes\npostmortem-api-partner-certificate: Postmortem: partner API certificate expired\nteam-access-requests: Access requests for on-call\nhowto-cdn-purge-by-hand: How to purge the CDN by hand\nhandover-2025-06-30: On-call handover, week of 2025-06-30\npostmortem-web-cdn-purge-stuck: Postmortem: CDN purge stuck after the summer campaign release\nhowto-trace-a-refund: How to trace one refund through the logs\nteam-status-page-process: Status page process\npostmortem-notifier-sendgrid-quota: Postmortem: sendgrid daily quota reached during a marketing send\nprovider-sendgrid-quota: sendgrid: quota and streams\nteam-game-days: Game days\npostmortem-payments-pool-timeout: Postmortem: payments checkout timeouts after the v2.31 pool change\nhandover-2025-11-24: On-call handover, week of 2025-11-24\nprovider-cloudflare-notes: cloudflare: purge and firewall notes\npostmortem-api-audit-disk: Postmortem: api audit log writer stopped after a disk filled\nteam-incident-commander-guide: Incident commander guide\nhowto-api-replica-lag: How to check replica lag on api\nprovider-aws-health: aws: health dashboard and regions\npostmortem-payments-webhook-secret: Postmortem: stripe webhooks rejected after the signing secret rotation\nteam-postmortem-review: Postmortem review meeting\nhandover-2026-04-06: On-call handover, week of 2026-04-06\npostmortem-api-aws-dns-apne1: Postmortem: aws DNS incident in ap-northeast-1\nhowto-stop-unowned-load-test: How to stop a load test that nobody owns\npostmortem-api-replica-lag-double-booking: Postmortem: api replica lag double-booked slots in eu-west\nteam-secrets-manager: Secrets manager for on-call\npostmortem-notifier-template-crash: Postmortem: notifier queue stalled by a template error\nprovider-stripe-api-version: stripe: API version upgrade notes (2026)\npostmortem-api-rollback-queue: Postmortem: api rollback stuck in the deploy queue\nhandover-2026-09-21: On-call handover, week of 2026-09-21\ndeploying-with-shipyard: Deploying with Shipyard\nhandover-2026-10-05: On-call handover, week of 2026-10-05\npostmortem-notifier-reminder-backlog: Postmortem: notifier reminders delayed by a stuck queue worker\npostmortem-api-index-migration: Postmortem: api date search slow after a migration dropped an index\npostmortem-payments-duplicate-refunds: Postmortem: refunds sent twice after the refund job restarted\npostmortem-web-firewall-challenge: Postmortem: booking pages behind a firewall challenge\nprovider-cloudflare-japan-edge: Incident report: elevated errors at edge locations in Japan\nscan-dr-drill-2023: Backup restore drill report: api database\nscan-twilio-maintenance-2025: Scheduled maintenance: Messaging API, Tokyo region\nscan-escalation-sheet: On-call escalation sheet"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nIn the firewall challenge postmortem, at what time did challenges on /book/* fall back to normal?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "tools": [
+       {
+        "functionDeclarations": [
+         {
+          "name": "read_page",
+          "description": "Read one of the team's pages by its id from the contents list.",
+          "parameters": {
+           "type": "object",
+           "properties": {
+            "id": {
+             "type": "string",
+             "description": "the page id, exactly as the contents list gives it"
+            }
+           },
+           "required": [
+            "id"
+           ]
+          }
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-08T12:40:17.759+00:00",
+     "wall_s": 1.383,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "functionCall": {
+            "name": "read_page",
+            "args": {
+             "id": "postmortem-web-firewall-challenge"
+            },
+            "id": "call_537405"
+           },
+           "thoughtSignature": "EmkKZwFpFH0TqTDPGXNeSX8iKNroHJHJD9RJCaAuQTF9VyOvtHKIEYy1EUHYqLsFAngXFvYj9qhGSTCvsqVHrFsp+j+0Dgbqcqeg3rv3B4ZEyKGXFPZ3LmpHk3QVmZkN01j6yIuUC5OnH/g="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0,
+        "finishMessage": "Model generated function call(s)."
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 1736,
+       "candidatesTokenCount": 24,
+       "totalTokenCount": 1760,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 1736
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "Mo_HatO-A-zdvr0PgbbvsAQ"
+     },
+     "text": "",
+     "function_calls": [
+      {
+       "name": "read_page",
+       "args": {
+        "id": "postmortem-web-firewall-challenge"
+       },
+       "id": "call_537405"
+      }
+     ],
+     "finishReason": "STOP",
+     "cost_usd": 0.001392
+    },
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages are listed below, one per line as id: title. To read a page, call read_page with its id. You may read up to 4 pages.\n\nhandbook-1: Handbook 1. How to use this handbook\nhandbook-2: Handbook 2. Severity\nhandbook-3: Handbook 3. The five actions, in more detail\nhandbook-4: Handbook 4. Escalation policy\nhandbook-5: Handbook 5. Service runbooks\nhandbook-6: Handbook 6. Outside providers\nhandbook-7: Handbook 7. Known failure modes\nhandbook-8: Handbook 8. Communication\nhandbook-9: Handbook 9. After an incident\nhandbook-10: Handbook 10. Shift practicalities\nhandbook-11: Handbook 11. Deploy practice\nhandbook-12: Handbook 12. Data and privacy basics for on-call\nhandbook-13: Handbook 13. Traffic patterns and the business calendar\nhandbook-14: Handbook 14. Alert rules reference\nhandbook-15: Handbook 15. Useful log searches\nhandbook-16: Handbook 16. Dependencies between services\nhandbook-17: Handbook 17. Access and permissions\nhandbook-18: Handbook 18. Glossary\nteam-oncall-onboarding: On-call onboarding\npostmortem-web-font-upload: Postmortem: web blank pages after a font upload\nweb-runbook-2024: web runbook (2024 edition)\npayments-rollback-runbook: Payments rollback runbook\nhandover-2024-03-25: On-call handover, week of 2024-03-25\npostmortem-notifier-sms-codes-japan: Postmortem: SMS sign-in codes delayed in Japan\nnotifier-runbook-2024: notifier runbook (2024 edition)\nteam-alert-tuning: Alert tuning process\npostmortem-api-search-index-stale: Postmortem: api search index stale for a day\nprovider-stripe-notes: stripe: notes for on-call\nhandover-2024-08-19: On-call handover, week of 2024-08-19\npostmortem-notifier-duplicate-reminders: Postmortem: duplicate appointment reminders after a scheduler restart\nhowto-api-search-index-rebuild: How to rebuild the api search index\npostmortem-api-dst-us-east: Postmortem: bookings an hour off after the US clock change\nteam-dashboards-guide: Dashboards guide\nhandover-2025-01-06: On-call handover, week of 2025-01-06\nhowto-notifier-queue-panels: How to read the notifier queue panels\npostmortem-web-admin-session: Postmortem: admin tool session left open on a shared laptop\nprovider-twilio-japan: twilio: Japan carrier notes\npostmortem-api-partner-certificate: Postmortem: partner API certificate expired\nteam-access-requests: Access requests for on-call\nhowto-cdn-purge-by-hand: How to purge the CDN by hand\nhandover-2025-06-30: On-call handover, week of 2025-06-30\npostmortem-web-cdn-purge-stuck: Postmortem: CDN purge stuck after the summer campaign release\nhowto-trace-a-refund: How to trace one refund through the logs\nteam-status-page-process: Status page process\npostmortem-notifier-sendgrid-quota: Postmortem: sendgrid daily quota reached during a marketing send\nprovider-sendgrid-quota: sendgrid: quota and streams\nteam-game-days: Game days\npostmortem-payments-pool-timeout: Postmortem: payments checkout timeouts after the v2.31 pool change\nhandover-2025-11-24: On-call handover, week of 2025-11-24\nprovider-cloudflare-notes: cloudflare: purge and firewall notes\npostmortem-api-audit-disk: Postmortem: api audit log writer stopped after a disk filled\nteam-incident-commander-guide: Incident commander guide\nhowto-api-replica-lag: How to check replica lag on api\nprovider-aws-health: aws: health dashboard and regions\npostmortem-payments-webhook-secret: Postmortem: stripe webhooks rejected after the signing secret rotation\nteam-postmortem-review: Postmortem review meeting\nhandover-2026-04-06: On-call handover, week of 2026-04-06\npostmortem-api-aws-dns-apne1: Postmortem: aws DNS incident in ap-northeast-1\nhowto-stop-unowned-load-test: How to stop a load test that nobody owns\npostmortem-api-replica-lag-double-booking: Postmortem: api replica lag double-booked slots in eu-west\nteam-secrets-manager: Secrets manager for on-call\npostmortem-notifier-template-crash: Postmortem: notifier queue stalled by a template error\nprovider-stripe-api-version: stripe: API version upgrade notes (2026)\npostmortem-api-rollback-queue: Postmortem: api rollback stuck in the deploy queue\nhandover-2026-09-21: On-call handover, week of 2026-09-21\ndeploying-with-shipyard: Deploying with Shipyard\nhandover-2026-10-05: On-call handover, week of 2026-10-05\npostmortem-notifier-reminder-backlog: Postmortem: notifier reminders delayed by a stuck queue worker\npostmortem-api-index-migration: Postmortem: api date search slow after a migration dropped an index\npostmortem-payments-duplicate-refunds: Postmortem: refunds sent twice after the refund job restarted\npostmortem-web-firewall-challenge: Postmortem: booking pages behind a firewall challenge\nprovider-cloudflare-japan-edge: Incident report: elevated errors at edge locations in Japan\nscan-dr-drill-2023: Backup restore drill report: api database\nscan-twilio-maintenance-2025: Scheduled maintenance: Messaging API, Tokyo region\nscan-escalation-sheet: On-call escalation sheet"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nIn the firewall challenge postmortem, at what time did challenges on /book/* fall back to normal?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       },
+       {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "read_page",
+           "args": {
+            "id": "postmortem-web-firewall-challenge"
+           },
+           "id": "call_537405"
+          },
+          "thoughtSignature": "EmkKZwFpFH0TqTDPGXNeSX8iKNroHJHJD9RJCaAuQTF9VyOvtHKIEYy1EUHYqLsFAngXFvYj9qhGSTCvsqVHrFsp+j+0Dgbqcqeg3rv3B4ZEyKGXFPZ3LmpHk3QVmZkN01j6yIuUC5OnH/g="
+         }
+        ],
+        "role": "model"
+       },
+       {
+        "role": "user",
+        "parts": [
+         {
+          "functionResponse": {
+           "name": "read_page",
+           "response": {
+            "id": "postmortem-web-firewall-challenge",
+            "title": "Postmortem: booking pages behind a firewall challenge",
+            "text": "<omitted page postmortem-web-firewall-challenge (P6): md5 5ff1c58a7d929bcf973b0a8acdc1c019, 1122 tokens by countTokens>"
+           },
+           "id": "call_537405"
+          }
+         }
+        ]
+       }
+      ],
+      "tools": [
+       {
+        "functionDeclarations": [
+         {
+          "name": "read_page",
+          "description": "Read one of the team's pages by its id from the contents list.",
+          "parameters": {
+           "type": "object",
+           "properties": {
+            "id": {
+             "type": "string",
+             "description": "the page id, exactly as the contents list gives it"
+            }
+           },
+           "required": [
+            "id"
+           ]
+          }
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-08T12:40:19.155+00:00",
+     "wall_s": 1.858,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the postmortem (*Postmortem: booking pages behind a firewall challenge*), challenges on `/book/*` fell back to normal at **17:01** (JST).",
+           "thoughtSignature": "EmkKZwFpFH0Trx9IjlWREPW5OMPB3bPxuoeKUxqd8ZlXB74TmUYjZsDyfYB0DmZ3HrpAed0gqwIpBSN1Fs+9TmU6duCWxuBpsI5nQNggJ/NqshCnpaHwxsdLfZt53k83548hFNHIQ/s47B4="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 2922,
+       "candidatesTokenCount": 39,
+       "totalTokenCount": 2961,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 2922
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "M4_HarL7G5G32roPyouDqQs"
+     },
+     "text": "According to the postmortem (*Postmortem: booking pages behind a firewall challenge*), challenges on `/book/*` fell back to normal at **17:01** (JST).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "cost_usd": 0.00233775
+    }
+   ],
+   "wall_s": 3.263,
+   "prompt_tokens": 4658,
+   "out_tokens": 63,
+   "cost_usd": 0.00372975,
+   "id": "f-challenges-normal",
+   "run": 2,
+   "question": "In the firewall challenge postmortem, at what time did challenges on /book/* fall back to normal?",
+   "has_rev1": true,
+   "has_rev2": false
+  },
+  {
+   "answer": "According to the postmortem (*Postmortem: booking pages behind a firewall challenge*), challenges on `/book/*` fell back to normal at **17:01** (JST).",
+   "opened": [
+    "postmortem-web-firewall-challenge"
+   ],
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages are listed below, one per line as id: title. To read a page, call read_page with its id. You may read up to 4 pages.\n\nhandbook-1: Handbook 1. How to use this handbook\nhandbook-2: Handbook 2. Severity\nhandbook-3: Handbook 3. The five actions, in more detail\nhandbook-4: Handbook 4. Escalation policy\nhandbook-5: Handbook 5. Service runbooks\nhandbook-6: Handbook 6. Outside providers\nhandbook-7: Handbook 7. Known failure modes\nhandbook-8: Handbook 8. Communication\nhandbook-9: Handbook 9. After an incident\nhandbook-10: Handbook 10. Shift practicalities\nhandbook-11: Handbook 11. Deploy practice\nhandbook-12: Handbook 12. Data and privacy basics for on-call\nhandbook-13: Handbook 13. Traffic patterns and the business calendar\nhandbook-14: Handbook 14. Alert rules reference\nhandbook-15: Handbook 15. Useful log searches\nhandbook-16: Handbook 16. Dependencies between services\nhandbook-17: Handbook 17. Access and permissions\nhandbook-18: Handbook 18. Glossary\nteam-oncall-onboarding: On-call onboarding\npostmortem-web-font-upload: Postmortem: web blank pages after a font upload\nweb-runbook-2024: web runbook (2024 edition)\npayments-rollback-runbook: Payments rollback runbook\nhandover-2024-03-25: On-call handover, week of 2024-03-25\npostmortem-notifier-sms-codes-japan: Postmortem: SMS sign-in codes delayed in Japan\nnotifier-runbook-2024: notifier runbook (2024 edition)\nteam-alert-tuning: Alert tuning process\npostmortem-api-search-index-stale: Postmortem: api search index stale for a day\nprovider-stripe-notes: stripe: notes for on-call\nhandover-2024-08-19: On-call handover, week of 2024-08-19\npostmortem-notifier-duplicate-reminders: Postmortem: duplicate appointment reminders after a scheduler restart\nhowto-api-search-index-rebuild: How to rebuild the api search index\npostmortem-api-dst-us-east: Postmortem: bookings an hour off after the US clock change\nteam-dashboards-guide: Dashboards guide\nhandover-2025-01-06: On-call handover, week of 2025-01-06\nhowto-notifier-queue-panels: How to read the notifier queue panels\npostmortem-web-admin-session: Postmortem: admin tool session left open on a shared laptop\nprovider-twilio-japan: twilio: Japan carrier notes\npostmortem-api-partner-certificate: Postmortem: partner API certificate expired\nteam-access-requests: Access requests for on-call\nhowto-cdn-purge-by-hand: How to purge the CDN by hand\nhandover-2025-06-30: On-call handover, week of 2025-06-30\npostmortem-web-cdn-purge-stuck: Postmortem: CDN purge stuck after the summer campaign release\nhowto-trace-a-refund: How to trace one refund through the logs\nteam-status-page-process: Status page process\npostmortem-notifier-sendgrid-quota: Postmortem: sendgrid daily quota reached during a marketing send\nprovider-sendgrid-quota: sendgrid: quota and streams\nteam-game-days: Game days\npostmortem-payments-pool-timeout: Postmortem: payments checkout timeouts after the v2.31 pool change\nhandover-2025-11-24: On-call handover, week of 2025-11-24\nprovider-cloudflare-notes: cloudflare: purge and firewall notes\npostmortem-api-audit-disk: Postmortem: api audit log writer stopped after a disk filled\nteam-incident-commander-guide: Incident commander guide\nhowto-api-replica-lag: How to check replica lag on api\nprovider-aws-health: aws: health dashboard and regions\npostmortem-payments-webhook-secret: Postmortem: stripe webhooks rejected after the signing secret rotation\nteam-postmortem-review: Postmortem review meeting\nhandover-2026-04-06: On-call handover, week of 2026-04-06\npostmortem-api-aws-dns-apne1: Postmortem: aws DNS incident in ap-northeast-1\nhowto-stop-unowned-load-test: How to stop a load test that nobody owns\npostmortem-api-replica-lag-double-booking: Postmortem: api replica lag double-booked slots in eu-west\nteam-secrets-manager: Secrets manager for on-call\npostmortem-notifier-template-crash: Postmortem: notifier queue stalled by a template error\nprovider-stripe-api-version: stripe: API version upgrade notes (2026)\npostmortem-api-rollback-queue: Postmortem: api rollback stuck in the deploy queue\nhandover-2026-09-21: On-call handover, week of 2026-09-21\ndeploying-with-shipyard: Deploying with Shipyard\nhandover-2026-10-05: On-call handover, week of 2026-10-05\npostmortem-notifier-reminder-backlog: Postmortem: notifier reminders delayed by a stuck queue worker\npostmortem-api-index-migration: Postmortem: api date search slow after a migration dropped an index\npostmortem-payments-duplicate-refunds: Postmortem: refunds sent twice after the refund job restarted\npostmortem-web-firewall-challenge: Postmortem: booking pages behind a firewall challenge\nprovider-cloudflare-japan-edge: Incident report: elevated errors at edge locations in Japan\nscan-dr-drill-2023: Backup restore drill report: api database\nscan-twilio-maintenance-2025: Scheduled maintenance: Messaging API, Tokyo region\nscan-escalation-sheet: On-call escalation sheet"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nIn the firewall challenge postmortem, at what time did challenges on /book/* fall back to normal?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "tools": [
+       {
+        "functionDeclarations": [
+         {
+          "name": "read_page",
+          "description": "Read one of the team's pages by its id from the contents list.",
+          "parameters": {
+           "type": "object",
+           "properties": {
+            "id": {
+             "type": "string",
+             "description": "the page id, exactly as the contents list gives it"
+            }
+           },
+           "required": [
+            "id"
+           ]
+          }
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-08T12:40:21.022+00:00",
+     "wall_s": 2.842,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "functionCall": {
+            "name": "read_page",
+            "args": {
+             "id": "postmortem-web-firewall-challenge"
+            },
+            "id": "call_517155"
+           },
+           "thoughtSignature": "EmkKZwFpFH0T5FKWNskV9aHXckBODQQFN5lEqE8o36J+PD34A4rILVxQa7VM6LdwA2YgFQ3hvQPs2iqBK94Pia+vcrpBSKK6AaqOJLmzNmKArXUDqzQZjPOyh4+erY+54pdiOAWD3SYZZ90="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0,
+        "finishMessage": "Model generated function call(s)."
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 1736,
+       "candidatesTokenCount": 24,
+       "totalTokenCount": 1760,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 1736
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "NY_HavLbJ83rrfcPp6aPgAE"
+     },
+     "text": "",
+     "function_calls": [
+      {
+       "name": "read_page",
+       "args": {
+        "id": "postmortem-web-firewall-challenge"
+       },
+       "id": "call_517155"
+      }
+     ],
+     "finishReason": "STOP",
+     "cost_usd": 0.001392
+    },
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages are listed below, one per line as id: title. To read a page, call read_page with its id. You may read up to 4 pages.\n\nhandbook-1: Handbook 1. How to use this handbook\nhandbook-2: Handbook 2. Severity\nhandbook-3: Handbook 3. The five actions, in more detail\nhandbook-4: Handbook 4. Escalation policy\nhandbook-5: Handbook 5. Service runbooks\nhandbook-6: Handbook 6. Outside providers\nhandbook-7: Handbook 7. Known failure modes\nhandbook-8: Handbook 8. Communication\nhandbook-9: Handbook 9. After an incident\nhandbook-10: Handbook 10. Shift practicalities\nhandbook-11: Handbook 11. Deploy practice\nhandbook-12: Handbook 12. Data and privacy basics for on-call\nhandbook-13: Handbook 13. Traffic patterns and the business calendar\nhandbook-14: Handbook 14. Alert rules reference\nhandbook-15: Handbook 15. Useful log searches\nhandbook-16: Handbook 16. Dependencies between services\nhandbook-17: Handbook 17. Access and permissions\nhandbook-18: Handbook 18. Glossary\nteam-oncall-onboarding: On-call onboarding\npostmortem-web-font-upload: Postmortem: web blank pages after a font upload\nweb-runbook-2024: web runbook (2024 edition)\npayments-rollback-runbook: Payments rollback runbook\nhandover-2024-03-25: On-call handover, week of 2024-03-25\npostmortem-notifier-sms-codes-japan: Postmortem: SMS sign-in codes delayed in Japan\nnotifier-runbook-2024: notifier runbook (2024 edition)\nteam-alert-tuning: Alert tuning process\npostmortem-api-search-index-stale: Postmortem: api search index stale for a day\nprovider-stripe-notes: stripe: notes for on-call\nhandover-2024-08-19: On-call handover, week of 2024-08-19\npostmortem-notifier-duplicate-reminders: Postmortem: duplicate appointment reminders after a scheduler restart\nhowto-api-search-index-rebuild: How to rebuild the api search index\npostmortem-api-dst-us-east: Postmortem: bookings an hour off after the US clock change\nteam-dashboards-guide: Dashboards guide\nhandover-2025-01-06: On-call handover, week of 2025-01-06\nhowto-notifier-queue-panels: How to read the notifier queue panels\npostmortem-web-admin-session: Postmortem: admin tool session left open on a shared laptop\nprovider-twilio-japan: twilio: Japan carrier notes\npostmortem-api-partner-certificate: Postmortem: partner API certificate expired\nteam-access-requests: Access requests for on-call\nhowto-cdn-purge-by-hand: How to purge the CDN by hand\nhandover-2025-06-30: On-call handover, week of 2025-06-30\npostmortem-web-cdn-purge-stuck: Postmortem: CDN purge stuck after the summer campaign release\nhowto-trace-a-refund: How to trace one refund through the logs\nteam-status-page-process: Status page process\npostmortem-notifier-sendgrid-quota: Postmortem: sendgrid daily quota reached during a marketing send\nprovider-sendgrid-quota: sendgrid: quota and streams\nteam-game-days: Game days\npostmortem-payments-pool-timeout: Postmortem: payments checkout timeouts after the v2.31 pool change\nhandover-2025-11-24: On-call handover, week of 2025-11-24\nprovider-cloudflare-notes: cloudflare: purge and firewall notes\npostmortem-api-audit-disk: Postmortem: api audit log writer stopped after a disk filled\nteam-incident-commander-guide: Incident commander guide\nhowto-api-replica-lag: How to check replica lag on api\nprovider-aws-health: aws: health dashboard and regions\npostmortem-payments-webhook-secret: Postmortem: stripe webhooks rejected after the signing secret rotation\nteam-postmortem-review: Postmortem review meeting\nhandover-2026-04-06: On-call handover, week of 2026-04-06\npostmortem-api-aws-dns-apne1: Postmortem: aws DNS incident in ap-northeast-1\nhowto-stop-unowned-load-test: How to stop a load test that nobody owns\npostmortem-api-replica-lag-double-booking: Postmortem: api replica lag double-booked slots in eu-west\nteam-secrets-manager: Secrets manager for on-call\npostmortem-notifier-template-crash: Postmortem: notifier queue stalled by a template error\nprovider-stripe-api-version: stripe: API version upgrade notes (2026)\npostmortem-api-rollback-queue: Postmortem: api rollback stuck in the deploy queue\nhandover-2026-09-21: On-call handover, week of 2026-09-21\ndeploying-with-shipyard: Deploying with Shipyard\nhandover-2026-10-05: On-call handover, week of 2026-10-05\npostmortem-notifier-reminder-backlog: Postmortem: notifier reminders delayed by a stuck queue worker\npostmortem-api-index-migration: Postmortem: api date search slow after a migration dropped an index\npostmortem-payments-duplicate-refunds: Postmortem: refunds sent twice after the refund job restarted\npostmortem-web-firewall-challenge: Postmortem: booking pages behind a firewall challenge\nprovider-cloudflare-japan-edge: Incident report: elevated errors at edge locations in Japan\nscan-dr-drill-2023: Backup restore drill report: api database\nscan-twilio-maintenance-2025: Scheduled maintenance: Messaging API, Tokyo region\nscan-escalation-sheet: On-call escalation sheet"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nIn the firewall challenge postmortem, at what time did challenges on /book/* fall back to normal?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       },
+       {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "read_page",
+           "args": {
+            "id": "postmortem-web-firewall-challenge"
+           },
+           "id": "call_517155"
+          },
+          "thoughtSignature": "EmkKZwFpFH0T5FKWNskV9aHXckBODQQFN5lEqE8o36J+PD34A4rILVxQa7VM6LdwA2YgFQ3hvQPs2iqBK94Pia+vcrpBSKK6AaqOJLmzNmKArXUDqzQZjPOyh4+erY+54pdiOAWD3SYZZ90="
+         }
+        ],
+        "role": "model"
+       },
+       {
+        "role": "user",
+        "parts": [
+         {
+          "functionResponse": {
+           "name": "read_page",
+           "response": {
+            "id": "postmortem-web-firewall-challenge",
+            "title": "Postmortem: booking pages behind a firewall challenge",
+            "text": "<omitted page postmortem-web-firewall-challenge (P6): md5 5ff1c58a7d929bcf973b0a8acdc1c019, 1122 tokens by countTokens>"
+           },
+           "id": "call_517155"
+          }
+         }
+        ]
+       }
+      ],
+      "tools": [
+       {
+        "functionDeclarations": [
+         {
+          "name": "read_page",
+          "description": "Read one of the team's pages by its id from the contents list.",
+          "parameters": {
+           "type": "object",
+           "properties": {
+            "id": {
+             "type": "string",
+             "description": "the page id, exactly as the contents list gives it"
+            }
+           },
+           "required": [
+            "id"
+           ]
+          }
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-08T12:40:23.877+00:00",
+     "wall_s": 2.19,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the postmortem (*Postmortem: booking pages behind a firewall challenge*), challenges on `/book/*` fell back to normal at **17:01** (JST).",
+           "thoughtSignature": "EmkKZwFpFH0TtaR5VigLWj+2knHP0I/avkd5MpoTnNSZ7Fpltzw5fjA9lgzIcVu6dir0WezBesjos8V+mflCXDEc8zMJBiJAEHhtoAeeuV0oSLgVSufAVIyh0d6mTIu8tPufP2vMESvivkQ="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 2922,
+       "candidatesTokenCount": 39,
+       "totalTokenCount": 2961,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 2922
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "OI_Haoz_Cca01e8PqLrM4QM"
+     },
+     "text": "According to the postmortem (*Postmortem: booking pages behind a firewall challenge*), challenges on `/book/*` fell back to normal at **17:01** (JST).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "cost_usd": 0.00233775
+    }
+   ],
+   "wall_s": 5.062,
+   "prompt_tokens": 4658,
+   "out_tokens": 63,
+   "cost_usd": 0.00372975,
+   "id": "f-challenges-normal",
+   "run": 3,
+   "question": "In the firewall challenge postmortem, at what time did challenges on /book/* fall back to normal?",
+   "has_rev1": true,
+   "has_rev2": false
+  },
+  {
+   "answer": "According to the postmortem (*Postmortem: booking pages behind a firewall challenge*), under the **Action items** table:\n\nThe action item *\"Alert when booking starts from new visitors fall more than 40 % below the same hour last week\"* is **Open** (Owner: Aiko, Due: 2025-05-30).",
+   "opened": [
+    "postmortem-web-firewall-challenge"
+   ],
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages are listed below, one per line as id: title. To read a page, call read_page with its id. You may read up to 4 pages.\n\nhandbook-1: Handbook 1. How to use this handbook\nhandbook-2: Handbook 2. Severity\nhandbook-3: Handbook 3. The five actions, in more detail\nhandbook-4: Handbook 4. Escalation policy\nhandbook-5: Handbook 5. Service runbooks\nhandbook-6: Handbook 6. Outside providers\nhandbook-7: Handbook 7. Known failure modes\nhandbook-8: Handbook 8. Communication\nhandbook-9: Handbook 9. After an incident\nhandbook-10: Handbook 10. Shift practicalities\nhandbook-11: Handbook 11. Deploy practice\nhandbook-12: Handbook 12. Data and privacy basics for on-call\nhandbook-13: Handbook 13. Traffic patterns and the business calendar\nhandbook-14: Handbook 14. Alert rules reference\nhandbook-15: Handbook 15. Useful log searches\nhandbook-16: Handbook 16. Dependencies between services\nhandbook-17: Handbook 17. Access and permissions\nhandbook-18: Handbook 18. Glossary\nteam-oncall-onboarding: On-call onboarding\npostmortem-web-font-upload: Postmortem: web blank pages after a font upload\nweb-runbook-2024: web runbook (2024 edition)\npayments-rollback-runbook: Payments rollback runbook\nhandover-2024-03-25: On-call handover, week of 2024-03-25\npostmortem-notifier-sms-codes-japan: Postmortem: SMS sign-in codes delayed in Japan\nnotifier-runbook-2024: notifier runbook (2024 edition)\nteam-alert-tuning: Alert tuning process\npostmortem-api-search-index-stale: Postmortem: api search index stale for a day\nprovider-stripe-notes: stripe: notes for on-call\nhandover-2024-08-19: On-call handover, week of 2024-08-19\npostmortem-notifier-duplicate-reminders: Postmortem: duplicate appointment reminders after a scheduler restart\nhowto-api-search-index-rebuild: How to rebuild the api search index\npostmortem-api-dst-us-east: Postmortem: bookings an hour off after the US clock change\nteam-dashboards-guide: Dashboards guide\nhandover-2025-01-06: On-call handover, week of 2025-01-06\nhowto-notifier-queue-panels: How to read the notifier queue panels\npostmortem-web-admin-session: Postmortem: admin tool session left open on a shared laptop\nprovider-twilio-japan: twilio: Japan carrier notes\npostmortem-api-partner-certificate: Postmortem: partner API certificate expired\nteam-access-requests: Access requests for on-call\nhowto-cdn-purge-by-hand: How to purge the CDN by hand\nhandover-2025-06-30: On-call handover, week of 2025-06-30\npostmortem-web-cdn-purge-stuck: Postmortem: CDN purge stuck after the summer campaign release\nhowto-trace-a-refund: How to trace one refund through the logs\nteam-status-page-process: Status page process\npostmortem-notifier-sendgrid-quota: Postmortem: sendgrid daily quota reached during a marketing send\nprovider-sendgrid-quota: sendgrid: quota and streams\nteam-game-days: Game days\npostmortem-payments-pool-timeout: Postmortem: payments checkout timeouts after the v2.31 pool change\nhandover-2025-11-24: On-call handover, week of 2025-11-24\nprovider-cloudflare-notes: cloudflare: purge and firewall notes\npostmortem-api-audit-disk: Postmortem: api audit log writer stopped after a disk filled\nteam-incident-commander-guide: Incident commander guide\nhowto-api-replica-lag: How to check replica lag on api\nprovider-aws-health: aws: health dashboard and regions\npostmortem-payments-webhook-secret: Postmortem: stripe webhooks rejected after the signing secret rotation\nteam-postmortem-review: Postmortem review meeting\nhandover-2026-04-06: On-call handover, week of 2026-04-06\npostmortem-api-aws-dns-apne1: Postmortem: aws DNS incident in ap-northeast-1\nhowto-stop-unowned-load-test: How to stop a load test that nobody owns\npostmortem-api-replica-lag-double-booking: Postmortem: api replica lag double-booked slots in eu-west\nteam-secrets-manager: Secrets manager for on-call\npostmortem-notifier-template-crash: Postmortem: notifier queue stalled by a template error\nprovider-stripe-api-version: stripe: API version upgrade notes (2026)\npostmortem-api-rollback-queue: Postmortem: api rollback stuck in the deploy queue\nhandover-2026-09-21: On-call handover, week of 2026-09-21\ndeploying-with-shipyard: Deploying with Shipyard\nhandover-2026-10-05: On-call handover, week of 2026-10-05\npostmortem-notifier-reminder-backlog: Postmortem: notifier reminders delayed by a stuck queue worker\npostmortem-api-index-migration: Postmortem: api date search slow after a migration dropped an index\npostmortem-payments-duplicate-refunds: Postmortem: refunds sent twice after the refund job restarted\npostmortem-web-firewall-challenge: Postmortem: booking pages behind a firewall challenge\nprovider-cloudflare-japan-edge: Incident report: elevated errors at edge locations in Japan\nscan-dr-drill-2023: Backup restore drill report: api database\nscan-twilio-maintenance-2025: Scheduled maintenance: Messaging API, Tokyo region\nscan-escalation-sheet: On-call escalation sheet"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nIn the firewall challenge postmortem, is the action item to alert when booking starts from new visitors fall more than 40 % below the same hour last week done, or still open?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "tools": [
+       {
+        "functionDeclarations": [
+         {
+          "name": "read_page",
+          "description": "Read one of the team's pages by its id from the contents list.",
+          "parameters": {
+           "type": "object",
+           "properties": {
+            "id": {
+             "type": "string",
+             "description": "the page id, exactly as the contents list gives it"
+            }
+           },
+           "required": [
+            "id"
+           ]
+          }
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-08T12:40:26.084+00:00",
+     "wall_s": 1.559,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "functionCall": {
+            "name": "read_page",
+            "args": {
+             "id": "postmortem-web-firewall-challenge"
+            },
+            "id": "call_511415"
+           },
+           "thoughtSignature": "EmkKZwFpFH0T4o+R8oVmy5yLuj7E457Y0lA/Q4AgrwZwZT7vcrpiHxXSyot6VqH3/4Vu3HHP+S3ysnvXgG6lrZHopXucfmcVhQeE4G91NbvJl03g5q9hZIGnZiM5zY1yBq4Q+fvx9FzQUOM="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0,
+        "finishMessage": "Model generated function call(s)."
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 1753,
+       "candidatesTokenCount": 24,
+       "totalTokenCount": 1777,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 1753
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "Oo_HasLXGaeVvr0PgIC1OQ"
+     },
+     "text": "",
+     "function_calls": [
+      {
+       "name": "read_page",
+       "args": {
+        "id": "postmortem-web-firewall-challenge"
+       },
+       "id": "call_511415"
+      }
+     ],
+     "finishReason": "STOP",
+     "cost_usd": 0.00140475
+    },
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages are listed below, one per line as id: title. To read a page, call read_page with its id. You may read up to 4 pages.\n\nhandbook-1: Handbook 1. How to use this handbook\nhandbook-2: Handbook 2. Severity\nhandbook-3: Handbook 3. The five actions, in more detail\nhandbook-4: Handbook 4. Escalation policy\nhandbook-5: Handbook 5. Service runbooks\nhandbook-6: Handbook 6. Outside providers\nhandbook-7: Handbook 7. Known failure modes\nhandbook-8: Handbook 8. Communication\nhandbook-9: Handbook 9. After an incident\nhandbook-10: Handbook 10. Shift practicalities\nhandbook-11: Handbook 11. Deploy practice\nhandbook-12: Handbook 12. Data and privacy basics for on-call\nhandbook-13: Handbook 13. Traffic patterns and the business calendar\nhandbook-14: Handbook 14. Alert rules reference\nhandbook-15: Handbook 15. Useful log searches\nhandbook-16: Handbook 16. Dependencies between services\nhandbook-17: Handbook 17. Access and permissions\nhandbook-18: Handbook 18. Glossary\nteam-oncall-onboarding: On-call onboarding\npostmortem-web-font-upload: Postmortem: web blank pages after a font upload\nweb-runbook-2024: web runbook (2024 edition)\npayments-rollback-runbook: Payments rollback runbook\nhandover-2024-03-25: On-call handover, week of 2024-03-25\npostmortem-notifier-sms-codes-japan: Postmortem: SMS sign-in codes delayed in Japan\nnotifier-runbook-2024: notifier runbook (2024 edition)\nteam-alert-tuning: Alert tuning process\npostmortem-api-search-index-stale: Postmortem: api search index stale for a day\nprovider-stripe-notes: stripe: notes for on-call\nhandover-2024-08-19: On-call handover, week of 2024-08-19\npostmortem-notifier-duplicate-reminders: Postmortem: duplicate appointment reminders after a scheduler restart\nhowto-api-search-index-rebuild: How to rebuild the api search index\npostmortem-api-dst-us-east: Postmortem: bookings an hour off after the US clock change\nteam-dashboards-guide: Dashboards guide\nhandover-2025-01-06: On-call handover, week of 2025-01-06\nhowto-notifier-queue-panels: How to read the notifier queue panels\npostmortem-web-admin-session: Postmortem: admin tool session left open on a shared laptop\nprovider-twilio-japan: twilio: Japan carrier notes\npostmortem-api-partner-certificate: Postmortem: partner API certificate expired\nteam-access-requests: Access requests for on-call\nhowto-cdn-purge-by-hand: How to purge the CDN by hand\nhandover-2025-06-30: On-call handover, week of 2025-06-30\npostmortem-web-cdn-purge-stuck: Postmortem: CDN purge stuck after the summer campaign release\nhowto-trace-a-refund: How to trace one refund through the logs\nteam-status-page-process: Status page process\npostmortem-notifier-sendgrid-quota: Postmortem: sendgrid daily quota reached during a marketing send\nprovider-sendgrid-quota: sendgrid: quota and streams\nteam-game-days: Game days\npostmortem-payments-pool-timeout: Postmortem: payments checkout timeouts after the v2.31 pool change\nhandover-2025-11-24: On-call handover, week of 2025-11-24\nprovider-cloudflare-notes: cloudflare: purge and firewall notes\npostmortem-api-audit-disk: Postmortem: api audit log writer stopped after a disk filled\nteam-incident-commander-guide: Incident commander guide\nhowto-api-replica-lag: How to check replica lag on api\nprovider-aws-health: aws: health dashboard and regions\npostmortem-payments-webhook-secret: Postmortem: stripe webhooks rejected after the signing secret rotation\nteam-postmortem-review: Postmortem review meeting\nhandover-2026-04-06: On-call handover, week of 2026-04-06\npostmortem-api-aws-dns-apne1: Postmortem: aws DNS incident in ap-northeast-1\nhowto-stop-unowned-load-test: How to stop a load test that nobody owns\npostmortem-api-replica-lag-double-booking: Postmortem: api replica lag double-booked slots in eu-west\nteam-secrets-manager: Secrets manager for on-call\npostmortem-notifier-template-crash: Postmortem: notifier queue stalled by a template error\nprovider-stripe-api-version: stripe: API version upgrade notes (2026)\npostmortem-api-rollback-queue: Postmortem: api rollback stuck in the deploy queue\nhandover-2026-09-21: On-call handover, week of 2026-09-21\ndeploying-with-shipyard: Deploying with Shipyard\nhandover-2026-10-05: On-call handover, week of 2026-10-05\npostmortem-notifier-reminder-backlog: Postmortem: notifier reminders delayed by a stuck queue worker\npostmortem-api-index-migration: Postmortem: api date search slow after a migration dropped an index\npostmortem-payments-duplicate-refunds: Postmortem: refunds sent twice after the refund job restarted\npostmortem-web-firewall-challenge: Postmortem: booking pages behind a firewall challenge\nprovider-cloudflare-japan-edge: Incident report: elevated errors at edge locations in Japan\nscan-dr-drill-2023: Backup restore drill report: api database\nscan-twilio-maintenance-2025: Scheduled maintenance: Messaging API, Tokyo region\nscan-escalation-sheet: On-call escalation sheet"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nIn the firewall challenge postmortem, is the action item to alert when booking starts from new visitors fall more than 40 % below the same hour last week done, or still open?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       },
+       {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "read_page",
+           "args": {
+            "id": "postmortem-web-firewall-challenge"
+           },
+           "id": "call_511415"
+          },
+          "thoughtSignature": "EmkKZwFpFH0T4o+R8oVmy5yLuj7E457Y0lA/Q4AgrwZwZT7vcrpiHxXSyot6VqH3/4Vu3HHP+S3ysnvXgG6lrZHopXucfmcVhQeE4G91NbvJl03g5q9hZIGnZiM5zY1yBq4Q+fvx9FzQUOM="
+         }
+        ],
+        "role": "model"
+       },
+       {
+        "role": "user",
+        "parts": [
+         {
+          "functionResponse": {
+           "name": "read_page",
+           "response": {
+            "id": "postmortem-web-firewall-challenge",
+            "title": "Postmortem: booking pages behind a firewall challenge",
+            "text": "<omitted page postmortem-web-firewall-challenge (P6): md5 5ff1c58a7d929bcf973b0a8acdc1c019, 1122 tokens by countTokens>"
+           },
+           "id": "call_511415"
+          }
+         }
+        ]
+       }
+      ],
+      "tools": [
+       {
+        "functionDeclarations": [
+         {
+          "name": "read_page",
+          "description": "Read one of the team's pages by its id from the contents list.",
+          "parameters": {
+           "type": "object",
+           "properties": {
+            "id": {
+             "type": "string",
+             "description": "the page id, exactly as the contents list gives it"
+            }
+           },
+           "required": [
+            "id"
+           ]
+          }
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-08T12:40:27.659+00:00",
+     "wall_s": 2.336,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the postmortem (*Postmortem: booking pages behind a firewall challenge*), under the **Action items** table:\n\nThe action item *\"Alert when booking starts from new visitors fall more than 40 % below the same hour last week\"* is **Open** (Owner: Aiko, Due: 2025-05-30).",
+           "thoughtSignature": "EmkKZwFpFH0TgWl3rNGoAgD45E9v/EAk7DmEzGGVcSBbtPwRKBuo8pRk6c8/Ahr1rZYdC+ALF1q3qwMCutBmN+A2tx8d73kTgbj+NA0cqEaRdNDwdhXhjDdK/KIqr3svWQkNEVYxDoMXthI="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 2939,
+       "candidatesTokenCount": 75,
+       "totalTokenCount": 3014,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 2939
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "PI_HavEv38LT6Q_05p7oBg"
+     },
+     "text": "According to the postmortem (*Postmortem: booking pages behind a firewall challenge*), under the **Action items** table:\n\nThe action item *\"Alert when booking starts from new visitors fall more than 40 % below the same hour last week\"* is **Open** (Owner: Aiko, Due: 2025-05-30).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "cost_usd": 0.0024855
+    }
+   ],
+   "wall_s": 3.92,
+   "prompt_tokens": 4692,
+   "out_tokens": 99,
+   "cost_usd": 0.0038902499999999996,
+   "id": "f-alert-action",
+   "run": 1,
+   "question": "In the firewall challenge postmortem, is the action item to alert when booking starts from new visitors fall more than 40 % below the same hour last week done, or still open?",
+   "has_rev1": true,
+   "has_rev2": false
+  },
+  {
+   "answer": "Based on the **Postmortem: booking pages behind a firewall challenge** (`postmortem-web-firewall-challenge`), the action item to *\"Alert when booking starts from new visitors fall more than 40 % below the same hour last week\"* is listed with status **Open** (Owner: Aiko, Due: 2025-05-30). \n\nThe handbook pages do not record this action item as having been completed.",
+   "opened": [
+    "postmortem-web-firewall-challenge",
+    "handover-2025-06-30",
+    "handbook-14",
+    "team-alert-tuning"
+   ],
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages are listed below, one per line as id: title. To read a page, call read_page with its id. You may read up to 4 pages.\n\nhandbook-1: Handbook 1. How to use this handbook\nhandbook-2: Handbook 2. Severity\nhandbook-3: Handbook 3. The five actions, in more detail\nhandbook-4: Handbook 4. Escalation policy\nhandbook-5: Handbook 5. Service runbooks\nhandbook-6: Handbook 6. Outside providers\nhandbook-7: Handbook 7. Known failure modes\nhandbook-8: Handbook 8. Communication\nhandbook-9: Handbook 9. After an incident\nhandbook-10: Handbook 10. Shift practicalities\nhandbook-11: Handbook 11. Deploy practice\nhandbook-12: Handbook 12. Data and privacy basics for on-call\nhandbook-13: Handbook 13. Traffic patterns and the business calendar\nhandbook-14: Handbook 14. Alert rules reference\nhandbook-15: Handbook 15. Useful log searches\nhandbook-16: Handbook 16. Dependencies between services\nhandbook-17: Handbook 17. Access and permissions\nhandbook-18: Handbook 18. Glossary\nteam-oncall-onboarding: On-call onboarding\npostmortem-web-font-upload: Postmortem: web blank pages after a font upload\nweb-runbook-2024: web runbook (2024 edition)\npayments-rollback-runbook: Payments rollback runbook\nhandover-2024-03-25: On-call handover, week of 2024-03-25\npostmortem-notifier-sms-codes-japan: Postmortem: SMS sign-in codes delayed in Japan\nnotifier-runbook-2024: notifier runbook (2024 edition)\nteam-alert-tuning: Alert tuning process\npostmortem-api-search-index-stale: Postmortem: api search index stale for a day\nprovider-stripe-notes: stripe: notes for on-call\nhandover-2024-08-19: On-call handover, week of 2024-08-19\npostmortem-notifier-duplicate-reminders: Postmortem: duplicate appointment reminders after a scheduler restart\nhowto-api-search-index-rebuild: How to rebuild the api search index\npostmortem-api-dst-us-east: Postmortem: bookings an hour off after the US clock change\nteam-dashboards-guide: Dashboards guide\nhandover-2025-01-06: On-call handover, week of 2025-01-06\nhowto-notifier-queue-panels: How to read the notifier queue panels\npostmortem-web-admin-session: Postmortem: admin tool session left open on a shared laptop\nprovider-twilio-japan: twilio: Japan carrier notes\npostmortem-api-partner-certificate: Postmortem: partner API certificate expired\nteam-access-requests: Access requests for on-call\nhowto-cdn-purge-by-hand: How to purge the CDN by hand\nhandover-2025-06-30: On-call handover, week of 2025-06-30\npostmortem-web-cdn-purge-stuck: Postmortem: CDN purge stuck after the summer campaign release\nhowto-trace-a-refund: How to trace one refund through the logs\nteam-status-page-process: Status page process\npostmortem-notifier-sendgrid-quota: Postmortem: sendgrid daily quota reached during a marketing send\nprovider-sendgrid-quota: sendgrid: quota and streams\nteam-game-days: Game days\npostmortem-payments-pool-timeout: Postmortem: payments checkout timeouts after the v2.31 pool change\nhandover-2025-11-24: On-call handover, week of 2025-11-24\nprovider-cloudflare-notes: cloudflare: purge and firewall notes\npostmortem-api-audit-disk: Postmortem: api audit log writer stopped after a disk filled\nteam-incident-commander-guide: Incident commander guide\nhowto-api-replica-lag: How to check replica lag on api\nprovider-aws-health: aws: health dashboard and regions\npostmortem-payments-webhook-secret: Postmortem: stripe webhooks rejected after the signing secret rotation\nteam-postmortem-review: Postmortem review meeting\nhandover-2026-04-06: On-call handover, week of 2026-04-06\npostmortem-api-aws-dns-apne1: Postmortem: aws DNS incident in ap-northeast-1\nhowto-stop-unowned-load-test: How to stop a load test that nobody owns\npostmortem-api-replica-lag-double-booking: Postmortem: api replica lag double-booked slots in eu-west\nteam-secrets-manager: Secrets manager for on-call\npostmortem-notifier-template-crash: Postmortem: notifier queue stalled by a template error\nprovider-stripe-api-version: stripe: API version upgrade notes (2026)\npostmortem-api-rollback-queue: Postmortem: api rollback stuck in the deploy queue\nhandover-2026-09-21: On-call handover, week of 2026-09-21\ndeploying-with-shipyard: Deploying with Shipyard\nhandover-2026-10-05: On-call handover, week of 2026-10-05\npostmortem-notifier-reminder-backlog: Postmortem: notifier reminders delayed by a stuck queue worker\npostmortem-api-index-migration: Postmortem: api date search slow after a migration dropped an index\npostmortem-payments-duplicate-refunds: Postmortem: refunds sent twice after the refund job restarted\npostmortem-web-firewall-challenge: Postmortem: booking pages behind a firewall challenge\nprovider-cloudflare-japan-edge: Incident report: elevated errors at edge locations in Japan\nscan-dr-drill-2023: Backup restore drill report: api database\nscan-twilio-maintenance-2025: Scheduled maintenance: Messaging API, Tokyo region\nscan-escalation-sheet: On-call escalation sheet"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nIn the firewall challenge postmortem, is the action item to alert when booking starts from new visitors fall more than 40 % below the same hour last week done, or still open?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "tools": [
+       {
+        "functionDeclarations": [
+         {
+          "name": "read_page",
+          "description": "Read one of the team's pages by its id from the contents list.",
+          "parameters": {
+           "type": "object",
+           "properties": {
+            "id": {
+             "type": "string",
+             "description": "the page id, exactly as the contents list gives it"
+            }
+           },
+           "required": [
+            "id"
+           ]
+          }
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-08T12:40:30.004+00:00",
+     "wall_s": 1.908,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "functionCall": {
+            "name": "read_page",
+            "args": {
+             "id": "postmortem-web-firewall-challenge"
+            },
+            "id": "call_459389"
+           },
+           "thoughtSignature": "EmkKZwFpFH0TxTCxCq0an1fW7Nhu/fRUcc30ntLXHB21DzUqTFU+I3hiJdTsrpVhIkK+bEBLhLJUqQ13qPI8QkeA20aHrM6c8As1h53oQiPKfw7zIYjgga9HH7u/dlcwrIORGQDI/6Xzn2o="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0,
+        "finishMessage": "Model generated function call(s)."
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 1753,
+       "candidatesTokenCount": 24,
+       "totalTokenCount": 1777,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 1753
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "Po_Hapm3FYvirfcP_d6L6Ak"
+     },
+     "text": "",
+     "function_calls": [
+      {
+       "name": "read_page",
+       "args": {
+        "id": "postmortem-web-firewall-challenge"
+       },
+       "id": "call_459389"
+      }
+     ],
+     "finishReason": "STOP",
+     "cost_usd": 0.00140475
+    },
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages are listed below, one per line as id: title. To read a page, call read_page with its id. You may read up to 4 pages.\n\nhandbook-1: Handbook 1. How to use this handbook\nhandbook-2: Handbook 2. Severity\nhandbook-3: Handbook 3. The five actions, in more detail\nhandbook-4: Handbook 4. Escalation policy\nhandbook-5: Handbook 5. Service runbooks\nhandbook-6: Handbook 6. Outside providers\nhandbook-7: Handbook 7. Known failure modes\nhandbook-8: Handbook 8. Communication\nhandbook-9: Handbook 9. After an incident\nhandbook-10: Handbook 10. Shift practicalities\nhandbook-11: Handbook 11. Deploy practice\nhandbook-12: Handbook 12. Data and privacy basics for on-call\nhandbook-13: Handbook 13. Traffic patterns and the business calendar\nhandbook-14: Handbook 14. Alert rules reference\nhandbook-15: Handbook 15. Useful log searches\nhandbook-16: Handbook 16. Dependencies between services\nhandbook-17: Handbook 17. Access and permissions\nhandbook-18: Handbook 18. Glossary\nteam-oncall-onboarding: On-call onboarding\npostmortem-web-font-upload: Postmortem: web blank pages after a font upload\nweb-runbook-2024: web runbook (2024 edition)\npayments-rollback-runbook: Payments rollback runbook\nhandover-2024-03-25: On-call handover, week of 2024-03-25\npostmortem-notifier-sms-codes-japan: Postmortem: SMS sign-in codes delayed in Japan\nnotifier-runbook-2024: notifier runbook (2024 edition)\nteam-alert-tuning: Alert tuning process\npostmortem-api-search-index-stale: Postmortem: api search index stale for a day\nprovider-stripe-notes: stripe: notes for on-call\nhandover-2024-08-19: On-call handover, week of 2024-08-19\npostmortem-notifier-duplicate-reminders: Postmortem: duplicate appointment reminders after a scheduler restart\nhowto-api-search-index-rebuild: How to rebuild the api search index\npostmortem-api-dst-us-east: Postmortem: bookings an hour off after the US clock change\nteam-dashboards-guide: Dashboards guide\nhandover-2025-01-06: On-call handover, week of 2025-01-06\nhowto-notifier-queue-panels: How to read the notifier queue panels\npostmortem-web-admin-session: Postmortem: admin tool session left open on a shared laptop\nprovider-twilio-japan: twilio: Japan carrier notes\npostmortem-api-partner-certificate: Postmortem: partner API certificate expired\nteam-access-requests: Access requests for on-call\nhowto-cdn-purge-by-hand: How to purge the CDN by hand\nhandover-2025-06-30: On-call handover, week of 2025-06-30\npostmortem-web-cdn-purge-stuck: Postmortem: CDN purge stuck after the summer campaign release\nhowto-trace-a-refund: How to trace one refund through the logs\nteam-status-page-process: Status page process\npostmortem-notifier-sendgrid-quota: Postmortem: sendgrid daily quota reached during a marketing send\nprovider-sendgrid-quota: sendgrid: quota and streams\nteam-game-days: Game days\npostmortem-payments-pool-timeout: Postmortem: payments checkout timeouts after the v2.31 pool change\nhandover-2025-11-24: On-call handover, week of 2025-11-24\nprovider-cloudflare-notes: cloudflare: purge and firewall notes\npostmortem-api-audit-disk: Postmortem: api audit log writer stopped after a disk filled\nteam-incident-commander-guide: Incident commander guide\nhowto-api-replica-lag: How to check replica lag on api\nprovider-aws-health: aws: health dashboard and regions\npostmortem-payments-webhook-secret: Postmortem: stripe webhooks rejected after the signing secret rotation\nteam-postmortem-review: Postmortem review meeting\nhandover-2026-04-06: On-call handover, week of 2026-04-06\npostmortem-api-aws-dns-apne1: Postmortem: aws DNS incident in ap-northeast-1\nhowto-stop-unowned-load-test: How to stop a load test that nobody owns\npostmortem-api-replica-lag-double-booking: Postmortem: api replica lag double-booked slots in eu-west\nteam-secrets-manager: Secrets manager for on-call\npostmortem-notifier-template-crash: Postmortem: notifier queue stalled by a template error\nprovider-stripe-api-version: stripe: API version upgrade notes (2026)\npostmortem-api-rollback-queue: Postmortem: api rollback stuck in the deploy queue\nhandover-2026-09-21: On-call handover, week of 2026-09-21\ndeploying-with-shipyard: Deploying with Shipyard\nhandover-2026-10-05: On-call handover, week of 2026-10-05\npostmortem-notifier-reminder-backlog: Postmortem: notifier reminders delayed by a stuck queue worker\npostmortem-api-index-migration: Postmortem: api date search slow after a migration dropped an index\npostmortem-payments-duplicate-refunds: Postmortem: refunds sent twice after the refund job restarted\npostmortem-web-firewall-challenge: Postmortem: booking pages behind a firewall challenge\nprovider-cloudflare-japan-edge: Incident report: elevated errors at edge locations in Japan\nscan-dr-drill-2023: Backup restore drill report: api database\nscan-twilio-maintenance-2025: Scheduled maintenance: Messaging API, Tokyo region\nscan-escalation-sheet: On-call escalation sheet"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nIn the firewall challenge postmortem, is the action item to alert when booking starts from new visitors fall more than 40 % below the same hour last week done, or still open?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       },
+       {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "read_page",
+           "args": {
+            "id": "postmortem-web-firewall-challenge"
+           },
+           "id": "call_459389"
+          },
+          "thoughtSignature": "EmkKZwFpFH0TxTCxCq0an1fW7Nhu/fRUcc30ntLXHB21DzUqTFU+I3hiJdTsrpVhIkK+bEBLhLJUqQ13qPI8QkeA20aHrM6c8As1h53oQiPKfw7zIYjgga9HH7u/dlcwrIORGQDI/6Xzn2o="
+         }
+        ],
+        "role": "model"
+       },
+       {
+        "role": "user",
+        "parts": [
+         {
+          "functionResponse": {
+           "name": "read_page",
+           "response": {
+            "id": "postmortem-web-firewall-challenge",
+            "title": "Postmortem: booking pages behind a firewall challenge",
+            "text": "<omitted page postmortem-web-firewall-challenge (P6): md5 5ff1c58a7d929bcf973b0a8acdc1c019, 1122 tokens by countTokens>"
+           },
+           "id": "call_459389"
+          }
+         }
+        ]
+       }
+      ],
+      "tools": [
+       {
+        "functionDeclarations": [
+         {
+          "name": "read_page",
+          "description": "Read one of the team's pages by its id from the contents list.",
+          "parameters": {
+           "type": "object",
+           "properties": {
+            "id": {
+             "type": "string",
+             "description": "the page id, exactly as the contents list gives it"
+            }
+           },
+           "required": [
+            "id"
+           ]
+          }
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-08T12:40:31.922+00:00",
+     "wall_s": 2.471,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "functionCall": {
+            "name": "read_page",
+            "args": {
+             "id": "handover-2025-06-30"
+            },
+            "id": "call_455647"
+           },
+           "thoughtSignature": "EmkKZwFpFH0TYVCUNuzFpYxAHc7ClWvTa3XHdYdEfXFSuwwxv6/L4E40dhAlLl5UHddGfXMQKV5xnkpKZw33mHbFqRgkrfJSRWSCMyqgYsC1w//R94AK4XL2aQwUreEjm0iM6GdbgYx71Xs="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0,
+        "finishMessage": "Model generated function call(s)."
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 2939,
+       "candidatesTokenCount": 28,
+       "totalTokenCount": 2967,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 2939
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "QI_HaufZD7_s2roPv-jC8Ac"
+     },
+     "text": "",
+     "function_calls": [
+      {
+       "name": "read_page",
+       "args": {
+        "id": "handover-2025-06-30"
+       },
+       "id": "call_455647"
+      }
+     ],
+     "finishReason": "STOP",
+     "cost_usd": 0.00230925
+    },
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages are listed below, one per line as id: title. To read a page, call read_page with its id. You may read up to 4 pages.\n\nhandbook-1: Handbook 1. How to use this handbook\nhandbook-2: Handbook 2. Severity\nhandbook-3: Handbook 3. The five actions, in more detail\nhandbook-4: Handbook 4. Escalation policy\nhandbook-5: Handbook 5. Service runbooks\nhandbook-6: Handbook 6. Outside providers\nhandbook-7: Handbook 7. Known failure modes\nhandbook-8: Handbook 8. Communication\nhandbook-9: Handbook 9. After an incident\nhandbook-10: Handbook 10. Shift practicalities\nhandbook-11: Handbook 11. Deploy practice\nhandbook-12: Handbook 12. Data and privacy basics for on-call\nhandbook-13: Handbook 13. Traffic patterns and the business calendar\nhandbook-14: Handbook 14. Alert rules reference\nhandbook-15: Handbook 15. Useful log searches\nhandbook-16: Handbook 16. Dependencies between services\nhandbook-17: Handbook 17. Access and permissions\nhandbook-18: Handbook 18. Glossary\nteam-oncall-onboarding: On-call onboarding\npostmortem-web-font-upload: Postmortem: web blank pages after a font upload\nweb-runbook-2024: web runbook (2024 edition)\npayments-rollback-runbook: Payments rollback runbook\nhandover-2024-03-25: On-call handover, week of 2024-03-25\npostmortem-notifier-sms-codes-japan: Postmortem: SMS sign-in codes delayed in Japan\nnotifier-runbook-2024: notifier runbook (2024 edition)\nteam-alert-tuning: Alert tuning process\npostmortem-api-search-index-stale: Postmortem: api search index stale for a day\nprovider-stripe-notes: stripe: notes for on-call\nhandover-2024-08-19: On-call handover, week of 2024-08-19\npostmortem-notifier-duplicate-reminders: Postmortem: duplicate appointment reminders after a scheduler restart\nhowto-api-search-index-rebuild: How to rebuild the api search index\npostmortem-api-dst-us-east: Postmortem: bookings an hour off after the US clock change\nteam-dashboards-guide: Dashboards guide\nhandover-2025-01-06: On-call handover, week of 2025-01-06\nhowto-notifier-queue-panels: How to read the notifier queue panels\npostmortem-web-admin-session: Postmortem: admin tool session left open on a shared laptop\nprovider-twilio-japan: twilio: Japan carrier notes\npostmortem-api-partner-certificate: Postmortem: partner API certificate expired\nteam-access-requests: Access requests for on-call\nhowto-cdn-purge-by-hand: How to purge the CDN by hand\nhandover-2025-06-30: On-call handover, week of 2025-06-30\npostmortem-web-cdn-purge-stuck: Postmortem: CDN purge stuck after the summer campaign release\nhowto-trace-a-refund: How to trace one refund through the logs\nteam-status-page-process: Status page process\npostmortem-notifier-sendgrid-quota: Postmortem: sendgrid daily quota reached during a marketing send\nprovider-sendgrid-quota: sendgrid: quota and streams\nteam-game-days: Game days\npostmortem-payments-pool-timeout: Postmortem: payments checkout timeouts after the v2.31 pool change\nhandover-2025-11-24: On-call handover, week of 2025-11-24\nprovider-cloudflare-notes: cloudflare: purge and firewall notes\npostmortem-api-audit-disk: Postmortem: api audit log writer stopped after a disk filled\nteam-incident-commander-guide: Incident commander guide\nhowto-api-replica-lag: How to check replica lag on api\nprovider-aws-health: aws: health dashboard and regions\npostmortem-payments-webhook-secret: Postmortem: stripe webhooks rejected after the signing secret rotation\nteam-postmortem-review: Postmortem review meeting\nhandover-2026-04-06: On-call handover, week of 2026-04-06\npostmortem-api-aws-dns-apne1: Postmortem: aws DNS incident in ap-northeast-1\nhowto-stop-unowned-load-test: How to stop a load test that nobody owns\npostmortem-api-replica-lag-double-booking: Postmortem: api replica lag double-booked slots in eu-west\nteam-secrets-manager: Secrets manager for on-call\npostmortem-notifier-template-crash: Postmortem: notifier queue stalled by a template error\nprovider-stripe-api-version: stripe: API version upgrade notes (2026)\npostmortem-api-rollback-queue: Postmortem: api rollback stuck in the deploy queue\nhandover-2026-09-21: On-call handover, week of 2026-09-21\ndeploying-with-shipyard: Deploying with Shipyard\nhandover-2026-10-05: On-call handover, week of 2026-10-05\npostmortem-notifier-reminder-backlog: Postmortem: notifier reminders delayed by a stuck queue worker\npostmortem-api-index-migration: Postmortem: api date search slow after a migration dropped an index\npostmortem-payments-duplicate-refunds: Postmortem: refunds sent twice after the refund job restarted\npostmortem-web-firewall-challenge: Postmortem: booking pages behind a firewall challenge\nprovider-cloudflare-japan-edge: Incident report: elevated errors at edge locations in Japan\nscan-dr-drill-2023: Backup restore drill report: api database\nscan-twilio-maintenance-2025: Scheduled maintenance: Messaging API, Tokyo region\nscan-escalation-sheet: On-call escalation sheet"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nIn the firewall challenge postmortem, is the action item to alert when booking starts from new visitors fall more than 40 % below the same hour last week done, or still open?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       },
+       {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "read_page",
+           "args": {
+            "id": "postmortem-web-firewall-challenge"
+           },
+           "id": "call_459389"
+          },
+          "thoughtSignature": "EmkKZwFpFH0TxTCxCq0an1fW7Nhu/fRUcc30ntLXHB21DzUqTFU+I3hiJdTsrpVhIkK+bEBLhLJUqQ13qPI8QkeA20aHrM6c8As1h53oQiPKfw7zIYjgga9HH7u/dlcwrIORGQDI/6Xzn2o="
+         }
+        ],
+        "role": "model"
+       },
+       {
+        "role": "user",
+        "parts": [
+         {
+          "functionResponse": {
+           "name": "read_page",
+           "response": {
+            "id": "postmortem-web-firewall-challenge",
+            "title": "Postmortem: booking pages behind a firewall challenge",
+            "text": "<omitted page postmortem-web-firewall-challenge (P6): md5 5ff1c58a7d929bcf973b0a8acdc1c019, 1122 tokens by countTokens>"
+           },
+           "id": "call_459389"
+          }
+         }
+        ]
+       },
+       {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "read_page",
+           "args": {
+            "id": "handover-2025-06-30"
+           },
+           "id": "call_455647"
+          },
+          "thoughtSignature": "EmkKZwFpFH0TYVCUNuzFpYxAHc7ClWvTa3XHdYdEfXFSuwwxv6/L4E40dhAlLl5UHddGfXMQKV5xnkpKZw33mHbFqRgkrfJSRWSCMyqgYsC1w//R94AK4XL2aQwUreEjm0iM6GdbgYx71Xs="
+         }
+        ],
+        "role": "model"
+       },
+       {
+        "role": "user",
+        "parts": [
+         {
+          "functionResponse": {
+           "name": "read_page",
+           "response": {
+            "id": "handover-2025-06-30",
+            "title": "On-call handover, week of 2025-06-30",
+            "text": "<omitted page handover-2025-06-30: md5 16bf3bc329ffb9a8a97582fbb7f8bd04, 3333 tokens by countTokens>"
+           },
+           "id": "call_455647"
+          }
+         }
+        ]
+       }
+      ],
+      "tools": [
+       {
+        "functionDeclarations": [
+         {
+          "name": "read_page",
+          "description": "Read one of the team's pages by its id from the contents list.",
+          "parameters": {
+           "type": "object",
+           "properties": {
+            "id": {
+             "type": "string",
+             "description": "the page id, exactly as the contents list gives it"
+            }
+           },
+           "required": [
+            "id"
+           ]
+          }
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-08T12:40:34.406+00:00",
+     "wall_s": 2.445,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "functionCall": {
+            "name": "read_page",
+            "args": {
+             "id": "handbook-14"
+            },
+            "id": "call_375284"
+           },
+           "thoughtSignature": "EmkKZwFpFH0TDC2wxQhZ//z0zPdlycTvnb79G4pyiFnOZmvQuW8Q31zOa1HV8bZeSYPsLUo0LGT6//2tVeiIdkTf0UIwbP+qez8+KuiYAE0wiupTS1yYkUtoP+Dhrr3BIoNgjanx7DqEhDY="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0,
+        "finishMessage": "Model generated function call(s)."
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 6353,
+       "candidatesTokenCount": 20,
+       "totalTokenCount": 6373,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 6353
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "Qo_HaqToK5nfrfcPhZ2aMQ"
+     },
+     "text": "",
+     "function_calls": [
+      {
+       "name": "read_page",
+       "args": {
+        "id": "handbook-14"
+       },
+       "id": "call_375284"
+      }
+     ],
+     "finishReason": "STOP",
+     "cost_usd": 0.00483975
+    },
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages are listed below, one per line as id: title. To read a page, call read_page with its id. You may read up to 4 pages.\n\nhandbook-1: Handbook 1. How to use this handbook\nhandbook-2: Handbook 2. Severity\nhandbook-3: Handbook 3. The five actions, in more detail\nhandbook-4: Handbook 4. Escalation policy\nhandbook-5: Handbook 5. Service runbooks\nhandbook-6: Handbook 6. Outside providers\nhandbook-7: Handbook 7. Known failure modes\nhandbook-8: Handbook 8. Communication\nhandbook-9: Handbook 9. After an incident\nhandbook-10: Handbook 10. Shift practicalities\nhandbook-11: Handbook 11. Deploy practice\nhandbook-12: Handbook 12. Data and privacy basics for on-call\nhandbook-13: Handbook 13. Traffic patterns and the business calendar\nhandbook-14: Handbook 14. Alert rules reference\nhandbook-15: Handbook 15. Useful log searches\nhandbook-16: Handbook 16. Dependencies between services\nhandbook-17: Handbook 17. Access and permissions\nhandbook-18: Handbook 18. Glossary\nteam-oncall-onboarding: On-call onboarding\npostmortem-web-font-upload: Postmortem: web blank pages after a font upload\nweb-runbook-2024: web runbook (2024 edition)\npayments-rollback-runbook: Payments rollback runbook\nhandover-2024-03-25: On-call handover, week of 2024-03-25\npostmortem-notifier-sms-codes-japan: Postmortem: SMS sign-in codes delayed in Japan\nnotifier-runbook-2024: notifier runbook (2024 edition)\nteam-alert-tuning: Alert tuning process\npostmortem-api-search-index-stale: Postmortem: api search index stale for a day\nprovider-stripe-notes: stripe: notes for on-call\nhandover-2024-08-19: On-call handover, week of 2024-08-19\npostmortem-notifier-duplicate-reminders: Postmortem: duplicate appointment reminders after a scheduler restart\nhowto-api-search-index-rebuild: How to rebuild the api search index\npostmortem-api-dst-us-east: Postmortem: bookings an hour off after the US clock change\nteam-dashboards-guide: Dashboards guide\nhandover-2025-01-06: On-call handover, week of 2025-01-06\nhowto-notifier-queue-panels: How to read the notifier queue panels\npostmortem-web-admin-session: Postmortem: admin tool session left open on a shared laptop\nprovider-twilio-japan: twilio: Japan carrier notes\npostmortem-api-partner-certificate: Postmortem: partner API certificate expired\nteam-access-requests: Access requests for on-call\nhowto-cdn-purge-by-hand: How to purge the CDN by hand\nhandover-2025-06-30: On-call handover, week of 2025-06-30\npostmortem-web-cdn-purge-stuck: Postmortem: CDN purge stuck after the summer campaign release\nhowto-trace-a-refund: How to trace one refund through the logs\nteam-status-page-process: Status page process\npostmortem-notifier-sendgrid-quota: Postmortem: sendgrid daily quota reached during a marketing send\nprovider-sendgrid-quota: sendgrid: quota and streams\nteam-game-days: Game days\npostmortem-payments-pool-timeout: Postmortem: payments checkout timeouts after the v2.31 pool change\nhandover-2025-11-24: On-call handover, week of 2025-11-24\nprovider-cloudflare-notes: cloudflare: purge and firewall notes\npostmortem-api-audit-disk: Postmortem: api audit log writer stopped after a disk filled\nteam-incident-commander-guide: Incident commander guide\nhowto-api-replica-lag: How to check replica lag on api\nprovider-aws-health: aws: health dashboard and regions\npostmortem-payments-webhook-secret: Postmortem: stripe webhooks rejected after the signing secret rotation\nteam-postmortem-review: Postmortem review meeting\nhandover-2026-04-06: On-call handover, week of 2026-04-06\npostmortem-api-aws-dns-apne1: Postmortem: aws DNS incident in ap-northeast-1\nhowto-stop-unowned-load-test: How to stop a load test that nobody owns\npostmortem-api-replica-lag-double-booking: Postmortem: api replica lag double-booked slots in eu-west\nteam-secrets-manager: Secrets manager for on-call\npostmortem-notifier-template-crash: Postmortem: notifier queue stalled by a template error\nprovider-stripe-api-version: stripe: API version upgrade notes (2026)\npostmortem-api-rollback-queue: Postmortem: api rollback stuck in the deploy queue\nhandover-2026-09-21: On-call handover, week of 2026-09-21\ndeploying-with-shipyard: Deploying with Shipyard\nhandover-2026-10-05: On-call handover, week of 2026-10-05\npostmortem-notifier-reminder-backlog: Postmortem: notifier reminders delayed by a stuck queue worker\npostmortem-api-index-migration: Postmortem: api date search slow after a migration dropped an index\npostmortem-payments-duplicate-refunds: Postmortem: refunds sent twice after the refund job restarted\npostmortem-web-firewall-challenge: Postmortem: booking pages behind a firewall challenge\nprovider-cloudflare-japan-edge: Incident report: elevated errors at edge locations in Japan\nscan-dr-drill-2023: Backup restore drill report: api database\nscan-twilio-maintenance-2025: Scheduled maintenance: Messaging API, Tokyo region\nscan-escalation-sheet: On-call escalation sheet"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nIn the firewall challenge postmortem, is the action item to alert when booking starts from new visitors fall more than 40 % below the same hour last week done, or still open?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       },
+       {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "read_page",
+           "args": {
+            "id": "postmortem-web-firewall-challenge"
+           },
+           "id": "call_459389"
+          },
+          "thoughtSignature": "EmkKZwFpFH0TxTCxCq0an1fW7Nhu/fRUcc30ntLXHB21DzUqTFU+I3hiJdTsrpVhIkK+bEBLhLJUqQ13qPI8QkeA20aHrM6c8As1h53oQiPKfw7zIYjgga9HH7u/dlcwrIORGQDI/6Xzn2o="
+         }
+        ],
+        "role": "model"
+       },
+       {
+        "role": "user",
+        "parts": [
+         {
+          "functionResponse": {
+           "name": "read_page",
+           "response": {
+            "id": "postmortem-web-firewall-challenge",
+            "title": "Postmortem: booking pages behind a firewall challenge",
+            "text": "<omitted page postmortem-web-firewall-challenge (P6): md5 5ff1c58a7d929bcf973b0a8acdc1c019, 1122 tokens by countTokens>"
+           },
+           "id": "call_459389"
+          }
+         }
+        ]
+       },
+       {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "read_page",
+           "args": {
+            "id": "handover-2025-06-30"
+           },
+           "id": "call_455647"
+          },
+          "thoughtSignature": "EmkKZwFpFH0TYVCUNuzFpYxAHc7ClWvTa3XHdYdEfXFSuwwxv6/L4E40dhAlLl5UHddGfXMQKV5xnkpKZw33mHbFqRgkrfJSRWSCMyqgYsC1w//R94AK4XL2aQwUreEjm0iM6GdbgYx71Xs="
+         }
+        ],
+        "role": "model"
+       },
+       {
+        "role": "user",
+        "parts": [
+         {
+          "functionResponse": {
+           "name": "read_page",
+           "response": {
+            "id": "handover-2025-06-30",
+            "title": "On-call handover, week of 2025-06-30",
+            "text": "<omitted page handover-2025-06-30: md5 16bf3bc329ffb9a8a97582fbb7f8bd04, 3333 tokens by countTokens>"
+           },
+           "id": "call_455647"
+          }
+         }
+        ]
+       },
+       {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "read_page",
+           "args": {
+            "id": "handbook-14"
+           },
+           "id": "call_375284"
+          },
+          "thoughtSignature": "EmkKZwFpFH0TDC2wxQhZ//z0zPdlycTvnb79G4pyiFnOZmvQuW8Q31zOa1HV8bZeSYPsLUo0LGT6//2tVeiIdkTf0UIwbP+qez8+KuiYAE0wiupTS1yYkUtoP+Dhrr3BIoNgjanx7DqEhDY="
+         }
+        ],
+        "role": "model"
+       },
+       {
+        "role": "user",
+        "parts": [
+         {
+          "functionResponse": {
+           "name": "read_page",
+           "response": {
+            "id": "handbook-14",
+            "title": "Handbook 14. Alert rules reference",
+            "text": "<omitted page handbook-14: md5 5122cbf8cefb5e312544202dc3a345b6, 866 tokens by countTokens>"
+           },
+           "id": "call_375284"
+          }
+         }
+        ]
+       }
+      ],
+      "tools": [
+       {
+        "functionDeclarations": [
+         {
+          "name": "read_page",
+          "description": "Read one of the team's pages by its id from the contents list.",
+          "parameters": {
+           "type": "object",
+           "properties": {
+            "id": {
+             "type": "string",
+             "description": "the page id, exactly as the contents list gives it"
+            }
+           },
+           "required": [
+            "id"
+           ]
+          }
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-08T12:40:36.860+00:00",
+     "wall_s": 1.679,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "functionCall": {
+            "name": "read_page",
+            "args": {
+             "id": "team-alert-tuning"
+            },
+            "id": "call_512471"
+           },
+           "thoughtSignature": "EmkKZwFpFH0TVN7EdJ7oLIrEcPaLYXDqfiRZuPrSVa2qwjt6ySuJqly4/3vWaEN44DXwHM+J8qGOZaB2kCDI6+ECgxTcNC+yzVBPMDh08S/WO8O1riGtVNDM88FAFxxw5jo2kGekGaLzqBA="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0,
+        "finishMessage": "Model generated function call(s)."
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 7274,
+       "candidatesTokenCount": 20,
+       "totalTokenCount": 7294,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 7274
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "RY_Hao2gD8a01e8PqLrM4QM"
+     },
+     "text": "",
+     "function_calls": [
+      {
+       "name": "read_page",
+       "args": {
+        "id": "team-alert-tuning"
+       },
+       "id": "call_512471"
+      }
+     ],
+     "finishReason": "STOP",
+     "cost_usd": 0.0055305
+    },
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages are listed below, one per line as id: title. To read a page, call read_page with its id. You may read up to 4 pages.\n\nhandbook-1: Handbook 1. How to use this handbook\nhandbook-2: Handbook 2. Severity\nhandbook-3: Handbook 3. The five actions, in more detail\nhandbook-4: Handbook 4. Escalation policy\nhandbook-5: Handbook 5. Service runbooks\nhandbook-6: Handbook 6. Outside providers\nhandbook-7: Handbook 7. Known failure modes\nhandbook-8: Handbook 8. Communication\nhandbook-9: Handbook 9. After an incident\nhandbook-10: Handbook 10. Shift practicalities\nhandbook-11: Handbook 11. Deploy practice\nhandbook-12: Handbook 12. Data and privacy basics for on-call\nhandbook-13: Handbook 13. Traffic patterns and the business calendar\nhandbook-14: Handbook 14. Alert rules reference\nhandbook-15: Handbook 15. Useful log searches\nhandbook-16: Handbook 16. Dependencies between services\nhandbook-17: Handbook 17. Access and permissions\nhandbook-18: Handbook 18. Glossary\nteam-oncall-onboarding: On-call onboarding\npostmortem-web-font-upload: Postmortem: web blank pages after a font upload\nweb-runbook-2024: web runbook (2024 edition)\npayments-rollback-runbook: Payments rollback runbook\nhandover-2024-03-25: On-call handover, week of 2024-03-25\npostmortem-notifier-sms-codes-japan: Postmortem: SMS sign-in codes delayed in Japan\nnotifier-runbook-2024: notifier runbook (2024 edition)\nteam-alert-tuning: Alert tuning process\npostmortem-api-search-index-stale: Postmortem: api search index stale for a day\nprovider-stripe-notes: stripe: notes for on-call\nhandover-2024-08-19: On-call handover, week of 2024-08-19\npostmortem-notifier-duplicate-reminders: Postmortem: duplicate appointment reminders after a scheduler restart\nhowto-api-search-index-rebuild: How to rebuild the api search index\npostmortem-api-dst-us-east: Postmortem: bookings an hour off after the US clock change\nteam-dashboards-guide: Dashboards guide\nhandover-2025-01-06: On-call handover, week of 2025-01-06\nhowto-notifier-queue-panels: How to read the notifier queue panels\npostmortem-web-admin-session: Postmortem: admin tool session left open on a shared laptop\nprovider-twilio-japan: twilio: Japan carrier notes\npostmortem-api-partner-certificate: Postmortem: partner API certificate expired\nteam-access-requests: Access requests for on-call\nhowto-cdn-purge-by-hand: How to purge the CDN by hand\nhandover-2025-06-30: On-call handover, week of 2025-06-30\npostmortem-web-cdn-purge-stuck: Postmortem: CDN purge stuck after the summer campaign release\nhowto-trace-a-refund: How to trace one refund through the logs\nteam-status-page-process: Status page process\npostmortem-notifier-sendgrid-quota: Postmortem: sendgrid daily quota reached during a marketing send\nprovider-sendgrid-quota: sendgrid: quota and streams\nteam-game-days: Game days\npostmortem-payments-pool-timeout: Postmortem: payments checkout timeouts after the v2.31 pool change\nhandover-2025-11-24: On-call handover, week of 2025-11-24\nprovider-cloudflare-notes: cloudflare: purge and firewall notes\npostmortem-api-audit-disk: Postmortem: api audit log writer stopped after a disk filled\nteam-incident-commander-guide: Incident commander guide\nhowto-api-replica-lag: How to check replica lag on api\nprovider-aws-health: aws: health dashboard and regions\npostmortem-payments-webhook-secret: Postmortem: stripe webhooks rejected after the signing secret rotation\nteam-postmortem-review: Postmortem review meeting\nhandover-2026-04-06: On-call handover, week of 2026-04-06\npostmortem-api-aws-dns-apne1: Postmortem: aws DNS incident in ap-northeast-1\nhowto-stop-unowned-load-test: How to stop a load test that nobody owns\npostmortem-api-replica-lag-double-booking: Postmortem: api replica lag double-booked slots in eu-west\nteam-secrets-manager: Secrets manager for on-call\npostmortem-notifier-template-crash: Postmortem: notifier queue stalled by a template error\nprovider-stripe-api-version: stripe: API version upgrade notes (2026)\npostmortem-api-rollback-queue: Postmortem: api rollback stuck in the deploy queue\nhandover-2026-09-21: On-call handover, week of 2026-09-21\ndeploying-with-shipyard: Deploying with Shipyard\nhandover-2026-10-05: On-call handover, week of 2026-10-05\npostmortem-notifier-reminder-backlog: Postmortem: notifier reminders delayed by a stuck queue worker\npostmortem-api-index-migration: Postmortem: api date search slow after a migration dropped an index\npostmortem-payments-duplicate-refunds: Postmortem: refunds sent twice after the refund job restarted\npostmortem-web-firewall-challenge: Postmortem: booking pages behind a firewall challenge\nprovider-cloudflare-japan-edge: Incident report: elevated errors at edge locations in Japan\nscan-dr-drill-2023: Backup restore drill report: api database\nscan-twilio-maintenance-2025: Scheduled maintenance: Messaging API, Tokyo region\nscan-escalation-sheet: On-call escalation sheet"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nIn the firewall challenge postmortem, is the action item to alert when booking starts from new visitors fall more than 40 % below the same hour last week done, or still open?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       },
+       {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "read_page",
+           "args": {
+            "id": "postmortem-web-firewall-challenge"
+           },
+           "id": "call_459389"
+          },
+          "thoughtSignature": "EmkKZwFpFH0TxTCxCq0an1fW7Nhu/fRUcc30ntLXHB21DzUqTFU+I3hiJdTsrpVhIkK+bEBLhLJUqQ13qPI8QkeA20aHrM6c8As1h53oQiPKfw7zIYjgga9HH7u/dlcwrIORGQDI/6Xzn2o="
+         }
+        ],
+        "role": "model"
+       },
+       {
+        "role": "user",
+        "parts": [
+         {
+          "functionResponse": {
+           "name": "read_page",
+           "response": {
+            "id": "postmortem-web-firewall-challenge",
+            "title": "Postmortem: booking pages behind a firewall challenge",
+            "text": "<omitted page postmortem-web-firewall-challenge (P6): md5 5ff1c58a7d929bcf973b0a8acdc1c019, 1122 tokens by countTokens>"
+           },
+           "id": "call_459389"
+          }
+         }
+        ]
+       },
+       {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "read_page",
+           "args": {
+            "id": "handover-2025-06-30"
+           },
+           "id": "call_455647"
+          },
+          "thoughtSignature": "EmkKZwFpFH0TYVCUNuzFpYxAHc7ClWvTa3XHdYdEfXFSuwwxv6/L4E40dhAlLl5UHddGfXMQKV5xnkpKZw33mHbFqRgkrfJSRWSCMyqgYsC1w//R94AK4XL2aQwUreEjm0iM6GdbgYx71Xs="
+         }
+        ],
+        "role": "model"
+       },
+       {
+        "role": "user",
+        "parts": [
+         {
+          "functionResponse": {
+           "name": "read_page",
+           "response": {
+            "id": "handover-2025-06-30",
+            "title": "On-call handover, week of 2025-06-30",
+            "text": "<omitted page handover-2025-06-30: md5 16bf3bc329ffb9a8a97582fbb7f8bd04, 3333 tokens by countTokens>"
+           },
+           "id": "call_455647"
+          }
+         }
+        ]
+       },
+       {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "read_page",
+           "args": {
+            "id": "handbook-14"
+           },
+           "id": "call_375284"
+          },
+          "thoughtSignature": "EmkKZwFpFH0TDC2wxQhZ//z0zPdlycTvnb79G4pyiFnOZmvQuW8Q31zOa1HV8bZeSYPsLUo0LGT6//2tVeiIdkTf0UIwbP+qez8+KuiYAE0wiupTS1yYkUtoP+Dhrr3BIoNgjanx7DqEhDY="
+         }
+        ],
+        "role": "model"
+       },
+       {
+        "role": "user",
+        "parts": [
+         {
+          "functionResponse": {
+           "name": "read_page",
+           "response": {
+            "id": "handbook-14",
+            "title": "Handbook 14. Alert rules reference",
+            "text": "<omitted page handbook-14: md5 5122cbf8cefb5e312544202dc3a345b6, 866 tokens by countTokens>"
+           },
+           "id": "call_375284"
+          }
+         }
+        ]
+       },
+       {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "read_page",
+           "args": {
+            "id": "team-alert-tuning"
+           },
+           "id": "call_512471"
+          },
+          "thoughtSignature": "EmkKZwFpFH0TVN7EdJ7oLIrEcPaLYXDqfiRZuPrSVa2qwjt6ySuJqly4/3vWaEN44DXwHM+J8qGOZaB2kCDI6+ECgxTcNC+yzVBPMDh08S/WO8O1riGtVNDM88FAFxxw5jo2kGekGaLzqBA="
+         }
+        ],
+        "role": "model"
+       },
+       {
+        "role": "user",
+        "parts": [
+         {
+          "functionResponse": {
+           "name": "read_page",
+           "response": {
+            "id": "team-alert-tuning",
+            "title": "Alert tuning process",
+            "text": "<omitted page team-alert-tuning: md5 59fe957d882acee091361926b34edb55, 3062 tokens by countTokens>"
+           },
+           "id": "call_512471"
+          }
+         }
+        ]
+       }
+      ],
+      "tools": [
+       {
+        "functionDeclarations": [
+         {
+          "name": "read_page",
+          "description": "Read one of the team's pages by its id from the contents list.",
+          "parameters": {
+           "type": "object",
+           "properties": {
+            "id": {
+             "type": "string",
+             "description": "the page id, exactly as the contents list gives it"
+            }
+           },
+           "required": [
+            "id"
+           ]
+          }
+         }
+        ]
+       }
+      ],
+      "toolConfig": {
+       "functionCallingConfig": {
+        "mode": "NONE"
+       }
+      },
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-08T12:40:38.553+00:00",
+     "wall_s": 3.131,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the **Postmortem: booking pages behind a firewall challenge** (`postmortem-web-firewall-challenge`), the action item to *\"Alert when booking starts from new visitors fall more than 40 % below the same hour last week\"* is listed with status **Open** (Owner: Aiko, Due: 2025-05-30). \n\nThe handbook pages do not record this action item as having been completed.",
+           "thoughtSignature": "EmkKZwFpFH0Tle9y5J8YzSyZG5arrpYe1qNGI25aYqSLeZLSt8jislYu2xpsMM+pLo2rtDnO3NOHIoX/B510rKrYgxRinqX6KZTJfL0MJBrovhP4lVWq26K+jwTG8m7XCc56mkokebQ1vGw="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 10386,
+       "candidatesTokenCount": 94,
+       "totalTokenCount": 10480,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 10386
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "Ro_HarPFNtiN1e8P7Yr-uAg"
+     },
+     "text": "Based on the **Postmortem: booking pages behind a firewall challenge** (`postmortem-web-firewall-challenge`), the action item to *\"Alert when booking starts from new visitors fall more than 40 % below the same hour last week\"* is listed with status **Open** (Owner: Aiko, Due: 2025-05-30). \n\nThe handbook pages do not record this action item as having been completed.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "cost_usd": 0.008142
+    }
+   ],
+   "wall_s": 11.701,
+   "prompt_tokens": 28705,
+   "out_tokens": 186,
+   "cost_usd": 0.02222625,
+   "id": "f-alert-action",
+   "run": 2,
+   "question": "In the firewall challenge postmortem, is the action item to alert when booking starts from new visitors fall more than 40 % below the same hour last week done, or still open?",
+   "has_rev1": true,
+   "has_rev2": false
+  },
+  {
+   "answer": "According to the **Postmortem: booking pages behind a firewall challenge** (`postmortem-web-firewall-challenge`), in the Action items table:\n\n* **Action:** Alert when booking starts from new visitors fall more than 40 % below the same hour last week.\n* **Owner:** Aiko\n* **Due:** 2025-05-30\n* **Status:** **Open**",
+   "opened": [
+    "postmortem-web-firewall-challenge",
+    "handover-2025-06-30",
+    "handbook-14"
+   ],
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages are listed below, one per line as id: title. To read a page, call read_page with its id. You may read up to 4 pages.\n\nhandbook-1: Handbook 1. How to use this handbook\nhandbook-2: Handbook 2. Severity\nhandbook-3: Handbook 3. The five actions, in more detail\nhandbook-4: Handbook 4. Escalation policy\nhandbook-5: Handbook 5. Service runbooks\nhandbook-6: Handbook 6. Outside providers\nhandbook-7: Handbook 7. Known failure modes\nhandbook-8: Handbook 8. Communication\nhandbook-9: Handbook 9. After an incident\nhandbook-10: Handbook 10. Shift practicalities\nhandbook-11: Handbook 11. Deploy practice\nhandbook-12: Handbook 12. Data and privacy basics for on-call\nhandbook-13: Handbook 13. Traffic patterns and the business calendar\nhandbook-14: Handbook 14. Alert rules reference\nhandbook-15: Handbook 15. Useful log searches\nhandbook-16: Handbook 16. Dependencies between services\nhandbook-17: Handbook 17. Access and permissions\nhandbook-18: Handbook 18. Glossary\nteam-oncall-onboarding: On-call onboarding\npostmortem-web-font-upload: Postmortem: web blank pages after a font upload\nweb-runbook-2024: web runbook (2024 edition)\npayments-rollback-runbook: Payments rollback runbook\nhandover-2024-03-25: On-call handover, week of 2024-03-25\npostmortem-notifier-sms-codes-japan: Postmortem: SMS sign-in codes delayed in Japan\nnotifier-runbook-2024: notifier runbook (2024 edition)\nteam-alert-tuning: Alert tuning process\npostmortem-api-search-index-stale: Postmortem: api search index stale for a day\nprovider-stripe-notes: stripe: notes for on-call\nhandover-2024-08-19: On-call handover, week of 2024-08-19\npostmortem-notifier-duplicate-reminders: Postmortem: duplicate appointment reminders after a scheduler restart\nhowto-api-search-index-rebuild: How to rebuild the api search index\npostmortem-api-dst-us-east: Postmortem: bookings an hour off after the US clock change\nteam-dashboards-guide: Dashboards guide\nhandover-2025-01-06: On-call handover, week of 2025-01-06\nhowto-notifier-queue-panels: How to read the notifier queue panels\npostmortem-web-admin-session: Postmortem: admin tool session left open on a shared laptop\nprovider-twilio-japan: twilio: Japan carrier notes\npostmortem-api-partner-certificate: Postmortem: partner API certificate expired\nteam-access-requests: Access requests for on-call\nhowto-cdn-purge-by-hand: How to purge the CDN by hand\nhandover-2025-06-30: On-call handover, week of 2025-06-30\npostmortem-web-cdn-purge-stuck: Postmortem: CDN purge stuck after the summer campaign release\nhowto-trace-a-refund: How to trace one refund through the logs\nteam-status-page-process: Status page process\npostmortem-notifier-sendgrid-quota: Postmortem: sendgrid daily quota reached during a marketing send\nprovider-sendgrid-quota: sendgrid: quota and streams\nteam-game-days: Game days\npostmortem-payments-pool-timeout: Postmortem: payments checkout timeouts after the v2.31 pool change\nhandover-2025-11-24: On-call handover, week of 2025-11-24\nprovider-cloudflare-notes: cloudflare: purge and firewall notes\npostmortem-api-audit-disk: Postmortem: api audit log writer stopped after a disk filled\nteam-incident-commander-guide: Incident commander guide\nhowto-api-replica-lag: How to check replica lag on api\nprovider-aws-health: aws: health dashboard and regions\npostmortem-payments-webhook-secret: Postmortem: stripe webhooks rejected after the signing secret rotation\nteam-postmortem-review: Postmortem review meeting\nhandover-2026-04-06: On-call handover, week of 2026-04-06\npostmortem-api-aws-dns-apne1: Postmortem: aws DNS incident in ap-northeast-1\nhowto-stop-unowned-load-test: How to stop a load test that nobody owns\npostmortem-api-replica-lag-double-booking: Postmortem: api replica lag double-booked slots in eu-west\nteam-secrets-manager: Secrets manager for on-call\npostmortem-notifier-template-crash: Postmortem: notifier queue stalled by a template error\nprovider-stripe-api-version: stripe: API version upgrade notes (2026)\npostmortem-api-rollback-queue: Postmortem: api rollback stuck in the deploy queue\nhandover-2026-09-21: On-call handover, week of 2026-09-21\ndeploying-with-shipyard: Deploying with Shipyard\nhandover-2026-10-05: On-call handover, week of 2026-10-05\npostmortem-notifier-reminder-backlog: Postmortem: notifier reminders delayed by a stuck queue worker\npostmortem-api-index-migration: Postmortem: api date search slow after a migration dropped an index\npostmortem-payments-duplicate-refunds: Postmortem: refunds sent twice after the refund job restarted\npostmortem-web-firewall-challenge: Postmortem: booking pages behind a firewall challenge\nprovider-cloudflare-japan-edge: Incident report: elevated errors at edge locations in Japan\nscan-dr-drill-2023: Backup restore drill report: api database\nscan-twilio-maintenance-2025: Scheduled maintenance: Messaging API, Tokyo region\nscan-escalation-sheet: On-call escalation sheet"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nIn the firewall challenge postmortem, is the action item to alert when booking starts from new visitors fall more than 40 % below the same hour last week done, or still open?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "tools": [
+       {
+        "functionDeclarations": [
+         {
+          "name": "read_page",
+          "description": "Read one of the team's pages by its id from the contents list.",
+          "parameters": {
+           "type": "object",
+           "properties": {
+            "id": {
+             "type": "string",
+             "description": "the page id, exactly as the contents list gives it"
+            }
+           },
+           "required": [
+            "id"
+           ]
+          }
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-08T12:40:41.705+00:00",
+     "wall_s": 1.928,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "functionCall": {
+            "name": "read_page",
+            "args": {
+             "id": "postmortem-web-firewall-challenge"
+            },
+            "id": "call_650180"
+           },
+           "thoughtSignature": "EmkKZwFpFH0Td3RK3fLaxQgEef4NXmC6/gRQUlKiK/nChZBxcb6z6yGAu2X876PLfdH9KhIy2FjQBI4AzblBNZmaor/n/+7sj576Zx5ZMMt9j/sjbB+BgQSun6WgmMXfM3ux5VO5BV2Xh/Y="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0,
+        "finishMessage": "Model generated function call(s)."
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 1753,
+       "candidatesTokenCount": 24,
+       "totalTokenCount": 1777,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 1753
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "So_HaufRAb3a9tMPqtSqiQM"
+     },
+     "text": "",
+     "function_calls": [
+      {
+       "name": "read_page",
+       "args": {
+        "id": "postmortem-web-firewall-challenge"
+       },
+       "id": "call_650180"
+      }
+     ],
+     "finishReason": "STOP",
+     "cost_usd": 0.00140475
+    },
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages are listed below, one per line as id: title. To read a page, call read_page with its id. You may read up to 4 pages.\n\nhandbook-1: Handbook 1. How to use this handbook\nhandbook-2: Handbook 2. Severity\nhandbook-3: Handbook 3. The five actions, in more detail\nhandbook-4: Handbook 4. Escalation policy\nhandbook-5: Handbook 5. Service runbooks\nhandbook-6: Handbook 6. Outside providers\nhandbook-7: Handbook 7. Known failure modes\nhandbook-8: Handbook 8. Communication\nhandbook-9: Handbook 9. After an incident\nhandbook-10: Handbook 10. Shift practicalities\nhandbook-11: Handbook 11. Deploy practice\nhandbook-12: Handbook 12. Data and privacy basics for on-call\nhandbook-13: Handbook 13. Traffic patterns and the business calendar\nhandbook-14: Handbook 14. Alert rules reference\nhandbook-15: Handbook 15. Useful log searches\nhandbook-16: Handbook 16. Dependencies between services\nhandbook-17: Handbook 17. Access and permissions\nhandbook-18: Handbook 18. Glossary\nteam-oncall-onboarding: On-call onboarding\npostmortem-web-font-upload: Postmortem: web blank pages after a font upload\nweb-runbook-2024: web runbook (2024 edition)\npayments-rollback-runbook: Payments rollback runbook\nhandover-2024-03-25: On-call handover, week of 2024-03-25\npostmortem-notifier-sms-codes-japan: Postmortem: SMS sign-in codes delayed in Japan\nnotifier-runbook-2024: notifier runbook (2024 edition)\nteam-alert-tuning: Alert tuning process\npostmortem-api-search-index-stale: Postmortem: api search index stale for a day\nprovider-stripe-notes: stripe: notes for on-call\nhandover-2024-08-19: On-call handover, week of 2024-08-19\npostmortem-notifier-duplicate-reminders: Postmortem: duplicate appointment reminders after a scheduler restart\nhowto-api-search-index-rebuild: How to rebuild the api search index\npostmortem-api-dst-us-east: Postmortem: bookings an hour off after the US clock change\nteam-dashboards-guide: Dashboards guide\nhandover-2025-01-06: On-call handover, week of 2025-01-06\nhowto-notifier-queue-panels: How to read the notifier queue panels\npostmortem-web-admin-session: Postmortem: admin tool session left open on a shared laptop\nprovider-twilio-japan: twilio: Japan carrier notes\npostmortem-api-partner-certificate: Postmortem: partner API certificate expired\nteam-access-requests: Access requests for on-call\nhowto-cdn-purge-by-hand: How to purge the CDN by hand\nhandover-2025-06-30: On-call handover, week of 2025-06-30\npostmortem-web-cdn-purge-stuck: Postmortem: CDN purge stuck after the summer campaign release\nhowto-trace-a-refund: How to trace one refund through the logs\nteam-status-page-process: Status page process\npostmortem-notifier-sendgrid-quota: Postmortem: sendgrid daily quota reached during a marketing send\nprovider-sendgrid-quota: sendgrid: quota and streams\nteam-game-days: Game days\npostmortem-payments-pool-timeout: Postmortem: payments checkout timeouts after the v2.31 pool change\nhandover-2025-11-24: On-call handover, week of 2025-11-24\nprovider-cloudflare-notes: cloudflare: purge and firewall notes\npostmortem-api-audit-disk: Postmortem: api audit log writer stopped after a disk filled\nteam-incident-commander-guide: Incident commander guide\nhowto-api-replica-lag: How to check replica lag on api\nprovider-aws-health: aws: health dashboard and regions\npostmortem-payments-webhook-secret: Postmortem: stripe webhooks rejected after the signing secret rotation\nteam-postmortem-review: Postmortem review meeting\nhandover-2026-04-06: On-call handover, week of 2026-04-06\npostmortem-api-aws-dns-apne1: Postmortem: aws DNS incident in ap-northeast-1\nhowto-stop-unowned-load-test: How to stop a load test that nobody owns\npostmortem-api-replica-lag-double-booking: Postmortem: api replica lag double-booked slots in eu-west\nteam-secrets-manager: Secrets manager for on-call\npostmortem-notifier-template-crash: Postmortem: notifier queue stalled by a template error\nprovider-stripe-api-version: stripe: API version upgrade notes (2026)\npostmortem-api-rollback-queue: Postmortem: api rollback stuck in the deploy queue\nhandover-2026-09-21: On-call handover, week of 2026-09-21\ndeploying-with-shipyard: Deploying with Shipyard\nhandover-2026-10-05: On-call handover, week of 2026-10-05\npostmortem-notifier-reminder-backlog: Postmortem: notifier reminders delayed by a stuck queue worker\npostmortem-api-index-migration: Postmortem: api date search slow after a migration dropped an index\npostmortem-payments-duplicate-refunds: Postmortem: refunds sent twice after the refund job restarted\npostmortem-web-firewall-challenge: Postmortem: booking pages behind a firewall challenge\nprovider-cloudflare-japan-edge: Incident report: elevated errors at edge locations in Japan\nscan-dr-drill-2023: Backup restore drill report: api database\nscan-twilio-maintenance-2025: Scheduled maintenance: Messaging API, Tokyo region\nscan-escalation-sheet: On-call escalation sheet"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nIn the firewall challenge postmortem, is the action item to alert when booking starts from new visitors fall more than 40 % below the same hour last week done, or still open?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       },
+       {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "read_page",
+           "args": {
+            "id": "postmortem-web-firewall-challenge"
+           },
+           "id": "call_650180"
+          },
+          "thoughtSignature": "EmkKZwFpFH0Td3RK3fLaxQgEef4NXmC6/gRQUlKiK/nChZBxcb6z6yGAu2X876PLfdH9KhIy2FjQBI4AzblBNZmaor/n/+7sj576Zx5ZMMt9j/sjbB+BgQSun6WgmMXfM3ux5VO5BV2Xh/Y="
+         }
+        ],
+        "role": "model"
+       },
+       {
+        "role": "user",
+        "parts": [
+         {
+          "functionResponse": {
+           "name": "read_page",
+           "response": {
+            "id": "postmortem-web-firewall-challenge",
+            "title": "Postmortem: booking pages behind a firewall challenge",
+            "text": "<omitted page postmortem-web-firewall-challenge (P6): md5 5ff1c58a7d929bcf973b0a8acdc1c019, 1122 tokens by countTokens>"
+           },
+           "id": "call_650180"
+          }
+         }
+        ]
+       }
+      ],
+      "tools": [
+       {
+        "functionDeclarations": [
+         {
+          "name": "read_page",
+          "description": "Read one of the team's pages by its id from the contents list.",
+          "parameters": {
+           "type": "object",
+           "properties": {
+            "id": {
+             "type": "string",
+             "description": "the page id, exactly as the contents list gives it"
+            }
+           },
+           "required": [
+            "id"
+           ]
+          }
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-08T12:40:43.648+00:00",
+     "wall_s": 2.038,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "functionCall": {
+            "name": "read_page",
+            "args": {
+             "id": "handover-2025-06-30"
+            },
+            "id": "call_537663"
+           },
+           "thoughtSignature": "EmkKZwFpFH0T1ZrwTwOX7gaACxgvqii4MhKKpUBeK5dEg2rwEy6d8baKmJ8qltHKn1TOQP4wpHRTIW0QrjZdh+pPZ/KWcYzJiK8vb5dSbQNrlAQHEi+dIaVky4CXsCzstnnRPnpIvQM8Fpc="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0,
+        "finishMessage": "Model generated function call(s)."
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 2939,
+       "candidatesTokenCount": 28,
+       "totalTokenCount": 2967,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 2939
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "S4_HaoPGOuz01e8PjZuhyQg"
+     },
+     "text": "",
+     "function_calls": [
+      {
+       "name": "read_page",
+       "args": {
+        "id": "handover-2025-06-30"
+       },
+       "id": "call_537663"
+      }
+     ],
+     "finishReason": "STOP",
+     "cost_usd": 0.00230925
+    },
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages are listed below, one per line as id: title. To read a page, call read_page with its id. You may read up to 4 pages.\n\nhandbook-1: Handbook 1. How to use this handbook\nhandbook-2: Handbook 2. Severity\nhandbook-3: Handbook 3. The five actions, in more detail\nhandbook-4: Handbook 4. Escalation policy\nhandbook-5: Handbook 5. Service runbooks\nhandbook-6: Handbook 6. Outside providers\nhandbook-7: Handbook 7. Known failure modes\nhandbook-8: Handbook 8. Communication\nhandbook-9: Handbook 9. After an incident\nhandbook-10: Handbook 10. Shift practicalities\nhandbook-11: Handbook 11. Deploy practice\nhandbook-12: Handbook 12. Data and privacy basics for on-call\nhandbook-13: Handbook 13. Traffic patterns and the business calendar\nhandbook-14: Handbook 14. Alert rules reference\nhandbook-15: Handbook 15. Useful log searches\nhandbook-16: Handbook 16. Dependencies between services\nhandbook-17: Handbook 17. Access and permissions\nhandbook-18: Handbook 18. Glossary\nteam-oncall-onboarding: On-call onboarding\npostmortem-web-font-upload: Postmortem: web blank pages after a font upload\nweb-runbook-2024: web runbook (2024 edition)\npayments-rollback-runbook: Payments rollback runbook\nhandover-2024-03-25: On-call handover, week of 2024-03-25\npostmortem-notifier-sms-codes-japan: Postmortem: SMS sign-in codes delayed in Japan\nnotifier-runbook-2024: notifier runbook (2024 edition)\nteam-alert-tuning: Alert tuning process\npostmortem-api-search-index-stale: Postmortem: api search index stale for a day\nprovider-stripe-notes: stripe: notes for on-call\nhandover-2024-08-19: On-call handover, week of 2024-08-19\npostmortem-notifier-duplicate-reminders: Postmortem: duplicate appointment reminders after a scheduler restart\nhowto-api-search-index-rebuild: How to rebuild the api search index\npostmortem-api-dst-us-east: Postmortem: bookings an hour off after the US clock change\nteam-dashboards-guide: Dashboards guide\nhandover-2025-01-06: On-call handover, week of 2025-01-06\nhowto-notifier-queue-panels: How to read the notifier queue panels\npostmortem-web-admin-session: Postmortem: admin tool session left open on a shared laptop\nprovider-twilio-japan: twilio: Japan carrier notes\npostmortem-api-partner-certificate: Postmortem: partner API certificate expired\nteam-access-requests: Access requests for on-call\nhowto-cdn-purge-by-hand: How to purge the CDN by hand\nhandover-2025-06-30: On-call handover, week of 2025-06-30\npostmortem-web-cdn-purge-stuck: Postmortem: CDN purge stuck after the summer campaign release\nhowto-trace-a-refund: How to trace one refund through the logs\nteam-status-page-process: Status page process\npostmortem-notifier-sendgrid-quota: Postmortem: sendgrid daily quota reached during a marketing send\nprovider-sendgrid-quota: sendgrid: quota and streams\nteam-game-days: Game days\npostmortem-payments-pool-timeout: Postmortem: payments checkout timeouts after the v2.31 pool change\nhandover-2025-11-24: On-call handover, week of 2025-11-24\nprovider-cloudflare-notes: cloudflare: purge and firewall notes\npostmortem-api-audit-disk: Postmortem: api audit log writer stopped after a disk filled\nteam-incident-commander-guide: Incident commander guide\nhowto-api-replica-lag: How to check replica lag on api\nprovider-aws-health: aws: health dashboard and regions\npostmortem-payments-webhook-secret: Postmortem: stripe webhooks rejected after the signing secret rotation\nteam-postmortem-review: Postmortem review meeting\nhandover-2026-04-06: On-call handover, week of 2026-04-06\npostmortem-api-aws-dns-apne1: Postmortem: aws DNS incident in ap-northeast-1\nhowto-stop-unowned-load-test: How to stop a load test that nobody owns\npostmortem-api-replica-lag-double-booking: Postmortem: api replica lag double-booked slots in eu-west\nteam-secrets-manager: Secrets manager for on-call\npostmortem-notifier-template-crash: Postmortem: notifier queue stalled by a template error\nprovider-stripe-api-version: stripe: API version upgrade notes (2026)\npostmortem-api-rollback-queue: Postmortem: api rollback stuck in the deploy queue\nhandover-2026-09-21: On-call handover, week of 2026-09-21\ndeploying-with-shipyard: Deploying with Shipyard\nhandover-2026-10-05: On-call handover, week of 2026-10-05\npostmortem-notifier-reminder-backlog: Postmortem: notifier reminders delayed by a stuck queue worker\npostmortem-api-index-migration: Postmortem: api date search slow after a migration dropped an index\npostmortem-payments-duplicate-refunds: Postmortem: refunds sent twice after the refund job restarted\npostmortem-web-firewall-challenge: Postmortem: booking pages behind a firewall challenge\nprovider-cloudflare-japan-edge: Incident report: elevated errors at edge locations in Japan\nscan-dr-drill-2023: Backup restore drill report: api database\nscan-twilio-maintenance-2025: Scheduled maintenance: Messaging API, Tokyo region\nscan-escalation-sheet: On-call escalation sheet"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nIn the firewall challenge postmortem, is the action item to alert when booking starts from new visitors fall more than 40 % below the same hour last week done, or still open?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       },
+       {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "read_page",
+           "args": {
+            "id": "postmortem-web-firewall-challenge"
+           },
+           "id": "call_650180"
+          },
+          "thoughtSignature": "EmkKZwFpFH0Td3RK3fLaxQgEef4NXmC6/gRQUlKiK/nChZBxcb6z6yGAu2X876PLfdH9KhIy2FjQBI4AzblBNZmaor/n/+7sj576Zx5ZMMt9j/sjbB+BgQSun6WgmMXfM3ux5VO5BV2Xh/Y="
+         }
+        ],
+        "role": "model"
+       },
+       {
+        "role": "user",
+        "parts": [
+         {
+          "functionResponse": {
+           "name": "read_page",
+           "response": {
+            "id": "postmortem-web-firewall-challenge",
+            "title": "Postmortem: booking pages behind a firewall challenge",
+            "text": "<omitted page postmortem-web-firewall-challenge (P6): md5 5ff1c58a7d929bcf973b0a8acdc1c019, 1122 tokens by countTokens>"
+           },
+           "id": "call_650180"
+          }
+         }
+        ]
+       },
+       {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "read_page",
+           "args": {
+            "id": "handover-2025-06-30"
+           },
+           "id": "call_537663"
+          },
+          "thoughtSignature": "EmkKZwFpFH0T1ZrwTwOX7gaACxgvqii4MhKKpUBeK5dEg2rwEy6d8baKmJ8qltHKn1TOQP4wpHRTIW0QrjZdh+pPZ/KWcYzJiK8vb5dSbQNrlAQHEi+dIaVky4CXsCzstnnRPnpIvQM8Fpc="
+         }
+        ],
+        "role": "model"
+       },
+       {
+        "role": "user",
+        "parts": [
+         {
+          "functionResponse": {
+           "name": "read_page",
+           "response": {
+            "id": "handover-2025-06-30",
+            "title": "On-call handover, week of 2025-06-30",
+            "text": "<omitted page handover-2025-06-30: md5 16bf3bc329ffb9a8a97582fbb7f8bd04, 3333 tokens by countTokens>"
+           },
+           "id": "call_537663"
+          }
+         }
+        ]
+       }
+      ],
+      "tools": [
+       {
+        "functionDeclarations": [
+         {
+          "name": "read_page",
+          "description": "Read one of the team's pages by its id from the contents list.",
+          "parameters": {
+           "type": "object",
+           "properties": {
+            "id": {
+             "type": "string",
+             "description": "the page id, exactly as the contents list gives it"
+            }
+           },
+           "required": [
+            "id"
+           ]
+          }
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-08T12:40:45.702+00:00",
+     "wall_s": 1.929,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "functionCall": {
+            "name": "read_page",
+            "args": {
+             "id": "handbook-14"
+            },
+            "id": "call_532935"
+           },
+           "thoughtSignature": "EmkKZwFpFH0TjL0gl4w6x7XRZncS0BcP3dbDyYhQb2ODWvmxd6k/ebMW1VMlFduawmDFsAipUI7RhFyo9Q9QbKhMyS5bhyK2WFPHkaFDMytFyUKhzyqio5zJcaL9xrgWPJHNPj5hqsry650="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0,
+        "finishMessage": "Model generated function call(s)."
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 6353,
+       "candidatesTokenCount": 20,
+       "totalTokenCount": 6373,
+       "cachedContentTokenCount": 4057,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 6353
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 4057
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "To_Hao2BA6zY9tMP_qzKoQg"
+     },
+     "text": "",
+     "function_calls": [
+      {
+       "name": "read_page",
+       "args": {
+        "id": "handbook-14"
+       },
+       "id": "call_532935"
+      }
+     ],
+     "finishReason": "STOP",
+     "cost_usd": 0.00483975
+    },
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages are listed below, one per line as id: title. To read a page, call read_page with its id. You may read up to 4 pages.\n\nhandbook-1: Handbook 1. How to use this handbook\nhandbook-2: Handbook 2. Severity\nhandbook-3: Handbook 3. The five actions, in more detail\nhandbook-4: Handbook 4. Escalation policy\nhandbook-5: Handbook 5. Service runbooks\nhandbook-6: Handbook 6. Outside providers\nhandbook-7: Handbook 7. Known failure modes\nhandbook-8: Handbook 8. Communication\nhandbook-9: Handbook 9. After an incident\nhandbook-10: Handbook 10. Shift practicalities\nhandbook-11: Handbook 11. Deploy practice\nhandbook-12: Handbook 12. Data and privacy basics for on-call\nhandbook-13: Handbook 13. Traffic patterns and the business calendar\nhandbook-14: Handbook 14. Alert rules reference\nhandbook-15: Handbook 15. Useful log searches\nhandbook-16: Handbook 16. Dependencies between services\nhandbook-17: Handbook 17. Access and permissions\nhandbook-18: Handbook 18. Glossary\nteam-oncall-onboarding: On-call onboarding\npostmortem-web-font-upload: Postmortem: web blank pages after a font upload\nweb-runbook-2024: web runbook (2024 edition)\npayments-rollback-runbook: Payments rollback runbook\nhandover-2024-03-25: On-call handover, week of 2024-03-25\npostmortem-notifier-sms-codes-japan: Postmortem: SMS sign-in codes delayed in Japan\nnotifier-runbook-2024: notifier runbook (2024 edition)\nteam-alert-tuning: Alert tuning process\npostmortem-api-search-index-stale: Postmortem: api search index stale for a day\nprovider-stripe-notes: stripe: notes for on-call\nhandover-2024-08-19: On-call handover, week of 2024-08-19\npostmortem-notifier-duplicate-reminders: Postmortem: duplicate appointment reminders after a scheduler restart\nhowto-api-search-index-rebuild: How to rebuild the api search index\npostmortem-api-dst-us-east: Postmortem: bookings an hour off after the US clock change\nteam-dashboards-guide: Dashboards guide\nhandover-2025-01-06: On-call handover, week of 2025-01-06\nhowto-notifier-queue-panels: How to read the notifier queue panels\npostmortem-web-admin-session: Postmortem: admin tool session left open on a shared laptop\nprovider-twilio-japan: twilio: Japan carrier notes\npostmortem-api-partner-certificate: Postmortem: partner API certificate expired\nteam-access-requests: Access requests for on-call\nhowto-cdn-purge-by-hand: How to purge the CDN by hand\nhandover-2025-06-30: On-call handover, week of 2025-06-30\npostmortem-web-cdn-purge-stuck: Postmortem: CDN purge stuck after the summer campaign release\nhowto-trace-a-refund: How to trace one refund through the logs\nteam-status-page-process: Status page process\npostmortem-notifier-sendgrid-quota: Postmortem: sendgrid daily quota reached during a marketing send\nprovider-sendgrid-quota: sendgrid: quota and streams\nteam-game-days: Game days\npostmortem-payments-pool-timeout: Postmortem: payments checkout timeouts after the v2.31 pool change\nhandover-2025-11-24: On-call handover, week of 2025-11-24\nprovider-cloudflare-notes: cloudflare: purge and firewall notes\npostmortem-api-audit-disk: Postmortem: api audit log writer stopped after a disk filled\nteam-incident-commander-guide: Incident commander guide\nhowto-api-replica-lag: How to check replica lag on api\nprovider-aws-health: aws: health dashboard and regions\npostmortem-payments-webhook-secret: Postmortem: stripe webhooks rejected after the signing secret rotation\nteam-postmortem-review: Postmortem review meeting\nhandover-2026-04-06: On-call handover, week of 2026-04-06\npostmortem-api-aws-dns-apne1: Postmortem: aws DNS incident in ap-northeast-1\nhowto-stop-unowned-load-test: How to stop a load test that nobody owns\npostmortem-api-replica-lag-double-booking: Postmortem: api replica lag double-booked slots in eu-west\nteam-secrets-manager: Secrets manager for on-call\npostmortem-notifier-template-crash: Postmortem: notifier queue stalled by a template error\nprovider-stripe-api-version: stripe: API version upgrade notes (2026)\npostmortem-api-rollback-queue: Postmortem: api rollback stuck in the deploy queue\nhandover-2026-09-21: On-call handover, week of 2026-09-21\ndeploying-with-shipyard: Deploying with Shipyard\nhandover-2026-10-05: On-call handover, week of 2026-10-05\npostmortem-notifier-reminder-backlog: Postmortem: notifier reminders delayed by a stuck queue worker\npostmortem-api-index-migration: Postmortem: api date search slow after a migration dropped an index\npostmortem-payments-duplicate-refunds: Postmortem: refunds sent twice after the refund job restarted\npostmortem-web-firewall-challenge: Postmortem: booking pages behind a firewall challenge\nprovider-cloudflare-japan-edge: Incident report: elevated errors at edge locations in Japan\nscan-dr-drill-2023: Backup restore drill report: api database\nscan-twilio-maintenance-2025: Scheduled maintenance: Messaging API, Tokyo region\nscan-escalation-sheet: On-call escalation sheet"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nIn the firewall challenge postmortem, is the action item to alert when booking starts from new visitors fall more than 40 % below the same hour last week done, or still open?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       },
+       {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "read_page",
+           "args": {
+            "id": "postmortem-web-firewall-challenge"
+           },
+           "id": "call_650180"
+          },
+          "thoughtSignature": "EmkKZwFpFH0Td3RK3fLaxQgEef4NXmC6/gRQUlKiK/nChZBxcb6z6yGAu2X876PLfdH9KhIy2FjQBI4AzblBNZmaor/n/+7sj576Zx5ZMMt9j/sjbB+BgQSun6WgmMXfM3ux5VO5BV2Xh/Y="
+         }
+        ],
+        "role": "model"
+       },
+       {
+        "role": "user",
+        "parts": [
+         {
+          "functionResponse": {
+           "name": "read_page",
+           "response": {
+            "id": "postmortem-web-firewall-challenge",
+            "title": "Postmortem: booking pages behind a firewall challenge",
+            "text": "<omitted page postmortem-web-firewall-challenge (P6): md5 5ff1c58a7d929bcf973b0a8acdc1c019, 1122 tokens by countTokens>"
+           },
+           "id": "call_650180"
+          }
+         }
+        ]
+       },
+       {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "read_page",
+           "args": {
+            "id": "handover-2025-06-30"
+           },
+           "id": "call_537663"
+          },
+          "thoughtSignature": "EmkKZwFpFH0T1ZrwTwOX7gaACxgvqii4MhKKpUBeK5dEg2rwEy6d8baKmJ8qltHKn1TOQP4wpHRTIW0QrjZdh+pPZ/KWcYzJiK8vb5dSbQNrlAQHEi+dIaVky4CXsCzstnnRPnpIvQM8Fpc="
+         }
+        ],
+        "role": "model"
+       },
+       {
+        "role": "user",
+        "parts": [
+         {
+          "functionResponse": {
+           "name": "read_page",
+           "response": {
+            "id": "handover-2025-06-30",
+            "title": "On-call handover, week of 2025-06-30",
+            "text": "<omitted page handover-2025-06-30: md5 16bf3bc329ffb9a8a97582fbb7f8bd04, 3333 tokens by countTokens>"
+           },
+           "id": "call_537663"
+          }
+         }
+        ]
+       },
+       {
+        "parts": [
+         {
+          "functionCall": {
+           "name": "read_page",
+           "args": {
+            "id": "handbook-14"
+           },
+           "id": "call_532935"
+          },
+          "thoughtSignature": "EmkKZwFpFH0TjL0gl4w6x7XRZncS0BcP3dbDyYhQb2ODWvmxd6k/ebMW1VMlFduawmDFsAipUI7RhFyo9Q9QbKhMyS5bhyK2WFPHkaFDMytFyUKhzyqio5zJcaL9xrgWPJHNPj5hqsry650="
+         }
+        ],
+        "role": "model"
+       },
+       {
+        "role": "user",
+        "parts": [
+         {
+          "functionResponse": {
+           "name": "read_page",
+           "response": {
+            "id": "handbook-14",
+            "title": "Handbook 14. Alert rules reference",
+            "text": "<omitted page handbook-14: md5 5122cbf8cefb5e312544202dc3a345b6, 866 tokens by countTokens>"
+           },
+           "id": "call_532935"
+          }
+         }
+        ]
+       }
+      ],
+      "tools": [
+       {
+        "functionDeclarations": [
+         {
+          "name": "read_page",
+          "description": "Read one of the team's pages by its id from the contents list.",
+          "parameters": {
+           "type": "object",
+           "properties": {
+            "id": {
+             "type": "string",
+             "description": "the page id, exactly as the contents list gives it"
+            }
+           },
+           "required": [
+            "id"
+           ]
+          }
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-08T12:40:47.651+00:00",
+     "wall_s": 3.318,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the **Postmortem: booking pages behind a firewall challenge** (`postmortem-web-firewall-challenge`), in the Action items table:\n\n* **Action:** Alert when booking starts from new visitors fall more than 40 % below the same hour last week.\n* **Owner:** Aiko\n* **Due:** 2025-05-30\n* **Status:** **Open**",
+           "thoughtSignature": "EmkKZwFpFH0T80DvSMPM5aLILAMejMzfSr/ltqR2EcON2OHDXvpqUma0pd9PXrby+5B7t+V/5Jz92BTNGqMqjqLi1e5JrYW1fYZbhQUd9n2JyGTq8X2052M1cCW3kfNTrlHm1TOuajJsiSU="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 7274,
+       "candidatesTokenCount": 88,
+       "totalTokenCount": 7362,
+       "cachedContentTokenCount": 4056,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 7274
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 4056
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "T4_Har-aO5bWrfcPktqt-AY"
+     },
+     "text": "According to the **Postmortem: booking pages behind a firewall challenge** (`postmortem-web-firewall-challenge`), in the Action items table:\n\n* **Action:** Alert when booking starts from new visitors fall more than 40 % below the same hour last week.\n* **Owner:** Aiko\n* **Due:** 2025-05-30\n* **Status:** **Open**",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "cost_usd": 0.0057855
+    }
+   ],
+   "wall_s": 9.275,
+   "prompt_tokens": 18319,
+   "out_tokens": 160,
+   "cost_usd": 0.01433925,
+   "id": "f-alert-action",
+   "run": 3,
+   "question": "In the firewall challenge postmortem, is the action item to alert when booking starts from new visitors fall more than 40 % below the same hour last week done, or still open?",
+   "has_rev1": true,
+   "has_rev2": false
+  }
+ ]
+}

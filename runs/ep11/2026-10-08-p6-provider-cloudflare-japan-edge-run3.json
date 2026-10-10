@@ -1,0 +1,73 @@
+{
+ "request": {
+  "contents": [
+   {
+    "role": "user",
+    "parts": [
+     {
+      "inline_data": {
+       "mime_type": "application/pdf",
+       "data": "<omitted file bytes: base64 md5 b64dec25890f047a6dcfaf46cb5c5016>"
+      }
+     },
+     {
+      "text": "Write this whole document out as Markdown, word for word, in reading order. Every table becomes a Markdown table with the same rows and columns. Do not summarise, do not leave anything out, and do not add anything that is not in the document."
+     }
+    ]
+   }
+  ],
+  "generationConfig": {
+   "thinkingConfig": {
+    "thinkingLevel": "low"
+   }
+  }
+ },
+ "http": 200,
+ "sent_utc": "2026-10-08T12:28:28.382+00:00",
+ "wall_s": 6.076,
+ "retries": [],
+ "error": null,
+ "response": {
+  "candidates": [
+   {
+    "content": {
+     "parts": [
+      {
+       "text": "CLOUDFLARE · CUSTOMER INCIDENT REPORT · PUBLISHED 2024-09-20\n\n# Incident report: elevated errors at edge locations in Japan\n\n| | |\n| :--- | :--- |\n| Incident | 2024-0917-A |\n| Date | 2024-09-17 |\n| Status | Resolved |\n| Products | CDN, proxy |\n| Prepared for | Sorrel |\n\n### Summary\n\nBetween 05:42 and 06:40 UTC on 2024-09-17, customers whose visitors were served from our Tokyo and Osaka edge locations saw elevated HTTP 502 and 504 errors and higher latency. At the worst point, 7.4 % of proxied requests in Tokyo failed. Part of the traffic was rerouted to Seoul, which kept most requests working but added latency for visitors in Japan.\n\n### Customer impact\n\nErrors began at 05:42 UTC. Tokyo was affected for 37 minutes and Osaka for 27 minutes. Cache purge requests for zones served from Tokyo were delayed by up to 9 minutes until 07:03 UTC. No customer data was lost or exposed, and no configuration on customer accounts was changed.\n\n### Root cause\n\nAt 05:38 UTC an automated change to the load balancing on a backbone link between Tokyo and Osaka was released to production. The change set a weight of zero for one of the two link groups, which sent all traffic between the two sites over a single group and saturated it. Health checks then marked healthy servers as unreachable, which caused the 502 and 504 errors.\n\n### Remediation\n\nOur network team identified the change at 06:09 UTC and reverted it at 06:14 UTC. Errors in Tokyo were back to normal levels by 06:19 UTC. We are adding a validation step that rejects zero weights on backbone links, and changes to backbone load balancing will be released to one site at a time. Both changes will be complete by 2024-10-31.\n\n### Affected windows (all times UTC, 2024-09-17)\n\n| Start | End | Location | Impact |\n| :--- | :--- | :--- | :--- |\n| 05:42 | 06:19 | Tokyo (NRT) | HTTP 502 and 504 errors on proxied requests, up to 7.4 % of requests |\n| 05:44 | 06:11 | Osaka (KIX) | HTTP 502 errors on proxied requests, up to 3.1 % of requests |\n| 05:51 | 06:05 | Fukuoka (FUK) | Higher latency, p95 up to 1.8 s; error rate normal |\n| 06:02 | 06:40 | Seoul (ICN) | Traffic rerouted from Tokyo; higher latency for visitors in Japan |\n| 06:21 | 07:03 | Tokyo (NRT) | Cache purge requests delayed by up to 9 minutes |\n\nQuestions about this report: contact your account team and quote incident 2024-0917-A.",
+       "thoughtSignature": "EmkKZwFpFH0Tyyh4d9K3kkersWxhCn36EV65Ffj8qGATyKxgcX7j13QEtESfljgyOCN6sZfm2QVMHq/yKkkMyJWpo56L/SnrnmiKQVFY8NVOZOJuD6rmqr7v4tXIu4T7uWzfjfGeA4G2i20="
+      }
+     ],
+     "role": "model"
+    },
+    "finishReason": "STOP",
+    "index": 0
+   }
+  ],
+  "usageMetadata": {
+   "promptTokenCount": 584,
+   "candidatesTokenCount": 733,
+   "totalTokenCount": 1317,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 52
+    },
+    {
+     "modality": "IMAGE",
+     "tokenCount": 532
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.8-flash",
+  "responseId": "bIzHasuLJ_DgrfcPjL2TmAo"
+ },
+ "text": "CLOUDFLARE · CUSTOMER INCIDENT REPORT · PUBLISHED 2024-09-20\n\n# Incident report: elevated errors at edge locations in Japan\n\n| | |\n| :--- | :--- |\n| Incident | 2024-0917-A |\n| Date | 2024-09-17 |\n| Status | Resolved |\n| Products | CDN, proxy |\n| Prepared for | Sorrel |\n\n### Summary\n\nBetween 05:42 and 06:40 UTC on 2024-09-17, customers whose visitors were served from our Tokyo and Osaka edge locations saw elevated HTTP 502 and 504 errors and higher latency. At the worst point, 7.4 % of proxied requests in Tokyo failed. Part of the traffic was rerouted to Seoul, which kept most requests working but added latency for visitors in Japan.\n\n### Customer impact\n\nErrors began at 05:42 UTC. Tokyo was affected for 37 minutes and Osaka for 27 minutes. Cache purge requests for zones served from Tokyo were delayed by up to 9 minutes until 07:03 UTC. No customer data was lost or exposed, and no configuration on customer accounts was changed.\n\n### Root cause\n\nAt 05:38 UTC an automated change to the load balancing on a backbone link between Tokyo and Osaka was released to production. The change set a weight of zero for one of the two link groups, which sent all traffic between the two sites over a single group and saturated it. Health checks then marked healthy servers as unreachable, which caused the 502 and 504 errors.\n\n### Remediation\n\nOur network team identified the change at 06:09 UTC and reverted it at 06:14 UTC. Errors in Tokyo were back to normal levels by 06:19 UTC. We are adding a validation step that rejects zero weights on backbone links, and changes to backbone load balancing will be released to one site at a time. Both changes will be complete by 2024-10-31.\n\n### Affected windows (all times UTC, 2024-09-17)\n\n| Start | End | Location | Impact |\n| :--- | :--- | :--- | :--- |\n| 05:42 | 06:19 | Tokyo (NRT) | HTTP 502 and 504 errors on proxied requests, up to 7.4 % of requests |\n| 05:44 | 06:11 | Osaka (KIX) | HTTP 502 errors on proxied requests, up to 3.1 % of requests |\n| 05:51 | 06:05 | Fukuoka (FUK) | Higher latency, p95 up to 1.8 s; error rate normal |\n| 06:02 | 06:40 | Seoul (ICN) | Traffic rerouted from Tokyo; higher latency for visitors in Japan |\n| 06:21 | 07:03 | Tokyo (NRT) | Cache purge requests delayed by up to 9 minutes |\n\nQuestions about this report: contact your account team and quote incident 2024-0917-A.",
+ "function_calls": [],
+ "finishReason": "STOP",
+ "cost_usd": 0.00318675,
+ "slug": "provider-cloudflare-japan-edge",
+ "run": 3,
+ "pdf": "library/pdf/provider-cloudflare-japan-edge.pdf",
+ "pdf_md5": "2eaec36e37a288d1d576405d4c05a6ff"
+}

@@ -1,0 +1,204 @@
+Sorrel Engineering / Postmortems / 2023
+
+Postmortem: notifier reminders delayed by a stuck queue
+worker
+Incident date
+
+2023-03-14 (Tuesday, morning JST)
+
+Severity
+
+SEV-2
+
+Service
+
+notifier
+
+Incident commander
+
+Aiko
+
+Author
+
+Tom
+
+Status
+
+Final, reviewed 2023-03-16
+
+Summary
+On 2023-03-14 the morning batch of SMS reminders left up to 77 minutes late. One of the three notifier
+queue workers lost its queue lease every few seconds, after a config change the day before had cut the
+lease time from 60 s to 6 s, and the two healthy workers could not keep up with the batch. Setting the
+lease time back to 60 s and restarting the workers cleared the queue by 08:47.
+
+Impact
+Customers: 4,212 SMS reminders for appointments between 09:00 and 11:00 JST were delayed; the
+last one left 77 minutes late.
+41 appointments started before their reminder arrived. Support counted 17 customer reports, most of
+them from businesses.
+Money: none moved. Data: none exposed or lost.
+Email confirmations were not affected; they use a separate queue.
+
+Timeline (JST)
+Time
+
+What happened
+
+Who
+
+07:30
+
+The scheduler puts the morning reminder batch on the notifier queue: 4,212
+SMS reminders for appointments between 09:00 and 11:00 JST.
+
+notifier scheduler
+
+07:38
+
+Alert fires: notifier queue depth above 2,000 for 5 minutes. The paging tool
+pages the on-call engineer.
+
+paging tool
+
+07:41
+
+Page acknowledged. Ravi opens a thread in #inc-live with the alert line and a
+screenshot of the queue depth panel.
+
+Ravi
+
+07:49
+
+notifier logs show worker 2 of 3 repeating "lease renewal failed" about once a
+second and taking no new messages. Workers 1 and 3 are sending but
+cannot keep up with the batch.
+
+Ravi
+
+07:55
+
+First customer report through support: a hair salon says its 09:00 clients
+usually have their reminder by 07:45 and none has arrived.
+
+Support
+
+08:02
+
+Incident declared (SEV-2). Aiko takes incident commander and pages Tom,
+because the queue workers are his area.
+
+Aiko
+
+Time
+
+What happened
+
+Who
+
+08:09
+
+Tom joins. He confirms on status.twilio.com that twilio is healthy and that
+messages sent by workers 1 and 3 are being delivered normally.
+
+Tom
+
+08:16
+
+Tom restarts worker 2. It takes new messages for about forty seconds, then
+falls back into the same lease renewal error.
+
+Tom
+
+08:24
+
+Tom finds the cause: a config change on 2023-03-13 cut the queue lease
+time from 60 s to 6 s. Worker 2 runs on the node whose clock is furthest off,
+so it loses every lease before it can renew it.
+
+Tom
+
+08:31
+
+The lease time is set back to 60 s and all three workers are restarted. Queue
+depth starts to fall by about 300 messages a minute.
+
+Tom
+
+08:47
+
+Queue depth is back under 200 and the morning batch is fully sent. The last
+reminder left 77 minutes late.
+
+Ravi
+
+08:55
+
+Aiko gives support the list of 41 appointments that started before their
+reminder arrived, so the businesses can be told.
+
+Aiko
+
+09:20
+
+Incident closed. Aiko posts the summary in #inc-live and books the
+postmortem for the Thursday review.
+
+Aiko
+
+What went well
+The log line said "lease renewal failed" in plain words, so the stuck worker was found within eight
+minutes of the page.
+twilio was ruled out quickly, because two workers were still delivering.
+
+What went badly
+The queue depth alert fired 8 minutes after the batch started; an alert on the age of the oldest
+message would have said the same thing with more urgency.
+The lease time change on 2023-03-13 was reviewed as a tuning change and was not tested against a
+node with clock drift.
+
+Action items
+Action
+
+Owner
+
+Due
+
+Status
+
+Alert on the age of the oldest message on the notifier queue, not only
+on queue depth.
+
+Tom
+
+2023-03-24
+
+Done
+
+Enforce a minimum lease time of 30 s in code, so a config change
+cannot set it lower.
+
+Tom
+
+2023-03-31
+
+Done
+
+Add per-worker send rate to the "Sorrel / notifier" board, so one silent
+worker shows at a glance.
+
+Ravi
+
+2023-04-07
+
+Done
+
+Check clock sync on every notifier node in the weekly node health
+report.
+
+Ravi
+
+2023-04-14
+
+Open
+

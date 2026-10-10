@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Postmortem: booking pages behind a firewall challenge</title><style>
+@page { size: A4; margin: 20mm 18mm 20mm 18mm; }
+body { font-family: Arial, Helvetica, sans-serif; font-size: 10.5pt; line-height: 1.38; color: #202124; margin: 0; }
+.crumb { font-size: 8.5pt; color: #5f6368; margin-bottom: 6pt; }
+h1 { font-size: 19pt; font-weight: normal; margin: 0 0 10pt 0; color: #111; }
+h2 { font-size: 13pt; font-weight: bold; margin: 16pt 0 5pt 0; color: #111; }
+p { margin: 0 0 7pt 0; }
+ul { margin: 0 0 7pt 0; padding-left: 20pt; }
+li { margin-bottom: 3pt; }
+table { border-collapse: collapse; width: 100%; font-size: 9.5pt; line-height: 1.32; }
+th, td { border: 1px solid #b7b7b7; padding: 4pt 6pt; text-align: left; vertical-align: top; }
+th { background: #efefef; font-weight: bold; }
+tr { break-inside: avoid; }
+table.meta { width: 72%; margin-bottom: 4pt; }
+table.meta td.k { background: #f3f3f3; font-weight: bold; width: 34%; }
+col.time { width: 11%; } col.what { width: 69%; } col.who { width: 20%; }
+col.item { width: 62%; } col.owner { width: 12%; } col.due { width: 14%; } col.status { width: 12%; }
+</style></head><body>
+<div class="crumb">Sorrel Engineering / Postmortems / 2025</div>
+<h1>Postmortem: booking pages behind a firewall challenge</h1>
+<table class="meta"><tbody><tr><td class="k">Incident date</td><td>2025-05-20 (Tuesday, afternoon JST)</td></tr><tr><td class="k">Severity</td><td>SEV-2</td></tr><tr><td class="k">Service</td><td>web</td></tr><tr><td class="k">Incident commander</td><td>Mei</td></tr><tr><td class="k">Author</td><td>Aiko</td></tr><tr><td class="k">Status</td><td>Final, reviewed 2025-05-22</td></tr></tbody></table>
+<h2>Summary</h2>
+<p>A firewall rule Aiko added on cloudflare at 16:02 to slow down a scraper also challenged first-time visitors on booking pages, because they arrive without a session cookie. Most of them left at the challenge page. No alert fired, since errors and latency stayed normal; support tickets and the booking-start panel showed it. Aiko switched the rule to log only at 16:58. About 2,300 booking starts were lost.</p>
+<h2>Impact</h2>
+<ul><li>Customers: first-time visitors to booking pages saw a challenge page between 16:02 and 16:58 JST. Returning customers with a session were not affected.</li><li>Booking starts from new visitors fell by 62 % against the same hour the week before; about 2,300 booking starts were lost.</li><li>Support counted 26 reports, most from businesses whose new customers could not book.</li><li>Money and data: none affected.</li></ul>
+<h2>Timeline (JST)</h2>
+<table><colgroup><col class="time"><col class="what"><col class="who"></colgroup><thead><tr><th>Time</th><th>What happened</th><th>Who</th></tr></thead><tbody><tr><td>16:02</td><td>Aiko turns on a new cloudflare firewall rule to slow a scraper: requests to /book/* without a session cookie get a challenge page.</td><td>Aiko</td></tr><tr><td>16:05</td><td>First-time visitors arriving from search results start getting the challenge page instead of the booking page. Most of them leave.</td><td>cloudflare</td></tr><tr><td>16:21</td><td>First customer report through support: a physiotherapy clinic says new patients cannot open its booking page.</td><td>Support</td></tr><tr><td>16:28</td><td>After a second report, Tom, on call, checks the &quot;Sorrel / web&quot; board: booking starts from new visitors are 62 % below the same hour last week. No alert has fired, because errors and latency are normal.</td><td>Tom</td></tr><tr><td>16:34</td><td>Incident declared (SEV-2). Mei takes incident commander.</td><td>Mei</td></tr><tr><td>16:39</td><td>Tom checks the deploy tool. The last web deploy is 2 days old, so a rollback would not help.</td><td>Tom</td></tr><tr><td>16:44</td><td>Tom finds 14,950 challenges on /book/* in the cloudflare firewall events since 16:02, against about 300 on a normal afternoon.</td><td>Tom</td></tr><tr><td>16:47</td><td>Firewall rules are never changed without Aiko, so Tom pages her with the firewall events and the booking-start panel.</td><td>Tom</td></tr><tr><td>16:58</td><td>Aiko acknowledges, recognises her rule from 16:02, and switches it to log only.</td><td>Aiko</td></tr><tr><td>17:01</td><td>Challenges on /book/* fall back to normal. Booking starts from new visitors recover within ten minutes.</td><td>Tom</td></tr><tr><td>17:15</td><td>Mei posts on status.sorrel.app that some new visitors could not open booking pages between 16:02 and 16:58.</td><td>Mei</td></tr><tr><td>17:40</td><td>Aiko rewrites the rule to match only the scraper&#x27;s user agent and address range, and leaves it in log-only mode for a day.</td><td>Aiko</td></tr><tr><td>18:30</td><td>Incident closed. About 2,300 booking starts were lost in the 56 minutes the rule was active.</td><td>Mei</td></tr></tbody></table>
+<h2>What went well</h2>
+<ul><li>Tom ruled out a bad deploy in one look at the deploy tool and went to the firewall events next.</li><li>Nobody changed the firewall rule but Aiko, as the handbook asks.</li></ul>
+<h2>What went badly</h2>
+<ul><li>No alert fired. Errors and latency were normal, so only support tickets showed that customers were being turned away.</li><li>The rule went straight to challenge mode, with no log-only period to show who it would catch.</li></ul>
+<h2>Action items</h2>
+<table><colgroup><col class="item"><col class="owner"><col class="due"><col class="status"></colgroup><thead><tr><th>Action</th><th>Owner</th><th>Due</th><th>Status</th></tr></thead><tbody><tr><td>Alert when booking starts from new visitors fall more than 40 % below the same hour last week.</td><td>Aiko</td><td>2025-05-30</td><td>Open</td></tr><tr><td>Run every new firewall rule in log-only mode for 24 hours before it blocks or challenges anything.</td><td>Aiko</td><td>2025-05-23</td><td>Done</td></tr><tr><td>Add the firewall events panel to the &quot;Sorrel / web&quot; board.</td><td>Tom</td><td>2025-06-06</td><td>Done</td></tr><tr><td>Ask the scraper&#x27;s operator to use the partner API instead.</td><td>Ravi</td><td>2025-06-13</td><td>Open</td></tr></tbody></table>
+</body></html>

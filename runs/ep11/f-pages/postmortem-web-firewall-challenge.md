@@ -1,0 +1,61 @@
+Source: postmortem-web-firewall-challenge.pdf · md5 928df5c7 · converted 2026-10-08
+
+Sorrel Engineering / Postmortems / 2025
+
+# Postmortem: booking pages behind a firewall challenge
+
+| Incident date | 2025-05-20 (Tuesday, afternoon JST) |
+| :--- | :--- |
+| Severity | SEV-2 |
+| Service | web |
+| Incident commander | Mei |
+| Author | Aiko |
+| Status | Final, reviewed 2025-05-22 |
+
+## Summary
+
+A firewall rule Aiko added on cloudflare at 16:02 to slow down a scraper also challenged first-time visitors on booking pages, because they arrive without a session cookie. Most of them left at the challenge page. No alert fired, since errors and latency stayed normal; support tickets and the booking-start panel showed it. Aiko switched the rule to log only at 16:58. About 2,300 booking starts were lost.
+
+## Impact
+
+- Customers: first-time visitors to booking pages saw a challenge page between 16:02 and 16:58 JST. Returning customers with a session were not affected.
+- Booking starts from new visitors fell by 62 % against the same hour the week before; about 2,300 booking starts were lost.
+- Support counted 26 reports, most from businesses whose new customers could not book.
+- Money and data: none affected.
+
+## Timeline (JST)
+
+| Time | What happened | Who |
+| :--- | :--- | :--- |
+| 16:02 | Aiko turns on a new cloudflare firewall rule to slow a scraper: requests to /book/* without a session cookie get a challenge page. | Aiko |
+| 16:05 | First-time visitors arriving from search results start getting the challenge page instead of the booking page. Most of them leave. | cloudflare |
+| 16:21 | First customer report through support: a physiotherapy clinic says new patients cannot open its booking page. | Support |
+| 16:28 | After a second report, Tom, on call, checks the "Sorrel / web" board: booking starts from new visitors are 62 % below the same hour last week. No alert has fired, because errors and latency are normal. | Tom |
+| 16:34 | Incident declared (SEV-2). Mei takes incident commander. | Mei |
+| 16:39 | Tom checks the deploy tool. The last web deploy is 2 days old, so a rollback would not help. | Tom |
+| 16:44 | Tom finds 14,950 challenges on /book/* in the cloudflare firewall events since 16:02, against about 300 on a normal afternoon. | Tom |
+| 16:47 | Firewall rules are never changed without Aiko, so Tom pages her with the firewall events and the booking-start panel. | Tom |
+| 16:58 | Aiko acknowledges, recognises her rule from 16:02, and switches it to log only. | Aiko |
+| 17:03 | Challenges on /book/* fall back to normal. Booking starts from new visitors recover within ten minutes. | Tom |
+| 17:15 | Mei posts on status.sorrel.app that some new visitors could not open booking pages between 16:02 and 16:58. | Mei |
+| 17:40 | Aiko rewrites the rule to match only the scraper's user agent and address range, and leaves it in log-only mode for a day. | Aiko |
+| 18:30 | Incident closed. About 2,300 booking starts were lost in the 56 minutes the rule was active. | Mei |
+
+## What went well
+
+- Tom ruled out a bad deploy in one look at the deploy tool and went to the firewall events next.
+- Nobody changed the firewall rule but Aiko, as the handbook asks.
+
+## What went badly
+
+- No alert fired. Errors and latency were normal, so only support tickets showed that customers were being turned away.
+- The rule went straight to challenge mode, with no log-only period to show who it would catch.
+
+## Action items
+
+| Action | Owner | Due | Status |
+| :--- | :--- | :--- | :--- |
+| Alert when booking starts from new visitors fall more than 40 % below the same hour last week. | Aiko | 2025-05-30 | Done |
+| Run every new firewall rule in log-only mode for 24 hours before it blocks or challenges anything. | Aiko | 2025-05-23 | Done |
+| Add the firewall events panel to the "Sorrel / web" board. | Tom | 2025-06-06 | Done |
+| Ask the scraper's operator to use the partner API instead. | Ravi | 2025-06-13 | Open |

@@ -1,0 +1,773 @@
+{
+ "written": "2026-10-11, before any page was drafted and before any measured call",
+ "what": "EP12 library growth: weekly handover notes 2025-10-06..2026-10-05 that did not exist + 3 short team pages. The spec carries every fact; the model only writes the prose.",
+ "error_codes": [
+  "API-2210",
+  "API-2387",
+  "API-2502",
+  "NTF-3302",
+  "NTF-3318",
+  "NTF-3460",
+  "PAY-4031",
+  "PAY-4107",
+  "PAY-4415",
+  "WEB-5013",
+  "WEB-5106",
+  "WEB-5241"
+ ],
+ "pages": [
+  {
+   "file": "library/handover-2025-10-06.md",
+   "title": "On-call handover, week of 2025-10-06",
+   "kind": "handover",
+   "date": "2025-10-06",
+   "author": "Priya (web)",
+   "incoming": "Leo (payments)",
+   "facts": [
+    "payments-provider-timeout fired on Friday 2025-10-03 at 20:41 JST; the stripe status page reported degraded API performance; cleared in 24 minutes. First move: check provider.",
+    "api-partner-reject fired for one partner on Thursday 2025-10-02 at 10:47 JST: the partner ran a full re-sync and hit its contracted limit. Ravi confirmed the limit stays as it is. First move: read logs.",
+    "Reminder for incoming: no deploys after 16:00 JST on Friday or between 22:00 and 07:00 JST, except rollbacks and fixes for open P1s."
+   ]
+  },
+  {
+   "file": "library/handover-2025-10-13.md",
+   "title": "On-call handover, week of 2025-10-13",
+   "kind": "handover",
+   "date": "2025-10-13",
+   "author": "Leo (payments)",
+   "incoming": "Yuki (notifier)",
+   "facts": [
+    "NTF-3302 on 96 booking confirmation emails on Wednesday: sendgrid rejected them because the template's first-name variable was empty for customers who booked as guests. Yuki changed the templates to fall back to the business name when the first name is empty; shipped Friday.",
+    "web-traffic fired on Friday 2025-10-10 at 14:41 JST: a search-engine crawler on public business pages, about 3.1x the same hour last week, all 2xx. First move: no action; ticket for Aiko about crawler limits.",
+    "payments-provider-timeout fired on Wednesday 2025-10-08 at 20:40 JST; the stripe status page reported degraded API performance; cleared in 18 minutes. First move: check provider.",
+    "Deploys this week: web 2, api 1, payments 1, notifier 1; all in the Tuesday and Thursday afternoon windows."
+   ]
+  },
+  {
+   "file": "library/handover-2025-10-20.md",
+   "title": "On-call handover, week of 2025-10-20",
+   "kind": "handover",
+   "date": "2025-10-20",
+   "author": "Yuki (notifier)",
+   "incoming": "Daniel (api)",
+   "facts": [
+    "PAY-4031 came back on Tuesday evening: the acquirer timed out on the 3-D Secure challenge and 41 checkouts failed in about 25 minutes. The checkout waits 10 s for the 3-D Secure answer. Leo opened a ticket; no change yet.",
+    "notifier-sms-fail fired for 7 minutes on Tuesday 2025-10-14; the twilio status page listed a carrier incident in Japan; delivery recovered on its own. First move: check provider.",
+    "web-cdn-edge reached 2.6 % for 6 minutes on Tuesday 2025-10-14; the cloudflare status page showed an incident at one edge location. First move: check provider.",
+    "Quirk: the log search tool's default time window is the last 15 minutes; widen it before deciding there are no errors."
+   ]
+  },
+  {
+   "file": "library/handover-2025-10-27.md",
+   "title": "On-call handover, week of 2025-10-27",
+   "kind": "handover",
+   "date": "2025-10-27",
+   "author": "Daniel (api)",
+   "incoming": "Sara (platform)",
+   "facts": [
+    "WEB-5106 on business logo uploads over 10 MB: working as designed (the limit is 10 MB). Support already has a help article; nothing to do.",
+    "web-4xx at 1.2 % for 12 minutes on Saturday 2025-10-25: an old marketing link pointing at a removed page. First move: read logs; no customer reports; ticket filed.",
+    "web-node-restart fired on Saturday 2025-10-25 for one us-east web node (two restarts in 30 minutes, out of memory); the node was replaced. First move: read logs.",
+    "The incoming on-call confirmed access to the paging tool, the metrics tool, log search and the deploy tool before taking the shift."
+   ]
+  },
+  {
+   "file": "library/handover-2025-11-03.md",
+   "title": "On-call handover, week of 2025-11-03",
+   "kind": "handover",
+   "date": "2025-11-03",
+   "author": "Sara (platform)",
+   "incoming": "Priya (web)",
+   "facts": [
+    "The PAY-4031 follow-up from two weeks ago is done: on Thursday Leo raised the 3-D Secure wait from 10 s to 25 s. PAY-4031 has not come back since.",
+    "The US clock change on Sunday 2025-11-02 went clean this year. Daniel checked 212 bookings at us-east businesses for the days around the change and every one showed the right time. No customer reports.",
+    "api-partner-reject fired for one partner on Wednesday 2025-10-29 at 10:54 JST: the partner ran a full re-sync and hit its contracted limit. Ravi confirmed the limit stays as it is. First move: read logs.",
+    "Quirk: the log search tool's default time window is the last 15 minutes; widen it before deciding there are no errors."
+   ]
+  },
+  {
+   "file": "library/handover-2025-11-10.md",
+   "title": "On-call handover, week of 2025-11-10",
+   "kind": "handover",
+   "date": "2025-11-10",
+   "author": "Priya (web)",
+   "incoming": "Leo (payments)",
+   "facts": [
+    "Pool starvation on api in ap-northeast every night from about 02:50 to 03:30 JST: the nightly analytics export held most of the connection pool on the primary database, so booking pages slowed for those 40 minutes (api-pool did not fire; it stayed under 90 %). On Thursday Daniel moved the export to read from the replica instead of the primary; Friday night was clean.",
+    "web-cdn-edge reached 2.8 % for 6 minutes on Saturday 2025-11-08; the cloudflare status page showed an incident at one edge location. First move: check provider.",
+    "notifier-email-fail touched 21 % for 6 minutes on Thursday 2025-11-06; the sendgrid status page showed delayed processing. First move: check provider. It cleared with nothing changed on our side.",
+    "Deploys this week: web 2, api 3, payments 1, notifier 1; all in the Tuesday and Thursday afternoon windows."
+   ]
+  },
+  {
+   "file": "library/handover-2025-11-17.md",
+   "title": "On-call handover, week of 2025-11-17",
+   "kind": "handover",
+   "date": "2025-11-17",
+   "author": "Leo (payments)",
+   "incoming": "Yuki (notifier)",
+   "facts": [
+    "api-pool reached 95 % on one ap-northeast node for 10 minutes on Saturday 2025-11-15; the load balancer took the node out and it was replaced. First move: read logs.",
+    "api-5xx at 1.2 % for 4 minutes on Wednesday 2025-11-12 during an aws network event in us-east listed on the aws health dashboard. First move: check provider.",
+    "The incoming on-call confirmed access to the paging tool, the metrics tool, log search and the deploy tool before taking the shift."
+   ]
+  },
+  {
+   "file": "library/handover-2025-12-01.md",
+   "title": "On-call handover, week of 2025-12-01",
+   "kind": "handover",
+   "date": "2025-12-01",
+   "author": "Priya (web)",
+   "incoming": "Priya (web)",
+   "facts": [
+    "Priya took the pager from Sara at 10:00 JST today and wrote 'taken' in #inc-live.",
+    "Start-of-shift checks done: paging tool test page, metrics boards, log search, deploy tool access.",
+    "Watching this week: the tail of the November partner sync traffic on api, expected to taper off by Wednesday."
+   ],
+   "note": "Start-of-shift note by the incoming on-call: Sara's note (week of 2025-11-24) covers the week that just ended. Say so in one line and do not describe that week again."
+  },
+  {
+   "file": "library/handover-2025-12-08.md",
+   "title": "On-call handover, week of 2025-12-08",
+   "kind": "handover",
+   "date": "2025-12-08",
+   "author": "Priya (web)",
+   "incoming": "Daniel (api)",
+   "facts": [
+    "web-4xx at 1.9 % for 12 minutes on Saturday 2025-12-06: an old marketing link pointing at a removed page. First move: read logs; no customer reports; ticket filed.",
+    "web-node-restart fired on Friday 2025-12-05 for one us-east web node (two restarts in 30 minutes, out of memory); the node was replaced. First move: read logs.",
+    "Quirk: the queue depth panel on the 'Sorrel / notifier' board lags the delivered-per-minute panel by about 2 minutes; read both before deciding."
+   ]
+  },
+  {
+   "file": "library/handover-2025-12-15.md",
+   "title": "On-call handover, week of 2025-12-15",
+   "kind": "handover",
+   "date": "2025-12-15",
+   "author": "Daniel (api)",
+   "incoming": "Sara (platform)",
+   "facts": [
+    "API-2210 rejections for one partner all week: they sent bookings for slots outside the business's opening hours. That is the check doing its job; Ravi told the partner.",
+    "notifier-sms-fail fired for 7 minutes on Wednesday 2025-12-10; the twilio status page listed a carrier incident in Japan; delivery recovered on its own. First move: check provider.",
+    "web-cdn-edge reached 2.8 % for 6 minutes on Tuesday 2025-12-09; the cloudflare status page showed an incident at one edge location. First move: check provider.",
+    "Quirk: the queue depth panel on the 'Sorrel / notifier' board lags the delivered-per-minute panel by about 2 minutes; read both before deciding."
+   ]
+  },
+  {
+   "file": "library/handover-2025-12-22.md",
+   "title": "On-call handover, week of 2025-12-22",
+   "kind": "handover",
+   "date": "2025-12-22",
+   "author": "Sara (platform)",
+   "incoming": "Priya (web)",
+   "facts": [
+    "On Tuesday 2025-12-16 Tom raised the sendgrid daily quota on the marketing stream to 600,000 for the year-end campaign; it goes back down on 2026-01-05. The transactional stream is unchanged.",
+    "notifier-sms-fail fired for 7 minutes on Friday 2025-12-19; the twilio status page listed a carrier incident in Japan; delivery recovered on its own. First move: check provider.",
+    "web-cdn-edge reached 2.2 % for 6 minutes on Saturday 2025-12-20; the cloudflare status page showed an incident at one edge location. First move: check provider.",
+    "The incoming on-call confirmed access to the paging tool, the metrics tool, log search and the deploy tool before taking the shift."
+   ]
+  },
+  {
+   "file": "library/handover-2025-12-29.md",
+   "title": "On-call handover, week of 2025-12-29",
+   "kind": "handover",
+   "date": "2025-12-29",
+   "author": "Priya (web)",
+   "incoming": "Leo (payments)",
+   "facts": [
+    "The year-end payout on Sunday 2025-12-28 took 2 h 05 min instead of the usual 38 min, because of year-end volume. It started at 23:00 JST and finished at 01:05 JST; Mei's team watched it. Nothing failed.",
+    "notifier-queue-depth fired at Tuesday 2025-12-23 03:46 JST during the nightly reminder batch in ap-northeast (peak 1270 messages); delivered per minute stayed normal and the queue drained before 05:00. First move: no action.",
+    "web-4xx at 1.2 % for 12 minutes on Wednesday 2025-12-24: an old marketing link pointing at a removed page. First move: read logs; no customer reports; ticket filed.",
+    "Quirk: the queue depth panel on the 'Sorrel / notifier' board lags the delivered-per-minute panel by about 2 minutes; read both before deciding."
+   ]
+  },
+  {
+   "file": "library/handover-2026-01-05.md",
+   "title": "On-call handover, week of 2026-01-05",
+   "kind": "handover",
+   "date": "2026-01-05",
+   "author": "Leo (payments)",
+   "incoming": "Yuki (notifier)",
+   "facts": [
+    "notifier-queue-depth fired at Saturday 2026-01-03 03:28 JST during the nightly reminder batch in ap-northeast (peak 1300 messages); delivered per minute stayed normal and the queue drained before 05:00. First move: no action.",
+    "web-4xx at 1.2 % for 12 minutes on Friday 2026-01-02: an old marketing link pointing at a removed page. First move: read logs; no customer reports; ticket filed.",
+    "Reminder for incoming: no deploys after 16:00 JST on Friday or between 22:00 and 07:00 JST, except rollbacks and fixes for open P1s."
+   ]
+  },
+  {
+   "file": "library/handover-2026-01-12.md",
+   "title": "On-call handover, week of 2026-01-12",
+   "kind": "handover",
+   "date": "2026-01-12",
+   "author": "Yuki (notifier)",
+   "incoming": "Daniel (api)",
+   "facts": [
+    "PAY-4107 on three refunds on Thursday: the card provider refuses refunds on charges older than 180 days. Mei's team paid those three customers back by bank transfer instead.",
+    "api-partner-reject fired for one partner on Tuesday 2026-01-06 at 10:39 JST: the partner ran a full re-sync and hit its contracted limit. Ravi confirmed the limit stays as it is. First move: read logs.",
+    "payments-webhook-retry reached 18 % on Sunday night before the weekly payout; the retries succeeded and the payout started on time at 23:00 JST. First move: no action (P3).",
+    "Deploys this week: web 3, api 2, payments 1, notifier 1; all in the Tuesday and Thursday afternoon windows."
+   ]
+  },
+  {
+   "file": "library/handover-2026-01-19.md",
+   "title": "On-call handover, week of 2026-01-19",
+   "kind": "handover",
+   "date": "2026-01-19",
+   "author": "Daniel (api)",
+   "incoming": "Sara (platform)",
+   "facts": [
+    "api-latency on the search endpoint group in eu-west reached 2.3 s p95 for 11 minutes on Thursday 2026-01-15 during the Europe morning peak; logs showed one slow query and Daniel opened a ticket. First move: read logs.",
+    "web-disk passed 80 % on one web node on Saturday 2026-01-17 because of old log files; Priya cleared the rotated logs in working hours. First move: read logs.",
+    "The incoming on-call confirmed access to the paging tool, the metrics tool, log search and the deploy tool before taking the shift."
+   ]
+  },
+  {
+   "file": "library/handover-2026-01-26.md",
+   "title": "On-call handover, week of 2026-01-26",
+   "kind": "handover",
+   "date": "2026-01-26",
+   "author": "Sara (platform)",
+   "incoming": "Priya (web)",
+   "facts": [
+    "notifier.sms_batch_size went from 500 to 200 on Wednesday: twilio answered 429 (too many requests) during the nightly reminder batch when we sent 500 at a time. Tom approved; the batch now takes about 6 minutes longer and no 429s since.",
+    "web-node-restart fired on Thursday 2026-01-22 for one us-east web node (two restarts in 30 minutes, out of memory); the node was replaced. First move: read logs.",
+    "web-traffic fired on Friday 2026-01-23 at 14:54 JST: a search-engine crawler on public business pages, about 3.8x the same hour last week, all 2xx. First move: no action; ticket for Aiko about crawler limits.",
+    "The incoming on-call confirmed access to the paging tool, the metrics tool, log search and the deploy tool before taking the shift."
+   ]
+  },
+  {
+   "file": "library/handover-2026-02-02.md",
+   "title": "On-call handover, week of 2026-02-02",
+   "kind": "handover",
+   "date": "2026-02-02",
+   "author": "Priya (web)",
+   "incoming": "Leo (payments)",
+   "facts": [
+    "N+1 queries on the week-view calendar endpoint: for businesses with 40 or more staff, api fetched each staff member's bookings one query at a time, and the endpoint's p95 reached 6 s. Daniel batched the staff lookups into one query on Thursday; p95 is now about 700 ms.",
+    "notifier-email-fail touched 21 % for 6 minutes on Thursday 2026-01-29; the sendgrid status page showed delayed processing. First move: check provider. It cleared with nothing changed on our side.",
+    "api-pool reached 94 % on one ap-northeast node for 10 minutes on Wednesday 2026-01-28; the load balancer took the node out and it was replaced. First move: read logs.",
+    "The Sunday payout job ran at 23:00 JST and finished in 36 minutes."
+   ]
+  },
+  {
+   "file": "library/handover-2026-02-09.md",
+   "title": "On-call handover, week of 2026-02-09",
+   "kind": "handover",
+   "date": "2026-02-09",
+   "author": "Leo (payments)",
+   "incoming": "Yuki (notifier)",
+   "facts": [
+    "API-2387 errors in eu-west on Wednesday after a node replacement: search requests that landed on the new node failed with a missing search shard. Daniel rebuilt the shard on that node (40 min). Cause not known yet.",
+    "web-cdn-edge reached 2.5 % for 6 minutes on Friday 2026-02-06; the cloudflare status page showed an incident at one edge location. First move: check provider.",
+    "notifier-email-fail touched 29 % for 6 minutes on Saturday 2026-02-07; the sendgrid status page showed delayed processing. First move: check provider. It cleared with nothing changed on our side.",
+    "Quirk: the queue depth panel on the 'Sorrel / notifier' board lags the delivered-per-minute panel by about 2 minutes; read both before deciding."
+   ]
+  },
+  {
+   "file": "library/handover-2026-02-16.md",
+   "title": "On-call handover, week of 2026-02-16",
+   "kind": "handover",
+   "date": "2026-02-16",
+   "author": "Yuki (notifier)",
+   "incoming": "Daniel (api)",
+   "facts": [
+    "Cause of last week's API-2387: the replacement node came up from an old machine image that did not mount the search shard volume. Sara fixed the image on Tuesday.",
+    "api-partner-reject fired for one partner on Wednesday 2026-02-11 at 10:36 JST: the partner ran a full re-sync and hit its contracted limit. Ravi confirmed the limit stays as it is. First move: read logs.",
+    "payments-webhook-retry reached 14 % on Sunday night before the weekly payout; the retries succeeded and the payout started on time at 23:00 JST. First move: no action (P3).",
+    "Deploys this week: web 1, api 1, payments 1, notifier 1; all in the Tuesday and Thursday afternoon windows."
+   ]
+  },
+  {
+   "file": "library/handover-2026-02-23.md",
+   "title": "On-call handover, week of 2026-02-23",
+   "kind": "handover",
+   "date": "2026-02-23",
+   "author": "Daniel (api)",
+   "incoming": "Sara (platform)",
+   "facts": [
+    "Game day on Thursday 2026-02-19: we moved api traffic out of eu-west (a region evacuation) and back. Sara ran it; the evacuation took 41 minutes end to end, against a target of 30. Follow-up tickets are with Ravi.",
+    "payments-provider-timeout fired on Tuesday 2026-02-17 at 20:30 JST; the stripe status page reported degraded API performance; cleared in 24 minutes. First move: check provider.",
+    "api-partner-reject fired for one partner on Tuesday 2026-02-17 at 10:33 JST: the partner ran a full re-sync and hit its contracted limit. Ravi confirmed the limit stays as it is. First move: read logs.",
+    "Quirk: the queue depth panel on the 'Sorrel / notifier' board lags the delivered-per-minute panel by about 2 minutes; read both before deciding."
+   ]
+  },
+  {
+   "file": "library/handover-2026-03-02.md",
+   "title": "On-call handover, week of 2026-03-02",
+   "kind": "handover",
+   "date": "2026-03-02",
+   "author": "Sara (platform)",
+   "incoming": "Priya (web)",
+   "facts": [
+    "NTF-3318 from twilio on 58 reminders: the numbers were landlines, which cannot take SMS. Priya is looking at the sign-up form.",
+    "api-partner-reject fired for one partner on Wednesday 2026-02-25 at 10:34 JST: the partner ran a full re-sync and hit its contracted limit. Ravi confirmed the limit stays as it is. First move: read logs.",
+    "payments-webhook-retry reached 11 % on Sunday night before the weekly payout; the retries succeeded and the payout started on time at 23:00 JST. First move: no action (P3).",
+    "The incoming on-call confirmed access to the paging tool, the metrics tool, log search and the deploy tool before taking the shift."
+   ]
+  },
+  {
+   "file": "library/handover-2026-03-09.md",
+   "title": "On-call handover, week of 2026-03-09",
+   "kind": "handover",
+   "date": "2026-03-09",
+   "author": "Priya (web)",
+   "incoming": "Leo (payments)",
+   "facts": [
+    "Webhook replay storm on Tuesday: after stripe's incident cleared, stripe re-sent about 48,000 old events in 20 minutes. payments-webhook-retry fired; the events are deduplicated by event id, so we let it drain (about 35 minutes). No action needed beyond the log line.",
+    "payments-provider-timeout fired on Wednesday 2026-03-04 at 20:25 JST; the stripe status page reported degraded API performance; cleared in 29 minutes. First move: check provider.",
+    "api-partner-reject fired for one partner on Saturday 2026-03-07 at 10:57 JST: the partner ran a full re-sync and hit its contracted limit. Ravi confirmed the limit stays as it is. First move: read logs.",
+    "Deploys this week: web 2, api 1, payments 1, notifier 1; all in the Tuesday and Thursday afternoon windows."
+   ]
+  },
+  {
+   "file": "library/handover-2026-03-16.md",
+   "title": "On-call handover, week of 2026-03-16",
+   "kind": "handover",
+   "date": "2026-03-16",
+   "author": "Leo (payments)",
+   "incoming": "Yuki (notifier)",
+   "facts": [
+    "Priya's sign-up form change shipped on Thursday: the form now checks that a phone number can take SMS before it is saved. NTF-3318 is down to near zero.",
+    "notifier-queue-depth fired at Tuesday 2026-03-10 03:28 JST during the nightly reminder batch in ap-northeast (peak 1160 messages); delivered per minute stayed normal and the queue drained before 05:00. First move: no action.",
+    "web-4xx at 1.3 % for 12 minutes on Wednesday 2026-03-11: an old marketing link pointing at a removed page. First move: read logs; no customer reports; ticket filed.",
+    "The incoming on-call confirmed access to the paging tool, the metrics tool, log search and the deploy tool before taking the shift."
+   ]
+  },
+  {
+   "file": "library/handover-2026-03-23.md",
+   "title": "On-call handover, week of 2026-03-23",
+   "kind": "handover",
+   "date": "2026-03-23",
+   "author": "Yuki (notifier)",
+   "incoming": "Daniel (api)",
+   "facts": [
+    "The old v1 partner API endpoints were switched off on Wednesday 2026-03-18, after the last partner moved to v2. About 3 calls a day still arrive on v1 from a test script at Hanabi Booking; they get 410 and Ravi has told them.",
+    "notifier-sms-fail fired for 7 minutes on Tuesday 2026-03-17; the twilio status page listed a carrier incident in Japan; delivery recovered on its own. First move: check provider.",
+    "web-cdn-edge reached 2.4 % for 6 minutes on Friday 2026-03-20; the cloudflare status page showed an incident at one edge location. First move: check provider.",
+    "Quirk: the log search tool's default time window is the last 15 minutes; widen it before deciding there are no errors."
+   ]
+  },
+  {
+   "file": "library/handover-2026-03-30.md",
+   "title": "On-call handover, week of 2026-03-30",
+   "kind": "handover",
+   "date": "2026-03-30",
+   "author": "Daniel (api)",
+   "incoming": "Leo (payments)",
+   "facts": [
+    "web-cdn-edge reached 2.2 % for 6 minutes on Thursday 2026-03-26; the cloudflare status page showed an incident at one edge location. First move: check provider.",
+    "notifier-email-fail touched 29 % for 6 minutes on Wednesday 2026-03-25; the sendgrid status page showed delayed processing. First move: check provider. It cleared with nothing changed on our side.",
+    "Reminder for incoming: no deploys after 16:00 JST on Friday or between 22:00 and 07:00 JST, except rollbacks and fixes for open P1s."
+   ]
+  },
+  {
+   "file": "library/handover-2026-04-13.md",
+   "title": "On-call handover, week of 2026-04-13",
+   "kind": "handover",
+   "date": "2026-04-13",
+   "author": "Daniel (api)",
+   "incoming": "Sara (platform)",
+   "facts": [
+    "web-disk passed 80 % on one web node on Wednesday 2026-04-08 because of old log files; Priya cleared the rotated logs in working hours. First move: read logs.",
+    "notifier-queue-depth fired at Saturday 2026-04-11 03:54 JST during the nightly reminder batch in ap-northeast (peak 1070 messages); delivered per minute stayed normal and the queue drained before 05:00. First move: no action.",
+    "The Sunday payout job ran at 23:00 JST and finished in 42 minutes."
+   ]
+  },
+  {
+   "file": "library/handover-2026-04-20.md",
+   "title": "On-call handover, week of 2026-04-20",
+   "kind": "handover",
+   "date": "2026-04-20",
+   "author": "Sara (platform)",
+   "incoming": "Priya (web)",
+   "facts": [
+    "Noor shadowed Sara all week: her first shadow shift.",
+    "Orphaned holds: when a customer leaves checkout, the slot should be released after 10 minutes, but the hold reaper job had been paused since the api deploy on 2026-04-14, so abandoned slots stayed held until the 30-minute safety timeout and showed as taken. Ravi restarted the reaper on Friday.",
+    "web-cdn-edge reached 2.3 % for 6 minutes on Friday 2026-04-17; the cloudflare status page showed an incident at one edge location. First move: check provider.",
+    "Reminder for incoming: no deploys after 16:00 JST on Friday or between 22:00 and 07:00 JST, except rollbacks and fixes for open P1s."
+   ]
+  },
+  {
+   "file": "library/handover-2026-04-27.md",
+   "title": "On-call handover, week of 2026-04-27",
+   "kind": "handover",
+   "date": "2026-04-27",
+   "author": "Priya (web)",
+   "incoming": "Leo (payments)",
+   "facts": [
+    "Noor shadowed Priya all week: her second shadow shift.",
+    "The new weekly restore test for the payments database started on Wednesday 2026-04-22: the latest backup is restored into a scratch instance and checked. The first restore took 52 minutes. Leo owns it.",
+    "api-pool reached 99 % on one ap-northeast node for 10 minutes on Saturday 2026-04-25; the load balancer took the node out and it was replaced. First move: read logs.",
+    "Deploys this week: web 2, api 2, payments 1, notifier 1; all in the Tuesday and Thursday afternoon windows."
+   ]
+  },
+  {
+   "file": "library/handover-2026-05-04.md",
+   "title": "On-call handover, week of 2026-05-04",
+   "kind": "handover",
+   "date": "2026-05-04",
+   "author": "Leo (payments)",
+   "incoming": "Yuki (notifier)",
+   "facts": [
+    "Golden Week: booking volume peaked on Saturday 2026-05-02 at 1,960 bookings per minute on api, at about 11:00 JST. No alerts.",
+    "notifier-sms-fail fired for 7 minutes on Friday 2026-05-01; the twilio status page listed a carrier incident in Japan; delivery recovered on its own. First move: check provider.",
+    "web-cdn-edge reached 2.5 % for 6 minutes on Wednesday 2026-04-29; the cloudflare status page showed an incident at one edge location. First move: check provider.",
+    "The incoming on-call confirmed access to the paging tool, the metrics tool, log search and the deploy tool before taking the shift."
+   ]
+  },
+  {
+   "file": "library/handover-2026-05-11.md",
+   "title": "On-call handover, week of 2026-05-11",
+   "kind": "handover",
+   "date": "2026-05-11",
+   "author": "Yuki (notifier)",
+   "incoming": "Noor (SRE)",
+   "facts": [
+    "Noor takes her first primary on-call shift on her own today, 2026-05-11, after her two shadow shifts in April. Secondary this week: Sara.",
+    "web-cdn-edge reached 2.2 % for 6 minutes on Friday 2026-05-08; the cloudflare status page showed an incident at one edge location. First move: check provider.",
+    "notifier-email-fail touched 29 % for 6 minutes on Saturday 2026-05-09; the sendgrid status page showed delayed processing. First move: check provider. It cleared with nothing changed on our side.",
+    "Deploys this week: web 3, api 3, payments 1, notifier 1; all in the Tuesday and Thursday afternoon windows."
+   ]
+  },
+  {
+   "file": "library/handover-2026-05-18.md",
+   "title": "On-call handover, week of 2026-05-18",
+   "kind": "handover",
+   "date": "2026-05-18",
+   "author": "Noor (SRE)",
+   "incoming": "Sara (platform)",
+   "facts": [
+    "PAY-4415 on one payout on Sunday night: the business's bank account had been closed. The payout is held; Hana's team asked the business for new bank details.",
+    "web-cdn-edge reached 2.1 % for 6 minutes on Thursday 2026-05-14; the cloudflare status page showed an incident at one edge location. First move: check provider.",
+    "notifier-email-fail touched 26 % for 6 minutes on Wednesday 2026-05-13; the sendgrid status page showed delayed processing. First move: check provider. It cleared with nothing changed on our side.",
+    "Deploys this week: web 2, api 2, payments 1, notifier 1; all in the Tuesday and Thursday afternoon windows."
+   ]
+  },
+  {
+   "file": "library/handover-2026-05-25.md",
+   "title": "On-call handover, week of 2026-05-25",
+   "kind": "handover",
+   "date": "2026-05-25",
+   "author": "Sara (platform)",
+   "incoming": "Noor (SRE)",
+   "facts": [
+    "A cloudflare firewall rule added on Tuesday for bot traffic also blocked Hanabi Booking's partner sync, which runs from their Osaka servers, for about 2 hours. Aiko added Hanabi's IP range to the rule's allow list.",
+    "payments-provider-timeout fired on Tuesday 2026-05-19 at 20:14 JST; the stripe status page reported degraded API performance; cleared in 20 minutes. First move: check provider.",
+    "api-partner-reject fired for one partner on Friday 2026-05-22 at 10:34 JST: the partner ran a full re-sync and hit its contracted limit. Ravi confirmed the limit stays as it is. First move: read logs.",
+    "Quirk: the log search tool's default time window is the last 15 minutes; widen it before deciding there are no errors."
+   ]
+  },
+  {
+   "file": "library/handover-2026-06-01.md",
+   "title": "On-call handover, week of 2026-06-01",
+   "kind": "handover",
+   "date": "2026-06-01",
+   "author": "Noor (SRE)",
+   "incoming": "Priya (web)",
+   "facts": [
+    "WEB-5013 when Hana's team exported a business's full booking history from the admin tool: exports over 50,000 rows timed out. Aiko's team changed large exports to run in the background and show up in the admin tool's downloads list when ready; shipped Thursday.",
+    "web-disk passed 80 % on one web node on Friday 2026-05-29 because of old log files; Priya cleared the rotated logs in working hours. First move: read logs.",
+    "notifier-queue-depth fired at Wednesday 2026-05-27 03:18 JST during the nightly reminder batch in ap-northeast (peak 1140 messages); delivered per minute stayed normal and the queue drained before 05:00. First move: no action.",
+    "Support (Hana) had a quiet week: no escalations to on-call."
+   ]
+  },
+  {
+   "file": "library/handover-2026-06-08.md",
+   "title": "On-call handover, week of 2026-06-08",
+   "kind": "handover",
+   "date": "2026-06-08",
+   "author": "Priya (web)",
+   "incoming": "Leo (payments)",
+   "facts": [
+    "A2P filtering by US carriers: twilio showed our reminders as delivered to the carrier, but about 11 % of SMS to US numbers never reached the phone. Tom approved registering our 10DLC campaign with twilio; registration went through on Friday and delivery is back to normal.",
+    "web-traffic fired on Thursday 2026-06-04 at 14:17 JST: a search-engine crawler on public business pages, about 3.4x the same hour last week, all 2xx. First move: no action; ticket for Aiko about crawler limits.",
+    "payments-provider-timeout fired on Tuesday 2026-06-02 at 20:12 JST; the stripe status page reported degraded API performance; cleared in 20 minutes. First move: check provider.",
+    "The Sunday payout job ran at 23:00 JST and finished in 34 minutes."
+   ]
+  },
+  {
+   "file": "library/handover-2026-06-15.md",
+   "title": "On-call handover, week of 2026-06-15",
+   "kind": "handover",
+   "date": "2026-06-15",
+   "author": "Leo (payments)",
+   "incoming": "Yuki (notifier)",
+   "facts": [
+    "web-traffic fired on Friday 2026-06-12 at 14:52 JST: a search-engine crawler on public business pages, about 3.2x the same hour last week, all 2xx. First move: no action; ticket for Aiko about crawler limits.",
+    "payments-provider-timeout fired on Wednesday 2026-06-10 at 20:18 JST; the stripe status page reported degraded API performance; cleared in 27 minutes. First move: check provider.",
+    "Quirk: the queue depth panel on the 'Sorrel / notifier' board lags the delivered-per-minute panel by about 2 minutes; read both before deciding."
+   ]
+  },
+  {
+   "file": "library/handover-2026-06-22.md",
+   "title": "On-call handover, week of 2026-06-22",
+   "kind": "handover",
+   "date": "2026-06-22",
+   "author": "Yuki (notifier)",
+   "incoming": "Daniel (api)",
+   "facts": [
+    "web.session_idle_minutes went from 30 to 60 on Tuesday 2026-06-16, after support asked: businesses were being signed out of the booking screen in the middle of the day. Aiko approved.",
+    "web-4xx at 1.5 % for 12 minutes on Wednesday 2026-06-17: an old marketing link pointing at a removed page. First move: read logs; no customer reports; ticket filed.",
+    "web-node-restart fired on Tuesday 2026-06-16 for one us-east web node (two restarts in 30 minutes, out of memory); the node was replaced. First move: read logs.",
+    "The Sunday payout job ran at 23:00 JST and finished in 41 minutes."
+   ]
+  },
+  {
+   "file": "library/handover-2026-06-29.md",
+   "title": "On-call handover, week of 2026-06-29",
+   "kind": "handover",
+   "date": "2026-06-29",
+   "author": "Daniel (api)",
+   "incoming": "Sara (platform)",
+   "facts": [
+    "web-traffic fired on Wednesday 2026-06-24 at 14:41 JST: a search-engine crawler on public business pages, about 3.6x the same hour last week, all 2xx. First move: no action; ticket for Aiko about crawler limits.",
+    "payments-provider-timeout fired on Wednesday 2026-06-24 at 20:15 JST; the stripe status page reported degraded API performance; cleared in 14 minutes. First move: check provider.",
+    "Quirk: the log search tool's default time window is the last 15 minutes; widen it before deciding there are no errors."
+   ]
+  },
+  {
+   "file": "library/handover-2026-07-06.md",
+   "title": "On-call handover, week of 2026-07-06",
+   "kind": "handover",
+   "date": "2026-07-06",
+   "author": "Sara (platform)",
+   "incoming": "Noor (SRE)",
+   "facts": [
+    "API-2502 for one partner's calendar sync on Monday: their sync token expired after they changed the password on their side. They reconnected; nothing for us to do.",
+    "web-cdn-edge reached 2.9 % for 6 minutes on Wednesday 2026-07-01; the cloudflare status page showed an incident at one edge location. First move: check provider.",
+    "notifier-email-fail touched 24 % for 6 minutes on Friday 2026-07-03; the sendgrid status page showed delayed processing. First move: check provider. It cleared with nothing changed on our side.",
+    "The Sunday payout job ran at 23:00 JST and finished in 34 minutes."
+   ]
+  },
+  {
+   "file": "library/handover-2026-07-13.md",
+   "title": "On-call handover, week of 2026-07-13",
+   "kind": "handover",
+   "date": "2026-07-13",
+   "author": "Noor (SRE)",
+   "incoming": "Priya (web)",
+   "facts": [
+    "api-partner-reject fired for one partner on Saturday 2026-07-11 at 10:34 JST: the partner ran a full re-sync and hit its contracted limit. Ravi confirmed the limit stays as it is. First move: read logs.",
+    "payments-webhook-retry reached 13 % on Sunday night before the weekly payout; the retries succeeded and the payout started on time at 23:00 JST. First move: no action (P3).",
+    "Support (Hana) had a quiet week: no escalations to on-call."
+   ]
+  },
+  {
+   "file": "library/handover-2026-07-20.md",
+   "title": "On-call handover, week of 2026-07-20",
+   "kind": "handover",
+   "date": "2026-07-20",
+   "author": "Priya (web)",
+   "incoming": "Leo (payments)",
+   "facts": [
+    "Token refresh stampede on Wednesday at 09:00 JST: every web session issued before the signing key rotation expired at the same moment, so everyone had to sign in again at once and sign-in p95 went to 9 s for 14 minutes. Priya added jitter so session expiry is spread out from now on.",
+    "payments-provider-timeout fired on Thursday 2026-07-16 at 20:10 JST; the stripe status page reported degraded API performance; cleared in 25 minutes. First move: check provider.",
+    "api-partner-reject fired for one partner on Wednesday 2026-07-15 at 10:28 JST: the partner ran a full re-sync and hit its contracted limit. Ravi confirmed the limit stays as it is. First move: read logs.",
+    "Deploys this week: web 2, api 2, payments 1, notifier 1; all in the Tuesday and Thursday afternoon windows."
+   ]
+  },
+  {
+   "file": "library/handover-2026-07-27.md",
+   "title": "On-call handover, week of 2026-07-27",
+   "kind": "handover",
+   "date": "2026-07-27",
+   "author": "Leo (payments)",
+   "incoming": "Yuki (notifier)",
+   "facts": [
+    "web-traffic fired on Saturday 2026-07-25 at 14:34 JST: a search-engine crawler on public business pages, about 3.8x the same hour last week, all 2xx. First move: no action; ticket for Aiko about crawler limits.",
+    "payments-provider-timeout fired on Wednesday 2026-07-22 at 20:52 JST; the stripe status page reported degraded API performance; cleared in 18 minutes. First move: check provider.",
+    "Support (Hana) had a quiet week: no escalations to on-call."
+   ]
+  },
+  {
+   "file": "library/handover-2026-08-03.md",
+   "title": "On-call handover, week of 2026-08-03",
+   "kind": "handover",
+   "date": "2026-08-03",
+   "author": "Yuki (notifier)",
+   "incoming": "Daniel (api)",
+   "facts": [
+    "web-node-restart fired on Tuesday 2026-07-28 for one us-east web node (two restarts in 30 minutes, out of memory); the node was replaced. First move: read logs.",
+    "web-traffic fired on Wednesday 2026-07-29 at 14:10 JST: a search-engine crawler on public business pages, about 3.5x the same hour last week, all 2xx. First move: no action; ticket for Aiko about crawler limits.",
+    "Deploys this week: web 3, api 2, payments 1, notifier 1; all in the Tuesday and Thursday afternoon windows."
+   ]
+  },
+  {
+   "file": "library/handover-2026-08-10.md",
+   "title": "On-call handover, week of 2026-08-10",
+   "kind": "handover",
+   "date": "2026-08-10",
+   "author": "Daniel (api)",
+   "incoming": "Sara (platform)",
+   "facts": [
+    "A few NTF-3460 log lines on Tuesday: reminders dropped as duplicates by the dedupe key after a worker retried. Expected; no customer missed a reminder.",
+    "notifier-queue-depth fired at Friday 2026-08-07 03:17 JST during the nightly reminder batch in ap-northeast (peak 1230 messages); delivered per minute stayed normal and the queue drained before 05:00. First move: no action.",
+    "web-4xx at 1.5 % for 12 minutes on Thursday 2026-08-06: an old marketing link pointing at a removed page. First move: read logs; no customer reports; ticket filed.",
+    "Support (Hana) had a quiet week: no escalations to on-call."
+   ]
+  },
+  {
+   "file": "library/handover-2026-08-17.md",
+   "title": "On-call handover, week of 2026-08-17",
+   "kind": "handover",
+   "date": "2026-08-17",
+   "author": "Sara (platform)",
+   "incoming": "Noor (SRE)",
+   "facts": [
+    "The cloudflare edge cache hit ratio fell from 92 % to 61 % on Wednesday: image resize URLs started carrying a timestamp query string, so every image looked new to the edge. Aiko set the cache key to ignore that parameter; the ratio was back above 90 % by Thursday.",
+    "web-4xx at 1.8 % for 12 minutes on Saturday 2026-08-15: an old marketing link pointing at a removed page. First move: read logs; no customer reports; ticket filed.",
+    "web-node-restart fired on Friday 2026-08-14 for one us-east web node (two restarts in 30 minutes, out of memory); the node was replaced. First move: read logs.",
+    "Reminder for incoming: no deploys after 16:00 JST on Friday or between 22:00 and 07:00 JST, except rollbacks and fixes for open P1s."
+   ]
+  },
+  {
+   "file": "library/handover-2026-08-24.md",
+   "title": "On-call handover, week of 2026-08-24",
+   "kind": "handover",
+   "date": "2026-08-24",
+   "author": "Noor (SRE)",
+   "incoming": "Priya (web)",
+   "facts": [
+    "Stale locale in the template cache: after Tuesday's notifier template deploy, 1,140 reminders went out in en for ja accounts over about 25 minutes, because the cache key did not include the locale. Yuki added the locale to the cache key the same day.",
+    "web-cdn-edge reached 2.3 % for 6 minutes on Wednesday 2026-08-19; the cloudflare status page showed an incident at one edge location. First move: check provider.",
+    "notifier-email-fail touched 26 % for 6 minutes on Tuesday 2026-08-18; the sendgrid status page showed delayed processing. First move: check provider. It cleared with nothing changed on our side.",
+    "Reminder for incoming: no deploys after 16:00 JST on Friday or between 22:00 and 07:00 JST, except rollbacks and fixes for open P1s."
+   ]
+  },
+  {
+   "file": "library/handover-2026-08-31.md",
+   "title": "On-call handover, week of 2026-08-31",
+   "kind": "handover",
+   "date": "2026-08-31",
+   "author": "Priya (web)",
+   "incoming": "Leo (payments)",
+   "facts": [
+    "WEB-5241 in the browser error panel: the content security policy blocked the support chat widget after its script moved to a new domain. Priya added the new domain to the CSP allow list on Thursday.",
+    "payments-provider-timeout fired on Saturday 2026-08-29 at 20:14 JST; the stripe status page reported degraded API performance; cleared in 23 minutes. First move: check provider.",
+    "api-partner-reject fired for one partner on Saturday 2026-08-29 at 10:44 JST: the partner ran a full re-sync and hit its contracted limit. Ravi confirmed the limit stays as it is. First move: read logs.",
+    "Quirk: the log search tool's default time window is the last 15 minutes; widen it before deciding there are no errors."
+   ]
+  },
+  {
+   "file": "library/handover-2026-09-07.md",
+   "title": "On-call handover, week of 2026-09-07",
+   "kind": "handover",
+   "date": "2026-09-07",
+   "author": "Leo (payments)",
+   "incoming": "Yuki (notifier)",
+   "facts": [
+    "web-traffic fired on Friday 2026-09-04 at 14:31 JST: a search-engine crawler on public business pages, about 3.5x the same hour last week, all 2xx. First move: no action; ticket for Aiko about crawler limits.",
+    "payments-provider-timeout fired on Tuesday 2026-09-01 at 20:33 JST; the stripe status page reported degraded API performance; cleared in 14 minutes. First move: check provider.",
+    "Quirk: the queue depth panel on the 'Sorrel / notifier' board lags the delivered-per-minute panel by about 2 minutes; read both before deciding."
+   ]
+  },
+  {
+   "file": "library/handover-2026-09-14.md",
+   "title": "On-call handover, week of 2026-09-14",
+   "kind": "handover",
+   "date": "2026-09-14",
+   "author": "Yuki (notifier)",
+   "incoming": "Noor (SRE)",
+   "facts": [
+    "web-traffic fired on Wednesday 2026-09-09 at 14:31 JST: a search-engine crawler on public business pages, about 3.6x the same hour last week, all 2xx. First move: no action; ticket for Aiko about crawler limits.",
+    "payments-provider-timeout fired on Saturday 2026-09-12 at 20:53 JST; the stripe status page reported degraded API performance; cleared in 12 minutes. First move: check provider.",
+    "Support (Hana) had a quiet week: no escalations to on-call."
+   ]
+  },
+  {
+   "file": "library/handover-2026-09-28.md",
+   "title": "On-call handover, week of 2026-09-28",
+   "kind": "handover",
+   "date": "2026-09-28",
+   "author": "Leo (payments)",
+   "incoming": "Leo (payments), second week in a row (swapped with Daniel)",
+   "facts": [
+    "api and payments move to Shipyard, the new deploy pipeline, today (2026-09-28); the platform team posts the Shipyard page today. Nothing else changes for on-call this week.",
+    "web-node-restart fired on Thursday 2026-09-24 for one us-east web node (two restarts in 30 minutes, out of memory); the node was replaced. First move: read logs.",
+    "web-traffic fired on Thursday 2026-09-24 at 14:42 JST: a search-engine crawler on public business pages, about 3.4x the same hour last week, all 2xx. First move: no action; ticket for Aiko about crawler limits.",
+    "The Sunday payout job ran at 23:00 JST and finished in 39 minutes."
+   ]
+  },
+  {
+   "file": "library/team-payments-notes.md",
+   "title": "payments: notes for on-call",
+   "kind": "team page",
+   "date": "2026-02-02",
+   "owner": "Mei (payments)",
+   "facts": [
+    "Duplicate capture on 63 bookings on 2026-01-14: the capture call to stripe was retried after a timeout and both captures went through. Leo added an idempotency key to the capture call on 2026-01-15. Mei's team refunded the second charge the same day.",
+    "The weekly payout job runs on Sunday at 23:00 JST and usually takes about 38 minutes.",
+    "Refund batches run daily at 23:30 JST.",
+    "Webhooks from the card provider can arrive late, out of order, or more than once; payments is built to handle all three, so a few retries are not an incident."
+   ]
+  },
+  {
+   "file": "library/team-notifier-notes.md",
+   "title": "notifier: things we learned the hard way",
+   "kind": "team page",
+   "date": "2026-03-09",
+   "owner": "Tom (notifier)",
+   "facts": [
+    "After the sending-domain switch on 2026-02-24, sendgrid's suppression list picked up 2,312 addresses from soft bounces during the switch, and sendgrid stopped sending to them. Yuki checked they were valid and removed them from the suppression list on 2026-02-26.",
+    "The nightly reminder batch (02:00 to 04:00 JST) regularly pushes queue depth past 1,000; check delivered per minute before treating it as a stall.",
+    "Email confirmations and SMS reminders use separate queues.",
+    "Every reminder carries a dedupe key, reminder:<booking id>:<date>; notifier drops a message whose key it has seen in the last 24 hours."
+   ]
+  },
+  {
+   "file": "library/team-web-notes.md",
+   "title": "web: odd things we keep seeing",
+   "kind": "team page",
+   "date": "2026-07-13",
+   "owner": "Aiko (web)",
+   "facts": [
+    "Tofu on the booking page in June 2026: customer names with rare kanji (for example 髙 or 﨑) rendered as empty boxes, because the subset web font left out those glyphs. Priya added a fallback to the full Noto Sans JP font on 2026-06-11.",
+    "Search-engine crawler bursts on public business pages trip web-traffic a few times a month; they are harmless when 5xx and page load stay flat.",
+    "Safari keeps the old service worker longer than other browsers; after a release, support can ask a customer to reload twice.",
+    "The cloudflare edge serves most static files; a purge normally finishes in about a minute."
+   ]
+  }
+ ],
+ "jargon_facts": [
+  {
+   "question": "ow-charged-twice",
+   "page": "team-payments-notes"
+  },
+  {
+   "question": "ow-old-events-flood",
+   "page": "handover-2026-03-09"
+  },
+  {
+   "question": "ow-3am-slow",
+   "page": "handover-2025-11-10"
+  },
+  {
+   "question": "ow-mail-stopped",
+   "page": "team-notifier-notes"
+  },
+  {
+   "question": "ow-taken-time",
+   "page": "handover-2026-04-20"
+  },
+  {
+   "question": "ow-kicked-out",
+   "page": "handover-2026-07-20"
+  },
+  {
+   "question": "ow-us-texts",
+   "page": "handover-2026-06-08"
+  },
+  {
+   "question": "ow-wrong-language",
+   "page": "handover-2026-08-24"
+  },
+  {
+   "question": "ow-big-salon-slow",
+   "page": "handover-2026-02-02"
+  },
+  {
+   "question": "ow-empty-rectangles",
+   "page": "team-web-notes"
+  }
+ ]
+}

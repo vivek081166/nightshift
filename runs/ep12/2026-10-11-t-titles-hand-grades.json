@@ -1,0 +1,57 @@
+{
+ "what": "T hand grades: every answer the code marked wrong, every not-in-pages answer, and spot checks. Rule: right = answers the question asked, correctly, per the pages; partial = right as far as it goes but misses half the answer; said-not = says the pages do not say.",
+ "run": "runs/ep12/2026-10-11-t-titles.json",
+ "overrides": {
+  "ow-charged-twice": {
+   "code": "wrong",
+   "hand": "said-not",
+   "why": "says the pages do not mention it; '63' matched only because it mixed in the replica-lag double-booking postmortem (63 slots)"
+  },
+  "ow-old-events-flood": {
+   "code": "wrong",
+   "hand": "right",
+   "why": "'No, you do not need to stop it ... let the queue drain' is the right call, taken from provider-stripe-notes; it never found the 2026-03-09 note (48,000 events)"
+  },
+  "ow-mail-stopped": {
+   "code": "wrong",
+   "hand": "wrong",
+   "why": "answered with the 2025-09-09 sendgrid quota postmortem (a delay), not the suppression list"
+  },
+  "ow-kicked-out": {
+   "code": "wrong",
+   "hand": "said-not",
+   "why": "'do not record' was not in the code's phrase list"
+  },
+  "hid-firewall-partner": {
+   "code": "wrong",
+   "hand": "wrong",
+   "why": "answered from the 2025 firewall-challenge postmortem and said no partner was blocked"
+  },
+  "hid-noor-first": {
+   "code": "wrong",
+   "hand": "said-not",
+   "why": "says the pages read do not state it; mentions the 09-14 shift as the one it saw"
+  },
+  "code-ntf-3318": {
+   "code": "right",
+   "hand": "partial",
+   "why": "opened only the 2026-03-02 note: 'Priya was tasked with looking at the sign-up form'; never opened 03-16, so it does not know the fix shipped"
+  },
+  "none-stripe-phone": {
+   "code": "said-not-in-pages",
+   "hand": "right"
+  },
+  "none-allowance": {
+   "code": "said-not-in-pages",
+   "hand": "right"
+  },
+  "none-pay-4999": {
+   "code": "said-not-in-pages",
+   "hand": "right"
+  },
+  "none-sendgrid-renewal": {
+   "code": "said-not-in-pages",
+   "hand": "right"
+  }
+ }
+}

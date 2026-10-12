@@ -1,0 +1,596 @@
+{
+ "written": "2026-10-11, before any page was drafted and before any measured call",
+ "grading": "case-insensitive substring. truth = list of groups; every group must match (any one alternative in a group). wrong = any term present marks a wrong-term hit. NOT_IN_PAGES = graded by hand. page = the page id(s) in library/INDEX-ep12.json that hold the answer; a list = the answer needs every page in it. hid-dst-2025: the right answer is 'no problems' (Daniel checked 212 bookings); a code miss there is hand-checked. The mix of kinds is designed, not sampled.",
+ "questions": [
+  {
+   "id": "code-pay-4031",
+   "kind": "code",
+   "question": "What does PAY-4031 mean and what fixed it?",
+   "truth": [
+    [
+     "3-D Secure",
+     "3DS",
+     "3D Secure"
+    ],
+    [
+     "25 s",
+     "25s",
+     "25 seconds",
+     "25-second"
+    ]
+   ],
+   "wrong": [],
+   "page": [
+    "handover-2025-10-20",
+    "handover-2025-11-03"
+   ]
+  },
+  {
+   "id": "code-pay-4107",
+   "kind": "code",
+   "question": "Refunds are failing with PAY-4107. What does that code mean and what did we do last time?",
+   "truth": [
+    [
+     "180"
+    ],
+    [
+     "bank transfer"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2026-01-12"
+  },
+  {
+   "id": "code-api-2210",
+   "kind": "code",
+   "question": "A partner keeps getting API-2210 back from us. What does it mean?",
+   "truth": [
+    [
+     "opening hours",
+     "business hours",
+     "outside"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2025-12-15"
+  },
+  {
+   "id": "code-api-2387",
+   "kind": "code",
+   "question": "What does API-2387 mean, and what caused it?",
+   "truth": [
+    [
+     "shard"
+    ],
+    [
+     "image"
+    ]
+   ],
+   "wrong": [],
+   "page": [
+    "handover-2026-02-09",
+    "handover-2026-02-16"
+   ]
+  },
+  {
+   "id": "code-ntf-3302",
+   "kind": "code",
+   "question": "NTF-3302 is showing up on confirmation emails. What is it and what did we change?",
+   "truth": [
+    [
+     "first name",
+     "first-name"
+    ],
+    [
+     "business name"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2025-10-13"
+  },
+  {
+   "id": "code-ntf-3318",
+   "kind": "code",
+   "question": "What is NTF-3318 and what did we do about it?",
+   "truth": [
+    [
+     "landline"
+    ],
+    [
+     "sign-up",
+     "signup",
+     "sign up"
+    ]
+   ],
+   "wrong": [],
+   "page": [
+    "handover-2026-03-02",
+    "handover-2026-03-16"
+   ]
+  },
+  {
+   "id": "code-web-5013",
+   "kind": "code",
+   "question": "Support hit WEB-5013 in the admin tool. What does it mean and what changed?",
+   "truth": [
+    [
+     "50,000",
+     "50000"
+    ],
+    [
+     "background"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2026-06-01"
+  },
+  {
+   "id": "code-web-5241",
+   "kind": "code",
+   "question": "We're seeing WEB-5241 in the browser errors. What is it?",
+   "truth": [
+    [
+     "chat"
+    ],
+    [
+     "allow"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2026-08-31"
+  },
+  {
+   "id": "code-sms-batch",
+   "kind": "code",
+   "question": "What is notifier.sms_batch_size set to now, and why was it lowered?",
+   "truth": [
+    [
+     "200"
+    ],
+    [
+     "429",
+     "throttl",
+     "rate limit",
+     "too many requests"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2026-01-26"
+  },
+  {
+   "id": "code-idle-minutes",
+   "kind": "code",
+   "question": "What did we set web.session_idle_minutes to, and when?",
+   "truth": [
+    [
+     "60"
+    ],
+    [
+     "2026-06",
+     "June"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2026-06-22"
+  },
+  {
+   "id": "ow-charged-twice",
+   "kind": "other words",
+   "question": "Some people paid two times for one visit back in January. How many were hit, and what did we change so it can't happen again?",
+   "truth": [
+    [
+     "63"
+    ],
+    [
+     "idempotency"
+    ]
+   ],
+   "wrong": [],
+   "page": "team-payments-notes"
+  },
+  {
+   "id": "ow-old-events-flood",
+   "kind": "other words",
+   "question": "Right after stripe came back from their outage we got flooded with tens of thousands of old notifications from them. Do I need to stop that?",
+   "truth": [
+    [
+     "48,000",
+     "48000"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2026-03-09"
+  },
+  {
+   "id": "ow-3am-slow",
+   "kind": "other words",
+   "question": "Around 3 every morning the site where people make appointments crawls for half an hour. Is that known?",
+   "truth": [
+    [
+     "export"
+    ],
+    [
+     "replica"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2025-11-10"
+  },
+  {
+   "id": "ow-mail-stopped",
+   "kind": "other words",
+   "question": "A bunch of customers say they no longer get anything from us in their inbox, though nothing's wrong on their end. What happened last time?",
+   "truth": [
+    [
+     "2,312",
+     "2312"
+    ],
+    [
+     "suppress"
+    ]
+   ],
+   "wrong": [],
+   "page": "team-notifier-notes"
+  },
+  {
+   "id": "ow-taken-time",
+   "kind": "other words",
+   "question": "A customer says the 3 pm time is greyed out but nobody actually booked it. What's going on?",
+   "truth": [
+    [
+     "reaper"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2026-04-20"
+  },
+  {
+   "id": "ow-kicked-out",
+   "kind": "other words",
+   "question": "This morning all our users got bounced out of their accounts together, and getting back in was really slow. Seen that before?",
+   "truth": [
+    [
+     "jitter",
+     "stagger"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2026-07-20"
+  },
+  {
+   "id": "ow-us-texts",
+   "kind": "other words",
+   "question": "Texts to American customers show as sent but people aren't getting them. Why?",
+   "truth": [
+    [
+     "10DLC"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2026-06-08"
+  },
+  {
+   "id": "ow-wrong-language",
+   "kind": "other words",
+   "question": "Some Japanese customers got their reminder in English yesterday. Has that happened before, and what fixed it?",
+   "truth": [
+    [
+     "locale"
+    ],
+    [
+     "cache"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2026-08-24"
+  },
+  {
+   "id": "ow-big-salon-slow",
+   "kind": "other words",
+   "question": "Big salons say their schedule screen takes forever to open, but small shops are fine. Is that known?",
+   "truth": [
+    [
+     "N+1",
+     "batch"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2026-02-02"
+  },
+  {
+   "id": "ow-empty-rectangles",
+   "kind": "other words",
+   "question": "A few people's surnames come out as empty rectangles when they book. What's that?",
+   "truth": [
+    [
+     "font"
+    ],
+    [
+     "Noto",
+     "fallback"
+    ]
+   ],
+   "wrong": [],
+   "page": "team-web-notes"
+  },
+  {
+   "id": "hid-evacuation",
+   "kind": "hidden",
+   "question": "How long did the eu-west evacuation game day in February take, and who ran it?",
+   "truth": [
+    [
+     "41"
+    ],
+    [
+     "Sara"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2026-02-23"
+  },
+  {
+   "id": "hid-restore-test",
+   "kind": "hidden",
+   "question": "When did the weekly restore test for the payments database start, and how long did the first restore take?",
+   "truth": [
+    [
+     "2026-04-22",
+     "April 22",
+     "22 April"
+    ],
+    [
+     "52"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2026-04-27"
+  },
+  {
+   "id": "hid-sendgrid-quota",
+   "kind": "hidden",
+   "question": "When did we raise the sendgrid daily quota for the year-end campaign, and to what?",
+   "truth": [
+    [
+     "600,000",
+     "600000"
+    ],
+    [
+     "2025-12-16",
+     "December 16",
+     "16 December",
+     "Dec 16"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2025-12-22"
+  },
+  {
+   "id": "hid-firewall-partner",
+   "kind": "hidden",
+   "question": "Which partner did the cloudflare firewall rule block in May, and how was it fixed?",
+   "truth": [
+    [
+     "Hanabi"
+    ],
+    [
+     "allow"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2026-05-25"
+  },
+  {
+   "id": "hid-noor-first",
+   "kind": "hidden",
+   "question": "When did Noor take her first primary on-call shift on her own?",
+   "truth": [
+    [
+     "2026-05-11",
+     "May 11",
+     "11 May"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2026-05-11"
+  },
+  {
+   "id": "hid-dst-2025",
+   "kind": "hidden",
+   "question": "Did the US clock change in November 2025 cause any booking problems?",
+   "truth": [
+    [
+     "212"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2025-11-03"
+  },
+  {
+   "id": "hid-golden-week",
+   "kind": "hidden",
+   "question": "What was the booking peak per minute during Golden Week 2026?",
+   "truth": [
+    [
+     "1,960",
+     "1960"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2026-05-04"
+  },
+  {
+   "id": "hid-v1-off",
+   "kind": "hidden",
+   "question": "When were the old v1 partner API endpoints switched off?",
+   "truth": [
+    [
+     "2026-03-18",
+     "March 18",
+     "18 March"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2026-03-23"
+  },
+  {
+   "id": "hid-year-end-payout",
+   "kind": "hidden",
+   "question": "How long did the year-end payout run take in December 2025?",
+   "truth": [
+    [
+     "2 h 05",
+     "2h05",
+     "2 hours 5",
+     "2 hours and 5",
+     "125 min",
+     "2:05",
+     "2 h 5"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2025-12-29"
+  },
+  {
+   "id": "hid-cache-ratio",
+   "kind": "hidden",
+   "question": "The cloudflare cache hit ratio dropped to 61 % in August. What caused it?",
+   "truth": [
+    [
+     "query string",
+     "timestamp"
+    ]
+   ],
+   "wrong": [],
+   "page": "handover-2026-08-17"
+  },
+  {
+   "id": "pg-kddi-lag",
+   "kind": "plain",
+   "question": "SMS delivery receipts for KDDI numbers look late tonight. How late can they normally be?",
+   "truth": [
+    [
+     "40 min"
+    ]
+   ],
+   "wrong": [],
+   "page": "provider-twilio-japan"
+  },
+  {
+   "id": "pg-replayed",
+   "kind": "plain",
+   "question": "How many failed payments were replayed after the November 2025 payments checkout timeout incident?",
+   "truth": [
+    [
+     "1,184",
+     "1184"
+    ]
+   ],
+   "wrong": [],
+   "page": "postmortem-payments-pool-timeout"
+  },
+  {
+   "id": "pg-cert-outage",
+   "kind": "plain",
+   "question": "When the partner API certificate expired in April 2025, how long were partner connections failing, and how many partners were affected?",
+   "truth": [
+    [
+     "47"
+    ],
+    [
+     "3 partners",
+     "three partners",
+     "3 integration partners",
+     "three integration partners",
+     "three of",
+     "3 of"
+    ]
+   ],
+   "wrong": [],
+   "page": "postmortem-api-partner-certificate"
+  },
+  {
+   "id": "pg-dup-reminders",
+   "kind": "plain",
+   "question": "How many reminders went out twice in the September 2024 notifier scheduler incident?",
+   "truth": [
+    [
+     "8,412",
+     "8412"
+    ]
+   ],
+   "wrong": [],
+   "page": "postmortem-notifier-duplicate-reminders"
+  },
+  {
+   "id": "pg-log-access",
+   "kind": "plain",
+   "question": "How do I get log search access before my first shadow shift, and who approves it?",
+   "truth": [
+    [
+     "oncall-readers"
+    ],
+    [
+     "Kenji"
+    ]
+   ],
+   "wrong": [],
+   "page": "team-access-requests"
+  },
+  {
+   "id": "hb-checkout-threshold",
+   "kind": "plain",
+   "question": "What threshold fires the payments-checkout alert?",
+   "truth": [
+    [
+     "2 %",
+     "2%"
+    ],
+    [
+     "3 min"
+    ]
+   ],
+   "wrong": [],
+   "page": "handbook-14"
+  },
+  {
+   "id": "none-stripe-phone",
+   "kind": "not in pages",
+   "question": "What is Stripe's emergency support phone number?",
+   "truth": [
+    "NOT_IN_PAGES"
+   ],
+   "wrong": [],
+   "page": null
+  },
+  {
+   "id": "none-allowance",
+   "kind": "not in pages",
+   "question": "How much is the on-call allowance for a week of primary shifts?",
+   "truth": [
+    "NOT_IN_PAGES"
+   ],
+   "wrong": [],
+   "page": null
+  },
+  {
+   "id": "none-pay-4999",
+   "kind": "not in pages",
+   "question": "What does error code PAY-4999 mean?",
+   "truth": [
+    "NOT_IN_PAGES"
+   ],
+   "wrong": [],
+   "page": null
+  },
+  {
+   "id": "none-sendgrid-renewal",
+   "kind": "not in pages",
+   "question": "When does our sendgrid contract come up for renewal?",
+   "truth": [
+    "NOT_IN_PAGES"
+   ],
+   "wrong": [],
+   "page": null
+  }
+ ]
+}

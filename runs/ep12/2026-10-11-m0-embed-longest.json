@@ -1,0 +1,77 @@
+{
+ "what": "M0: one embedContent call, no autoTruncate set, on the longest existing document",
+ "target": "runbooks/handbook.md (whole file)",
+ "target_md5": "505f2fd9217c71f3805f736e2b8cc1d0",
+ "target_tokens_by_embed_countTokens": 13434,
+ "input_token_limit_models_get": 8192,
+ "longest_pages_by_embed_countTokens": [
+  {
+   "id": "team-game-days",
+   "tokens": 4284
+  },
+  {
+   "id": "notifier-runbook-2024",
+   "tokens": 3991
+  },
+  {
+   "id": "provider-aws-health",
+   "tokens": 3825
+  },
+  {
+   "id": "team-status-page-process",
+   "tokens": 3732
+  },
+  {
+   "id": "howto-stop-unowned-load-test",
+   "tokens": 3607
+  },
+  {
+   "id": "handover-2024-03-25",
+   "tokens": 3586
+  },
+  {
+   "id": "provider-stripe-notes",
+   "tokens": 3561
+  },
+  {
+   "id": "team-oncall-onboarding",
+   "tokens": 3484
+  }
+ ],
+ "pages_over_8192": [],
+ "pages_counted": 72,
+ "request": {
+  "model": "models/gemini-embedding-2",
+  "content": {
+   "parts": [
+    {
+     "text": "<omitted: md5 505f2fd9217c71f3805f736e2b8cc1d0, 13434 tokens>"
+    }
+   ]
+  }
+ },
+ "http": 200,
+ "sent_utc": "2026-10-10T16:26:26.701+00:00",
+ "wall_s": 1.055,
+ "error": null,
+ "response_without_values": {
+  "usageMetadata": {
+   "promptTokenCount": 13434,
+   "promptTokenDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 13434
+    }
+   ]
+  }
+ },
+ "embedding_len": 3072,
+ "embedding_first5": [
+  0.02017529,
+  0.021922408,
+  0.013450783,
+  -0.0060699857,
+  0.0014400044
+ ],
+ "cost_usd": 0.0026868
+}

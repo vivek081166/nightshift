@@ -1,0 +1,4472 @@
+{
+ "what": "e2-carry",
+ "started_utc": "2026-10-10T16:51:40.870+00:00",
+ "questions": [
+  {
+   "id": "code-pay-4031",
+   "kind": "code",
+   "question": "What does PAY-4031 mean and what fixed it?",
+   "answer_pages": [
+    "handover-2025-10-20",
+    "handover-2025-11-03"
+   ],
+   "answer": "Based on the handover notes (specifically the handovers for the weeks of 2025-10-20 and 2025-11-03):\n\n* **What it means:** The acquirer timed out on the 3-D Secure challenge during checkout (the checkout was waiting 10 seconds for the 3-D Secure response, causing 41 checkouts to fail in about 25 minutes).\n* **What fixed it:** Leo raised the 3-D Secure wait time from 10 seconds to 25 seconds.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 7.2,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/smqzv8mqtt1ae60ll0e9c3vue4phsir5mzx89ij6",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhat does PAY-4031 mean and what fixed it?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:51:40.935+00:00",
+     "wall_s": 7.192,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the handover notes (specifically the handovers for the weeks of 2025-10-20 and 2025-11-03):\n\n* **What it means:** The acquirer timed out on the 3-D Secure challenge during checkout (the checkout was waiting 10 seconds for the 3-D Secure response, causing 41 checkouts to fail in about 25 minutes).\n* **What fixed it:** Leo raised the 3-D Secure wait time from 10 seconds to 25 seconds.",
+           "thoughtSignature": "EmkKZwFpFH0Tv8BP3XfmPInMNFYIwqj/w8fBVq92LzzilnmSCjZRPcSmJ3Ty+u4fr6GSa3e/2UWNbUx9N+uCTrlsUbxVSbUbHtSwXs3kJlmlRKRsGQCstqwjq/u9jOavvqxokYMWhz4LQC4="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207371,
+       "candidatesTokenCount": 121,
+       "totalTokenCount": 207492,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207371
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "HW3KaoenIJK50-kPy9vMyA4"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Based on the handover notes (specifically the handovers for the weeks of 2025-10-20 and 2025-11-03):\n\n* **What it means:** The acquirer timed out on the 3-D Secure challenge during checkout (the checkout was waiting 10 seconds for the 3-D Secure response, causing 41 checkouts to fail in about 25 minutes).\n* **What fixed it:** Leo raised the 3-D Secure wait time from 10 seconds to 25 seconds.",
+        "thoughtSignature": "EmkKZwFpFH0Tv8BP3XfmPInMNFYIwqj/w8fBVq92LzzilnmSCjZRPcSmJ3Ty+u4fr6GSa3e/2UWNbUx9N+uCTrlsUbxVSbUbHtSwXs3kJlmlRKRsGQCstqwjq/u9jOavvqxokYMWhz4LQC4="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Based on the handover notes (specifically the handovers for the weeks of 2025-10-20 and 2025-11-03):\n\n* **What it means:** The acquirer timed out on the 3-D Secure challenge during checkout (the checkout was waiting 10 seconds for the 3-D Secure response, causing 41 checkouts to fail in about 25 minutes).\n* **What fixed it:** Leo raised the 3-D Secure wait time from 10 seconds to 25 seconds.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207371,
+     "cached": 207331,
+     "out": 121,
+     "cost_usd": 0.016033574999999998
+    }
+   ],
+   "prompt_tokens": 207371,
+   "cached_tokens": 207331,
+   "out_tokens": 121,
+   "cost_usd": 0.016033574999999998,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true,
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "code-pay-4107",
+   "kind": "code",
+   "question": "Refunds are failing with PAY-4107. What does that code mean and what did we do last time?",
+   "answer_pages": [
+    "handover-2026-01-12"
+   ],
+   "answer": "Based on the **On-call handover, week of 2026-01-12** page:\n\n* **What it means:** The card provider refuses refunds on charges older than 180 days.\n* **What was done last time:** Mei's team paid the affected customers back by bank transfer instead.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 5.68,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nRefunds are failing with PAY-4107. What does that code mean and what did we do last time?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:52:03.776+00:00",
+     "wall_s": 5.653,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the **On-call handover, week of 2026-01-12** page:\n\n* **What it means:** The card provider refuses refunds on charges older than 180 days.\n* **What was done last time:** Mei's team paid the affected customers back by bank transfer instead.",
+           "thoughtSignature": "EmkKZwFpFH0TiPDCKhVAsmXcl3pE3dYT59LyVqwBY78WBXuSBVWx7hRQu4/380ooO+quNFsPfRBn6JatU4KoqS4o6ruB73My9NesakGXalsi7P/ZvhASQnb985c39RonD0/OUBfudkvezHI="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207382,
+       "candidatesTokenCount": 70,
+       "totalTokenCount": 207452,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207382
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "NG3KaveUEZKe1e8PwbyEiAw"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Based on the **On-call handover, week of 2026-01-12** page:\n\n* **What it means:** The card provider refuses refunds on charges older than 180 days.\n* **What was done last time:** Mei's team paid the affected customers back by bank transfer instead.",
+        "thoughtSignature": "EmkKZwFpFH0TiPDCKhVAsmXcl3pE3dYT59LyVqwBY78WBXuSBVWx7hRQu4/380ooO+quNFsPfRBn6JatU4KoqS4o6ruB73My9NesakGXalsi7P/ZvhASQnb985c39RonD0/OUBfudkvezHI="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Based on the **On-call handover, week of 2026-01-12** page:\n\n* **What it means:** The card provider refuses refunds on charges older than 180 days.\n* **What was done last time:** Mei's team paid the affected customers back by bank transfer instead.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207382,
+     "cached": 207331,
+     "out": 70,
+     "cost_usd": 0.015850575
+    }
+   ],
+   "prompt_tokens": 207382,
+   "cached_tokens": 207331,
+   "out_tokens": 70,
+   "cost_usd": 0.015850575,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true,
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "code-api-2210",
+   "kind": "code",
+   "question": "A partner keeps getting API-2210 back from us. What does it mean?",
+   "answer_pages": [
+    "handover-2025-12-15"
+   ],
+   "answer": "According to the **On-call handover, week of 2025-12-15** page, **API-2210** indicates that the partner sent bookings for slots outside the business's opening hours (the validation check working as intended).",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 5.19,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nA partner keeps getting API-2210 back from us. What does it mean?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:52:03.777+00:00",
+     "wall_s": 5.175,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the **On-call handover, week of 2025-12-15** page, **API-2210** indicates that the partner sent bookings for slots outside the business's opening hours (the validation check working as intended).",
+           "thoughtSignature": "EmkKZwFpFH0ThfseEmL7URsaWYkGGlwIJTgWLOX6fmuWi8l1o+Nx+1VqzXMGvIAFVoDFHd6rkNlWtjsX13Xlf0MhaTJNAf8r/VwoIrd8NdKkFBwefyV4TzyPwGLqd12hzYYxOFeERiyYUXg="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207376,
+       "candidatesTokenCount": 56,
+       "totalTokenCount": 207432,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207376
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "NG3Kap6gEciw2roP9vjxyAs"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "According to the **On-call handover, week of 2025-12-15** page, **API-2210** indicates that the partner sent bookings for slots outside the business's opening hours (the validation check working as intended).",
+        "thoughtSignature": "EmkKZwFpFH0ThfseEmL7URsaWYkGGlwIJTgWLOX6fmuWi8l1o+Nx+1VqzXMGvIAFVoDFHd6rkNlWtjsX13Xlf0MhaTJNAf8r/VwoIrd8NdKkFBwefyV4TzyPwGLqd12hzYYxOFeERiyYUXg="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "According to the **On-call handover, week of 2025-12-15** page, **API-2210** indicates that the partner sent bookings for slots outside the business's opening hours (the validation check working as intended).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207376,
+     "cached": 207331,
+     "out": 56,
+     "cost_usd": 0.015793574999999997
+    }
+   ],
+   "prompt_tokens": 207376,
+   "cached_tokens": 207331,
+   "out_tokens": 56,
+   "cost_usd": 0.015793574999999997,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "code-api-2387",
+   "kind": "code",
+   "question": "What does API-2387 mean, and what caused it?",
+   "answer_pages": [
+    "handover-2026-02-09",
+    "handover-2026-02-16"
+   ],
+   "answer": "Based on the **On-call handover, week of 2026-02-09** and **On-call handover, week of 2026-02-16** pages:\n\n* **What it means:** `API-2387` refers to search request failures in `eu-west` that occurred on a newly launched node due to a **missing search shard** following a node replacement.\n* **What caused it:** The replacement node came up from an **old machine image that did not mount the search shard volume** (fixed by Sara on Tuesday, 2026-02-10).",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 5.47,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhat does API-2387 mean, and what caused it?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:52:03.777+00:00",
+     "wall_s": 5.46,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the **On-call handover, week of 2026-02-09** and **On-call handover, week of 2026-02-16** pages:\n\n* **What it means:** `API-2387` refers to search request failures in `eu-west` that occurred on a newly launched node due to a **missing search shard** following a node replacement.\n* **What caused it:** The replacement node came up from an **old machine image that did not mount the search shard volume** (fixed by Sara on Tuesday, 2026-02-10).",
+           "thoughtSignature": "EmkKZwFpFH0TWOnRDUPKCLK1lwC4c4Lcrc0U4JE9sVJ/Eo/GpkBfBKRfeuaK/1iklsCXaC9AGjmONDBDs6VWuuNDBaRvOm+r29GrNcs0xLGSy8AnnKl+sR1jzqleDK8qRazEssRGgpUqS+E="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207372,
+       "candidatesTokenCount": 138,
+       "totalTokenCount": 207510,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207372
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "NG3KasudEe3-2roPssrZ0Qo"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Based on the **On-call handover, week of 2026-02-09** and **On-call handover, week of 2026-02-16** pages:\n\n* **What it means:** `API-2387` refers to search request failures in `eu-west` that occurred on a newly launched node due to a **missing search shard** following a node replacement.\n* **What caused it:** The replacement node came up from an **old machine image that did not mount the search shard volume** (fixed by Sara on Tuesday, 2026-02-10).",
+        "thoughtSignature": "EmkKZwFpFH0TWOnRDUPKCLK1lwC4c4Lcrc0U4JE9sVJ/Eo/GpkBfBKRfeuaK/1iklsCXaC9AGjmONDBDs6VWuuNDBaRvOm+r29GrNcs0xLGSy8AnnKl+sR1jzqleDK8qRazEssRGgpUqS+E="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Based on the **On-call handover, week of 2026-02-09** and **On-call handover, week of 2026-02-16** pages:\n\n* **What it means:** `API-2387` refers to search request failures in `eu-west` that occurred on a newly launched node due to a **missing search shard** following a node replacement.\n* **What caused it:** The replacement node came up from an **old machine image that did not mount the search shard volume** (fixed by Sara on Tuesday, 2026-02-10).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207372,
+     "cached": 207331,
+     "out": 138,
+     "cost_usd": 0.016098075
+    }
+   ],
+   "prompt_tokens": 207372,
+   "cached_tokens": 207331,
+   "out_tokens": 138,
+   "cost_usd": 0.016098075,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true,
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "code-ntf-3302",
+   "kind": "code",
+   "question": "NTF-3302 is showing up on confirmation emails. What is it and what did we change?",
+   "answer_pages": [
+    "handover-2025-10-13"
+   ],
+   "answer": "Based on the **On-call handover, week of 2025-10-13** page:\n\n* **What it is:** SendGrid rejected booking confirmation emails because the email template's `first-name` variable was empty for customers who booked as guests.\n* **What we changed:** Yuki updated the templates to fall back to the business name when the customer's first name is empty (shipped on Friday of that week).",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 5.87,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nNTF-3302 is showing up on confirmation emails. What is it and what did we change?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:52:03.778+00:00",
+     "wall_s": 5.856,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the **On-call handover, week of 2025-10-13** page:\n\n* **What it is:** SendGrid rejected booking confirmation emails because the email template's `first-name` variable was empty for customers who booked as guests.\n* **What we changed:** Yuki updated the templates to fall back to the business name when the customer's first name is empty (shipped on Friday of that week).",
+           "thoughtSignature": "EmkKZwFpFH0TmLXg+mqaKF9PqlmTgK9TuLm8I8P3fbIqHR+xLuNxzU6up9OPjgELxx+QrtN2I0QJso+OMDyBOfExTu+Pmtc3OWMOArG/pMEnSkTLUyDsw10mvyVLqicIo1Jtk+vE76D4FSU="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207380,
+       "candidatesTokenCount": 95,
+       "totalTokenCount": 207475,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207380
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "NG3KarLjELuj9tMP_L-t4A0"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Based on the **On-call handover, week of 2025-10-13** page:\n\n* **What it is:** SendGrid rejected booking confirmation emails because the email template's `first-name` variable was empty for customers who booked as guests.\n* **What we changed:** Yuki updated the templates to fall back to the business name when the customer's first name is empty (shipped on Friday of that week).",
+        "thoughtSignature": "EmkKZwFpFH0TmLXg+mqaKF9PqlmTgK9TuLm8I8P3fbIqHR+xLuNxzU6up9OPjgELxx+QrtN2I0QJso+OMDyBOfExTu+Pmtc3OWMOArG/pMEnSkTLUyDsw10mvyVLqicIo1Jtk+vE76D4FSU="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Based on the **On-call handover, week of 2025-10-13** page:\n\n* **What it is:** SendGrid rejected booking confirmation emails because the email template's `first-name` variable was empty for customers who booked as guests.\n* **What we changed:** Yuki updated the templates to fall back to the business name when the customer's first name is empty (shipped on Friday of that week).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207380,
+     "cached": 207331,
+     "out": 95,
+     "cost_usd": 0.015942824999999997
+    }
+   ],
+   "prompt_tokens": 207380,
+   "cached_tokens": 207331,
+   "out_tokens": 95,
+   "cost_usd": 0.015942824999999997,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true,
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "code-ntf-3318",
+   "kind": "code",
+   "question": "What is NTF-3318 and what did we do about it?",
+   "answer_pages": [
+    "handover-2026-03-02",
+    "handover-2026-03-16"
+   ],
+   "answer": "Based on the handover notes for the weeks of **2026-03-02** and **2026-03-16**:\n\n* **What it was:** `NTF-3318` was an issue where `notifier` recorded delivery failures from Twilio on 58 appointment reminders because the recipient phone numbers collected during customer onboarding were landlines, which cannot receive SMS messages.\n* **What was done about it:** Priya updated the sign-up form on the web service to validate that a phone number can accept SMS before saving it (shipped on Thursday, 2026-03-12). Following this change, `NTF-3318` occurrences dropped to near zero.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 3.38,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhat is NTF-3318 and what did we do about it?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:52:08.961+00:00",
+     "wall_s": 3.323,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the handover notes for the weeks of **2026-03-02** and **2026-03-16**:\n\n* **What it was:** `NTF-3318` was an issue where `notifier` recorded delivery failures from Twilio on 58 appointment reminders because the recipient phone numbers collected during customer onboarding were landlines, which cannot receive SMS messages.\n* **What was done about it:** Priya updated the sign-up form on the web service to validate that a phone number can accept SMS before saving it (shipped on Thursday, 2026-03-12). Following this change, `NTF-3318` occurrences dropped to near zero.",
+           "thoughtSignature": "EmkKZwFpFH0TMoKu+H0c9ZkplHnwuinQiOFAhKWiHjYP1VF6P3eP+qVcZvoBwBuiCPXo0GaAmjzFrqyAdG20mZItYKxGe0V0UDMre/BRnYiy5vvETs8nlqleX6k9BPPJD9SUoIqDRD9ybaw="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207374,
+       "candidatesTokenCount": 157,
+       "totalTokenCount": 207531,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207374
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "OW3KaoPHH6ON1e8PuLa9qQE"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Based on the handover notes for the weeks of **2026-03-02** and **2026-03-16**:\n\n* **What it was:** `NTF-3318` was an issue where `notifier` recorded delivery failures from Twilio on 58 appointment reminders because the recipient phone numbers collected during customer onboarding were landlines, which cannot receive SMS messages.\n* **What was done about it:** Priya updated the sign-up form on the web service to validate that a phone number can accept SMS before saving it (shipped on Thursday, 2026-03-12). Following this change, `NTF-3318` occurrences dropped to near zero.",
+        "thoughtSignature": "EmkKZwFpFH0TMoKu+H0c9ZkplHnwuinQiOFAhKWiHjYP1VF6P3eP+qVcZvoBwBuiCPXo0GaAmjzFrqyAdG20mZItYKxGe0V0UDMre/BRnYiy5vvETs8nlqleX6k9BPPJD9SUoIqDRD9ybaw="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Based on the handover notes for the weeks of **2026-03-02** and **2026-03-16**:\n\n* **What it was:** `NTF-3318` was an issue where `notifier` recorded delivery failures from Twilio on 58 appointment reminders because the recipient phone numbers collected during customer onboarding were landlines, which cannot receive SMS messages.\n* **What was done about it:** Priya updated the sign-up form on the web service to validate that a phone number can accept SMS before saving it (shipped on Thursday, 2026-03-12). Following this change, `NTF-3318` occurrences dropped to near zero.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207374,
+     "cached": 207331,
+     "out": 157,
+     "cost_usd": 0.016170825
+    }
+   ],
+   "prompt_tokens": 207374,
+   "cached_tokens": 207331,
+   "out_tokens": 157,
+   "cost_usd": 0.016170825,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true,
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "code-web-5013",
+   "kind": "code",
+   "question": "Support hit WEB-5013 in the admin tool. What does it mean and what changed?",
+   "answer_pages": [
+    "handover-2026-06-01"
+   ],
+   "answer": "Based on the **On-call handover, week of 2026-06-01** page:\n\n* **What it means:** Support (Hana's team) hit **WEB-5013** when attempting to export a business's full booking history from the admin tool; exports exceeding 50,000 rows timed out.\n* **What changed:** Aiko's team changed large exports to run in the background instead of synchronously, having them appear in the admin tool's downloads list when ready (shipped Thursday of that week).",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 3.09,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nSupport hit WEB-5013 in the admin tool. What does it mean and what changed?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:52:09.251+00:00",
+     "wall_s": 3.043,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the **On-call handover, week of 2026-06-01** page:\n\n* **What it means:** Support (Hana's team) hit **WEB-5013** when attempting to export a business's full booking history from the admin tool; exports exceeding 50,000 rows timed out.\n* **What changed:** Aiko's team changed large exports to run in the background instead of synchronously, having them appear in the admin tool's downloads list when ready (shipped Thursday of that week).",
+           "thoughtSignature": "EmkKZwFpFH0TCkF7bqc+0IRV7Wr2phAVrVGY7iyBL2HGqivPFmtx0TtlyZu1/8+0nmj6Q7xAzuD2GF8vMzLWlKxQd0aUTN8MewIu/u5wGHFGKOglYmfOpmy1hNmALD7N0UCf62YVBw6UJnk="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207378,
+       "candidatesTokenCount": 122,
+       "totalTokenCount": 207500,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207378
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "OW3KavyiJJnD0-kPop2R8AQ"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Based on the **On-call handover, week of 2026-06-01** page:\n\n* **What it means:** Support (Hana's team) hit **WEB-5013** when attempting to export a business's full booking history from the admin tool; exports exceeding 50,000 rows timed out.\n* **What changed:** Aiko's team changed large exports to run in the background instead of synchronously, having them appear in the admin tool's downloads list when ready (shipped Thursday of that week).",
+        "thoughtSignature": "EmkKZwFpFH0TCkF7bqc+0IRV7Wr2phAVrVGY7iyBL2HGqivPFmtx0TtlyZu1/8+0nmj6Q7xAzuD2GF8vMzLWlKxQd0aUTN8MewIu/u5wGHFGKOglYmfOpmy1hNmALD7N0UCf62YVBw6UJnk="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Based on the **On-call handover, week of 2026-06-01** page:\n\n* **What it means:** Support (Hana's team) hit **WEB-5013** when attempting to export a business's full booking history from the admin tool; exports exceeding 50,000 rows timed out.\n* **What changed:** Aiko's team changed large exports to run in the background instead of synchronously, having them appear in the admin tool's downloads list when ready (shipped Thursday of that week).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207378,
+     "cached": 207331,
+     "out": 122,
+     "cost_usd": 0.016042575
+    }
+   ],
+   "prompt_tokens": 207378,
+   "cached_tokens": 207331,
+   "out_tokens": 122,
+   "cost_usd": 0.016042575,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true,
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "code-web-5241",
+   "kind": "code",
+   "question": "We're seeing WEB-5241 in the browser errors. What is it?",
+   "answer_pages": [
+    "handover-2026-08-31"
+   ],
+   "answer": "According to the **On-call handover, week of 2026-08-31** page:\n\n**WEB-5241** occurred when the Content Security Policy (CSP) blocked the support chat widget after its script moved to a new domain. \n\n*(Note: During that incident, Priya resolved the issue by adding the new domain to the CSP allow list).*",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 2.88,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWe're seeing WEB-5241 in the browser errors. What is it?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:52:09.458+00:00",
+     "wall_s": 2.815,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the **On-call handover, week of 2026-08-31** page:\n\n**WEB-5241** occurred when the Content Security Policy (CSP) blocked the support chat widget after its script moved to a new domain. \n\n*(Note: During that incident, Priya resolved the issue by adding the new domain to the CSP allow list).*",
+           "thoughtSignature": "EmkKZwFpFH0TXPwj3ABHSpYYOnXz8rL+dgF31eX351YgLH2oA/oIhCViHC33tfgZxZP/XPbNI8nKci1Hfqt1592hNM/uXu4T/i1q0kB3+edqgdFuqHYvojbw9bvjUlSWPfoeTTPbRrAhb6A="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207376,
+       "candidatesTokenCount": 81,
+       "totalTokenCount": 207457,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207376
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "OW3Kao--Noii9tMP9MeD-Aw"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "According to the **On-call handover, week of 2026-08-31** page:\n\n**WEB-5241** occurred when the Content Security Policy (CSP) blocked the support chat widget after its script moved to a new domain. \n\n*(Note: During that incident, Priya resolved the issue by adding the new domain to the CSP allow list).*",
+        "thoughtSignature": "EmkKZwFpFH0TXPwj3ABHSpYYOnXz8rL+dgF31eX351YgLH2oA/oIhCViHC33tfgZxZP/XPbNI8nKci1Hfqt1592hNM/uXu4T/i1q0kB3+edqgdFuqHYvojbw9bvjUlSWPfoeTTPbRrAhb6A="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "According to the **On-call handover, week of 2026-08-31** page:\n\n**WEB-5241** occurred when the Content Security Policy (CSP) blocked the support chat widget after its script moved to a new domain. \n\n*(Note: During that incident, Priya resolved the issue by adding the new domain to the CSP allow list).*",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207376,
+     "cached": 207331,
+     "out": 81,
+     "cost_usd": 0.015887324999999997
+    }
+   ],
+   "prompt_tokens": 207376,
+   "cached_tokens": 207331,
+   "out_tokens": 81,
+   "cost_usd": 0.015887324999999997,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true,
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "code-sms-batch",
+   "kind": "code",
+   "question": "What is notifier.sms_batch_size set to now, and why was it lowered?",
+   "answer_pages": [
+    "handover-2026-01-26"
+   ],
+   "answer": "Based on the **On-call handover, week of 2026-01-26** page:\n\n* **Current setting:** `200`\n* **Why it was lowered:** It was lowered from `500` to `200` because Twilio returned HTTP `429 (too many requests)` during the nightly reminder batch when sending 500 at a time. Tom approved lowering it to 200, which eliminated the 429 errors.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 2.94,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhat is notifier.sms_batch_size set to now, and why was it lowered?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:52:09.644+00:00",
+     "wall_s": 2.93,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the **On-call handover, week of 2026-01-26** page:\n\n* **Current setting:** `200`\n* **Why it was lowered:** It was lowered from `500` to `200` because Twilio returned HTTP `429 (too many requests)` during the nightly reminder batch when sending 500 at a time. Tom approved lowering it to 200, which eliminated the 429 errors.",
+           "thoughtSignature": "EmkKZwFpFH0TIzqHEN0C/I10S0pAHdhmDqRZnaUpLG2ZmfQ5SbhWQ8SP2R59zA3lnvakXjiQcEUVHLDsX13qC9ZahRzAdK6BXvxZYIVclMI1GLhrDKptrGabNggb3baotmixVQhWpHyCd9M="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207376,
+       "candidatesTokenCount": 107,
+       "totalTokenCount": 207483,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207376
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "Om3Kaom1BbOc2roP0rmhqAU"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Based on the **On-call handover, week of 2026-01-26** page:\n\n* **Current setting:** `200`\n* **Why it was lowered:** It was lowered from `500` to `200` because Twilio returned HTTP `429 (too many requests)` during the nightly reminder batch when sending 500 at a time. Tom approved lowering it to 200, which eliminated the 429 errors.",
+        "thoughtSignature": "EmkKZwFpFH0TIzqHEN0C/I10S0pAHdhmDqRZnaUpLG2ZmfQ5SbhWQ8SP2R59zA3lnvakXjiQcEUVHLDsX13qC9ZahRzAdK6BXvxZYIVclMI1GLhrDKptrGabNggb3baotmixVQhWpHyCd9M="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Based on the **On-call handover, week of 2026-01-26** page:\n\n* **Current setting:** `200`\n* **Why it was lowered:** It was lowered from `500` to `200` because Twilio returned HTTP `429 (too many requests)` during the nightly reminder batch when sending 500 at a time. Tom approved lowering it to 200, which eliminated the 429 errors.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207376,
+     "cached": 207331,
+     "out": 107,
+     "cost_usd": 0.015984824999999998
+    }
+   ],
+   "prompt_tokens": 207376,
+   "cached_tokens": 207331,
+   "out_tokens": 107,
+   "cost_usd": 0.015984824999999998,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true,
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "code-idle-minutes",
+   "kind": "code",
+   "question": "What did we set web.session_idle_minutes to, and when?",
+   "answer_pages": [
+    "handover-2026-06-22"
+   ],
+   "answer": "Based on the on-call handover for the week of 2026-06-22, `web.session_idle_minutes` was set from 30 to **60** on **Tuesday, 2026-06-16** (approved by Aiko after support requested it to prevent businesses from being signed out mid-day).",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 3.01,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhat did we set web.session_idle_minutes to, and when?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:52:12.336+00:00",
+     "wall_s": 2.962,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the on-call handover for the week of 2026-06-22, `web.session_idle_minutes` was set from 30 to **60** on **Tuesday, 2026-06-16** (approved by Aiko after support requested it to prevent businesses from being signed out mid-day).",
+           "thoughtSignature": "EmkKZwFpFH0T932cmDbWsdLO/RfNIvL4ycrr2YwzOYkXi/fALOSagf47k+Ki7Wfz5s/EH8rlGeA6eP2rkGyLZDdtfERJScqNRDw49Lut947PcD8cmHizz3nyNH/eV/K80prDt9EILoRh4sQ="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207373,
+       "candidatesTokenCount": 79,
+       "totalTokenCount": 207452,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207373
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "PG3KatPELIKw2roPpJHesQQ"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Based on the on-call handover for the week of 2026-06-22, `web.session_idle_minutes` was set from 30 to **60** on **Tuesday, 2026-06-16** (approved by Aiko after support requested it to prevent businesses from being signed out mid-day).",
+        "thoughtSignature": "EmkKZwFpFH0T932cmDbWsdLO/RfNIvL4ycrr2YwzOYkXi/fALOSagf47k+Ki7Wfz5s/EH8rlGeA6eP2rkGyLZDdtfERJScqNRDw49Lut947PcD8cmHizz3nyNH/eV/K80prDt9EILoRh4sQ="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Based on the on-call handover for the week of 2026-06-22, `web.session_idle_minutes` was set from 30 to **60** on **Tuesday, 2026-06-16** (approved by Aiko after support requested it to prevent businesses from being signed out mid-day).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207373,
+     "cached": 207331,
+     "out": 79,
+     "cost_usd": 0.015877574999999998
+    }
+   ],
+   "prompt_tokens": 207373,
+   "cached_tokens": 207331,
+   "out_tokens": 79,
+   "cost_usd": 0.015877574999999998,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true,
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "ow-charged-twice",
+   "kind": "other words",
+   "question": "Some people paid two times for one visit back in January. How many were hit, and what did we change so it can't happen again?",
+   "answer_pages": [
+    "team-payments-notes"
+   ],
+   "answer": "Based on the **payments: notes for on-call** page:\n\n* **How many were hit:** Exactly **63 bookings** were affected by duplicate captures on 2026-01-14 after a capture call to Stripe timed out and both the initial call and retry went through.\n* **What was changed:** On 2026-01-15, Leo added an **idempotency key** to the capture call so that network timeouts on the provider interface cannot cause double execution again. (Mei's team also refunded the second charge that same day to reconcile customer balances).",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 3.62,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nSome people paid two times for one visit back in January. How many were hit, and what did we change so it can't happen again?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:52:12.339+00:00",
+     "wall_s": 3.577,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the **payments: notes for on-call** page:\n\n* **How many were hit:** Exactly **63 bookings** were affected by duplicate captures on 2026-01-14 after a capture call to Stripe timed out and both the initial call and retry went through.\n* **What was changed:** On 2026-01-15, Leo added an **idempotency key** to the capture call so that network timeouts on the provider interface cannot cause double execution again. (Mei's team also refunded the second charge that same day to reconcile customer balances).",
+           "thoughtSignature": "EmkKZwFpFH0TqlMagrrxM4JL/4i9YCq8bYMLRdseO4cPga2wp2RBfngMo4dY/nO8yfV/Gm3zE2XFYQ13Gkz6GVRNkX1isPKCrr/r9lv2H/Lfl5OPDoo7UIkBI/dHmCsSrcWuKerEu9If+Ks="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207387,
+       "candidatesTokenCount": 129,
+       "totalTokenCount": 207516,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207387
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "PG3KaofaM9ir1e8PnezCmAQ"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Based on the **payments: notes for on-call** page:\n\n* **How many were hit:** Exactly **63 bookings** were affected by duplicate captures on 2026-01-14 after a capture call to Stripe timed out and both the initial call and retry went through.\n* **What was changed:** On 2026-01-15, Leo added an **idempotency key** to the capture call so that network timeouts on the provider interface cannot cause double execution again. (Mei's team also refunded the second charge that same day to reconcile customer balances).",
+        "thoughtSignature": "EmkKZwFpFH0TqlMagrrxM4JL/4i9YCq8bYMLRdseO4cPga2wp2RBfngMo4dY/nO8yfV/Gm3zE2XFYQ13Gkz6GVRNkX1isPKCrr/r9lv2H/Lfl5OPDoo7UIkBI/dHmCsSrcWuKerEu9If+Ks="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Based on the **payments: notes for on-call** page:\n\n* **How many were hit:** Exactly **63 bookings** were affected by duplicate captures on 2026-01-14 after a capture call to Stripe timed out and both the initial call and retry went through.\n* **What was changed:** On 2026-01-15, Leo added an **idempotency key** to the capture call so that network timeouts on the provider interface cannot cause double execution again. (Mei's team also refunded the second charge that same day to reconcile customer balances).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207387,
+     "cached": 207331,
+     "out": 129,
+     "cost_usd": 0.016075574999999998
+    }
+   ],
+   "prompt_tokens": 207387,
+   "cached_tokens": 207331,
+   "out_tokens": 129,
+   "cost_usd": 0.016075574999999998,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true,
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "ow-old-events-flood",
+   "kind": "other words",
+   "question": "Right after stripe came back from their outage we got flooded with tens of thousands of old notifications from them. Do I need to stop that?",
+   "answer_pages": [
+    "handover-2026-03-09"
+   ],
+   "answer": "Based on the handbook and runbook pages, **no, you do not need to stop it.**\n\nHere is why:\n* **The system is built to handle this:** `payments` is explicitly designed to handle webhooks that arrive late, out of order, or more than once. The service deduplicates events idempotently by event ID to prevent duplicate actions or double counting (see *stripe: notes for on-call*, section 3.1, and the *On-call handover, week of 2026-03-09*).\n* **It drains on its own:** Stripe retries undelivered webhooks with exponential backoff for up to 3 days. A surge of re-sent events following a Stripe recovery is expected behavior. In a previous identical incident (Tuesday 2026-03-03, where Stripe re-sent ~48,000 old events in 20 minutes), the on-call response was to simply let the backlog drain naturally (which took ~35 minutes) with no intervention needed beyond an on-call log entry.\n* **On-call permissions:** You are not allowed to change payment settings, toggle webhooks, or alter configurations in the Stripe dashboard during an incident anyway; those decisions belong to Mei (*stripe: notes for on-call*, section 2).",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 4.65,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nRight after stripe came back from their outage we got flooded with tens of thousands of old notifications from them. Do I need to stop that?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:52:12.338+00:00",
+     "wall_s": 4.635,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the handbook and runbook pages, **no, you do not need to stop it.**\n\nHere is why:\n* **The system is built to handle this:** `payments` is explicitly designed to handle webhooks that arrive late, out of order, or more than once. The service deduplicates events idempotently by event ID to prevent duplicate actions or double counting (see *stripe: notes for on-call*, section 3.1, and the *On-call handover, week of 2026-03-09*).\n* **It drains on its own:** Stripe retries undelivered webhooks with exponential backoff for up to 3 days. A surge of re-sent events following a Stripe recovery is expected behavior. In a previous identical incident (Tuesday 2026-03-03, where Stripe re-sent ~48,000 old events in 20 minutes), the on-call response was to simply let the backlog drain naturally (which took ~35 minutes) with no intervention needed beyond an on-call log entry.\n* **On-call permissions:** You are not allowed to change payment settings, toggle webhooks, or alter configurations in the Stripe dashboard during an incident anyway; those decisions belong to Mei (*stripe: notes for on-call*, section 2).",
+           "thoughtSignature": "EmkKZwFpFH0TmRSo+Q6jd6R20PPdpO2mPDErRhNGha0AZNPTMbBBVccAMy0ByMlT2aDjXegcJV6voB/WlScPer8oKqe1QOw7TAfeGtMM5haiG5H25bTkC6XwWqbS9/Ttlekx2BpKBNwIHTM="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207385,
+       "candidatesTokenCount": 282,
+       "totalTokenCount": 207667,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207385
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "PW3KavoX-Z_T6Q-Qw674Cg"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Based on the handbook and runbook pages, **no, you do not need to stop it.**\n\nHere is why:\n* **The system is built to handle this:** `payments` is explicitly designed to handle webhooks that arrive late, out of order, or more than once. The service deduplicates events idempotently by event ID to prevent duplicate actions or double counting (see *stripe: notes for on-call*, section 3.1, and the *On-call handover, week of 2026-03-09*).\n* **It drains on its own:** Stripe retries undelivered webhooks with exponential backoff for up to 3 days. A surge of re-sent events following a Stripe recovery is expected behavior. In a previous identical incident (Tuesday 2026-03-03, where Stripe re-sent ~48,000 old events in 20 minutes), the on-call response was to simply let the backlog drain naturally (which took ~35 minutes) with no intervention needed beyond an on-call log entry.\n* **On-call permissions:** You are not allowed to change payment settings, toggle webhooks, or alter configurations in the Stripe dashboard during an incident anyway; those decisions belong to Mei (*stripe: notes for on-call*, section 2).",
+        "thoughtSignature": "EmkKZwFpFH0TmRSo+Q6jd6R20PPdpO2mPDErRhNGha0AZNPTMbBBVccAMy0ByMlT2aDjXegcJV6voB/WlScPer8oKqe1QOw7TAfeGtMM5haiG5H25bTkC6XwWqbS9/Ttlekx2BpKBNwIHTM="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Based on the handbook and runbook pages, **no, you do not need to stop it.**\n\nHere is why:\n* **The system is built to handle this:** `payments` is explicitly designed to handle webhooks that arrive late, out of order, or more than once. The service deduplicates events idempotently by event ID to prevent duplicate actions or double counting (see *stripe: notes for on-call*, section 3.1, and the *On-call handover, week of 2026-03-09*).\n* **It drains on its own:** Stripe retries undelivered webhooks with exponential backoff for up to 3 days. A surge of re-sent events following a Stripe recovery is expected behavior. In a previous identical incident (Tuesday 2026-03-03, where Stripe re-sent ~48,000 old events in 20 minutes), the on-call response was to simply let the backlog drain naturally (which took ~35 minutes) with no intervention needed beyond an on-call log entry.\n* **On-call permissions:** You are not allowed to change payment settings, toggle webhooks, or alter configurations in the Stripe dashboard during an incident anyway; those decisions belong to Mei (*stripe: notes for on-call*, section 2).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207385,
+     "cached": 207331,
+     "out": 282,
+     "cost_usd": 0.016647824999999998
+    }
+   ],
+   "prompt_tokens": 207385,
+   "cached_tokens": 207331,
+   "out_tokens": 282,
+   "cost_usd": 0.016647824999999998,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "ow-3am-slow",
+   "kind": "other words",
+   "question": "Around 3 every morning the site where people make appointments crawls for half an hour. Is that known?",
+   "answer_pages": [
+    "handover-2025-11-10"
+   ],
+   "answer": "Based on the pages, yes, this was a known issue with an explanation and fix recorded in the handover documentation:\n\n* **What caused it:** In the handover for the week of **2025-11-10** (\"What happened\"), it was noted that **every night from about 02:50 to 03:30 JST**, connection pool starvation occurred on `api` in `ap-northeast` because the nightly analytics export held most of the connection pool on the primary database, slowing booking pages for those 40 minutes.\n* **Resolution:** On Thursday of that week (2025-11-06), Daniel moved the export to read from the read replica instead of the primary database, resolving the contention. \n\n*(Note: Additionally, `notifier` runs its nightly reminder batch between 02:00 and 04:00 JST, which causes expected queue depth spikes on `notifier`, but that operates asynchronously and does not crawl booking pages.)*",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 3.95,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nAround 3 every morning the site where people make appointments crawls for half an hour. Is that known?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:52:12.586+00:00",
+     "wall_s": 3.942,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the pages, yes, this was a known issue with an explanation and fix recorded in the handover documentation:\n\n* **What caused it:** In the handover for the week of **2025-11-10** (\"What happened\"), it was noted that **every night from about 02:50 to 03:30 JST**, connection pool starvation occurred on `api` in `ap-northeast` because the nightly analytics export held most of the connection pool on the primary database, slowing booking pages for those 40 minutes.\n* **Resolution:** On Thursday of that week (2025-11-06), Daniel moved the export to read from the read replica instead of the primary database, resolving the contention. \n\n*(Note: Additionally, `notifier` runs its nightly reminder batch between 02:00 and 04:00 JST, which causes expected queue depth spikes on `notifier`, but that operates asynchronously and does not crawl booking pages.)*",
+           "thoughtSignature": "EmkKZwFpFH0TwMKNrrfUgv5bJo6wmBCBVn0NfiGUGWvi3/InqAyUSmJZHf/0k+X7YomEdGtvS6HIqe9rGUnbT7GEE5EtUJaHzc64a60jH4ph3OktgHm9TVvc7oH5ieLB9oki0PMmwcNxD5k="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207378,
+       "candidatesTokenCount": 215,
+       "totalTokenCount": 207593,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207378
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "PW3KatWlAuykvr0PmtqXoQ4"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Based on the pages, yes, this was a known issue with an explanation and fix recorded in the handover documentation:\n\n* **What caused it:** In the handover for the week of **2025-11-10** (\"What happened\"), it was noted that **every night from about 02:50 to 03:30 JST**, connection pool starvation occurred on `api` in `ap-northeast` because the nightly analytics export held most of the connection pool on the primary database, slowing booking pages for those 40 minutes.\n* **Resolution:** On Thursday of that week (2025-11-06), Daniel moved the export to read from the read replica instead of the primary database, resolving the contention. \n\n*(Note: Additionally, `notifier` runs its nightly reminder batch between 02:00 and 04:00 JST, which causes expected queue depth spikes on `notifier`, but that operates asynchronously and does not crawl booking pages.)*",
+        "thoughtSignature": "EmkKZwFpFH0TwMKNrrfUgv5bJo6wmBCBVn0NfiGUGWvi3/InqAyUSmJZHf/0k+X7YomEdGtvS6HIqe9rGUnbT7GEE5EtUJaHzc64a60jH4ph3OktgHm9TVvc7oH5ieLB9oki0PMmwcNxD5k="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Based on the pages, yes, this was a known issue with an explanation and fix recorded in the handover documentation:\n\n* **What caused it:** In the handover for the week of **2025-11-10** (\"What happened\"), it was noted that **every night from about 02:50 to 03:30 JST**, connection pool starvation occurred on `api` in `ap-northeast` because the nightly analytics export held most of the connection pool on the primary database, slowing booking pages for those 40 minutes.\n* **Resolution:** On Thursday of that week (2025-11-06), Daniel moved the export to read from the read replica instead of the primary database, resolving the contention. \n\n*(Note: Additionally, `notifier` runs its nightly reminder batch between 02:00 and 04:00 JST, which causes expected queue depth spikes on `notifier`, but that operates asynchronously and does not crawl booking pages.)*",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207378,
+     "cached": 207331,
+     "out": 215,
+     "cost_usd": 0.016391324999999998
+    }
+   ],
+   "prompt_tokens": 207378,
+   "cached_tokens": 207331,
+   "out_tokens": 215,
+   "cost_usd": 0.016391324999999998,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true,
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "ow-mail-stopped",
+   "kind": "other words",
+   "question": "A bunch of customers say they no longer get anything from us in their inbox, though nothing's wrong on their end. What happened last time?",
+   "answer_pages": [
+    "team-notifier-notes"
+   ],
+   "answer": "Based on the **\"notifier: things we learned the hard way\"** runbook page, the last time customers with known good addresses stopped receiving emails in their inbox:\n\n* **What happened:** Following a sending-domain switch on 2026-02-24, SendGrid's suppression list picked up 2,312 addresses from soft bounces during the switch, and SendGrid stopped sending to them.\n* **Resolution:** Yuki verified that the addresses were valid and removed them from the SendGrid suppression list on 2026-02-26. \n\n**Recommended checks from the runbook if this happens:**\n1. **Check provider** before assuming the application dropped the emails silently.\n2. Check the suppression list directly in SendGrid to see if addresses were added during cutovers/domain changes (if an address is suppressed on their side, `notifier` will not attempt redelivery on its own).\n3. **Read logs** in `sorrel-prod-*` to confirm whether the worker received an acceptance or an outright bounce from the provider.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 3.57,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nA bunch of customers say they no longer get anything from us in their inbox, though nothing's wrong on their end. What happened last time?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:52:15.350+00:00",
+     "wall_s": 3.543,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the **\"notifier: things we learned the hard way\"** runbook page, the last time customers with known good addresses stopped receiving emails in their inbox:\n\n* **What happened:** Following a sending-domain switch on 2026-02-24, SendGrid's suppression list picked up 2,312 addresses from soft bounces during the switch, and SendGrid stopped sending to them.\n* **Resolution:** Yuki verified that the addresses were valid and removed them from the SendGrid suppression list on 2026-02-26. \n\n**Recommended checks from the runbook if this happens:**\n1. **Check provider** before assuming the application dropped the emails silently.\n2. Check the suppression list directly in SendGrid to see if addresses were added during cutovers/domain changes (if an address is suppressed on their side, `notifier` will not attempt redelivery on its own).\n3. **Read logs** in `sorrel-prod-*` to confirm whether the worker received an acceptance or an outright bounce from the provider.",
+           "thoughtSignature": "EmkKZwFpFH0TjEwhopVVtY5Kf/9FYN6yQO2zeq3U1xRtexADmgk7vmPREbeXOf7dxB4NJtwWdNH3UnAHSAsM/jdpGWGoXiXS4bramOFDxK6lCuh8xpCSys0Ekl3hiX19GusGBuP8X4cQ8rw="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207387,
+       "candidatesTokenCount": 228,
+       "totalTokenCount": 207615,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207387
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "P23Karn_LoGc0-kPxdudkQU"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Based on the **\"notifier: things we learned the hard way\"** runbook page, the last time customers with known good addresses stopped receiving emails in their inbox:\n\n* **What happened:** Following a sending-domain switch on 2026-02-24, SendGrid's suppression list picked up 2,312 addresses from soft bounces during the switch, and SendGrid stopped sending to them.\n* **Resolution:** Yuki verified that the addresses were valid and removed them from the SendGrid suppression list on 2026-02-26. \n\n**Recommended checks from the runbook if this happens:**\n1. **Check provider** before assuming the application dropped the emails silently.\n2. Check the suppression list directly in SendGrid to see if addresses were added during cutovers/domain changes (if an address is suppressed on their side, `notifier` will not attempt redelivery on its own).\n3. **Read logs** in `sorrel-prod-*` to confirm whether the worker received an acceptance or an outright bounce from the provider.",
+        "thoughtSignature": "EmkKZwFpFH0TjEwhopVVtY5Kf/9FYN6yQO2zeq3U1xRtexADmgk7vmPREbeXOf7dxB4NJtwWdNH3UnAHSAsM/jdpGWGoXiXS4bramOFDxK6lCuh8xpCSys0Ekl3hiX19GusGBuP8X4cQ8rw="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Based on the **\"notifier: things we learned the hard way\"** runbook page, the last time customers with known good addresses stopped receiving emails in their inbox:\n\n* **What happened:** Following a sending-domain switch on 2026-02-24, SendGrid's suppression list picked up 2,312 addresses from soft bounces during the switch, and SendGrid stopped sending to them.\n* **Resolution:** Yuki verified that the addresses were valid and removed them from the SendGrid suppression list on 2026-02-26. \n\n**Recommended checks from the runbook if this happens:**\n1. **Check provider** before assuming the application dropped the emails silently.\n2. Check the suppression list directly in SendGrid to see if addresses were added during cutovers/domain changes (if an address is suppressed on their side, `notifier` will not attempt redelivery on its own).\n3. **Read logs** in `sorrel-prod-*` to confirm whether the worker received an acceptance or an outright bounce from the provider.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207387,
+     "cached": 207331,
+     "out": 228,
+     "cost_usd": 0.016446824999999998
+    }
+   ],
+   "prompt_tokens": 207387,
+   "cached_tokens": 207331,
+   "out_tokens": 228,
+   "cost_usd": 0.016446824999999998,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true,
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "ow-taken-time",
+   "kind": "other words",
+   "question": "A customer says the 3 pm time is greyed out but nobody actually booked it. What's going on?",
+   "answer_pages": [
+    "handover-2026-04-20"
+   ],
+   "answer": "Based on the documentation, this symptom typically happens for a couple of known reasons:\n\n1. **An abandoned checkout hold:** When a customer starts checkout and then leaves, the slot is held temporarily. Under normal behavior, the hold should be released after 10 minutes, but if the hold reaper job is paused or lagging, abandoned slots remain held until a 30-minute safety timeout and show as taken/unavailable in the meantime (*On-call handover, week of 2026-04-20*).\n2. **A stale search index or database replica lag:**\n   - If the business or availability discovery relies on the search index and the nightly rebuild failed or drifted, the search results may display outdated slot states (*Postmortem: api search index stale for a day*).\n   - If database read replicas are experiencing replication lag (over 10 seconds), read queries may show outdated slot availability or ghost bookings (*How to check replica lag on api*; *Postmortem: api replica lag double-booked slots in eu-west*).\n\nIf none of these apply to the specific booking, the pages do not provide another explanation.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 4.4,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nA customer says the 3 pm time is greyed out but nobody actually booked it. What's going on?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:52:15.962+00:00",
+     "wall_s": 4.316,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the documentation, this symptom typically happens for a couple of known reasons:\n\n1. **An abandoned checkout hold:** When a customer starts checkout and then leaves, the slot is held temporarily. Under normal behavior, the hold should be released after 10 minutes, but if the hold reaper job is paused or lagging, abandoned slots remain held until a 30-minute safety timeout and show as taken/unavailable in the meantime (*On-call handover, week of 2026-04-20*).\n2. **A stale search index or database replica lag:**\n   - If the business or availability discovery relies on the search index and the nightly rebuild failed or drifted, the search results may display outdated slot states (*Postmortem: api search index stale for a day*).\n   - If database read replicas are experiencing replication lag (over 10 seconds), read queries may show outdated slot availability or ghost bookings (*How to check replica lag on api*; *Postmortem: api replica lag double-booked slots in eu-west*).\n\nIf none of these apply to the specific booking, the pages do not provide another explanation.",
+           "thoughtSignature": "EmkKZwFpFH0TewlcfZbBUFJNhpBNk0V9NIzg0f9tB47GIrbrCJm+mM1G0uyujbYGV+ooypdOziObCTwPfLWH3crJqrbwzrZ6hoqi6nuQdLVPlWyKVRoQZAe57PfIJBz0SljFdYk48htL5As="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207381,
+       "candidatesTokenCount": 238,
+       "totalTokenCount": 207619,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207381
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "QG3KatmcFtjd9tMPqILAiQM"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Based on the documentation, this symptom typically happens for a couple of known reasons:\n\n1. **An abandoned checkout hold:** When a customer starts checkout and then leaves, the slot is held temporarily. Under normal behavior, the hold should be released after 10 minutes, but if the hold reaper job is paused or lagging, abandoned slots remain held until a 30-minute safety timeout and show as taken/unavailable in the meantime (*On-call handover, week of 2026-04-20*).\n2. **A stale search index or database replica lag:**\n   - If the business or availability discovery relies on the search index and the nightly rebuild failed or drifted, the search results may display outdated slot states (*Postmortem: api search index stale for a day*).\n   - If database read replicas are experiencing replication lag (over 10 seconds), read queries may show outdated slot availability or ghost bookings (*How to check replica lag on api*; *Postmortem: api replica lag double-booked slots in eu-west*).\n\nIf none of these apply to the specific booking, the pages do not provide another explanation.",
+        "thoughtSignature": "EmkKZwFpFH0TewlcfZbBUFJNhpBNk0V9NIzg0f9tB47GIrbrCJm+mM1G0uyujbYGV+ooypdOziObCTwPfLWH3crJqrbwzrZ6hoqi6nuQdLVPlWyKVRoQZAe57PfIJBz0SljFdYk48htL5As="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Based on the documentation, this symptom typically happens for a couple of known reasons:\n\n1. **An abandoned checkout hold:** When a customer starts checkout and then leaves, the slot is held temporarily. Under normal behavior, the hold should be released after 10 minutes, but if the hold reaper job is paused or lagging, abandoned slots remain held until a 30-minute safety timeout and show as taken/unavailable in the meantime (*On-call handover, week of 2026-04-20*).\n2. **A stale search index or database replica lag:**\n   - If the business or availability discovery relies on the search index and the nightly rebuild failed or drifted, the search results may display outdated slot states (*Postmortem: api search index stale for a day*).\n   - If database read replicas are experiencing replication lag (over 10 seconds), read queries may show outdated slot availability or ghost bookings (*How to check replica lag on api*; *Postmortem: api replica lag double-booked slots in eu-west*).\n\nIf none of these apply to the specific booking, the pages do not provide another explanation.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207381,
+     "cached": 207331,
+     "out": 238,
+     "cost_usd": 0.016479824999999997
+    }
+   ],
+   "prompt_tokens": 207381,
+   "cached_tokens": 207331,
+   "out_tokens": 238,
+   "cost_usd": 0.016479824999999997,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": true
+   }
+  },
+  {
+   "id": "ow-kicked-out",
+   "kind": "other words",
+   "question": "This morning all our users got bounced out of their accounts together, and getting back in was really slow. Seen that before?",
+   "answer_pages": [
+    "handover-2026-07-20"
+   ],
+   "answer": "Yes, this has happened before. \n\nAccording to the **\"On-call handover, week of 2026-07-20\"** documentation (under *What happened*):\n\n* **When:** Wednesday, 2026-07-15 at 09:00 JST.\n* **What happened:** A **token refresh stampede** occurred because every `web` session issued before a signing key rotation expired at the exact same moment. \n* **Symptom:** All users were forced to sign in again at once, causing sign-in p95 latency to spike to 9 seconds for 14 minutes.\n* **Fix applied:** Priya added jitter to session expiry times so that expiration would be spread out rather than happening simultaneously.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 66.57,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nThis morning all our users got bounced out of their accounts together, and getting back in was really slow. Seen that before?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:53:17.659+00:00",
+     "wall_s": 5.413,
+     "retries": [
+      {
+       "why": "HTTP 429",
+       "at": "2026-10-10T16:52:16.537+00:00",
+       "body": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_paid_tier_input_token_count, limit: 2000000, model: gemini-3.8-flash\\nPlease retry in 43.084941079s.\",\n    \"status\": \"RESOURCE_EXH"
+      },
+      {
+       "why": "HTTP 429",
+       "at": "2026-10-10T16:52:36.806+00:00",
+       "body": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_paid_tier_input_token_count, limit: 2000000, model: gemini-3.8-flash\\nPlease retry in 22.720166786s.\",\n    \"status\": \"RESOURCE_EXH"
+      },
+      {
+       "why": "HTTP 429",
+       "at": "2026-10-10T16:52:57.163+00:00",
+       "body": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_paid_tier_input_token_count, limit: 2000000, model: gemini-3.8-flash\\nPlease retry in 2.276133672s.\",\n    \"status\": \"RESOURCE_EXHA"
+      }
+     ],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Yes, this has happened before. \n\nAccording to the **\"On-call handover, week of 2026-07-20\"** documentation (under *What happened*):\n\n* **When:** Wednesday, 2026-07-15 at 09:00 JST.\n* **What happened:** A **token refresh stampede** occurred because every `web` session issued before a signing key rotation expired at the exact same moment. \n* **Symptom:** All users were forced to sign in again at once, causing sign-in p95 latency to spike to 9 seconds for 14 minutes.\n* **Fix applied:** Priya added jitter to session expiry times so that expiration would be spread out rather than happening simultaneously.",
+           "thoughtSignature": "EmkKZwFpFH0TqwNBaIuXH/0nbeV+Nmlx4AFaYrFoFCYdVwCOgeSU6Jh0pALtvsWNnEQ6cuU73rN3moSq5e3UH8OsZHMk+3xk6eODzZf0xpYPVaYZZgTvEScO9MKJukyCpf+zMnNPt5eiz8I="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207382,
+       "candidatesTokenCount": 167,
+       "totalTokenCount": 207549,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207382
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "fm3KarWcCrOc2roP0rmhqAU"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Yes, this has happened before. \n\nAccording to the **\"On-call handover, week of 2026-07-20\"** documentation (under *What happened*):\n\n* **When:** Wednesday, 2026-07-15 at 09:00 JST.\n* **What happened:** A **token refresh stampede** occurred because every `web` session issued before a signing key rotation expired at the exact same moment. \n* **Symptom:** All users were forced to sign in again at once, causing sign-in p95 latency to spike to 9 seconds for 14 minutes.\n* **Fix applied:** Priya added jitter to session expiry times so that expiration would be spread out rather than happening simultaneously.",
+        "thoughtSignature": "EmkKZwFpFH0TqwNBaIuXH/0nbeV+Nmlx4AFaYrFoFCYdVwCOgeSU6Jh0pALtvsWNnEQ6cuU73rN3moSq5e3UH8OsZHMk+3xk6eODzZf0xpYPVaYZZgTvEScO9MKJukyCpf+zMnNPt5eiz8I="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Yes, this has happened before. \n\nAccording to the **\"On-call handover, week of 2026-07-20\"** documentation (under *What happened*):\n\n* **When:** Wednesday, 2026-07-15 at 09:00 JST.\n* **What happened:** A **token refresh stampede** occurred because every `web` session issued before a signing key rotation expired at the exact same moment. \n* **Symptom:** All users were forced to sign in again at once, causing sign-in p95 latency to spike to 9 seconds for 14 minutes.\n* **Fix applied:** Priya added jitter to session expiry times so that expiration would be spread out rather than happening simultaneously.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207382,
+     "cached": 207331,
+     "out": 167,
+     "cost_usd": 0.016214324999999998
+    }
+   ],
+   "prompt_tokens": 207382,
+   "cached_tokens": 207331,
+   "out_tokens": 167,
+   "cost_usd": 0.016214324999999998,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "ow-us-texts",
+   "kind": "other words",
+   "question": "Texts to American customers show as sent but people aren't getting them. Why?",
+   "answer_pages": [
+    "handover-2026-06-08"
+   ],
+   "answer": "Based on the documentation (specifically the handover from the week of 2026-06-08), this issue is caused by **A2P filtering by US mobile carriers**. \n\nWhen this occurred previously:\n* Twilio showed the reminders/messages as delivered to the carrier, but carriers filtered them out before they reached handsets.\n* The issue was resolved by having Tom (the notifier service owner) approve and complete the **10DLC campaign registration** with Twilio.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 5.43,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nTexts to American customers show as sent but people aren't getting them. Why?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:52:17.010+00:00",
+     "wall_s": 5.339,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the documentation (specifically the handover from the week of 2026-06-08), this issue is caused by **A2P filtering by US mobile carriers**. \n\nWhen this occurred previously:\n* Twilio showed the reminders/messages as delivered to the carrier, but carriers filtered them out before they reached handsets.\n* The issue was resolved by having Tom (the notifier service owner) approve and complete the **10DLC campaign registration** with Twilio.",
+           "thoughtSignature": "EmkKZwFpFH0TnkHgAPE3o2dzRSh+nG6OdY0MFRX/4gNX9CeX5ol8XX9+UOD1GXlv6pcNdm7q1VcQ5EJH3lEhDVhm3qxs3GhdkSBHO6A5OjhIVnT3sGtQSYrj0NEzZN8Mf61yAJfDWXxDyrM="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207374,
+       "candidatesTokenCount": 101,
+       "totalTokenCount": 207475,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207374
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "QW3KatKiHKba9tMPi4aV4Qk"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Based on the documentation (specifically the handover from the week of 2026-06-08), this issue is caused by **A2P filtering by US mobile carriers**. \n\nWhen this occurred previously:\n* Twilio showed the reminders/messages as delivered to the carrier, but carriers filtered them out before they reached handsets.\n* The issue was resolved by having Tom (the notifier service owner) approve and complete the **10DLC campaign registration** with Twilio.",
+        "thoughtSignature": "EmkKZwFpFH0TnkHgAPE3o2dzRSh+nG6OdY0MFRX/4gNX9CeX5ol8XX9+UOD1GXlv6pcNdm7q1VcQ5EJH3lEhDVhm3qxs3GhdkSBHO6A5OjhIVnT3sGtQSYrj0NEzZN8Mf61yAJfDWXxDyrM="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Based on the documentation (specifically the handover from the week of 2026-06-08), this issue is caused by **A2P filtering by US mobile carriers**. \n\nWhen this occurred previously:\n* Twilio showed the reminders/messages as delivered to the carrier, but carriers filtered them out before they reached handsets.\n* The issue was resolved by having Tom (the notifier service owner) approve and complete the **10DLC campaign registration** with Twilio.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207374,
+     "cached": 207331,
+     "out": 101,
+     "cost_usd": 0.015960824999999998
+    }
+   ],
+   "prompt_tokens": 207374,
+   "cached_tokens": 207331,
+   "out_tokens": 101,
+   "cost_usd": 0.015960824999999998,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "ow-wrong-language",
+   "kind": "other words",
+   "question": "Some Japanese customers got their reminder in English yesterday. Has that happened before, and what fixed it?",
+   "answer_pages": [
+    "handover-2026-08-24"
+   ],
+   "answer": "Yes, this has happened before. \n\nAccording to the **\"On-call handover, week of 2026-08-24\"** page:\n\n* **What happened:** On Tuesday, 2026-08-18, following a `notifier` template deploy, 1,140 reminders went out in English (`en`) for Japanese (`ja`) accounts over about 25 minutes because the template cache key did not include the locale.\n* **What fixed it:** Yuki fixed it the same day by adding the locale to the template cache key.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 64.43,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nSome Japanese customers got their reminder in English yesterday. Has that happened before, and what fixed it?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:53:19.819+00:00",
+     "wall_s": 3.469,
+     "retries": [
+      {
+       "why": "HTTP 429",
+       "at": "2026-10-10T16:52:18.922+00:00",
+       "body": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_paid_tier_input_token_count, limit: 2000000, model: gemini-3.8-flash\\nPlease retry in 40.722412665s.\",\n    \"status\": \"RESOURCE_EXH"
+      },
+      {
+       "why": "HTTP 429",
+       "at": "2026-10-10T16:52:39.228+00:00",
+       "body": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_paid_tier_input_token_count, limit: 2000000, model: gemini-3.8-flash\\nPlease retry in 20.368320509s.\",\n    \"status\": \"RESOURCE_EXH"
+      },
+      {
+       "why": "HTTP 429",
+       "at": "2026-10-10T16:52:59.518+00:00",
+       "body": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_paid_tier_input_token_count, limit: 2000000, model: gemini-3.8-flash\\nPlease retry in 71.768324ms.\",\n    \"status\": \"RESOURCE_EXHAU"
+      }
+     ],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Yes, this has happened before. \n\nAccording to the **\"On-call handover, week of 2026-08-24\"** page:\n\n* **What happened:** On Tuesday, 2026-08-18, following a `notifier` template deploy, 1,140 reminders went out in English (`en`) for Japanese (`ja`) accounts over about 25 minutes because the template cache key did not include the locale.\n* **What fixed it:** Yuki fixed it the same day by adding the locale to the template cache key.",
+           "thoughtSignature": "EmkKZwFpFH0TogLABi/h2po/+WkwbJrrHqtQhSMXVF19IKvv1btxSDwNXe5nsw6NzbwUHJXhDBWMs7Tt40qEdK7aAXeOUTMfKgVnN2Ww9gzrQqhpovU0OtmVcXOBam8OBIms7TpQmWRyOls="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207377,
+       "candidatesTokenCount": 125,
+       "totalTokenCount": 207502,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207377
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "gG3KauDwEZ2Tvr0PxODYsQ4"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Yes, this has happened before. \n\nAccording to the **\"On-call handover, week of 2026-08-24\"** page:\n\n* **What happened:** On Tuesday, 2026-08-18, following a `notifier` template deploy, 1,140 reminders went out in English (`en`) for Japanese (`ja`) accounts over about 25 minutes because the template cache key did not include the locale.\n* **What fixed it:** Yuki fixed it the same day by adding the locale to the template cache key.",
+        "thoughtSignature": "EmkKZwFpFH0TogLABi/h2po/+WkwbJrrHqtQhSMXVF19IKvv1btxSDwNXe5nsw6NzbwUHJXhDBWMs7Tt40qEdK7aAXeOUTMfKgVnN2Ww9gzrQqhpovU0OtmVcXOBam8OBIms7TpQmWRyOls="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Yes, this has happened before. \n\nAccording to the **\"On-call handover, week of 2026-08-24\"** page:\n\n* **What happened:** On Tuesday, 2026-08-18, following a `notifier` template deploy, 1,140 reminders went out in English (`en`) for Japanese (`ja`) accounts over about 25 minutes because the template cache key did not include the locale.\n* **What fixed it:** Yuki fixed it the same day by adding the locale to the template cache key.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207377,
+     "cached": 207331,
+     "out": 125,
+     "cost_usd": 0.016053075
+    }
+   ],
+   "prompt_tokens": 207377,
+   "cached_tokens": 207331,
+   "out_tokens": 125,
+   "cost_usd": 0.016053075,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true,
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "ow-big-salon-slow",
+   "kind": "other words",
+   "question": "Big salons say their schedule screen takes forever to open, but small shops are fine. Is that known?",
+   "answer_pages": [
+    "handover-2026-02-02"
+   ],
+   "answer": "Yes, this is a known issue that was previously investigated and fixed in early 2026.\n\nAccording to the **\"On-call handover, week of 2026-02-02\"** page:\n\n* **Cause:** There was an N+1 query issue on the week-view calendar endpoint in `api`. For businesses with 40 or more staff, `api` fetched each staff member's bookings one query at a time, driving the endpoint's p95 latency up to ~6 seconds.\n* **Resolution:** Daniel fixed this on Thursday, 2026-01-29 by batching the staff lookups into a single query, which brought p95 latency down to approximately 700 ms.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 64.49,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nBig salons say their schedule screen takes forever to open, but small shops are fine. Is that known?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:53:21.422+00:00",
+     "wall_s": 3.403,
+     "retries": [
+      {
+       "why": "HTTP 429",
+       "at": "2026-10-10T16:52:20.363+00:00",
+       "body": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_paid_tier_input_token_count, limit: 2000000, model: gemini-3.8-flash\\nPlease retry in 39.242969477s.\",\n    \"status\": \"RESOURCE_EXH"
+      },
+      {
+       "why": "HTTP 429",
+       "at": "2026-10-10T16:52:40.675+00:00",
+       "body": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_paid_tier_input_token_count, limit: 2000000, model: gemini-3.8-flash\\nPlease retry in 18.952512469s.\",\n    \"status\": \"RESOURCE_EXH"
+      },
+      {
+       "why": "HTTP 429",
+       "at": "2026-10-10T16:53:00.977+00:00",
+       "body": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_paid_tier_input_token_count, limit: 2000000, model: gemini-3.8-flash\\nPlease retry in 58.561070481s.\",\n    \"status\": \"RESOURCE_EXH"
+      }
+     ],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Yes, this is a known issue that was previously investigated and fixed in early 2026.\n\nAccording to the **\"On-call handover, week of 2026-02-02\"** page:\n\n* **Cause:** There was an N+1 query issue on the week-view calendar endpoint in `api`. For businesses with 40 or more staff, `api` fetched each staff member's bookings one query at a time, driving the endpoint's p95 latency up to ~6 seconds.\n* **Resolution:** Daniel fixed this on Thursday, 2026-01-29 by batching the staff lookups into a single query, which brought p95 latency down to approximately 700 ms.",
+           "thoughtSignature": "EmkKZwFpFH0T/hjdsSfMJyfzhZv2wmJ4E5EjA/VNF9AEfMwhfB2NqxJ8MoLyiLgylnipyNv9URkrBZ6BsSOA5kNJiKdrJ8OSL8yHGAjadTBvtv96CfDV/V4jkSlPwNdArm+BfSXEclh/waY="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207378,
+       "candidatesTokenCount": 163,
+       "totalTokenCount": 207541,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207378
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "gW3KavrMMKDDvr0P542ksQ4"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Yes, this is a known issue that was previously investigated and fixed in early 2026.\n\nAccording to the **\"On-call handover, week of 2026-02-02\"** page:\n\n* **Cause:** There was an N+1 query issue on the week-view calendar endpoint in `api`. For businesses with 40 or more staff, `api` fetched each staff member's bookings one query at a time, driving the endpoint's p95 latency up to ~6 seconds.\n* **Resolution:** Daniel fixed this on Thursday, 2026-01-29 by batching the staff lookups into a single query, which brought p95 latency down to approximately 700 ms.",
+        "thoughtSignature": "EmkKZwFpFH0T/hjdsSfMJyfzhZv2wmJ4E5EjA/VNF9AEfMwhfB2NqxJ8MoLyiLgylnipyNv9URkrBZ6BsSOA5kNJiKdrJ8OSL8yHGAjadTBvtv96CfDV/V4jkSlPwNdArm+BfSXEclh/waY="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Yes, this is a known issue that was previously investigated and fixed in early 2026.\n\nAccording to the **\"On-call handover, week of 2026-02-02\"** page:\n\n* **Cause:** There was an N+1 query issue on the week-view calendar endpoint in `api`. For businesses with 40 or more staff, `api` fetched each staff member's bookings one query at a time, driving the endpoint's p95 latency up to ~6 seconds.\n* **Resolution:** Daniel fixed this on Thursday, 2026-01-29 by batching the staff lookups into a single query, which brought p95 latency down to approximately 700 ms.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207378,
+     "cached": 207331,
+     "out": 163,
+     "cost_usd": 0.016196324999999998
+    }
+   ],
+   "prompt_tokens": 207378,
+   "cached_tokens": 207331,
+   "out_tokens": 163,
+   "cost_usd": 0.016196324999999998,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "ow-empty-rectangles",
+   "kind": "other words",
+   "question": "A few people's surnames come out as empty rectangles when they book. What's that?",
+   "answer_pages": [
+    "team-web-notes"
+   ],
+   "answer": "This issue (known as \"tofu\") happens because those customers' surnames contain rare kanji (such as 髙 or 﨑) that were omitted from the subsetted web font. \n\nAccording to the **\"web: odd things we keep seeing\"** page:\n- When a customer enters rare kanji characters not included in the primary subset web font, they render as empty boxes.\n- Priya resolved this on 2026-06-11 by adding a CSS fallback to the full Noto Sans JP font.\n- When seen on call: verify whether the browser is loading the fallback font; no action is required unless a new unmapped glyph set appears outside Japanese names.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 44.52,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nA few people's surnames come out as empty rectangles when they book. What's that?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:53:03.223+00:00",
+     "wall_s": 3.586,
+     "retries": [
+      {
+       "why": "HTTP 429",
+       "at": "2026-10-10T16:52:22.416+00:00",
+       "body": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_paid_tier_input_token_count, limit: 2000000, model: gemini-3.8-flash\\nPlease retry in 37.137141248s.\",\n    \"status\": \"RESOURCE_EXH"
+      },
+      {
+       "why": "HTTP 429",
+       "at": "2026-10-10T16:52:42.782+00:00",
+       "body": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_paid_tier_input_token_count, limit: 2000000, model: gemini-3.8-flash\\nPlease retry in 16.717859729s.\",\n    \"status\": \"RESOURCE_EXH"
+      }
+     ],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "This issue (known as \"tofu\") happens because those customers' surnames contain rare kanji (such as 髙 or 﨑) that were omitted from the subsetted web font. \n\nAccording to the **\"web: odd things we keep seeing\"** page:\n- When a customer enters rare kanji characters not included in the primary subset web font, they render as empty boxes.\n- Priya resolved this on 2026-06-11 by adding a CSS fallback to the full Noto Sans JP font.\n- When seen on call: verify whether the browser is loading the fallback font; no action is required unless a new unmapped glyph set appears outside Japanese names.",
+           "thoughtSignature": "EmkKZwFpFH0TxSdptrJim2NSb6J3xq0n0jZi20iD7h+F8gugExiBlB1A1EgiyrhdY5WPAVKkUq93HHOBRCsK3j1BNdD7r3xQ8IPq9h3ky0CBJjgwyjwHwWkVYvgMJF/fLDndRrEHtaAOu3U="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207377,
+       "candidatesTokenCount": 145,
+       "totalTokenCount": 207522,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207377
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "b23KaprcJrXMrfcPtKzfqAU"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "This issue (known as \"tofu\") happens because those customers' surnames contain rare kanji (such as 髙 or 﨑) that were omitted from the subsetted web font. \n\nAccording to the **\"web: odd things we keep seeing\"** page:\n- When a customer enters rare kanji characters not included in the primary subset web font, they render as empty boxes.\n- Priya resolved this on 2026-06-11 by adding a CSS fallback to the full Noto Sans JP font.\n- When seen on call: verify whether the browser is loading the fallback font; no action is required unless a new unmapped glyph set appears outside Japanese names.",
+        "thoughtSignature": "EmkKZwFpFH0TxSdptrJim2NSb6J3xq0n0jZi20iD7h+F8gugExiBlB1A1EgiyrhdY5WPAVKkUq93HHOBRCsK3j1BNdD7r3xQ8IPq9h3ky0CBJjgwyjwHwWkVYvgMJF/fLDndRrEHtaAOu3U="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "This issue (known as \"tofu\") happens because those customers' surnames contain rare kanji (such as 髙 or 﨑) that were omitted from the subsetted web font. \n\nAccording to the **\"web: odd things we keep seeing\"** page:\n- When a customer enters rare kanji characters not included in the primary subset web font, they render as empty boxes.\n- Priya resolved this on 2026-06-11 by adding a CSS fallback to the full Noto Sans JP font.\n- When seen on call: verify whether the browser is loading the fallback font; no action is required unless a new unmapped glyph set appears outside Japanese names.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207377,
+     "cached": 207331,
+     "out": 145,
+     "cost_usd": 0.016128075
+    }
+   ],
+   "prompt_tokens": 207377,
+   "cached_tokens": 207331,
+   "out_tokens": 145,
+   "cost_usd": 0.016128075,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true,
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "hid-evacuation",
+   "kind": "hidden",
+   "question": "How long did the eu-west evacuation game day in February take, and who ran it?",
+   "answer_pages": [
+    "handover-2026-02-23"
+   ],
+   "answer": "Based on the **On-call handover, week of 2026-02-23** page:\n\n* **Who ran it:** Sara\n* **How long it took:** 41 minutes end to end (against a target of 30 minutes)",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 2.96,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nHow long did the eu-west evacuation game day in February take, and who ran it?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:53:06.932+00:00",
+     "wall_s": 2.837,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the **On-call handover, week of 2026-02-23** page:\n\n* **Who ran it:** Sara\n* **How long it took:** 41 minutes end to end (against a target of 30 minutes)",
+           "thoughtSignature": "EmkKZwFpFH0TGzyq3Vumq3eU7rXEDlN2esDDX4jSziAjEGGr+31gIjNlyYKe97zcj8XVQKPxE2QRXhZRyZaYo94xRhhLtxviA69yxXqrFb8NC3ytEz28sr79CdBm9TWPusaD0WykPNaZOgQ="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207376,
+       "candidatesTokenCount": 58,
+       "totalTokenCount": 207434,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207376
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "c23Kas7EFr2KosUPw8P-sA4"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Based on the **On-call handover, week of 2026-02-23** page:\n\n* **Who ran it:** Sara\n* **How long it took:** 41 minutes end to end (against a target of 30 minutes)",
+        "thoughtSignature": "EmkKZwFpFH0TGzyq3Vumq3eU7rXEDlN2esDDX4jSziAjEGGr+31gIjNlyYKe97zcj8XVQKPxE2QRXhZRyZaYo94xRhhLtxviA69yxXqrFb8NC3ytEz28sr79CdBm9TWPusaD0WykPNaZOgQ="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Based on the **On-call handover, week of 2026-02-23** page:\n\n* **Who ran it:** Sara\n* **How long it took:** 41 minutes end to end (against a target of 30 minutes)",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207376,
+     "cached": 207331,
+     "out": 58,
+     "cost_usd": 0.015801074999999998
+    }
+   ],
+   "prompt_tokens": 207376,
+   "cached_tokens": 207331,
+   "out_tokens": 58,
+   "cost_usd": 0.015801074999999998,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true,
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "hid-restore-test",
+   "kind": "hidden",
+   "question": "When did the weekly restore test for the payments database start, and how long did the first restore take?",
+   "answer_pages": [
+    "handover-2026-04-27"
+   ],
+   "answer": "According to the \"On-call handover, week of 2026-04-27\" page, the weekly restore test for the payments database started on **Wednesday, 2026-04-22**, and the first restore took **52 minutes**.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 3.1,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhen did the weekly restore test for the payments database start, and how long did the first restore take?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:53:09.896+00:00",
+     "wall_s": 3.067,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the \"On-call handover, week of 2026-04-27\" page, the weekly restore test for the payments database started on **Wednesday, 2026-04-22**, and the first restore took **52 minutes**.",
+           "thoughtSignature": "EmkKZwFpFH0T6tK0m5XbEEaePClpaRb7zEziIb7rU3GNnX5FO6UaXUHnmya8W+UAUB0jMNX8i9T0+xOMZWYuv/jsnvVY8amxXMb93PSq1xBldVczGSFijNGoVvMSqYKQ+D/Shd/91FDw47U="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207378,
+       "candidatesTokenCount": 60,
+       "totalTokenCount": 207438,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207378
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "dm3Kat3PELip9tMP1cOdkQ0"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "According to the \"On-call handover, week of 2026-04-27\" page, the weekly restore test for the payments database started on **Wednesday, 2026-04-22**, and the first restore took **52 minutes**.",
+        "thoughtSignature": "EmkKZwFpFH0T6tK0m5XbEEaePClpaRb7zEziIb7rU3GNnX5FO6UaXUHnmya8W+UAUB0jMNX8i9T0+xOMZWYuv/jsnvVY8amxXMb93PSq1xBldVczGSFijNGoVvMSqYKQ+D/Shd/91FDw47U="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "According to the \"On-call handover, week of 2026-04-27\" page, the weekly restore test for the payments database started on **Wednesday, 2026-04-22**, and the first restore took **52 minutes**.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207378,
+     "cached": 207331,
+     "out": 60,
+     "cost_usd": 0.015810075
+    }
+   ],
+   "prompt_tokens": 207378,
+   "cached_tokens": 207331,
+   "out_tokens": 60,
+   "cost_usd": 0.015810075,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true,
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "hid-sendgrid-quota",
+   "kind": "hidden",
+   "question": "When did we raise the sendgrid daily quota for the year-end campaign, and to what?",
+   "answer_pages": [
+    "handover-2025-12-22"
+   ],
+   "answer": "According to the on-call handover note for the week of 2025-12-22, Tom raised the SendGrid daily quota on the marketing stream to **600,000** on **Tuesday, 2025-12-16** for the year-end campaign (it was scheduled to go back down on 2026-01-05).",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 8.59,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhen did we raise the sendgrid daily quota for the year-end campaign, and to what?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:53:12.999+00:00",
+     "wall_s": 8.529,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the on-call handover note for the week of 2025-12-22, Tom raised the SendGrid daily quota on the marketing stream to **600,000** on **Tuesday, 2025-12-16** for the year-end campaign (it was scheduled to go back down on 2026-01-05).",
+           "thoughtSignature": "EmkKZwFpFH0TqNx5U4bSufQWGotrhQZA2MBxWST/6g5mUDKZVhRVDf9T6Fq0ePuuV5wkguwqANnSAbZ+EjfL96J0uRb4CXPgHlqa2gWwfUKdXJ2/EAHNee0wobrf+HwbTqkrTTmMqC5bzXs="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207377,
+       "candidatesTokenCount": 88,
+       "totalTokenCount": 207465,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207377
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "eW3KaqPsHJS7vr0PgcCRoAM"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "According to the on-call handover note for the week of 2025-12-22, Tom raised the SendGrid daily quota on the marketing stream to **600,000** on **Tuesday, 2025-12-16** for the year-end campaign (it was scheduled to go back down on 2026-01-05).",
+        "thoughtSignature": "EmkKZwFpFH0TqNx5U4bSufQWGotrhQZA2MBxWST/6g5mUDKZVhRVDf9T6Fq0ePuuV5wkguwqANnSAbZ+EjfL96J0uRb4CXPgHlqa2gWwfUKdXJ2/EAHNee0wobrf+HwbTqkrTTmMqC5bzXs="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "According to the on-call handover note for the week of 2025-12-22, Tom raised the SendGrid daily quota on the marketing stream to **600,000** on **Tuesday, 2025-12-16** for the year-end campaign (it was scheduled to go back down on 2026-01-05).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207377,
+     "cached": 207331,
+     "out": 88,
+     "cost_usd": 0.015914325
+    }
+   ],
+   "prompt_tokens": 207377,
+   "cached_tokens": 207331,
+   "out_tokens": 88,
+   "cost_usd": 0.015914325,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true,
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "hid-firewall-partner",
+   "kind": "hidden",
+   "question": "Which partner did the cloudflare firewall rule block in May, and how was it fixed?",
+   "answer_pages": [
+    "handover-2026-05-25"
+   ],
+   "answer": "Based on the **On-call handover, week of 2026-05-25** page:\n\n* **Partner blocked:** **Hanabi Booking** (their partner sync, which runs from their Osaka servers, was blocked for about 2 hours by a Cloudflare firewall rule added for bot traffic).\n* **How it was fixed:** **Aiko added Hanabi's IP range to the rule's allow list.**",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 2.83,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhich partner did the cloudflare firewall rule block in May, and how was it fixed?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:53:21.594+00:00",
+     "wall_s": 2.788,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the **On-call handover, week of 2026-05-25** page:\n\n* **Partner blocked:** **Hanabi Booking** (their partner sync, which runs from their Osaka servers, was blocked for about 2 hours by a Cloudflare firewall rule added for bot traffic).\n* **How it was fixed:** **Aiko added Hanabi's IP range to the rule's allow list.**",
+           "thoughtSignature": "EmkKZwFpFH0TdUdkhpnpIchqXrXD+napvfeuqHhYhPxSabDwwpWutMTjYJC0zpjvotY7/3at5T7Pxh+Ti869YG3GLOolJDpE4O/664bGQs9ER2hNgDvaazQ2PddcrgahVkpLKkIdPDO5Wd0="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207375,
+       "candidatesTokenCount": 92,
+       "totalTokenCount": 207467,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207375
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "gm3Kao6tBNDLrfcPpqLy2QI"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Based on the **On-call handover, week of 2026-05-25** page:\n\n* **Partner blocked:** **Hanabi Booking** (their partner sync, which runs from their Osaka servers, was blocked for about 2 hours by a Cloudflare firewall rule added for bot traffic).\n* **How it was fixed:** **Aiko added Hanabi's IP range to the rule's allow list.**",
+        "thoughtSignature": "EmkKZwFpFH0TdUdkhpnpIchqXrXD+napvfeuqHhYhPxSabDwwpWutMTjYJC0zpjvotY7/3at5T7Pxh+Ti869YG3GLOolJDpE4O/664bGQs9ER2hNgDvaazQ2PddcrgahVkpLKkIdPDO5Wd0="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Based on the **On-call handover, week of 2026-05-25** page:\n\n* **Partner blocked:** **Hanabi Booking** (their partner sync, which runs from their Osaka servers, was blocked for about 2 hours by a Cloudflare firewall rule added for bot traffic).\n* **How it was fixed:** **Aiko added Hanabi's IP range to the rule's allow list.**",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207375,
+     "cached": 207331,
+     "out": 92,
+     "cost_usd": 0.015927825
+    }
+   ],
+   "prompt_tokens": 207375,
+   "cached_tokens": 207331,
+   "out_tokens": 92,
+   "cost_usd": 0.015927825,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true,
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "hid-noor-first",
+   "kind": "hidden",
+   "question": "When did Noor take her first primary on-call shift on her own?",
+   "answer_pages": [
+    "handover-2026-05-11"
+   ],
+   "answer": "Based on the **On-call handover, week of 2026-05-11** page, Noor took her first primary on-call shift on her own on **2026-05-11** (after completing two shadow shifts in April).",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 7.56,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhen did Noor take her first primary on-call shift on her own?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:53:23.112+00:00",
+     "wall_s": 7.552,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the **On-call handover, week of 2026-05-11** page, Noor took her first primary on-call shift on her own on **2026-05-11** (after completing two shadow shifts in April).",
+           "thoughtSignature": "EtUFCtIFAWkUfROSQSClxB9L9VloZxXeUSsEjgJSn2m25XrAfzOerR1Sm3txEn95qP6SPuARYgbPfwUP3Sb5t72AuiRINCuRkJPPsdDs8tEOXqxB2VYdO8rv6Zk40u0DwjAy5MnMuy3uE+FYyybJVTTgUVyXP0R5cWs5KfVnthCe0GCHQnkAlFHzVDInM7gRJfXJQ3Yj8S/rEe0lfGSr3kl/W5rjge/B6WDrW1oXzd6jHM/tBk6ceM1CAkJuWTDYFNYnHyv/xl/+lMSSHZyQ99aTkQkS3XEAZ4DReuKG6HaDTfHwmr9EePiYM7notNmUYSl/vT51OZmMK6BYhO4P1KY58XJdhR5kRZYxP6V2rsthhWC+Tyx/qYaw4sZvMGlsY+WlfuOQ6YBjNNKWyu/OI8a8WwsSIIjfCiPv7y6x4McjsuEauYaB3o0/C1ODurq3IpPfxNTXKkuvTAAoHwN5y7IJ+rn9JQeWPx7mtwPJZ5rak77lRtWSP5vT03Hk5UG+/ay6FcG4MOHdIiAFpuKJKhiRP/f2OOwk6XzKNDkjhsTHtOBBeZJUgTBvt3FcyXi+TCR4zmmUMX8CBjv3jxJQyrTLaTJVb5e71x2x3hSxHxOn4S/fpaxFzCrcrWo5DPaUm/0p5I78lA4nfLv3/gEFv2aQP8PHTWZrJIx/ia8bBHbnnY0xaRenhVeF6pH/c4EEdF/BkyZpSlTiv3/kGslJ7U+vc1BjoL7IAxg+ckxQipwgj1PetzitkcNrDgnGadpY7968D+l1Jl16mrDshzHP+z/N9GUTCqsEjCxRgb0Swz9qPKvHCbgM6wAlL4gI7eRGs2rPvwir+PgsklZZBMGX/WkOqcVVUppBhiZKiJRnlLvI0SlinO7YYPzFk6QmT4WVHIISGTpC9ROJ1CwP+zL0M6qzGTJjy5lNqQi9CfEEhlOAJG6gtrcVgiSGuWe/oMF/th0PyM6tZOQ="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207372,
+       "candidatesTokenCount": 59,
+       "totalTokenCount": 207632,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207372
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "thoughtsTokenCount": 201,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "g23Kapy1I5vGvr0PuYqgwQ4"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Based on the **On-call handover, week of 2026-05-11** page, Noor took her first primary on-call shift on her own on **2026-05-11** (after completing two shadow shifts in April).",
+        "thoughtSignature": "EtUFCtIFAWkUfROSQSClxB9L9VloZxXeUSsEjgJSn2m25XrAfzOerR1Sm3txEn95qP6SPuARYgbPfwUP3Sb5t72AuiRINCuRkJPPsdDs8tEOXqxB2VYdO8rv6Zk40u0DwjAy5MnMuy3uE+FYyybJVTTgUVyXP0R5cWs5KfVnthCe0GCHQnkAlFHzVDInM7gRJfXJQ3Yj8S/rEe0lfGSr3kl/W5rjge/B6WDrW1oXzd6jHM/tBk6ceM1CAkJuWTDYFNYnHyv/xl/+lMSSHZyQ99aTkQkS3XEAZ4DReuKG6HaDTfHwmr9EePiYM7notNmUYSl/vT51OZmMK6BYhO4P1KY58XJdhR5kRZYxP6V2rsthhWC+Tyx/qYaw4sZvMGlsY+WlfuOQ6YBjNNKWyu/OI8a8WwsSIIjfCiPv7y6x4McjsuEauYaB3o0/C1ODurq3IpPfxNTXKkuvTAAoHwN5y7IJ+rn9JQeWPx7mtwPJZ5rak77lRtWSP5vT03Hk5UG+/ay6FcG4MOHdIiAFpuKJKhiRP/f2OOwk6XzKNDkjhsTHtOBBeZJUgTBvt3FcyXi+TCR4zmmUMX8CBjv3jxJQyrTLaTJVb5e71x2x3hSxHxOn4S/fpaxFzCrcrWo5DPaUm/0p5I78lA4nfLv3/gEFv2aQP8PHTWZrJIx/ia8bBHbnnY0xaRenhVeF6pH/c4EEdF/BkyZpSlTiv3/kGslJ7U+vc1BjoL7IAxg+ckxQipwgj1PetzitkcNrDgnGadpY7968D+l1Jl16mrDshzHP+z/N9GUTCqsEjCxRgb0Swz9qPKvHCbgM6wAlL4gI7eRGs2rPvwir+PgsklZZBMGX/WkOqcVVUppBhiZKiJRnlLvI0SlinO7YYPzFk6QmT4WVHIISGTpC9ROJ1CwP+zL0M6qzGTJjy5lNqQi9CfEEhlOAJG6gtrcVgiSGuWe/oMF/th0PyM6tZOQ="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Based on the **On-call handover, week of 2026-05-11** page, Noor took her first primary on-call shift on her own on **2026-05-11** (after completing two shadow shifts in April).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207372,
+     "cached": 207331,
+     "out": 260,
+     "cost_usd": 0.016555574999999996
+    }
+   ],
+   "prompt_tokens": 207372,
+   "cached_tokens": 207331,
+   "out_tokens": 260,
+   "cost_usd": 0.016555574999999996,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "hid-dst-2025",
+   "kind": "hidden",
+   "question": "Did the US clock change in November 2025 cause any booking problems?",
+   "answer_pages": [
+    "handover-2025-11-03"
+   ],
+   "answer": "No, it did not cause any problems. \n\nAccording to the handover notes for the week of 2025-11-03, the US clock change on Sunday, 2025-11-02 went cleanly: Daniel checked 212 bookings at `us-east` businesses for the days around the change and every one showed the correct time, with no customer reports received.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 6.55,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nDid the US clock change in November 2025 cause any booking problems?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:53:23.344+00:00",
+     "wall_s": 6.495,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "No, it did not cause any problems. \n\nAccording to the handover notes for the week of 2025-11-03, the US clock change on Sunday, 2025-11-02 went cleanly: Daniel checked 212 bookings at `us-east` businesses for the days around the change and every one showed the correct time, with no customer reports received.",
+           "thoughtSignature": "EmkKZwFpFH0Tl3O5UHoJFJu+zu9uJseCZMZ++4QZ2sLpqFOQQuo8WeZHmm6g8muzpsNbeKOmQQcXjPhV5/0Y6mFHlxRf6EZKL3d4P7uoSO2WWD91Lh1+we4bgmYyG4Ga855LWspEkO9BHI8="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207374,
+       "candidatesTokenCount": 87,
+       "totalTokenCount": 207461,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207374
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "g23KauCUL8ry2roP_9WUwQw"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "No, it did not cause any problems. \n\nAccording to the handover notes for the week of 2025-11-03, the US clock change on Sunday, 2025-11-02 went cleanly: Daniel checked 212 bookings at `us-east` businesses for the days around the change and every one showed the correct time, with no customer reports received.",
+        "thoughtSignature": "EmkKZwFpFH0Tl3O5UHoJFJu+zu9uJseCZMZ++4QZ2sLpqFOQQuo8WeZHmm6g8muzpsNbeKOmQQcXjPhV5/0Y6mFHlxRf6EZKL3d4P7uoSO2WWD91Lh1+we4bgmYyG4Ga855LWspEkO9BHI8="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "No, it did not cause any problems. \n\nAccording to the handover notes for the week of 2025-11-03, the US clock change on Sunday, 2025-11-02 went cleanly: Daniel checked 212 bookings at `us-east` businesses for the days around the change and every one showed the correct time, with no customer reports received.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207374,
+     "cached": 207331,
+     "out": 87,
+     "cost_usd": 0.015908324999999997
+    }
+   ],
+   "prompt_tokens": 207374,
+   "cached_tokens": 207331,
+   "out_tokens": 87,
+   "cost_usd": 0.015908324999999997,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "hid-golden-week",
+   "kind": "hidden",
+   "question": "What was the booking peak per minute during Golden Week 2026?",
+   "answer_pages": [
+    "handover-2026-05-04"
+   ],
+   "answer": "According to the \"On-call handover, week of 2026-05-04\" page, booking volume peaked on Saturday, 2026-05-02 at **1,960 bookings per minute** on `api` (at about 11:00 JST).",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 7.91,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhat was the booking peak per minute during Golden Week 2026?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:53:24.433+00:00",
+     "wall_s": 7.855,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the \"On-call handover, week of 2026-05-04\" page, booking volume peaked on Saturday, 2026-05-02 at **1,960 bookings per minute** on `api` (at about 11:00 JST).",
+           "thoughtSignature": "EmkKZwFpFH0TWMr/BpYFAPvSwFw4CKfoWFg7Psw1F4c54O3k4jMkK+rVYzkIV7W7uAjiwYrw/K6iAslxmOaFkFn34CmDc3/6h8hvIU51oJWI39M82JsYI1puYA1ckWHlH2FipW2K3ukJ8K0="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207373,
+       "candidatesTokenCount": 69,
+       "totalTokenCount": 207442,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207373
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "hG3KatTHNrPC0-kPiJeloAM"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "According to the \"On-call handover, week of 2026-05-04\" page, booking volume peaked on Saturday, 2026-05-02 at **1,960 bookings per minute** on `api` (at about 11:00 JST).",
+        "thoughtSignature": "EmkKZwFpFH0TWMr/BpYFAPvSwFw4CKfoWFg7Psw1F4c54O3k4jMkK+rVYzkIV7W7uAjiwYrw/K6iAslxmOaFkFn34CmDc3/6h8hvIU51oJWI39M82JsYI1puYA1ckWHlH2FipW2K3ukJ8K0="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "According to the \"On-call handover, week of 2026-05-04\" page, booking volume peaked on Saturday, 2026-05-02 at **1,960 bookings per minute** on `api` (at about 11:00 JST).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207373,
+     "cached": 207331,
+     "out": 69,
+     "cost_usd": 0.015840075
+    }
+   ],
+   "prompt_tokens": 207373,
+   "cached_tokens": 207331,
+   "out_tokens": 69,
+   "cost_usd": 0.015840075,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "hid-v1-off",
+   "kind": "hidden",
+   "question": "When were the old v1 partner API endpoints switched off?",
+   "answer_pages": [
+    "handover-2026-03-23"
+   ],
+   "answer": "Based on the **On-call handover, week of 2026-03-23** page, the old v1 partner API endpoints were switched off on **Wednesday, 2026-03-18**.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 10.12,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhen were the old v1 partner API endpoints switched off?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:53:24.849+00:00",
+     "wall_s": 10.109,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the **On-call handover, week of 2026-03-23** page, the old v1 partner API endpoints were switched off on **Wednesday, 2026-03-18**.",
+           "thoughtSignature": "EmkKZwFpFH0TA4yum7vjR+1EdNRKjijAprN7Wm2jL8IiwjdNa9gNFLee+rq3fGCV5GV3exSrTScxqGIwI5e+6n2Lp+yEIe1eco7YJvpEIQlNQGQya3I3jJv/X3wlnMpBK76f4wKpn+dvCPg="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207369,
+       "candidatesTokenCount": 51,
+       "totalTokenCount": 207420,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207369
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "hW3KatmTEKuT9tMP49XNiQM"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Based on the **On-call handover, week of 2026-03-23** page, the old v1 partner API endpoints were switched off on **Wednesday, 2026-03-18**.",
+        "thoughtSignature": "EmkKZwFpFH0TA4yum7vjR+1EdNRKjijAprN7Wm2jL8IiwjdNa9gNFLee+rq3fGCV5GV3exSrTScxqGIwI5e+6n2Lp+yEIe1eco7YJvpEIQlNQGQya3I3jJv/X3wlnMpBK76f4wKpn+dvCPg="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Based on the **On-call handover, week of 2026-03-23** page, the old v1 partner API endpoints were switched off on **Wednesday, 2026-03-18**.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207369,
+     "cached": 207331,
+     "out": 51,
+     "cost_usd": 0.015769574999999997
+    }
+   ],
+   "prompt_tokens": 207369,
+   "cached_tokens": 207331,
+   "out_tokens": 51,
+   "cost_usd": 0.015769574999999997,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "hid-year-end-payout",
+   "kind": "hidden",
+   "question": "How long did the year-end payout run take in December 2025?",
+   "answer_pages": [
+    "handover-2025-12-29"
+   ],
+   "answer": "According to the handover note for the week of 2025-12-29, the year-end payout run on Sunday, 2025-12-28 took **2 hours and 5 minutes** (starting at 23:00 JST and finishing at 01:05 JST), instead of the usual 38 minutes, due to year-end volume.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 5.61,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nHow long did the year-end payout run take in December 2025?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:53:29.898+00:00",
+     "wall_s": 5.418,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the handover note for the week of 2025-12-29, the year-end payout run on Sunday, 2025-12-28 took **2 hours and 5 minutes** (starting at 23:00 JST and finishing at 01:05 JST), instead of the usual 38 minutes, due to year-end volume.",
+           "thoughtSignature": "EmkKZwFpFH0ToFAwrDMd6EjXb3eldWIYwGgfnQgF4LPwg2waXpXqY3JniN6yeTGTiQRYMRdEYcfJe6Xhw7V7/eOJhI7LZ0ZdwAmOJOtKIuWFq4Bsd0y/7DW69ARCiuz/nzpJVHkasKO1Bu0="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207375,
+       "candidatesTokenCount": 89,
+       "totalTokenCount": 207464,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207375
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "im3Kap3gDcLV9tMP_6vfsAM"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "According to the handover note for the week of 2025-12-29, the year-end payout run on Sunday, 2025-12-28 took **2 hours and 5 minutes** (starting at 23:00 JST and finishing at 01:05 JST), instead of the usual 38 minutes, due to year-end volume.",
+        "thoughtSignature": "EmkKZwFpFH0ToFAwrDMd6EjXb3eldWIYwGgfnQgF4LPwg2waXpXqY3JniN6yeTGTiQRYMRdEYcfJe6Xhw7V7/eOJhI7LZ0ZdwAmOJOtKIuWFq4Bsd0y/7DW69ARCiuz/nzpJVHkasKO1Bu0="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "According to the handover note for the week of 2025-12-29, the year-end payout run on Sunday, 2025-12-28 took **2 hours and 5 minutes** (starting at 23:00 JST and finishing at 01:05 JST), instead of the usual 38 minutes, due to year-end volume.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207375,
+     "cached": 207331,
+     "out": 89,
+     "cost_usd": 0.015916575
+    }
+   ],
+   "prompt_tokens": 207375,
+   "cached_tokens": 207331,
+   "out_tokens": 89,
+   "cost_usd": 0.015916575,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "hid-cache-ratio",
+   "kind": "hidden",
+   "question": "The cloudflare cache hit ratio dropped to 61 % in August. What caused it?",
+   "answer_pages": [
+    "handover-2026-08-17"
+   ],
+   "answer": "Based on the **On-call handover, week of 2026-08-17** page, image resize URLs began carrying a timestamp query string, causing every image to appear new to the Cloudflare edge. \n\nAiko resolved it by setting the Cloudflare cache key to ignore that query parameter, which restored the cache hit ratio to above 90 % by Thursday.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 43.63,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nThe cloudflare cache hit ratio dropped to 61 % in August. What caused it?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:54:11.356+00:00",
+     "wall_s": 2.888,
+     "retries": [
+      {
+       "why": "HTTP 429",
+       "at": "2026-10-10T16:53:30.674+00:00",
+       "body": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_paid_tier_input_token_count, limit: 2000000, model: gemini-3.8-flash\\nPlease retry in 28.972342681s.\",\n    \"status\": \"RESOURCE_EXH"
+      },
+      {
+       "why": "HTTP 429",
+       "at": "2026-10-10T16:53:50.924+00:00",
+       "body": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_paid_tier_input_token_count, limit: 2000000, model: gemini-3.8-flash\\nPlease retry in 8.616414208s.\",\n    \"status\": \"RESOURCE_EXHA"
+      }
+     ],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the **On-call handover, week of 2026-08-17** page, image resize URLs began carrying a timestamp query string, causing every image to appear new to the Cloudflare edge. \n\nAiko resolved it by setting the Cloudflare cache key to ignore that query parameter, which restored the cache hit ratio to above 90 % by Thursday.",
+           "thoughtSignature": "EmkKZwFpFH0TbR1vFBV2AZY0NQl5wW4VcAJgHLk7hw66ivgrTO5HtXZXtHaLgDM8DQBDN5paMZ1Pez42DwszTMxhfU87hGx1U0RO1pA3j/lR2GRHOZH90Nu+BqjB+K4fCoqkD7qzcR71jLk="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207376,
+       "candidatesTokenCount": 81,
+       "totalTokenCount": 207457,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207376
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "s23KasevLJyV9tMPnt-fwA4"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Based on the **On-call handover, week of 2026-08-17** page, image resize URLs began carrying a timestamp query string, causing every image to appear new to the Cloudflare edge. \n\nAiko resolved it by setting the Cloudflare cache key to ignore that query parameter, which restored the cache hit ratio to above 90 % by Thursday.",
+        "thoughtSignature": "EmkKZwFpFH0TbR1vFBV2AZY0NQl5wW4VcAJgHLk7hw66ivgrTO5HtXZXtHaLgDM8DQBDN5paMZ1Pez42DwszTMxhfU87hGx1U0RO1pA3j/lR2GRHOZH90Nu+BqjB+K4fCoqkD7qzcR71jLk="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Based on the **On-call handover, week of 2026-08-17** page, image resize URLs began carrying a timestamp query string, causing every image to appear new to the Cloudflare edge. \n\nAiko resolved it by setting the Cloudflare cache key to ignore that query parameter, which restored the cache hit ratio to above 90 % by Thursday.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207376,
+     "cached": 207331,
+     "out": 81,
+     "cost_usd": 0.015887324999999997
+    }
+   ],
+   "prompt_tokens": 207376,
+   "cached_tokens": 207331,
+   "out_tokens": 81,
+   "cost_usd": 0.015887324999999997,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "pg-kddi-lag",
+   "kind": "plain",
+   "question": "SMS delivery receipts for KDDI numbers look late tonight. How late can they normally be?",
+   "answer_pages": [
+    "provider-twilio-japan"
+   ],
+   "answer": "According to the **twilio: Japan carrier notes** page, delivery receipts for KDDI numbers in Japan can arrive **up to 40 minutes** after the SMS was delivered.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 23.26,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nSMS delivery receipts for KDDI numbers look late tonight. How late can they normally be?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:53:52.763+00:00",
+     "wall_s": 2.815,
+     "retries": [
+      {
+       "why": "HTTP 429",
+       "at": "2026-10-10T16:53:32.331+00:00",
+       "body": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_paid_tier_input_token_count, limit: 2000000, model: gemini-3.8-flash\\nPlease retry in 27.147807042s.\",\n    \"status\": \"RESOURCE_EXH"
+      }
+     ],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the **twilio: Japan carrier notes** page, delivery receipts for KDDI numbers in Japan can arrive **up to 40 minutes** after the SMS was delivered.",
+           "thoughtSignature": "EmkKZwFpFH0TGScVxagIDfV78fOowH0TI/0Mc6SzPl8EOWYjKx8eQFKtLDyV3rNiqr1CRmcdcguObXqgoDPBqo0+1GHp+udfTLXDxJKQZ5/0pRX9Py8aNnVLBv6qFUqBChkHL7KtHTZ60/4="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207375,
+       "candidatesTokenCount": 36,
+       "totalTokenCount": 207411,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207375
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "oW3KauaADKPU9tMPprisoA4"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "According to the **twilio: Japan carrier notes** page, delivery receipts for KDDI numbers in Japan can arrive **up to 40 minutes** after the SMS was delivered.",
+        "thoughtSignature": "EmkKZwFpFH0TGScVxagIDfV78fOowH0TI/0Mc6SzPl8EOWYjKx8eQFKtLDyV3rNiqr1CRmcdcguObXqgoDPBqo0+1GHp+udfTLXDxJKQZ5/0pRX9Py8aNnVLBv6qFUqBChkHL7KtHTZ60/4="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "According to the **twilio: Japan carrier notes** page, delivery receipts for KDDI numbers in Japan can arrive **up to 40 minutes** after the SMS was delivered.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207375,
+     "cached": 207331,
+     "out": 36,
+     "cost_usd": 0.015717824999999998
+    }
+   ],
+   "prompt_tokens": 207375,
+   "cached_tokens": 207331,
+   "out_tokens": 36,
+   "cost_usd": 0.015717824999999998,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "pg-replayed",
+   "kind": "plain",
+   "question": "How many failed payments were replayed after the November 2025 payments checkout timeout incident?",
+   "answer_pages": [
+    "postmortem-payments-pool-timeout"
+   ],
+   "answer": "According to the postmortem for the incident (*Postmortem: payments checkout timeouts after the v2.31 pool change*, 2025-11-18), **1,184** failed payments were replayed from the retry queue after the incident.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 45.36,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nHow many failed payments were replayed after the November 2025 payments checkout timeout incident?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:54:15.884+00:00",
+     "wall_s": 4.37,
+     "retries": [
+      {
+       "why": "HTTP 429",
+       "at": "2026-10-10T16:53:34.973+00:00",
+       "body": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_paid_tier_input_token_count, limit: 2000000, model: gemini-3.8-flash\\nPlease retry in 24.50973587s.\",\n    \"status\": \"RESOURCE_EXHA"
+      },
+      {
+       "why": "HTTP 429",
+       "at": "2026-10-10T16:53:55.516+00:00",
+       "body": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_paid_tier_input_token_count, limit: 2000000, model: gemini-3.8-flash\\nPlease retry in 4.055541777s.\",\n    \"status\": \"RESOURCE_EXHA"
+      }
+     ],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the postmortem for the incident (*Postmortem: payments checkout timeouts after the v2.31 pool change*, 2025-11-18), **1,184** failed payments were replayed from the retry queue after the incident.",
+           "thoughtSignature": "EmkKZwFpFH0T7wxTN82497pxWODhsRzhzVsx8IPJyYrkuA+JhNDmtWVubL0eUhX7nXIN2E83+egcJstT85xd3hn/cDz4kXEzRy7KpF8zXg67EjRThJLoFefthhtO/jf1VjGcvhJkxwiTsjY="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207377,
+       "candidatesTokenCount": 57,
+       "totalTokenCount": 207434,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207377
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "uG3KasytE-jVrfcP38ugmAw"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "According to the postmortem for the incident (*Postmortem: payments checkout timeouts after the v2.31 pool change*, 2025-11-18), **1,184** failed payments were replayed from the retry queue after the incident.",
+        "thoughtSignature": "EmkKZwFpFH0T7wxTN82497pxWODhsRzhzVsx8IPJyYrkuA+JhNDmtWVubL0eUhX7nXIN2E83+egcJstT85xd3hn/cDz4kXEzRy7KpF8zXg67EjRThJLoFefthhtO/jf1VjGcvhJkxwiTsjY="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "According to the postmortem for the incident (*Postmortem: payments checkout timeouts after the v2.31 pool change*, 2025-11-18), **1,184** failed payments were replayed from the retry queue after the incident.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207377,
+     "cached": 207331,
+     "out": 57,
+     "cost_usd": 0.015798074999999998
+    }
+   ],
+   "prompt_tokens": 207377,
+   "cached_tokens": 207331,
+   "out_tokens": 57,
+   "cost_usd": 0.015798074999999998,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "pg-cert-outage",
+   "kind": "plain",
+   "question": "When the partner API certificate expired in April 2025, how long were partner connections failing, and how many partners were affected?",
+   "answer_pages": [
+    "postmortem-api-partner-certificate"
+   ],
+   "answer": "Based on the postmortem *\"Postmortem: partner API certificate expired\"*:\n\n* **Duration:** Partner connections were failing for **47 minutes** (from 09:00 JST to 09:47 JST on 2025-04-14).\n* **Partners affected:** **3 integration partners** were affected.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 44.98,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhen the partner API certificate expired in April 2025, how long were partner connections failing, and how many partners were affected?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:54:16.378+00:00",
+     "wall_s": 4.025,
+     "retries": [
+      {
+       "why": "HTTP 429",
+       "at": "2026-10-10T16:53:35.505+00:00",
+       "body": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_paid_tier_input_token_count, limit: 2000000, model: gemini-3.8-flash\\nPlease retry in 24.022358529s.\",\n    \"status\": \"RESOURCE_EXH"
+      },
+      {
+       "why": "HTTP 429",
+       "at": "2026-10-10T16:53:55.935+00:00",
+       "body": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_paid_tier_input_token_count, limit: 2000000, model: gemini-3.8-flash\\nPlease retry in 3.54781148s.\",\n    \"status\": \"RESOURCE_EXHAU"
+      }
+     ],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the postmortem *\"Postmortem: partner API certificate expired\"*:\n\n* **Duration:** Partner connections were failing for **47 minutes** (from 09:00 JST to 09:47 JST on 2025-04-14).\n* **Partners affected:** **3 integration partners** were affected.",
+           "thoughtSignature": "EmkKZwFpFH0TeyZH4BvwN3VO7dpwxYGsCMt2cqx1SXXw3UTWBmahMiOi9bzS1l9zZ0ljwTllxuwiYDB7cznoIooLHnDWIK27+/sGdLNEB7oTofc6F/dKwhlvQm1za7L1nqR2JYi9XRZHeOk="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207385,
+       "candidatesTokenCount": 76,
+       "totalTokenCount": 207461,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207385
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "uG3KavLyMujVrfcP38ugmAw"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Based on the postmortem *\"Postmortem: partner API certificate expired\"*:\n\n* **Duration:** Partner connections were failing for **47 minutes** (from 09:00 JST to 09:47 JST on 2025-04-14).\n* **Partners affected:** **3 integration partners** were affected.",
+        "thoughtSignature": "EmkKZwFpFH0TeyZH4BvwN3VO7dpwxYGsCMt2cqx1SXXw3UTWBmahMiOi9bzS1l9zZ0ljwTllxuwiYDB7cznoIooLHnDWIK27+/sGdLNEB7oTofc6F/dKwhlvQm1za7L1nqR2JYi9XRZHeOk="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Based on the postmortem *\"Postmortem: partner API certificate expired\"*:\n\n* **Duration:** Partner connections were failing for **47 minutes** (from 09:00 JST to 09:47 JST on 2025-04-14).\n* **Partners affected:** **3 integration partners** were affected.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207385,
+     "cached": 207331,
+     "out": 76,
+     "cost_usd": 0.015875325
+    }
+   ],
+   "prompt_tokens": 207385,
+   "cached_tokens": 207331,
+   "out_tokens": 76,
+   "cost_usd": 0.015875325,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true,
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "pg-dup-reminders",
+   "kind": "plain",
+   "question": "How many reminders went out twice in the September 2024 notifier scheduler incident?",
+   "answer_pages": [
+    "postmortem-notifier-duplicate-reminders"
+   ],
+   "answer": "According to the postmortem for that incident (*Postmortem: duplicate appointment reminders after a scheduler restart*), **8,412** appointment reminders went out twice (sent to 8,412 customers).",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 25.98,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nHow many reminders went out twice in the September 2024 notifier scheduler incident?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:54:15.875+00:00",
+     "wall_s": 5.669,
+     "retries": [
+      {
+       "why": "HTTP 429",
+       "at": "2026-10-10T16:53:55.595+00:00",
+       "body": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_paid_tier_input_token_count, limit: 2000000, model: gemini-3.8-flash\\nPlease retry in 4.056265279s.\",\n    \"status\": \"RESOURCE_EXHA"
+      }
+     ],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the postmortem for that incident (*Postmortem: duplicate appointment reminders after a scheduler restart*), **8,412** appointment reminders went out twice (sent to 8,412 customers).",
+           "thoughtSignature": "ErgGCrUGAWkUfRPAzfrEn9cXigbKk4pbmkGH2lHb6HExZCmjTYoOFhYfUqlh4UvlwGmPZfUWDKHOO2NUruYby/iAuE4STCRJotXNQIbBVf6M6BxxkaEARSsA91FP/iTXGrjjmz7nBnzcRj66isj0uXaxQxC2WV697vQ0V+vyHRatvbmVidGqNvTf5jUfTAHZxXMpAKX3ylFa16YNAeGFgCxWO71N6erIvxpZEv1YV8yGVEwQ1Bc2EF3vnOg+q0uuR4cPIqShJf27YnmqGiDl9Z0RPIkuV8EOBV8L2UbgJqUfse+0z6OZpLCTu70rRco50F6BD05Qf4G/MgGwFCjtmRZ/GAAQSxhXVW7Xr44ztKFI5jM7rEz9Z40Y0a8fGOFz8t6QbqO/TROs14U+jhDaKUgC6x4qg1WdY+l9mB60eoKoSyV9/9RmDpCUEpEPAxqG4hBUeVWConjdVvdJH0IF163bv1LnSsMGpYx+jQXCY42E1+rcy3zm/OKEYIVDqzBPWdkZ50STxAVMviPCs6hYaVxrQ6ka7AaBGnUrdS1/H2DGq3hbSVh5QM2WPHUgdae4NZ04MHaj/CrpdII5drC/2135ZghEtbLKwnU5956l1LEhX8ry3JP9UOkklp/VtRVpzi4PjDZNEKugVV3tMIy4XvDIo3qUW1dUY8u3pwi1HxgxkycUF8pivoMlS5y0ZvpCcJKZ+4VJg7cwl1Uh6RiK7Jqb9+SAeWUaKQVTd4knL1KxtkAITxICdSieM61pVjXNMYqV5EaesdQgfEr5gC5v6s1NyVZcr0ymTqJJgU5eOU+q7jm5E+GSg0AHW+6br8mumZSTESm60Uyp/IBP3z2F+mPicJUSDnwcLPxqWbJ3n+H336mcA53Qkj19i5vWeeYxqqxxbytmUCiGBZ+AepWbsRABCbxiUv035N4umAZ2WKJWQEv/X5P0XL34GHj/LovWwo2//MMl8WZqvjU0Nw82543RewN7K5jwWPANIUtlqUBSAWmdD0WC626otyh6FwLhNogVLYscguemFfL9OuQq559CFMJcJKAU7qkWkC7wbbJIlZHOKt0Kv8YAjWSROOdmiuEoK7+WjAq1LyU="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207375,
+       "candidatesTokenCount": 44,
+       "totalTokenCount": 207591,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207375
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "thoughtsTokenCount": 172,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "uG3KasKhE9Hd9tMP35TH-Q0"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "According to the postmortem for that incident (*Postmortem: duplicate appointment reminders after a scheduler restart*), **8,412** appointment reminders went out twice (sent to 8,412 customers).",
+        "thoughtSignature": "ErgGCrUGAWkUfRPAzfrEn9cXigbKk4pbmkGH2lHb6HExZCmjTYoOFhYfUqlh4UvlwGmPZfUWDKHOO2NUruYby/iAuE4STCRJotXNQIbBVf6M6BxxkaEARSsA91FP/iTXGrjjmz7nBnzcRj66isj0uXaxQxC2WV697vQ0V+vyHRatvbmVidGqNvTf5jUfTAHZxXMpAKX3ylFa16YNAeGFgCxWO71N6erIvxpZEv1YV8yGVEwQ1Bc2EF3vnOg+q0uuR4cPIqShJf27YnmqGiDl9Z0RPIkuV8EOBV8L2UbgJqUfse+0z6OZpLCTu70rRco50F6BD05Qf4G/MgGwFCjtmRZ/GAAQSxhXVW7Xr44ztKFI5jM7rEz9Z40Y0a8fGOFz8t6QbqO/TROs14U+jhDaKUgC6x4qg1WdY+l9mB60eoKoSyV9/9RmDpCUEpEPAxqG4hBUeVWConjdVvdJH0IF163bv1LnSsMGpYx+jQXCY42E1+rcy3zm/OKEYIVDqzBPWdkZ50STxAVMviPCs6hYaVxrQ6ka7AaBGnUrdS1/H2DGq3hbSVh5QM2WPHUgdae4NZ04MHaj/CrpdII5drC/2135ZghEtbLKwnU5956l1LEhX8ry3JP9UOkklp/VtRVpzi4PjDZNEKugVV3tMIy4XvDIo3qUW1dUY8u3pwi1HxgxkycUF8pivoMlS5y0ZvpCcJKZ+4VJg7cwl1Uh6RiK7Jqb9+SAeWUaKQVTd4knL1KxtkAITxICdSieM61pVjXNMYqV5EaesdQgfEr5gC5v6s1NyVZcr0ymTqJJgU5eOU+q7jm5E+GSg0AHW+6br8mumZSTESm60Uyp/IBP3z2F+mPicJUSDnwcLPxqWbJ3n+H336mcA53Qkj19i5vWeeYxqqxxbytmUCiGBZ+AepWbsRABCbxiUv035N4umAZ2WKJWQEv/X5P0XL34GHj/LovWwo2//MMl8WZqvjU0Nw82543RewN7K5jwWPANIUtlqUBSAWmdD0WC626otyh6FwLhNogVLYscguemFfL9OuQq559CFMJcJKAU7qkWkC7wbbJIlZHOKt0Kv8YAjWSROOdmiuEoK7+WjAq1LyU="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "According to the postmortem for that incident (*Postmortem: duplicate appointment reminders after a scheduler restart*), **8,412** appointment reminders went out twice (sent to 8,412 customers).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207375,
+     "cached": 207331,
+     "out": 216,
+     "cost_usd": 0.016392824999999996
+    }
+   ],
+   "prompt_tokens": 207375,
+   "cached_tokens": 207331,
+   "out_tokens": 216,
+   "cost_usd": 0.016392824999999996,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "pg-log-access",
+   "kind": "plain",
+   "question": "How do I get log search access before my first shadow shift, and who approves it?",
+   "answer_pages": [
+    "team-access-requests"
+   ],
+   "answer": "Based on the **Access requests for on-call** and **On-call onboarding** documentation:\n\n1. **How to get it:**\n   - Open an internal IT access ticket using the template `Access Request: On-Call Observability`.\n   - Set the requested group to `oncall-readers` (which grants query access on index `sorrel-prod-*` and read access to metrics dashboards).\n   - Post the ticket link in `#access` in chat, noting your scheduled shadow shift start date. \n   - Make sure to submit the request at least one working day (and at least a week before your first shadow shift) ahead of time.\n\n2. **Who approves it:**\n   - **Kenji Sato** (Platform Lead) approves the request (during planned absences, **Sara** handles reviews on the platform team's behalf).",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 3.99,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nHow do I get log search access before my first shadow shift, and who approves it?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:54:14.301+00:00",
+     "wall_s": 3.911,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the **Access requests for on-call** and **On-call onboarding** documentation:\n\n1. **How to get it:**\n   - Open an internal IT access ticket using the template `Access Request: On-Call Observability`.\n   - Set the requested group to `oncall-readers` (which grants query access on index `sorrel-prod-*` and read access to metrics dashboards).\n   - Post the ticket link in `#access` in chat, noting your scheduled shadow shift start date. \n   - Make sure to submit the request at least one working day (and at least a week before your first shadow shift) ahead of time.\n\n2. **Who approves it:**\n   - **Kenji Sato** (Platform Lead) approves the request (during planned absences, **Sara** handles reviews on the platform team's behalf).",
+           "thoughtSignature": "EmkKZwFpFH0TH3WkL/eUcQif67+tK12dqSn2tk+lvcRtO3lr01+TdvxtcGbEDy+PYmhOIeLpGoOl8xqNKJpbeoRSySMOQHiplbTmI08hgfS0HTDZxcmX5wWHtgSgpmhG/iYpF1T6A1OYn7k="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207375,
+       "candidatesTokenCount": 180,
+       "totalTokenCount": 207555,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207375
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "tm3Kar2ENI7NrfcPioLXuQo"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Based on the **Access requests for on-call** and **On-call onboarding** documentation:\n\n1. **How to get it:**\n   - Open an internal IT access ticket using the template `Access Request: On-Call Observability`.\n   - Set the requested group to `oncall-readers` (which grants query access on index `sorrel-prod-*` and read access to metrics dashboards).\n   - Post the ticket link in `#access` in chat, noting your scheduled shadow shift start date. \n   - Make sure to submit the request at least one working day (and at least a week before your first shadow shift) ahead of time.\n\n2. **Who approves it:**\n   - **Kenji Sato** (Platform Lead) approves the request (during planned absences, **Sara** handles reviews on the platform team's behalf).",
+        "thoughtSignature": "EmkKZwFpFH0TH3WkL/eUcQif67+tK12dqSn2tk+lvcRtO3lr01+TdvxtcGbEDy+PYmhOIeLpGoOl8xqNKJpbeoRSySMOQHiplbTmI08hgfS0HTDZxcmX5wWHtgSgpmhG/iYpF1T6A1OYn7k="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Based on the **Access requests for on-call** and **On-call onboarding** documentation:\n\n1. **How to get it:**\n   - Open an internal IT access ticket using the template `Access Request: On-Call Observability`.\n   - Set the requested group to `oncall-readers` (which grants query access on index `sorrel-prod-*` and read access to metrics dashboards).\n   - Post the ticket link in `#access` in chat, noting your scheduled shadow shift start date. \n   - Make sure to submit the request at least one working day (and at least a week before your first shadow shift) ahead of time.\n\n2. **Who approves it:**\n   - **Kenji Sato** (Platform Lead) approves the request (during planned absences, **Sara** handles reviews on the platform team's behalf).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207375,
+     "cached": 207331,
+     "out": 180,
+     "cost_usd": 0.016257825
+    }
+   ],
+   "prompt_tokens": 207375,
+   "cached_tokens": 207331,
+   "out_tokens": 180,
+   "cost_usd": 0.016257825,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true,
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "hb-checkout-threshold",
+   "kind": "plain",
+   "question": "What threshold fires the payments-checkout alert?",
+   "answer_pages": [
+    "handbook-14"
+   ],
+   "answer": "According to Section 14 (Alert rules reference) of the On-Call Handbook, the **payments-checkout** alert fires when:\n\n- The checkout failure rate is **above 2 % for 3 minutes, any region**.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": true,
+   "error": null,
+   "wall_s": 4.95,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhat threshold fires the payments-checkout alert?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:54:18.307+00:00",
+     "wall_s": 4.881,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to Section 14 (Alert rules reference) of the On-Call Handbook, the **payments-checkout** alert fires when:\n\n- The checkout failure rate is **above 2 % for 3 minutes, any region**.",
+           "thoughtSignature": "EmkKZwFpFH0Tp/Z9StGZENmrlace0foYYCOIYN1CqnsJgwpY00qCMYDo80u72ZfTfESJtpbxaiQZ2nbTGgOHe+Fi1mxKJSfrGuybY0ACbtnhjN9p+GcbenNVLFd6b55ZQnLYzLtxq7dyz28="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207366,
+       "candidatesTokenCount": 48,
+       "totalTokenCount": 207414,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207366
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "um3Kaoq7KuXirfcP28KEqAg"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "According to Section 14 (Alert rules reference) of the On-Call Handbook, the **payments-checkout** alert fires when:\n\n- The checkout failure rate is **above 2 % for 3 minutes, any region**.",
+        "thoughtSignature": "EmkKZwFpFH0Tp/Z9StGZENmrlace0foYYCOIYN1CqnsJgwpY00qCMYDo80u72ZfTfESJtpbxaiQZ2nbTGgOHe+Fi1mxKJSfrGuybY0ACbtnhjN9p+GcbenNVLFd6b55ZQnLYzLtxq7dyz28="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "According to Section 14 (Alert rules reference) of the On-Call Handbook, the **payments-checkout** alert fires when:\n\n- The checkout failure rate is **above 2 % for 3 minutes, any region**.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207366,
+     "cached": 207331,
+     "out": 48,
+     "cost_usd": 0.015756074999999998
+    }
+   ],
+   "prompt_tokens": 207366,
+   "cached_tokens": 207331,
+   "out_tokens": 48,
+   "cost_usd": 0.015756074999999998,
+   "grade": {
+    "code": "right",
+    "truth_hit": [
+     true,
+     true
+    ],
+    "wrong_hit": [],
+    "says_not_in_pages": false
+   }
+  },
+  {
+   "id": "none-stripe-phone",
+   "kind": "not in pages",
+   "question": "What is Stripe's emergency support phone number?",
+   "answer_pages": [],
+   "answer": "The pages do not mention an emergency support phone number for Stripe (only its status page, `status.stripe.com`, is provided).",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": null,
+   "error": null,
+   "wall_s": 8.15,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhat is Stripe's emergency support phone number?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:54:20.332+00:00",
+     "wall_s": 7.961,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "The pages do not mention an emergency support phone number for Stripe (only its status page, `status.stripe.com`, is provided).",
+           "thoughtSignature": "EtgGCtUGAWkUfRNKi7KLIQgYEbmz73o/aSa9Aq54jTtjKRxIeuYaxCi1/aA9sgTi8ykC8LKapc5QChHpONPXwecr0GmBLbTjGnY1BIynXxHwpQf9uaVmlHrFrYPkMn4KwLnWkentdnF4W+cVbegVLhMEWXznvW1bHKsqVa1zepwessWhwMCyKQn2bLt5kCSwZUOrxsCCvSTKnCtshmydw4H7IHWFf+ZfEuqKk1j6ljk07xi3EIt2+siGmoza452zExkZXkVvrzuJFvuy0fpNpfZj2F/2lMBdI71fMlkbJjtGYdHUeJvUtWrjqV+h15plsOS29L1u2XHZ/mcU+W7xUzS3Eeo0DbDHurG3ojwLj8CywNdIQcpVMxwrJiTTQOEpVjuh+N3kUH355Fj8tCL26j9fFWJOdU6iw5nsvv7MzQxRyxS2yYdNhuU4yyFVtccHFts929Ti2VG9c7YKoY4Tyttz+rFoz5me0pFJZMRVkYDtoniIIe+JXXk87Blq2kesMPOVAEtl8h/e5vpZC3ucrovaO9n1+BTy76ckwrhnlArjrADfhA5TeBZIL9NYnEiCK4uZb7lRVv/b8Ma2xcuJt+/GH01tvWtnWerZZik+WXCHojoewqR5b4VHUen5QRuG+USPmcWvbJwdonPnwLuDLjEse6AP2/YhNCpV0XXFcYPRtwDJ7EG+e53ANBnp9uJ0JGoy2ND2HLZvKBWXUp+jQ2dG7Xf6fMXm9yRXhvSgjGBR3T6u3Y0n9UdtQFknqGE4Zds7Ujeb/pm1Fe1VQPaw4iV78oEOnoyJfuQnhTu3ZuA79n45u0h6pWtKC1n+oJbI0Em6GRaAeNMxjICKVnZAjjvOE+WYU4orpjfk5cNvBtBFopNSa5kRRWEqTKpIlaPYTKP2H9clRGQl3XrJW/Z2VYcGMxJzSilyT3A0PR63oG672tOZRLO34sAFjd78CzgUkTVIov9XF7sM3rHdIekI/e1HU3JA6R1INWHqCgjjwuLGQQBY7oxeiM7ifIeEgBqOLkkYWh3bFGdj3KDNdDsjx/5EWnJ68CPHWjv3MH/hfGPpqxluKZ+Ql/zC915O7IyL6OQ8bBohGZYJHLRyC4yO9J0MfBK64FWuTEG1DPVF9x4PVVDfLcSgVEu0/g=="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207367,
+       "candidatesTokenCount": 28,
+       "totalTokenCount": 207590,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207367
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "thoughtsTokenCount": 195,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "vG3KaqSiLMXMrfcPn_KhoQU"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "The pages do not mention an emergency support phone number for Stripe (only its status page, `status.stripe.com`, is provided).",
+        "thoughtSignature": "EtgGCtUGAWkUfRNKi7KLIQgYEbmz73o/aSa9Aq54jTtjKRxIeuYaxCi1/aA9sgTi8ykC8LKapc5QChHpONPXwecr0GmBLbTjGnY1BIynXxHwpQf9uaVmlHrFrYPkMn4KwLnWkentdnF4W+cVbegVLhMEWXznvW1bHKsqVa1zepwessWhwMCyKQn2bLt5kCSwZUOrxsCCvSTKnCtshmydw4H7IHWFf+ZfEuqKk1j6ljk07xi3EIt2+siGmoza452zExkZXkVvrzuJFvuy0fpNpfZj2F/2lMBdI71fMlkbJjtGYdHUeJvUtWrjqV+h15plsOS29L1u2XHZ/mcU+W7xUzS3Eeo0DbDHurG3ojwLj8CywNdIQcpVMxwrJiTTQOEpVjuh+N3kUH355Fj8tCL26j9fFWJOdU6iw5nsvv7MzQxRyxS2yYdNhuU4yyFVtccHFts929Ti2VG9c7YKoY4Tyttz+rFoz5me0pFJZMRVkYDtoniIIe+JXXk87Blq2kesMPOVAEtl8h/e5vpZC3ucrovaO9n1+BTy76ckwrhnlArjrADfhA5TeBZIL9NYnEiCK4uZb7lRVv/b8Ma2xcuJt+/GH01tvWtnWerZZik+WXCHojoewqR5b4VHUen5QRuG+USPmcWvbJwdonPnwLuDLjEse6AP2/YhNCpV0XXFcYPRtwDJ7EG+e53ANBnp9uJ0JGoy2ND2HLZvKBWXUp+jQ2dG7Xf6fMXm9yRXhvSgjGBR3T6u3Y0n9UdtQFknqGE4Zds7Ujeb/pm1Fe1VQPaw4iV78oEOnoyJfuQnhTu3ZuA79n45u0h6pWtKC1n+oJbI0Em6GRaAeNMxjICKVnZAjjvOE+WYU4orpjfk5cNvBtBFopNSa5kRRWEqTKpIlaPYTKP2H9clRGQl3XrJW/Z2VYcGMxJzSilyT3A0PR63oG672tOZRLO34sAFjd78CzgUkTVIov9XF7sM3rHdIekI/e1HU3JA6R1INWHqCgjjwuLGQQBY7oxeiM7ifIeEgBqOLkkYWh3bFGdj3KDNdDsjx/5EWnJ68CPHWjv3MH/hfGPpqxluKZ+Ql/zC915O7IyL6OQ8bBohGZYJHLRyC4yO9J0MfBK64FWuTEG1DPVF9x4PVVDfLcSgVEu0/g=="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "The pages do not mention an emergency support phone number for Stripe (only its status page, `status.stripe.com`, is provided).",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207367,
+     "cached": 207331,
+     "out": 223,
+     "cost_usd": 0.016413074999999996
+    }
+   ],
+   "prompt_tokens": 207367,
+   "cached_tokens": 207331,
+   "out_tokens": 223,
+   "cost_usd": 0.016413074999999996,
+   "grade": {
+    "code": "said-not-in-pages",
+    "truth_hit": null,
+    "wrong_hit": [],
+    "says_not_in_pages": true
+   }
+  },
+  {
+   "id": "none-allowance",
+   "kind": "not in pages",
+   "question": "How much is the on-call allowance for a week of primary shifts?",
+   "answer_pages": [],
+   "answer": "The provided pages do not say how much the on-call allowance is for a week of primary shifts.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": null,
+   "error": null,
+   "wall_s": 6.62,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nHow much is the on-call allowance for a week of primary shifts?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:54:20.486+00:00",
+     "wall_s": 6.514,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "The provided pages do not say how much the on-call allowance is for a week of primary shifts.",
+           "thoughtSignature": "EmkKZwFpFH0TJ5/fkC8tpSxSNexke19lI+dVpXdz/6O1PxkksvwV85vp2HQ2JxRT/dv95Crx6S3c+AehdutnlZ7dDjjMywW+Am1V2fbK54GLMgJ8aXtPlaP+QI1DepTM5FnxI4qBTvnTNNc="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207372,
+       "candidatesTokenCount": 21,
+       "totalTokenCount": 207393,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207372
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "vW3KaqO7BfvgrfcP0pjKqQQ"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "The provided pages do not say how much the on-call allowance is for a week of primary shifts.",
+        "thoughtSignature": "EmkKZwFpFH0TJ5/fkC8tpSxSNexke19lI+dVpXdz/6O1PxkksvwV85vp2HQ2JxRT/dv95Crx6S3c+AehdutnlZ7dDjjMywW+Am1V2fbK54GLMgJ8aXtPlaP+QI1DepTM5FnxI4qBTvnTNNc="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "The provided pages do not say how much the on-call allowance is for a week of primary shifts.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207372,
+     "cached": 207331,
+     "out": 21,
+     "cost_usd": 0.015659324999999998
+    }
+   ],
+   "prompt_tokens": 207372,
+   "cached_tokens": 207331,
+   "out_tokens": 21,
+   "cost_usd": 0.015659324999999998,
+   "grade": {
+    "code": "said-not-in-pages",
+    "truth_hit": null,
+    "wrong_hit": [],
+    "says_not_in_pages": true
+   }
+  },
+  {
+   "id": "none-pay-4999",
+   "kind": "not in pages",
+   "question": "What does error code PAY-4999 mean?",
+   "answer_pages": [],
+   "answer": "The provided pages do not say what error code `PAY-4999` means.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": null,
+   "error": null,
+   "wall_s": 5.86,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhat does error code PAY-4999 mean?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:54:21.573+00:00",
+     "wall_s": 5.752,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "The provided pages do not say what error code `PAY-4999` means.",
+           "thoughtSignature": "EmkKZwFpFH0Tbd8b6nr9LF6pR0YFzRuhcKR2kD9G55MNZsxyj538X7fkQLZ8kzv7GB79Trvn6TFIbD2L5R1wLty7pXsBl4/QByA4L7HOFmyVCFdTbpJL0iIin3z4yUoUBO/K3BCLh6hdQcY="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207369,
+       "candidatesTokenCount": 19,
+       "totalTokenCount": 207388,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207369
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "vm3Kau_AAuXirfcP28KEqAg"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "The provided pages do not say what error code `PAY-4999` means.",
+        "thoughtSignature": "EmkKZwFpFH0Tbd8b6nr9LF6pR0YFzRuhcKR2kD9G55MNZsxyj538X7fkQLZ8kzv7GB79Trvn6TFIbD2L5R1wLty7pXsBl4/QByA4L7HOFmyVCFdTbpJL0iIin3z4yUoUBO/K3BCLh6hdQcY="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "The provided pages do not say what error code `PAY-4999` means.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207369,
+     "cached": 207331,
+     "out": 19,
+     "cost_usd": 0.015649575
+    }
+   ],
+   "prompt_tokens": 207369,
+   "cached_tokens": 207331,
+   "out_tokens": 19,
+   "cost_usd": 0.015649575,
+   "grade": {
+    "code": "said-not-in-pages",
+    "truth_hit": null,
+    "wrong_hit": [],
+    "says_not_in_pages": true
+   }
+  },
+  {
+   "id": "none-sendgrid-renewal",
+   "kind": "not in pages",
+   "question": "When does our sendgrid contract come up for renewal?",
+   "answer_pages": [],
+   "answer": "Based on the provided documentation, the pages do not say when the SendGrid contract comes up for renewal.",
+   "opened": [
+    "(every page)"
+   ],
+   "opened_answer_page": null,
+   "error": null,
+   "wall_s": 4.18,
+   "calls": [
+    {
+     "request": {
+      "cachedContent": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhen does our sendgrid contract come up for renewal?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-10T16:54:23.242+00:00",
+     "wall_s": 4.046,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the provided documentation, the pages do not say when the SendGrid contract comes up for renewal.",
+           "thoughtSignature": "EmkKZwFpFH0T9DtDfNy+yO5uEqmdw2uqmL7xCYD7L6XdKrlZxaf1L0IucgKqP7V6+wL6J0c5VCf0rcOQR0LKNupDZ5oe88D4BZv0473muRCOPKqAQk0uTa4I03HKm7EMAngc5E8yNDHedtI="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 207368,
+       "candidatesTokenCount": 21,
+       "totalTokenCount": 207389,
+       "cachedContentTokenCount": 207331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207368
+        }
+       ],
+       "cacheTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 207331
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "v23KaoSLK8TjrfcPgIudgAM"
+     },
+     "content": {
+      "parts": [
+       {
+        "text": "Based on the provided documentation, the pages do not say when the SendGrid contract comes up for renewal.",
+        "thoughtSignature": "EmkKZwFpFH0T9DtDfNy+yO5uEqmdw2uqmL7xCYD7L6XdKrlZxaf1L0IucgKqP7V6+wL6J0c5VCf0rcOQR0LKNupDZ5oe88D4BZv0473muRCOPKqAQk0uTa4I03HKm7EMAngc5E8yNDHedtI="
+       }
+      ],
+      "role": "model"
+     },
+     "text": "Based on the provided documentation, the pages do not say when the SendGrid contract comes up for renewal.",
+     "function_calls": [],
+     "finishReason": "STOP",
+     "prompt": 207368,
+     "cached": 207331,
+     "out": 21,
+     "cost_usd": 0.015656325
+    }
+   ],
+   "prompt_tokens": 207368,
+   "cached_tokens": 207331,
+   "out_tokens": 21,
+   "cost_usd": 0.015656325,
+   "grade": {
+    "code": "said-not-in-pages",
+    "truth_hit": null,
+    "wrong_hit": [],
+    "says_not_in_pages": true
+   }
+  }
+ ],
+ "finished_utc": "2026-10-10T16:54:28.827+00:00",
+ "meta": {
+  "cache": {
+   "name": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+   "create_http": 200,
+   "create_wall_s": 2.478,
+   "created_utc": "2026-10-10T16:52:01.284+00:00",
+   "ttl_s": 900,
+   "create_response": {
+    "name": "cachedContents/vdiw08efg0mazwcwodyb7ftf36uyu3v4anwi77yr",
+    "model": "models/gemini-3.8-flash",
+    "createTime": "2026-10-10T16:52:03.775726Z",
+    "updateTime": "2026-10-10T16:52:03.775726Z",
+    "expireTime": "2026-10-10T17:07:02.547144715Z",
+    "displayName": "",
+    "usageMetadata": {
+     "totalTokenCount": 207331
+    }
+   },
+   "system_tokens_countTokens": 207332,
+   "system_md5": "da28c57977b477621884abe927afdb78",
+   "create_cost_usd_counted": 0.15549825,
+   "storage_cost_usd_counted": 0.025916375,
+   "billing_note": "docs: billed on cached token count when used + storage for the TTL; the create call itself is not priced on the page, so it is counted here at the full input rate",
+   "deleted_http": 200,
+   "deleted_utc": "2026-10-10T16:54:30.432+00:00"
+  },
+  "questions_run": 40,
+  "budget_left_at_start": 2.1820538750000003,
+  "explicit_cache": true
+ }
+}

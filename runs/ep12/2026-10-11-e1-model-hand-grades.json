@@ -1,0 +1,42 @@
+{
+ "what": "E1 model-searches hand grades: every answer the code marked wrong, every not-in-pages answer, and the two-page code questions. Rule as T.",
+ "run": "runs/ep12/2026-10-11-e1-model.json",
+ "overrides": {
+  "ow-old-events-flood": {
+   "code": "wrong",
+   "hand": "right",
+   "why": "'No, you do not need to stop it' (let it drain) from provider-stripe-notes; its one query 'stripe notifications webhook' never surfaced the 2026-03-09 note"
+  },
+  "ow-mail-stopped": {
+   "code": "wrong",
+   "hand": "wrong",
+   "why": "the 2025-09-09 sendgrid quota postmortem, not the suppression list"
+  },
+  "hid-firewall-partner": {
+   "code": "wrong",
+   "hand": "wrong",
+   "why": "answered from the 2025 firewall-challenge postmortem; says no partner was blocked"
+  },
+  "code-ntf-3318": {
+   "code": "right",
+   "hand": "partial",
+   "why": "searched 'NTF-3318', opened only 2026-03-02 (Priya 'assigned to look at' the form); never opened 03-16 where the fix shipped"
+  },
+  "none-stripe-phone": {
+   "code": "said-not-in-pages",
+   "hand": "right"
+  },
+  "none-allowance": {
+   "code": "said-not-in-pages",
+   "hand": "right"
+  },
+  "none-pay-4999": {
+   "code": "said-not-in-pages",
+   "hand": "right"
+  },
+  "none-sendgrid-renewal": {
+   "code": "said-not-in-pages",
+   "hand": "right"
+  }
+ }
+}

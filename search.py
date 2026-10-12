@@ -4,13 +4,13 @@
     python3 search.py --meaning "<question>"    # pages whose meaning sits closest (one embedding call: the question)
     python3 search.py --both "<question>"       # the two lists merged
 """
-import hashlib, json, math, os, re, sys, textwrap, urllib.request
+import hashlib, json, math, os, re, sys, urllib.request
 from collections import Counter
 from pathlib import Path
 import lookup
 
-lookup.INDEX = json.load(open("library/INDEX-ep12.json"))   # the list as it is now: a year of handover notes on top
 EMBED = "gemini-embedding-2"
+QUERY = "task: search result | query: "    # the docs' wording for a search query
 VECTORS = Path("search/vectors.json")
 LIMIT = 8192 * 3          # the embedding model reads 8,192 tokens; at about 3 characters a token, a piece this long fits
 K1, B = 1.5, 0.75         # BM25's usual settings: how fast repeats stop counting, how much a long page is held back
@@ -28,27 +28,49 @@ def words(text):
 
 
 def keyword_search(question, pages, n=5):
-    """BM25: a page scores for every question word it holds, more for a rare word, less for a long page"""
-    docs = [Counter(words(p["title"] + "\n" + p["text"])) for p in pages]
-    avg = sum(sum(d.values()) for d in docs) / len(docs)
-    holds = Counter(w for d in docs for w in d)                  # word -> how many pages hold it
+    """a rare word counts far more than a common one"""
+    docs, holds, avg = count_words(pages)
     scores = []
     for p, d in zip(pages, docs):
         score = 0
         for w in set(words(question)):
             if w in d:
-                rare = math.log(1 + (len(docs) - holds[w] + 0.5) / (holds[w] + 0.5))
-                score += rare * d[w] * (K1 + 1) / (d[w] + K1 * (1 - B + B * sum(d.values()) / avg))
-        if score > 0:                                             # no word in common: not found
+                rare = rarity(holds[w], len(docs))
+                score += rare * repeats(d, w, avg)
+        if score > 0:
             scores.append((score, p))
-    return [p for score, p in sorted(scores, key=lambda s: -s[0])][:n]
+    return best_first(scores, n)
 
 
 def meaning_search(question, pages, n=5):
-    """the pages whose vectors point the same way as the question's"""
-    vectors = page_vectors(pages)
-    q = embed("task: search result | query: " + question)        # the docs' wording for a search query
-    scores = [(max(cosine(q, v) for v in vectors[p["id"]]), p) for p in pages]
+    """the pages whose numbers sit closest"""
+    vecs = page_vectors(pages)    # each page's numbers
+    q = embed(QUERY + question)   # question's numbers
+    scores = []
+    for p in pages:
+        near = max(cosine(q, v) for v in vecs[p["id"]])
+        scores.append((near, p))
+    return best_first(scores, n)
+
+
+def count_words(pages):
+    """each page's word counts, how many pages hold each word, and the average page length in words"""
+    docs = [Counter(words(p["title"] + "\n" + p["text"])) for p in pages]
+    holds = Counter(w for d in docs for w in d)                  # word -> how many pages hold it
+    return docs, holds, sum(sum(d.values()) for d in docs) / len(docs)
+
+
+def rarity(held, total):
+    """BM25's weight for a word: the fewer pages hold it, the bigger"""
+    return math.log(1 + (total - held + 0.5) / (held + 0.5))
+
+
+def repeats(d, w, avg):
+    """BM25: each repeat of a word on a page counts less than the last, and a long page is held back a little"""
+    return d[w] * (K1 + 1) / (d[w] + K1 * (1 - B + B * sum(d.values()) / avg))
+
+
+def best_first(scores, n):
     return [p for score, p in sorted(scores, key=lambda s: -s[0])][:n]
 
 
@@ -103,4 +125,6 @@ if __name__ == "__main__":
     flag = next((a for a in sys.argv[1:] if a in how), "--both")
     question = " ".join(a for a in sys.argv[1:] if not a.startswith("--"))
     for rank, p in enumerate(how[flag](question, lookup.pages()), 1):
-        print(textwrap.fill(f"{rank}  {p['id']}  {p['title']}", lookup.SCREEN - 1, subsequent_indent="   "))
+        print(f"{rank}  {p['id']}")                                # the id is one row on a narrow screen
+    if used:
+        print(f"embedding · {sum(u.get('promptTokenCount', 0) for u in used):,} tokens in")

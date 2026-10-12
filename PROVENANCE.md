@@ -355,3 +355,66 @@ ep10 look-up loop (`lookup.py`: the rules, a contents list of 75 titles, up to 4
   in `runs/ep11/m0/*.txt`.
 - Spend: the measurement runs $0.93 (`2026-10-08-spend.json`, 338 calls), the camera takes $0.0243 (a2 $0.0141, m2
   $0.0017, k2 $0.0085) and the first takes $0.0317.
+
+## ep12
+
+Semantic search vs keyword search. Measured 2026-10-11 (JST); live takes M and O 2026-10-11; no-API takes 2026-10-11
+and 2026-10-12. Semantic search embeds with `gemini-embedding-2` (3,072 numbers per embedding), raw HTTP; keyword search
+makes no call. The measured `search.py` (md5 cfd8beba) is in the commit before the ep12 tag, with `lookup.py` and
+`library/INDEX.json` as ep11 left them, so `measure/ep12.py`'s freeze (`runs/ep12/2026-10-11-a-freeze.json`, the md5 of
+every input) matches it. The camera `search.py` only moved code into helpers and prints `rank  id`; before the takes,
+its keyword search gave the same top five on all 40 questions and the same full ranking, and its semantic search the
+same full ranking, with no API call. "R" below is `runs/ep12/2026-10-11-r-recall.json`.
+
+- Made up for the course: the company, its pages and the error codes. "Over a hundred team pages" / `127 pages`:
+  `library/INDEX.json` (127 entries, 57 of them weekly handover notes) and `a-freeze.json` `n_pages` 127. 52 are new
+  for ep12 (49 handover notes, 3 team pages): every fact, number and code is in `library/SPEC-ep12.json`, and
+  `gemini-3.8-flash` wrote the prose around them (`2026-10-11-a-draft.json`); `measure/ep12_check.py` checks the pages
+  against the spec. The 75 others are ep10's and ep11's.
+- The two questions: `tickets/questions-ep12.json` `code-pay-4031` ("What does PAY-4031 mean and what fixed it?",
+  answer pages `handover-2025-10-20`, `handover-2025-11-03`) and `ow-charged-twice` (answer page `team-payments-notes`).
+  The mix of the 40 is designed: 10 codes, 10 in other words, 10 hidden, 6 plain, 4 not in the pages.
+- "PAY-4031 is right there, with the fix" (take N): `library/handover-2025-11-03.md` line 15, "Leo raised the 3-D
+  Secure wait from 10 s to 25 s", shown up to before "has not come back since". Take F: `library/handover-2025-10-20.md`,
+  one match, line 15.
+- "The word 'what' is on most of these pages" (`what · on 102 pages`) and "PAY-4031 is on only two pages" (`on 2
+  pages`): pages holding the word in title + text, from `search.count_words` over the 127 pages, no API call:
+  `python3 -c "import search, lookup; d, h, a = search.count_words(lookup.pages()); print(h['what'], h['pay-4031'])"`
+  prints `102 2`. The spec puts PAY-4031 in those two handover notes only.
+- "One short function" (takes C2, C1): `keyword_search` is lines 30-42 of `search.py`, `meaning_search` lines 45-53.
+  "The five pages with the most points", "the top five": `best_first(scores, n)` with `n=5`.
+- Take KW, "the page with the fix came first. The other page with PAY-4031 came second": R `questions[code-pay-4031]
+  .keyword.top5` = handover-2025-11-03, handover-2025-10-20, payments-rollback-runbook, handbook-6, handbook-7
+  (`answer_rank` 1 and 2). `python3 search.py --keyword` on that question prints the same five, with no key.
+- Take KO, "isn't in keyword search's top five", "ranked it far down": R `questions[ow-charged-twice].keyword.top5` =
+  handbook-7, team-incident-commander-guide, handbook-6, handbook-13, deploying-with-shipyard; `answer_rank` null (not in
+  the top 20). In the full keyword ranking `team-payments-notes` is 47th of 127 (`search.keyword_search(question,
+  pages, 127)`, no API call).
+- Take P, "It never says 'paid' or 'two times'" and "shares only common words, like 'and' and 'we'":
+  `team-payments-notes` holds "paid", "two", "times" and "twice" 0 times each; the words it shares with the question
+  are again, and, can, for, hit, in, it, so, we, were (`search.words` against `count_words`, no API call). Its heading
+  on screen, `## Duplicate capture on 63 bookings`, is line 8 of `library/team-payments-notes.md`.
+- "My code sends each page to another service": R `page_embedding`: 127 calls, one per page, none cut into pieces
+  (`pages_split_into_pieces` []), vectors saved in `search/vectors.json` (md5 8d729056 = R `vectors_md5`).
+- Take O, "the payments team's page came second": R `questions[ow-charged-twice].meaning.top5` =
+  postmortem-payments-duplicate-refunds, team-payments-notes, postmortem-api-replica-lag-double-booking,
+  postmortem-notifier-duplicate-reminders, postmortem-web-firewall-challenge (`answer_rank` 2). The take printed the
+  same five; its footer `embedding · 37 tokens in` = R `embed_calls` `promptTokenCount` 37 for that question.
+- Take M, "five pages, all about payments. Not one of them holds PAY-4031": R `questions[code-pay-4031].meaning.top5` =
+  postmortem-payments-pool-timeout, team-payments-notes, postmortem-payments-duplicate-refunds,
+  provider-stripe-api-version, payments-rollback-runbook; none holds "PAY-4031" in title or text. "The two pages with
+  PAY-4031 didn't even make the top ten" (`11th or lower`): `answer_rank` handover-2025-11-03 11, handover-2025-10-20
+  null (not in the top 20). Footer `embedding · 21 tokens in` = R `promptTokenCount` 21 for that question.
+- "Keyword search ... does well on error codes and IDs" and "try semantic search" for everyday words: R `summary`:
+  code questions found in the top five, keyword 10 of 10, semantic 1 of 10; other-words questions, semantic 3 of 10,
+  keyword 1 of 10. So "try", never a promise.
+- Practice question one, "API-2210 is an exact code, and only a few pages have it": one page holds it,
+  `handover-2025-12-15`; R `questions[code-api-2210]`: keyword `answer_rank` 1, semantic not in the top 20. Questions two
+  and three are made-up cases that apply the rule; they claim no measured result.
+- Not in the episode (the description carries these): both lists merged found the page on 7 of 10 code questions, below
+  keyword alone (R `summary.both.code`); carrying all 127 pages in the call answered 40 of 40 (`2026-10-11-e2-carry.json`,
+  `e2-carry-hand-grades.json`), so at this size search is not needed for a right answer.
+- Harness (not episode code): `measure/ep12.py` records every call, `measure/ep12_spec.py` holds the facts the new pages
+  carry. The vendor docs read on 2026-10-11 are in `runs/ep12/m0/*.txt`.
+- Spend: the measurement runs $2.62 (`runs/ep12/spend.json`; embedding all 127 pages $0.041, R `page_embedding`); takes
+  M and O made one embedding call each.

@@ -2,6 +2,7 @@
 
     python3 lookup.py "<question>"            # look it up: the call sends a contents list, the model opens pages
     python3 lookup.py --carry "<question>"    # carry it all: every page goes in the call
+    python3 lookup.py --search "<question>"   # keyword search picks five pages, and they go in the call
     python3 lookup.py --list                  # the contents list, exactly as the call sends it
     python3 lookup.py --dates ...             # each line of the list ends with the day the page last changed
 """
@@ -97,6 +98,18 @@ def carry(question, pages):
     return "".join(part.get("text", "") for part in reply["parts"] if not part.get("thought"))
 
 
+def search_it(question, pages):
+    import search                                                  # search.py imports this file, so not at the top
+    top = search.keyword_search(question, pages, 5)
+    for p in top:
+        print("found ", p["id"])
+    system = SYSTEM + "\nThe team's pages that matched the question follow.\n" + "".join(
+        f"\n----- page: {p['title']} -----\n\n{p['text']}" for p in top)               # the five pages, whole
+    reply = call({"systemInstruction": {"parts": [{"text": system}]},
+                  "contents": [{"role": "user", "parts": [{"text": ASK.format(q=question)}]}]})
+    return "".join(part.get("text", "") for part in reply["parts"] if not part.get("thought"))
+
+
 def show(answer, most=30):
     """the answer wrapped to the screen, at most 30 lines, but a code block is never cut or wrapped"""
     lines, in_code = [], False
@@ -133,6 +146,11 @@ if __name__ == "__main__":
     if "--list" in flags:
         print(contents_list(pages(), dates="--dates" in flags))
     else:
-        answer = carry(question, pages()) if "--carry" in flags else look_it_up(question, pages(), "--dates" in flags)
+        if "--carry" in flags:
+            answer = carry(question, pages())
+        elif "--search" in flags:
+            answer = search_it(question, pages())
+        else:
+            answer = look_it_up(question, pages(), "--dates" in flags)
         show(answer)
         print(cost_line(time.time() - t0))

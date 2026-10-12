@@ -58,8 +58,18 @@ You can write a Python function and call an HTTP API. No machine learning needed
     python3 measure/ep11_screen.py pages              # the pages as they were before the check (the scans' pages are empty), no API call; then ask again
     python3 measure/ep11_screen.py questions          # my questions, before and after the check, from runs/ep11, no API call (also: cold, gate)
 
+    python3 search.py --keyword "What does PAY-4031 mean and what fixed it?"   # ep12: keyword search, no key needed: the two pages with PAY-4031 come first and second
+    python3 search.py --meaning "What does PAY-4031 mean and what fixed it?"   # semantic search: one embedding call for the question, five payments pages, none with the code
+    python3 search.py --both "<question>"             # both lists merged by reciprocal rank (the default with no flag)
+    python3 lookup.py --search "What does PAY-4031 mean and what fixed it?"    # keyword search picks five pages, and they go in the call with the question
+
 `lookup.py` wraps its answer to your terminal's width from ep11 on. At 89 columns or wider, and under a pipe,
 it prints exactly what ep10 printed.
+
+`search.py` is the standard library only, no `pip install`, and `--keyword` runs with no key. `search/vectors.json`
+holds every page's embedding, keyed by the page's id and the md5 of its text, so `--meaning` sends only the question;
+a page you change is embedded again on the next run. From ep12 on, `library/INDEX.json` lists all 127 pages, so
+`lookup.py` reads the grown library; the `ep11` tag keeps the 75-page list.
 
 The `ep03` tag holds `score.py` as the episode leaves it, with RULES filled in. The first five runs in
 the video used the same file with `RULES = ""` on line 14. Replace the RULES block with that one line
@@ -84,6 +94,7 @@ the course depends on the vendor.
 | `ep09` | [Prompt Caching: Make a Cache That Hits Every Call (LLM Context Caching)](https://youtu.be/Cwb9SbTJCOk) | `cache.py` sends the handbook (`runbooks/handbook.md`, the five rules on top) first and the alert last, and prints how many tokens each call sent and how many the model reused. The automatic cache reused nothing on camera (0 of 30; 21 of 120 across four earlier runs, never the whole handbook); the time on the first line stops it (0 of 30); a cache you make (`--make`) is reused on 30 of 30; after its 5 minutes the call fails with 403 "CachedContent not found (or permission denied)", and `--again` makes the cache again. `measure/ep09_screen.py` shows the earlier run and the module close: 27 of 30 right both ways, the bill about a fifth |
 | `ep10` | [RAG vs Long Context: I Tested Both on the Same Question](https://youtu.be/7BOy-hvyrlA) | `lookup.py` gives the model the team's 67 pages two ways: every page in the call (`--carry`), or a contents list of titles plus one function, `read_page`, and it prints each page the model opened. Looked up, the rollback question opened only the 2024 runbook and gave the retired command 10 of 10; carried, 10 of 10 right at 34 times the text. Dates in the list (`--dates`) 7 of 10, a RETIRED line on the old page 10 of 10, the old page moved out 10 of 10. `measure/ep10_screen.py` replays the saved runs |
 | `ep11` | [PDF Parsing for RAG: My Scanned PDF Came Back Empty (PDF to Text for LLMs)](https://youtu.be/bD8vp5NGc7A) | `topage.py` turns each PDF in `pdf/` into a page for `lookup.py`. It takes the text out with pypdf and counts the characters: the five typed PDFs gave thousands, the three scans gave 0, with no error. A PDF with 0 goes to the model once, as the PDF itself, and what the model writes out becomes the page. Before the check, the escalation sheet question came back saying the sheet's page was empty; after it, `ext. 4417`. Each page's first line carries a tag of its PDF's bytes, so a PDF that changes gets its page made again. The count is per PDF: a PDF that mixes typed and scanned pages is not caught. The PDFs are made up for the course, and the scans were made to look scanned (see PROVENANCE) |
+| `ep12` | [Semantic Search vs Keyword Search: Embeddings Missed My Error Code (RAG Retrieval)](https://youtu.be/2s4dI1qsU48) | `search.py` finds the team's pages for a question two ways. Keyword search (`--keyword`) splits the question into words and gives each page points for every word it holds, far more for a rare word (BM25, written out by hand). Semantic search (`--meaning`) turns each page and the question into an embedding and hands back the five pages closest to the question. On "What does PAY-4031 mean and what fixed it?", keyword search put the two pages with PAY-4031 first and second; semantic search came back with five payments pages, none holding the code, and the page with the fix ranked 11th. On a question in other words (people who paid two times for one visit), semantic search put the payments team's page second and keyword search ranked it 47th. `lookup.py --search` sends keyword search's top five with the question. The company, its 127 pages and the error codes are made up for the course |
 
 The map the course follows: [Andrew Ng's AI Engineering Skills Map](https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map)
 

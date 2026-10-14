@@ -1,0 +1,2905 @@
+{
+ "what": "P hand grades: every claim of every steps/half answer, read against the pages in the call (rules.SYSTEM counts: it is in the call). grades: supported (refs = the page line), not-on-page, wrong, ambiguous (said why), says-not-in-pages (the half question's missing part), frame (a lead-in or heading, no claim).",
+ "run": "runs/ep13/2026-10-12-p-plain.json",
+ "grades": {
+  "st-cdn-purge": [
+   {
+    "n": 1,
+    "claim": "Based on the **\"How to purge the CDN by hand\"** documentation, follow these steps to manually purge the CDN:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "Open the metrics tool to the **Sorrel / web** dashboard.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-cdn-purge-by-hand",
+      "quote": "Before touching the CDN dashboard, open the metrics tool and check:"
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "Verify that `web` origin nodes are healthy (confirm CPU and memory are stable and nodes are not restarting) before initiating the purge.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-cdn-purge-by-hand",
+      "quote": "Confirm that `web` origin nodes are healthy. If memory is already climbing near limits or nodes are restarting, coordinate with Sara or Kenji Sato before invalidating anything that will increase origin request volume."
+     }
+    ]
+   },
+   {
+    "n": 4,
+    "claim": "Log in to the **cloudflare** management console with your platform credentials.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-cdn-purge-by-hand",
+      "quote": "1. Navigate to the cloudflare management console using your platform credentials."
+     }
+    ]
+   },
+   {
+    "n": 5,
+    "claim": "Select the zone for production: `sorrel.app`.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-cdn-purge-by-hand",
+      "quote": "2. Select the zone corresponding to the environment: `sorrel.app` (production)."
+     }
+    ]
+   },
+   {
+    "n": 6,
+    "claim": "In the left navigation menu, go to **Caching** > **Configuration**.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-cdn-purge-by-hand",
+      "quote": "3. From the left navigation menu, open **Caching**, then click on **Configuration**."
+     }
+    ]
+   },
+   {
+    "n": 7,
+    "claim": "Find the **Purge Cache** section.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-cdn-purge-by-hand",
+      "quote": "4. Locate the **Purge Cache** section."
+     }
+    ]
+   },
+   {
+    "n": 8,
+    "claim": "**Crucial Rule:** Always purge by URL prefix or specific URL. **Never click \"Purge Everything\"**, as this will cause a thundering herd that can overwhelm the origin `web` nodes.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-cdn-purge-by-hand",
+      "quote": "> **WARNING:** Always purge by URL prefix, not \"purge everything\". Purging everything sends all traffic to the origin at once."
+     }
+    ]
+   },
+   {
+    "n": 9,
+    "claim": "Click **Custom Purge**.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-cdn-purge-by-hand",
+      "quote": "1. Click on **Custom Purge** (do not click *Purge Everything*)."
+     }
+    ]
+   },
+   {
+    "n": 10,
+    "claim": "Select the **URL or Prefix** purge mode.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-cdn-purge-by-hand",
+      "quote": "2. Select the **URL or Prefix** purge mode."
+     }
+    ]
+   },
+   {
+    "n": 11,
+    "claim": "Enter the exact URL prefixes or specific bundle files requiring eviction (e.g., `https://sorrel.app/assets/`, `https://sorrel.app/static/`, or specific files like `https://sorrel.app/assets/app-[hash].js`).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-cdn-purge-by-hand",
+      "quote": "Supply the exact URL prefixes requiring eviction."
+     }
+    ]
+   },
+   {
+    "n": 12,
+    "claim": "Click **Submit Purge**.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-cdn-purge-by-hand",
+      "quote": "6. Click **Submit Purge**."
+     }
+    ]
+   },
+   {
+    "n": 13,
+    "claim": "Go to **Caching** > **Purge History / Status Panel** to monitor the purge. A normal purge completes within a minute (15–45 seconds).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-cdn-purge-by-hand",
+      "quote": "A normal purge completes within a minute; check its status on the CDN dashboard's purge panel."
+     },
+     {
+      "page": "howto-cdn-purge-by-hand",
+      "quote": "A healthy purge transition should take between 15 and 45 seconds"
+     }
+    ]
+   },
+   {
+    "n": 14,
+    "claim": "Note the returned **Purge ID** (UUID).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-cdn-purge-by-hand",
+      "quote": "|    - Record the returned Purge ID                           |"
+     }
+    ]
+   },
+   {
+    "n": 15,
+    "claim": "Post the Purge ID and details into the active incident thread in `#inc-live`.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-cdn-purge-by-hand",
+      "quote": "| 5. Post Purge ID and Details to Incident Thread (`#inc-live`)|"
+     }
+    ]
+   },
+   {
+    "n": 16,
+    "claim": "Monitor the **Sorrel / web** dashboard for at least 10 minutes to verify that the cache hit ratio recovers, edge error rates stay low, and origin CPU stays under 65%.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-cdn-purge-by-hand",
+      "quote": "watch the metrics tool for at least ten minutes"
+     },
+     {
+      "page": "howto-cdn-purge-by-hand",
+      "quote": "Verify CPU remains under 65% across all active nodes."
+     }
+    ]
+   }
+  ],
+  "st-web-rollback": [
+   {
+    "n": 1,
+    "claim": "Based on the service runbook for **web**, here is how to roll back:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "**Open the deploy tool:** Go to project `\"sorrel\"`, service `\"web\"`.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handbook-5",
+      "quote": "1. In the deploy tool, project \"sorrel\", service \"web\", choose the previous deploy and press \"Roll back to this\"."
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "**Select the target deploy:** In the deployment history, select the previous deploy and press **\"Roll back to this\"**.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handbook-5",
+      "quote": "1. In the deploy tool, project \"sorrel\", service \"web\", choose the previous deploy and press \"Roll back to this\"."
+     }
+    ]
+   },
+   {
+    "n": 4,
+    "claim": "**Wait for deployment:** The tool will re-point the nodes to the previous version (two nodes at a time) and re-point the CDN to the previous asset set. This takes about 4 minutes.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handbook-5",
+      "quote": "2. The tool re-points the nodes to the previous version, two at a time, and re-points the CDN to the previous asset set. It takes about four minutes."
+     }
+    ]
+   },
+   {
+    "n": 5,
+    "claim": "**Monitor dashboards:** Watch the error rate and page load metrics on the **\"Sorrel / web\"** dashboard until they return to the levels seen before the deploy.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handbook-5",
+      "quote": "3. Watch error rate and page load on the board until they return to the level before the deploy."
+     }
+    ]
+   },
+   {
+    "n": 6,
+    "claim": "**Log the rollback:** Write the rollback in the incident thread (e.g., `#inc-live`), noting both deploy IDs.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handbook-5",
+      "quote": "Write the rollback in the incident thread with both deploy ids."
+     },
+     {
+      "page": "web-runbook-2024",
+      "quote": "Post an update in the `#inc-live` incident thread containing both deploy IDs"
+     }
+    ]
+   },
+   {
+    "n": 7,
+    "claim": "**Follow up:** Tell Aiko in the morning, or page her if the rollback does not fix the issue.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handbook-5",
+      "quote": "5. Tell Aiko in the morning, or page her if the rollback did not help."
+     }
+    ]
+   }
+  ],
+  "st-web-blank": [
+   {
+    "n": 1,
+    "claim": "According to the **web** service runbook (Handbook Section 5.1), the first checks step by step are:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "Open **\"Sorrel / web\"** and find when the symptom started.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handbook-5",
+      "quote": "1. Open \"Sorrel / web\" and find when the symptom started."
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "Compare with the deploy history for `web`. Note the age of the last deploy.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handbook-5",
+      "quote": "2. Compare with the deploy history for web. Note the age of the last deploy."
+     }
+    ]
+   },
+   {
+    "n": 4,
+    "claim": "Check whether the symptom is on all nodes or one node, all routes or one route, all regions or one region.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handbook-5",
+      "quote": "3. Check whether the symptom is on all nodes or one node, all routes or one route, all regions or one region."
+     }
+    ]
+   },
+   {
+    "n": 5,
+    "claim": "Check `api`'s board. If `api` is unhealthy, `web`'s errors are usually a consequence.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handbook-5",
+      "quote": "4. Check api's board. If api is unhealthy, web's errors are usually a consequence."
+     }
+    ]
+   },
+   {
+    "n": 6,
+    "claim": "Check the CDN panel: is the edge serving errors, or is the origin?",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handbook-5",
+      "quote": "5. Check the CDN panel: is the edge serving errors, or is the origin?"
+     }
+    ]
+   },
+   {
+    "n": 7,
+    "claim": "Read `service=web` logs for the start of the window.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handbook-5",
+      "quote": "6. Read `service=web` logs for the start of the window."
+     }
+    ]
+   }
+  ],
+  "st-crawler": [
+   {
+    "n": 1,
+    "claim": "Based on the on-call handover pages, your first move should be **no action**, and you should file/log a ticket for **Aiko** about crawler limits.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handover-2026-06-15",
+      "quote": "* On Friday 2026-06-12 at 14:52 JST, `web-traffic` fired. A quick check of traffic showed a search-engine crawler on public business pages, about 3.2x the same hour last week, all 2xx. Because traffic was legitimate, errors remained flat, and nothing failed for users, the first move was no action; ticket for Aiko about crawler limits."
+     }
+    ]
+   },
+   {
+    "n": 2,
+    "claim": "As long as requests are returning 2xx, response latency/errors remain flat, and backend services are healthy, no intervention is needed. Write it down, log the ticket, and move on.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handover-2026-06-15",
+      "quote": "Because traffic was legitimate, errors remained flat, and nothing failed for users, the first move was no action"
+     },
+     {
+      "page": "rules.SYSTEM",
+      "quote": "no action: write it down and move on"
+     }
+    ]
+   }
+  ],
+  "st-admin-deletions": [
+   {
+    "n": 1,
+    "claim": "Based on the runbooks and handbook, you should **page owner** (page **Aiko**, the owner of `web`):",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "web-runbook-2024",
+      "quote": "Immediately page Aiko."
+     }
+    ]
+   },
+   {
+    "n": 2,
+    "claim": "**Irreversible harm / restoration authority:** The on-call engineer must never attempt manual data deletions or data restoration scripts. Restoring purged accounts requires pulling database backups, which can only be done by service owners.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "web-runbook-2024",
+      "quote": "- **Irreversible actions:** The on-call engineer must never attempt manual data deletions or data restoration scripts. Restoring purged accounts requires pulling database backups, an operation performed strictly by service owners."
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "**Handbook guidance:** Under the five actions, **page owner** is required when accounts or records have been deleted or when someone must make a decision on-call cannot make. Whether mass deletion was legitimate or malicious/accidental is a decision on-call cannot make, and restoring deleted accounts is strictly the owner's responsibility.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "rules.SYSTEM",
+      "quote": "accounts deleted"
+     },
+     {
+      "page": "handbook-7",
+      "quote": "is not something on-call can decide."
+     },
+     {
+      "page": "handbook-7",
+      "quote": "Restores come from backups and are done by the owner."
+     }
+    ]
+   },
+   {
+    "n": 4,
+    "claim": "**`web` runbook explicit procedure:**",
+    "grade": "frame"
+   },
+   {
+    "n": 5,
+    "claim": "> *\"Any unexpected deletion, mass change or access pattern in the admin tool is a matter for Aiko and is never fixed by the on-call engineer alone...\"*",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handbook-5",
+      "quote": "**Admin tool.** The admin tool lets support staff look up accounts, resend confirmations, and, with a second approval, delete accounts on request. Any unexpected deletion, mass change or access pattern in the admin tool is a matter for Aiko and is never fixed by the on-call engineer alone, because deleted accounts can only be restored by the owner from backups."
+     }
+    ]
+   },
+   {
+    "n": 6,
+    "claim": "> *\"If an alert flags abnormal account modifications or deletions from a single admin session (e.g., alert rule `web-admin-bulk`), do not attempt to mitigate by restarting nodes. Immediately page Aiko.\"*",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "web-runbook-2024",
+      "quote": "- **Suspicious bulk activity:** If an alert flags abnormal account modifications or deletions from a single admin session (e.g., alert rule `web-admin-bulk`), do not attempt to mitigate by restarting nodes. Immediately page Aiko."
+     }
+    ]
+   }
+  ],
+  "st-replica-lag": [
+   {
+    "n": 1,
+    "claim": "Based on the team documentation (specifically **\"How to check replica lag on api\"**), here is the step-by-step walkthrough of what to check:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "**Open the dashboard:** Navigate to **Sorrel / Services** > **Sorrel / api** > scroll down to the **Database** row.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "Open the folder **Sorrel / Services**."
+     },
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "Open the **Sorrel / api** board and check the **Database** row."
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "**Inspect the Replica Lag panel:** Replica lag is displayed there (one line per region).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "Replica lag is on the 'Database' row of the api board, one line per region."
+     }
+    ]
+   },
+   {
+    "n": 4,
+    "claim": "**Identify the affected region:** Check whether the lag is global or restricted to `ap-northeast`, `us-east`, or `eu-west`.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "- [ ] Determine if the issue is global or limited to a single region (`ap-northeast`, `us-east`, or `eu-west`)."
+     }
+    ]
+   },
+   {
+    "n": 5,
+    "claim": "If confined to one region, check if regional query latency is also spiked.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "- If confined to one region, check if regional query latency is also spiked."
+     }
+    ]
+   },
+   {
+    "n": 6,
+    "claim": "Check AWS status (`health.aws.amazon.com` or AWS Personal Health Dashboard) for storage (EBS) or database performance degradation in that specific region.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "- Check the provider status (health.aws.amazon.com or the account personal health dashboard) for AWS storage (EBS) or database performance degradation in that region (e.g., `ap-northeast-1`)."
+     }
+    ]
+   },
+   {
+    "n": 7,
+    "claim": "**Establish the timeline:** Determine when lag went above the < 1.0s baseline and whether it coincided with the top of the hour, a batch run, or a deployment.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "- Establish the timeline: When did the line deviate from the < 1.0s floor? Did it coincide with the top of the hour, a batch run, or a deploy?"
+     }
+    ]
+   },
+   {
+    "n": 8,
+    "claim": "**Check the deploy tool:** Cross-reference the onset time with deploy history for `api`.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "Cross-reference the onset time with the deploy history in the deploy tool."
+     }
+    ]
+   },
+   {
+    "n": 9,
+    "claim": "Check whether recent database migrations were applied that might hold long table locks or run heavy sequential scans. *(Note: deploys several hours or days old are rarely the spontaneous cause.)*",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "- Check if database migrations were applied during the last release that could be holding long table locks or performing heavy sequential scans."
+     }
+    ]
+   },
+   {
+    "n": 10,
+    "claim": "Go to the log search tool (index: `sorrel-prod-*`) and limit the query window strictly to the few minutes preceding the rise in lag.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "Go to the log search tool, targeting the index `sorrel-prod-*`. Limit your query window strictly to the few minutes preceding the rise in lag."
+     }
+    ]
+   },
+   {
+    "n": 11,
+    "claim": "Filter for errors and bottlenecks:",
+    "grade": "frame"
+   },
+   {
+    "n": 12,
+    "claim": "`service=api level=ERROR` (look for the earliest errors, not just highest volume).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "service=api level=ERROR"
+     }
+    ]
+   },
+   {
+    "n": 13,
+    "claim": "`service=api msg=\"pool exhausted\"`",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handover-2024-03-25",
+      "quote": "- Watch the `Sorrel / api` dashboard between 09:00 and 12:00 JST today. If connection pools climb towards 80 %, check slow queries in the database panel. Use `service=api msg=\"pool exhausted\"` in the log search tool to inspect bottlenecks before taking action."
+     }
+    ]
+   },
+   {
+    "n": 14,
+    "claim": "`service=api duration_ms>2000 endpoint=*`",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "service=api duration_ms>2000 endpoint=*"
+     }
+    ]
+   },
+   {
+    "n": 15,
+    "claim": "`service=api msg=\"deadlock\"`",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "service=api msg=\"deadlock\""
+     }
+    ]
+   },
+   {
+    "n": 16,
+    "claim": "`service=api msg=\"timeout\"`",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "service=api msg=\"timeout\""
+     }
+    ]
+   },
+   {
+    "n": 17,
+    "claim": "Look for statements indicating heavy write locks on tables like `bookings`, `slots`, or `business_hours` on the primary database, which can stall replication.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "Look for statements that indicate heavy write locks on tables like `bookings`, `slots`, or `business_hours`. A long-running transactional write on the primary database prevents the replication process from applying subsequent changes concurrently, causing replica lag to accumulate rapidly on both read replicas in that region."
+     }
+    ]
+   },
+   {
+    "n": 18,
+    "claim": "On the **Database** row of the `Sorrel / api` dashboard, look at the adjacent panels:",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "Check adjacent panels: **Connections in use per pool**, **Query time**, and **Slow queries**."
+     }
+    ]
+   },
+   {
+    "n": 19,
+    "claim": "**Connections in use per pool:** Check if connection pools are approaching 90% or 100% capacity. (When replica connection pools fill up from slow queries, incoming reads queue and time out).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "- When slow queries run on replicas, replica connection pools fill up. Once full, incoming read requests block, queue, and eventually time out, increasing 5xx errors on `api` and generating 5xx errors upstream on `web`."
+     }
+    ]
+   },
+   {
+    "n": 20,
+    "claim": "**Query time & Slow queries:** Look for queries taking longer than baseline expectations.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "- **Slow queries**: Reports occurrences of statements taking longer than baseline expectations, often the root cause of saturated replication threads."
+     }
+    ]
+   },
+   {
+    "n": 21,
+    "claim": "If connection pools are exhausted across multiple nodes, check if specific endpoints (such as `/search` or partner sync calls) are dominating the pool.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "- If connection pools are exhausted across multiple nodes, check if specific endpoints (such as `/search` or partner sync calls) are dominating the pool."
+     }
+    ]
+   },
+   {
+    "n": 22,
+    "claim": "**Replica promotion is never an on-call move:** You must **not** attempt database failovers, promote a read replica to primary, detach replication streams, kill database processes, or modify pool limits. Doing so risks immediate data loss or split-brain divergence.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "You must never attempt to execute a database failover, promote a read replica to primary, detach replication streams"
+     },
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "You must not alter connection pool limits, change database configurations, or kill long-running database processes on production clusters without owner approval."
+     }
+    ]
+   },
+   {
+    "n": 23,
+    "claim": "**When to page Ravi (api owner):**",
+    "grade": "frame"
+   },
+   {
+    "n": 24,
+    "claim": "Persistent severe lag (> 10s for more than 15 minutes continuously) with exhausted connection pools and read timeouts at scale.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "2. **Persistent severe lag with connection saturation**: Replica lag in any region exceeds 10 seconds for more than 15 minutes continuously, connection pools are exhausted, and read queries are timing out at scale across nodes."
+     }
+    ]
+   },
+   {
+    "n": 25,
+    "claim": "Evidence of irreversible harm, double-bookings, or data state corruption.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "1. **Irreversible harm / data state corruption**: If there is evidence that inconsistent reads have allowed double-bookings where money was collected twice, or data corruption has occurred across tenants."
+     }
+    ]
+   },
+   {
+    "n": 26,
+    "claim": "Primary hardware failure or unresolvable write deadlocks.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "**Primary hardware failure**"
+     },
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "**Unresolvable deadlocks**"
+     }
+    ]
+   },
+   {
+    "n": 27,
+    "claim": "**Support coordination:** If customer reports appear regarding stale availability or calendar updates reverting, coordinate with support lead Hana. Document your findings in `#inc-live`.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-replica-lag",
+      "quote": "- **Engage support communication**: If customer inquiries mount regarding stale booking displays or calendar updates reverting, coordinate with support lead Hana so support staff have visibility into the fact that read lag is occurring."
+     }
+    ]
+   }
+  ],
+  "st-reindex": [
+   {
+    "n": 1,
+    "claim": "Based on the team documentation (**\"How to rebuild the api search index\"**), here is how to run a full rebuild of the `api` search index:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "**Working hours only:** Rebuilding the index is strictly a working-hours job (between 09:00 and 18:00 JST, preferably Tuesday/Thursday 14:00–16:00 JST). **It is never a nighttime move for on-call engineers.**",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "Rebuilding the search index is a working-hours job, never a night move for on-call."
+     },
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "(between 09:00 and 18:00 JST)"
+     },
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "Tuesday and Thursday afternoons between 14:00 and 16:00 JST are the preferred operating windows."
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "**Authority:** The rebuild is run by the api team. Engineers on other teams or on-call responders outside the api team must coordinate directly with **Daniel** or **Ravi** before taking action.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "- **Authority:** The rebuild is started from the job console, job `search-reindex-full`, by the api team. Engineers on other teams or on-call responders outside of the api team should coordinate directly with Daniel or Ravi before taking action."
+     }
+    ]
+   },
+   {
+    "n": 4,
+    "claim": "**Pre-checks:**",
+    "grade": "frame"
+   },
+   {
+    "n": 5,
+    "claim": "Check the **Search index: index freshness** panel on the **Sorrel / api** dashboard. If freshness is **under 6 hours**, it does **not** need a rebuild.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "- **Index freshness under 6 hours:** Check the index-freshness panel on the api board first; an index under 6 hours old does not need a rebuild. Even if query latency exhibits a brief spike, an index that is less than 6 hours old is fresh enough for normal customer operations. A latency spike on a fresh index usually indicates slow database queries, connection pool saturation, or sudden traffic shifts. Check `service=api` logs for `pool exhausted` or `deadlock` instead."
+     }
+    ]
+   },
+   {
+    "n": 6,
+    "claim": "Check database health on the **Sorrel / api** board: connection pool usage must be below 70% across all active nodes (`ap-northeast`, `us-east`, `eu-west`), and replica lag must be steady and under 100 ms.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "connection pool usage must be below 70 % across all active nodes"
+     },
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "read replica lag must be steady and under 100 ms."
+     }
+    ]
+   },
+   {
+    "n": 7,
+    "claim": "Avoid launching during peak booking rushes (12:00–13:00 JST and 18:00–23:00 JST).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "- Avoid launching during the lunchtime booking rush (12:00–13:00 JST) or the evening booking peak (18:00–23:00 JST), when writes on `api` and checkouts on `payments` are highest."
+     }
+    ]
+   },
+   {
+    "n": 8,
+    "claim": "Post a note in `#team-api` announcing the run.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "Drop a brief note in `#team-api`:"
+     }
+    ]
+   },
+   {
+    "n": 9,
+    "claim": "The rebuild runs asynchronously in the background via the internal administrative job console:",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "The rebuild runs asynchronously in the background via our internal administrative job system."
+     }
+    ]
+   },
+   {
+    "n": 10,
+    "claim": "**Open the job console:** Navigate to the internal job console and authenticate with your api team credentials.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "Navigate to the internal job console interface used by the platform and service teams. Ensure your role is authenticated with your api team credentials."
+     }
+    ]
+   },
+   {
+    "n": 11,
+    "claim": "**Select the reindex job:**",
+    "grade": "frame"
+   },
+   {
+    "n": 12,
+    "claim": "**Service:** `api`",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "- Service: `api`"
+     }
+    ]
+   },
+   {
+    "n": 13,
+    "claim": "**Job identifier:** `search-reindex-full`",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "- Job identifier: `search-reindex-full`"
+     }
+    ]
+   },
+   {
+    "n": 14,
+    "claim": "**Verify default parameters:**",
+    "grade": "frame"
+   },
+   {
+    "n": 15,
+    "claim": "`target_regions`: `ap-northeast`, `us-east`, `eu-west`",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "- `target_regions`: `ap-northeast`, `us-east`, `eu-west` (Tokyo is our largest partition)"
+     }
+    ]
+   },
+   {
+    "n": 16,
+    "claim": "`batch_size`: `500` (default)",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "- `batch_size`: `500` (default; tuned to prevent connection starvation on the replica pool)"
+     }
+    ]
+   },
+   {
+    "n": 17,
+    "claim": "`swap_strategy`: `atomic_on_success`",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "- `swap_strategy`: `atomic_on_success`"
+     }
+    ]
+   },
+   {
+    "n": 18,
+    "claim": "*(Do not change default batch parameters unless agreed upon with Ravi or Kenji Sato.)*",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "Do not modify the default batch parameters unless previously agreed upon with Ravi or Kenji Sato."
+     }
+    ]
+   },
+   {
+    "n": 19,
+    "claim": "**Execute the job:** Click **Run Job**. The console will issue a run confirmation ID (e.g., `job-run-sr-8812`).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "Press **Run Job**. The console will issue a run confirmation id (e.g., `job-run-sr-8812`)."
+     }
+    ]
+   },
+   {
+    "n": 20,
+    "claim": "**Duration & Downtime:** The build takes about **70 minutes**. Live searches experience zero downtime because they continue using the old index until the new one completes and swaps atomically.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "- **Zero search downtime:** Searches do not stop while the job executes. A full rebuild takes about 70 minutes; searches keep using the old index until the new one is ready. When the build finishes and passes verification checks, the index pointer swaps atomically."
+     }
+    ]
+   },
+   {
+    "n": 21,
+    "claim": "**Monitoring:** Keep the **Sorrel / api** board open to monitor live search query latency, database connection pools (<90%), replica lag, and error rates. You can monitor logs using:",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "Keep the following metrics open throughout the run:"
+     },
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "If pool utilization climbs near 90 %"
+     }
+    ]
+   },
+   {
+    "n": 22,
+    "claim": "service=api component=search-indexer job=search-reindex-full",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "service=api component=search-indexer job=search-reindex-full"
+     }
+    ]
+   },
+   {
+    "n": 23,
+    "claim": "**Post-swap verification:** Confirm the atomic swap in the job console logs, verify on the dashboard that **index freshness** drops to `< 5m`, check that query latencies are normal, run a manual search test via `web`, and notify `#team-api` when complete.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "**Confirm the pointer swap:**"
+     },
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "should drop immediately to near zero (typically `< 5m`)."
+     },
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "**Run a manual search verification:**"
+     },
+     {
+      "page": "howto-api-search-index-rebuild",
+      "quote": "Post an update in `#team-api`:"
+     }
+    ]
+   }
+  ],
+  "st-load-test": [
+   {
+    "n": 1,
+    "claim": "Based on the **How to stop a load test that nobody owns** runbook, follow these steps:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "Before stopping the test, check the team game day / change calendar to ensure it is not part of a scheduled exercise.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-stop-unowned-load-test",
+      "quote": "Check the game day calendar first; if the test is on it, ask its owner before stopping it."
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "If it is on the calendar, ask the listed owner before stopping it.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-stop-unowned-load-test",
+      "quote": "- **Rule:** Check the game day calendar first; if the test is on it, ask its owner before stopping it."
+     }
+    ]
+   },
+   {
+    "n": 4,
+    "claim": "If it is not on the calendar, the window ended, or no owner is listed, it is an orphaned test and you have explicit operational permission to stop it immediately.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-stop-unowned-load-test",
+      "quote": "it is an orphaned test"
+     },
+     {
+      "page": "howto-stop-unowned-load-test",
+      "quote": "the on-call engineer has explicit operational permission to stop rogue load tests immediately."
+     }
+    ]
+   },
+   {
+    "n": 5,
+    "claim": "All synthetic load runners are managed using the central utility **`loadctl`**:",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-stop-unowned-load-test",
+      "quote": "All synthetic load runners across our regions are controlled by the central load test management utility, `loadctl`."
+     }
+    ]
+   },
+   {
+    "n": 6,
+    "claim": "**Find the Test ID:**",
+    "grade": "frame"
+   },
+   {
+    "n": 7,
+    "claim": "List active load test runners across all regions:",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-stop-unowned-load-test",
+      "quote": "Run `loadctl list` to view all active test runners across all regions:"
+     }
+    ]
+   },
+   {
+    "n": 8,
+    "claim": "loadctl list",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-stop-unowned-load-test",
+      "quote": "Run `loadctl list` to view all active test runners across all regions:"
+     }
+    ]
+   },
+   {
+    "n": 9,
+    "claim": "Identify the `TEST ID` matching the traffic targeting `api`.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-stop-unowned-load-test",
+      "quote": "- Identify the `TEST ID` that corresponds to the traffic seen in the logs or metrics."
+     }
+    ]
+   },
+   {
+    "n": 10,
+    "claim": "**Stop the Test:**",
+    "grade": "frame"
+   },
+   {
+    "n": 11,
+    "claim": "loadctl stop <test id>",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-stop-unowned-load-test",
+      "quote": "before stopping]    loadctl stop <test id>]"
+     }
+    ]
+   },
+   {
+    "n": 12,
+    "claim": "**Force Kill (if it hangs):**",
+    "grade": "frame"
+   },
+   {
+    "n": 13,
+    "claim": "If the command hangs or worker nodes do not terminate within 30 seconds, force stop it:",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-stop-unowned-load-test",
+      "quote": "If `loadctl stop <test id>` hangs or worker nodes fail to terminate connections within 30 seconds, force the termination:"
+     }
+    ]
+   },
+   {
+    "n": 14,
+    "claim": "loadctl stop <test id> --force",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-stop-unowned-load-test",
+      "quote": "If `loadctl stop <test id>` hangs or worker nodes fail to terminate connections within 30 seconds, force the termination:"
+     }
+    ]
+   },
+   {
+    "n": 15,
+    "claim": "**Notify `#platform` immediately** in chat with the test ID, traffic rate (RPS), target service/region, symptoms, and note that there was no calendar entry or owner found.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-stop-unowned-load-test",
+      "quote": "As soon as the test is terminated, post a summary in the `#platform` chat channel:"
+     },
+     {
+      "page": "howto-stop-unowned-load-test",
+      "quote": "No entry on Game Day calendar, no owner found in metadata."
+     }
+    ]
+   },
+   {
+    "n": 16,
+    "claim": "If an incident thread was opened in `#inc-live`, post an update noting that the test was stopped with `loadctl stop <test id>` and monitor dashboards for 10 minutes to verify metrics normalize.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-stop-unowned-load-test",
+      "quote": "Post an update with the concrete action:"
+     },
+     {
+      "page": "howto-stop-unowned-load-test",
+      "quote": "Watch dashboards for 10 minutes to verify:"
+     }
+    ]
+   }
+  ],
+  "st-api-rollback": [
+   {
+    "n": 1,
+    "claim": "To roll back **api** on Shipyard:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "As the on-call engineer, you can roll back **one release with no approval needed** (it is pre-approved and safe for database migrations). You can do this via CLI or the browser:",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "deploying-with-shipyard",
+      "quote": "- **The on-call engineer can roll back one release, with no approval.** This is pre-approved for every on-call engineer, day or night, because rolling back one release is always safe (database migrations are written to work with the previous release)."
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "**Command line:**",
+    "grade": "frame"
+   },
+   {
+    "n": 4,
+    "claim": "Check recent releases to find the release just below the `live` one:",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "deploying-with-shipyard",
+      "quote": "2. Find the release just below the `live` one and press **Roll back to this release**."
+     }
+    ]
+   },
+   {
+    "n": 5,
+    "claim": "shipyard releases api",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "deploying-with-shipyard",
+      "quote": "(or `shipyard releases api`)"
+     }
+    ]
+   },
+   {
+    "n": 6,
+    "claim": "Run the rollback command targeting that previous release (e.g., `r-211`):",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handbook-5",
+      "quote": "1. Since 2026-09-28, api deploys and rolls back with Shipyard, not the deploy tool. Run `shipyard rollback api --to <previous release>` (releases are named like `r-212`), or press \"Roll back to this release\" on api's Releases page in Shipyard. It replaces nodes two at a time and takes about six minutes."
+     }
+    ]
+   },
+   {
+    "n": 7,
+    "claim": "shipyard rollback api --to <release-name>",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handbook-5",
+      "quote": "Run `shipyard rollback api --to <previous release>`"
+     }
+    ]
+   },
+   {
+    "n": 8,
+    "claim": "Type the service name (`api`) to confirm when prompted.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "deploying-with-shipyard",
+      "quote": "Shipyard asks you to type the service name to confirm."
+     }
+    ]
+   },
+   {
+    "n": 9,
+    "claim": "**Browser:**",
+    "grade": "frame"
+   },
+   {
+    "n": 10,
+    "claim": "Go to `shipyard.sorrel.internal`.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "deploying-with-shipyard",
+      "quote": "Shipyard lives at `shipyard.sorrel.internal`. You sign in with your normal company account. The command line tool is called `shipyard` and is already installed on every on-call laptop that went through the September laptop update. If `shipyard --version` prints nothing, ask in `#platform` before your shift, not during an incident."
+     }
+    ]
+   },
+   {
+    "n": 11,
+    "claim": "Select the **api** service and open the **Releases** tab.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "deploying-with-shipyard",
+      "quote": "- In the browser: `shipyard.sorrel.internal`, pick the service, open the **Releases** tab. The newest release is at the top. The release marked `live` is the one running now."
+     }
+    ]
+   },
+   {
+    "n": 12,
+    "claim": "Find the release just below the `live` release and click **Roll back to this release**.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "deploying-with-shipyard",
+      "quote": "2. Find the release just below the `live` one and press **Roll back to this release**."
+     }
+    ]
+   },
+   {
+    "n": 13,
+    "claim": "Type `api` in the confirmation box.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "deploying-with-shipyard",
+      "quote": "Type the service name in the box to confirm."
+     }
+    ]
+   },
+   {
+    "n": 14,
+    "claim": "Shipyard replaces api nodes two at a time; the process takes about **six minutes**.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handbook-5",
+      "quote": "1. Since 2026-09-28, api deploys and rolls back with Shipyard, not the deploy tool. Run `shipyard rollback api --to <previous release>` (releases are named like `r-212`), or press \"Roll back to this release\" on api's Releases page in Shipyard. It replaces nodes two at a time and takes about six minutes."
+     }
+    ]
+   },
+   {
+    "n": 15,
+    "claim": "Shipyard will post the start and finish in `#deploys`.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "deploying-with-shipyard",
+      "quote": "- Shipyard posts the start and the end of the rollback in `#deploys`. Copy both release names into the incident thread yourself as well."
+     }
+    ]
+   },
+   {
+    "n": 16,
+    "claim": "You must paste the output of `shipyard releases api` and write both release names (the rolled back release and the target release) into the incident thread.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "deploying-with-shipyard",
+      "quote": "During an incident, paste the output of `shipyard releases <service>` into the incident thread."
+     },
+     {
+      "page": "deploying-with-shipyard",
+      "quote": "Copy both release names into the incident thread yourself as well."
+     }
+    ]
+   },
+   {
+    "n": 17,
+    "claim": "Watch the error rate and latency on the `Sorrel / api` dashboard to ensure they return to pre-deploy levels.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handbook-5",
+      "quote": "Watch error rate and latency return to the level before the deploy"
+     }
+    ]
+   },
+   {
+    "n": 18,
+    "claim": "**Rolling back two or more releases:** Requires approval in Shipyard from the service owner, **Ravi**. If he does not answer, page him.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "deploying-with-shipyard",
+      "quote": "- **Rolling back two or more releases needs the service owner's approval in Shipyard: Ravi for api, Mei for payments.** Shipyard shows a \"needs approval\" banner and the owner approves from the release page or from the Shipyard app on their phone. If the owner does not answer, page them; do not ask someone else to approve in their place."
+     }
+    ]
+   },
+   {
+    "n": 19,
+    "claim": "**If the rollback does not help after 10 minutes:** Do not attempt another rollback to an older release. Page Ravi.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "deploying-with-shipyard",
+      "quote": "If the service is still unhealthy ten minutes after the rollback finished, the last release was probably not the cause. Do not roll back again to see if an older release helps; that is the two-or-more case and it needs the owner. Page the owner (handbook section 4.2)."
+     }
+    ]
+   }
+  ],
+  "st-audit-actions": [
+   {
+    "n": 1,
+    "claim": "Based on the postmortem (*Postmortem: api audit log writer stopped after a disk filled*), the following action items and changes were planned following the incident:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "**Spool volume disk usage alerting:** Configure a proactive disk usage alert on all `api` spool volumes that fires when disk usage exceeds 75% (Owner: Sara, Target Date: 2025-12-22).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "postmortem-api-audit-disk",
+      "quote": "| Configure a proactive disk usage alert on all `api` spool volumes that fires when disk usage exceeds 75%. | Preventative | Sara (platform) | 2025-12-22 |"
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "**Automated offloading to object storage:** Re-architect the audit spooler to automatically offload batches to AWS object storage whenever local disk utilization passes 70% (Owner: Daniel, Target Date: 2026-01-15).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "postmortem-api-audit-disk",
+      "quote": "| Re-architect the audit spooler to automatically offload batches to aws object storage whenever local disk utilization passes 70%. | Architectural | Daniel (api) | 2026-01-15 |"
+     }
+    ]
+   },
+   {
+    "n": 4,
+    "claim": "**Hardened worker error handling:** Update the background audit worker error handling to catch `ENOSPC` and filesystem write exceptions, automatically attempting recovery rather than terminating the worker thread (Owner: Ravi, Target Date: 2026-01-20).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "postmortem-api-audit-disk",
+      "quote": "| Update the background audit worker error handling to catch `ENOSPC` and filesystem write exceptions, automatically attempting recovery rather than terminating the worker thread. | Hardening | Ravi (api) | 2026-01-20 |"
+     }
+    ]
+   },
+   {
+    "n": 5,
+    "claim": "**Clean cron file locking:** Review auxiliary log-exporting cron tasks to ensure file locks are cleanly released after execution (Owner: Kenji Sato, Target Date: 2025-12-19).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "postmortem-api-audit-disk",
+      "quote": "| Review the auxiliary log-exporting cron tasks to ensure file locks are released cleanly after execution. | Preventative | Kenji Sato (platform lead) | 2025-12-19 |"
+     }
+    ]
+   },
+   {
+    "n": 6,
+    "claim": "**Replay tooling:** Create an automated replay tool to reconstruct audit events from request logs in case of future auxiliary ingestion stalls (Owner: Daniel, Target Date: 2026-02-05).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "postmortem-api-audit-disk",
+      "quote": "| Create an automated replay tool to reconstruct audit events from request logs in case of future auxiliary ingestion stalls. | Tooling | Daniel (api) | 2026-02-05 |"
+     }
+    ]
+   },
+   {
+    "n": 7,
+    "claim": "*(Note: In the immediate aftermath, 14 GB of dead files were purged, the daemon was restarted, and Daniel backfilled the 18,320 omitted audit events from request logs by 2025-12-13. The pages do not record the completion status of the scheduled follow-up action items.)*",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "postmortem-api-audit-disk",
+      "quote": "Clears 14 GB of dead files."
+     },
+     {
+      "page": "postmortem-api-audit-disk",
+      "quote": "Restarts the background audit daemon on the affected nodes."
+     },
+     {
+      "page": "postmortem-api-audit-disk",
+      "quote": "All 18,320 entries were subsequently backfilled from structured application request logs by 2025-12-13."
+     }
+    ]
+   }
+  ],
+  "st-trace-refund": [
+   {
+    "n": 1,
+    "claim": "Based on the guide **\"How to trace one refund through the logs,\"** here is the step-by-step procedure to trace a customer's refund:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "**Never search for card numbers** (they are never logged, and querying for them triggers internal security audits).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "- **Never search for card numbers; they are never logged.** Sorrel does not store Primary Account Numbers (PANs) or sensitive authentication data anywhere in application databases, memory dumps, or log files. Stripe handles card vaulting directly. Querying for 16-digit sequences, track data, or CVVs in the log search tool triggers internal security audits. Every search containing card-like regexes is logged, indexed, and reviewed by the platform team."
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "**Narrow your search window** in the log search tool to a 2- to 4-hour window around the cancellation or ticket request against the `sorrel-prod-*` index.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "- **Narrow the search window.** Searching across wide time windows (such as `now-7d`) against the `sorrel-prod-*` index degrades cluster performance. Always bound your query to the specific 2- to 4-hour window surrounding when the customer requested the cancellation or when the support ticket was filed."
+     }
+    ]
+   },
+   {
+    "n": 4,
+    "claim": "If you only have a `booking_id` (e.g., `bk_5510294`):",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "If Hana or support only provides a `booking_id` (e.g., `bk_5510294`), you must first resolve the internal payment reference:"
+     }
+    ]
+   },
+   {
+    "n": 5,
+    "claim": "In the log search tool, set the index to `sorrel-prod-*`.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "Set the index to `sorrel-prod-*`."
+     }
+    ]
+   },
+   {
+    "n": 6,
+    "claim": "Restrict the time picker to 2 hours before and after the alleged cancellation.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "2. Restrict the time picker to 2 hours before and after the alleged cancellation."
+     }
+    ]
+   },
+   {
+    "n": 7,
+    "claim": "Run the query:",
+    "grade": "frame"
+   },
+   {
+    "n": 8,
+    "claim": "service=payments booking_id=\"<booking_id>\"",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "service=payments booking_id=\"bk_5510294\""
+     }
+    ]
+   },
+   {
+    "n": 9,
+    "claim": "Find the `\"refund requested\"` log line and copy the `ref` value (formatted as `ref_...`).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "4. Look for the `\"refund requested\"` line and copy the `ref` value (format: `ref_...`)."
+     }
+    ]
+   },
+   {
+    "n": 10,
+    "claim": "Verify whether the refund was sent to the provider:",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "Once you have the `ref`, verify whether our nodes actually handed the transaction off to the card provider."
+     }
+    ]
+   },
+   {
+    "n": 11,
+    "claim": "Run the query:",
+    "grade": "frame"
+   },
+   {
+    "n": 12,
+    "claim": "service=payments msg=\"refund sent\" ref=\"<ref>\"",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "Search service=payments msg=\"refund sent\" ref=<ref> to see when a refund went to stripe."
+     }
+    ]
+   },
+   {
+    "n": 13,
+    "claim": "**Check the count of lines returned:**",
+    "grade": "frame"
+   },
+   {
+    "n": 14,
+    "claim": "**0 lines:** The refund never left the cluster (check worker queues or database connections in `service=payments`).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "The refund never left our cluster. Proceed to check for queue deadlocks or database connection issues in `service=payments`."
+     }
+    ]
+   },
+   {
+    "n": 15,
+    "claim": "**1 line:** Normal outbound execution. Note the timestamp and the HTTP response status:",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "**1 line**: Normal operation."
+     },
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "Check the HTTP response status logged on that line:"
+     }
+    ]
+   },
+   {
+    "n": 16,
+    "claim": "**HTTP 200:** Stripe acknowledged the refund.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "- **HTTP 200**: Stripe acknowledged the instruction. The refund is safely in Stripe's ledger."
+     }
+    ]
+   },
+   {
+    "n": 17,
+    "claim": "**HTTP 4xx / 5xx:** Stripe rejected the call or experienced a failure. Check `provider_ms`, error messages, and `status.stripe.com`.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "- **HTTP 4xx / 5xx**: The provider rejected the call or experienced a service failure. Check `provider_ms` and provider error messages. Compare with `status.stripe.com` to see if Stripe was experiencing degraded API performance at that timestamp."
+     }
+    ]
+   },
+   {
+    "n": 18,
+    "claim": "**2 or more lines (CRITICAL):** Money may have moved twice. **Stop immediately, do not roll back, and page Mei (payments owner).**",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "If one reference shows two 'sent' lines, money may have moved twice: stop and page Mei."
+     },
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "**Do not attempt to roll back code** as your first move"
+     }
+    ]
+   },
+   {
+    "n": 19,
+    "claim": "Verify whether Stripe finalized the transaction:",
+    "grade": "frame"
+   },
+   {
+    "n": 20,
+    "claim": "Run the query:",
+    "grade": "frame"
+   },
+   {
+    "n": 21,
+    "claim": "service=payments msg=\"refund settled\" ref=\"<ref>\"",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "service=payments msg=\"refund settled\" ref=\"<ref>\""
+     }
+    ]
+   },
+   {
+    "n": 22,
+    "claim": "**Evaluate the result:**",
+    "grade": "frame"
+   },
+   {
+    "n": 23,
+    "claim": "**Line exists:** The refund cycle is complete. If the customer hasn't received funds, it is an inter-bank processing delay (typically 5–10 business days depending on their card issuer), not a technical failure within Sorrel.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "2. If the line exists, the cycle is complete. If the customer claims they have not received the funds, it is a matter of inter-bank processing delays (which typically take 5–10 business days depending on their card issuer), not a technical failure within Sorrel."
+     }
+    ]
+   },
+   {
+    "n": 24,
+    "claim": "**No line appears:**",
+    "grade": "frame"
+   },
+   {
+    "n": 25,
+    "claim": "Check how long ago `\"refund sent\"` occurred. If it was sent fewer than 6 hours ago, this is normal (settlement webhooks arrive hours later).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "If it was sent fewer than 6 hours ago, this is normal behavior."
+     },
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "settled comes from the stripe webhook and can arrive hours later."
+     }
+    ]
+   },
+   {
+    "n": 26,
+    "claim": "Check webhook health on the **Sorrel / payments** dashboard.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "- Check the webhook health in the metrics dashboard **Sorrel / payments** (\"Webhooks received, retried, failed\")."
+     }
+    ]
+   },
+   {
+    "n": 27,
+    "claim": "Check for webhook processing retries using:",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "- Run a fallback query to see if Stripe sent a webhook that encountered processing retries on our side:"
+     }
+    ]
+   },
+   {
+    "n": 28,
+    "claim": "service=payments msg=\"webhook\" outcome=retry ref=\"<ref>\"",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "service=payments msg=\"webhook\" outcome=retry ref=\"<ref>\""
+     }
+    ]
+   }
+  ],
+  "st-two-sent": [
+   {
+    "n": 1,
+    "claim": "Based on the pages, if one reference shows two `refund sent` lines, money may have moved twice. You must **stop and page Mei**.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "If one reference shows two 'sent' lines, money may have moved twice: stop and page Mei."
+     }
+    ]
+   },
+   {
+    "n": 2,
+    "claim": "Here are the exact required steps:",
+    "grade": "frame"
+   },
+   {
+    "n": 3,
+    "claim": "**Stop your investigation immediately.** Do not attempt to rerun scripts, issue cancellation webhooks, or execute ad-hoc database updates.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "1. **Stop your investigation immediately.** Do not attempt to rerun scripts, do not issue cancellation webhooks, and do not execute ad-hoc database updates."
+     }
+    ]
+   },
+   {
+    "n": 4,
+    "claim": "**Do not attempt to roll back code.** A rollback will not recover funds that have already settled with the customer's bank.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "2. **Do not attempt to roll back code** as your first move if the money has already left our accounts. A rollback will not recover funds that have already settled with the customer's bank."
+     }
+    ]
+   },
+   {
+    "n": 5,
+    "claim": "**Declare a P1 incident.** Any instance where money moves wrongly is classified as a P1.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "3. **Declare a P1 incident.** Under section 2 of the on-call handbook, any instance where money moves wrongly—including duplicate refunds—is classified as a P1 regardless of whether the customer or business has noticed."
+     }
+    ]
+   },
+   {
+    "n": 6,
+    "claim": "**Page Mei directly** via the paging tool (as payments service owner, she is the only person authorized to make decisions regarding ledger adjustments, clawbacks, manual disputes, or Stripe adjustments).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "4. **Page Mei directly via the paging tool.** As the service owner for `payments`, Mei is the only person authorized to make decisions regarding ledger adjustments, Stripe credential adjustments, manual reversal disputes, or initiating clawbacks from merchant balances."
+     }
+    ]
+   },
+   {
+    "n": 7,
+    "claim": "**Post the details** in your page description and the `#inc-live` incident thread:",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "5. In your page description and the `#inc-live` incident thread, paste:"
+     }
+    ]
+   },
+   {
+    "n": 8,
+    "claim": "The alert or discovery line.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "- The alert or discovery line."
+     }
+    ]
+   },
+   {
+    "n": 9,
+    "claim": "The exact payment reference (`ref`).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "- The exact payment reference (`ref`)."
+     }
+    ]
+   },
+   {
+    "n": 10,
+    "claim": "The timestamps of both `\"refund sent\"` log events.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "- The timestamps of both `\"refund sent\"` log events."
+     }
+    ]
+   },
+   {
+    "n": 11,
+    "claim": "The Stripe refund IDs associated with each line (e.g., `re_...`).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-trace-a-refund",
+      "quote": "- The Stripe refund IDs associated with each line (e.g., `re_AAA...` and `re_BBB...`)."
+     }
+    ]
+   }
+  ],
+  "st-stripe-key": [
+   {
+    "n": 1,
+    "claim": "Based on the **Secrets manager for on-call** runbook (Section 4 and Section 6, Scenario A), here is what you need to do:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "**Do not copy, paste, or echo the key anywhere** (do not paste it or the stack trace into `#inc-live`, private chats, tickets, or incident documents).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "team-secrets-manager",
+      "quote": "- **Never copy the credential text.** Do not copy and paste the string into `#inc-live`, private chats, ticketing tools, or incident tracking documents."
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "**Do not rotate or revoke the key yourself** (never rotate credentials yourself, and do not log into the Stripe dashboard to revoke it; rotation is the owner's decision).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "team-secrets-manager",
+      "quote": "**Never rotate a production credential yourself; rotation is the credential owner's decision.**"
+     },
+     {
+      "page": "team-secrets-manager",
+      "quote": "Do not attempt to log into the Stripe dashboard to revoke the key."
+     }
+    ]
+   },
+   {
+    "n": 4,
+    "claim": "**Capture the reference link:** Copy the exact permalink/query URL to the log search in the log search tool (or note the exact timestamp, service tag, and node identifier).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "team-secrets-manager",
+      "quote": "- If the credential was found in a log line via the log search tool (index `sorrel-prod-*`), copy the **direct query URL** or note the exact log timestamp, service tag, and `node` identifier."
+     }
+    ]
+   },
+   {
+    "n": 5,
+    "claim": "**Treat as P1:** Production credential exposure is classified immediately as a **P1 incident**.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "team-secrets-manager",
+      "quote": "- A live production credential exposure is classified as **P1** immediately, regardless of whether unusual API traffic has been detected."
+     }
+    ]
+   },
+   {
+    "n": 6,
+    "claim": "**Page the credential owner:** Page **Mei** (payments owner) immediately via the paging tool.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "team-secrets-manager",
+      "quote": "Page **Mei** immediately through the paging tool."
+     }
+    ]
+   },
+   {
+    "n": 7,
+    "claim": "**Open an incident thread in `#inc-live`:**",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "team-secrets-manager",
+      "quote": "#### Step 4: Open Incident Thread in `#inc-live`"
+     }
+    ]
+   },
+   {
+    "n": 8,
+    "claim": "Post notification of the P1 incident without exposing the key. For example:",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "team-secrets-manager",
+      "quote": "Post to `#inc-live`:"
+     },
+     {
+      "page": "team-secrets-manager",
+      "quote": "(do not include the secret itself)"
+     }
+    ]
+   },
+   {
+    "n": 9,
+    "claim": "> *\"P1 opened for secret exposure. Live Stripe key identified in `service=payments` logs. Query link provided to owner. Mei has been paged. On-call standing by.\"*",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "team-secrets-manager",
+      "quote": "> \"P1 opened for secret exposure. Live Stripe key identified in `service=payments` logs. Query link provided to owner. Mei has been paged. On-call standing by.\""
+     }
+    ]
+   },
+   {
+    "n": 10,
+    "claim": "**Stand by:** Wait for Mei to acknowledge. Mei will handle key revocation, dual-key rollover, and any necessary remediation.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "team-secrets-manager",
+      "quote": "5. Wait for Mei to acknowledge and establish a remediation channel. Mei will execute the dual-key rollover and coordinate any necessary code deploy."
+     }
+    ]
+   }
+  ],
+  "st-webhook-secret-actions": [
+   {
+    "n": 1,
+    "claim": "Based on the postmortem (*Postmortem: stripe webhooks rejected after the signing secret rotation*), the following changes were implemented:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "**Startup Validation and Regional Parity:**",
+    "grade": "frame"
+   },
+   {
+    "n": 3,
+    "claim": "Updated `payments` initialization logic so secrets are read directly from the cloud secrets manager at service start-up on every node, rather than relying on runtime memory hooks.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "postmortem-payments-webhook-secret",
+      "quote": "- The secret is now read directly from the cloud secrets manager at service start-up on every node."
+     }
+    ]
+   },
+   {
+    "n": 4,
+    "claim": "Added an internal check at boot and periodically during operation to confirm that all active regions (`ap-northeast`, `us-east`, `eu-west`) report identical secret version metadata; a mismatch raises a metric alarm and logs a configuration error.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "postmortem-payments-webhook-secret",
+      "quote": "- During boot and periodically during operation, every node runs an internal verification check confirming that all active regions (`ap-northeast`, `us-east`, `eu-west`) report the identical secret version metadata."
+     }
+    ]
+   },
+   {
+    "n": 5,
+    "claim": "**Safe Secret Overlap Window (Runbook & Ingestion Changes):**",
+    "grade": "frame"
+   },
+   {
+    "n": 6,
+    "claim": "Implemented a dual-signing secret verification fallback in the webhook ingestion path: verification checks against the primary secret first, and if that fails, checks against the secondary secret before rejecting the request.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "postmortem-payments-webhook-secret",
+      "quote": "- Signature checking logic in `payments` now attempts verification against the primary secret, and if that fails, checks against the secondary secret before rejecting the request."
+     }
+    ]
+   },
+   {
+    "n": 7,
+    "claim": "Updated the rotation runbook to require a 24-hour overlap where both old and new secrets remain active in Stripe simultaneously. Decommissioning an old secret is only permitted after dashboards show zero verifications against it for at least two consecutive hours.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "postmortem-payments-webhook-secret",
+      "quote": "- Decommissioning of an old secret is only permitted after dashboards verify zero successful verifications against the old secret for at least two consecutive hours."
+     }
+    ]
+   },
+   {
+    "n": 8,
+    "claim": "**Tooling and Process Improvements (Action Items):**",
+    "grade": "frame"
+   },
+   {
+    "n": 9,
+    "claim": "Updated the secret rotation script to explicitly check regional secrets manager return codes and fail closed on timeouts.",
+    "grade": "ambiguous",
+    "refs": [
+     {
+      "page": "postmortem-payments-webhook-secret",
+      "quote": "| **ACT-02** | Update rotation script"
+     }
+    ],
+    "note": "the item is on the page as an action item with a target date and no status; the answer says it was done (only ACT-01 is marked Completed). Content right, completion not on the page."
+   },
+   {
+    "n": 10,
+    "claim": "Added an automated check in the deployment tool to verify configuration hash parity across running instances in all regions.",
+    "grade": "ambiguous",
+    "refs": [
+     {
+      "page": "postmortem-payments-webhook-secret",
+      "quote": "| **ACT-04** | Add an automated check in the deployment tool"
+     }
+    ],
+    "note": "the item is on the page as an action item with a target date and no status; the answer says it was done (only ACT-01 is marked Completed). Content right, completion not on the page."
+   },
+   {
+    "n": 11,
+    "claim": "Updated Section 6.1 of the internal documentation regarding Stripe key maintenance and rotation procedures.",
+    "grade": "ambiguous",
+    "refs": [
+     {
+      "page": "postmortem-payments-webhook-secret",
+      "quote": "| **ACT-05** | Update Section 6.1"
+     }
+    ],
+    "note": "the item is on the page as an action item with a target date and no status; the answer says it was done (only ACT-01 is marked Completed). Content right, completion not on the page."
+   },
+   {
+    "n": 12,
+    "claim": "Created standard support canned responses for customers reporting prolonged `payment pending` statuses.",
+    "grade": "ambiguous",
+    "refs": [
+     {
+      "page": "postmortem-payments-webhook-secret",
+      "quote": "| **ACT-06** | Create standard support canned responses"
+     }
+    ],
+    "note": "the item is on the page as an action item with a target date and no status; the answer says it was done (only ACT-01 is marked Completed). Content right, completion not on the page."
+   }
+  ],
+  "st-payout-alert": [
+   {
+    "n": 1,
+    "claim": "According to the **payments: notes for on-call** page:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "**Standard run window:** The weekly payout job runs on Sunday at 23:00 JST and usually takes about 38 minutes (meaning elevated load and processing spikes around midnight JST are typical).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "team-payments-notes",
+      "quote": "- The weekly payout job runs on Sunday at 23:00 JST and usually takes about 38 minutes, so expect resource graphs on the \"Sorrel / payments\" board to show persistent load during that window."
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "**What to check:** Check whether the job has exceeded its standard window before treating it as stalled.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "team-payments-notes",
+      "quote": "- When payout task timers or elevated queue depths alert close to Sunday midnight JST, check whether the job has exceeded its standard window before treating it as stalled."
+     }
+    ]
+   },
+   {
+    "n": 4,
+    "claim": "**If there is a failure:** If the job halts halfway through or throws unhandled exceptions during execution, **read logs** first, and **page owner** (Mei) if money moved or payouts stalled halfway through.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "team-payments-notes",
+      "quote": "- If the job halts halfway through or throws unhandled exceptions during execution, read logs first, and page owner if money moved or payouts stalled halfway through."
+     }
+    ]
+   }
+  ],
+  "st-stuck-workers": [
+   {
+    "n": 1,
+    "claim": "Based on the documentation (\"How to read the notifier queue panels\"), an oldest message age above 30 minutes while delivered per minute is zero indicates that **workers are stuck**.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "**Oldest message age above 30 minutes while delivered per minute is zero means the workers are stuck.**"
+     }
+    ]
+   },
+   {
+    "n": 2,
+    "claim": "Here is what you should do:",
+    "grade": "frame"
+   },
+   {
+    "n": 3,
+    "claim": "**Check recent deploys:** Check the deploy history in the deploy tool for project `sorrel`, service `notifier`.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "2. **Check recent deploys:** Check the deploy history in the deploy tool for project \"sorrel\", service \"notifier\". Note the age of the last deploy."
+     }
+    ]
+   },
+   {
+    "n": 4,
+    "claim": "If `notifier` was deployed within the last 30 minutes, your first move is **roll back** to the previous deploy.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "- If notifier was deployed within the last 30 minutes, this fits the pattern of a bad release (for example, a syntax regression or broken queue connection logic in the worker loop). In this case, your first move is **roll back** to the previous deploy."
+     }
+    ]
+   },
+   {
+    "n": 5,
+    "claim": "**Read logs:** If there has been no recent deploy, your first move is **read logs**.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "3. **Read logs:** If there has been no recent deploy, your first move is **read logs**."
+     }
+    ]
+   },
+   {
+    "n": 6,
+    "claim": "Query the log search tool: `service=notifier level=ERROR` over the start of the window.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "- Query the log search tool: `service=notifier level=ERROR` over the start of the window."
+     }
+    ]
+   },
+   {
+    "n": 7,
+    "claim": "Look for worker loop errors: `service=notifier msg=\"worker stuck\"` or `service=notifier msg=\"worker idle\"`.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "- Look for worker loop errors: `service=notifier msg=\"worker stuck\"` or `service=notifier msg=\"worker idle\"`."
+     }
+    ]
+   },
+   {
+    "n": 8,
+    "claim": "Check if worker processes crashed due to memory or execution timeouts across the worker nodes.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "- Check if the worker processes crashed due to memory or execution timeouts across the three worker nodes in each active region (`ap-northeast-1`, `us-east-1`, `eu-west-1`)."
+     }
+    ]
+   }
+  ],
+  "st-night-batch": [
+   {
+    "n": 1,
+    "claim": "Based on the guide **\"How to read the notifier queue panels\"** and the runbook for **notifier**, here is how to triage this:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "**The nightly batch pattern:** Between 02:00 and 04:00 JST, `notifier`'s scheduler runs across appointments for the upcoming day and enqueues reminders in bulk.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "* **02:00–04:00 JST:** The scheduler runs across `ap-northeast` bookings. It scans api for appointments scheduled for the upcoming day and enqueues confirmation and reminder payloads in bulk."
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "**Expected numbers:** During this batch, queue depth commonly climbs to **1,000–1,500 messages**, which typically drains completely by 06:00 JST. A depth of 1,300 at 3:00 AM matches this normal accumulation pattern.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "> **During the nightly reminder batch, depth commonly reaches 1,000 to 1,500 and drains by 06:00 JST.**"
+     }
+    ]
+   },
+   {
+    "n": 4,
+    "claim": "Remember the core rule: **\"Depth alone means nothing; compare 'added per minute' with 'delivered per minute'.\"**",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "> **Depth alone means nothing; compare 'added per minute' with 'delivered per minute'.**"
+     }
+    ]
+   },
+   {
+    "n": 5,
+    "claim": "Check the following panels on board **\"Sorrel / notifier\"**:",
+    "grade": "frame"
+   },
+   {
+    "n": 6,
+    "claim": "**Throughput (In vs Out):**",
+    "grade": "frame"
+   },
+   {
+    "n": 7,
+    "claim": "Check **Messages delivered per minute**. Is it high, active, and matching/draining the influx?",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "2. **Healthy drain:** If **Messages added per minute** surged (for example, due to an automated batch) but **Messages delivered per minute** is high, the backlog will clear naturally once the influx stops. No intervention is required."
+     }
+    ]
+   },
+   {
+    "n": 8,
+    "claim": "If **delivered per minute** is elevated and the queue is working down, the backlog will clear naturally.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "2. **Healthy drain:** If **Messages added per minute** surged (for example, due to an automated batch) but **Messages delivered per minute** is high, the backlog will clear naturally once the influx stops. No intervention is required."
+     }
+    ]
+   },
+   {
+    "n": 9,
+    "claim": "**Oldest Message Age:**",
+    "grade": "frame"
+   },
+   {
+    "n": 10,
+    "claim": "Verify it remains controlled (under 30 minutes).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "Verify that **Oldest message age** remains controlled"
+     },
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "Increasing linearly; > 30 minutes"
+     }
+    ]
+   },
+   {
+    "n": 11,
+    "claim": "**If delivery is healthy (Messages delivered per minute is high, oldest message age is controlled):**",
+    "grade": "frame"
+   },
+   {
+    "n": 12,
+    "claim": "**Action:** **no action**",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "- If delivery is healthy and the queue is draining steadily toward the 06:00 JST target, this represents standard product behaviour: choose **no action**, record the entry in the on-call log, and move on."
+     }
+    ]
+   },
+   {
+    "n": 13,
+    "claim": "Record the entry in the on-call log, monitor that it continues draining toward the 06:00 JST target, and move on.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "- If delivery is healthy and the queue is draining steadily toward the 06:00 JST target, this represents standard product behaviour: choose **no action**, record the entry in the on-call log, and move on."
+     }
+    ]
+   },
+   {
+    "n": 14,
+    "claim": "**If delivery has stalled (Delivered per minute is strictly 0 and Oldest Message Age > 30 minutes):**",
+    "grade": "frame"
+   },
+   {
+    "n": 15,
+    "claim": "The workers are stuck.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "> **Oldest message age above 30 minutes while delivered per minute is zero means the workers are stuck.**"
+     }
+    ]
+   },
+   {
+    "n": 16,
+    "claim": "Check the deploy history for `notifier`:",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "2. **Check recent deploys:** Check the deploy history in the deploy tool for project \"sorrel\", service \"notifier\". Note the age of the last deploy."
+     }
+    ]
+   },
+   {
+    "n": 17,
+    "claim": "If `notifier` was deployed within the last 30 minutes: **roll back** to the previous deploy.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "- If notifier was deployed within the last 30 minutes, this fits the pattern of a bad release (for example, a syntax regression or broken queue connection logic in the worker loop). In this case, your first move is **roll back** to the previous deploy."
+     }
+    ]
+   },
+   {
+    "n": 18,
+    "claim": "If there has been no recent deploy: **read logs** (`service=notifier level=ERROR`, looking for `worker stuck` or `worker idle`).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "If there has been no recent deploy, your first move is **read logs**."
+     },
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "Look for worker loop errors: `service=notifier msg=\"worker stuck\"` or `service=notifier msg=\"worker idle\"`."
+     }
+    ]
+   },
+   {
+    "n": 19,
+    "claim": "If external delivery failures or vendor errors (4xx/5xx) are showing on the vendor outcome panels instead: **check provider** (`status.twilio.com` for SMS, `status.sendgrid.com` for email).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "If the alert points directly at vendor API rejections or vendor status incidents, choose **check provider**."
+     },
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "For SMS: Check `status.twilio.com`."
+     }
+    ]
+   }
+  ],
+  "st-sendgrid-quota": [
+   {
+    "n": 1,
+    "claim": "Based on the **sendgrid: quota and streams** documentation and the handbook, follow this procedure:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "Check the **Vendor quota usage** panel on the `Sorrel / notifier` dashboard or query logs (`service=notifier msg=\"quota\"`):",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "provider-sendgrid-quota",
+      "quote": "Review the **Vendor quota usage** panel on the `notifier` board."
+     },
+     {
+      "page": "provider-sendgrid-quota",
+      "quote": "service=notifier msg=\"quota\""
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "**Marketing stream:** Transactional emails (confirmations, receipts) are unaffected due to stream separation. Marketing emails will remain queued and resume draining at **09:00 JST** (when SendGrid quotas reset). This is non-customer-impacting for core booking flows—document the state in `#inc-live` or log it as a P3 trend.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "provider-sendgrid-quota",
+      "quote": "- If the **Marketing stream** is at 100 %: Customer transactional emails (confirmations, receipts) are entirely unaffected due to stream separation. Marketing jobs will hold on the queue and resume draining at 09:00 JST. This is a non-customer-impacting degradation for core product usage. Document the state in `#inc-live` or log it as a P3 trend for working hours."
+     }
+    ]
+   },
+   {
+    "n": 4,
+    "claim": "**Transactional stream:** Customer booking confirmations and receipts will be delayed.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "provider-sendgrid-quota",
+      "quote": "Customers booking appointments will experience delayed confirmations."
+     }
+    ]
+   },
+   {
+    "n": 5,
+    "claim": "Verify that `notifier` workers are deferring jobs rather than dropping them. The service retains rejected emails on the queue and will automatically send them once the quota resets at **09:00 JST (00:00 UTC)**.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "provider-sendgrid-quota",
+      "quote": "Verify that workers are safely deferring jobs and not dropping messages."
+     },
+     {
+      "page": "provider-sendgrid-quota",
+      "quote": "The sendgrid daily quota resets at 09:00 JST (00:00 UTC)."
+     }
+    ]
+   },
+   {
+    "n": 6,
+    "claim": "**Do not attempt to upgrade or change the SendGrid plan:** On-call engineers do not have purchasing authority or administrative access to alter vendor tiers. Raising the quota is a purchasing decision for **Tom (notifier owner)**.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "provider-sendgrid-quota",
+      "quote": "Raising the quota is a purchasing decision for Tom, not an on-call action."
+     },
+     {
+      "page": "provider-sendgrid-quota",
+      "quote": "On-call engineers do not have administrative access, contractual authorization, or purchasing permission"
+     }
+    ]
+   },
+   {
+    "n": 7,
+    "claim": "**When to page owner:** If the **transactional stream** has stalled, is impacting live booking confirmations, and will be delayed for a prolonged period during peak daytime hours, **page Tom** via the paging tool with the alert line, current severity, and current queue depth.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "provider-sendgrid-quota",
+      "quote": "- If transactional delivery will be delayed for a prolonged period during peak daytime hours, page Tom using the paging tool with the alert line, current severity, and current queue depth."
+     }
+    ]
+   },
+   {
+    "n": 8,
+    "claim": "Record the incident in the on-call log in standard format:",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "provider-sendgrid-quota",
+      "quote": "- Record the entry in the on-call log following the standard format:"
+     }
+    ]
+   },
+   {
+    "n": 9,
+    "claim": "`<date> <time JST> | notifier | <severity> | <first move> | <summary>`",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "provider-sendgrid-quota",
+      "quote": "`<date> <time JST> | notifier | <severity> | <first move> | <summary>`"
+     }
+    ]
+   }
+  ],
+  "st-template-actions": [
+   {
+    "n": 1,
+    "claim": "Based on the postmortem (*Postmortem: notifier queue stalled by a template error*), the following corrective actions and changes were made or scheduled:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "**Automatic poison-pill parking (Implemented / Done):**",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "postmortem-notifier-template-crash",
+      "quote": "| **Implement automatic poison-pill parking:** Configure `notifier` queue consumers and the broker so that any message that crashes a worker twice is automatically routed to a `parked` (dead-letter) queue without human intervention. | Yuki | 2026-07-28 | **Done** |"
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "Configured `notifier` queue consumers and the broker redrive policy so that any message that crashes a worker twice ($\\ge 2$ execution attempts without an ACK or graceful retry exception) is automatically routed to a dead-letter/parked topic (`sorrel-notifier-parked-[region]`) without stalling downstream traffic, emitting the alert `notifier-message-parked`.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "postmortem-notifier-template-crash",
+      "quote": "the broker shunts the envelope directly to `sorrel-notifier-parked-[region]`, emits alert `notifier-message-parked`"
+     }
+    ]
+   },
+   {
+    "n": 4,
+    "claim": "**Template rendering hardening (In progress):**",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "postmortem-notifier-template-crash",
+      "quote": "| **Harden template rendering filter:** Wrap the Jinja2 template interpolation block in a defensive sanitization handler that escapes or strips invalid control characters and logs a warning instead of raising an unhandled exception. | Tom | 2026-07-31 | In progress |"
+     }
+    ]
+   },
+   {
+    "n": 5,
+    "claim": "Wrapped the Jinja2 template interpolation block in defensive sanitization that escapes or strips invalid control characters and logs a warning instead of raising an unhandled exception.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "postmortem-notifier-template-crash",
+      "quote": "| **Harden template rendering filter:** Wrap the Jinja2 template interpolation block in a defensive sanitization handler that escapes or strips invalid control characters and logs a warning instead of raising an unhandled exception. | Tom | 2026-07-31 | In progress |"
+     }
+    ]
+   },
+   {
+    "n": 6,
+    "claim": "**Input validation in `api` (In progress):**",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "postmortem-notifier-template-crash",
+      "quote": "| **Add input validation in `api`:** Update `api` profile name validators to reject unprintable Unicode control characters and invalid direction overrides at submission time. | Daniel | 2026-08-05 | In progress |"
+     }
+    ]
+   },
+   {
+    "n": 7,
+    "claim": "Updated `api` profile name validators to reject unprintable Unicode control characters and invalid direction overrides at submission time.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "postmortem-notifier-template-crash",
+      "quote": "| **Add input validation in `api`:** Update `api` profile name validators to reject unprintable Unicode control characters and invalid direction overrides at submission time. | Daniel | 2026-08-05 | In progress |"
+     }
+    ]
+   },
+   {
+    "n": 8,
+    "claim": "**Visibility timeout configuration review (Planned):**",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "postmortem-notifier-template-crash",
+      "quote": "| **Review visibility timeout configuration:** Review worker crash retry semantics to ensure failed workers back off with a non-zero visibility timeout, preventing hot crash loops. | Sara | 2026-08-07 | Planned |"
+     }
+    ]
+   },
+   {
+    "n": 9,
+    "claim": "Reviewed worker crash retry semantics to ensure failed workers back off with a non-zero visibility timeout to avoid hot crash loops.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "postmortem-notifier-template-crash",
+      "quote": "| **Review visibility timeout configuration:** Review worker crash retry semantics to ensure failed workers back off with a non-zero visibility timeout, preventing hot crash loops. | Sara | 2026-08-07 | Planned |"
+     }
+    ]
+   },
+   {
+    "n": 10,
+    "claim": "**Status page notification drill (Planned):**",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "postmortem-notifier-template-crash",
+      "quote": "| **Status page notification drill:** Run a refresher for on-call engineers and incident commanders on updating `status.sorrel.app` within the 20-minute window on silent P1 failures. | Kenji Sato | 2026-08-12 | Planned |"
+     }
+    ]
+   },
+   {
+    "n": 11,
+    "claim": "Scheduled a refresher drill for on-call engineers and incident commanders to ensure `status.sorrel.app` is updated within the 20-minute window on silent P1 failures.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "postmortem-notifier-template-crash",
+      "quote": "| **Status page notification drill:** Run a refresher for on-call engineers and incident commanders on updating `status.sorrel.app` within the 20-minute window on silent P1 failures. | Kenji Sato | 2026-08-12 | Planned |"
+     }
+    ]
+   }
+  ],
+  "st-duplicates": [
+   {
+    "n": 1,
+    "claim": "Based on the **How to read the notifier queue panels** guide (Section 6), when the duplicate detection panel is spiking, you should perform the following checks:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "**Open logs:** Query the log search tool for `service=notifier msg=\"duplicate id\"` to identify which upstream producing service is generating the duplicate submissions.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "1. Open logs: `service=notifier msg=\"duplicate id\"`. Identify the producing service generating the duplicate submissions."
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "**Check recent deploys:** Compare against recent deploys of `notifier` or `api`.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "howto-notifier-queue-panels",
+      "quote": "2. Compare against recent deploys of notifier or api."
+     }
+    ]
+   },
+   {
+    "n": 4,
+    "claim": "*(Note: If worker acknowledgement failures are suspected, the **notifier runbook** also recommends checking worker logs for `service=notifier level=ERROR msg=\"failed to ack\"` to see if worker nodes are crashing before acknowledging messages, causing the queue to redeliver them).*",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "notifier-runbook-2024",
+      "quote": "service=notifier level=ERROR msg=\"failed to ack\""
+     }
+    ]
+   }
+  ],
+  "half-pay-4107": [
+   {
+    "n": 1,
+    "claim": "Based on the pages:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "**What Mei's team did:** When PAY-4107 occurred on three refunds (because the card provider refuses refunds on charges older than 180 days), Mei's team paid those three customers back by **bank transfer** instead.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handover-2026-01-12",
+      "quote": "On Thursday, we saw PAY-4107 on three refunds on Thursday: the card provider refuses refunds on charges older than 180 days. Because these transactions could not be returned automatically through the standard workflow, Mei's team paid those three customers back by bank transfer instead."
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "**How many days they waited for their money:** The pages **do not say** how many days the customers waited for their money (they only note that the original charges were older than 180 days).",
+    "grade": "says-not-in-pages",
+    "refs": [
+     {
+      "page": "handover-2026-01-12",
+      "quote": "the card provider refuses refunds on charges older than 180 days."
+     }
+    ],
+    "note": "the missing part; grep proof in runs/ep13/2026-10-12-q-build.json"
+   }
+  ],
+  "half-10dlc-cost": [
+   {
+    "n": 1,
+    "claim": "Based on the provided pages:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "**What fixed it:** Registering Sorrel's 10DLC campaign with Twilio (approved by Tom, completed on Friday, June 5, 2026), which restored SMS deliverability to US numbers after carriers had been performing A2P filtering.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handover-2026-06-08",
+      "quote": "Tom approved registering our 10DLC campaign with twilio; registration went through on Friday and delivery is back to normal."
+     }
+    ],
+    "note": "the date 'June 5, 2026' is the model's own inference (the Friday before the week of 2026-06-08); the page says only 'Friday'. Harmless, not word for word."
+   },
+   {
+    "n": 3,
+    "claim": "**Cost of the 10DLC registration:** The pages do not say how much the 10DLC registration costs.",
+    "grade": "says-not-in-pages",
+    "refs": [],
+    "note": "the missing part; grep proof in runs/ep13/2026-10-12-q-build.json"
+   }
+  ],
+  "half-hanabi-v1": [
+   {
+    "n": 1,
+    "claim": "Based on the provided pages:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "**When the old v1 partner endpoints were switched off:**",
+    "grade": "frame"
+   },
+   {
+    "n": 3,
+    "claim": "They were switched off on **Wednesday, 2026-03-18** (as noted in the *On-call handover, week of 2026-03-23*).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handover-2026-03-23",
+      "quote": "# On-call handover, week of 2026-03-23"
+     }
+    ]
+   },
+   {
+    "n": 4,
+    "claim": "**When Hanabi Booking is going to stop their v1 test script:**",
+    "grade": "frame"
+   },
+   {
+    "n": 5,
+    "claim": "**The pages do not say.** (The handover notes state that about 3 calls a day still arrive from Hanabi Booking's test script returning `410` and that Ravi has informed them, but no date or timeline is given for when they will stop the script.)",
+    "grade": "says-not-in-pages",
+    "refs": [
+     {
+      "page": "handover-2026-03-23",
+      "quote": "About 3 calls a day still arrive on v1 from a test script at Hanabi Booking; they get 410 and Ravi has told them."
+     }
+    ],
+    "note": "the missing part; grep proof in runs/ep13/2026-10-12-q-build.json"
+   }
+  ],
+  "half-payout-total": [
+   {
+    "n": 1,
+    "claim": "Based on the handover page for the week of 2025-12-29:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "**Duration:** The year-end payout on Sunday, 2025-12-28, took **2 hours and 5 minutes** (from 23:00 JST to 01:05 JST).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handover-2025-12-29",
+      "quote": "It started at 23:00 JST and finished at 01:05 JST"
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "**Total amount paid out:** The pages **do not say** how much money was paid out in total to businesses.",
+    "grade": "says-not-in-pages",
+    "refs": [],
+    "note": "the missing part; grep proof in runs/ep13/2026-10-12-q-build.json"
+   }
+  ],
+  "half-tofu-count": [
+   {
+    "n": 1,
+    "claim": "Based on the documentation:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "**When Priya fixed it:** Priya added a fallback to the full Noto Sans JP font on **2026-06-11** (after the issue was seen in June 2026).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "team-web-notes",
+      "quote": "Tofu on the booking page in June 2026: customer names with rare kanji (for example 髙 or 﨑) rendered as empty boxes, because the subset web font left out those glyphs. Priya added a fallback to the full Noto Sans JP font on 2026-06-11."
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "**How many bookings were hit:** The pages **do not say** how many bookings were affected.",
+    "grade": "says-not-in-pages",
+    "refs": [],
+    "note": "the missing part; grep proof in runs/ep13/2026-10-12-q-build.json"
+   }
+  ],
+  "half-capture-total": [
+   {
+    "n": 1,
+    "claim": "Based on the provided pages:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "**Number of bookings with a duplicate capture:** **63 bookings** experienced a duplicate capture on 2026-01-14.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "team-payments-notes",
+      "quote": "On 2026-01-14, we ran into an issue where the capture call to stripe timed out from our side. The capture call to stripe was retried after a timeout and both captures went through, leading to duplicate capture on 63 bookings on 2026-01-14. Our team found it in the logs."
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "**Total money refunded:** The pages **do not say** how much money was refunded in total for those duplicate captures (they only note that Mei's team refunded the second charge on 2026-01-15 to reconcile customer balances).",
+    "grade": "says-not-in-pages",
+    "refs": [
+     {
+      "page": "team-payments-notes",
+      "quote": "Mei's team refunded the second charge the same day"
+     }
+    ],
+    "note": "the missing part; grep proof in runs/ep13/2026-10-12-q-build.json"
+   }
+  ],
+  "half-suppression-tickets": [
+   {
+    "n": 1,
+    "claim": "Based on the provided pages:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "**Addresses on SendGrid's suppression list:** **2,312 addresses** ended up on the suppression list from soft bounces after the sending-domain switch on 2026-02-24.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "team-notifier-notes",
+      "quote": "After the sending-domain switch on 2026-02-24, sendgrid's suppression list picked up 2,312 addresses from soft bounces during the switch, and sendgrid stopped sending to them. Yuki checked they were valid and removed them from the suppression list on 2026-02-26."
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "**Support tickets caused:** The pages **do not say** how many support tickets it caused.",
+    "grade": "says-not-in-pages",
+    "refs": [],
+    "note": "the missing part; grep proof in runs/ep13/2026-10-12-q-build.json"
+   }
+  ],
+  "half-golden-week-2025": [
+   {
+    "n": 1,
+    "claim": "Based on the provided pages:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "**Golden Week 2026:** Booking volume peaked at **1,960 bookings per minute** on `api` at about 11:00 JST on Saturday, 2026-05-02 (*On-call handover, week of 2026-05-04*).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handover-2026-05-04",
+      "quote": "- Golden Week: booking volume peaked on Saturday 2026-05-02 at 1,960 bookings per minute on api, at about 11:00 JST. No alerts. Core infrastructure handled the holiday traffic peak smoothly across all regions without degraded responsiveness or backlog buildup."
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "**Golden Week 2025:** The pages **do not say** what the booking peak per minute was for Golden Week 2025.",
+    "grade": "says-not-in-pages",
+    "refs": [],
+    "note": "the missing part; grep proof in runs/ep13/2026-10-12-q-build.json"
+   }
+  ],
+  "half-restore-size": [
+   {
+    "n": 1,
+    "claim": "Based on the provided pages:",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "**Who owns the weekly restore test for the payments database:** Leo owns it going forward (from *On-call handover, week of 2026-04-27*).",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "handover-2026-04-27",
+      "quote": "* The new weekly restore test for the payments database started on Wednesday 2026-04-22: the latest backup is restored into a scratch instance and checked. The first restore took 52 minutes. Leo owns it going forward, so incoming shifts will track this run cadence."
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "**How big that database is:** The pages do not say.",
+    "grade": "says-not-in-pages",
+    "refs": [],
+    "note": "the missing part; grep proof in runs/ep13/2026-10-12-q-build.json"
+   }
+  ],
+  "half-cert-credits": [
+   {
+    "n": 1,
+    "claim": "Based on the postmortem for the April 2025 incident (*Postmortem: partner API certificate expired*):",
+    "grade": "frame"
+   },
+   {
+    "n": 2,
+    "claim": "**Partners affected:** A total of **3** integration partners were impacted.",
+    "grade": "supported",
+    "refs": [
+     {
+      "page": "postmortem-api-partner-certificate",
+      "quote": "A total of three integration partners were impacted during the window. Regular consumer web traffic and direct browser booking flows on web were unaffected, as consumer web domains use separate certificates managed via cloudflare."
+     }
+    ]
+   },
+   {
+    "n": 3,
+    "claim": "**Credit amount:** The pages **do not say** whether or how much we credited them (the postmortem notes that no direct transaction financial loss was recorded, booking updates were queued and caught up upon restoration, but does not mention any financial credits).",
+    "grade": "says-not-in-pages",
+    "refs": [
+     {
+      "page": "postmortem-api-partner-certificate",
+      "quote": "No direct transaction financial loss was recorded"
+     }
+    ],
+    "note": "the missing part; grep proof in runs/ep13/2026-10-12-q-build.json"
+   }
+  ]
+ }
+}

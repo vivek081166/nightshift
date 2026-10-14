@@ -1,0 +1,2602 @@
+{
+ "what": "p-plain",
+ "started_utc": "2026-10-12T11:45:25.075+00:00",
+ "questions": [
+  {
+   "id": "st-cdn-purge",
+   "kind": "steps",
+   "question": "after the web deploy the CDN is still serving the old js bundle. how do i purge it by hand?",
+   "answer_page": "howto-cdn-purge-by-hand",
+   "answer": "Based on the **\"How to purge the CDN by hand\"** documentation, follow these steps to manually purge the CDN:\n\n### 1. Pre-Check Origin Capacity\n* Open the metrics tool to the **Sorrel / web** dashboard.\n* Verify that `web` origin nodes are healthy (confirm CPU and memory are stable and nodes are not restarting) before initiating the purge.\n\n### 2. Open the CDN Dashboard\n1. Log in to the **cloudflare** management console with your platform credentials.\n2. Select the zone for production: `sorrel.app`.\n3. In the left navigation menu, go to **Caching** > **Configuration**.\n4. Find the **Purge Cache** section.\n\n### 3. Submit a Purge by URL Prefix (Do NOT \"Purge Everything\")\n* **Crucial Rule:** Always purge by URL prefix or specific URL. **Never click \"Purge Everything\"**, as this will cause a thundering herd that can overwhelm the origin `web` nodes.\n1. Click **Custom Purge**.\n2. Select the **URL or Prefix** purge mode.\n3. Enter the exact URL prefixes or specific bundle files requiring eviction (e.g., `https://sorrel.app/assets/`, `https://sorrel.app/static/`, or specific files like `https://sorrel.app/assets/app-[hash].js`).\n4. Click **Submit Purge**.\n\n### 4. Monitor Status & Document\n1. Go to **Caching** > **Purge History / Status Panel** to monitor the purge. A normal purge completes within a minute (15–45 seconds).\n2. Note the returned **Purge ID** (UUID).\n3. Post the Purge ID and details into the active incident thread in `#inc-live`.\n4. Monitor the **Sorrel / web** dashboard for at least 10 minutes to verify that the cache hit ratio recovers, edge error rates stay low, and origin CPU stays under 65%.",
+   "pages_in_call": [
+    "howto-cdn-purge-by-hand",
+    "postmortem-web-cdn-purge-stuck",
+    "provider-cloudflare-notes",
+    "team-web-notes",
+    "deploying-with-shipyard"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 5.61,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: How to purge the CDN by hand -----\n\n<omitted page howto-cdn-purge-by-hand: md5 e54ec6f882bb8b4baf2d9958910e9d25, 2915 tokens by countTokens>\n----- page: Postmortem: CDN purge stuck after the summer campaign release -----\n\n<omitted page postmortem-web-cdn-purge-stuck: md5 6bda1108cd1de640d46944af791f5098, 2878 tokens by countTokens>\n----- page: cloudflare: purge and firewall notes -----\n\n<omitted page provider-cloudflare-notes: md5 e79f3fdd5ab4e6099cbcbbf1a6e48c38, 3230 tokens by countTokens>\n----- page: web: odd things we keep seeing -----\n\n<omitted page team-web-notes: md5 83c832bfd771639284e774fc4a94e360, 740 tokens by countTokens>\n----- page: Deploying with Shipyard -----\n\n<omitted page deploying-with-shipyard: md5 5025e43384a5856acef5ad58555c4509, 1780 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nafter the web deploy the CDN is still serving the old js bundle. how do i purge it by hand?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:36.718+00:00",
+     "wall_s": 5.395,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the **\"How to purge the CDN by hand\"** documentation, follow these steps to manually purge the CDN:\n\n### 1. Pre-Check Origin Capacity\n* Open the metrics tool to the **Sorrel / web** dashboard.\n* Verify that `web` origin nodes are healthy (confirm CPU and memory are stable and nodes are not restarting) before initiating the purge.\n\n### 2. Open the CDN Dashboard\n1. Log in to the **cloudflare** management console with your platform credentials.\n2. Select the zone for production: `sorrel.app`.\n3. In the left navigation menu, go to **Caching** > **Configuration**.\n4. Find the **Purge Cache** section.\n\n### 3. Submit a Purge by URL Prefix (Do NOT \"Purge Everything\")\n* **Crucial Rule:** Always purge by URL prefix or specific URL. **Never click \"Purge Everything\"**, as this will cause a thundering herd that can overwhelm the origin `web` nodes.\n1. Click **Custom Purge**.\n2. Select the **URL or Prefix** purge mode.\n3. Enter the exact URL prefixes or specific bundle files requiring eviction (e.g., `https://sorrel.app/assets/`, `https://sorrel.app/static/`, or specific files like `https://sorrel.app/assets/app-[hash].js`).\n4. Click **Submit Purge**.\n\n### 4. Monitor Status & Document\n1. Go to **Caching** > **Purge History / Status Panel** to monitor the purge. A normal purge completes within a minute (15–45 seconds).\n2. Note the returned **Purge ID** (UUID).\n3. Post the Purge ID and details into the active incident thread in `#inc-live`.\n4. Monitor the **Sorrel / web** dashboard for at least 10 minutes to verify that the cache hit ratio recovers, edge error rates stay low, and origin CPU stays under 65%.",
+           "thoughtSignature": "EmkKZwFpFH0TM8ellDye5Wk9PpQzYu/CvSc+BeStsYL7nOSx7ibgakc8nh4471AvhFrN4IS/usJyIk5DqvPVjkzGXfrCL9dcIRER4+4zhQLyYjNERpiEFlcBTUPxfehdNflCYhvwF1aa2wE="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 11831,
+       "candidatesTokenCount": 430,
+       "totalTokenCount": 12261,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 11831
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "YcjMaqGtLJGN0-kPwM_B4QI"
+     },
+     "cost_usd": 0.01048575
+    }
+   ],
+   "prompt_tokens": 11831,
+   "out_tokens": 430,
+   "cost_usd": 0.01048575
+  },
+  {
+   "id": "st-web-rollback",
+   "kind": "steps",
+   "question": "walk me through rolling back web, the last deploy broke the booking pages",
+   "answer_page": "handbook-5",
+   "answer": "Based on the service runbook for **web**, here is how to roll back:\n\n1. **Open the deploy tool:** Go to project `\"sorrel\"`, service `\"web\"`.\n2. **Select the target deploy:** In the deployment history, select the previous deploy and press **\"Roll back to this\"**.\n3. **Wait for deployment:** The tool will re-point the nodes to the previous version (two nodes at a time) and re-point the CDN to the previous asset set. This takes about 4 minutes.\n4. **Monitor dashboards:** Watch the error rate and page load metrics on the **\"Sorrel / web\"** dashboard until they return to the levels seen before the deploy.\n5. **Log the rollback:** Write the rollback in the incident thread (e.g., `#inc-live`), noting both deploy IDs.\n6. **Follow up:** Tell Aiko in the morning, or page her if the rollback does not fix the issue.",
+   "pages_in_call": [
+    "handbook-5",
+    "postmortem-web-cdn-purge-stuck",
+    "postmortem-api-index-migration",
+    "handover-2024-03-25",
+    "web-runbook-2024"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 3.63,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: Handbook 5. Service runbooks -----\n\n<omitted page handbook-5: md5 8700b1e28b741a388e672c7b49fafda4, 3049 tokens by countTokens>\n----- page: Postmortem: CDN purge stuck after the summer campaign release -----\n\n<omitted page postmortem-web-cdn-purge-stuck: md5 6bda1108cd1de640d46944af791f5098, 2878 tokens by countTokens>\n----- page: Postmortem: api date search slow after a migration dropped an index -----\n\n<omitted page postmortem-api-index-migration: md5 641b7ec0827b11885224445284ba82d6, 1134 tokens by countTokens>\n----- page: On-call handover, week of 2024-03-25 -----\n\n<omitted page handover-2024-03-25: md5 1707afffe9f0589c7961597fe823c6a5, 3617 tokens by countTokens>\n----- page: web runbook (2024 edition) -----\n\n<omitted page web-runbook-2024: md5 b4e4a54195d87363c83a0272a04db818, 3171 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nwalk me through rolling back web, the last deploy broke the booking pages\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:36.703+00:00",
+     "wall_s": 3.447,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the service runbook for **web**, here is how to roll back:\n\n1. **Open the deploy tool:** Go to project `\"sorrel\"`, service `\"web\"`.\n2. **Select the target deploy:** In the deployment history, select the previous deploy and press **\"Roll back to this\"**.\n3. **Wait for deployment:** The tool will re-point the nodes to the previous version (two nodes at a time) and re-point the CDN to the previous asset set. This takes about 4 minutes.\n4. **Monitor dashboards:** Watch the error rate and page load metrics on the **\"Sorrel / web\"** dashboard until they return to the levels seen before the deploy.\n5. **Log the rollback:** Write the rollback in the incident thread (e.g., `#inc-live`), noting both deploy IDs.\n6. **Follow up:** Tell Aiko in the morning, or page her if the rollback does not fix the issue.",
+           "thoughtSignature": "EmkKZwFpFH0TXSxLffH16JOITYgvyJqeQ9Yl6Yavmk6s0FF/hZAn1rWM8PPJX9aBvk4zfUtX7CiIM1AYiPjzWzpcJW2rIv6kexQIQpHwOqhkb50vCmQbaelYu33uuntRGiv9IXuUHEyTqKU="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 14152,
+       "candidatesTokenCount": 206,
+       "totalTokenCount": 14358,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 14152
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "YcjMauDrIrak1e8P7teUgAM"
+     },
+     "cost_usd": 0.0113865
+    }
+   ],
+   "prompt_tokens": 14152,
+   "out_tokens": 206,
+   "cost_usd": 0.0113865
+  },
+  {
+   "id": "st-web-blank",
+   "kind": "steps",
+   "question": "booking pages are coming up blank for customers. what are the first checks on web, step by step?",
+   "answer_page": "handbook-5",
+   "answer": "According to the **web** service runbook (Handbook Section 5.1), the first checks step by step are:\n\n1. Open **\"Sorrel / web\"** and find when the symptom started.\n2. Compare with the deploy history for `web`. Note the age of the last deploy.\n3. Check whether the symptom is on all nodes or one node, all routes or one route, all regions or one region.\n4. Check `api`'s board. If `api` is unhealthy, `web`'s errors are usually a consequence.\n5. Check the CDN panel: is the edge serving errors, or is the origin?\n6. Read `service=web` logs for the start of the window.",
+   "pages_in_call": [
+    "postmortem-web-font-upload",
+    "howto-cdn-purge-by-hand",
+    "team-status-page-process",
+    "handbook-5",
+    "postmortem-web-firewall-challenge"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 3.68,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: Postmortem: web blank pages after a font upload -----\n\n<omitted page postmortem-web-font-upload: md5 9554aaa5052f81c606a8d03ad5e53dc4, 3242 tokens by countTokens>\n----- page: How to purge the CDN by hand -----\n\n<omitted page howto-cdn-purge-by-hand: md5 e54ec6f882bb8b4baf2d9958910e9d25, 2915 tokens by countTokens>\n----- page: Status page process -----\n\n<omitted page team-status-page-process: md5 5e4f7ca9ac324b689e4c69ae65dd79bb, 3766 tokens by countTokens>\n----- page: Handbook 5. Service runbooks -----\n\n<omitted page handbook-5: md5 8700b1e28b741a388e672c7b49fafda4, 3049 tokens by countTokens>\n----- page: Postmortem: booking pages behind a firewall challenge -----\n\n<omitted page postmortem-web-firewall-challenge: md5 aaf4d68fa97779cb789d842ed785fc66, 1003 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nbooking pages are coming up blank for customers. what are the first checks on web, step by step?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:36.718+00:00",
+     "wall_s": 3.496,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the **web** service runbook (Handbook Section 5.1), the first checks step by step are:\n\n1. Open **\"Sorrel / web\"** and find when the symptom started.\n2. Compare with the deploy history for `web`. Note the age of the last deploy.\n3. Check whether the symptom is on all nodes or one node, all routes or one route, all regions or one region.\n4. Check `api`'s board. If `api` is unhealthy, `web`'s errors are usually a consequence.\n5. Check the CDN panel: is the edge serving errors, or is the origin?\n6. Read `service=web` logs for the start of the window.",
+           "thoughtSignature": "EmkKZwFpFH0TtvoQ0gUPQaYMUfIEA2IXuDH/rVBVO8PBR2r6V26eg+52hA4wzEzC5PnqvXIonLrIya88IgzZTZycoXJWjP8ktWCYFNtiEtDr13Of9qlcbeaPtLBwIJUHJ+MjSDn5MDqSwyE="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 14261,
+       "candidatesTokenCount": 156,
+       "totalTokenCount": 14417,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 14261
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "YcjMasfiIvCB0-kP6cGSuQM"
+     },
+     "cost_usd": 0.01128075
+    }
+   ],
+   "prompt_tokens": 14261,
+   "out_tokens": 156,
+   "cost_usd": 0.01128075
+  },
+  {
+   "id": "st-crawler",
+   "kind": "steps",
+   "question": "a search-engine crawler burst on the public business pages tripped web-traffic. what should i do?",
+   "answer_page": "team-web-notes",
+   "answer": "Based on the on-call handover pages, your first move should be **no action**, and you should file/log a ticket for **Aiko** about crawler limits. \n\nAs long as requests are returning 2xx, response latency/errors remain flat, and backend services are healthy, no intervention is needed. Write it down, log the ticket, and move on.",
+   "pages_in_call": [
+    "handover-2026-09-28",
+    "handover-2026-09-07",
+    "handover-2026-04-06",
+    "handover-2026-06-15",
+    "handover-2026-06-29"
+   ],
+   "answer_page_in_call": false,
+   "other_answer_pages_in_call": [
+    "handover-2026-06-29",
+    "handover-2026-06-15",
+    "handover-2026-04-06"
+   ],
+   "error": null,
+   "wall_s": 2.13,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: On-call handover, week of 2026-09-28 -----\n\n<omitted page handover-2026-09-28: md5 2f69ef707d3612828e3a87bf748964f6, 718 tokens by countTokens>\n----- page: On-call handover, week of 2026-09-07 -----\n\n<omitted page handover-2026-09-07: md5 a05dc383154bc259a0fe8bdcda70fb83, 691 tokens by countTokens>\n----- page: On-call handover, week of 2026-04-06 -----\n\n<omitted page handover-2026-04-06: md5 d345334b637ff15551dd52d6124ab276, 3230 tokens by countTokens>\n----- page: On-call handover, week of 2026-06-15 -----\n\n<omitted page handover-2026-06-15: md5 fdb4b67a1af5a04de280e93d9b4efa2d, 574 tokens by countTokens>\n----- page: On-call handover, week of 2026-06-29 -----\n\n<omitted page handover-2026-06-29: md5 310ddd932f6ba885126c31ea70823438, 792 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\na search-engine crawler burst on the public business pages tripped web-traffic. what should i do?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:36.719+00:00",
+     "wall_s": 1.992,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the on-call handover pages, your first move should be **no action**, and you should file/log a ticket for **Aiko** about crawler limits. \n\nAs long as requests are returning 2xx, response latency/errors remain flat, and backend services are healthy, no intervention is needed. Write it down, log the ticket, and move on.",
+           "thoughtSignature": "EmkKZwFpFH0TLf7djm88TKTNdvChbCYXUTthSWwgqXXtfnLxz8gJ1xa15tKJznPIH0nHG9dvpK6B3lgEVzL3KcibcCoHZGPhSTjnFJ5bwJuxtoQg9HnIQS9IJQJJfkZsHSWLmUEtx0Kky+A="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 6345,
+       "candidatesTokenCount": 77,
+       "totalTokenCount": 6422,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 6345
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "YcjMarHWDKXZ2roPvd3CsQM"
+     },
+     "cost_usd": 0.0050475
+    }
+   ],
+   "prompt_tokens": 6345,
+   "out_tokens": 77,
+   "cost_usd": 0.0050475
+  },
+  {
+   "id": "st-admin-deletions",
+   "kind": "steps",
+   "question": "lots of customer accounts were deleted through the admin tool in the last hour. what should on-call do?",
+   "answer_page": "handbook-5",
+   "answer": "Based on the runbooks and handbook, you should **page owner** (page **Aiko**, the owner of `web`):\n\n* **Irreversible harm / restoration authority:** The on-call engineer must never attempt manual data deletions or data restoration scripts. Restoring purged accounts requires pulling database backups, which can only be done by service owners.\n* **Handbook guidance:** Under the five actions, **page owner** is required when accounts or records have been deleted or when someone must make a decision on-call cannot make. Whether mass deletion was legitimate or malicious/accidental is a decision on-call cannot make, and restoring deleted accounts is strictly the owner's responsibility.\n* **`web` runbook explicit procedure:** \n  > *\"Any unexpected deletion, mass change or access pattern in the admin tool is a matter for Aiko and is never fixed by the on-call engineer alone...\"*  \n  > *\"If an alert flags abnormal account modifications or deletions from a single admin session (e.g., alert rule `web-admin-bulk`), do not attempt to mitigate by restarting nodes. Immediately page Aiko.\"*",
+   "pages_in_call": [
+    "postmortem-web-admin-session",
+    "web-runbook-2024",
+    "handbook-3",
+    "handbook-5",
+    "handbook-7"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [
+    "handbook-7",
+    "handbook-3"
+   ],
+   "error": null,
+   "wall_s": 3.28,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: Postmortem: admin tool session left open on a shared laptop -----\n\n<omitted page postmortem-web-admin-session: md5 0cf7129d2e59b26a75b721ffaca7cdbc, 2787 tokens by countTokens>\n----- page: web runbook (2024 edition) -----\n\n<omitted page web-runbook-2024: md5 b4e4a54195d87363c83a0272a04db818, 3171 tokens by countTokens>\n----- page: Handbook 3. The five actions, in more detail -----\n\n<omitted page handbook-3: md5 f05343612d85ce0c05a748fe6f63f12c, 786 tokens by countTokens>\n----- page: Handbook 5. Service runbooks -----\n\n<omitted page handbook-5: md5 8700b1e28b741a388e672c7b49fafda4, 3049 tokens by countTokens>\n----- page: Handbook 7. Known failure modes -----\n\n<omitted page handbook-7: md5 08eafeb74ed1b05fbd9abe1a65d96b09, 1489 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nlots of customer accounts were deleted through the admin tool in the last hour. what should on-call do?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:38.796+00:00",
+     "wall_s": 3.194,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the runbooks and handbook, you should **page owner** (page **Aiko**, the owner of `web`):\n\n* **Irreversible harm / restoration authority:** The on-call engineer must never attempt manual data deletions or data restoration scripts. Restoring purged accounts requires pulling database backups, which can only be done by service owners.\n* **Handbook guidance:** Under the five actions, **page owner** is required when accounts or records have been deleted or when someone must make a decision on-call cannot make. Whether mass deletion was legitimate or malicious/accidental is a decision on-call cannot make, and restoring deleted accounts is strictly the owner's responsibility.\n* **`web` runbook explicit procedure:** \n  > *\"Any unexpected deletion, mass change or access pattern in the admin tool is a matter for Aiko and is never fixed by the on-call engineer alone...\"*  \n  > *\"If an alert flags abnormal account modifications or deletions from a single admin session (e.g., alert rule `web-admin-bulk`), do not attempt to mitigate by restarting nodes. Immediately page Aiko.\"*",
+           "thoughtSignature": "EmkKZwFpFH0TtWZOe+7e2IJuVDvpFa0jnBBcfhnYnRkza+DvKHU/GyCpvyJ8YXczAs+ZF0ghblGKspV8RDB0t8lk01t95Jk+D+0tyb6y3cRNG364ViSPcGJfNefrtzlwqJlutXGg82B/CEU="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 11580,
+       "candidatesTokenCount": 235,
+       "totalTokenCount": 11815,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 11580
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "Y8jMatGaHtugrfcP5cHCIQ"
+     },
+     "cost_usd": 0.00956625
+    }
+   ],
+   "prompt_tokens": 11580,
+   "out_tokens": 235,
+   "cost_usd": 0.00956625
+  },
+  {
+   "id": "st-replica-lag",
+   "kind": "steps",
+   "question": "api replica lag has been above 10 seconds for a while. walk me through what i check",
+   "answer_page": "howto-api-replica-lag",
+   "answer": "Based on the team documentation (specifically **\"How to check replica lag on api\"**), here is the step-by-step walkthrough of what to check:\n\n### 1. Confirm Timing, Duration, and Region\n* **Open the dashboard:** Navigate to **Sorrel / Services** > **Sorrel / api** > scroll down to the **Database** row.\n* **Inspect the Replica Lag panel:** Replica lag is displayed there (one line per region).\n* **Identify the affected region:** Check whether the lag is global or restricted to `ap-northeast`, `us-east`, or `eu-west`. \n  * If confined to one region, check if regional query latency is also spiked.\n  * Check AWS status (`health.aws.amazon.com` or AWS Personal Health Dashboard) for storage (EBS) or database performance degradation in that specific region.\n* **Establish the timeline:** Determine when lag went above the < 1.0s baseline and whether it coincided with the top of the hour, a batch run, or a deployment.\n\n### 2. Compare Against Recent Deployments\n* **Check the deploy tool:** Cross-reference the onset time with deploy history for `api`. \n* Check whether recent database migrations were applied that might hold long table locks or run heavy sequential scans. *(Note: deploys several hours or days old are rarely the spontaneous cause.)*\n\n### 3. Read Service Logs\n* Go to the log search tool (index: `sorrel-prod-*`) and limit the query window strictly to the few minutes preceding the rise in lag.\n* Filter for errors and bottlenecks:\n  * `service=api level=ERROR` (look for the earliest errors, not just highest volume).\n  * `service=api msg=\"pool exhausted\"`\n  * `service=api duration_ms>2000 endpoint=*`\n  * `service=api msg=\"deadlock\"`\n  * `service=api msg=\"timeout\"`\n* Look for statements indicating heavy write locks on tables like `bookings`, `slots`, or `business_hours` on the primary database, which can stall replication.\n\n### 4. Inspect Connection Pools and Slow Queries\n* On the **Database** row of the `Sorrel / api` dashboard, look at the adjacent panels:\n  * **Connections in use per pool:** Check if connection pools are approaching 90% or 100% capacity. (When replica connection pools fill up from slow queries, incoming reads queue and time out).\n  * **Query time & Slow queries:** Look for queries taking longer than baseline expectations.\n  * If connection pools are exhausted across multiple nodes, check if specific endpoints (such as `/search` or partner sync calls) are dominating the pool.\n\n---\n\n### Important Guardrails & Escalation Rules\n* **Replica promotion is never an on-call move:** You must **not** attempt database failovers, promote a read replica to primary, detach replication streams, kill database processes, or modify pool limits. Doing so risks immediate data loss or split-brain divergence.\n* **When to page Ravi (api owner):**\n  * Persistent severe lag (> 10s for more than 15 minutes continuously) with exhausted connection pools and read timeouts at scale.\n  * Evidence of irreversible harm, double-bookings, or data state corruption.\n  * Primary hardware failure or unresolvable write deadlocks.\n* **Support coordination:** If customer reports appear regarding stale availability or calendar updates reverting, coordinate with support lead Hana. Document your findings in `#inc-live`.",
+   "pages_in_call": [
+    "handover-2024-03-25",
+    "howto-api-replica-lag",
+    "postmortem-api-replica-lag-double-booking",
+    "postmortem-api-search-index-stale",
+    "handover-2024-08-19"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 6.28,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: On-call handover, week of 2024-03-25 -----\n\n<omitted page handover-2024-03-25: md5 1707afffe9f0589c7961597fe823c6a5, 3617 tokens by countTokens>\n----- page: How to check replica lag on api -----\n\n<omitted page howto-api-replica-lag: md5 16a0527aac155484dce1fd3362039658, 3405 tokens by countTokens>\n----- page: Postmortem: api replica lag double-booked slots in eu-west -----\n\n<omitted page postmortem-api-replica-lag-double-booking: md5 eadedc40f4fcfe87af21acfdf2269bc9, 3325 tokens by countTokens>\n----- page: Postmortem: api search index stale for a day -----\n\n<omitted page postmortem-api-search-index-stale: md5 18e64ce83d7e794670cdb579235fd501, 2908 tokens by countTokens>\n----- page: On-call handover, week of 2024-08-19 -----\n\n<omitted page handover-2024-08-19: md5 63e24953dfce0d5b62f83a6acca7ed17, 3000 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\napi replica lag has been above 10 seconds for a while. walk me through what i check\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:40.245+00:00",
+     "wall_s": 6.182,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the team documentation (specifically **\"How to check replica lag on api\"**), here is the step-by-step walkthrough of what to check:\n\n### 1. Confirm Timing, Duration, and Region\n* **Open the dashboard:** Navigate to **Sorrel / Services** > **Sorrel / api** > scroll down to the **Database** row.\n* **Inspect the Replica Lag panel:** Replica lag is displayed there (one line per region).\n* **Identify the affected region:** Check whether the lag is global or restricted to `ap-northeast`, `us-east`, or `eu-west`. \n  * If confined to one region, check if regional query latency is also spiked.\n  * Check AWS status (`health.aws.amazon.com` or AWS Personal Health Dashboard) for storage (EBS) or database performance degradation in that specific region.\n* **Establish the timeline:** Determine when lag went above the < 1.0s baseline and whether it coincided with the top of the hour, a batch run, or a deployment.\n\n### 2. Compare Against Recent Deployments\n* **Check the deploy tool:** Cross-reference the onset time with deploy history for `api`. \n* Check whether recent database migrations were applied that might hold long table locks or run heavy sequential scans. *(Note: deploys several hours or days old are rarely the spontaneous cause.)*\n\n### 3. Read Service Logs\n* Go to the log search tool (index: `sorrel-prod-*`) and limit the query window strictly to the few minutes preceding the rise in lag.\n* Filter for errors and bottlenecks:\n  * `service=api level=ERROR` (look for the earliest errors, not just highest volume).\n  * `service=api msg=\"pool exhausted\"`\n  * `service=api duration_ms>2000 endpoint=*`\n  * `service=api msg=\"deadlock\"`\n  * `service=api msg=\"timeout\"`\n* Look for statements indicating heavy write locks on tables like `bookings`, `slots`, or `business_hours` on the primary database, which can stall replication.\n\n### 4. Inspect Connection Pools and Slow Queries\n* On the **Database** row of the `Sorrel / api` dashboard, look at the adjacent panels:\n  * **Connections in use per pool:** Check if connection pools are approaching 90% or 100% capacity. (When replica connection pools fill up from slow queries, incoming reads queue and time out).\n  * **Query time & Slow queries:** Look for queries taking longer than baseline expectations.\n  * If connection pools are exhausted across multiple nodes, check if specific endpoints (such as `/search` or partner sync calls) are dominating the pool.\n\n---\n\n### Important Guardrails & Escalation Rules\n* **Replica promotion is never an on-call move:** You must **not** attempt database failovers, promote a read replica to primary, detach replication streams, kill database processes, or modify pool limits. Doing so risks immediate data loss or split-brain divergence.\n* **When to page Ravi (api owner):**\n  * Persistent severe lag (> 10s for more than 15 minutes continuously) with exhausted connection pools and read timeouts at scale.\n  * Evidence of irreversible harm, double-bookings, or data state corruption.\n  * Primary hardware failure or unresolvable write deadlocks.\n* **Support coordination:** If customer reports appear regarding stale availability or calendar updates reverting, coordinate with support lead Hana. Document your findings in `#inc-live`.",
+           "thoughtSignature": "EmkKZwFpFH0ThnX7KgWiSEiI6dM2ueCqHpr8wdp00Zo/bFLi4xHa++WXqjOd4QWbVSkdiB8AdJY0Cvtg9eytFmPCug2ndEl0Urwjm3uxSU1OM08lvFLpheQM287EFozyl1LWlgDX9SOkzBw="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 16571,
+       "candidatesTokenCount": 760,
+       "totalTokenCount": 17331,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 16571
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "ZcjMaoLWAdux1e8P5e2h2QQ"
+     },
+     "cost_usd": 0.01527825
+    }
+   ],
+   "prompt_tokens": 16571,
+   "out_tokens": 760,
+   "cost_usd": 0.01527825
+  },
+  {
+   "id": "st-reindex",
+   "kind": "steps",
+   "question": "how do i run a full rebuild of the api search index?",
+   "answer_page": "howto-api-search-index-rebuild",
+   "answer": "Based on the team documentation (**\"How to rebuild the api search index\"**), here is how to run a full rebuild of the `api` search index:\n\n### Important Constraints Before You Begin\n* **Working hours only:** Rebuilding the index is strictly a working-hours job (between 09:00 and 18:00 JST, preferably Tuesday/Thursday 14:00–16:00 JST). **It is never a nighttime move for on-call engineers.**\n* **Authority:** The rebuild is run by the api team. Engineers on other teams or on-call responders outside the api team must coordinate directly with **Daniel** or **Ravi** before taking action.\n* **Pre-checks:**\n  * Check the **Search index: index freshness** panel on the **Sorrel / api** dashboard. If freshness is **under 6 hours**, it does **not** need a rebuild.\n  * Check database health on the **Sorrel / api** board: connection pool usage must be below 70% across all active nodes (`ap-northeast`, `us-east`, `eu-west`), and replica lag must be steady and under 100 ms.\n  * Avoid launching during peak booking rushes (12:00–13:00 JST and 18:00–23:00 JST).\n  * Post a note in `#team-api` announcing the run.\n\n---\n\n### Rebuild Procedure\nThe rebuild runs asynchronously in the background via the internal administrative job console:\n\n1. **Open the job console:** Navigate to the internal job console and authenticate with your api team credentials.\n2. **Select the reindex job:**\n   * **Service:** `api`\n   * **Job identifier:** `search-reindex-full`\n3. **Verify default parameters:**\n   * `target_regions`: `ap-northeast`, `us-east`, `eu-west`\n   * `batch_size`: `500` (default)\n   * `swap_strategy`: `atomic_on_success`  \n   *(Do not change default batch parameters unless agreed upon with Ravi or Kenji Sato.)*\n4. **Execute the job:** Click **Run Job**. The console will issue a run confirmation ID (e.g., `job-run-sr-8812`).\n\n---\n\n### What to Expect & Next Steps\n* **Duration & Downtime:** The build takes about **70 minutes**. Live searches experience zero downtime because they continue using the old index until the new one completes and swaps atomically.\n* **Monitoring:** Keep the **Sorrel / api** board open to monitor live search query latency, database connection pools (<90%), replica lag, and error rates. You can monitor logs using:\n  ```text\n  service=api component=search-indexer job=search-reindex-full\n  ```\n* **Post-swap verification:** Confirm the atomic swap in the job console logs, verify on the dashboard that **index freshness** drops to `< 5m`, check that query latencies are normal, run a manual search test via `web`, and notify `#team-api` when complete.",
+   "pages_in_call": [
+    "howto-api-search-index-rebuild",
+    "postmortem-api-search-index-stale",
+    "howto-api-replica-lag",
+    "team-oncall-onboarding",
+    "deploying-with-shipyard"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 5.93,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: How to rebuild the api search index -----\n\n<omitted page howto-api-search-index-rebuild: md5 f497a0ac80abc2fda71945f80537684e, 3122 tokens by countTokens>\n----- page: Postmortem: api search index stale for a day -----\n\n<omitted page postmortem-api-search-index-stale: md5 18e64ce83d7e794670cdb579235fd501, 2908 tokens by countTokens>\n----- page: How to check replica lag on api -----\n\n<omitted page howto-api-replica-lag: md5 16a0527aac155484dce1fd3362039658, 3405 tokens by countTokens>\n----- page: On-call onboarding -----\n\n<omitted page team-oncall-onboarding: md5 e0c5681328bdc0b2baff6132d78e89fe, 3513 tokens by countTokens>\n----- page: Deploying with Shipyard -----\n\n<omitted page deploying-with-shipyard: md5 5025e43384a5856acef5ad58555c4509, 1780 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nhow do i run a full rebuild of the api search index?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:40.315+00:00",
+     "wall_s": 5.851,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the team documentation (**\"How to rebuild the api search index\"**), here is how to run a full rebuild of the `api` search index:\n\n### Important Constraints Before You Begin\n* **Working hours only:** Rebuilding the index is strictly a working-hours job (between 09:00 and 18:00 JST, preferably Tuesday/Thursday 14:00–16:00 JST). **It is never a nighttime move for on-call engineers.**\n* **Authority:** The rebuild is run by the api team. Engineers on other teams or on-call responders outside the api team must coordinate directly with **Daniel** or **Ravi** before taking action.\n* **Pre-checks:**\n  * Check the **Search index: index freshness** panel on the **Sorrel / api** dashboard. If freshness is **under 6 hours**, it does **not** need a rebuild.\n  * Check database health on the **Sorrel / api** board: connection pool usage must be below 70% across all active nodes (`ap-northeast`, `us-east`, `eu-west`), and replica lag must be steady and under 100 ms.\n  * Avoid launching during peak booking rushes (12:00–13:00 JST and 18:00–23:00 JST).\n  * Post a note in `#team-api` announcing the run.\n\n---\n\n### Rebuild Procedure\nThe rebuild runs asynchronously in the background via the internal administrative job console:\n\n1. **Open the job console:** Navigate to the internal job console and authenticate with your api team credentials.\n2. **Select the reindex job:**\n   * **Service:** `api`\n   * **Job identifier:** `search-reindex-full`\n3. **Verify default parameters:**\n   * `target_regions`: `ap-northeast`, `us-east`, `eu-west`\n   * `batch_size`: `500` (default)\n   * `swap_strategy`: `atomic_on_success`  \n   *(Do not change default batch parameters unless agreed upon with Ravi or Kenji Sato.)*\n4. **Execute the job:** Click **Run Job**. The console will issue a run confirmation ID (e.g., `job-run-sr-8812`).\n\n---\n\n### What to Expect & Next Steps\n* **Duration & Downtime:** The build takes about **70 minutes**. Live searches experience zero downtime because they continue using the old index until the new one completes and swaps atomically.\n* **Monitoring:** Keep the **Sorrel / api** board open to monitor live search query latency, database connection pools (<90%), replica lag, and error rates. You can monitor logs using:\n  ```text\n  service=api component=search-indexer job=search-reindex-full\n  ```\n* **Post-swap verification:** Confirm the atomic swap in the job console logs, verify on the dashboard that **index freshness** drops to `< 5m`, check that query latencies are normal, run a manual search test via `web`, and notify `#team-api` when complete.",
+           "thoughtSignature": "EmkKZwFpFH0T08di4F32qdUW2ew6hEgJXmjf3mz0DjtCLjz5bpZN0pV6Wqc1lLulVXu7uZEJz7+5cjKIodcxet5f4n4GPqqpuo7bf60LYLM/lQlsz3Hiby+1HxbuqYt/JDoovf0rDnIPp0U="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 15003,
+       "candidatesTokenCount": 691,
+       "totalTokenCount": 15694,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 15003
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "ZcjMaoPTAeyv2roPppDgmAg"
+     },
+     "cost_usd": 0.0138435
+    }
+   ],
+   "prompt_tokens": 15003,
+   "out_tokens": 691,
+   "cost_usd": 0.0138435
+  },
+  {
+   "id": "st-load-test",
+   "kind": "steps",
+   "question": "theres load test traffic with the X-Sorrel-Loadtest header hitting api and nobody seems to own it. how do i stop it?",
+   "answer_page": "howto-stop-unowned-load-test",
+   "answer": "Based on the **How to stop a load test that nobody owns** runbook, follow these steps:\n\n### 1. Check the Game Day Calendar First\nBefore stopping the test, check the team game day / change calendar to ensure it is not part of a scheduled exercise. \n- If it is on the calendar, ask the listed owner before stopping it.\n- If it is not on the calendar, the window ended, or no owner is listed, it is an orphaned test and you have explicit operational permission to stop it immediately.\n\n---\n\n### 2. How to Stop It\nAll synthetic load runners are managed using the central utility **`loadctl`**:\n\n1. **Find the Test ID:**  \n   List active load test runners across all regions:\n   ```bash\n   loadctl list\n   ```\n   Identify the `TEST ID` matching the traffic targeting `api`.\n\n2. **Stop the Test:**  \n   Run:\n   ```bash\n   loadctl stop <test id>\n   ```\n\n3. **Force Kill (if it hangs):**  \n   If the command hangs or worker nodes do not terminate within 30 seconds, force stop it:\n   ```bash\n   loadctl stop <test id> --force\n   ```\n\n---\n\n### 3. Post-Action Communication\n- **Notify `#platform` immediately** in chat with the test ID, traffic rate (RPS), target service/region, symptoms, and note that there was no calendar entry or owner found.\n- If an incident thread was opened in `#inc-live`, post an update noting that the test was stopped with `loadctl stop <test id>` and monitor dashboards for 10 minutes to verify metrics normalize.",
+   "pages_in_call": [
+    "howto-stop-unowned-load-test",
+    "team-game-days",
+    "handbook-7",
+    "handover-2025-11-24",
+    "team-oncall-onboarding"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [
+    "handbook-7"
+   ],
+   "error": null,
+   "wall_s": 4.01,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: How to stop a load test that nobody owns -----\n\n<omitted page howto-stop-unowned-load-test: md5 44eeb56fde1a1254fd9e9957e60ea4c3, 3621 tokens by countTokens>\n----- page: Game days -----\n\n<omitted page team-game-days: md5 1fa61399280fa79517ad7a446b627bb3, 4320 tokens by countTokens>\n----- page: Handbook 7. Known failure modes -----\n\n<omitted page handbook-7: md5 08eafeb74ed1b05fbd9abe1a65d96b09, 1489 tokens by countTokens>\n----- page: On-call handover, week of 2025-11-24 -----\n\n<omitted page handover-2025-11-24: md5 17e2f0160292887399964c35bcc5051b, 2650 tokens by countTokens>\n----- page: On-call onboarding -----\n\n<omitted page team-oncall-onboarding: md5 e0c5681328bdc0b2baff6132d78e89fe, 3513 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\ntheres load test traffic with the X-Sorrel-Loadtest header hitting api and nobody seems to own it. how do i stop it?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:42.075+00:00",
+     "wall_s": 3.926,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the **How to stop a load test that nobody owns** runbook, follow these steps:\n\n### 1. Check the Game Day Calendar First\nBefore stopping the test, check the team game day / change calendar to ensure it is not part of a scheduled exercise. \n- If it is on the calendar, ask the listed owner before stopping it.\n- If it is not on the calendar, the window ended, or no owner is listed, it is an orphaned test and you have explicit operational permission to stop it immediately.\n\n---\n\n### 2. How to Stop It\nAll synthetic load runners are managed using the central utility **`loadctl`**:\n\n1. **Find the Test ID:**  \n   List active load test runners across all regions:\n   ```bash\n   loadctl list\n   ```\n   Identify the `TEST ID` matching the traffic targeting `api`.\n\n2. **Stop the Test:**  \n   Run:\n   ```bash\n   loadctl stop <test id>\n   ```\n\n3. **Force Kill (if it hangs):**  \n   If the command hangs or worker nodes do not terminate within 30 seconds, force stop it:\n   ```bash\n   loadctl stop <test id> --force\n   ```\n\n---\n\n### 3. Post-Action Communication\n- **Notify `#platform` immediately** in chat with the test ID, traffic rate (RPS), target service/region, symptoms, and note that there was no calendar entry or owner found.\n- If an incident thread was opened in `#inc-live`, post an update noting that the test was stopped with `loadctl stop <test id>` and monitor dashboards for 10 minutes to verify metrics normalize.",
+           "thoughtSignature": "EmkKZwFpFH0TUaP3DIVJOqrgOkthL0MNCq6bUHDYZcq+bcICIVZtayKp7E5ad4p+lSIKVOT7pLjbYv01a1xwhD0KW+WBSztLBBSdSw4BhV588nqrfK00li+CKFC9igwkcx8u84um7KUBaSc="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 15892,
+       "candidatesTokenCount": 366,
+       "totalTokenCount": 16258,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 15892
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "ZsjMas-aNI2N1e8PhqexYA"
+     },
+     "cost_usd": 0.0132915
+    }
+   ],
+   "prompt_tokens": 15892,
+   "out_tokens": 366,
+   "cost_usd": 0.0132915
+  },
+  {
+   "id": "st-api-rollback",
+   "kind": "steps",
+   "question": "how do i roll back api now that it's on shipyard?",
+   "answer_page": "deploying-with-shipyard",
+   "answer": "To roll back **api** on Shipyard:\n\n### 1. Rolling back to the previous release (1 release)\nAs the on-call engineer, you can roll back **one release with no approval needed** (it is pre-approved and safe for database migrations). You can do this via CLI or the browser:\n\n* **Command line:**\n  1. Check recent releases to find the release just below the `live` one:\n     ```bash\n     shipyard releases api\n     ```\n  2. Run the rollback command targeting that previous release (e.g., `r-211`):\n     ```bash\n     shipyard rollback api --to <release-name>\n     ```\n  3. Type the service name (`api`) to confirm when prompted.\n\n* **Browser:**\n  1. Go to `shipyard.sorrel.internal`.\n  2. Select the **api** service and open the **Releases** tab.\n  3. Find the release just below the `live` release and click **Roll back to this release**.\n  4. Type `api` in the confirmation box.\n\n### What happens during the rollback:\n* Shipyard replaces api nodes two at a time; the process takes about **six minutes**.\n* Shipyard will post the start and finish in `#deploys`. \n* You must paste the output of `shipyard releases api` and write both release names (the rolled back release and the target release) into the incident thread.\n* Watch the error rate and latency on the `Sorrel / api` dashboard to ensure they return to pre-deploy levels.\n\n---\n\n### Important rules to keep in mind:\n* **Rolling back two or more releases:** Requires approval in Shipyard from the service owner, **Ravi**. If he does not answer, page him.\n* **If the rollback does not help after 10 minutes:** Do not attempt another rollback to an older release. Page Ravi.",
+   "pages_in_call": [
+    "deploying-with-shipyard",
+    "handover-2026-09-28",
+    "handbook-5",
+    "postmortem-api-rollback-queue",
+    "handover-2024-03-25"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [
+    "handbook-5"
+   ],
+   "error": null,
+   "wall_s": 4.19,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: Deploying with Shipyard -----\n\n<omitted page deploying-with-shipyard: md5 5025e43384a5856acef5ad58555c4509, 1780 tokens by countTokens>\n----- page: On-call handover, week of 2026-09-28 -----\n\n<omitted page handover-2026-09-28: md5 2f69ef707d3612828e3a87bf748964f6, 718 tokens by countTokens>\n----- page: Handbook 5. Service runbooks -----\n\n<omitted page handbook-5: md5 8700b1e28b741a388e672c7b49fafda4, 3049 tokens by countTokens>\n----- page: Postmortem: api rollback stuck in the deploy queue -----\n\n<omitted page postmortem-api-rollback-queue: md5 b041a4999362c06e03960c9a1ab37e2c, 1565 tokens by countTokens>\n----- page: On-call handover, week of 2024-03-25 -----\n\n<omitted page handover-2024-03-25: md5 1707afffe9f0589c7961597fe823c6a5, 3617 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nhow do i roll back api now that it's on shipyard?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:42.196+00:00",
+     "wall_s": 4.103,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "To roll back **api** on Shipyard:\n\n### 1. Rolling back to the previous release (1 release)\nAs the on-call engineer, you can roll back **one release with no approval needed** (it is pre-approved and safe for database migrations). You can do this via CLI or the browser:\n\n* **Command line:**\n  1. Check recent releases to find the release just below the `live` one:\n     ```bash\n     shipyard releases api\n     ```\n  2. Run the rollback command targeting that previous release (e.g., `r-211`):\n     ```bash\n     shipyard rollback api --to <release-name>\n     ```\n  3. Type the service name (`api`) to confirm when prompted.\n\n* **Browser:**\n  1. Go to `shipyard.sorrel.internal`.\n  2. Select the **api** service and open the **Releases** tab.\n  3. Find the release just below the `live` release and click **Roll back to this release**.\n  4. Type `api` in the confirmation box.\n\n### What happens during the rollback:\n* Shipyard replaces api nodes two at a time; the process takes about **six minutes**.\n* Shipyard will post the start and finish in `#deploys`. \n* You must paste the output of `shipyard releases api` and write both release names (the rolled back release and the target release) into the incident thread.\n* Watch the error rate and latency on the `Sorrel / api` dashboard to ensure they return to pre-deploy levels.\n\n---\n\n### Important rules to keep in mind:\n* **Rolling back two or more releases:** Requires approval in Shipyard from the service owner, **Ravi**. If he does not answer, page him.\n* **If the rollback does not help after 10 minutes:** Do not attempt another rollback to an older release. Page Ravi.",
+           "thoughtSignature": "EmkKZwFpFH0TQeTXAmNn1Yzw/eRH2YTc4gcP1A1zFDhF341/Ue6K/un8f5fVvrcV475TRvFsxnONG9Kd0fdZHAzVUQneaWIuX80SK8QtGOJotVf3YkcsJliUOvB1bjo0th/zCvaPZJSs8iE="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 11030,
+       "candidatesTokenCount": 419,
+       "totalTokenCount": 11449,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 11030
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "ZsjMatyMNLfirfcPhb718Ao"
+     },
+     "cost_usd": 0.00984375
+    }
+   ],
+   "prompt_tokens": 11030,
+   "out_tokens": 419,
+   "cost_usd": 0.00984375
+  },
+  {
+   "id": "st-audit-actions",
+   "kind": "steps",
+   "question": "the api audit log writer stopped last december after a disk filled up. what did we change afterwards?",
+   "answer_page": "postmortem-api-audit-disk",
+   "answer": "Based on the postmortem (*Postmortem: api audit log writer stopped after a disk filled*), the following action items and changes were planned following the incident:\n\n1. **Spool volume disk usage alerting:** Configure a proactive disk usage alert on all `api` spool volumes that fires when disk usage exceeds 75% (Owner: Sara, Target Date: 2025-12-22).\n2. **Automated offloading to object storage:** Re-architect the audit spooler to automatically offload batches to AWS object storage whenever local disk utilization passes 70% (Owner: Daniel, Target Date: 2026-01-15).\n3. **Hardened worker error handling:** Update the background audit worker error handling to catch `ENOSPC` and filesystem write exceptions, automatically attempting recovery rather than terminating the worker thread (Owner: Ravi, Target Date: 2026-01-20).\n4. **Clean cron file locking:** Review auxiliary log-exporting cron tasks to ensure file locks are cleanly released after execution (Owner: Kenji Sato, Target Date: 2025-12-19).\n5. **Replay tooling:** Create an automated replay tool to reconstruct audit events from request logs in case of future auxiliary ingestion stalls (Owner: Daniel, Target Date: 2026-02-05).\n\n*(Note: In the immediate aftermath, 14 GB of dead files were purged, the daemon was restarted, and Daniel backfilled the 18,320 omitted audit events from request logs by 2025-12-13. The pages do not record the completion status of the scheduled follow-up action items.)*",
+   "pages_in_call": [
+    "postmortem-api-audit-disk",
+    "handover-2025-01-06",
+    "handbook-5",
+    "postmortem-payments-pool-timeout",
+    "team-postmortem-review"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 3.45,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: Postmortem: api audit log writer stopped after a disk filled -----\n\n<omitted page postmortem-api-audit-disk: md5 bf30b8c17605f91f65a8cc7eeca1e37c, 3455 tokens by countTokens>\n----- page: On-call handover, week of 2025-01-06 -----\n\n<omitted page handover-2025-01-06: md5 3b49e16796892129d251da97db287529, 2996 tokens by countTokens>\n----- page: Handbook 5. Service runbooks -----\n\n<omitted page handbook-5: md5 8700b1e28b741a388e672c7b49fafda4, 3049 tokens by countTokens>\n----- page: Postmortem: payments checkout timeouts after the v2.31 pool change -----\n\n<omitted page postmortem-payments-pool-timeout: md5 81c7472cd123a80cc67f341d2b09fc3d, 1563 tokens by countTokens>\n----- page: Postmortem review meeting -----\n\n<omitted page team-postmortem-review: md5 5f1749fb0e5ae9218c890356ea5d4fdb, 2937 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nthe api audit log writer stopped last december after a disk filled up. what did we change afterwards?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:46.083+00:00",
+     "wall_s": 3.368,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the postmortem (*Postmortem: api audit log writer stopped after a disk filled*), the following action items and changes were planned following the incident:\n\n1. **Spool volume disk usage alerting:** Configure a proactive disk usage alert on all `api` spool volumes that fires when disk usage exceeds 75% (Owner: Sara, Target Date: 2025-12-22).\n2. **Automated offloading to object storage:** Re-architect the audit spooler to automatically offload batches to AWS object storage whenever local disk utilization passes 70% (Owner: Daniel, Target Date: 2026-01-15).\n3. **Hardened worker error handling:** Update the background audit worker error handling to catch `ENOSPC` and filesystem write exceptions, automatically attempting recovery rather than terminating the worker thread (Owner: Ravi, Target Date: 2026-01-20).\n4. **Clean cron file locking:** Review auxiliary log-exporting cron tasks to ensure file locks are cleanly released after execution (Owner: Kenji Sato, Target Date: 2025-12-19).\n5. **Replay tooling:** Create an automated replay tool to reconstruct audit events from request logs in case of future auxiliary ingestion stalls (Owner: Daniel, Target Date: 2026-02-05).\n\n*(Note: In the immediate aftermath, 14 GB of dead files were purged, the daemon was restarted, and Daniel backfilled the 18,320 omitted audit events from request logs by 2025-12-13. The pages do not record the completion status of the scheduled follow-up action items.)*",
+           "thoughtSignature": "EmkKZwFpFH0TXrFAKaKe/xb2GHJjPzaH++vU45KS4JUE+PQho1HSVfcp5V7LrSRAU+pixxSsRilIZfkiAtKe7p379zqexZRn2qR90Yk+5BVLHure7Fz1fJWiN/rgEYHJfyi7Pb73FIF9ppU="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 14305,
+       "candidatesTokenCount": 369,
+       "totalTokenCount": 14674,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 14305
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "asjMari6Lr_01e8P58PDCQ"
+     },
+     "cost_usd": 0.0121125
+    }
+   ],
+   "prompt_tokens": 14305,
+   "out_tokens": 369,
+   "cost_usd": 0.0121125
+  },
+  {
+   "id": "st-trace-refund",
+   "kind": "steps",
+   "question": "customer says their refund never showed up. how do i trace it through the logs?",
+   "answer_page": "howto-trace-a-refund",
+   "answer": "Based on the guide **\"How to trace one refund through the logs,\"** here is the step-by-step procedure to trace a customer's refund:\n\n### 1. Safety and Query Rules\n* **Never search for card numbers** (they are never logged, and querying for them triggers internal security audits).\n* **Narrow your search window** in the log search tool to a 2- to 4-hour window around the cancellation or ticket request against the `sorrel-prod-*` index.\n\n---\n\n### 2. Step-by-Step Triage Procedure\n\n#### **Step 1: Locate the internal reference (`ref`)**\nIf you only have a `booking_id` (e.g., `bk_5510294`):\n1. In the log search tool, set the index to `sorrel-prod-*`.\n2. Restrict the time picker to 2 hours before and after the alleged cancellation.\n3. Run the query:\n   ```text\n   service=payments booking_id=\"<booking_id>\"\n   ```\n4. Find the `\"refund requested\"` log line and copy the `ref` value (formatted as `ref_...`).\n\n---\n\n#### **Step 2: Trace the outbound dispatch to Stripe**\nVerify whether the refund was sent to the provider:\n1. Run the query:\n   ```text\n   service=payments msg=\"refund sent\" ref=\"<ref>\"\n   ```\n2. **Check the count of lines returned:**\n   * **0 lines:** The refund never left the cluster (check worker queues or database connections in `service=payments`).\n   * **1 line:** Normal outbound execution. Note the timestamp and the HTTP response status:\n     * **HTTP 200:** Stripe acknowledged the refund.\n     * **HTTP 4xx / 5xx:** Stripe rejected the call or experienced a failure. Check `provider_ms`, error messages, and `status.stripe.com`.\n   * **2 or more lines (CRITICAL):** Money may have moved twice. **Stop immediately, do not roll back, and page Mei (payments owner).**\n\n---\n\n#### **Step 3: Check webhook settlement**\nVerify whether Stripe finalized the transaction:\n1. Run the query:\n   ```text\n   service=payments msg=\"refund settled\" ref=\"<ref>\"\n   ```\n2. **Evaluate the result:**\n   * **Line exists:** The refund cycle is complete. If the customer hasn't received funds, it is an inter-bank processing delay (typically 5–10 business days depending on their card issuer), not a technical failure within Sorrel.\n   * **No line appears:**\n     * Check how long ago `\"refund sent\"` occurred. If it was sent fewer than 6 hours ago, this is normal (settlement webhooks arrive hours later).\n     * Check webhook health on the **Sorrel / payments** dashboard.\n     * Check for webhook processing retries using:\n       ```text\n       service=payments msg=\"webhook\" outcome=retry ref=\"<ref>\"\n       ```",
+   "pages_in_call": [
+    "howto-trace-a-refund",
+    "deploying-with-shipyard",
+    "provider-stripe-notes",
+    "postmortem-payments-duplicate-refunds",
+    "handover-2024-03-25"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 6.0,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: How to trace one refund through the logs -----\n\n<omitted page howto-trace-a-refund: md5 712e29a5f3bbd348650cd92715b1345b, 3183 tokens by countTokens>\n----- page: Deploying with Shipyard -----\n\n<omitted page deploying-with-shipyard: md5 5025e43384a5856acef5ad58555c4509, 1780 tokens by countTokens>\n----- page: stripe: notes for on-call -----\n\n<omitted page provider-stripe-notes: md5 edb6c80baaf620e0addd400db74c2849, 3582 tokens by countTokens>\n----- page: Postmortem: refunds sent twice after the refund job restarted -----\n\n<omitted page postmortem-payments-duplicate-refunds: md5 f78f650c9483e7e35433b21253226ce9, 1067 tokens by countTokens>\n----- page: On-call handover, week of 2024-03-25 -----\n\n<omitted page handover-2024-03-25: md5 1707afffe9f0589c7961597fe823c6a5, 3617 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\ncustomer says their refund never showed up. how do i trace it through the logs?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:46.249+00:00",
+     "wall_s": 5.92,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the guide **\"How to trace one refund through the logs,\"** here is the step-by-step procedure to trace a customer's refund:\n\n### 1. Safety and Query Rules\n* **Never search for card numbers** (they are never logged, and querying for them triggers internal security audits).\n* **Narrow your search window** in the log search tool to a 2- to 4-hour window around the cancellation or ticket request against the `sorrel-prod-*` index.\n\n---\n\n### 2. Step-by-Step Triage Procedure\n\n#### **Step 1: Locate the internal reference (`ref`)**\nIf you only have a `booking_id` (e.g., `bk_5510294`):\n1. In the log search tool, set the index to `sorrel-prod-*`.\n2. Restrict the time picker to 2 hours before and after the alleged cancellation.\n3. Run the query:\n   ```text\n   service=payments booking_id=\"<booking_id>\"\n   ```\n4. Find the `\"refund requested\"` log line and copy the `ref` value (formatted as `ref_...`).\n\n---\n\n#### **Step 2: Trace the outbound dispatch to Stripe**\nVerify whether the refund was sent to the provider:\n1. Run the query:\n   ```text\n   service=payments msg=\"refund sent\" ref=\"<ref>\"\n   ```\n2. **Check the count of lines returned:**\n   * **0 lines:** The refund never left the cluster (check worker queues or database connections in `service=payments`).\n   * **1 line:** Normal outbound execution. Note the timestamp and the HTTP response status:\n     * **HTTP 200:** Stripe acknowledged the refund.\n     * **HTTP 4xx / 5xx:** Stripe rejected the call or experienced a failure. Check `provider_ms`, error messages, and `status.stripe.com`.\n   * **2 or more lines (CRITICAL):** Money may have moved twice. **Stop immediately, do not roll back, and page Mei (payments owner).**\n\n---\n\n#### **Step 3: Check webhook settlement**\nVerify whether Stripe finalized the transaction:\n1. Run the query:\n   ```text\n   service=payments msg=\"refund settled\" ref=\"<ref>\"\n   ```\n2. **Evaluate the result:**\n   * **Line exists:** The refund cycle is complete. If the customer hasn't received funds, it is an inter-bank processing delay (typically 5–10 business days depending on their card issuer), not a technical failure within Sorrel.\n   * **No line appears:**\n     * Check how long ago `\"refund sent\"` occurred. If it was sent fewer than 6 hours ago, this is normal (settlement webhooks arrive hours later).\n     * Check webhook health on the **Sorrel / payments** dashboard.\n     * Check for webhook processing retries using:\n       ```text\n       service=payments msg=\"webhook\" outcome=retry ref=\"<ref>\"\n       ```",
+           "thoughtSignature": "EmkKZwFpFH0TAIyjb4YqBM0ojM90lcSJvjXLkwMt1oE4s+NwKvlW1nMXjTCVm/zvDx4ctxkwbu5g2443hsDQHRKwWLjw/vDIes2q84y0asLyg+HRzP02jQ/lY8lffV/FfQqJfb9/4t28rJ0="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 13525,
+       "candidatesTokenCount": 667,
+       "totalTokenCount": 14192,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 13525
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "asjMaoqsO5bmrfcPmcW-MQ"
+     },
+     "cost_usd": 0.012645
+    }
+   ],
+   "prompt_tokens": 13525,
+   "out_tokens": 667,
+   "cost_usd": 0.012645
+  },
+  {
+   "id": "st-two-sent",
+   "kind": "steps",
+   "question": "i see two 'refund sent' lines for the same ref in the payments logs. what do i do now?",
+   "answer_page": "howto-trace-a-refund",
+   "answer": "Based on the pages, if one reference shows two `refund sent` lines, money may have moved twice. You must **stop and page Mei**.\n\nHere are the exact required steps:\n\n1. **Stop your investigation immediately.** Do not attempt to rerun scripts, issue cancellation webhooks, or execute ad-hoc database updates.\n2. **Do not attempt to roll back code.** A rollback will not recover funds that have already settled with the customer's bank.\n3. **Declare a P1 incident.** Any instance where money moves wrongly is classified as a P1.\n4. **Page Mei directly** via the paging tool (as payments service owner, she is the only person authorized to make decisions regarding ledger adjustments, clawbacks, manual disputes, or Stripe adjustments).\n5. **Post the details** in your page description and the `#inc-live` incident thread:\n   - The alert or discovery line.\n   - The exact payment reference (`ref`).\n   - The timestamps of both `\"refund sent\"` log events.\n   - The Stripe refund IDs associated with each line (e.g., `re_...`).",
+   "pages_in_call": [
+    "howto-trace-a-refund",
+    "postmortem-payments-duplicate-refunds",
+    "handbook-15",
+    "deploying-with-shipyard",
+    "provider-stripe-api-version"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 5.27,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: How to trace one refund through the logs -----\n\n<omitted page howto-trace-a-refund: md5 712e29a5f3bbd348650cd92715b1345b, 3183 tokens by countTokens>\n----- page: Postmortem: refunds sent twice after the refund job restarted -----\n\n<omitted page postmortem-payments-duplicate-refunds: md5 f78f650c9483e7e35433b21253226ce9, 1067 tokens by countTokens>\n----- page: Handbook 15. Useful log searches -----\n\n<omitted page handbook-15: md5 2c0629379c95c3d54c2d0a5c7df3620c, 591 tokens by countTokens>\n----- page: Deploying with Shipyard -----\n\n<omitted page deploying-with-shipyard: md5 5025e43384a5856acef5ad58555c4509, 1780 tokens by countTokens>\n----- page: stripe: API version upgrade notes (2026) -----\n\n<omitted page provider-stripe-api-version: md5 add92266302bc8a3d33180b1cfe78574, 3504 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\ni see two 'refund sent' lines for the same ref in the payments logs. what do i do now?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:46.381+00:00",
+     "wall_s": 5.19,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the pages, if one reference shows two `refund sent` lines, money may have moved twice. You must **stop and page Mei**.\n\nHere are the exact required steps:\n\n1. **Stop your investigation immediately.** Do not attempt to rerun scripts, issue cancellation webhooks, or execute ad-hoc database updates.\n2. **Do not attempt to roll back code.** A rollback will not recover funds that have already settled with the customer's bank.\n3. **Declare a P1 incident.** Any instance where money moves wrongly is classified as a P1.\n4. **Page Mei directly** via the paging tool (as payments service owner, she is the only person authorized to make decisions regarding ledger adjustments, clawbacks, manual disputes, or Stripe adjustments).\n5. **Post the details** in your page description and the `#inc-live` incident thread:\n   - The alert or discovery line.\n   - The exact payment reference (`ref`).\n   - The timestamps of both `\"refund sent\"` log events.\n   - The Stripe refund IDs associated with each line (e.g., `re_...`).",
+           "thoughtSignature": "EmkKZwFpFH0T1TSrjrj1cAG3rTtVSrn4EsYFBmLzLcg+sJFJL+Mtqr9jpD0nmWcmkFkXE1/E+TG++iCv+y7Jg2X8zyUfLzASy5s4VFX4FlecxK2dYv/u15LDDtbqA/XD7k7X7xWfnaXlC1Q="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 10422,
+       "candidatesTokenCount": 236,
+       "totalTokenCount": 10658,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 10422
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "a8jMauzvB9_mrfcP-7DgUQ"
+     },
+     "cost_usd": 0.0087015
+    }
+   ],
+   "prompt_tokens": 10422,
+   "out_tokens": 236,
+   "cost_usd": 0.0087015
+  },
+  {
+   "id": "st-stripe-key",
+   "kind": "steps",
+   "question": "i just found a live stripe key printed in the payments logs. what do i do?",
+   "answer_page": "team-secrets-manager",
+   "answer": "Based on the **Secrets manager for on-call** runbook (Section 4 and Section 6, Scenario A), here is what you need to do:\n\n### 1. What NOT to do\n* **Do not copy, paste, or echo the key anywhere** (do not paste it or the stack trace into `#inc-live`, private chats, tickets, or incident documents).\n* **Do not rotate or revoke the key yourself** (never rotate credentials yourself, and do not log into the Stripe dashboard to revoke it; rotation is the owner's decision).\n\n### 2. Immediate Actions\n1. **Capture the reference link:** Copy the exact permalink/query URL to the log search in the log search tool (or note the exact timestamp, service tag, and node identifier).\n2. **Treat as P1:** Production credential exposure is classified immediately as a **P1 incident**.\n3. **Page the credential owner:** Page **Mei** (payments owner) immediately via the paging tool.\n4. **Open an incident thread in `#inc-live`:** \n   * Post notification of the P1 incident without exposing the key. For example:\n     > *\"P1 opened for secret exposure. Live Stripe key identified in `service=payments` logs. Query link provided to owner. Mei has been paged. On-call standing by.\"*\n5. **Stand by:** Wait for Mei to acknowledge. Mei will handle key revocation, dual-key rollover, and any necessary remediation.",
+   "pages_in_call": [
+    "team-secrets-manager",
+    "team-payments-notes",
+    "howto-trace-a-refund",
+    "handover-2025-10-27",
+    "deploying-with-shipyard"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 4.46,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: Secrets manager for on-call -----\n\n<omitted page team-secrets-manager: md5 80f6a5aebddbd20dccccf736c4fb5e60, 2924 tokens by countTokens>\n----- page: payments: notes for on-call -----\n\n<omitted page team-payments-notes: md5 1f8ba5de71527c09889e1893890b7fed, 933 tokens by countTokens>\n----- page: How to trace one refund through the logs -----\n\n<omitted page howto-trace-a-refund: md5 712e29a5f3bbd348650cd92715b1345b, 3183 tokens by countTokens>\n----- page: On-call handover, week of 2025-10-27 -----\n\n<omitted page handover-2025-10-27: md5 ba1c32625c496c0af7880c4829efffea, 716 tokens by countTokens>\n----- page: Deploying with Shipyard -----\n\n<omitted page deploying-with-shipyard: md5 5025e43384a5856acef5ad58555c4509, 1780 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\ni just found a live stripe key printed in the payments logs. what do i do?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:46.512+00:00",
+     "wall_s": 4.374,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the **Secrets manager for on-call** runbook (Section 4 and Section 6, Scenario A), here is what you need to do:\n\n### 1. What NOT to do\n* **Do not copy, paste, or echo the key anywhere** (do not paste it or the stack trace into `#inc-live`, private chats, tickets, or incident documents).\n* **Do not rotate or revoke the key yourself** (never rotate credentials yourself, and do not log into the Stripe dashboard to revoke it; rotation is the owner's decision).\n\n### 2. Immediate Actions\n1. **Capture the reference link:** Copy the exact permalink/query URL to the log search in the log search tool (or note the exact timestamp, service tag, and node identifier).\n2. **Treat as P1:** Production credential exposure is classified immediately as a **P1 incident**.\n3. **Page the credential owner:** Page **Mei** (payments owner) immediately via the paging tool.\n4. **Open an incident thread in `#inc-live`:** \n   * Post notification of the P1 incident without exposing the key. For example:\n     > *\"P1 opened for secret exposure. Live Stripe key identified in `service=payments` logs. Query link provided to owner. Mei has been paged. On-call standing by.\"*\n5. **Stand by:** Wait for Mei to acknowledge. Mei will handle key revocation, dual-key rollover, and any necessary remediation.",
+           "thoughtSignature": "EmkKZwFpFH0TcDJGYHjK+UjVQLghD8CfqDgsNTrsAAUNWwvwV+cNslXExQ1yedr7+Q+7vq96dwrT98juw4VRYfwfSumjaMBPqrp42TZLm2c9u26SkfOFi/POIotqNFqzMpAn/UrvGHa6axI="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 9827,
+       "candidatesTokenCount": 317,
+       "totalTokenCount": 10144,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 9827
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "a8jMaqzTCYO-vr0P6NvhqQE"
+     },
+     "cost_usd": 0.008559
+    }
+   ],
+   "prompt_tokens": 9827,
+   "out_tokens": 317,
+   "cost_usd": 0.008559
+  },
+  {
+   "id": "st-webhook-secret-actions",
+   "kind": "steps",
+   "question": "what did we change after stripe webhooks got rejected following the signing secret rotation?",
+   "answer_page": "postmortem-payments-webhook-secret",
+   "answer": "Based on the postmortem (*Postmortem: stripe webhooks rejected after the signing secret rotation*), the following changes were implemented:\n\n1. **Startup Validation and Regional Parity:**\n   - Updated `payments` initialization logic so secrets are read directly from the cloud secrets manager at service start-up on every node, rather than relying on runtime memory hooks.\n   - Added an internal check at boot and periodically during operation to confirm that all active regions (`ap-northeast`, `us-east`, `eu-west`) report identical secret version metadata; a mismatch raises a metric alarm and logs a configuration error.\n\n2. **Safe Secret Overlap Window (Runbook & Ingestion Changes):**\n   - Implemented a dual-signing secret verification fallback in the webhook ingestion path: verification checks against the primary secret first, and if that fails, checks against the secondary secret before rejecting the request.\n   - Updated the rotation runbook to require a 24-hour overlap where both old and new secrets remain active in Stripe simultaneously. Decommissioning an old secret is only permitted after dashboards show zero verifications against it for at least two consecutive hours.\n\n3. **Tooling and Process Improvements (Action Items):**\n   - Updated the secret rotation script to explicitly check regional secrets manager return codes and fail closed on timeouts.\n   - Added an automated check in the deployment tool to verify configuration hash parity across running instances in all regions.\n   - Updated Section 6.1 of the internal documentation regarding Stripe key maintenance and rotation procedures.\n   - Created standard support canned responses for customers reporting prolonged `payment pending` statuses.",
+   "pages_in_call": [
+    "postmortem-payments-webhook-secret",
+    "provider-stripe-api-version",
+    "team-secrets-manager",
+    "provider-stripe-notes",
+    "howto-trace-a-refund"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 3.84,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: Postmortem: stripe webhooks rejected after the signing secret rotation -----\n\n<omitted page postmortem-payments-webhook-secret: md5 d433e3ab7e2ecee03ee0446095199783, 3110 tokens by countTokens>\n----- page: stripe: API version upgrade notes (2026) -----\n\n<omitted page provider-stripe-api-version: md5 add92266302bc8a3d33180b1cfe78574, 3504 tokens by countTokens>\n----- page: Secrets manager for on-call -----\n\n<omitted page team-secrets-manager: md5 80f6a5aebddbd20dccccf736c4fb5e60, 2924 tokens by countTokens>\n----- page: stripe: notes for on-call -----\n\n<omitted page provider-stripe-notes: md5 edb6c80baaf620e0addd400db74c2849, 3582 tokens by countTokens>\n----- page: How to trace one refund through the logs -----\n\n<omitted page howto-trace-a-refund: md5 712e29a5f3bbd348650cd92715b1345b, 3183 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nwhat did we change after stripe webhooks got rejected following the signing secret rotation?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:49.538+00:00",
+     "wall_s": 3.757,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the postmortem (*Postmortem: stripe webhooks rejected after the signing secret rotation*), the following changes were implemented:\n\n1. **Startup Validation and Regional Parity:**\n   - Updated `payments` initialization logic so secrets are read directly from the cloud secrets manager at service start-up on every node, rather than relying on runtime memory hooks.\n   - Added an internal check at boot and periodically during operation to confirm that all active regions (`ap-northeast`, `us-east`, `eu-west`) report identical secret version metadata; a mismatch raises a metric alarm and logs a configuration error.\n\n2. **Safe Secret Overlap Window (Runbook & Ingestion Changes):**\n   - Implemented a dual-signing secret verification fallback in the webhook ingestion path: verification checks against the primary secret first, and if that fails, checks against the secondary secret before rejecting the request.\n   - Updated the rotation runbook to require a 24-hour overlap where both old and new secrets remain active in Stripe simultaneously. Decommissioning an old secret is only permitted after dashboards show zero verifications against it for at least two consecutive hours.\n\n3. **Tooling and Process Improvements (Action Items):**\n   - Updated the secret rotation script to explicitly check regional secrets manager return codes and fail closed on timeouts.\n   - Added an automated check in the deployment tool to verify configuration hash parity across running instances in all regions.\n   - Updated Section 6.1 of the internal documentation regarding Stripe key maintenance and rotation procedures.\n   - Created standard support canned responses for customers reporting prolonged `payment pending` statuses.",
+           "thoughtSignature": "EmkKZwFpFH0TYs2UpdLRGoGjP5IKGFdi/+ikSNEWRaHAzVHDJ5uxYKjOVwrhXAXj1Eihpf4uoy7Bd8YSInEw0u5BkghjsV3nPr3gwwglmMUda6ioXaN9uuzMdfghlkdoTsdMTy0GeiwaSMs="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 16593,
+       "candidatesTokenCount": 336,
+       "totalTokenCount": 16929,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 16593
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "bsjMas-tA9qo2roP0Z2fqQE"
+     },
+     "cost_usd": 0.01370475
+    }
+   ],
+   "prompt_tokens": 16593,
+   "out_tokens": 336,
+   "cost_usd": 0.01370475
+  },
+  {
+   "id": "st-payout-alert",
+   "kind": "steps",
+   "question": "the payout job alert fired around sunday midnight JST. what should i check?",
+   "answer_page": "team-payments-notes",
+   "answer": "According to the **payments: notes for on-call** page:\n\n* **Standard run window:** The weekly payout job runs on Sunday at 23:00 JST and usually takes about 38 minutes (meaning elevated load and processing spikes around midnight JST are typical).\n* **What to check:** Check whether the job has exceeded its standard window before treating it as stalled.\n* **If there is a failure:** If the job halts halfway through or throws unhandled exceptions during execution, **read logs** first, and **page owner** (Mei) if money moved or payouts stalled halfway through.",
+   "pages_in_call": [
+    "team-payments-notes",
+    "handover-2026-09-28",
+    "handover-2024-03-25",
+    "postmortem-api-rollback-queue",
+    "handover-2025-06-30"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 2.55,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: payments: notes for on-call -----\n\n<omitted page team-payments-notes: md5 1f8ba5de71527c09889e1893890b7fed, 933 tokens by countTokens>\n----- page: On-call handover, week of 2026-09-28 -----\n\n<omitted page handover-2026-09-28: md5 2f69ef707d3612828e3a87bf748964f6, 718 tokens by countTokens>\n----- page: On-call handover, week of 2024-03-25 -----\n\n<omitted page handover-2024-03-25: md5 1707afffe9f0589c7961597fe823c6a5, 3617 tokens by countTokens>\n----- page: Postmortem: api rollback stuck in the deploy queue -----\n\n<omitted page postmortem-api-rollback-queue: md5 b041a4999362c06e03960c9a1ab37e2c, 1565 tokens by countTokens>\n----- page: On-call handover, week of 2025-06-30 -----\n\n<omitted page handover-2025-06-30: md5 16bf3bc329ffb9a8a97582fbb7f8bd04, 3333 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nthe payout job alert fired around sunday midnight JST. what should i check?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:50.967+00:00",
+     "wall_s": 2.467,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "According to the **payments: notes for on-call** page:\n\n* **Standard run window:** The weekly payout job runs on Sunday at 23:00 JST and usually takes about 38 minutes (meaning elevated load and processing spikes around midnight JST are typical).\n* **What to check:** Check whether the job has exceeded its standard window before treating it as stalled.\n* **If there is a failure:** If the job halts halfway through or throws unhandled exceptions during execution, **read logs** first, and **page owner** (Mei) if money moved or payouts stalled halfway through.",
+           "thoughtSignature": "EmkKZwFpFH0TFII5z+ej6g04sOq/1xGzvzSIrcQunwTZs7QZ9/UXVf6M0wTUyNAOATbxKZUzUIH0WBioTKlf6WWKTVGJnyZ9p2gd754Ryt75V/S+PUxFKmPt0XO3mWlnYQX6eKi5XfRFsCA="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 10482,
+       "candidatesTokenCount": 128,
+       "totalTokenCount": 10610,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 10482
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "b8jMaqKSJ6TY9tMPktv_sAI"
+     },
+     "cost_usd": 0.0083415
+    }
+   ],
+   "prompt_tokens": 10482,
+   "out_tokens": 128,
+   "cost_usd": 0.0083415
+  },
+  {
+   "id": "st-stuck-workers",
+   "kind": "steps",
+   "question": "notifier delivered per minute is 0 and the oldest message is 40 min old. what do i do?",
+   "answer_page": "howto-notifier-queue-panels",
+   "answer": "Based on the documentation (\"How to read the notifier queue panels\"), an oldest message age above 30 minutes while delivered per minute is zero indicates that **workers are stuck**.\n\nHere is what you should do:\n\n1. **Check recent deploys:** Check the deploy history in the deploy tool for project `sorrel`, service `notifier`.\n   - If `notifier` was deployed within the last 30 minutes, your first move is **roll back** to the previous deploy.\n2. **Read logs:** If there has been no recent deploy, your first move is **read logs**.\n   - Query the log search tool: `service=notifier level=ERROR` over the start of the window.\n   - Look for worker loop errors: `service=notifier msg=\"worker stuck\"` or `service=notifier msg=\"worker idle\"`.\n   - Check if worker processes crashed due to memory or execution timeouts across the worker nodes.",
+   "pages_in_call": [
+    "howto-notifier-queue-panels",
+    "postmortem-notifier-template-crash",
+    "provider-twilio-japan",
+    "notifier-runbook-2024",
+    "handover-2024-03-25"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 3.99,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: How to read the notifier queue panels -----\n\n<omitted page howto-notifier-queue-panels: md5 4c426557e935d840e8b288541e19df4b, 2558 tokens by countTokens>\n----- page: Postmortem: notifier queue stalled by a template error -----\n\n<omitted page postmortem-notifier-template-crash: md5 df34af9b4220f396786f68c697d387dc, 3370 tokens by countTokens>\n----- page: twilio: Japan carrier notes -----\n\n<omitted page provider-twilio-japan: md5 931428d7740d52886fa3b608e55b3c70, 3241 tokens by countTokens>\n----- page: notifier runbook (2024 edition) -----\n\n<omitted page notifier-runbook-2024: md5 a6d6f8e29e3e4bb5f6ef8177057bff51, 4006 tokens by countTokens>\n----- page: On-call handover, week of 2024-03-25 -----\n\n<omitted page handover-2024-03-25: md5 1707afffe9f0589c7961597fe823c6a5, 3617 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nnotifier delivered per minute is 0 and the oldest message is 40 min old. what do i do?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:25.117+00:00",
+     "wall_s": 3.91,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the documentation (\"How to read the notifier queue panels\"), an oldest message age above 30 minutes while delivered per minute is zero indicates that **workers are stuck**.\n\nHere is what you should do:\n\n1. **Check recent deploys:** Check the deploy history in the deploy tool for project `sorrel`, service `notifier`.\n   - If `notifier` was deployed within the last 30 minutes, your first move is **roll back** to the previous deploy.\n2. **Read logs:** If there has been no recent deploy, your first move is **read logs**.\n   - Query the log search tool: `service=notifier level=ERROR` over the start of the window.\n   - Look for worker loop errors: `service=notifier msg=\"worker stuck\"` or `service=notifier msg=\"worker idle\"`.\n   - Check if worker processes crashed due to memory or execution timeouts across the worker nodes.",
+           "thoughtSignature": "EmkKZwFpFH0T3OuG67Hw2HER3uasJ+h71bhwsdP7Che1Uv6GVDrMtY4fs2hFd9UTwTBWiLp19+1w0aG4a/QGI3iGc94tH0Kbd412Pa2JGonmi1LzRKunFp5BrlDGZNGhbZGpP+QZHvh8hRE="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 17095,
+       "candidatesTokenCount": 195,
+       "totalTokenCount": 17290,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 17095
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "VcjMavmoNY_grfcPuJTmwA4"
+     },
+     "cost_usd": 0.0135525
+    }
+   ],
+   "prompt_tokens": 17095,
+   "out_tokens": 195,
+   "cost_usd": 0.0135525
+  },
+  {
+   "id": "st-night-batch",
+   "kind": "steps",
+   "question": "notifier queue depth alert at 3am, depth is about 1,300. walk me through it",
+   "answer_page": "howto-notifier-queue-panels",
+   "answer": "Based on the guide **\"How to read the notifier queue panels\"** and the runbook for **notifier**, here is how to triage this:\n\n### 1. This is likely normal nightly batch behavior\n* **The nightly batch pattern:** Between 02:00 and 04:00 JST, `notifier`'s scheduler runs across appointments for the upcoming day and enqueues reminders in bulk.\n* **Expected numbers:** During this batch, queue depth commonly climbs to **1,000–1,500 messages**, which typically drains completely by 06:00 JST. A depth of 1,300 at 3:00 AM matches this normal accumulation pattern.\n\n---\n\n### 2. Verify on the \"Sorrel / notifier\" dashboard\nRemember the core rule: **\"Depth alone means nothing; compare 'added per minute' with 'delivered per minute'.\"**\n\nCheck the following panels on board **\"Sorrel / notifier\"**:\n1. **Throughput (In vs Out):**\n   * Check **Messages delivered per minute**. Is it high, active, and matching/draining the influx?\n   * If **delivered per minute** is elevated and the queue is working down, the backlog will clear naturally.\n2. **Oldest Message Age:**\n   * Verify it remains controlled (under 30 minutes).\n\n---\n\n### 3. Determine the action to take\n\n* **If delivery is healthy (Messages delivered per minute is high, oldest message age is controlled):**\n  * **Action:** **no action**\n  * Record the entry in the on-call log, monitor that it continues draining toward the 06:00 JST target, and move on.\n\n* **If delivery has stalled (Delivered per minute is strictly 0 and Oldest Message Age > 30 minutes):**\n  * The workers are stuck. \n  * Check the deploy history for `notifier`:\n    * If `notifier` was deployed within the last 30 minutes: **roll back** to the previous deploy.\n    * If there has been no recent deploy: **read logs** (`service=notifier level=ERROR`, looking for `worker stuck` or `worker idle`).\n  * If external delivery failures or vendor errors (4xx/5xx) are showing on the vendor outcome panels instead: **check provider** (`status.twilio.com` for SMS, `status.sendgrid.com` for email).",
+   "pages_in_call": [
+    "postmortem-notifier-reminder-backlog",
+    "postmortem-web-firewall-challenge",
+    "howto-notifier-queue-panels",
+    "handbook-5",
+    "handover-2024-08-19"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 5.22,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: Postmortem: notifier reminders delayed by a stuck queue worker -----\n\n<omitted page postmortem-notifier-reminder-backlog: md5 4e738359d216934dbd18aee86b7204ef, 1118 tokens by countTokens>\n----- page: Postmortem: booking pages behind a firewall challenge -----\n\n<omitted page postmortem-web-firewall-challenge: md5 aaf4d68fa97779cb789d842ed785fc66, 1003 tokens by countTokens>\n----- page: How to read the notifier queue panels -----\n\n<omitted page howto-notifier-queue-panels: md5 4c426557e935d840e8b288541e19df4b, 2558 tokens by countTokens>\n----- page: Handbook 5. Service runbooks -----\n\n<omitted page handbook-5: md5 8700b1e28b741a388e672c7b49fafda4, 3049 tokens by countTokens>\n----- page: On-call handover, week of 2024-08-19 -----\n\n<omitted page handover-2024-08-19: md5 63e24953dfce0d5b62f83a6acca7ed17, 3000 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nnotifier queue depth alert at 3am, depth is about 1,300. walk me through it\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:51.653+00:00",
+     "wall_s": 5.134,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the guide **\"How to read the notifier queue panels\"** and the runbook for **notifier**, here is how to triage this:\n\n### 1. This is likely normal nightly batch behavior\n* **The nightly batch pattern:** Between 02:00 and 04:00 JST, `notifier`'s scheduler runs across appointments for the upcoming day and enqueues reminders in bulk.\n* **Expected numbers:** During this batch, queue depth commonly climbs to **1,000–1,500 messages**, which typically drains completely by 06:00 JST. A depth of 1,300 at 3:00 AM matches this normal accumulation pattern.\n\n---\n\n### 2. Verify on the \"Sorrel / notifier\" dashboard\nRemember the core rule: **\"Depth alone means nothing; compare 'added per minute' with 'delivered per minute'.\"**\n\nCheck the following panels on board **\"Sorrel / notifier\"**:\n1. **Throughput (In vs Out):**\n   * Check **Messages delivered per minute**. Is it high, active, and matching/draining the influx?\n   * If **delivered per minute** is elevated and the queue is working down, the backlog will clear naturally.\n2. **Oldest Message Age:**\n   * Verify it remains controlled (under 30 minutes).\n\n---\n\n### 3. Determine the action to take\n\n* **If delivery is healthy (Messages delivered per minute is high, oldest message age is controlled):**\n  * **Action:** **no action**\n  * Record the entry in the on-call log, monitor that it continues draining toward the 06:00 JST target, and move on.\n\n* **If delivery has stalled (Delivered per minute is strictly 0 and Oldest Message Age > 30 minutes):**\n  * The workers are stuck. \n  * Check the deploy history for `notifier`:\n    * If `notifier` was deployed within the last 30 minutes: **roll back** to the previous deploy.\n    * If there has been no recent deploy: **read logs** (`service=notifier level=ERROR`, looking for `worker stuck` or `worker idle`).\n  * If external delivery failures or vendor errors (4xx/5xx) are showing on the vendor outcome panels instead: **check provider** (`status.twilio.com` for SMS, `status.sendgrid.com` for email).",
+           "thoughtSignature": "EmkKZwFpFH0TVKVgLFrzC5bIzdQgOIgQChnL4VwtwjYP4+Lu2E8A8oOODOOmk26as5LJkzDPD3qWzow8hjE6BwmEePVgEMF4ooeZaYlsqa268AYGdIr0AY0O14JV/Ik0eaN8Vp8J7f1fK+0="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 11034,
+       "candidatesTokenCount": 531,
+       "totalTokenCount": 11565,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 11034
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "cMjMavmZFqns2roP-KjeuAQ"
+     },
+     "cost_usd": 0.01026675
+    }
+   ],
+   "prompt_tokens": 11034,
+   "out_tokens": 531,
+   "cost_usd": 0.01026675
+  },
+  {
+   "id": "st-sendgrid-quota",
+   "kind": "steps",
+   "question": "sendgrid is returning quota errors on notifier. how do i handle it?",
+   "answer_page": "provider-sendgrid-quota",
+   "answer": "Based on the **sendgrid: quota and streams** documentation and the handbook, follow this procedure:\n\n### 1. Identify which stream is affected\nCheck the **Vendor quota usage** panel on the `Sorrel / notifier` dashboard or query logs (`service=notifier msg=\"quota\"`):\n- **Marketing stream:** Transactional emails (confirmations, receipts) are unaffected due to stream separation. Marketing emails will remain queued and resume draining at **09:00 JST** (when SendGrid quotas reset). This is non-customer-impacting for core booking flows—document the state in `#inc-live` or log it as a P3 trend.\n- **Transactional stream:** Customer booking confirmations and receipts will be delayed.\n\n### 2. Confirm queue persistence\nVerify that `notifier` workers are deferring jobs rather than dropping them. The service retains rejected emails on the queue and will automatically send them once the quota resets at **09:00 JST (00:00 UTC)**.\n\n### 3. Escalation and authority boundaries\n- **Do not attempt to upgrade or change the SendGrid plan:** On-call engineers do not have purchasing authority or administrative access to alter vendor tiers. Raising the quota is a purchasing decision for **Tom (notifier owner)**.\n- **When to page owner:** If the **transactional stream** has stalled, is impacting live booking confirmations, and will be delayed for a prolonged period during peak daytime hours, **page Tom** via the paging tool with the alert line, current severity, and current queue depth.\n\n### 4. Log the event\nRecord the incident in the on-call log in standard format:  \n`<date> <time JST> | notifier | <severity> | <first move> | <summary>`",
+   "pages_in_call": [
+    "provider-sendgrid-quota",
+    "handbook-6",
+    "notifier-runbook-2024",
+    "team-dashboards-guide",
+    "handover-2024-03-25"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 4.88,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: sendgrid: quota and streams -----\n\n<omitted page provider-sendgrid-quota: md5 5d3267d4e9c4af8eae82ad0f7f6a324f, 3022 tokens by countTokens>\n----- page: Handbook 6. Outside providers -----\n\n<omitted page handbook-6: md5 2e4ad85f4915ee83b7d0285612a8142d, 1115 tokens by countTokens>\n----- page: notifier runbook (2024 edition) -----\n\n<omitted page notifier-runbook-2024: md5 a6d6f8e29e3e4bb5f6ef8177057bff51, 4006 tokens by countTokens>\n----- page: Dashboards guide -----\n\n<omitted page team-dashboards-guide: md5 1cf3a7f4a9b5251d478002227613afc3, 3306 tokens by countTokens>\n----- page: On-call handover, week of 2024-03-25 -----\n\n<omitted page handover-2024-03-25: md5 1707afffe9f0589c7961597fe823c6a5, 3617 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nsendgrid is returning quota errors on notifier. how do i handle it?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:52.250+00:00",
+     "wall_s": 4.793,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the **sendgrid: quota and streams** documentation and the handbook, follow this procedure:\n\n### 1. Identify which stream is affected\nCheck the **Vendor quota usage** panel on the `Sorrel / notifier` dashboard or query logs (`service=notifier msg=\"quota\"`):\n- **Marketing stream:** Transactional emails (confirmations, receipts) are unaffected due to stream separation. Marketing emails will remain queued and resume draining at **09:00 JST** (when SendGrid quotas reset). This is non-customer-impacting for core booking flows—document the state in `#inc-live` or log it as a P3 trend.\n- **Transactional stream:** Customer booking confirmations and receipts will be delayed.\n\n### 2. Confirm queue persistence\nVerify that `notifier` workers are deferring jobs rather than dropping them. The service retains rejected emails on the queue and will automatically send them once the quota resets at **09:00 JST (00:00 UTC)**.\n\n### 3. Escalation and authority boundaries\n- **Do not attempt to upgrade or change the SendGrid plan:** On-call engineers do not have purchasing authority or administrative access to alter vendor tiers. Raising the quota is a purchasing decision for **Tom (notifier owner)**.\n- **When to page owner:** If the **transactional stream** has stalled, is impacting live booking confirmations, and will be delayed for a prolonged period during peak daytime hours, **page Tom** via the paging tool with the alert line, current severity, and current queue depth.\n\n### 4. Log the event\nRecord the incident in the on-call log in standard format:  \n`<date> <time JST> | notifier | <severity> | <first move> | <summary>`",
+           "thoughtSignature": "EmkKZwFpFH0TEmHMU238wyj/6LMgaJ0iiw5Rdb2Ah73ErD3nixKMDe94bFX1Bffb7L0q5xf2rJtsk0I1K9Vi0rdZgyclaTwelUPR8DGhO8/2mYiCbV7bVoDIpNVn92rByugZ/0LAfOJZm50="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 15353,
+       "candidatesTokenCount": 374,
+       "totalTokenCount": 15727,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 15353
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "cMjMapiUO4n71e8Px8PzsAc"
+     },
+     "cost_usd": 0.01291725
+    }
+   ],
+   "prompt_tokens": 15353,
+   "out_tokens": 374,
+   "cost_usd": 0.01291725
+  },
+  {
+   "id": "st-template-actions",
+   "kind": "steps",
+   "question": "what did we change after a bad template stalled the notifier queue?",
+   "answer_page": "postmortem-notifier-template-crash",
+   "answer": "Based on the postmortem (*Postmortem: notifier queue stalled by a template error*), the following corrective actions and changes were made or scheduled:\n\n1. **Automatic poison-pill parking (Implemented / Done):** \n   - Configured `notifier` queue consumers and the broker redrive policy so that any message that crashes a worker twice ($\\ge 2$ execution attempts without an ACK or graceful retry exception) is automatically routed to a dead-letter/parked topic (`sorrel-notifier-parked-[region]`) without stalling downstream traffic, emitting the alert `notifier-message-parked`.\n\n2. **Template rendering hardening (In progress):** \n   - Wrapped the Jinja2 template interpolation block in defensive sanitization that escapes or strips invalid control characters and logs a warning instead of raising an unhandled exception.\n\n3. **Input validation in `api` (In progress):** \n   - Updated `api` profile name validators to reject unprintable Unicode control characters and invalid direction overrides at submission time.\n\n4. **Visibility timeout configuration review (Planned):** \n   - Reviewed worker crash retry semantics to ensure failed workers back off with a non-zero visibility timeout to avoid hot crash loops.\n\n5. **Status page notification drill (Planned):** \n   - Scheduled a refresher drill for on-call engineers and incident commanders to ensure `status.sorrel.app` is updated within the 20-minute window on silent P1 failures.",
+   "pages_in_call": [
+    "postmortem-notifier-template-crash",
+    "team-postmortem-review",
+    "notifier-runbook-2024",
+    "provider-sendgrid-quota",
+    "team-status-page-process"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 4.17,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: Postmortem: notifier queue stalled by a template error -----\n\n<omitted page postmortem-notifier-template-crash: md5 df34af9b4220f396786f68c697d387dc, 3370 tokens by countTokens>\n----- page: Postmortem review meeting -----\n\n<omitted page team-postmortem-review: md5 5f1749fb0e5ae9218c890356ea5d4fdb, 2937 tokens by countTokens>\n----- page: notifier runbook (2024 edition) -----\n\n<omitted page notifier-runbook-2024: md5 a6d6f8e29e3e4bb5f6ef8177057bff51, 4006 tokens by countTokens>\n----- page: sendgrid: quota and streams -----\n\n<omitted page provider-sendgrid-quota: md5 5d3267d4e9c4af8eae82ad0f7f6a324f, 3022 tokens by countTokens>\n----- page: Status page process -----\n\n<omitted page team-status-page-process: md5 5e4f7ca9ac324b689e4c69ae65dd79bb, 3766 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nwhat did we change after a bad template stalled the notifier queue?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:53.377+00:00",
+     "wall_s": 4.092,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the postmortem (*Postmortem: notifier queue stalled by a template error*), the following corrective actions and changes were made or scheduled:\n\n1. **Automatic poison-pill parking (Implemented / Done):** \n   - Configured `notifier` queue consumers and the broker redrive policy so that any message that crashes a worker twice ($\\ge 2$ execution attempts without an ACK or graceful retry exception) is automatically routed to a dead-letter/parked topic (`sorrel-notifier-parked-[region]`) without stalling downstream traffic, emitting the alert `notifier-message-parked`.\n\n2. **Template rendering hardening (In progress):** \n   - Wrapped the Jinja2 template interpolation block in defensive sanitization that escapes or strips invalid control characters and logs a warning instead of raising an unhandled exception.\n\n3. **Input validation in `api` (In progress):** \n   - Updated `api` profile name validators to reject unprintable Unicode control characters and invalid direction overrides at submission time.\n\n4. **Visibility timeout configuration review (Planned):** \n   - Reviewed worker crash retry semantics to ensure failed workers back off with a non-zero visibility timeout to avoid hot crash loops.\n\n5. **Status page notification drill (Planned):** \n   - Scheduled a refresher drill for on-call engineers and incident commanders to ensure `status.sorrel.app` is updated within the 20-minute window on silent P1 failures.",
+           "thoughtSignature": "EmkKZwFpFH0T/KYgKV495x7OjGt2ycfgl4gzvIVl02qXk2TqzOosZmecSe5mXw2ayhMil0iK56GZD3YPg1e0DAkzI12kKar+iypDnJAzZfHy5+K1VpztrIFCVm4JBNlbPKSZb/Uji0QBfwM="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 17376,
+       "candidatesTokenCount": 307,
+       "totalTokenCount": 17683,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 17376
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "csjMauqlH4j91e8Pr8CG6A0"
+     },
+     "cost_usd": 0.01418325
+    }
+   ],
+   "prompt_tokens": 17376,
+   "out_tokens": 307,
+   "cost_usd": 0.01418325
+  },
+  {
+   "id": "st-duplicates",
+   "kind": "steps",
+   "question": "the duplicate detection panel on notifier is spiking. what do i check?",
+   "answer_page": "howto-notifier-queue-panels",
+   "answer": "Based on the **How to read the notifier queue panels** guide (Section 6), when the duplicate detection panel is spiking, you should perform the following checks:\n\n1. **Open logs:** Query the log search tool for `service=notifier msg=\"duplicate id\"` to identify which upstream producing service is generating the duplicate submissions.\n2. **Check recent deploys:** Compare against recent deploys of `notifier` or `api`.\n\n*(Note: If worker acknowledgement failures are suspected, the **notifier runbook** also recommends checking worker logs for `service=notifier level=ERROR msg=\"failed to ack\"` to see if worker nodes are crashing before acknowledging messages, causing the queue to redeliver them).*",
+   "pages_in_call": [
+    "howto-notifier-queue-panels",
+    "notifier-runbook-2024",
+    "provider-stripe-notes",
+    "handover-2024-03-25",
+    "handover-2026-02-23"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 2.95,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: How to read the notifier queue panels -----\n\n<omitted page howto-notifier-queue-panels: md5 4c426557e935d840e8b288541e19df4b, 2558 tokens by countTokens>\n----- page: notifier runbook (2024 edition) -----\n\n<omitted page notifier-runbook-2024: md5 a6d6f8e29e3e4bb5f6ef8177057bff51, 4006 tokens by countTokens>\n----- page: stripe: notes for on-call -----\n\n<omitted page provider-stripe-notes: md5 edb6c80baaf620e0addd400db74c2849, 3582 tokens by countTokens>\n----- page: On-call handover, week of 2024-03-25 -----\n\n<omitted page handover-2024-03-25: md5 1707afffe9f0589c7961597fe823c6a5, 3617 tokens by countTokens>\n----- page: On-call handover, week of 2026-02-23 -----\n\n<omitted page handover-2026-02-23: md5 16dc3531f11be78dfceadd8055f3d4e6, 806 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nthe duplicate detection panel on notifier is spiking. what do i check?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:53.517+00:00",
+     "wall_s": 2.866,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the **How to read the notifier queue panels** guide (Section 6), when the duplicate detection panel is spiking, you should perform the following checks:\n\n1. **Open logs:** Query the log search tool for `service=notifier msg=\"duplicate id\"` to identify which upstream producing service is generating the duplicate submissions.\n2. **Check recent deploys:** Compare against recent deploys of `notifier` or `api`.\n\n*(Note: If worker acknowledgement failures are suspected, the **notifier runbook** also recommends checking worker logs for `service=notifier level=ERROR msg=\"failed to ack\"` to see if worker nodes are crashing before acknowledging messages, causing the queue to redeliver them).*",
+           "thoughtSignature": "EmkKZwFpFH0T3fru8aE4f68lxV3taBNCz8VR5KK7/gWihY67yuIF17m8ogfTyImZcDX3oZw/wi9NIp2b7bmO4N8HqTMLrheQYJTGhgYPajHBupPRVEzU6UzHH25EWkWBuNZvedRZlmGJ6Ik="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 14872,
+       "candidatesTokenCount": 145,
+       "totalTokenCount": 15017,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 14872
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "csjMaraWEp_krfcPpOLj8Qo"
+     },
+     "cost_usd": 0.01169775
+    }
+   ],
+   "prompt_tokens": 14872,
+   "out_tokens": 145,
+   "cost_usd": 0.01169775
+  },
+  {
+   "id": "half-pay-4107",
+   "kind": "half",
+   "question": "Refunds failed with PAY-4107 back in January. What did Mei's team do for those customers, and how many days did they wait for their money?",
+   "answer_page": "handover-2026-01-12",
+   "answer": "Based on the pages:\n\n* **What Mei's team did:** When PAY-4107 occurred on three refunds (because the card provider refuses refunds on charges older than 180 days), Mei's team paid those three customers back by **bank transfer** instead.\n* **How many days they waited for their money:** The pages **do not say** how many days the customers waited for their money (they only note that the original charges were older than 180 days).",
+   "pages_in_call": [
+    "handover-2026-01-12",
+    "payments-rollback-runbook",
+    "provider-stripe-notes",
+    "handbook-2",
+    "handbook-13"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 2.15,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: On-call handover, week of 2026-01-12 -----\n\n<omitted page handover-2026-01-12: md5 fb24837145fa05795c6a0a8b349d8d87, 698 tokens by countTokens>\n----- page: Payments rollback runbook -----\n\n<omitted page payments-rollback-runbook: md5 6d2e7edf0b95bb16d87c36033bdde812, 1556 tokens by countTokens>\n----- page: stripe: notes for on-call -----\n\n<omitted page provider-stripe-notes: md5 edb6c80baaf620e0addd400db74c2849, 3582 tokens by countTokens>\n----- page: Handbook 2. Severity -----\n\n<omitted page handbook-2: md5 7b65459b3e0ac86b79cf0307972ee2c9, 807 tokens by countTokens>\n----- page: Handbook 13. Traffic patterns and the business calendar -----\n\n<omitted page handbook-13: md5 41b218c12bb55f3535e7ce2bae57958b, 515 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nRefunds failed with PAY-4107 back in January. What did Mei's team do for those customers, and how many days did they wait for their money?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:56.467+00:00",
+     "wall_s": 2.063,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the pages:\n\n* **What Mei's team did:** When PAY-4107 occurred on three refunds (because the card provider refuses refunds on charges older than 180 days), Mei's team paid those three customers back by **bank transfer** instead.\n* **How many days they waited for their money:** The pages **do not say** how many days the customers waited for their money (they only note that the original charges were older than 180 days).",
+           "thoughtSignature": "EmkKZwFpFH0TMxPeNsRgQZDQJm3G5XaH5NunWvTl7hqXivNvl9QZq5int0TWBA2eOSUSCSj6QKMBwFA+OzJeobaghebU19593vGriyaOVjbhDSHZIsaaBWh9oVXmqJfY655e0uBK+CqC2/I="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 7468,
+       "candidatesTokenCount": 104,
+       "totalTokenCount": 7572,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 7468
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "dMjMarTzPOyt0-kP7OXqGQ"
+     },
+     "cost_usd": 0.005991
+    }
+   ],
+   "prompt_tokens": 7468,
+   "out_tokens": 104,
+   "cost_usd": 0.005991
+  },
+  {
+   "id": "half-10dlc-cost",
+   "kind": "half",
+   "question": "Texts to US numbers stopped arriving in June. What fixed it, and how much does the 10DLC registration cost us?",
+   "answer_page": "handover-2026-06-08",
+   "answer": "Based on the provided pages:\n\n- **What fixed it:** Registering Sorrel's 10DLC campaign with Twilio (approved by Tom, completed on Friday, June 5, 2026), which restored SMS deliverability to US numbers after carriers had been performing A2P filtering.\n- **Cost of the 10DLC registration:** The pages do not say how much the 10DLC registration costs.",
+   "pages_in_call": [
+    "handover-2026-06-08",
+    "postmortem-payments-pool-timeout",
+    "howto-stop-unowned-load-test",
+    "handbook-6",
+    "handover-2026-03-02"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 2.12,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: On-call handover, week of 2026-06-08 -----\n\n<omitted page handover-2026-06-08: md5 402b715537ff1058d618ef0e3e95c672, 739 tokens by countTokens>\n----- page: Postmortem: payments checkout timeouts after the v2.31 pool change -----\n\n<omitted page postmortem-payments-pool-timeout: md5 81c7472cd123a80cc67f341d2b09fc3d, 1563 tokens by countTokens>\n----- page: How to stop a load test that nobody owns -----\n\n<omitted page howto-stop-unowned-load-test: md5 44eeb56fde1a1254fd9e9957e60ea4c3, 3621 tokens by countTokens>\n----- page: Handbook 6. Outside providers -----\n\n<omitted page handbook-6: md5 2e4ad85f4915ee83b7d0285612a8142d, 1115 tokens by countTokens>\n----- page: On-call handover, week of 2026-03-02 -----\n\n<omitted page handover-2026-03-02: md5 606357c418c9a67afdac51118062b675, 713 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nTexts to US numbers stopped arriving in June. What fixed it, and how much does the 10DLC registration cost us?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:56.869+00:00",
+     "wall_s": 2.042,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the provided pages:\n\n- **What fixed it:** Registering Sorrel's 10DLC campaign with Twilio (approved by Tom, completed on Friday, June 5, 2026), which restored SMS deliverability to US numbers after carriers had been performing A2P filtering.\n- **Cost of the 10DLC registration:** The pages do not say how much the 10DLC registration costs.",
+           "thoughtSignature": "EmkKZwFpFH0THEceS1CkPoBxtKvUXEpKG4pusJ8hN0tDNWOAfHGhZQPCbZ9gjgCnvqw14PsbrArQF/bvQowa3oDCrcPLseCDWfTOTOje3npjLb9gpH1EE347rCswRbynAvbn7VBUMyrLZ+g="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 8072,
+       "candidatesTokenCount": 91,
+       "totalTokenCount": 8163,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 8072
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "dcjMatTFGK3jrfcPoMiJ8Qw"
+     },
+     "cost_usd": 0.00639525
+    }
+   ],
+   "prompt_tokens": 8072,
+   "out_tokens": 91,
+   "cost_usd": 0.00639525
+  },
+  {
+   "id": "half-hanabi-v1",
+   "kind": "half",
+   "question": "When were the old v1 partner endpoints switched off, and when is Hanabi Booking going to stop their v1 test script?",
+   "answer_page": "handover-2026-03-23",
+   "answer": "Based on the provided pages:\n\n* **When the old v1 partner endpoints were switched off:**  \n  They were switched off on **Wednesday, 2026-03-18** (as noted in the *On-call handover, week of 2026-03-23*).\n\n* **When Hanabi Booking is going to stop their v1 test script:**  \n  **The pages do not say.** (The handover notes state that about 3 calls a day still arrive from Hanabi Booking's test script returning `410` and that Ravi has informed them, but no date or timeline is given for when they will stop the script.)",
+   "pages_in_call": [
+    "handover-2026-03-23",
+    "payments-rollback-runbook",
+    "handover-2026-05-25",
+    "howto-stop-unowned-load-test",
+    "provider-cloudflare-notes"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 2.97,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: On-call handover, week of 2026-03-23 -----\n\n<omitted page handover-2026-03-23: md5 5e015126a7a2ee99d07ae998598959ef, 722 tokens by countTokens>\n----- page: Payments rollback runbook -----\n\n<omitted page payments-rollback-runbook: md5 6d2e7edf0b95bb16d87c36033bdde812, 1556 tokens by countTokens>\n----- page: On-call handover, week of 2026-05-25 -----\n\n<omitted page handover-2026-05-25: md5 493d19e0dd4f2b9f53324d5b71c4de6c, 725 tokens by countTokens>\n----- page: How to stop a load test that nobody owns -----\n\n<omitted page howto-stop-unowned-load-test: md5 44eeb56fde1a1254fd9e9957e60ea4c3, 3621 tokens by countTokens>\n----- page: cloudflare: purge and firewall notes -----\n\n<omitted page provider-cloudflare-notes: md5 e79f3fdd5ab4e6099cbcbbf1a6e48c38, 3230 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhen were the old v1 partner endpoints switched off, and when is Hanabi Booking going to stop their v1 test script?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:57.142+00:00",
+     "wall_s": 2.874,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the provided pages:\n\n* **When the old v1 partner endpoints were switched off:**  \n  They were switched off on **Wednesday, 2026-03-18** (as noted in the *On-call handover, week of 2026-03-23*).\n\n* **When Hanabi Booking is going to stop their v1 test script:**  \n  **The pages do not say.** (The handover notes state that about 3 calls a day still arrive from Hanabi Booking's test script returning `410` and that Ravi has informed them, but no date or timeline is given for when they will stop the script.)",
+           "thoughtSignature": "EmkKZwFpFH0TYaUPv9TT2DqzyLjFMEX4cYg12wXpnVnWYcxUqpgcwX0K9TFWRUhqodBTYCKSeKJrq0YudL3GQcXvtRsEboNVJ9v3qoMsLKm01nCu4dmFQ4OWgfXTw8uSF7m2LW/glAwLU5s="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 10165,
+       "candidatesTokenCount": 146,
+       "totalTokenCount": 10311,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 10165
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "dcjMarb0LreC2roP2r-gGQ"
+     },
+     "cost_usd": 0.00817125
+    }
+   ],
+   "prompt_tokens": 10165,
+   "out_tokens": 146,
+   "cost_usd": 0.00817125
+  },
+  {
+   "id": "half-payout-total",
+   "kind": "half",
+   "question": "How long did the December 2025 year-end payout take, and how much money did it pay out to businesses in total?",
+   "answer_page": "handover-2025-12-29",
+   "answer": "Based on the handover page for the week of 2025-12-29:\n\n* **Duration:** The year-end payout on Sunday, 2025-12-28, took **2 hours and 5 minutes** (from 23:00 JST to 01:05 JST).\n* **Total amount paid out:** The pages **do not say** how much money was paid out in total to businesses.",
+   "pages_in_call": [
+    "handbook-13",
+    "handover-2025-01-06",
+    "handover-2025-12-29",
+    "handover-2025-12-22",
+    "postmortem-api-rollback-queue"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 2.12,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: Handbook 13. Traffic patterns and the business calendar -----\n\n<omitted page handbook-13: md5 41b218c12bb55f3535e7ce2bae57958b, 515 tokens by countTokens>\n----- page: On-call handover, week of 2025-01-06 -----\n\n<omitted page handover-2025-01-06: md5 3b49e16796892129d251da97db287529, 2996 tokens by countTokens>\n----- page: On-call handover, week of 2025-12-29 -----\n\n<omitted page handover-2025-12-29: md5 5dbaf2f184cb7039400cbbb29708a7f7, 752 tokens by countTokens>\n----- page: On-call handover, week of 2025-12-22 -----\n\n<omitted page handover-2025-12-22: md5 050ce908a7793f9a3a97a8ee4a249b0a, 693 tokens by countTokens>\n----- page: Postmortem: api rollback stuck in the deploy queue -----\n\n<omitted page postmortem-api-rollback-queue: md5 b041a4999362c06e03960c9a1ab37e2c, 1565 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nHow long did the December 2025 year-end payout take, and how much money did it pay out to businesses in total?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:57.552+00:00",
+     "wall_s": 2.028,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the handover page for the week of 2025-12-29:\n\n* **Duration:** The year-end payout on Sunday, 2025-12-28, took **2 hours and 5 minutes** (from 23:00 JST to 01:05 JST).\n* **Total amount paid out:** The pages **do not say** how much money was paid out in total to businesses.",
+           "thoughtSignature": "EmkKZwFpFH0TdvTOSsklqZ0AAbx7vBxWraZ+hIwBjuLTowC3X//ffKKAl9dJQOEGj4Htnv20cmPgXM+6fRttvE/Vh0j5MHzLcs2NECkR+3/Pa7CBZAUaT36s0r2d7UNTfWviG9R70juyjno="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 6854,
+       "candidatesTokenCount": 101,
+       "totalTokenCount": 6955,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 6854
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "dsjMasmkAd_A1e8P-cmdSQ"
+     },
+     "cost_usd": 0.00551925
+    }
+   ],
+   "prompt_tokens": 6854,
+   "out_tokens": 101,
+   "cost_usd": 0.00551925
+  },
+  {
+   "id": "half-tofu-count",
+   "kind": "half",
+   "question": "When did Priya fix the kanji names showing up as empty boxes on the booking page, and how many bookings were hit?",
+   "answer_page": "team-web-notes",
+   "answer": "Based on the documentation:\n\n* **When Priya fixed it:** Priya added a fallback to the full Noto Sans JP font on **2026-06-11** (after the issue was seen in June 2026).\n* **How many bookings were hit:** The pages **do not say** how many bookings were affected.",
+   "pages_in_call": [
+    "team-web-notes",
+    "handbook-7",
+    "postmortem-web-cdn-purge-stuck",
+    "handover-2026-02-02",
+    "handover-2025-11-24"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 2.59,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: web: odd things we keep seeing -----\n\n<omitted page team-web-notes: md5 83c832bfd771639284e774fc4a94e360, 740 tokens by countTokens>\n----- page: Handbook 7. Known failure modes -----\n\n<omitted page handbook-7: md5 08eafeb74ed1b05fbd9abe1a65d96b09, 1489 tokens by countTokens>\n----- page: Postmortem: CDN purge stuck after the summer campaign release -----\n\n<omitted page postmortem-web-cdn-purge-stuck: md5 6bda1108cd1de640d46944af791f5098, 2878 tokens by countTokens>\n----- page: On-call handover, week of 2026-02-02 -----\n\n<omitted page handover-2026-02-02: md5 7e3ca2f5d788cc21533e4d5df08c010e, 764 tokens by countTokens>\n----- page: On-call handover, week of 2025-11-24 -----\n\n<omitted page handover-2025-11-24: md5 17e2f0160292887399964c35bcc5051b, 2650 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhen did Priya fix the kanji names showing up as empty boxes on the booking page, and how many bookings were hit?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:58.612+00:00",
+     "wall_s": 2.503,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the documentation:\n\n* **When Priya fixed it:** Priya added a fallback to the full Noto Sans JP font on **2026-06-11** (after the issue was seen in June 2026).\n* **How many bookings were hit:** The pages **do not say** how many bookings were affected.",
+           "thoughtSignature": "EmkKZwFpFH0TY3vFBtm+vD5m6K59BhdZ9n6T1ZHxkmVD1QJHUsGYa7ghAkPJSE4jX1BSZXxQLic7ibEG30o2NiTyHo9RU9SlxuJJFKczWqNWChxrlTL2cZDmQD1cHpkBcTDeEYo+WlHAbdA="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 8836,
+       "candidatesTokenCount": 74,
+       "totalTokenCount": 8910,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 8836
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "d8jMatraFKe-1e8PyffhyQI"
+     },
+     "cost_usd": 0.0069045
+    }
+   ],
+   "prompt_tokens": 8836,
+   "out_tokens": 74,
+   "cost_usd": 0.0069045
+  },
+  {
+   "id": "half-capture-total",
+   "kind": "half",
+   "question": "How many bookings got a duplicate capture in January 2026, and how much money did we refund in total?",
+   "answer_page": "team-payments-notes",
+   "answer": "Based on the provided pages:\n\n* **Number of bookings with a duplicate capture:** **63 bookings** experienced a duplicate capture on 2026-01-14.\n* **Total money refunded:** The pages **do not say** how much money was refunded in total for those duplicate captures (they only note that Mei's team refunded the second charge on 2026-01-15 to reconcile customer balances).",
+   "pages_in_call": [
+    "team-payments-notes",
+    "team-postmortem-review",
+    "handbook-5",
+    "provider-stripe-api-version",
+    "postmortem-payments-duplicate-refunds"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 2.12,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: payments: notes for on-call -----\n\n<omitted page team-payments-notes: md5 1f8ba5de71527c09889e1893890b7fed, 933 tokens by countTokens>\n----- page: Postmortem review meeting -----\n\n<omitted page team-postmortem-review: md5 5f1749fb0e5ae9218c890356ea5d4fdb, 2937 tokens by countTokens>\n----- page: Handbook 5. Service runbooks -----\n\n<omitted page handbook-5: md5 8700b1e28b741a388e672c7b49fafda4, 3049 tokens by countTokens>\n----- page: stripe: API version upgrade notes (2026) -----\n\n<omitted page provider-stripe-api-version: md5 add92266302bc8a3d33180b1cfe78574, 3504 tokens by countTokens>\n----- page: Postmortem: refunds sent twice after the refund job restarted -----\n\n<omitted page postmortem-payments-duplicate-refunds: md5 f78f650c9483e7e35433b21253226ce9, 1067 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nHow many bookings got a duplicate capture in January 2026, and how much money did we refund in total?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:58.994+00:00",
+     "wall_s": 2.039,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the provided pages:\n\n* **Number of bookings with a duplicate capture:** **63 bookings** experienced a duplicate capture on 2026-01-14.\n* **Total money refunded:** The pages **do not say** how much money was refunded in total for those duplicate captures (they only note that Mei's team refunded the second charge on 2026-01-15 to reconcile customer balances).",
+           "thoughtSignature": "EmkKZwFpFH0Tsh5ONoQJ1VoST8BNYF8hi3T1eCRQGs9QrdZ7RJlSB84kj/ffebrfMnUzp1ugpnRP9OGxvhFda4OKrYJwZC66aIEBvN/pNa7TORCfeB1jd9rhBwUbab/ZEMux+cjzso630OY="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 11785,
+       "candidatesTokenCount": 94,
+       "totalTokenCount": 11879,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 11785
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "d8jMaq_hKqyv1e8P_KPGuQE"
+     },
+     "cost_usd": 0.00919125
+    }
+   ],
+   "prompt_tokens": 11785,
+   "out_tokens": 94,
+   "cost_usd": 0.00919125
+  },
+  {
+   "id": "half-suppression-tickets",
+   "kind": "half",
+   "question": "How many addresses ended up on sendgrid's suppression list after the February domain switch, and how many support tickets did it cause?",
+   "answer_page": "team-notifier-notes",
+   "answer": "Based on the provided pages:\n\n* **Addresses on SendGrid's suppression list:** **2,312 addresses** ended up on the suppression list from soft bounces after the sending-domain switch on 2026-02-24.\n* **Support tickets caused:** The pages **do not say** how many support tickets it caused.",
+   "pages_in_call": [
+    "team-notifier-notes",
+    "handover-2026-08-31",
+    "payments-rollback-runbook",
+    "howto-stop-unowned-load-test",
+    "handbook-7"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 2.41,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: notifier: things we learned the hard way -----\n\n<omitted page team-notifier-notes: md5 f229c3e7dd1921f613c64d64b81128db, 829 tokens by countTokens>\n----- page: On-call handover, week of 2026-08-31 -----\n\n<omitted page handover-2026-08-31: md5 256535a2a484055e9a2bf36a0c27b718, 786 tokens by countTokens>\n----- page: Payments rollback runbook -----\n\n<omitted page payments-rollback-runbook: md5 6d2e7edf0b95bb16d87c36033bdde812, 1556 tokens by countTokens>\n----- page: How to stop a load test that nobody owns -----\n\n<omitted page howto-stop-unowned-load-test: md5 44eeb56fde1a1254fd9e9957e60ea4c3, 3621 tokens by countTokens>\n----- page: Handbook 7. Known failure modes -----\n\n<omitted page handbook-7: md5 08eafeb74ed1b05fbd9abe1a65d96b09, 1489 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nHow many addresses ended up on sendgrid's suppression list after the February domain switch, and how many support tickets did it cause?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:45:59.671+00:00",
+     "wall_s": 2.329,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the provided pages:\n\n* **Addresses on SendGrid's suppression list:** **2,312 addresses** ended up on the suppression list from soft bounces after the sending-domain switch on 2026-02-24.\n* **Support tickets caused:** The pages **do not say** how many support tickets it caused.",
+           "thoughtSignature": "EmkKZwFpFH0TiUufTMufhS2RO9iHtfsfYROdQG27X52CJFeLmL9Jt4cVZEJpqzUvJCgQKUuQ5fC77l9S7yi7BaxzZJA6opZNjSpYcq6pdcwfxu0G+D6bjutJNCLB/xvktOBN/FhgogG4JCo="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 8583,
+       "candidatesTokenCount": 75,
+       "totalTokenCount": 8658,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 8583
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "eMjMatCWCqTY9tMPvtv_qAI"
+     },
+     "cost_usd": 0.0067185
+    }
+   ],
+   "prompt_tokens": 8583,
+   "out_tokens": 75,
+   "cost_usd": 0.0067185
+  },
+  {
+   "id": "half-golden-week-2025",
+   "kind": "half",
+   "question": "What was the booking peak per minute during Golden Week 2026, and what was it in Golden Week 2025?",
+   "answer_page": "handover-2026-05-04",
+   "answer": "Based on the provided pages:\n\n* **Golden Week 2026:** Booking volume peaked at **1,960 bookings per minute** on `api` at about 11:00 JST on Saturday, 2026-05-02 (*On-call handover, week of 2026-05-04*).\n* **Golden Week 2025:** The pages **do not say** what the booking peak per minute was for Golden Week 2025.",
+   "pages_in_call": [
+    "handover-2026-05-04",
+    "handbook-13",
+    "handover-2025-11-24",
+    "handover-2025-06-30",
+    "handover-2025-12-29"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 2.48,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: On-call handover, week of 2026-05-04 -----\n\n<omitted page handover-2026-05-04: md5 c2b7f1ed1eef2a9028fbc27f03bc9480, 640 tokens by countTokens>\n----- page: Handbook 13. Traffic patterns and the business calendar -----\n\n<omitted page handbook-13: md5 41b218c12bb55f3535e7ce2bae57958b, 515 tokens by countTokens>\n----- page: On-call handover, week of 2025-11-24 -----\n\n<omitted page handover-2025-11-24: md5 17e2f0160292887399964c35bcc5051b, 2650 tokens by countTokens>\n----- page: On-call handover, week of 2025-06-30 -----\n\n<omitted page handover-2025-06-30: md5 16bf3bc329ffb9a8a97582fbb7f8bd04, 3333 tokens by countTokens>\n----- page: On-call handover, week of 2025-12-29 -----\n\n<omitted page handover-2025-12-29: md5 5dbaf2f184cb7039400cbbb29708a7f7, 752 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhat was the booking peak per minute during Golden Week 2026, and what was it in Golden Week 2025?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:46:00.098+00:00",
+     "wall_s": 2.399,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the provided pages:\n\n* **Golden Week 2026:** Booking volume peaked at **1,960 bookings per minute** on `api` at about 11:00 JST on Saturday, 2026-05-02 (*On-call handover, week of 2026-05-04*).\n* **Golden Week 2025:** The pages **do not say** what the booking peak per minute was for Golden Week 2025.",
+           "thoughtSignature": "EmkKZwFpFH0TkJ7OqIEG6URgUxQzbM8HtJE8ieD+/kHxMaAY82wkiEyd/dYJfmajLuM0nLsSIPlD2ylBeuTHljIAsfTQ827CHIUL2HzvWvvQiZlqjsGcKsc1f/rNQQ8Qcy7KDHvJPzZnx1c="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 8231,
+       "candidatesTokenCount": 114,
+       "totalTokenCount": 8345,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 8231
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "eMjMarKGI-zl0-kP6Ymj0Ag"
+     },
+     "cost_usd": 0.00660075
+    }
+   ],
+   "prompt_tokens": 8231,
+   "out_tokens": 114,
+   "cost_usd": 0.00660075
+  },
+  {
+   "id": "half-restore-size",
+   "kind": "half",
+   "question": "Who owns the weekly restore test for the payments database, and how big is that database?",
+   "answer_page": "handover-2026-04-27",
+   "answer": "Based on the provided pages:\n\n* **Who owns the weekly restore test for the payments database:** Leo owns it going forward (from *On-call handover, week of 2026-04-27*).\n* **How big that database is:** The pages do not say.",
+   "pages_in_call": [
+    "handover-2026-04-27",
+    "team-oncall-onboarding",
+    "howto-stop-unowned-load-test",
+    "scan-dr-drill-2023",
+    "handbook-4"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 2.57,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: On-call handover, week of 2026-04-27 -----\n\n<omitted page handover-2026-04-27: md5 f68ec34ea5b49168744196365b9590c0, 746 tokens by countTokens>\n----- page: On-call onboarding -----\n\n<omitted page team-oncall-onboarding: md5 e0c5681328bdc0b2baff6132d78e89fe, 3513 tokens by countTokens>\n----- page: How to stop a load test that nobody owns -----\n\n<omitted page howto-stop-unowned-load-test: md5 44eeb56fde1a1254fd9e9957e60ea4c3, 3621 tokens by countTokens>\n----- page: Backup restore drill report: api database -----\n\n<omitted page scan-dr-drill-2023: md5 8986c0d63e79a10daf65a1e19f748cd2, 471 tokens by countTokens>\n----- page: Handbook 4. Escalation policy -----\n\n<omitted page handbook-4: md5 9a547d4db9b10d04d8a1dc84a5750f0d, 525 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWho owns the weekly restore test for the payments database, and how big is that database?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:46:01.122+00:00",
+     "wall_s": 2.483,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the provided pages:\n\n* **Who owns the weekly restore test for the payments database:** Leo owns it going forward (from *On-call handover, week of 2026-04-27*).\n* **How big that database is:** The pages do not say.",
+           "thoughtSignature": "EmkKZwFpFH0TJhxVeFsaCBq0alLJsiT/joH/UxW04R+1/4ByLOQHmpTVRYCrmV6vJlQNXp8dzaLZ+t0zD5KkdX3CUPeCTnnTEWqptW0DeQew90KGb9vZCcl0KFWt+NQaHRhMc6K2qM/IBoY="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 9169,
+       "candidatesTokenCount": 63,
+       "totalTokenCount": 9232,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 9169
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "ecjMatWONduevr0Phaa9sQM"
+     },
+     "cost_usd": 0.007113
+    }
+   ],
+   "prompt_tokens": 9169,
+   "out_tokens": 63,
+   "cost_usd": 0.007113
+  },
+  {
+   "id": "half-cert-credits",
+   "kind": "half",
+   "question": "When the partner API certificate expired in April 2025, how many partners were affected, and how much did we credit them?",
+   "answer_page": "postmortem-api-partner-certificate",
+   "answer": "Based on the postmortem for the April 2025 incident (*Postmortem: partner API certificate expired*):\n\n* **Partners affected:** A total of **3** integration partners were impacted.\n* **Credit amount:** The pages **do not say** whether or how much we credited them (the postmortem notes that no direct transaction financial loss was recorded, booking updates were queued and caught up upon restoration, but does not mention any financial credits).",
+   "pages_in_call": [
+    "postmortem-api-partner-certificate",
+    "handbook-7",
+    "provider-cloudflare-notes",
+    "handover-2025-11-24",
+    "handbook-5"
+   ],
+   "answer_page_in_call": true,
+   "other_answer_pages_in_call": [],
+   "error": null,
+   "wall_s": 3.26,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nThe team's pages that matched the question follow.\n\n----- page: Postmortem: partner API certificate expired -----\n\n<omitted page postmortem-api-partner-certificate: md5 f99dd0cdeaca1ad30d72476593b403be, 2039 tokens by countTokens>\n----- page: Handbook 7. Known failure modes -----\n\n<omitted page handbook-7: md5 08eafeb74ed1b05fbd9abe1a65d96b09, 1489 tokens by countTokens>\n----- page: cloudflare: purge and firewall notes -----\n\n<omitted page provider-cloudflare-notes: md5 e79f3fdd5ab4e6099cbcbbf1a6e48c38, 3230 tokens by countTokens>\n----- page: On-call handover, week of 2025-11-24 -----\n\n<omitted page handover-2025-11-24: md5 17e2f0160292887399964c35bcc5051b, 2650 tokens by countTokens>\n----- page: Handbook 5. Service runbooks -----\n\n<omitted page handbook-5: md5 8700b1e28b741a388e672c7b49fafda4, 3049 tokens by countTokens>"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nWhen the partner API certificate expired in April 2025, how many partners were affected, and how much did we credit them?\nAnswer from the pages. If the pages do not say, say so."
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-12T11:46:01.201+00:00",
+     "wall_s": 3.171,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "Based on the postmortem for the April 2025 incident (*Postmortem: partner API certificate expired*):\n\n* **Partners affected:** A total of **3** integration partners were impacted.\n* **Credit amount:** The pages **do not say** whether or how much we credited them (the postmortem notes that no direct transaction financial loss was recorded, booking updates were queued and caught up upon restoration, but does not mention any financial credits).",
+           "thoughtSignature": "EmkKZwFpFH0TJaps4OlPUMbEQ+zPI5QuH16ejOkz9BW99k7M4t+vfkN2yX/6FFdcDc0lo8w77p1Fq12SXylEMnAIJcMyd2Nnt4Mbk6ME6DLtmg2c/E6kPqjZ7SkyS/ZNA6pmzijI4iNv5aw="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 12760,
+       "candidatesTokenCount": 93,
+       "totalTokenCount": 12853,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 12760
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "ecjMapTqNKXZ2roPvd3CsQM"
+     },
+     "cost_usd": 0.00991875
+    }
+   ],
+   "prompt_tokens": 12760,
+   "out_tokens": 93,
+   "cost_usd": 0.00991875
+  }
+ ],
+ "finished_utc": "2026-10-12T11:46:04.418+00:00",
+ "meta": {
+  "code": "lookup.search_it exactly (keyword top 5 in systemInstruction with rules.SYSTEM, lookup.ASK); lookup.call swapped for a recording call with the same body and thinking low",
+  "ep12_40": "not re-run: P for the 40 EP12 questions is runs/ep12/2026-10-11-e1-code.json + its hand grades (same model, same pages, same prompt)"
+ }
+}

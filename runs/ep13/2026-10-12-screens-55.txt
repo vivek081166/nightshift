@@ -1,0 +1,102 @@
+rendered from runs/ep13/2026-10-12-c2-quotes.json with check.show at SCREEN=55 (no new call)
+$ python3 check.py "a search-engine crawler burst on the public business pages tripped web-traffic. what should i do?"
+1. When web-traffic fires due to a search-engine
+   crawler on public business pages, the initial
+   action to take is no action.
+   handover-2026-09-28 · found
+2. Log a ticket for Aiko regarding crawler limits to
+   evaluate whether stricter rate limits are needed on
+   public profiles.
+   handover-2026-09-28 · NOT ON THE PAGE
+-------------------------------------------------------
+$ python3 check.py "notifier delivered per minute is 0 and the oldest message is 40 min old. what do i do?"
+1. When the oldest message age is above 30 minutes
+   while delivered per minute is zero, the workers are
+   stuck.
+   howto-notifier-queue-panels · found
+2. Check the deploy history in the deploy tool for the
+   notifier service to determine the age of the last
+   deploy.
+   howto-notifier-queue-panels · found
+3. If notifier was deployed within the last 30
+   minutes, your first move is to roll back to the
+   previous deploy.
+   howto-notifier-queue-panels · found
+4. If there has been no recent deploy, your first move
+   is to read logs.
+   howto-notifier-queue-panels · found
+5. When reading logs, query the log search tool for
+   errors on notifier over the start of the window.
+   howto-notifier-queue-panels · found
+6. Check the logs specifically for worker loop error
+   messages.
+   howto-notifier-queue-panels · found
+7. Verify if worker processes crashed due to memory or
+   execution timeouts across worker nodes.
+   howto-notifier-queue-panels · found
+-------------------------------------------------------
+$ python3 check.py "Refunds failed with PAY-4107 back in January. What did Mei's team do for those customers, and how many days did they wait for their money?"
+1. For the three customers whose refunds failed with
+   PAY-4107, Mei's team paid them back by bank
+   transfer instead.
+   handover-2026-01-12 · found
+Not in the pages:
+- How many days the customers waited for their money
+-------------------------------------------------------
+$ python3 check.py "i see two 'refund sent' lines for the same ref in the payments logs. what do i do now?"
+1. If one reference shows two 'sent' lines, money may
+   have moved twice, so you must stop and page Mei.
+   howto-trace-a-refund · found
+2. Stop your investigation immediately without
+   attempting to rerun scripts, issue cancellation
+   webhooks, or execute ad-hoc database updates.
+   howto-trace-a-refund · found
+3. Do not attempt to roll back code as your first move
+   if the money has already left our accounts.
+   howto-trace-a-refund · found
+4. Declare a P1 incident, because any situation where
+   money moves wrongly is classified as a P1.
+   howto-trace-a-refund · found
+5. Page Mei directly via the paging tool, as she is
+   the payments service owner authorized to make
+   decisions regarding adjustments and reversals.
+   howto-trace-a-refund · found
+6. In the page description and the #inc-live incident
+   thread, paste the alert/discovery line, the exact
+   ref, the timestamps of both 'refund sent' log
+   events, and their associated Stripe refund IDs.
+   howto-trace-a-refund · found
+-------------------------------------------------------
+$ python3 check.py "Texts to US numbers stopped arriving in June. What fixed it, and how much does the 10DLC registration cost us?"
+1. Registering Sorrel's 10DLC campaign with Twilio
+   fixed the issue with texts to US numbers, returning
+   delivery back to normal.
+   handover-2026-06-08 · found
+Not in the pages:
+- How much the 10DLC registration costs us.
+-------------------------------------------------------
+
+the same saved answer, rendered with the BARE find box (lowercase + whitespace only), SCREEN=55
+$ python3 check.py "i see two 'refund sent' lines for the same ref in the payments logs. what do i do now?"
+1. If one reference shows two 'sent' lines, money may
+   have moved twice, so you must stop and page Mei.
+   howto-trace-a-refund · found
+2. Stop your investigation immediately without
+   attempting to rerun scripts, issue cancellation
+   webhooks, or execute ad-hoc database updates.
+   howto-trace-a-refund · NOT ON THE PAGE
+3. Do not attempt to roll back code as your first move
+   if the money has already left our accounts.
+   howto-trace-a-refund · NOT ON THE PAGE
+4. Declare a P1 incident, because any situation where
+   money moves wrongly is classified as a P1.
+   howto-trace-a-refund · NOT ON THE PAGE
+5. Page Mei directly via the paging tool, as she is
+   the payments service owner authorized to make
+   decisions regarding adjustments and reversals.
+   howto-trace-a-refund · NOT ON THE PAGE
+6. In the page description and the #inc-live incident
+   thread, paste the alert/discovery line, the exact
+   ref, the timestamps of both 'refund sent' log
+   events, and their associated Stripe refund IDs.
+   howto-trace-a-refund · NOT ON THE PAGE

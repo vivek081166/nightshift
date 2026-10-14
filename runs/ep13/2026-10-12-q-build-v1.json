@@ -1,0 +1,804 @@
+{
+ "what": "EP13 Q build: step lines checked on their pages, half-question grep proofs, keyword top 5 on every new question (search.keyword_search, local, before the freeze)",
+ "step_line_problems": [],
+ "half_grep": [
+  {
+   "id": "half-pay-4107",
+   "missing": "how many days the customers waited",
+   "note": "both appear in one page only (handover-2026-01-12, line 19); that paragraph gives the charge age (180 days) and no wait time",
+   "patterns": [
+    {
+     "regex": "PAY-4107",
+     "case_insensitive": true,
+     "searched": "all 127 pages",
+     "hits": 1,
+     "lines": [
+      {
+       "page": "handover-2026-01-12",
+       "line": 19,
+       "text": "On Thursday, we saw PAY-4107 on three refunds on Thursday: the card provider refuses refunds on charges older than 180 days. Because these transactions could not be returned automatically through the standard workflow, Mei's team paid those"
+      }
+     ]
+    },
+    {
+     "regex": "bank transfer",
+     "case_insensitive": true,
+     "searched": "all 127 pages",
+     "hits": 1,
+     "lines": [
+      {
+       "page": "handover-2026-01-12",
+       "line": 19,
+       "text": "On Thursday, we saw PAY-4107 on three refunds on Thursday: the card provider refuses refunds on charges older than 180 days. Because these transactions could not be returned automatically through the standard workflow, Mei's team paid those"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "half-10dlc-cost",
+   "missing": "the cost",
+   "note": "10DLC/A2P only in handover-2026-06-08; no cost, fee or price for it in any page",
+   "patterns": [
+    {
+     "regex": "10DLC|A2P",
+     "case_insensitive": true,
+     "searched": "all 127 pages",
+     "hits": 3,
+     "lines": [
+      {
+       "page": "handover-2026-06-08",
+       "line": 17,
+       "text": "- Mid-week support investigations highlighted A2P filtering by US carriers: twilio showed our reminders as delivered to the carrier, but about 11 % of SMS to US numbers never reached the phone. Tom approved registering our 10DLC campaign wi"
+      },
+      {
+       "page": "handover-2026-06-08",
+       "line": 25,
+       "text": "- **notifier**: Normal; twilio SMS delivery to US recipients fully recovered following the 10DLC registration on Friday."
+      },
+      {
+       "page": "handover-2026-06-08",
+       "line": 29,
+       "text": "- Keep an eye on notifier delivery rates to US numbers over the next few days to confirm that carrier deliverability stays steady following the twilio 10DLC campaign registration completed on Friday."
+      }
+     ]
+    },
+    {
+     "regex": "(10DLC|A2P|twilio).*(cost|fee|price|\\$|¥|per month)|(cost|fee|price|\\$|¥).*(10DLC|A2P)",
+     "case_insensitive": true,
+     "searched": "all 127 pages",
+     "hits": 0,
+     "lines": []
+    }
+   ]
+  },
+  {
+   "id": "half-hanabi-v1",
+   "missing": "when Hanabi stops the script",
+   "note": "Hanabi in handover-2026-03-23 and handover-2026-05-25; neither gives a date for the script to stop",
+   "patterns": [
+    {
+     "regex": "hanabi",
+     "case_insensitive": true,
+     "searched": "all 127 pages",
+     "hits": 4,
+     "lines": [
+      {
+       "page": "handover-2026-03-23",
+       "line": 14,
+       "text": "- On Wednesday 2026-03-18, the old v1 partner API endpoints were switched off, after the last partner moved to v2. About 3 calls a day still arrive on v1 from a test script at Hanabi Booking; they get 410 and Ravi has told them. We are leav"
+      },
+      {
+       "page": "handover-2026-03-23",
+       "line": 27,
+       "text": "- Watch out for residual pings from Hanabi Booking hitting v1 on api. As noted, Ravi has reached out, so if you happen to spot those in the audit log or route metrics, do not spend time chasing them down as regressions."
+      },
+      {
+       "page": "handover-2026-05-25",
+       "line": 13,
+       "text": "- A cloudflare firewall rule added on Tuesday for bot traffic also blocked Hanabi Booking's partner sync, which runs from their Osaka servers, for about 2 hours. Aiko added Hanabi's IP range to the rule's allow list."
+      },
+      {
+       "page": "handover-2026-05-25",
+       "line": 19,
+       "text": "- web: normal, following the update Aiko made to the cloudflare firewall rule allow list for Hanabi Booking's partner sync."
+      }
+     ]
+    },
+    {
+     "regex": "test script",
+     "case_insensitive": true,
+     "searched": "all 127 pages",
+     "hits": 2,
+     "lines": [
+      {
+       "page": "handover-2026-03-23",
+       "line": 14,
+       "text": "- On Wednesday 2026-03-18, the old v1 partner API endpoints were switched off, after the last partner moved to v2. About 3 calls a day still arrive on v1 from a test script at Hanabi Booking; they get 410 and Ravi has told them. We are leav"
+      },
+      {
+       "page": "handover-2026-03-23",
+       "line": 20,
+       "text": "- api: Normal; old v1 partner API endpoints were switched off on Wednesday, with remaining test script traffic returning 410."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "half-payout-total",
+   "missing": "the total paid out",
+   "note": "no page gives a payout amount (the one hit is handbook-7's generic 'for the wrong amount')",
+   "patterns": [
+    {
+     "regex": "payout.*(¥|yen|jpy|\\$|usd|amount|total|million)|(¥|yen|jpy|\\$|usd|million).*payout",
+     "case_insensitive": true,
+     "searched": "all 127 pages",
+     "hits": 2,
+     "lines": [
+      {
+       "page": "handbook-7",
+       "line": 20,
+       "text": "- **Shape.** Charges, refunds or payouts counted or sent more than once, or for the wrong amount."
+      },
+      {
+       "page": "postmortem-api-audit-disk",
+       "line": 25,
+       "text": "- **Financial impact:** 0 JPY. No charges, refunds, or payouts were altered, delayed, or duplicated."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "half-tofu-count",
+   "missing": "how many bookings",
+   "note": "only team-web-notes (lines 10, 12) carries the incident; it gives no count of bookings or customers",
+   "patterns": [
+    {
+     "regex": "tofu|kanji|noto|empty box",
+     "case_insensitive": true,
+     "searched": "all 127 pages",
+     "hits": 2,
+     "lines": [
+      {
+       "page": "team-web-notes",
+       "line": 10,
+       "text": "## Rare kanji rendering boxes on booking pages"
+      },
+      {
+       "page": "team-web-notes",
+       "line": 12,
+       "text": "Tofu on the booking page in June 2026: customer names with rare kanji (for example 髙 or 﨑) rendered as empty boxes, because the subset web font left out those glyphs. Priya added a fallback to the full Noto Sans JP font on 2026-06-11."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "half-capture-total",
+   "missing": "the total amount",
+   "note": "the incident is only in team-payments-notes; that page has no amount (the second pattern is checked on that page only)",
+   "patterns": [
+    {
+     "regex": "duplicate capture|captures went through|2026-01-14",
+     "case_insensitive": true,
+     "searched": "all 127 pages",
+     "hits": 2,
+     "lines": [
+      {
+       "page": "team-payments-notes",
+       "line": 8,
+       "text": "## Duplicate capture on 63 bookings"
+      },
+      {
+       "page": "team-payments-notes",
+       "line": 10,
+       "text": "On 2026-01-14, we ran into an issue where the capture call to stripe timed out from our side. The capture call to stripe was retried after a timeout and both captures went through, leading to duplicate capture on 63 bookings on 2026-01-14. "
+      }
+     ]
+    },
+    {
+     "regex": "(¥|yen|jpy|\\$|usd|amount|total)",
+     "case_insensitive": true,
+     "searched": [
+      "team-payments-notes"
+     ],
+     "hits": 0,
+     "lines": []
+    }
+   ]
+  },
+  {
+   "id": "half-suppression-tickets",
+   "missing": "how many tickets",
+   "note": "the switch is only in team-notifier-notes; 'ticket' does not appear on that page",
+   "patterns": [
+    {
+     "regex": "suppression list|domain switch|sending-domain|soft bounce",
+     "case_insensitive": true,
+     "searched": "all 127 pages",
+     "hits": 3,
+     "lines": [
+      {
+       "page": "team-notifier-notes",
+       "line": 10,
+       "text": "## Sending-domain switch and the suppression list"
+      },
+      {
+       "page": "team-notifier-notes",
+       "line": 12,
+       "text": "After the sending-domain switch on 2026-02-24, sendgrid's suppression list picked up 2,312 addresses from soft bounces during the switch, and sendgrid stopped sending to them. Yuki checked they were valid and removed them from the suppressi"
+      },
+      {
+       "page": "team-notifier-notes",
+       "line": 16,
+       "text": "- check the suppression list directly in sendgrid to see if addresses were added during cutovers."
+      }
+     ]
+    },
+    {
+     "regex": "ticket",
+     "case_insensitive": true,
+     "searched": [
+      "team-notifier-notes"
+     ],
+     "hits": 0,
+     "lines": []
+    }
+   ]
+  },
+  {
+   "id": "half-golden-week-2025",
+   "missing": "the 2025 peak",
+   "note": "Golden Week figures only in handover-2026-05-04 (2026); handbook-13 mentions Golden Week with no number; 'bookings per minute' appears once",
+   "patterns": [
+    {
+     "regex": "golden week",
+     "case_insensitive": true,
+     "searched": "all 127 pages",
+     "hits": 4,
+     "lines": [
+      {
+       "page": "handbook-13",
+       "line": 25,
+       "text": "- Golden Week (late April to early May) and Obon (mid-August): bookings for leisure services rise, bookings for clinics fall."
+      },
+      {
+       "page": "handover-2026-05-04",
+       "line": 9,
+       "text": "A fairly calm week across the board despite the Golden Week holiday traffic hitting our systems. Booking demand rose as expected over the weekend, but core services absorbed the surge without needing manual intervention or capacity adjustme"
+      },
+      {
+       "page": "handover-2026-05-04",
+       "line": 15,
+       "text": "- Golden Week: booking volume peaked on Saturday 2026-05-02 at 1,960 bookings per minute on api, at about 11:00 JST. No alerts. Core infrastructure handled the holiday traffic peak smoothly across all regions without degraded responsiveness"
+      },
+      {
+       "page": "handover-2026-05-04",
+       "line": 26,
+       "text": "- Keep an eye on holiday appointment patterns as businesses continue operating through the remainder of the Golden Week calendar period across ap-northeast."
+      }
+     ]
+    },
+    {
+     "regex": "bookings per minute|per minute on api",
+     "case_insensitive": true,
+     "searched": "all 127 pages",
+     "hits": 1,
+     "lines": [
+      {
+       "page": "handover-2026-05-04",
+       "line": 15,
+       "text": "- Golden Week: booking volume peaked on Saturday 2026-05-02 at 1,960 bookings per minute on api, at about 11:00 JST. No alerts. Core infrastructure handled the holiday traffic peak smoothly across all regions without degraded responsiveness"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "half-restore-size",
+   "missing": "the size",
+   "note": "the restore test is only in handover-2026-04-27; the only size in any page is 14 GB of dead files on an api spool disk (postmortem-api-audit-disk)",
+   "patterns": [
+    {
+     "regex": "restore test",
+     "case_insensitive": true,
+     "searched": "all 127 pages",
+     "hits": 2,
+     "lines": [
+      {
+       "page": "handover-2026-04-27",
+       "line": 16,
+       "text": "* The new weekly restore test for the payments database started on Wednesday 2026-04-22: the latest backup is restored into a scratch instance and checked. The first restore took 52 minutes. Leo owns it going forward, so incoming shifts wil"
+      },
+      {
+       "page": "handover-2026-04-27",
+       "line": 24,
+       "text": "* payments: Normal; weekly restore test established on Wednesday 2026-04-22 taking 52 minutes with no blockers."
+      }
+     ]
+    },
+    {
+     "regex": "\\b(GB|TB|MB)\\b|gigabyte|terabyte|database size|size of the",
+     "case_insensitive": true,
+     "searched": "all 127 pages",
+     "hits": 3,
+     "lines": [
+      {
+       "page": "postmortem-api-audit-disk",
+       "line": 63,
+       "text": "| 15:45 | Sara | Safely purges obsolete compressed debug dumps located in the spool mount path that were held open by the stale metrics export process. Clears 14 GB of dead files. |"
+      },
+      {
+       "page": "handover-2025-10-27",
+       "line": 15,
+       "text": "* WEB-5106 on business logo uploads over 10 MB: working as designed (the limit is 10 MB). Support already has a help article; nothing to do. I reviewed this when a question came in from the team. Because this is the intended system boundary"
+      },
+      {
+       "page": "handover-2025-10-27",
+       "line": 35,
+       "text": "* If logo upload queries come up again from Hana's team, confirm whether the payload exceeded the 10 MB limit before digging into deeper service telemetry."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "half-cert-credits",
+   "missing": "the credit",
+   "note": "no credit/compensation/refund on the postmortem page (first pattern checked on that page), and no page links partners to a credit",
+   "patterns": [
+    {
+     "regex": "credit|compensat|goodwill|refund",
+     "case_insensitive": true,
+     "searched": [
+      "postmortem-api-partner-certificate"
+     ],
+     "hits": 0,
+     "lines": []
+    },
+    {
+     "regex": "partner.*(credit|compensat)|(credit|compensat).*partner",
+     "case_insensitive": true,
+     "searched": "all 127 pages",
+     "hits": 2,
+     "lines": [
+      {
+       "page": "handbook-17",
+       "line": 8,
+       "text": "| Support lead | Contact customers and partners, approve goodwill credits | Make production changes |"
+      },
+      {
+       "page": "handover-2024-08-19",
+       "line": 165,
+       "text": "| **Support Lead** | Hana | Customer Ops | Direct customer/partner communications, goodwill credits |"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "retrieval": [
+  {
+   "id": "st-cdn-purge",
+   "kind": "steps",
+   "question": "after the web deploy the CDN is still serving the old js bundle. how do i purge it by hand?",
+   "page": "howto-cdn-purge-by-hand",
+   "top5": [
+    "howto-cdn-purge-by-hand",
+    "postmortem-web-cdn-purge-stuck",
+    "provider-cloudflare-notes",
+    "team-web-notes",
+    "deploying-with-shipyard"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "st-web-rollback",
+   "kind": "steps",
+   "question": "walk me through rolling back web, the last deploy broke the booking pages",
+   "page": "handbook-5",
+   "top5": [
+    "handbook-5",
+    "postmortem-web-cdn-purge-stuck",
+    "postmortem-api-index-migration",
+    "handover-2024-03-25",
+    "web-runbook-2024"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "st-web-blank",
+   "kind": "steps",
+   "question": "customers say the booking pages are blank. what are the first things i check on web?",
+   "page": "handbook-5",
+   "top5": [
+    "payments-rollback-runbook",
+    "team-web-notes",
+    "deploying-with-shipyard",
+    "handbook-6",
+    "postmortem-web-font-upload"
+   ],
+   "rank": null
+  },
+  {
+   "id": "st-crawler",
+   "kind": "steps",
+   "question": "web-traffic alert just fired, looks like a search engine crawler hammering the business pages. what do i do?",
+   "page": "team-web-notes",
+   "top5": [
+    "handover-2026-06-15",
+    "handover-2026-09-28",
+    "handover-2026-06-29",
+    "handover-2026-09-07",
+    "handover-2026-08-03"
+   ],
+   "rank": null
+  },
+  {
+   "id": "st-admin-deletions",
+   "kind": "steps",
+   "question": "the admin tool shows a load of customer accounts got deleted in the last hour. what do i do?",
+   "page": "handbook-5",
+   "top5": [
+    "postmortem-web-admin-session",
+    "web-runbook-2024",
+    "postmortem-notifier-sms-codes-japan",
+    "handbook-7",
+    "deploying-with-shipyard"
+   ],
+   "rank": null
+  },
+  {
+   "id": "st-replica-lag",
+   "kind": "steps",
+   "question": "api replica lag has been above 10 seconds for a while. walk me through what i check",
+   "page": "howto-api-replica-lag",
+   "top5": [
+    "handover-2024-03-25",
+    "howto-api-replica-lag",
+    "postmortem-api-replica-lag-double-booking",
+    "postmortem-api-search-index-stale",
+    "handover-2024-08-19"
+   ],
+   "rank": 2
+  },
+  {
+   "id": "st-reindex",
+   "kind": "steps",
+   "question": "how do i run a full rebuild of the api search index?",
+   "page": "howto-api-search-index-rebuild",
+   "top5": [
+    "howto-api-search-index-rebuild",
+    "postmortem-api-search-index-stale",
+    "howto-api-replica-lag",
+    "team-oncall-onboarding",
+    "deploying-with-shipyard"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "st-load-test",
+   "kind": "steps",
+   "question": "theres load test traffic with the X-Sorrel-Loadtest header hitting api and nobody seems to own it. how do i stop it?",
+   "page": "howto-stop-unowned-load-test",
+   "top5": [
+    "howto-stop-unowned-load-test",
+    "team-game-days",
+    "handbook-7",
+    "handover-2025-11-24",
+    "team-oncall-onboarding"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "st-api-rollback",
+   "kind": "steps",
+   "question": "how do i roll back api now that it's on shipyard?",
+   "page": "deploying-with-shipyard",
+   "top5": [
+    "deploying-with-shipyard",
+    "handover-2026-09-28",
+    "handbook-5",
+    "postmortem-api-rollback-queue",
+    "handover-2024-03-25"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "st-audit-actions",
+   "kind": "steps",
+   "question": "the api audit log writer stopped last december after a disk filled up. what did we change afterwards?",
+   "page": "postmortem-api-audit-disk",
+   "top5": [
+    "postmortem-api-audit-disk",
+    "handover-2025-01-06",
+    "handbook-5",
+    "postmortem-payments-pool-timeout",
+    "team-postmortem-review"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "st-trace-refund",
+   "kind": "steps",
+   "question": "customer says their refund never showed up. how do i trace it through the logs?",
+   "page": "howto-trace-a-refund",
+   "top5": [
+    "howto-trace-a-refund",
+    "deploying-with-shipyard",
+    "provider-stripe-notes",
+    "postmortem-payments-duplicate-refunds",
+    "handover-2024-03-25"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "st-two-sent",
+   "kind": "steps",
+   "question": "i see two 'refund sent' lines for the same ref in the payments logs. what do i do now?",
+   "page": "howto-trace-a-refund",
+   "top5": [
+    "howto-trace-a-refund",
+    "postmortem-payments-duplicate-refunds",
+    "handbook-15",
+    "deploying-with-shipyard",
+    "provider-stripe-api-version"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "st-stripe-key",
+   "kind": "steps",
+   "question": "i just found a live stripe key printed in the payments logs. what do i do?",
+   "page": "team-secrets-manager",
+   "top5": [
+    "team-secrets-manager",
+    "team-payments-notes",
+    "howto-trace-a-refund",
+    "handover-2025-10-27",
+    "deploying-with-shipyard"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "st-webhook-secret-actions",
+   "kind": "steps",
+   "question": "what did we change after stripe webhooks got rejected following the signing secret rotation?",
+   "page": "postmortem-payments-webhook-secret",
+   "top5": [
+    "postmortem-payments-webhook-secret",
+    "provider-stripe-api-version",
+    "team-secrets-manager",
+    "provider-stripe-notes",
+    "howto-trace-a-refund"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "st-payout-alert",
+   "kind": "steps",
+   "question": "the payout job alert fired around sunday midnight JST. what should i check?",
+   "page": "team-payments-notes",
+   "top5": [
+    "team-payments-notes",
+    "handover-2026-09-28",
+    "handover-2024-03-25",
+    "postmortem-api-rollback-queue",
+    "handover-2025-06-30"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "st-stuck-workers",
+   "kind": "steps",
+   "question": "notifier delivered per minute is 0 and the oldest message is 40 min old. what do i do?",
+   "page": "howto-notifier-queue-panels",
+   "top5": [
+    "howto-notifier-queue-panels",
+    "postmortem-notifier-template-crash",
+    "provider-twilio-japan",
+    "notifier-runbook-2024",
+    "handover-2024-03-25"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "st-night-batch",
+   "kind": "steps",
+   "question": "notifier queue depth alert at 3am, depth is about 1,300. walk me through it",
+   "page": "howto-notifier-queue-panels",
+   "top5": [
+    "postmortem-notifier-reminder-backlog",
+    "postmortem-web-firewall-challenge",
+    "howto-notifier-queue-panels",
+    "handbook-5",
+    "handover-2024-08-19"
+   ],
+   "rank": 3
+  },
+  {
+   "id": "st-sendgrid-quota",
+   "kind": "steps",
+   "question": "sendgrid is returning quota errors on notifier. how do i handle it?",
+   "page": "provider-sendgrid-quota",
+   "top5": [
+    "provider-sendgrid-quota",
+    "handbook-6",
+    "notifier-runbook-2024",
+    "team-dashboards-guide",
+    "handover-2024-03-25"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "st-template-actions",
+   "kind": "steps",
+   "question": "what did we change after a bad template stalled the notifier queue?",
+   "page": "postmortem-notifier-template-crash",
+   "top5": [
+    "postmortem-notifier-template-crash",
+    "team-postmortem-review",
+    "notifier-runbook-2024",
+    "provider-sendgrid-quota",
+    "team-status-page-process"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "st-duplicates",
+   "kind": "steps",
+   "question": "the duplicate detection panel on notifier is spiking. what do i check?",
+   "page": "howto-notifier-queue-panels",
+   "top5": [
+    "howto-notifier-queue-panels",
+    "notifier-runbook-2024",
+    "provider-stripe-notes",
+    "handover-2024-03-25",
+    "handover-2026-02-23"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "half-pay-4107",
+   "kind": "half",
+   "question": "Refunds failed with PAY-4107 back in January. What did Mei's team do for those customers, and how many days did they wait for their money?",
+   "page": "handover-2026-01-12",
+   "top5": [
+    "handover-2026-01-12",
+    "payments-rollback-runbook",
+    "provider-stripe-notes",
+    "handbook-2",
+    "handbook-13"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "half-10dlc-cost",
+   "kind": "half",
+   "question": "Texts to US numbers stopped arriving in June. What fixed it, and how much does the 10DLC registration cost us?",
+   "page": "handover-2026-06-08",
+   "top5": [
+    "handover-2026-06-08",
+    "postmortem-payments-pool-timeout",
+    "howto-stop-unowned-load-test",
+    "handbook-6",
+    "handover-2026-03-02"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "half-hanabi-v1",
+   "kind": "half",
+   "question": "When were the old v1 partner endpoints switched off, and when is Hanabi Booking going to stop their v1 test script?",
+   "page": "handover-2026-03-23",
+   "top5": [
+    "handover-2026-03-23",
+    "payments-rollback-runbook",
+    "handover-2026-05-25",
+    "howto-stop-unowned-load-test",
+    "provider-cloudflare-notes"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "half-payout-total",
+   "kind": "half",
+   "question": "How long did the December 2025 year-end payout take, and how much money did it pay out to businesses in total?",
+   "page": "handover-2025-12-29",
+   "top5": [
+    "handbook-13",
+    "handover-2025-01-06",
+    "handover-2025-12-29",
+    "handover-2025-12-22",
+    "postmortem-api-rollback-queue"
+   ],
+   "rank": 3
+  },
+  {
+   "id": "half-tofu-count",
+   "kind": "half",
+   "question": "When did Priya fix the kanji names showing up as empty boxes on the booking page, and how many bookings were hit?",
+   "page": "team-web-notes",
+   "top5": [
+    "team-web-notes",
+    "handbook-7",
+    "postmortem-web-cdn-purge-stuck",
+    "handover-2026-02-02",
+    "handover-2025-11-24"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "half-capture-total",
+   "kind": "half",
+   "question": "How many bookings got charged twice in January 2026, and how much money did we refund in total?",
+   "page": "team-payments-notes",
+   "top5": [
+    "postmortem-payments-duplicate-refunds",
+    "team-postmortem-review",
+    "postmortem-api-rollback-queue",
+    "handbook-2",
+    "handbook-5"
+   ],
+   "rank": null
+  },
+  {
+   "id": "half-suppression-tickets",
+   "kind": "half",
+   "question": "How many addresses ended up on sendgrid's suppression list after the February domain switch, and how many support tickets did it cause?",
+   "page": "team-notifier-notes",
+   "top5": [
+    "team-notifier-notes",
+    "handover-2026-08-31",
+    "payments-rollback-runbook",
+    "howto-stop-unowned-load-test",
+    "handbook-7"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "half-golden-week-2025",
+   "kind": "half",
+   "question": "What was the booking peak per minute during Golden Week 2026, and what was it in Golden Week 2025?",
+   "page": "handover-2026-05-04",
+   "top5": [
+    "handover-2026-05-04",
+    "handbook-13",
+    "handover-2025-11-24",
+    "handover-2025-06-30",
+    "handover-2025-12-29"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "half-restore-size",
+   "kind": "half",
+   "question": "Who owns the weekly restore test for the payments database, and how big is that database?",
+   "page": "handover-2026-04-27",
+   "top5": [
+    "handover-2026-04-27",
+    "team-oncall-onboarding",
+    "howto-stop-unowned-load-test",
+    "scan-dr-drill-2023",
+    "handbook-4"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "half-cert-credits",
+   "kind": "half",
+   "question": "When the partner API certificate expired in April 2025, how many partners were affected, and how much did we credit them?",
+   "page": "postmortem-api-partner-certificate",
+   "top5": [
+    "postmortem-api-partner-certificate",
+    "handbook-7",
+    "provider-cloudflare-notes",
+    "handover-2025-11-24",
+    "handbook-5"
+   ],
+   "rank": 1
+  }
+ ]
+}

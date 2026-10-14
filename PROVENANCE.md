@@ -418,3 +418,39 @@ same full ranking, with no API call. "R" below is `runs/ep12/2026-10-11-r-recall
   carry. The vendor docs read on 2026-10-11 are in `runs/ep12/m0/*.txt`.
 - Spend: the measurement runs $2.62 (`runs/ep12/spend.json`; embedding all 127 pages $0.041, R `page_embedding`); takes
   M and O made one embedding call each.
+
+## ep13
+
+Check the page really says it. Measured 2026-10-12 (JST) with `gemini-3.8-flash`, raw HTTP. Every call sends keyword
+search's top five pages with the question (`check.ask`: `search.keyword_search(question, pages, 5)`). The questions were
+frozen before the first call (`runs/ep13/2026-10-12-q-freeze.json`). After the runs, `check.py` was reflowed to fit the
+screen and got `--saved`; on the 188 saved quotes it prints the same found / not found as the measured file (md5
+0193985c, `c2-quotes-hand-grades.json` `check_py_md5_now`). The first check on screen (take C1) is the same file with
+`found` as one line, `squash(quote) in squash(page)`. "C1" below is `runs/ep13/2026-10-12-c1-pages.json`, "C2" is
+`runs/ep13/2026-10-12-c2-quotes.json`.
+
+- Made up for the course: the company, its pages and its people. The 127 pages are ep12's (`library/INDEX.json`). The
+  70 questions: `tickets/questions-ep13.json` (20 "what do I do" steps, 10 the pages only half answer) plus ep12's 40.
+- "Five team pages": keyword search's top five, sent with each question.
+- "Each page name passed that test": C1, 213 of 213 page names were among the five pages sent
+  (`c1-pages-hand-grades.json`: 210 supported, 2 ambiguous, 1 cited page does not say it).
+- The access line (cold open, take A1): C1 question `pg-log-access`, line 3, page `team-access-requests`. That page says
+  "one full working day prior" and "it takes one working day"; "a week" has no match (case-insensitive). The week is on
+  `team-oncall-onboarding` line 69 (take A2), a page in the same call.
+- "Three steps": the model writes each line, its page name and its quote; the code opens that page; `found` searches it.
+  "Two short functions, and one line that decides what it prints": `found`, `squash`, and the `mark =` line in `show`.
+- The refund question (takes R1, R2): C2 `st-two-sent`, six lines, every page name `howto-trace-a-refund`. The first
+  check found line 1 and printed NOT ON THE PAGE for lines 2-6 (`runs/ep13/2026-10-12-screens-55.txt`). Quote 2 is on
+  the page word for word; only its first sentence is bold (take P, `library/howto-trace-a-refund.md` line 188, take F).
+  Lines 2-4 missed on bold stars, line 5 on stars and code marks, line 6 on code marks only. With the marks out
+  (`plain`), all six are found. "The same answer goes through the check again": `python3 check.py --saved` on the saved
+  answer, no new call.
+- Not in the episode (the description carries these): C2, 188 lines; the first check missed 53 quotes the page does say;
+  with the marks out it found 183 and missed 5, all on the page in some form (one is `Log` for `Logged`,
+  `handover-2026-09-28`). Hand-graded 462 of 623 lines: 222 in `p-plain-hand-grades.json` (278 rows less 56 framing
+  lines), 213 in C1, 27 in C2 (the 5 misses, 3 found quotes that carry half of a two-part line, 19 sampled). On the 10
+  half-answered questions, in all 3 runs, the model answered the part on the page and said the pages don't give the rest.
+- Harness (not episode code): `measure/ep13.py` records every call; `measure/ep13_questions.py`, `ep13_grade.py`,
+  `ep13_p_grades.py`, `ep13_c_grades.py`, `ep13_tables.py` build and grade. The vendor docs read on 2026-10-12 are in
+  `runs/ep13/m0/`.
+- Spend: $1.56 for the runs (`runs/ep13/spend.json`, 170 billed calls). The takes made no call.

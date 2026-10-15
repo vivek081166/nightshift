@@ -1,0 +1,1131 @@
+{
+ "what": "EP14 questions: answers that are not on any page. Truth from deploys/deploys.csv by plain Python (measure/ep14_questions.py), never SQL. Frozen before the first model call.",
+ "today_line": "Today is Monday 2026-10-12 (JST). Last week means Monday 2026-10-05 to Sunday 2026-10-11.",
+ "csv_md5": "0caeaf719bef176cf04a5b2852baf55f",
+ "questions": [
+  {
+   "id": "q01",
+   "kind": "week",
+   "question": "how many deploys went out last week?",
+   "truth": 9,
+   "answer_type": "count",
+   "definition": "last week = Mon 2026-10-05 .. Sun 2026-10-11 JST; every row that started in the span counts: a rolled-back deploy still went out, a failed one still started",
+   "counted": [
+    "d-6580 notifier 2026-10-06T13:30",
+    "d-6971 web 2026-10-06T14:10",
+    "r-203 api 2026-10-06T14:45",
+    "d-7414 web 2026-10-06T15:40",
+    "r-204 api 2026-10-08T14:20",
+    "r-210 payments 2026-10-08T15:00",
+    "d-1293 notifier 2026-10-08T15:40",
+    "r-205 api 2026-10-08T16:10",
+    "d-4028 web 2026-10-08T16:30"
+   ],
+   "also": {
+    "without_rolled_back_or_failed": 9,
+    "distinct_ids": 9
+   },
+   "holding_pages": [
+    {
+     "page": "library/handover-2026-10-05.md",
+     "lines": [
+      79
+     ]
+    }
+   ],
+   "keyword_top5": [
+    "handbook-18",
+    "handover-2026-08-03",
+    "handover-2026-01-26",
+    "deploying-with-shipyard",
+    "postmortem-api-index-migration"
+   ],
+   "holding_page_ids": [
+    "handover-2026-10-05"
+   ],
+   "holding_page_in_top5": []
+  },
+  {
+   "id": "q02",
+   "kind": "week",
+   "question": "how many deploys went out between 2026-07-27 and 2026-08-02?",
+   "truth": 7,
+   "answer_type": "count",
+   "definition": "both days included; every row that started in the span counts: a rolled-back deploy still went out, a failed one still started",
+   "counted": [
+    "d-3154 web 2026-07-28T15:35",
+    "d-8478 notifier 2026-07-28T16:20",
+    "d-1998 payments 2026-07-28T16:45",
+    "d-7037 api 2026-07-30T13:40",
+    "d-9600 web 2026-07-30T14:10",
+    "d-9328 api 2026-07-30T14:50",
+    "d-3908 web 2026-07-30T16:30"
+   ],
+   "also": {
+    "without_rolled_back_or_failed": 7,
+    "distinct_ids": 7
+   },
+   "holding_pages": [
+    {
+     "page": "library/handover-2026-08-03.md",
+     "lines": [
+      17
+     ]
+    },
+    {
+     "page": "library/postmortem-notifier-template-crash.md",
+     "lines": [
+      134
+     ]
+    }
+   ],
+   "keyword_top5": [
+    "handover-2026-07-27",
+    "postmortem-api-rollback-queue",
+    "postmortem-api-index-migration",
+    "handover-2026-08-03",
+    "postmortem-notifier-sms-codes-japan"
+   ],
+   "holding_page_ids": [
+    "handover-2026-08-03",
+    "postmortem-notifier-template-crash"
+   ],
+   "holding_page_in_top5": [
+    "handover-2026-08-03"
+   ]
+  },
+  {
+   "id": "q03",
+   "kind": "week",
+   "question": "how many api deploys last week?",
+   "truth": 3,
+   "answer_type": "count",
+   "definition": "last week as above; api rows only; every row that started in the span counts: a rolled-back deploy still went out, a failed one still started",
+   "counted": [
+    "r-203 api 2026-10-06T14:45",
+    "r-204 api 2026-10-08T14:20",
+    "r-205 api 2026-10-08T16:10"
+   ],
+   "also": {
+    "without_rolled_back_or_failed": 3,
+    "distinct_ids": 3
+   },
+   "holding_pages": [],
+   "keyword_top5": [
+    "handbook-18",
+    "handover-2026-08-03",
+    "handover-2026-01-26",
+    "handbook-7",
+    "provider-sendgrid-quota"
+   ],
+   "holding_page_ids": [],
+   "holding_page_in_top5": []
+  },
+  {
+   "id": "q04",
+   "kind": "week",
+   "question": "how many deploys did we do the week of feb 9 2026?",
+   "truth": 4,
+   "answer_type": "count",
+   "definition": "the week of = Mon 2026-02-09 .. Sun 2026-02-15; every row that started in the span counts: a rolled-back deploy still went out, a failed one still started",
+   "counted": [
+    "d-8677 api 2026-02-10T13:55",
+    "d-9493 payments 2026-02-10T16:20",
+    "d-3434 web 2026-02-12T16:15",
+    "d-3757 notifier 2026-02-12T16:50"
+   ],
+   "also": {
+    "without_rolled_back_or_failed": 4,
+    "distinct_ids": 4
+   },
+   "holding_pages": [
+    {
+     "page": "library/handover-2026-02-16.md",
+     "lines": [
+      16
+     ]
+    }
+   ],
+   "keyword_top5": [
+    "handbook-9",
+    "handbook-7",
+    "handover-2026-01-26",
+    "handover-2026-07-06",
+    "team-dashboards-guide"
+   ],
+   "holding_page_ids": [
+    "handover-2026-02-16"
+   ],
+   "holding_page_in_top5": []
+  },
+  {
+   "id": "q05",
+   "kind": "week",
+   "question": "how many web deploys the week of 2025-07-21?",
+   "truth": 2,
+   "answer_type": "count",
+   "definition": "Mon 2025-07-21 .. Sun 2025-07-27; web rows only; every row that started in the span counts: a rolled-back deploy still went out, a failed one still started",
+   "counted": [
+    "d-0891 web 2025-07-22T14:10",
+    "d-1495 web 2025-07-24T16:00"
+   ],
+   "also": {
+    "without_rolled_back_or_failed": 2,
+    "distinct_ids": 2
+   },
+   "holding_pages": [
+    {
+     "page": "library/postmortem-web-cdn-purge-stuck.md",
+     "lines": [
+      9,
+      26
+     ]
+    }
+   ],
+   "keyword_top5": [
+    "handover-2025-11-10",
+    "postmortem-web-cdn-purge-stuck",
+    "postmortem-api-index-migration",
+    "postmortem-payments-pool-timeout",
+    "handover-2025-06-30"
+   ],
+   "holding_page_ids": [
+    "postmortem-web-cdn-purge-stuck"
+   ],
+   "holding_page_in_top5": [
+    "postmortem-web-cdn-purge-stuck"
+   ]
+  },
+  {
+   "id": "q06",
+   "kind": "span",
+   "question": "how many deploys went out in september?",
+   "truth": 30,
+   "answer_type": "count",
+   "definition": "september = 2026-09-01 .. 2026-09-30 (the last one before today); every row that started in the span counts: a rolled-back deploy still went out, a failed one still started",
+   "counted": [
+    "d-6273 api 2026-09-01T14:05",
+    "d-7962 web 2026-09-01T15:50",
+    "d-7582 notifier 2026-09-01T16:35",
+    "d-3912 web 2026-09-03T15:05",
+    "d-1331 notifier 2026-09-03T15:35",
+    "d-6775 payments 2026-09-03T16:00",
+    "d-2327 web 2026-09-03T16:45",
+    "d-6820 web 2026-09-08T13:50",
+    "d-7383 api 2026-09-08T15:40",
+    "d-4894 notifier 2026-09-08T16:15",
+    "d-5006 web 2026-09-10T13:45",
+    "d-5564 notifier 2026-09-10T14:35",
+    "d-4021 api 2026-09-10T14:55",
+    "d-7896 web 2026-09-10T16:40",
+    "d-4492 payments 2026-09-15T13:50",
+    "d-3012 web 2026-09-15T15:15",
+    "d-2095 notifier 2026-09-15T15:55",
+    "d-8860 web 2026-09-15T16:40",
+    "d-3581 api 2026-09-17T13:45",
+    "d-9645 api 2026-09-17T16:10",
+    "d-0382 notifier 2026-09-22T14:15",
+    "d-7433 web 2026-09-22T16:25",
+    "d-6845 api 2026-09-24T14:20",
+    "d-9423 web 2026-09-24T15:10",
+    "d-2405 payments 2026-09-24T16:55",
+    "r-200 api 2026-09-28T10:00",
+    "r-200 payments 2026-09-28T10:00",
+    "d-3840 web 2026-09-29T13:45",
+    "r-201 api 2026-09-29T14:30",
+    "r-208 payments 2026-09-29T15:10"
+   ],
+   "also": {
+    "without_rolled_back_or_failed": 30,
+    "distinct_ids": 30
+   },
+   "holding_pages": [
+    {
+     "page": "library/deploying-with-shipyard.md",
+     "lines": [
+      30
+     ]
+    },
+    {
+     "page": "library/handover-2026-10-05.md",
+     "lines": [
+      32
+     ]
+    }
+   ],
+   "keyword_top5": [
+    "deploying-with-shipyard",
+    "handbook-18",
+    "handover-2026-08-03",
+    "postmortem-api-rollback-queue",
+    "handover-2026-01-26"
+   ],
+   "holding_page_ids": [
+    "deploying-with-shipyard",
+    "handover-2026-10-05"
+   ],
+   "holding_page_in_top5": [
+    "deploying-with-shipyard"
+   ]
+  },
+  {
+   "id": "q07",
+   "kind": "span",
+   "question": "how many payments deploys in august?",
+   "truth": 2,
+   "answer_type": "count",
+   "definition": "august = 2026-08; payments rows only; every row that started in the span counts: a rolled-back deploy still went out, a failed one still started",
+   "counted": [
+    "d-7280 payments 2026-08-13T15:50",
+    "d-7738 payments 2026-08-25T16:25"
+   ],
+   "also": {
+    "without_rolled_back_or_failed": 2,
+    "distinct_ids": 2
+   },
+   "holding_pages": [],
+   "keyword_top5": [
+    "handbook-13",
+    "handbook-18",
+    "handbook-7",
+    "provider-sendgrid-quota",
+    "handover-2026-09-21"
+   ],
+   "holding_page_ids": [],
+   "holding_page_in_top5": []
+  },
+  {
+   "id": "q08",
+   "kind": "span",
+   "question": "how many deploys did we do in Q3 2026?",
+   "truth": 76,
+   "answer_type": "count",
+   "definition": "Q3 = 2026-07-01 .. 2026-09-30; every row that started in the span counts: a rolled-back deploy still went out, a failed one still started",
+   "counted": [
+    "d-9034 api 2026-07-02T15:35",
+    "d-8200 api 2026-07-07T14:40",
+    "d-8662 payments 2026-07-07T15:35",
+    "d-1059 web 2026-07-07T16:25",
+    "d-7879 api 2026-07-09T16:10",
+    "d-0490 web 2026-07-09T17:00",
+    "d-0603 payments 2026-07-14T14:35",
+    "d-1910 api 2026-07-14T15:00",
+    "d-2414 web 2026-07-14T16:10",
+    "d-0635 api 2026-07-16T14:00",
+    "d-5168 web 2026-07-16T14:30",
+    "d-9641 notifier 2026-07-16T16:10",
+    "d-4691 web 2026-07-21T14:25",
+    "d-1332 api 2026-07-23T16:20",
+    "d-8912 notifier 2026-07-24T10:40",
+    "d-3154 web 2026-07-28T15:35",
+    "d-8478 notifier 2026-07-28T16:20",
+    "d-1998 payments 2026-07-28T16:45",
+    "d-7037 api 2026-07-30T13:40",
+    "d-9600 web 2026-07-30T14:10",
+    "d-9328 api 2026-07-30T14:50",
+    "d-3908 web 2026-07-30T16:30",
+    "d-7919 web 2026-08-04T14:35",
+    "d-5546 api 2026-08-04T15:30",
+    "d-8810 notifier 2026-08-06T16:00",
+    "d-8872 api 2026-08-06T16:15",
+    "d-4921 web 2026-08-06T16:50",
+    "d-0506 notifier 2026-08-11T16:10",
+    "d-5838 web 2026-08-13T14:35",
+    "d-6314 api 2026-08-13T15:05",
+    "d-7280 payments 2026-08-13T15:50",
+    "d-7327 web 2026-08-18T13:55",
+    "d-2348 notifier 2026-08-18T14:20",
+    "d-5117 api 2026-08-18T15:00",
+    "d-8819 notifier 2026-08-18T16:05",
+    "d-5120 api 2026-08-20T14:02",
+    "d-5121 web 2026-08-20T14:05",
+    "d-0357 api 2026-08-20T15:50",
+    "d-4548 web 2026-08-25T15:00",
+    "d-4099 notifier 2026-08-25T15:25",
+    "d-8153 api 2026-08-25T15:55",
+    "d-7738 payments 2026-08-25T16:25",
+    "d-1009 api 2026-08-25T17:00",
+    "d-1705 web 2026-08-27T13:55",
+    "d-7584 api 2026-08-27T14:25",
+    "d-0956 web 2026-08-27T16:45",
+    "d-6273 api 2026-09-01T14:05",
+    "d-7962 web 2026-09-01T15:50",
+    "d-7582 notifier 2026-09-01T16:35",
+    "d-3912 web 2026-09-03T15:05",
+    "d-1331 notifier 2026-09-03T15:35",
+    "d-6775 payments 2026-09-03T16:00",
+    "d-2327 web 2026-09-03T16:45",
+    "d-6820 web 2026-09-08T13:50",
+    "d-7383 api 2026-09-08T15:40",
+    "d-4894 notifier 2026-09-08T16:15",
+    "d-5006 web 2026-09-10T13:45",
+    "d-5564 notifier 2026-09-10T14:35",
+    "d-4021 api 2026-09-10T14:55",
+    "d-7896 web 2026-09-10T16:40",
+    "d-4492 payments 2026-09-15T13:50",
+    "d-3012 web 2026-09-15T15:15",
+    "d-2095 notifier 2026-09-15T15:55",
+    "d-8860 web 2026-09-15T16:40",
+    "d-3581 api 2026-09-17T13:45",
+    "d-9645 api 2026-09-17T16:10",
+    "d-0382 notifier 2026-09-22T14:15",
+    "d-7433 web 2026-09-22T16:25",
+    "d-6845 api 2026-09-24T14:20",
+    "d-9423 web 2026-09-24T15:10",
+    "d-2405 payments 2026-09-24T16:55",
+    "r-200 api 2026-09-28T10:00",
+    "r-200 payments 2026-09-28T10:00",
+    "d-3840 web 2026-09-29T13:45",
+    "r-201 api 2026-09-29T14:30",
+    "r-208 payments 2026-09-29T15:10"
+   ],
+   "also": {
+    "without_rolled_back_or_failed": 74,
+    "distinct_ids": 76
+   },
+   "holding_pages": [
+    {
+     "page": "library/deploying-with-shipyard.md",
+     "lines": [
+      30
+     ]
+    },
+    {
+     "page": "library/handover-2026-07-20.md",
+     "lines": [
+      15,
+      31
+     ]
+    },
+    {
+     "page": "library/handover-2026-08-03.md",
+     "lines": [
+      17
+     ]
+    },
+    {
+     "page": "library/handover-2026-08-24.md",
+     "lines": [
+      15
+     ]
+    },
+    {
+     "page": "library/handover-2026-10-05.md",
+     "lines": [
+      32
+     ]
+    },
+    {
+     "page": "library/postmortem-api-rollback-queue.md",
+     "lines": [
+      25,
+      27,
+      30,
+      35
+     ]
+    },
+    {
+     "page": "library/postmortem-notifier-template-crash.md",
+     "lines": [
+      49,
+      134
+     ]
+    }
+   ],
+   "keyword_top5": [
+    "handbook-7",
+    "deploying-with-shipyard",
+    "handover-2026-01-26",
+    "handbook-9",
+    "handbook-3"
+   ],
+   "holding_page_ids": [
+    "deploying-with-shipyard",
+    "handover-2026-07-20",
+    "handover-2026-08-03",
+    "handover-2026-08-24",
+    "handover-2026-10-05",
+    "postmortem-api-rollback-queue",
+    "postmortem-notifier-template-crash"
+   ],
+   "holding_page_in_top5": [
+    "deploying-with-shipyard"
+   ]
+  },
+  {
+   "id": "q09",
+   "kind": "span",
+   "question": "how many api deploys in 2025?",
+   "truth": 98,
+   "answer_type": "count",
+   "definition": "calendar 2025; api rows only; every row that started in the span counts: a rolled-back deploy still went out, a failed one still started",
+   "counted": [
+    "d-0242 api 2025-01-07T14:10",
+    "d-5641 api 2025-01-07T16:45",
+    "d-3058 api 2025-01-14T13:45",
+    "d-4857 api 2025-01-16T13:50",
+    "d-7711 api 2025-01-21T16:20",
+    "d-0556 api 2025-01-23T13:55",
+    "d-4847 api 2025-01-28T16:20",
+    "d-0688 api 2025-02-04T15:30",
+    "d-4769 api 2025-02-06T16:50",
+    "d-2528 api 2025-02-11T14:55",
+    "d-3715 api 2025-02-13T16:10",
+    "d-5486 api 2025-02-18T14:15",
+    "d-1577 api 2025-02-25T15:30",
+    "d-2004 api 2025-02-27T14:55",
+    "d-5846 api 2025-03-04T13:55",
+    "d-5453 api 2025-03-04T15:25",
+    "d-4481 api 2025-03-06T14:50",
+    "d-1716 api 2025-03-11T14:00",
+    "d-3836 api 2025-03-11T16:25",
+    "d-2268 api 2025-03-13T16:05",
+    "d-3035 api 2025-03-20T15:50",
+    "d-4750 api 2025-03-20T16:55",
+    "d-9138 api 2025-03-25T15:30",
+    "d-3189 api 2025-03-27T15:25",
+    "d-9209 api 2025-03-27T17:00",
+    "d-0085 api 2025-04-01T13:50",
+    "d-3482 api 2025-04-01T15:30",
+    "d-8190 api 2025-04-03T16:25",
+    "d-6517 api 2025-04-08T16:25",
+    "d-7637 api 2025-04-15T14:15",
+    "d-7728 api 2025-04-15T16:25",
+    "d-5043 api 2025-04-22T16:30",
+    "d-4486 api 2025-04-24T14:15",
+    "d-8737 api 2025-04-29T13:50",
+    "d-5710 api 2025-04-29T15:55",
+    "d-8980 api 2025-05-08T13:40",
+    "d-0308 api 2025-05-13T13:55",
+    "d-3300 api 2025-05-15T16:15",
+    "d-2171 api 2025-05-20T14:00",
+    "d-3451 api 2025-05-22T16:25",
+    "d-0586 api 2025-05-27T15:40",
+    "d-5709 api 2025-05-29T16:45",
+    "d-5666 api 2025-06-03T16:30",
+    "d-4876 api 2025-06-05T13:55",
+    "d-0815 api 2025-06-10T13:40",
+    "d-4888 api 2025-06-10T17:00",
+    "d-0316 api 2025-06-17T14:25",
+    "d-9175 api 2025-06-24T15:00",
+    "d-6409 api 2025-07-01T15:00",
+    "d-6646 api 2025-07-03T15:05",
+    "d-6742 api 2025-07-10T13:30",
+    "d-0602 api 2025-07-15T13:55",
+    "d-4829 api 2025-07-22T15:05",
+    "d-2791 api 2025-07-22T16:45",
+    "d-3769 api 2025-07-31T14:10",
+    "d-5919 api 2025-07-31T16:50",
+    "d-8854 api 2025-08-05T16:45",
+    "d-5713 api 2025-08-12T16:25",
+    "d-9830 api 2025-08-14T14:40",
+    "d-0961 api 2025-08-21T13:35",
+    "d-4605 api 2025-08-21T14:40",
+    "d-1438 api 2025-08-21T16:45",
+    "d-6352 api 2025-08-26T14:40",
+    "d-9422 api 2025-08-28T14:10",
+    "d-1628 api 2025-09-02T14:05",
+    "d-9599 api 2025-09-02T17:00",
+    "d-8633 api 2025-09-04T16:05",
+    "d-8739 api 2025-09-11T14:15",
+    "d-9316 api 2025-09-11T16:25",
+    "d-4366 api 2025-09-16T14:25",
+    "d-6577 api 2025-09-18T14:00",
+    "d-1563 api 2025-09-25T13:50",
+    "d-0220 api 2025-09-25T15:10",
+    "d-7559 api 2025-09-25T16:40",
+    "d-8453 api 2025-09-30T14:55",
+    "d-7883 api 2025-10-09T16:55",
+    "d-7331 api 2025-10-16T14:35",
+    "d-0439 api 2025-10-21T14:50",
+    "d-1130 api 2025-10-23T13:45",
+    "d-2860 api 2025-10-28T15:45",
+    "d-1779 api 2025-11-04T14:10",
+    "d-0997 api 2025-11-04T16:00",
+    "d-5665 api 2025-11-06T13:40",
+    "d-9527 api 2025-11-11T15:00",
+    "d-0454 api 2025-11-11T16:30",
+    "d-6354 api 2025-11-13T16:40",
+    "d-0402 api 2025-11-20T13:40",
+    "d-5802 api 2025-11-20T16:15",
+    "d-5290 api 2025-11-27T14:30",
+    "d-5258 api 2025-11-27T16:55",
+    "d-5373 api 2025-12-02T14:30",
+    "d-5688 api 2025-12-09T13:35",
+    "d-4812 api 2025-12-09T23:30",
+    "d-1511 api 2025-12-16T13:50",
+    "d-5104 api 2025-12-18T16:35",
+    "d-3401 api 2025-12-23T15:20",
+    "d-4232 api 2025-12-23T17:00",
+    "d-2965 api 2025-12-25T15:45"
+   ],
+   "also": {
+    "without_rolled_back_or_failed": 96,
+    "distinct_ids": 98
+   },
+   "holding_pages": [
+    {
+     "page": "library/handover-2025-01-06.md",
+     "lines": [
+      92
+     ]
+    },
+    {
+     "page": "library/handover-2025-06-30.md",
+     "lines": [
+      73,
+      133
+     ]
+    },
+    {
+     "page": "library/handover-2025-10-13.md",
+     "lines": [
+      15
+     ]
+    },
+    {
+     "page": "library/handover-2025-11-10.md",
+     "lines": [
+      16
+     ]
+    },
+    {
+     "page": "library/handover-2025-11-24.md",
+     "lines": [
+      63,
+      85
+     ]
+    },
+    {
+     "page": "library/postmortem-api-audit-disk.md",
+     "lines": [
+      57
+     ]
+    }
+   ],
+   "keyword_top5": [
+    "provider-sendgrid-quota",
+    "handbook-18",
+    "postmortem-web-cdn-purge-stuck",
+    "handover-2025-11-10",
+    "handover-2025-01-06"
+   ],
+   "holding_page_ids": [
+    "handover-2025-01-06",
+    "handover-2025-06-30",
+    "handover-2025-10-13",
+    "handover-2025-11-10",
+    "handover-2025-11-24",
+    "postmortem-api-audit-disk"
+   ],
+   "holding_page_in_top5": [
+    "handover-2025-01-06",
+    "handover-2025-11-10"
+   ]
+  },
+  {
+   "id": "q10",
+   "kind": "span",
+   "question": "how many web deploys since api and payments moved to shipyard?",
+   "truth": 5,
+   "answer_type": "count",
+   "definition": "the move was 2026-09-28 (that day included) .. today; web rows only; every row that started in the span counts: a rolled-back deploy still went out, a failed one still started",
+   "counted": [
+    "d-3840 web 2026-09-29T13:45",
+    "d-9822 web 2026-10-01T16:55",
+    "d-6971 web 2026-10-06T14:10",
+    "d-7414 web 2026-10-06T15:40",
+    "d-4028 web 2026-10-08T16:30"
+   ],
+   "also": {
+    "without_rolled_back_or_failed": 5,
+    "distinct_ids": 5
+   },
+   "holding_pages": [
+    {
+     "page": "library/handover-2026-10-05.md",
+     "lines": [
+      79
+     ]
+    }
+   ],
+   "keyword_top5": [
+    "deploying-with-shipyard",
+    "handbook-5",
+    "handover-2026-09-28",
+    "postmortem-api-rollback-queue",
+    "handover-2026-08-03"
+   ],
+   "holding_page_ids": [
+    "handover-2026-10-05"
+   ],
+   "holding_page_in_top5": []
+  },
+  {
+   "id": "q11",
+   "kind": "span",
+   "question": "how many deploys in the last 30 days?",
+   "truth": 28,
+   "answer_type": "count",
+   "definition": "the 30 days before today: 2026-09-12 .. 2026-10-11; every row that started in the span counts: a rolled-back deploy still went out, a failed one still started",
+   "counted": [
+    "d-4492 payments 2026-09-15T13:50",
+    "d-3012 web 2026-09-15T15:15",
+    "d-2095 notifier 2026-09-15T15:55",
+    "d-8860 web 2026-09-15T16:40",
+    "d-3581 api 2026-09-17T13:45",
+    "d-9645 api 2026-09-17T16:10",
+    "d-0382 notifier 2026-09-22T14:15",
+    "d-7433 web 2026-09-22T16:25",
+    "d-6845 api 2026-09-24T14:20",
+    "d-9423 web 2026-09-24T15:10",
+    "d-2405 payments 2026-09-24T16:55",
+    "r-200 api 2026-09-28T10:00",
+    "r-200 payments 2026-09-28T10:00",
+    "d-3840 web 2026-09-29T13:45",
+    "r-201 api 2026-09-29T14:30",
+    "r-208 payments 2026-09-29T15:10",
+    "r-202 api 2026-10-01T14:40",
+    "d-9822 web 2026-10-01T16:55",
+    "r-209 payments 2026-10-02T13:58",
+    "d-6580 notifier 2026-10-06T13:30",
+    "d-6971 web 2026-10-06T14:10",
+    "r-203 api 2026-10-06T14:45",
+    "d-7414 web 2026-10-06T15:40",
+    "r-204 api 2026-10-08T14:20",
+    "r-210 payments 2026-10-08T15:00",
+    "d-1293 notifier 2026-10-08T15:40",
+    "r-205 api 2026-10-08T16:10",
+    "d-4028 web 2026-10-08T16:30"
+   ],
+   "also": {
+    "without_rolled_back_or_failed": 27,
+    "distinct_ids": 28
+   },
+   "holding_pages": [
+    {
+     "page": "library/deploying-with-shipyard.md",
+     "lines": [
+      30
+     ]
+    },
+    {
+     "page": "library/handover-2026-10-05.md",
+     "lines": [
+      24,
+      32,
+      79
+     ]
+    }
+   ],
+   "keyword_top5": [
+    "handbook-7",
+    "handbook-18",
+    "provider-sendgrid-quota",
+    "handbook-3",
+    "handover-2026-08-03"
+   ],
+   "holding_page_ids": [
+    "deploying-with-shipyard",
+    "handover-2026-10-05"
+   ],
+   "holding_page_in_top5": []
+  },
+  {
+   "id": "q12",
+   "kind": "filter",
+   "question": "how many deploys got rolled back since the start of 2025?",
+   "truth": 7,
+   "answer_type": "count",
+   "definition": "rows with state 'rolled back' that started 2025-01-01 or later",
+   "counted": [
+    "d-4486 api 2025-04-24T14:15",
+    "d-8564 notifier 2025-06-03T14:30",
+    "d-8990 web 2025-06-17T15:25",
+    "d-6195 web 2025-07-10T16:15",
+    "d-4230 payments 2025-11-18T02:14",
+    "d-5120 api 2026-08-20T14:02",
+    "r-209 payments 2026-10-02T13:58"
+   ],
+   "also": {
+    "without_rolled_back_or_failed": 0,
+    "distinct_ids": 7
+   },
+   "holding_pages": [
+    {
+     "page": "library/handover-2026-10-05.md",
+     "lines": [
+      24,
+      32
+     ]
+    },
+    {
+     "page": "library/postmortem-api-rollback-queue.md",
+     "lines": [
+      25,
+      35
+     ]
+    },
+    {
+     "page": "library/postmortem-payments-pool-timeout.md",
+     "lines": [
+      24,
+      33
+     ]
+    }
+   ],
+   "keyword_top5": [
+    "postmortem-payments-pool-timeout",
+    "deploying-with-shipyard",
+    "provider-sendgrid-quota",
+    "handover-2025-11-10",
+    "postmortem-web-firewall-challenge"
+   ],
+   "holding_page_ids": [
+    "handover-2026-10-05",
+    "postmortem-api-rollback-queue",
+    "postmortem-payments-pool-timeout"
+   ],
+   "holding_page_in_top5": [
+    "postmortem-payments-pool-timeout"
+   ]
+  },
+  {
+   "id": "q13",
+   "kind": "filter",
+   "question": "how many deploys failed in 2024?",
+   "truth": 3,
+   "answer_type": "count",
+   "definition": "rows with state 'failed' that started in 2024",
+   "counted": [
+    "d-0374 api 2024-09-17T16:20",
+    "d-4078 api 2024-09-24T14:10",
+    "d-2767 api 2024-12-17T15:55"
+   ],
+   "also": {
+    "without_rolled_back_or_failed": 0,
+    "distinct_ids": 3
+   },
+   "holding_pages": [],
+   "keyword_top5": [
+    "postmortem-api-index-migration",
+    "postmortem-notifier-sms-codes-japan",
+    "team-alert-tuning",
+    "postmortem-api-search-index-stale",
+    "notifier-runbook-2024"
+   ],
+   "holding_page_ids": [],
+   "holding_page_in_top5": []
+  },
+  {
+   "id": "q14",
+   "kind": "filter",
+   "question": "how many deploys went out between 22:00 and 07:00 JST since 2025?",
+   "truth": 3,
+   "answer_type": "count",
+   "definition": "started at 22:00 or later or before 07:00 JST, 2025-01-01 or later; P1 fixes and the rolled-back one count",
+   "counted": [
+    "d-4425 payments 2025-08-14T23:05",
+    "d-4230 payments 2025-11-18T02:14",
+    "d-4812 api 2025-12-09T23:30"
+   ],
+   "also": {
+    "without_rolled_back_or_failed": 2,
+    "distinct_ids": 3
+   },
+   "holding_pages": [
+    {
+     "page": "library/postmortem-api-audit-disk.md",
+     "lines": [
+      57
+     ]
+    },
+    {
+     "page": "library/postmortem-payments-pool-timeout.md",
+     "lines": [
+      24,
+      33
+     ]
+    }
+   ],
+   "keyword_top5": [
+    "postmortem-payments-pool-timeout",
+    "postmortem-web-firewall-challenge",
+    "provider-sendgrid-quota",
+    "handover-2026-08-03",
+    "deploying-with-shipyard"
+   ],
+   "holding_page_ids": [
+    "postmortem-api-audit-disk",
+    "postmortem-payments-pool-timeout"
+   ],
+   "holding_page_in_top5": [
+    "postmortem-payments-pool-timeout"
+   ]
+  },
+  {
+   "id": "q15",
+   "kind": "filter",
+   "question": "how many deploys did Daniel do in 2026?",
+   "truth": 28,
+   "answer_type": "count",
+   "definition": "rows with author Daniel that started in 2026; every row that started in the span counts: a rolled-back deploy still went out, a failed one still started",
+   "counted": [
+    "d-6355 api 2026-01-29T15:00",
+    "d-4111 api 2026-02-03T14:50",
+    "d-1318 api 2026-02-03T15:50",
+    "d-7694 api 2026-02-17T16:30",
+    "d-3837 api 2026-02-24T15:10",
+    "d-1748 api 2026-02-26T16:00",
+    "d-0444 api 2026-03-10T15:00",
+    "d-5503 api 2026-03-17T14:10",
+    "d-8910 api 2026-03-24T14:20",
+    "d-9428 api 2026-04-02T13:55",
+    "d-8305 api 2026-04-07T15:30",
+    "d-6809 api 2026-04-14T14:40",
+    "d-9815 api 2026-04-30T16:35",
+    "d-1255 api 2026-05-05T16:20",
+    "d-3873 api 2026-05-14T16:35",
+    "d-6725 api 2026-05-26T16:00",
+    "d-9560 api 2026-05-28T16:40",
+    "d-6616 api 2026-06-09T14:55",
+    "d-5297 api 2026-06-16T14:45",
+    "d-6063 api 2026-06-25T16:55",
+    "d-9034 api 2026-07-02T15:35",
+    "d-5546 api 2026-08-04T15:30",
+    "d-5120 api 2026-08-20T14:02",
+    "d-7584 api 2026-08-27T14:25",
+    "d-4021 api 2026-09-10T14:55",
+    "d-3581 api 2026-09-17T13:45",
+    "r-201 api 2026-09-29T14:30",
+    "r-203 api 2026-10-06T14:45"
+   ],
+   "also": {
+    "without_rolled_back_or_failed": 27,
+    "distinct_ids": 28
+   },
+   "holding_pages": [
+    {
+     "page": "library/handover-2026-02-02.md",
+     "lines": [
+      28
+     ]
+    },
+    {
+     "page": "library/handover-2026-04-20.md",
+     "lines": [
+      15
+     ]
+    },
+    {
+     "page": "library/postmortem-api-rollback-queue.md",
+     "lines": [
+      25,
+      35
+     ]
+    }
+   ],
+   "keyword_top5": [
+    "handover-2026-08-03",
+    "handbook-7",
+    "handover-2026-02-16",
+    "team-alert-tuning",
+    "howto-api-replica-lag"
+   ],
+   "holding_page_ids": [
+    "handover-2026-02-02",
+    "handover-2026-04-20",
+    "postmortem-api-rollback-queue"
+   ],
+   "holding_page_in_top5": []
+  },
+  {
+   "id": "q16",
+   "kind": "filter",
+   "question": "how many payments releases has shipyard done?",
+   "truth": 4,
+   "answer_type": "count",
+   "definition": "payments rows with an r- id (Shipyard's release list): r-200, the first one cut on the day of the move, and the rolled-back r-209 both count",
+   "counted": [
+    "r-200 payments 2026-09-28T10:00",
+    "r-208 payments 2026-09-29T15:10",
+    "r-209 payments 2026-10-02T13:58",
+    "r-210 payments 2026-10-08T15:00"
+   ],
+   "also": {
+    "without_rolled_back_or_failed": 3,
+    "distinct_ids": 4
+   },
+   "holding_pages": [
+    {
+     "page": "library/deploying-with-shipyard.md",
+     "lines": [
+      30
+     ]
+    },
+    {
+     "page": "library/handover-2026-10-05.md",
+     "lines": [
+      24,
+      32
+     ]
+    }
+   ],
+   "keyword_top5": [
+    "deploying-with-shipyard",
+    "handbook-5",
+    "handbook-4",
+    "postmortem-api-rollback-queue",
+    "handbook-7"
+   ],
+   "holding_page_ids": [
+    "deploying-with-shipyard",
+    "handover-2026-10-05"
+   ],
+   "holding_page_in_top5": [
+    "deploying-with-shipyard"
+   ]
+  },
+  {
+   "id": "q17",
+   "kind": "latest",
+   "question": "what was the last payments deploy before the 2025-11-18 checkout timeouts?",
+   "answer_type": "id or version",
+   "truth": {
+    "id": "d-4230",
+    "started": "2025-11-18T02:14",
+    "note": "v2.31 pool 50 to 20; rolled back to v2.30 at 02:58",
+    "state": "rolled back"
+   },
+   "definition": "the newest payments row that started before the first customer ticket at 02:21 JST on 2025-11-18 (the page calls it v2.31)",
+   "counted": [
+    "d-4230 payments 2025-11-18T02:14"
+   ],
+   "holding_pages": [
+    {
+     "page": "library/postmortem-payments-pool-timeout.md",
+     "lines": [
+      24,
+      33
+     ],
+     "part": "| 02:58 | Rollback to v2.30 started. | Mei |"
+    }
+   ],
+   "keyword_top5": [
+    "handover-2025-11-24",
+    "postmortem-payments-pool-timeout",
+    "handover-2025-06-30",
+    "team-game-days",
+    "postmortem-web-admin-session"
+   ],
+   "holding_page_ids": [
+    "postmortem-payments-pool-timeout"
+   ],
+   "holding_page_in_top5": [
+    "postmortem-payments-pool-timeout"
+   ]
+  },
+  {
+   "id": "q18",
+   "kind": "latest",
+   "question": "when did api last deploy?",
+   "answer_type": "date",
+   "truth": {
+    "id": "r-205",
+    "started": "2026-10-08T16:10",
+    "note": "calendar endpoint paging",
+    "state": "live"
+   },
+   "definition": "the newest api row before today",
+   "counted": [
+    "r-205 api 2026-10-08T16:10"
+   ],
+   "holding_pages": [],
+   "keyword_top5": [
+    "payments-rollback-runbook",
+    "team-postmortem-review",
+    "handbook-1",
+    "team-dashboards-guide",
+    "postmortem-api-index-migration"
+   ],
+   "holding_page_ids": [],
+   "holding_page_in_top5": []
+  },
+  {
+   "id": "q19",
+   "kind": "latest",
+   "question": "what was the last notifier deploy before the queue stalled on 2026-07-28?",
+   "answer_type": "id",
+   "truth": {
+    "id": "d-8912",
+    "started": "2026-07-24T10:40",
+    "note": "queue worker tuning",
+    "state": "superseded"
+   },
+   "definition": "the newest notifier row that started before the first worker crash at 14:12 JST",
+   "counted": [
+    "d-8912 notifier 2026-07-24T10:40"
+   ],
+   "holding_pages": [
+    {
+     "page": "library/postmortem-notifier-template-crash.md",
+     "lines": [
+      49
+     ],
+     "part": "last deploy age 4 days (`d-8912`)"
+    }
+   ],
+   "keyword_top5": [
+    "postmortem-notifier-template-crash",
+    "handover-2026-08-03",
+    "postmortem-api-rollback-queue",
+    "deploying-with-shipyard",
+    "handover-2026-07-06"
+   ],
+   "holding_page_ids": [
+    "postmortem-notifier-template-crash"
+   ],
+   "holding_page_in_top5": [
+    "postmortem-notifier-template-crash"
+   ]
+  },
+  {
+   "id": "q20",
+   "kind": "latest",
+   "question": "when did payments last deploy before the stripe webhook incident on 2026-03-03?",
+   "answer_type": "date",
+   "truth": {
+    "id": "d-9961",
+    "started": "2026-02-24T16:45",
+    "note": "dependency bumps",
+    "state": "superseded"
+   },
+   "definition": "the newest payments row that started before the webhooks began failing at 14:12 JST",
+   "counted": [
+    "d-9961 payments 2026-02-24T16:45"
+   ],
+   "holding_pages": [
+    {
+     "page": "library/postmortem-payments-webhook-secret.md",
+     "lines": [
+      62
+     ],
+     "part": "no code deploys within the last 48 hours"
+    }
+   ],
+   "keyword_top5": [
+    "postmortem-payments-webhook-secret",
+    "team-postmortem-review",
+    "provider-stripe-api-version",
+    "handover-2026-03-09",
+    "handover-2026-10-05"
+   ],
+   "holding_page_ids": [
+    "postmortem-payments-webhook-secret"
+   ],
+   "holding_page_in_top5": [
+    "postmortem-payments-webhook-secret"
+   ]
+  }
+ ]
+}

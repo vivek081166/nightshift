@@ -1,0 +1,20 @@
+{
+ "usd": 2.4862807499999993,
+ "cap_usd": 3.0,
+ "by_step": {
+  "P-pages-run1-LOST": 0.14179725,
+  "P-pages": 0.14378475000000002,
+  "L-table": 2.1315547500000003,
+  "S-sql": 0.02130075,
+  "S2-words": 0.04784325
+ },
+ "calls": 140,
+ "note": "every billed call, added from its usageMetadata as it returned (cached tokens priced as uncached: an upper bound)",
+ "updated_utc": "2026-10-14T13:31:06.827+00:00",
+ "lost": {
+  "step": "P-pages run 1",
+  "calls": 20,
+  "usd": 0.14179725,
+  "why": "harness bug: answers held only in memory; a rerun with nothing to do wrote items=[] over the run file before anyone read them. P was asked once more (run 2 is the measured one)."
+ }
+}

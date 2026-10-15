@@ -1,0 +1,1987 @@
+{
+ "what": "s2-words",
+ "started_utc": "2026-10-14T13:30:20.599+00:00",
+ "items": [
+  {
+   "item": "q01",
+   "id": "q01",
+   "kind": "week",
+   "question": "how many deploys went out last week?",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE state != 'failed' AND started >= '2026-10-05' AND started < '2026-10-12';",
+   "refused": null,
+   "result": [
+    [
+     9
+    ]
+   ],
+   "screen": "SELECT COUNT(*) FROM deploys WHERE state != 'failed'\n  AND started >= '2026-10-05' AND started <\n  '2026-10-12';\n\n9\n",
+   "error": null,
+   "wall_s": 11.64,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nToday is Monday 2026-10-12 (JST). Last week means Monday 2026-10-05 to Sunday 2026-10-11.\nThe deploy history is one SQLite table:\n\nCREATE TABLE deploys (\n  id TEXT, -- d-NNNN = a deploy in the old deploy tool; r-NNN = a Shipyard release (api and payments since 2026-09-28)\n  service TEXT, -- the one service the deploy changed\n  started TEXT, -- when it started going out, JST, YYYY-MM-DDTHH:MM\n  finished TEXT, -- when it stopped going out, JST, YYYY-MM-DDTHH:MM\n  author TEXT, -- who wrote the change\n  state TEXT, -- live = running now; superseded = went out, later replaced; rolled back = went out, then undone; failed = started, never finished going out\n  note TEXT -- what changed, in a few words\n)\n('d-0467', 'notifier', '2024-03-26T13:30', '2024-03-26T13:35', 'Yuki', 'superseded', 'queue worker tuning')\n('d-2679', 'payments', '2024-03-26T14:20', '2024-03-26T14:30', 'Leo', 'superseded', 'webhook handler update')\n('d-8706', 'web', '2024-03-26T14:55', '2024-03-26T15:08', 'Priya', 'superseded', 'admin tool update')\n\nThe only values in these columns:\nservice: 'api', 'notifier', 'payments', 'web'\nstate: 'failed', 'live', 'rolled back', 'superseded'\n\nWrite one SQLite SELECT that answers the question."
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nhow many deploys went out last week?"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "responseMimeType": "application/json",
+       "responseSchema": {
+        "type": "object",
+        "properties": {
+         "sql": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "sql"
+        ]
+       },
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-14T13:30:20.604+00:00",
+     "wall_s": 11.632,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "{\n  \"sql\": \"SELECT COUNT(*) FROM deploys WHERE state != 'failed' AND started >= '2026-10-05' AND started < '2026-10-12';\"\n}",
+           "thoughtSignature": "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"
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 653,
+       "candidatesTokenCount": 51,
+       "totalTokenCount": 1851,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 653
+        }
+       ],
+       "thoughtsTokenCount": 1147,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "7IPPasD0NtTV9tMPuZ2-yAc"
+     },
+     "cost_usd": 0.00498225
+    }
+   ],
+   "prompt_tokens": 653,
+   "cached_tokens": 0,
+   "out_tokens": 1198,
+   "cost_usd": 0.00498225
+  },
+  {
+   "item": "q02",
+   "id": "q02",
+   "kind": "week",
+   "question": "how many deploys went out between 2026-07-27 and 2026-08-02?",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE state != 'failed' AND started >= '2026-07-27' AND started < '2026-08-03'",
+   "refused": null,
+   "result": [
+    [
+     7
+    ]
+   ],
+   "screen": "SELECT COUNT(*) FROM deploys WHERE state != 'failed'\n  AND started >= '2026-07-27' AND started <\n  '2026-08-03'\n\n7\n",
+   "error": null,
+   "wall_s": 8.57,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nToday is Monday 2026-10-12 (JST). Last week means Monday 2026-10-05 to Sunday 2026-10-11.\nThe deploy history is one SQLite table:\n\nCREATE TABLE deploys (\n  id TEXT, -- d-NNNN = a deploy in the old deploy tool; r-NNN = a Shipyard release (api and payments since 2026-09-28)\n  service TEXT, -- the one service the deploy changed\n  started TEXT, -- when it started going out, JST, YYYY-MM-DDTHH:MM\n  finished TEXT, -- when it stopped going out, JST, YYYY-MM-DDTHH:MM\n  author TEXT, -- who wrote the change\n  state TEXT, -- live = running now; superseded = went out, later replaced; rolled back = went out, then undone; failed = started, never finished going out\n  note TEXT -- what changed, in a few words\n)\n('d-0467', 'notifier', '2024-03-26T13:30', '2024-03-26T13:35', 'Yuki', 'superseded', 'queue worker tuning')\n('d-2679', 'payments', '2024-03-26T14:20', '2024-03-26T14:30', 'Leo', 'superseded', 'webhook handler update')\n('d-8706', 'web', '2024-03-26T14:55', '2024-03-26T15:08', 'Priya', 'superseded', 'admin tool update')\n\nThe only values in these columns:\nservice: 'api', 'notifier', 'payments', 'web'\nstate: 'failed', 'live', 'rolled back', 'superseded'\n\nWrite one SQLite SELECT that answers the question."
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nhow many deploys went out between 2026-07-27 and 2026-08-02?"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "responseMimeType": "application/json",
+       "responseSchema": {
+        "type": "object",
+        "properties": {
+         "sql": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "sql"
+        ]
+       },
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-14T13:30:20.604+00:00",
+     "wall_s": 8.566,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "{\"sql\":\"SELECT COUNT(*) FROM deploys WHERE state != 'failed' AND started >= '2026-07-27' AND started < '2026-08-03'\"}",
+           "thoughtSignature": "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"
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 675,
+       "candidatesTokenCount": 46,
+       "totalTokenCount": 1496,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 675
+        }
+       ],
+       "thoughtsTokenCount": 775,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "7YPPaoqnBpbZ9tMPxZn36A8"
+     },
+     "cost_usd": 0.003585
+    }
+   ],
+   "prompt_tokens": 675,
+   "cached_tokens": 0,
+   "out_tokens": 821,
+   "cost_usd": 0.003585
+  },
+  {
+   "item": "q03",
+   "id": "q03",
+   "kind": "week",
+   "question": "how many api deploys last week?",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE service = 'api' AND started >= '2026-10-05' AND started < '2026-10-12'",
+   "refused": null,
+   "result": [
+    [
+     3
+    ]
+   ],
+   "screen": "SELECT COUNT(*) FROM deploys WHERE service = 'api' AND\n  started >= '2026-10-05' AND started < '2026-10-12'\n\n3\n",
+   "error": null,
+   "wall_s": 4.45,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nToday is Monday 2026-10-12 (JST). Last week means Monday 2026-10-05 to Sunday 2026-10-11.\nThe deploy history is one SQLite table:\n\nCREATE TABLE deploys (\n  id TEXT, -- d-NNNN = a deploy in the old deploy tool; r-NNN = a Shipyard release (api and payments since 2026-09-28)\n  service TEXT, -- the one service the deploy changed\n  started TEXT, -- when it started going out, JST, YYYY-MM-DDTHH:MM\n  finished TEXT, -- when it stopped going out, JST, YYYY-MM-DDTHH:MM\n  author TEXT, -- who wrote the change\n  state TEXT, -- live = running now; superseded = went out, later replaced; rolled back = went out, then undone; failed = started, never finished going out\n  note TEXT -- what changed, in a few words\n)\n('d-0467', 'notifier', '2024-03-26T13:30', '2024-03-26T13:35', 'Yuki', 'superseded', 'queue worker tuning')\n('d-2679', 'payments', '2024-03-26T14:20', '2024-03-26T14:30', 'Leo', 'superseded', 'webhook handler update')\n('d-8706', 'web', '2024-03-26T14:55', '2024-03-26T15:08', 'Priya', 'superseded', 'admin tool update')\n\nThe only values in these columns:\nservice: 'api', 'notifier', 'payments', 'web'\nstate: 'failed', 'live', 'rolled back', 'superseded'\n\nWrite one SQLite SELECT that answers the question."
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nhow many api deploys last week?"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "responseMimeType": "application/json",
+       "responseSchema": {
+        "type": "object",
+        "properties": {
+         "sql": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "sql"
+        ]
+       },
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-14T13:30:20.604+00:00",
+     "wall_s": 4.445,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "{\"sql\":\"SELECT COUNT(*) FROM deploys WHERE service = 'api' AND started >= '2026-10-05' AND started < '2026-10-12'\"}",
+           "thoughtSignature": "EvYFCvMFAWkUfRN6vSpPfIqnntB8oBCVr3iYhE8KBWAhNte3w/Apvnc/G5NgJKqeTyEKuydsfyKVxGnVGNCenpXvRY/beUVMYvrTmgErO2XoE0aJ+Ldi67rlLf3j4caKvpr168iaWtdA0raciMOIzM9d25z4VX2CUcHABALpph9+fgnGkb8JwUqtLEEajY2bq22FG0FsiJWl7hYLqK+kECAaHpbb3UtvtGUBc/MBgxOtE9hxs8FGYF8XFH/8QO63bMV5jmKo9aoBSaZzpbWCrY5y0+sy4VlFwXAxIouovi86s/Bnfvsdwoe395Z5uRlFDsUxCD8DqsygJumpnvNw1oY6Viqg4/D5r2PCzZbwLsh72G16GE6gDc3BqFoyGupjvfN8wRh00vDvi6IqNZLqRb0sqkBXMHg5Y1hWoQpNpQbvxYIKzE1Z8CYZ1cpyXsX3x34Z8rMz5RUzi2bvoockzLz0hCf8NtROor5GEw4A/bFDQnMgSwKBUvLqfz6ZN/pe/xgKSxjqzw4nKzznqnzYa8nbyVAywhxOJegH5qXiqwOlJ80K9nKkdGud42c8az8kHvqzhgOLRvrdyHMDAWDJDdCRloF+MU1pwXdc6czn7eVnESBsbsu75c6srSPEGTMvuu5ehbsyuS0lgWGr2ApjiR9jSs62fRpQ3lG/JdU1lz4AoVKcvl40lyHCVuTgC+UBBeXQna0QhB3Tr+tBgcZHPWMTn2bzApYs0Lq8oVRAxHr5SM12WfXldr4wKHJxaPootcqSZb/4eSnHD5m0HpUb3SjaqGV1M7dkZcwwGATeXyviCJ7cqEMM5qn+EAvIBNsCHKq51F0gJKKolPbN2lw7Mi5JRXlG5WY7r5dPUf5sHCZptO00fOzLi0N1TfeGGmAdlJcamm8XU6MiQ9O3yfyOPiYdd2/RmLExRgs0iX1a4h7YFmlaNskSc5kzIw22+XfmsV9vQlE13dvCNiuEaNvvTvc2hWmdOJaxkzKzoz0QVg2Un+GOE4ZOr9s="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 652,
+       "candidatesTokenCount": 46,
+       "totalTokenCount": 998,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 652
+        }
+       ],
+       "thoughtsTokenCount": 300,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "7YPPaoCABZSs9tMP1obumQs"
+     },
+     "cost_usd": 0.0017865
+    }
+   ],
+   "prompt_tokens": 652,
+   "cached_tokens": 0,
+   "out_tokens": 346,
+   "cost_usd": 0.0017865
+  },
+  {
+   "item": "q04",
+   "id": "q04",
+   "kind": "week",
+   "question": "how many deploys did we do the week of feb 9 2026?",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE started >= '2026-02-09' AND started < '2026-02-16'",
+   "refused": null,
+   "result": [
+    [
+     4
+    ]
+   ],
+   "screen": "SELECT COUNT(*) FROM deploys WHERE started >=\n  '2026-02-09' AND started < '2026-02-16'\n\n4\n",
+   "error": null,
+   "wall_s": 6.26,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nToday is Monday 2026-10-12 (JST). Last week means Monday 2026-10-05 to Sunday 2026-10-11.\nThe deploy history is one SQLite table:\n\nCREATE TABLE deploys (\n  id TEXT, -- d-NNNN = a deploy in the old deploy tool; r-NNN = a Shipyard release (api and payments since 2026-09-28)\n  service TEXT, -- the one service the deploy changed\n  started TEXT, -- when it started going out, JST, YYYY-MM-DDTHH:MM\n  finished TEXT, -- when it stopped going out, JST, YYYY-MM-DDTHH:MM\n  author TEXT, -- who wrote the change\n  state TEXT, -- live = running now; superseded = went out, later replaced; rolled back = went out, then undone; failed = started, never finished going out\n  note TEXT -- what changed, in a few words\n)\n('d-0467', 'notifier', '2024-03-26T13:30', '2024-03-26T13:35', 'Yuki', 'superseded', 'queue worker tuning')\n('d-2679', 'payments', '2024-03-26T14:20', '2024-03-26T14:30', 'Leo', 'superseded', 'webhook handler update')\n('d-8706', 'web', '2024-03-26T14:55', '2024-03-26T15:08', 'Priya', 'superseded', 'admin tool update')\n\nThe only values in these columns:\nservice: 'api', 'notifier', 'payments', 'web'\nstate: 'failed', 'live', 'rolled back', 'superseded'\n\nWrite one SQLite SELECT that answers the question."
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nhow many deploys did we do the week of feb 9 2026?"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "responseMimeType": "application/json",
+       "responseSchema": {
+        "type": "object",
+        "properties": {
+         "sql": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "sql"
+        ]
+       },
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-14T13:30:20.604+00:00",
+     "wall_s": 6.249,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "{\"sql\":\"SELECT COUNT(*) FROM deploys WHERE started >= '2026-02-09' AND started < '2026-02-16'\"}",
+           "thoughtSignature": "EvsNCvgNAWkUfRNMbd4yX5EKC3k6AcwWmshbzZ/3R+K9fMaZU1P4awgplOG0F2fvtk2TajmrA7DRalLdAM10stEv5l2uEb5lwr+92AM0jjLAxLKjmhYvmxen/1oVBKTpZHmq+8h54sgM2midBJeb62uXKlWpuj80PNCmqMk2rgxTUMccrJu/ZUdBv493dxVX3SqmiziX6VSIDKLHQG7lVJo7gFKyLK3AXEkDGEVWHRt8ghLk7qJIyXJY8BuivvWa2zka4OsSjpYKpzP57mUk5NzH5Olp2zxYrFPzdT+3FG00qd8d/kuUBQF433iUEUSgWdjZys4ng8A3czkiaqIbI9PJlp9Yo0LwGkdh2U7lCRhVzr9c6el68MQQEeThnr/bpdIcfwlMpdVTHMnaJgb949S+W/o2//e1AtOsIocO9n8z8QDftVPWV581JyJBLnLscpzha2fnflv1/KUs92z9hLAVyUtndrGy6aHKfb4NMXN8pXTc1h6riPiBO9Rlb5t3vWrFOkG43z91UPcM1AcxLEk4937eea18PyaeRsHGWENT6S6KQFpcKqii62nPpXulPmJuH88Ln/yM+BoIFAAredYs/4NL5JgYIn+IXi51a6EN0TWJeghGwYVn5OjReAlkhqvy+RVrhJtMDWsts4JIiGc5Y7WOokCvxVdSE9xWkQ029/duPnHhi0qo2q6tgDolYMFI0g761PFASGEBKdrpI8obN9McQQbjGMIkjhFHHxIDujmBZEHqH4FkcaiGTK2I7IwB9kFIskVmVjiWUVcV1UJVCvqm1i8Ee5vSwEZTngKcOhGuINudcboTQQ4FXv4DQpA5AG2PRpZSLWj7DfI+XridlT63C//wMxotvEU7WVCC31+tdBT6ZYB3dK/4pHz97HXYqOLcpXjO6BYZFLtpRak+zRQ9ObSU770mzqWnvW/i0bfAti3Nab1a7wnybbzADa/DN9gT795SgSsNvveZRHba+CHPegGM6TUD0PrOCBilfK//OrXjOaXC7/urwOaUSuTe++H08UAB739zYKviCiHP5FccywOrzea6WLh1uIci1Kai89vqKhkY/qaxT+QxXO27FKDWzmX6dTHyBo5i6vSAa15fWM5A8uiIhymAQv16f6HmN4MSsiv8CtSKy6JUmlcPs5BGzi3fL664KdwWVWPM7xelc+Sbi/vKjcywQVaSqEDSub92mbFaTgCjvq6MF0YNQwSSV9IC1KkiG7k9bKT9TtADju9x1YFoQAlEP6I+rMl+1tdGmCvyZTYkMjUcb8UnKhAB9+1PXLJUw6iDx407DmFMBQVmtVYujvJHVKh8tfMCJJcHyPNnM5x80qHXMphrq3+Qub4GbO99+MtBcmsn9FewbUK4pPYvA40s2bJcCdg3YMJkyzYLMdWZ0Mx4qCeCqpH6dUVjs9FnZSYH5klEae4qNTH01LsDjZW5c+s2pDL9pEpzH6bbIOiCRZSdzZt0pgVXep/NBaEM66t0yePEApas/6dLzPZAz2RXx0sTVa29ognIYKNAOSecs5Vbq8deITFIZtStoic6yFVeP13/T2da2Bl/DoofYyQQozMXguKrR/eDZ1HtNiF/MBf7aUufj2gIEbpnkZtKGrI4GYAx8OGrkD9sI+Yaj/sxeMOkaYTxJkMls70h5JPPQ8GrILAu1Pn5mFRBclf4Qjrw0em9rT+PWX/wbVV4FJ12FHvewVZwk1jkCSkTHZGqdn4fg+Blkt/3AaW9PqAU6u1F3BCDqjOU/tgpLr8Dcrj7ImXu1sZmECNUfe31JlHll/w1pmKOitnNJgFnr456NtuH615caN9dfpIPo56NnVgNdc5Xg9LRzQBhKq9YZSJfbEMvtrZ0+wiPFcWMhzsD9T95uY3Ic0NHbyPPPZWr05mq9zY/tAVx7t3QK14xmo/pHawxj+asgHiUg7/F5LF1x4J2AonhSrq6dkLbesPSJ9seUCKTfIwzvlZqLWTc8GKBqJsaNbyD1CmvJzBvmue9pS5tobQWOFFTIZtrLP3UAEiotmbQdtJP2YVyJVeh/k5W6tc2kxsLthn/Z0OdTEVQNpP8lYtLzS4HEdoGjHSc1qaxHKTZv3pyJiHmeH2lkTe+CoyyTRGuk3q5Mxhvas0P6kxVlUuWoYvw5LBkGhN7PQ2qLe82nPCHmoBPvjcBvlROFtRFQxw6oS5fClGWq2LajCcRDFEUxehM7xODeZLM8QS0hLE6IggK4afhMCTrgXNxCm7Ysvz/qxHc8tqNgbTSinsBasnd94O9SuEFP3xVUrIHITmTB4mTqb6iWxTFmFuaMCkewKfsXfC5jcqnENJ/Z9rghRqs/letvUwrvPGs0G+LqwU6RNMh+cmQgRXtFyRIg+SgvvWERQdTQt8/ASZXZ0w="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 663,
+       "candidatesTokenCount": 40,
+       "totalTokenCount": 1305,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 663
+        }
+       ],
+       "thoughtsTokenCount": 602,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "7IPPapTeNuyM0-kP4KS_uAs"
+     },
+     "cost_usd": 0.00290475
+    }
+   ],
+   "prompt_tokens": 663,
+   "cached_tokens": 0,
+   "out_tokens": 642,
+   "cost_usd": 0.00290475
+  },
+  {
+   "item": "q05",
+   "id": "q05",
+   "kind": "week",
+   "question": "how many web deploys the week of 2025-07-21?",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE service = 'web' AND started >= '2025-07-21' AND started < '2025-07-28'",
+   "refused": null,
+   "result": [
+    [
+     2
+    ]
+   ],
+   "screen": "SELECT COUNT(*) FROM deploys WHERE service = 'web' AND\n  started >= '2025-07-21' AND started < '2025-07-28'\n\n2\n",
+   "error": null,
+   "wall_s": 4.56,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nToday is Monday 2026-10-12 (JST). Last week means Monday 2026-10-05 to Sunday 2026-10-11.\nThe deploy history is one SQLite table:\n\nCREATE TABLE deploys (\n  id TEXT, -- d-NNNN = a deploy in the old deploy tool; r-NNN = a Shipyard release (api and payments since 2026-09-28)\n  service TEXT, -- the one service the deploy changed\n  started TEXT, -- when it started going out, JST, YYYY-MM-DDTHH:MM\n  finished TEXT, -- when it stopped going out, JST, YYYY-MM-DDTHH:MM\n  author TEXT, -- who wrote the change\n  state TEXT, -- live = running now; superseded = went out, later replaced; rolled back = went out, then undone; failed = started, never finished going out\n  note TEXT -- what changed, in a few words\n)\n('d-0467', 'notifier', '2024-03-26T13:30', '2024-03-26T13:35', 'Yuki', 'superseded', 'queue worker tuning')\n('d-2679', 'payments', '2024-03-26T14:20', '2024-03-26T14:30', 'Leo', 'superseded', 'webhook handler update')\n('d-8706', 'web', '2024-03-26T14:55', '2024-03-26T15:08', 'Priya', 'superseded', 'admin tool update')\n\nThe only values in these columns:\nservice: 'api', 'notifier', 'payments', 'web'\nstate: 'failed', 'live', 'rolled back', 'superseded'\n\nWrite one SQLite SELECT that answers the question."
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nhow many web deploys the week of 2025-07-21?"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "responseMimeType": "application/json",
+       "responseSchema": {
+        "type": "object",
+        "properties": {
+         "sql": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "sql"
+        ]
+       },
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-14T13:30:25.064+00:00",
+     "wall_s": 4.55,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "{\"sql\":\"SELECT COUNT(*) FROM deploys WHERE service = 'web' AND started >= '2025-07-21' AND started < '2025-07-28'\"}",
+           "thoughtSignature": "EoMECoAEAWkUfROj2dnObFZq01F9A495RZt+Abbfa/LSm5W83eZQOv2fKXiLvlOl3LfaR2fPdBT1WK5ll4aQMdh2TLavdSr+GpMUUSP0HoTVQeRaG1Jy2piZ+SYJvmdGwjpIf645Vy9K7iIUbWaTl4mLJbWFQCKNjYZKauBmyt69LZxbTHzRDKfMS3qxOTWA/2pAg3Os9yFdXXUeVpZp58d5fM9gde8dsZD7j5ycRLKp8HwN5CESq8SDcsgGecP9q3QFl1r28BblLHI/ayK6oy74tH03WZd6C5SR0OcmksbuCAMYA1bjtU2/AmGCp6m8zlQ56EpLoWdceZ0McXigHcxhWJsjedhYnvqPtznv9PoFHU9D4ZUIYxjTc/TRst5oj5iFJeidKXickvYatIJ+pFhWH2X8SfmVFJhxkwKSq+MmrVYrwIIVwfrWYXTrfU6ZU/t/qlgc6EyoJpTY8hA8rnmniBaeuYBsgGEsgq360G9SHhmuLpHDq21ZdDyOtRdlBwwveD7nj86L0hsl3jB0yBEOEgXx2p95JZHjVaIb32tE/smF7uJ0QzsW8g81AcajoteIBL00R5xY04Wtfwaq0CMjIJ9t0jvh3dYyt4WBWHoYGe7fOZ5B5mpCapSXG5IfjxwzwG2MyYBzQG26ULXubtdd+UNv+xUa5Mvt0WXQcpA4eFAyPSw="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 664,
+       "candidatesTokenCount": 46,
+       "totalTokenCount": 919,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 664
+        }
+       ],
+       "thoughtsTokenCount": 209,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "8YPPatfXFdrXrfcP1POhMA"
+     },
+     "cost_usd": 0.00145425
+    }
+   ],
+   "prompt_tokens": 664,
+   "cached_tokens": 0,
+   "out_tokens": 255,
+   "cost_usd": 0.00145425
+  },
+  {
+   "item": "q06",
+   "id": "q06",
+   "kind": "span",
+   "question": "how many deploys went out in september?",
+   "sql": "SELECT count(*) FROM deploys WHERE state != 'failed' AND started LIKE '2026-09%';",
+   "refused": null,
+   "result": [
+    [
+     30
+    ]
+   ],
+   "screen": "SELECT count(*) FROM deploys WHERE state != 'failed'\n  AND started LIKE '2026-09%';\n\n30\n",
+   "error": null,
+   "wall_s": 9.8,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nToday is Monday 2026-10-12 (JST). Last week means Monday 2026-10-05 to Sunday 2026-10-11.\nThe deploy history is one SQLite table:\n\nCREATE TABLE deploys (\n  id TEXT, -- d-NNNN = a deploy in the old deploy tool; r-NNN = a Shipyard release (api and payments since 2026-09-28)\n  service TEXT, -- the one service the deploy changed\n  started TEXT, -- when it started going out, JST, YYYY-MM-DDTHH:MM\n  finished TEXT, -- when it stopped going out, JST, YYYY-MM-DDTHH:MM\n  author TEXT, -- who wrote the change\n  state TEXT, -- live = running now; superseded = went out, later replaced; rolled back = went out, then undone; failed = started, never finished going out\n  note TEXT -- what changed, in a few words\n)\n('d-0467', 'notifier', '2024-03-26T13:30', '2024-03-26T13:35', 'Yuki', 'superseded', 'queue worker tuning')\n('d-2679', 'payments', '2024-03-26T14:20', '2024-03-26T14:30', 'Leo', 'superseded', 'webhook handler update')\n('d-8706', 'web', '2024-03-26T14:55', '2024-03-26T15:08', 'Priya', 'superseded', 'admin tool update')\n\nThe only values in these columns:\nservice: 'api', 'notifier', 'payments', 'web'\nstate: 'failed', 'live', 'rolled back', 'superseded'\n\nWrite one SQLite SELECT that answers the question."
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nhow many deploys went out in september?"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "responseMimeType": "application/json",
+       "responseSchema": {
+        "type": "object",
+        "properties": {
+         "sql": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "sql"
+        ]
+       },
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-14T13:30:26.866+00:00",
+     "wall_s": 9.791,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "{\"sql\": \"SELECT count(*) FROM deploys WHERE state != 'failed' AND started LIKE '2026-09%';\"}",
+           "thoughtSignature": "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"
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 653,
+       "candidatesTokenCount": 29,
+       "totalTokenCount": 1701,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 653
+        }
+       ],
+       "thoughtsTokenCount": 1019,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "84PPavW6C7vMrfcPw__PgAQ"
+     },
+     "cost_usd": 0.00441975
+    }
+   ],
+   "prompt_tokens": 653,
+   "cached_tokens": 0,
+   "out_tokens": 1048,
+   "cost_usd": 0.00441975
+  },
+  {
+   "item": "q07",
+   "id": "q07",
+   "kind": "span",
+   "question": "how many payments deploys in august?",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE service = 'payments' AND started LIKE '2026-08%'",
+   "refused": null,
+   "result": [
+    [
+     2
+    ]
+   ],
+   "screen": "SELECT COUNT(*) FROM deploys WHERE service =\n  'payments' AND started LIKE '2026-08%'\n\n2\n",
+   "error": null,
+   "wall_s": 3.58,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nToday is Monday 2026-10-12 (JST). Last week means Monday 2026-10-05 to Sunday 2026-10-11.\nThe deploy history is one SQLite table:\n\nCREATE TABLE deploys (\n  id TEXT, -- d-NNNN = a deploy in the old deploy tool; r-NNN = a Shipyard release (api and payments since 2026-09-28)\n  service TEXT, -- the one service the deploy changed\n  started TEXT, -- when it started going out, JST, YYYY-MM-DDTHH:MM\n  finished TEXT, -- when it stopped going out, JST, YYYY-MM-DDTHH:MM\n  author TEXT, -- who wrote the change\n  state TEXT, -- live = running now; superseded = went out, later replaced; rolled back = went out, then undone; failed = started, never finished going out\n  note TEXT -- what changed, in a few words\n)\n('d-0467', 'notifier', '2024-03-26T13:30', '2024-03-26T13:35', 'Yuki', 'superseded', 'queue worker tuning')\n('d-2679', 'payments', '2024-03-26T14:20', '2024-03-26T14:30', 'Leo', 'superseded', 'webhook handler update')\n('d-8706', 'web', '2024-03-26T14:55', '2024-03-26T15:08', 'Priya', 'superseded', 'admin tool update')\n\nThe only values in these columns:\nservice: 'api', 'notifier', 'payments', 'web'\nstate: 'failed', 'live', 'rolled back', 'superseded'\n\nWrite one SQLite SELECT that answers the question."
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nhow many payments deploys in august?"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "responseMimeType": "application/json",
+       "responseSchema": {
+        "type": "object",
+        "properties": {
+         "sql": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "sql"
+        ]
+       },
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-14T13:30:29.179+00:00",
+     "wall_s": 3.571,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "{\"sql\":\"SELECT COUNT(*) FROM deploys WHERE service = 'payments' AND started LIKE '2026-08%'\"}",
+           "thoughtSignature": "EqoECqcEAWkUfRNifKNy1zNp61E0wjeW3h9Od80caLGCucomERO2oitwLtVGLJTbsfFYHVMNFMwOUYd04z4yJ6WlVphc8TnShPVZwKXk2g9vzdGIwArMDC0ar53zq2rnJ+vRKyf5nLe3oP4FAJD6W154+0CVl+BTWv+8kv2ZLjfMniaoSEdYDVNmo2u78BTzCy761h0+gY/bwgFlWmrZY+wk+JIHNXykq3pDiHrEubo5NimUKZObi0EuUgkCYr2/ukHfdyniZdxiINWMUZWD0KP+Y3hhPxv8SmolkeC54GiRXXuClxevwmuv0XCdjhIITisZqrMAkEfXeTpuIRm6pAWAeCQxtofuMuNypjC1410AQy0bgY/y3WGml1KoDEm1tKerYmOX3/ZEQh9DUnhlMGEK2gBtQNWooKxUyRpvTKDTytxVuRt7OejrvEf2Ca9SnH2PupPTzQ5FmNYjA4+tPEDPZqr6TCPjn1GmltAYBEhPte2Pz5CSYV5shvgJHmkdxAlKyyGQNwMkvtybqwKCLSL4OeUJxn9R1pG+h3gveZH6i6R0oIG+FVLDj1aAkPRip+sH6Jpa33qmTDzuMI06guPJQK0ReAUCxzcRrvoHQv07qrA0knFZcJ2XIxvayEHbWR/Z3AWxW3Z4lsSVTsQBTAKmr+z1BOiG2o64+lYD3t47qaAtWi7UnfRn4gdOpENTzyiNnQdnb+nlBZaucRv097k0HsSdxOuJAFum9HQ="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 652,
+       "candidatesTokenCount": 28,
+       "totalTokenCount": 848,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 652
+        }
+       ],
+       "thoughtsTokenCount": 168,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "9YPPauC0Gvupvr0PstnPQA"
+     },
+     "cost_usd": 0.001224
+    }
+   ],
+   "prompt_tokens": 652,
+   "cached_tokens": 0,
+   "out_tokens": 196,
+   "cost_usd": 0.001224
+  },
+  {
+   "item": "q08",
+   "id": "q08",
+   "kind": "span",
+   "question": "how many deploys did we do in Q3 2026?",
+   "sql": "SELECT count(*) FROM deploys WHERE started >= '2026-07-01' AND started < '2026-10-01'",
+   "refused": null,
+   "result": [
+    [
+     76
+    ]
+   ],
+   "screen": "SELECT count(*) FROM deploys WHERE started >=\n  '2026-07-01' AND started < '2026-10-01'\n\n76\n",
+   "error": null,
+   "wall_s": 1.6,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nToday is Monday 2026-10-12 (JST). Last week means Monday 2026-10-05 to Sunday 2026-10-11.\nThe deploy history is one SQLite table:\n\nCREATE TABLE deploys (\n  id TEXT, -- d-NNNN = a deploy in the old deploy tool; r-NNN = a Shipyard release (api and payments since 2026-09-28)\n  service TEXT, -- the one service the deploy changed\n  started TEXT, -- when it started going out, JST, YYYY-MM-DDTHH:MM\n  finished TEXT, -- when it stopped going out, JST, YYYY-MM-DDTHH:MM\n  author TEXT, -- who wrote the change\n  state TEXT, -- live = running now; superseded = went out, later replaced; rolled back = went out, then undone; failed = started, never finished going out\n  note TEXT -- what changed, in a few words\n)\n('d-0467', 'notifier', '2024-03-26T13:30', '2024-03-26T13:35', 'Yuki', 'superseded', 'queue worker tuning')\n('d-2679', 'payments', '2024-03-26T14:20', '2024-03-26T14:30', 'Leo', 'superseded', 'webhook handler update')\n('d-8706', 'web', '2024-03-26T14:55', '2024-03-26T15:08', 'Priya', 'superseded', 'admin tool update')\n\nThe only values in these columns:\nservice: 'api', 'notifier', 'payments', 'web'\nstate: 'failed', 'live', 'rolled back', 'superseded'\n\nWrite one SQLite SELECT that answers the question."
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nhow many deploys did we do in Q3 2026?"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "responseMimeType": "application/json",
+       "responseSchema": {
+        "type": "object",
+        "properties": {
+         "sql": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "sql"
+        ]
+       },
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-14T13:30:29.626+00:00",
+     "wall_s": 1.588,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "{\"sql\":\"SELECT count(*) FROM deploys WHERE started >= '2026-07-01' AND started < '2026-10-01'\"}",
+           "thoughtSignature": "EmkKZwFpFH0TnNzVIzM01T2WZE8IOQcv+ckVn7Lsv5BL8ohhckureIAymOVAuIrp+eS3PSGFiZZiNegfgV0DcoC02dsrg+03ShNtfxDVJk4hwgzTOHJHUE2xexnnA0PC0RDlKMbF4NwbyY0="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 660,
+       "candidatesTokenCount": 40,
+       "totalTokenCount": 700,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 660
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "9YPPas-GNdr_1e8P44H2wAk"
+     },
+     "cost_usd": 0.000645
+    }
+   ],
+   "prompt_tokens": 660,
+   "cached_tokens": 0,
+   "out_tokens": 40,
+   "cost_usd": 0.000645
+  },
+  {
+   "item": "q09",
+   "id": "q09",
+   "kind": "span",
+   "question": "how many api deploys in 2025?",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE service = 'api' AND started >= '2025-01-01T00:00' AND started <= '2025-12-31T23:59'",
+   "refused": null,
+   "result": [
+    [
+     98
+    ]
+   ],
+   "screen": "SELECT COUNT(*) FROM deploys WHERE service = 'api' AND\n  started >= '2025-01-01T00:00' AND started <=\n  '2025-12-31T23:59'\n\n98\n",
+   "error": null,
+   "wall_s": 2.66,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nToday is Monday 2026-10-12 (JST). Last week means Monday 2026-10-05 to Sunday 2026-10-11.\nThe deploy history is one SQLite table:\n\nCREATE TABLE deploys (\n  id TEXT, -- d-NNNN = a deploy in the old deploy tool; r-NNN = a Shipyard release (api and payments since 2026-09-28)\n  service TEXT, -- the one service the deploy changed\n  started TEXT, -- when it started going out, JST, YYYY-MM-DDTHH:MM\n  finished TEXT, -- when it stopped going out, JST, YYYY-MM-DDTHH:MM\n  author TEXT, -- who wrote the change\n  state TEXT, -- live = running now; superseded = went out, later replaced; rolled back = went out, then undone; failed = started, never finished going out\n  note TEXT -- what changed, in a few words\n)\n('d-0467', 'notifier', '2024-03-26T13:30', '2024-03-26T13:35', 'Yuki', 'superseded', 'queue worker tuning')\n('d-2679', 'payments', '2024-03-26T14:20', '2024-03-26T14:30', 'Leo', 'superseded', 'webhook handler update')\n('d-8706', 'web', '2024-03-26T14:55', '2024-03-26T15:08', 'Priya', 'superseded', 'admin tool update')\n\nThe only values in these columns:\nservice: 'api', 'notifier', 'payments', 'web'\nstate: 'failed', 'live', 'rolled back', 'superseded'\n\nWrite one SQLite SELECT that answers the question."
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nhow many api deploys in 2025?"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "responseMimeType": "application/json",
+       "responseSchema": {
+        "type": "object",
+        "properties": {
+         "sql": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "sql"
+        ]
+       },
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-14T13:30:31.223+00:00",
+     "wall_s": 2.654,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "{\"sql\":\"SELECT COUNT(*) FROM deploys WHERE service = 'api' AND started >= '2025-01-01T00:00' AND started <= '2025-12-31T23:59'\"}",
+           "thoughtSignature": "EmkKZwFpFH0T5crU0O7MxVjFRQF1Aa7Y03W3rR0QoLyr1Uv33K4mrdMfhUvh0v2r2NenzMM564Q3DSkn0VrbV0xKRt40okCWfLoSGScp5783NcWflSsgDK7oBHAy6Ct4qHwv6ThIZwMu9lY="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 656,
+       "candidatesTokenCount": 58,
+       "totalTokenCount": 714,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 656
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "94PPav39G_Oyvr0P7NWXkAI"
+     },
+     "cost_usd": 0.0007095
+    }
+   ],
+   "prompt_tokens": 656,
+   "cached_tokens": 0,
+   "out_tokens": 58,
+   "cost_usd": 0.0007095
+  },
+  {
+   "item": "q10",
+   "id": "q10",
+   "kind": "span",
+   "question": "how many web deploys since api and payments moved to shipyard?",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE service = 'web' AND started >= '2026-09-28'",
+   "refused": null,
+   "result": [
+    [
+     5
+    ]
+   ],
+   "screen": "SELECT COUNT(*) FROM deploys WHERE service = 'web' AND\n  started >= '2026-09-28'\n\n5\n",
+   "error": null,
+   "wall_s": 8.52,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nToday is Monday 2026-10-12 (JST). Last week means Monday 2026-10-05 to Sunday 2026-10-11.\nThe deploy history is one SQLite table:\n\nCREATE TABLE deploys (\n  id TEXT, -- d-NNNN = a deploy in the old deploy tool; r-NNN = a Shipyard release (api and payments since 2026-09-28)\n  service TEXT, -- the one service the deploy changed\n  started TEXT, -- when it started going out, JST, YYYY-MM-DDTHH:MM\n  finished TEXT, -- when it stopped going out, JST, YYYY-MM-DDTHH:MM\n  author TEXT, -- who wrote the change\n  state TEXT, -- live = running now; superseded = went out, later replaced; rolled back = went out, then undone; failed = started, never finished going out\n  note TEXT -- what changed, in a few words\n)\n('d-0467', 'notifier', '2024-03-26T13:30', '2024-03-26T13:35', 'Yuki', 'superseded', 'queue worker tuning')\n('d-2679', 'payments', '2024-03-26T14:20', '2024-03-26T14:30', 'Leo', 'superseded', 'webhook handler update')\n('d-8706', 'web', '2024-03-26T14:55', '2024-03-26T15:08', 'Priya', 'superseded', 'admin tool update')\n\nThe only values in these columns:\nservice: 'api', 'notifier', 'payments', 'web'\nstate: 'failed', 'live', 'rolled back', 'superseded'\n\nWrite one SQLite SELECT that answers the question."
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nhow many web deploys since api and payments moved to shipyard?"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "responseMimeType": "application/json",
+       "responseSchema": {
+        "type": "object",
+        "properties": {
+         "sql": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "sql"
+        ]
+       },
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-14T13:30:32.252+00:00",
+     "wall_s": 8.501,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "{\"sql\":\"SELECT COUNT(*) FROM deploys WHERE service = 'web' AND started >= '2026-09-28'\"}",
+           "thoughtSignature": "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"
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 657,
+       "candidatesTokenCount": 31,
+       "totalTokenCount": 1392,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 657
+        }
+       ],
+       "thoughtsTokenCount": 704,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "-IPPauSxHaqvvr0P36XiSA"
+     },
+     "cost_usd": 0.003249
+    }
+   ],
+   "prompt_tokens": 657,
+   "cached_tokens": 0,
+   "out_tokens": 735,
+   "cost_usd": 0.003249
+  },
+  {
+   "item": "q11",
+   "id": "q11",
+   "kind": "span",
+   "question": "how many deploys in the last 30 days?",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE started >= date('2026-10-12', '-30 days')",
+   "refused": null,
+   "result": [
+    [
+     28
+    ]
+   ],
+   "screen": "SELECT COUNT(*) FROM deploys WHERE started >=\n  date('2026-10-12', '-30 days')\n\n28\n",
+   "error": null,
+   "wall_s": 4.41,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nToday is Monday 2026-10-12 (JST). Last week means Monday 2026-10-05 to Sunday 2026-10-11.\nThe deploy history is one SQLite table:\n\nCREATE TABLE deploys (\n  id TEXT, -- d-NNNN = a deploy in the old deploy tool; r-NNN = a Shipyard release (api and payments since 2026-09-28)\n  service TEXT, -- the one service the deploy changed\n  started TEXT, -- when it started going out, JST, YYYY-MM-DDTHH:MM\n  finished TEXT, -- when it stopped going out, JST, YYYY-MM-DDTHH:MM\n  author TEXT, -- who wrote the change\n  state TEXT, -- live = running now; superseded = went out, later replaced; rolled back = went out, then undone; failed = started, never finished going out\n  note TEXT -- what changed, in a few words\n)\n('d-0467', 'notifier', '2024-03-26T13:30', '2024-03-26T13:35', 'Yuki', 'superseded', 'queue worker tuning')\n('d-2679', 'payments', '2024-03-26T14:20', '2024-03-26T14:30', 'Leo', 'superseded', 'webhook handler update')\n('d-8706', 'web', '2024-03-26T14:55', '2024-03-26T15:08', 'Priya', 'superseded', 'admin tool update')\n\nThe only values in these columns:\nservice: 'api', 'notifier', 'payments', 'web'\nstate: 'failed', 'live', 'rolled back', 'superseded'\n\nWrite one SQLite SELECT that answers the question."
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nhow many deploys in the last 30 days?"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "responseMimeType": "application/json",
+       "responseSchema": {
+        "type": "object",
+        "properties": {
+         "sql": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "sql"
+        ]
+       },
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-14T13:30:32.763+00:00",
+     "wall_s": 4.395,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "{\"sql\":\"SELECT COUNT(*) FROM deploys WHERE started >= date('2026-10-12', '-30 days')\"}",
+           "thoughtSignature": "Eq0FCqoFAWkUfRO742WHjElgrnhBqRtyorb67qAbLr5kkf/sUw9dqweKRnSk/ahM9fwL1usmv4jTqPnbDUZNo36JHs7VY3MdrjcNgYh6m0eG6z6KilYHyPv7mNlk5uIk58uG+iYLonoCqoIrB4pHmGI0DJBX0Kptn54hjDZ3lbX/gX+wnYtbDt1k71aINcKLIUeepQM6v5J+O/2UMcp/Z5VetfQKHjdbmjWE8SjzCglRXKZYJr+6fE7dBYY06jGReAXjPgl9+pkaX/5jxJ69qNQQt95KT9zqFdnG1wPZvC0uL+VP95YNsgNtNzwUyqOunH4ylQSfFbHbkrqM7w0y9BGAKyeIWwoQMd+qYhD68Sq6Tu3U8b4tbE31p9c6c5rBBHACvqmXgW3866pW3kn52iIwWvRIcTBYLvCAz4FgcQrmtabvHdLJgzNIOJvJUEdQXgNkd800pijm32vkren+Utt0FtVsltryZdBY9uwovhg0/czlXbh2YlQXemodpJ9PSEHH3oovT+9KuXl1GklhAjX0PFt2/FwRdLUWsNAoPiUVqRxeT42xHd7I02uhELW6ajr/8cUPjSvyzJmPsv+TYfKjSFqsySvysO1uKQ1QrNu78O/U+iKVhvvGZlH16hT0cilgL1r7FDmUcF03df7bjAwkklepEw66XylqxGtQlCq4+LRLjXsV9h9dQU/4rLfwsRHyaQ2Lj6Lzou+LTlcYV8j+jQZohnMTlCLDjEhQ+nt/NkzfxZlB7+96Bxs43MHW0Co1ghn/YWjsD84NZ15tklESnnz2oC9EmFWZ1jJj8Jh0EEIHJSi1s3hgVf5MjoX1e8Z0zCfccB+GFE+kQZ+lmOQ+yKG3htvXeUA6estwBN/qS76icKtulER+JiRpptuY51wVfcqscEEvN/TL/c+IMw=="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 656,
+       "candidatesTokenCount": 31,
+       "totalTokenCount": 960,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 656
+        }
+       ],
+       "thoughtsTokenCount": 273,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "-IPPatb_PMnirfcPhri1qAQ"
+     },
+     "cost_usd": 0.001632
+    }
+   ],
+   "prompt_tokens": 656,
+   "cached_tokens": 0,
+   "out_tokens": 304,
+   "cost_usd": 0.001632
+  },
+  {
+   "item": "q12",
+   "id": "q12",
+   "kind": "filter",
+   "question": "how many deploys got rolled back since the start of 2025?",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE state = 'rolled back' AND started >= '2025-01-01'",
+   "refused": null,
+   "result": [
+    [
+     7
+    ]
+   ],
+   "screen": "SELECT COUNT(*) FROM deploys WHERE state = 'rolled\n  back' AND started >= '2025-01-01'\n\n7\n",
+   "error": null,
+   "wall_s": 3.81,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nToday is Monday 2026-10-12 (JST). Last week means Monday 2026-10-05 to Sunday 2026-10-11.\nThe deploy history is one SQLite table:\n\nCREATE TABLE deploys (\n  id TEXT, -- d-NNNN = a deploy in the old deploy tool; r-NNN = a Shipyard release (api and payments since 2026-09-28)\n  service TEXT, -- the one service the deploy changed\n  started TEXT, -- when it started going out, JST, YYYY-MM-DDTHH:MM\n  finished TEXT, -- when it stopped going out, JST, YYYY-MM-DDTHH:MM\n  author TEXT, -- who wrote the change\n  state TEXT, -- live = running now; superseded = went out, later replaced; rolled back = went out, then undone; failed = started, never finished going out\n  note TEXT -- what changed, in a few words\n)\n('d-0467', 'notifier', '2024-03-26T13:30', '2024-03-26T13:35', 'Yuki', 'superseded', 'queue worker tuning')\n('d-2679', 'payments', '2024-03-26T14:20', '2024-03-26T14:30', 'Leo', 'superseded', 'webhook handler update')\n('d-8706', 'web', '2024-03-26T14:55', '2024-03-26T15:08', 'Priya', 'superseded', 'admin tool update')\n\nThe only values in these columns:\nservice: 'api', 'notifier', 'payments', 'web'\nstate: 'failed', 'live', 'rolled back', 'superseded'\n\nWrite one SQLite SELECT that answers the question."
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nhow many deploys got rolled back since the start of 2025?"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "responseMimeType": "application/json",
+       "responseSchema": {
+        "type": "object",
+        "properties": {
+         "sql": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "sql"
+        ]
+       },
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-14T13:30:33.892+00:00",
+     "wall_s": 3.798,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "{\"sql\":\"SELECT COUNT(*) FROM deploys WHERE state = 'rolled back' AND started >= '2025-01-01'\"}",
+           "thoughtSignature": "EsAFCr0FAWkUfROsinUlrlaxuhQFGqamuoDbgurjdvg6PFgnvMoHZyubbAbgF+p47JQhX758v7GBJOidT2U86olxCyZX22q4RUkFtF10aPwczB1sm6LXdbveKr1LxlfczuPkO0VqQgncCiikqQu9wK1Fuf/s9Ji8IiVaLM34Kk+wuECt1G03mICXj2LONeCa/rJeckbWDD1KdNmHuaODrgkhyuf8wJC6n4mAVGXaJKaX4i/nucFrXbLSaBFJ1ge1eloPPSNo2EMh2RiIyKcL2doKWCI+DP2bAACbQqJcPADdWlDYq3pMceIeHNpPD4r9TTgs+ujtIWJ9yAd07oRR6/vm2AtLD/xDgLSs0Tq7tahV2V3+TMA/opYQmZ9ZIG4dB32vFHnMDe9j+C8Ddr7r027eGb7W1+72myD/FbEAz8HtPSs+80dUjZfKoCQT1VapcFVFKVBw2szHnsFHehFSHKpkS7YryFi8iwLSsGIoYQiDny9bEgBAZfzxj3GhI6Io2L79Qey0FBxj5qERLtsqbsDuVTiAkLG1Q6G8FiL2PKZImSjULA1wY4XYwODPhtl3t8rOP9OakUhWLP67YbnhZVKB+RA6+DLhJFWg4/cLLCcB1fePAGZ4nL0H8YrFDW26D4tsZQicf0/OngofnV7v/gdR4lqIUMslpIbTmFgX0sODz0qtUsafedr1sRZg2i4G9vrWmwKEbrjYLGLY1B5bQ8W5Ob4S3/BNYEpgt5cpBXYAOkY/aCUnjRTawWxxegO+c75A38jIK/RAdDzWnSIejimOboETx7KWmb94ZzOClcz4eETPVwwwGAREAdmQL46xSrFKhNKUKvIaHArlcN7KmCn9p8JZIr2p8tduMa5kiycq5TejKhp8rO3vpJ/dHjWJAtnyH2geFe0LXPjSdXh+2R454oofAlSwPM9pAI1Y1HNSOKU="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 661,
+       "candidatesTokenCount": 32,
+       "totalTokenCount": 912,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 661
+        }
+       ],
+       "thoughtsTokenCount": 219,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "-oPPapjjB5zl1e8PxMirmAk"
+     },
+     "cost_usd": 0.001437
+    }
+   ],
+   "prompt_tokens": 661,
+   "cached_tokens": 0,
+   "out_tokens": 251,
+   "cost_usd": 0.001437
+  },
+  {
+   "item": "q13",
+   "id": "q13",
+   "kind": "filter",
+   "question": "how many deploys failed in 2024?",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE state = 'failed' AND started LIKE '2024%'",
+   "refused": null,
+   "result": [
+    [
+     3
+    ]
+   ],
+   "screen": "SELECT COUNT(*) FROM deploys WHERE state = 'failed'\n  AND started LIKE '2024%'\n\n3\n",
+   "error": null,
+   "wall_s": 5.34,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nToday is Monday 2026-10-12 (JST). Last week means Monday 2026-10-05 to Sunday 2026-10-11.\nThe deploy history is one SQLite table:\n\nCREATE TABLE deploys (\n  id TEXT, -- d-NNNN = a deploy in the old deploy tool; r-NNN = a Shipyard release (api and payments since 2026-09-28)\n  service TEXT, -- the one service the deploy changed\n  started TEXT, -- when it started going out, JST, YYYY-MM-DDTHH:MM\n  finished TEXT, -- when it stopped going out, JST, YYYY-MM-DDTHH:MM\n  author TEXT, -- who wrote the change\n  state TEXT, -- live = running now; superseded = went out, later replaced; rolled back = went out, then undone; failed = started, never finished going out\n  note TEXT -- what changed, in a few words\n)\n('d-0467', 'notifier', '2024-03-26T13:30', '2024-03-26T13:35', 'Yuki', 'superseded', 'queue worker tuning')\n('d-2679', 'payments', '2024-03-26T14:20', '2024-03-26T14:30', 'Leo', 'superseded', 'webhook handler update')\n('d-8706', 'web', '2024-03-26T14:55', '2024-03-26T15:08', 'Priya', 'superseded', 'admin tool update')\n\nThe only values in these columns:\nservice: 'api', 'notifier', 'payments', 'web'\nstate: 'failed', 'live', 'rolled back', 'superseded'\n\nWrite one SQLite SELECT that answers the question."
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nhow many deploys failed in 2024?"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "responseMimeType": "application/json",
+       "responseSchema": {
+        "type": "object",
+        "properties": {
+         "sql": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "sql"
+        ]
+       },
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-14T13:30:36.673+00:00",
+     "wall_s": 5.328,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "{\"sql\":\"SELECT COUNT(*) FROM deploys WHERE state = 'failed' AND started LIKE '2024%'\"}",
+           "thoughtSignature": "EsgDCsUDAWkUfRPtq7Dhq2XU6Vl9s+fmoOUs5zNLIZxePsVqZ9EntC2yyNyMAxA8CxAzsPPQ76Y7rqIwnJSTHo4DbGEqDP3TApD30ST8ZPxT9xG5tbOtZUm0riLwb4fRIvDpW4y1wvL3Ysz5oBrXcF0uIOLd3o6G1jV2DolXCd8ciM/uWKrCU/pX1VKNUHb18cIgTe3Kyohk5UrmG0pBYEabuIjnk/X9qInPSjyk1WyPoxrqmp57vSnhtJg/T0bFa81GSFdZk9/LbJbwjL8OYwYjD0Q6jnqgYIiwtrpBuVthNgjIfNrEc6+69wJnUvZxBT8MRnYIUOI7kpzGF9b8DALmr6pbN0AKfB76T8/Jx0xNjDG3aHHn93N07bYHlR1FITHdcTtFotNMqWZkejQSZGq7BgmKqZ1LzjqXdemtTwe/tWFK2wFKHBg4X2DJRqZdpX2gYdmJXlZPeGvs4gXiB0QqlIQj3OaQaFz4P0CNj96z7S8O9DhnCmsNWY3+NVoQWGlj2gUirIyRNIRj86HGhVUqtpJ5TytE/exYxF/QvPHDhB6ZOvroUEZ8NuiVYsGNFL6lFssKbs+CiWV4/JXM3v9ld/ZksQF7SYvD"
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 656,
+       "candidatesTokenCount": 25,
+       "totalTokenCount": 807,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 656
+        }
+       ],
+       "thoughtsTokenCount": 126,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "_IPPaonEOfyk9tMP1MmmoAE"
+     },
+     "cost_usd": 0.00105825
+    }
+   ],
+   "prompt_tokens": 656,
+   "cached_tokens": 0,
+   "out_tokens": 151,
+   "cost_usd": 0.00105825
+  },
+  {
+   "item": "q14",
+   "id": "q14",
+   "kind": "filter",
+   "question": "how many deploys went out between 22:00 and 07:00 JST since 2025?",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE state != 'failed' AND started >= '2025-01-01' AND (strftime('%H:%M', started) >= '22:00' OR strftime('%H:%M', started) <= '07:00');",
+   "refused": null,
+   "result": [
+    [
+     3
+    ]
+   ],
+   "screen": "SELECT COUNT(*) FROM deploys WHERE state != 'failed'\n  AND started >= '2025-01-01' AND (strftime('%H:%M',\n  started) >= '22:00' OR strftime('%H:%M', started) <=\n  '07:00');\n\n3\n",
+   "error": null,
+   "wall_s": 6.67,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nToday is Monday 2026-10-12 (JST). Last week means Monday 2026-10-05 to Sunday 2026-10-11.\nThe deploy history is one SQLite table:\n\nCREATE TABLE deploys (\n  id TEXT, -- d-NNNN = a deploy in the old deploy tool; r-NNN = a Shipyard release (api and payments since 2026-09-28)\n  service TEXT, -- the one service the deploy changed\n  started TEXT, -- when it started going out, JST, YYYY-MM-DDTHH:MM\n  finished TEXT, -- when it stopped going out, JST, YYYY-MM-DDTHH:MM\n  author TEXT, -- who wrote the change\n  state TEXT, -- live = running now; superseded = went out, later replaced; rolled back = went out, then undone; failed = started, never finished going out\n  note TEXT -- what changed, in a few words\n)\n('d-0467', 'notifier', '2024-03-26T13:30', '2024-03-26T13:35', 'Yuki', 'superseded', 'queue worker tuning')\n('d-2679', 'payments', '2024-03-26T14:20', '2024-03-26T14:30', 'Leo', 'superseded', 'webhook handler update')\n('d-8706', 'web', '2024-03-26T14:55', '2024-03-26T15:08', 'Priya', 'superseded', 'admin tool update')\n\nThe only values in these columns:\nservice: 'api', 'notifier', 'payments', 'web'\nstate: 'failed', 'live', 'rolled back', 'superseded'\n\nWrite one SQLite SELECT that answers the question."
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nhow many deploys went out between 22:00 and 07:00 JST since 2025?"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "responseMimeType": "application/json",
+       "responseSchema": {
+        "type": "object",
+        "properties": {
+         "sql": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "sql"
+        ]
+       },
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-14T13:30:37.171+00:00",
+     "wall_s": 6.656,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "{\"sql\":\"SELECT COUNT(*) FROM deploys WHERE state != 'failed' AND started >= '2025-01-01' AND (strftime('%H:%M', started) >= '22:00' OR strftime('%H:%M', started) <= '07:00');\"}",
+           "thoughtSignature": "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"
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 673,
+       "candidatesTokenCount": 67,
+       "totalTokenCount": 1340,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 673
+        }
+       ],
+       "thoughtsTokenCount": 600,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "_YPPauqAGpHurfcPy_7K-AM"
+     },
+     "cost_usd": 0.003006
+    }
+   ],
+   "prompt_tokens": 673,
+   "cached_tokens": 0,
+   "out_tokens": 667,
+   "cost_usd": 0.003006
+  },
+  {
+   "item": "q15",
+   "id": "q15",
+   "kind": "filter",
+   "question": "how many deploys did Daniel do in 2026?",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE author = 'Daniel' AND started LIKE '2026%'",
+   "refused": null,
+   "result": [
+    [
+     28
+    ]
+   ],
+   "screen": "SELECT COUNT(*) FROM deploys WHERE author = 'Daniel'\n  AND started LIKE '2026%'\n\n28\n",
+   "error": null,
+   "wall_s": 3.42,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nToday is Monday 2026-10-12 (JST). Last week means Monday 2026-10-05 to Sunday 2026-10-11.\nThe deploy history is one SQLite table:\n\nCREATE TABLE deploys (\n  id TEXT, -- d-NNNN = a deploy in the old deploy tool; r-NNN = a Shipyard release (api and payments since 2026-09-28)\n  service TEXT, -- the one service the deploy changed\n  started TEXT, -- when it started going out, JST, YYYY-MM-DDTHH:MM\n  finished TEXT, -- when it stopped going out, JST, YYYY-MM-DDTHH:MM\n  author TEXT, -- who wrote the change\n  state TEXT, -- live = running now; superseded = went out, later replaced; rolled back = went out, then undone; failed = started, never finished going out\n  note TEXT -- what changed, in a few words\n)\n('d-0467', 'notifier', '2024-03-26T13:30', '2024-03-26T13:35', 'Yuki', 'superseded', 'queue worker tuning')\n('d-2679', 'payments', '2024-03-26T14:20', '2024-03-26T14:30', 'Leo', 'superseded', 'webhook handler update')\n('d-8706', 'web', '2024-03-26T14:55', '2024-03-26T15:08', 'Priya', 'superseded', 'admin tool update')\n\nThe only values in these columns:\nservice: 'api', 'notifier', 'payments', 'web'\nstate: 'failed', 'live', 'rolled back', 'superseded'\n\nWrite one SQLite SELECT that answers the question."
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nhow many deploys did Daniel do in 2026?"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "responseMimeType": "application/json",
+       "responseSchema": {
+        "type": "object",
+        "properties": {
+         "sql": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "sql"
+        ]
+       },
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-14T13:30:37.702+00:00",
+     "wall_s": 3.41,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "{\"sql\":\"SELECT COUNT(*) FROM deploys WHERE author = 'Daniel' AND started LIKE '2026%'\"}",
+           "thoughtSignature": "EtIDCs8DAWkUfROM0wBFhhfVNYIh2wbsT86Ba9W4mxbYwg9Qt5iPshOw6AgwhwWhza7HKgoZXP7Nd41JmwCNpdMu1fNnTKn1w8DWtCefekzxeEu/cX/IYTqRL9jk9H7Em/bUkDl3/rEeoS5CxFf8JR3pMrNtuVnGQZv6zknfPsqi6whvzWgAT8Ls747aV5kWCB1gQtJiScbGzcRkwX2aeWm8x7cnXD+y69q40V/TeBBFtR9TT6WIrpvfujXf2Ij/h6ntwZcsplSaCylXeVkEHKZjq8p+eSF7nRSKm5Yhhp0Z2A7qDKGim9/00pMF6ImQE4g/drsbCFhqVDeKlvmlgGrdsF8nfB1WfGeo7qF++B2G+1TD06t7g2eEigMV9IwXOMV1cn0P3dPwL66zTi9Lg9F8+5dzhrkuH6njt0scuukR7PBiXXVQuEnQL1qoMrkU9K+CLAfnR1b8G5TViexqQts762U1vajphCWVlsaz1CVYbSg1XijtXZgsdArPx4C09Ex//QwCK2PBD/Q+Tpg/EAa9Rw1UzX7MprpxGpWSupmFbKMnzmWqWKeP+ba/TwjxxSlAWhnIZjXNZu8BV+NOQNAD4dnR+WiPkbuW4H46SxQQ8sYkaA=="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 658,
+       "candidatesTokenCount": 25,
+       "totalTokenCount": 809,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 658
+        }
+       ],
+       "thoughtsTokenCount": 126,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "_YPPaoy5OdS_1e8P4P7KyAg"
+     },
+     "cost_usd": 0.00105975
+    }
+   ],
+   "prompt_tokens": 658,
+   "cached_tokens": 0,
+   "out_tokens": 151,
+   "cost_usd": 0.00105975
+  },
+  {
+   "item": "q16",
+   "id": "q16",
+   "kind": "filter",
+   "question": "how many payments releases has shipyard done?",
+   "sql": "SELECT count(*) FROM deploys WHERE service = 'payments' AND id LIKE 'r-%'",
+   "refused": null,
+   "result": [
+    [
+     4
+    ]
+   ],
+   "screen": "SELECT count(*) FROM deploys WHERE service =\n  'payments' AND id LIKE 'r-%'\n\n4\n",
+   "error": null,
+   "wall_s": 3.5,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nToday is Monday 2026-10-12 (JST). Last week means Monday 2026-10-05 to Sunday 2026-10-11.\nThe deploy history is one SQLite table:\n\nCREATE TABLE deploys (\n  id TEXT, -- d-NNNN = a deploy in the old deploy tool; r-NNN = a Shipyard release (api and payments since 2026-09-28)\n  service TEXT, -- the one service the deploy changed\n  started TEXT, -- when it started going out, JST, YYYY-MM-DDTHH:MM\n  finished TEXT, -- when it stopped going out, JST, YYYY-MM-DDTHH:MM\n  author TEXT, -- who wrote the change\n  state TEXT, -- live = running now; superseded = went out, later replaced; rolled back = went out, then undone; failed = started, never finished going out\n  note TEXT -- what changed, in a few words\n)\n('d-0467', 'notifier', '2024-03-26T13:30', '2024-03-26T13:35', 'Yuki', 'superseded', 'queue worker tuning')\n('d-2679', 'payments', '2024-03-26T14:20', '2024-03-26T14:30', 'Leo', 'superseded', 'webhook handler update')\n('d-8706', 'web', '2024-03-26T14:55', '2024-03-26T15:08', 'Priya', 'superseded', 'admin tool update')\n\nThe only values in these columns:\nservice: 'api', 'notifier', 'payments', 'web'\nstate: 'failed', 'live', 'rolled back', 'superseded'\n\nWrite one SQLite SELECT that answers the question."
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nhow many payments releases has shipyard done?"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "responseMimeType": "application/json",
+       "responseSchema": {
+        "type": "object",
+        "properties": {
+         "sql": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "sql"
+        ]
+       },
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-14T13:30:40.769+00:00",
+     "wall_s": 3.487,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "{\"sql\":\"SELECT count(*) FROM deploys WHERE service = 'payments' AND id LIKE 'r-%'\"}",
+           "thoughtSignature": "EtAFCs0FAWkUfRNsXSDN/aW5cKN49CpuhIi6XUTJ117irO5t2WrwyhZUyjIN7PtVf5pxCuv7WQRr7r/mdLYV680pDJXj3LO4e3mU4u4uK53NB/Fw8AI3RvQatLibuSJ8Jhm0lNTm10Hs8wmssVmiugCpXaZ63xbjjlX+7BaK1oaukfHknODRMkGcteTq4wmcVPkXZNz3e/pAaSB/R4GvJPQpJhmJ/2HV83rG3zPg1jy/Fcy7YdyDKcvgBV6VJeHF0BmPJpqjVPIJMCWgUkKEOB5D1InbxPEAt5ro53IkAotFmPepl5unFChbp/r7S+s65VPZ6oPht2AHS8bjlXuwpjF76hUs9h2dAEAkaU+hoswB21v9YrzXFiMctZH4ufvCzAo7qtiPepDLMEQYgVZ3D03ZsIKmdlRxiJ1f3mnShs0QtpbLyiD+gDaU5WGgz2YXEKbwpx8vjMCHTrvdkJO+F+lQK90kJl+aijZy1sRwc0gEp0qOXCIrcEs7/d9bUfWgtpo5BtxwNHuENC7cI3NY12wcTglvkvnQR6egXiDPEYnZ6yWBe/wafTcvbgQp+zXggR+xcFqXUn23oH63OLtfcQ0SUcxTgxMS69P6bJrHnZS4mZpj8I18jqKjTDhPhPByrNmLulwagW27LUOHWSjHM3AtV55qPxPeqGfginD0bHXjxmbsja4m413by316EVFSNmMB/WPRoBwba3bWhyOMbXz9qpFKXyDHxp2R7kpiuKswpIUBTQN3Kv6OGDF4RoUoy8T+HEupXwtInDoP3BOHXvWX1La0LlsAa5vR5epH8NHVqmxCUfhXmRLZqdZB37asmU62DmqRqFz8tlP1UZWCt49r/4Q9VxOUzqYZTmRaoG98DWSA8Vp4AvF2EpcIORkujHOWw/J/N05Oz9sqYxnftKxi/88Jv6FNi32qHQ+ZdiYQ0Z+2mWZ8cPLY1MhyGpjIlf4d"
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 652,
+       "candidatesTokenCount": 23,
+       "totalTokenCount": 853,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 652
+        }
+       ],
+       "thoughtsTokenCount": 178,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "AITPav7yPMnirfcPgOu0kAw"
+     },
+     "cost_usd": 0.00124275
+    }
+   ],
+   "prompt_tokens": 652,
+   "cached_tokens": 0,
+   "out_tokens": 201,
+   "cost_usd": 0.00124275
+  },
+  {
+   "item": "q17",
+   "id": "q17",
+   "kind": "latest",
+   "question": "what was the last payments deploy before the 2025-11-18 checkout timeouts?",
+   "sql": "SELECT * FROM deploys WHERE service = 'payments' AND started < '2025-11-18' ORDER BY started DESC LIMIT 1;",
+   "refused": null,
+   "result": [
+    [
+     "d-5718",
+     "payments",
+     "2025-11-13T15:00",
+     "2025-11-13T15:09",
+     "Mei",
+     "superseded",
+     "v2.30"
+    ]
+   ],
+   "screen": "SELECT * FROM deploys WHERE service = 'payments' AND\n  started < '2025-11-18' ORDER BY started DESC LIMIT\n  1;\n\nd-5718  payments  2025-11-13T15:00  2025-11-13T15:09  Mei  superseded  v2.30\n",
+   "error": null,
+   "wall_s": 2.1,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nToday is Monday 2026-10-12 (JST). Last week means Monday 2026-10-05 to Sunday 2026-10-11.\nThe deploy history is one SQLite table:\n\nCREATE TABLE deploys (\n  id TEXT, -- d-NNNN = a deploy in the old deploy tool; r-NNN = a Shipyard release (api and payments since 2026-09-28)\n  service TEXT, -- the one service the deploy changed\n  started TEXT, -- when it started going out, JST, YYYY-MM-DDTHH:MM\n  finished TEXT, -- when it stopped going out, JST, YYYY-MM-DDTHH:MM\n  author TEXT, -- who wrote the change\n  state TEXT, -- live = running now; superseded = went out, later replaced; rolled back = went out, then undone; failed = started, never finished going out\n  note TEXT -- what changed, in a few words\n)\n('d-0467', 'notifier', '2024-03-26T13:30', '2024-03-26T13:35', 'Yuki', 'superseded', 'queue worker tuning')\n('d-2679', 'payments', '2024-03-26T14:20', '2024-03-26T14:30', 'Leo', 'superseded', 'webhook handler update')\n('d-8706', 'web', '2024-03-26T14:55', '2024-03-26T15:08', 'Priya', 'superseded', 'admin tool update')\n\nThe only values in these columns:\nservice: 'api', 'notifier', 'payments', 'web'\nstate: 'failed', 'live', 'rolled back', 'superseded'\n\nWrite one SQLite SELECT that answers the question."
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nwhat was the last payments deploy before the 2025-11-18 checkout timeouts?"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "responseMimeType": "application/json",
+       "responseSchema": {
+        "type": "object",
+        "properties": {
+         "sql": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "sql"
+        ]
+       },
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-14T13:30:41.124+00:00",
+     "wall_s": 2.085,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "{\"sql\":\"SELECT * FROM deploys WHERE service = 'payments' AND started < '2025-11-18' ORDER BY started DESC LIMIT 1;\"}",
+           "thoughtSignature": "EmkKZwFpFH0TpIwpXAOQlHpMvJbBVqK6BCcnjS0wAvNTYXxP1i8p+luK3yBGJYJtKlC/aCz1ubprlj1QKJGZPieRXd4+WSNz7v0p7LcJT6bgJXiqX8l1H+xU/ULb3Vqe2xbDMjr8RWWWoG4="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 666,
+       "candidatesTokenCount": 38,
+       "totalTokenCount": 704,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 666
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "AYTPas7VFN7e9tMPzq3IgAg"
+     },
+     "cost_usd": 0.000642
+    }
+   ],
+   "prompt_tokens": 666,
+   "cached_tokens": 0,
+   "out_tokens": 38,
+   "cost_usd": 0.000642
+  },
+  {
+   "item": "q18",
+   "id": "q18",
+   "kind": "latest",
+   "question": "when did api last deploy?",
+   "sql": "SELECT started FROM deploys WHERE service = 'api' ORDER BY started DESC LIMIT 1",
+   "refused": null,
+   "result": [
+    [
+     "2026-10-08T16:10"
+    ]
+   ],
+   "screen": "SELECT started FROM deploys WHERE service = 'api'\n  ORDER BY started DESC LIMIT 1\n\n2026-10-08T16:10\n",
+   "error": null,
+   "wall_s": 24.82,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nToday is Monday 2026-10-12 (JST). Last week means Monday 2026-10-05 to Sunday 2026-10-11.\nThe deploy history is one SQLite table:\n\nCREATE TABLE deploys (\n  id TEXT, -- d-NNNN = a deploy in the old deploy tool; r-NNN = a Shipyard release (api and payments since 2026-09-28)\n  service TEXT, -- the one service the deploy changed\n  started TEXT, -- when it started going out, JST, YYYY-MM-DDTHH:MM\n  finished TEXT, -- when it stopped going out, JST, YYYY-MM-DDTHH:MM\n  author TEXT, -- who wrote the change\n  state TEXT, -- live = running now; superseded = went out, later replaced; rolled back = went out, then undone; failed = started, never finished going out\n  note TEXT -- what changed, in a few words\n)\n('d-0467', 'notifier', '2024-03-26T13:30', '2024-03-26T13:35', 'Yuki', 'superseded', 'queue worker tuning')\n('d-2679', 'payments', '2024-03-26T14:20', '2024-03-26T14:30', 'Leo', 'superseded', 'webhook handler update')\n('d-8706', 'web', '2024-03-26T14:55', '2024-03-26T15:08', 'Priya', 'superseded', 'admin tool update')\n\nThe only values in these columns:\nservice: 'api', 'notifier', 'payments', 'web'\nstate: 'failed', 'live', 'rolled back', 'superseded'\n\nWrite one SQLite SELECT that answers the question."
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nwhen did api last deploy?"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "responseMimeType": "application/json",
+       "responseSchema": {
+        "type": "object",
+        "properties": {
+         "sql": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "sql"
+        ]
+       },
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-14T13:30:42.016+00:00",
+     "wall_s": 24.809,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "{\n  \"sql\": \"SELECT started FROM deploys WHERE service = 'api' ORDER BY started DESC LIMIT 1\"\n}",
+           "thoughtSignature": "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"
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 650,
+       "candidatesTokenCount": 28,
+       "totalTokenCount": 3576,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 650
+        }
+       ],
+       "thoughtsTokenCount": 2898,
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "AoTPaqOlEvaz1e8PjPGaiAw"
+     },
+     "cost_usd": 0.01146
+    }
+   ],
+   "prompt_tokens": 650,
+   "cached_tokens": 0,
+   "out_tokens": 2926,
+   "cost_usd": 0.01146
+  },
+  {
+   "item": "q19",
+   "id": "q19",
+   "kind": "latest",
+   "question": "what was the last notifier deploy before the queue stalled on 2026-07-28?",
+   "sql": "SELECT * FROM deploys WHERE service = 'notifier' AND finished < '2026-07-28' AND state != 'failed' ORDER BY finished DESC LIMIT 1;",
+   "refused": null,
+   "result": [
+    [
+     "d-8912",
+     "notifier",
+     "2026-07-24T10:40",
+     "2026-07-24T10:47",
+     "Tom",
+     "superseded",
+     "queue worker tuning"
+    ]
+   ],
+   "screen": "SELECT * FROM deploys WHERE service = 'notifier' AND\n  finished < '2026-07-28' AND state != 'failed' ORDER\n  BY finished DESC LIMIT 1;\n\nd-8912  notifier  2026-07-24T10:40  2026-07-24T10:47  Tom  superseded  queue worker tuning\n",
+   "error": null,
+   "wall_s": 2.43,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nToday is Monday 2026-10-12 (JST). Last week means Monday 2026-10-05 to Sunday 2026-10-11.\nThe deploy history is one SQLite table:\n\nCREATE TABLE deploys (\n  id TEXT, -- d-NNNN = a deploy in the old deploy tool; r-NNN = a Shipyard release (api and payments since 2026-09-28)\n  service TEXT, -- the one service the deploy changed\n  started TEXT, -- when it started going out, JST, YYYY-MM-DDTHH:MM\n  finished TEXT, -- when it stopped going out, JST, YYYY-MM-DDTHH:MM\n  author TEXT, -- who wrote the change\n  state TEXT, -- live = running now; superseded = went out, later replaced; rolled back = went out, then undone; failed = started, never finished going out\n  note TEXT -- what changed, in a few words\n)\n('d-0467', 'notifier', '2024-03-26T13:30', '2024-03-26T13:35', 'Yuki', 'superseded', 'queue worker tuning')\n('d-2679', 'payments', '2024-03-26T14:20', '2024-03-26T14:30', 'Leo', 'superseded', 'webhook handler update')\n('d-8706', 'web', '2024-03-26T14:55', '2024-03-26T15:08', 'Priya', 'superseded', 'admin tool update')\n\nThe only values in these columns:\nservice: 'api', 'notifier', 'payments', 'web'\nstate: 'failed', 'live', 'rolled back', 'superseded'\n\nWrite one SQLite SELECT that answers the question."
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nwhat was the last notifier deploy before the queue stalled on 2026-07-28?"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "responseMimeType": "application/json",
+       "responseSchema": {
+        "type": "object",
+        "properties": {
+         "sql": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "sql"
+        ]
+       },
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-14T13:30:43.223+00:00",
+     "wall_s": 2.42,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "{\"sql\":\"SELECT * FROM deploys WHERE service = 'notifier' AND finished < '2026-07-28' AND state != 'failed' ORDER BY finished DESC LIMIT 1;\"}",
+           "thoughtSignature": "EmkKZwFpFH0TarlIlSLjCHKP81rrm6lkoGiSV/b+ldO1At9AoOYTEKMY2dyfHpE2GEVlX/vdzBXGi8NeKSSwDnFUHFMyJIg7/aUOAhDQVWjz3sEJv/JNFCIdVtP9VKuVpXPnp6aBSFGl63c="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 667,
+       "candidatesTokenCount": 44,
+       "totalTokenCount": 711,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 667
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "A4TPavOyGreA2roPj4_B8A4"
+     },
+     "cost_usd": 0.00066525
+    }
+   ],
+   "prompt_tokens": 667,
+   "cached_tokens": 0,
+   "out_tokens": 44,
+   "cost_usd": 0.00066525
+  },
+  {
+   "item": "q20",
+   "id": "q20",
+   "kind": "latest",
+   "question": "when did payments last deploy before the stripe webhook incident on 2026-03-03?",
+   "sql": "SELECT started, finished, id, author, state, note FROM deploys WHERE service = 'payments' AND started < '2026-03-03' ORDER BY started DESC LIMIT 1;",
+   "refused": null,
+   "result": [
+    [
+     "2026-02-24T16:45",
+     "2026-02-24T16:56",
+     "d-9961",
+     "Leo",
+     "superseded",
+     "dependency bumps"
+    ]
+   ],
+   "screen": "SELECT started, finished, id, author, state, note FROM\n  deploys WHERE service = 'payments' AND started <\n  '2026-03-03' ORDER BY started DESC LIMIT 1;\n\n2026-02-24T16:45  2026-02-24T16:56  d-9961  Leo  superseded  dependency bumps\n",
+   "error": null,
+   "wall_s": 2.57,
+   "calls": [
+    {
+     "request": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "You are the on-call assistant for Sorrel, a scheduling app with four services: web, api, payments and notifier.\nAt this company the five actions mean:\n- roll back: undo the most recent deploy, when that deploy is recent enough to be the cause.\n- read logs: go and read the service's own output, when nobody knows yet what happened.\n- check provider: look at an outside service we depend on, when the alert already points at one.\n- page owner: wake the person who owns this service, when something has already happened that you cannot undo - data seen, money moved, accounts deleted - or when somebody has to make a decision you are not allowed to make.\n- no action: write it down and move on, when nothing has failed and no customer is affected.\n\nToday is Monday 2026-10-12 (JST). Last week means Monday 2026-10-05 to Sunday 2026-10-11.\nThe deploy history is one SQLite table:\n\nCREATE TABLE deploys (\n  id TEXT, -- d-NNNN = a deploy in the old deploy tool; r-NNN = a Shipyard release (api and payments since 2026-09-28)\n  service TEXT, -- the one service the deploy changed\n  started TEXT, -- when it started going out, JST, YYYY-MM-DDTHH:MM\n  finished TEXT, -- when it stopped going out, JST, YYYY-MM-DDTHH:MM\n  author TEXT, -- who wrote the change\n  state TEXT, -- live = running now; superseded = went out, later replaced; rolled back = went out, then undone; failed = started, never finished going out\n  note TEXT -- what changed, in a few words\n)\n('d-0467', 'notifier', '2024-03-26T13:30', '2024-03-26T13:35', 'Yuki', 'superseded', 'queue worker tuning')\n('d-2679', 'payments', '2024-03-26T14:20', '2024-03-26T14:30', 'Leo', 'superseded', 'webhook handler update')\n('d-8706', 'web', '2024-03-26T14:55', '2024-03-26T15:08', 'Priya', 'superseded', 'admin tool update')\n\nThe only values in these columns:\nservice: 'api', 'notifier', 'payments', 'web'\nstate: 'failed', 'live', 'rolled back', 'superseded'\n\nWrite one SQLite SELECT that answers the question."
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "Question from the on-call engineer:\nwhen did payments last deploy before the stripe webhook incident on 2026-03-03?"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "responseMimeType": "application/json",
+       "responseSchema": {
+        "type": "object",
+        "properties": {
+         "sql": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "sql"
+        ]
+       },
+       "thinkingConfig": {
+        "thinkingLevel": "low"
+       }
+      }
+     },
+     "http": 200,
+     "sent_utc": "2026-10-14T13:30:43.844+00:00",
+     "wall_s": 2.548,
+     "retries": [],
+     "error": null,
+     "response": {
+      "candidates": [
+       {
+        "content": {
+         "parts": [
+          {
+           "text": "{\"sql\":\"SELECT started, finished, id, author, state, note FROM deploys WHERE service = 'payments' AND started < '2026-03-03' ORDER BY started DESC LIMIT 1;\"}",
+           "thoughtSignature": "EmkKZwFpFH0TFSBLFLZS0tAPmQTQ3/rRfRLK0YgMyZJbIMB8AF1Q/31dP1K9i6lLMSXEf86dIQmLwWir7mv89izugpeG1MB4xzHmH2r3sACcKwPYgxPtjS4HM8pihGHI9/WdLmLKQrFjuPY="
+          }
+         ],
+         "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+       }
+      ],
+      "usageMetadata": {
+       "promptTokenCount": 667,
+       "candidatesTokenCount": 48,
+       "totalTokenCount": 715,
+       "promptTokensDetails": [
+        {
+         "modality": "TEXT",
+         "tokenCount": 667
+        }
+       ],
+       "serviceTier": "standard"
+      },
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "BITPapOCCczs2roPwbiM0A0"
+     },
+     "cost_usd": 0.00068025
+    }
+   ],
+   "prompt_tokens": 667,
+   "cached_tokens": 0,
+   "out_tokens": 48,
+   "cost_usd": 0.00068025
+  }
+ ],
+ "finished_utc": "2026-10-14T13:31:06.848+00:00",
+ "meta": {
+  "code": "deploys.ask(q, words=True) + deploys.refuse + deploys.run (deploys.call swapped for a recording call, same body, thinking low)",
+  "deploys_py_md5_now": "ab392cb4c1fd31bfdee6fb7f27635d17",
+  "deploys_py_md5_in_S": "c6a89fa4179a10a16f14d75f28c8a9bc",
+  "plain_rebuilds_S_system_text": true,
+  "table_shown": "CREATE TABLE deploys (\n  id TEXT, -- d-NNNN = a deploy in the old deploy tool; r-NNN = a Shipyard release (api and payments since 2026-09-28)\n  service TEXT, -- the one service the deploy changed\n  started TEXT, -- when it started going out, JST, YYYY-MM-DDTHH:MM\n  finished TEXT, -- when it stopped going out, JST, YYYY-MM-DDTHH:MM\n  author TEXT, -- who wrote the change\n  state TEXT, -- live = running now; superseded = went out, later replaced; rolled back = went out, then undone; failed = started, never finished going out\n  note TEXT -- what changed, in a few words\n)\n('d-0467', 'notifier', '2024-03-26T13:30', '2024-03-26T13:35', 'Yuki', 'superseded', 'queue worker tuning')\n('d-2679', 'payments', '2024-03-26T14:20', '2024-03-26T14:30', 'Leo', 'superseded', 'webhook handler update')\n('d-8706', 'web', '2024-03-26T14:55', '2024-03-26T15:08', 'Priya', 'superseded', 'admin tool update')\n\nThe only values in these columns:\nservice: 'api', 'notifier', 'payments', 'web'\nstate: 'failed', 'live', 'rolled back', 'superseded'",
+  "today_line": "Today is Monday 2026-10-12 (JST). Last week means Monday 2026-10-05 to Sunday 2026-10-11."
+ }
+}

@@ -1,0 +1,308 @@
+{
+ "what": "S2 grades: same as S (result == truth; latest = the id, or the day for 'when' questions)",
+ "run": "runs/ep14/2026-10-14-s2-words.json",
+ "grades": [
+  {
+   "id": "q01",
+   "kind": "week",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE state != 'failed' AND started >= '2026-10-05' AND started < '2026-10-12';",
+   "result": [
+    [
+     9
+    ]
+   ],
+   "grade": "right",
+   "S_grade": "right",
+   "note": "adds state != 'failed' (a definition the question did not set: mine counts failed rows); failed rows in this span: 0, so the number is the same"
+  },
+  {
+   "id": "q02",
+   "kind": "week",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE state != 'failed' AND started >= '2026-07-27' AND started < '2026-08-03'",
+   "result": [
+    [
+     7
+    ]
+   ],
+   "grade": "right",
+   "S_grade": "right",
+   "note": "adds state != 'failed' (a definition the question did not set: mine counts failed rows); failed rows in this span: 0, so the number is the same"
+  },
+  {
+   "id": "q03",
+   "kind": "week",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE service = 'api' AND started >= '2026-10-05' AND started < '2026-10-12'",
+   "result": [
+    [
+     3
+    ]
+   ],
+   "grade": "right",
+   "S_grade": "right"
+  },
+  {
+   "id": "q04",
+   "kind": "week",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE started >= '2026-02-09' AND started < '2026-02-16'",
+   "result": [
+    [
+     4
+    ]
+   ],
+   "grade": "right",
+   "S_grade": "right"
+  },
+  {
+   "id": "q05",
+   "kind": "week",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE service = 'web' AND started >= '2025-07-21' AND started < '2025-07-28'",
+   "result": [
+    [
+     2
+    ]
+   ],
+   "grade": "right",
+   "S_grade": "right"
+  },
+  {
+   "id": "q06",
+   "kind": "span",
+   "sql": "SELECT count(*) FROM deploys WHERE state != 'failed' AND started LIKE '2026-09%';",
+   "result": [
+    [
+     30
+    ]
+   ],
+   "grade": "right",
+   "S_grade": "right",
+   "note": "adds state != 'failed' (a definition the question did not set: mine counts failed rows); failed rows in this span: 0, so the number is the same"
+  },
+  {
+   "id": "q07",
+   "kind": "span",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE service = 'payments' AND started LIKE '2026-08%'",
+   "result": [
+    [
+     2
+    ]
+   ],
+   "grade": "right",
+   "S_grade": "right"
+  },
+  {
+   "id": "q08",
+   "kind": "span",
+   "sql": "SELECT count(*) FROM deploys WHERE started >= '2026-07-01' AND started < '2026-10-01'",
+   "result": [
+    [
+     76
+    ]
+   ],
+   "grade": "right",
+   "S_grade": "right"
+  },
+  {
+   "id": "q09",
+   "kind": "span",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE service = 'api' AND started >= '2025-01-01T00:00' AND started <= '2025-12-31T23:59'",
+   "result": [
+    [
+     98
+    ]
+   ],
+   "grade": "right",
+   "S_grade": "right"
+  },
+  {
+   "id": "q10",
+   "kind": "span",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE service = 'web' AND started >= '2026-09-28'",
+   "result": [
+    [
+     5
+    ]
+   ],
+   "grade": "right",
+   "S_grade": "right"
+  },
+  {
+   "id": "q11",
+   "kind": "span",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE started >= date('2026-10-12', '-30 days')",
+   "result": [
+    [
+     28
+    ]
+   ],
+   "grade": "right",
+   "S_grade": "right"
+  },
+  {
+   "id": "q12",
+   "kind": "filter",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE state = 'rolled back' AND started >= '2025-01-01'",
+   "result": [
+    [
+     7
+    ]
+   ],
+   "grade": "right",
+   "S_grade": "wrong"
+  },
+  {
+   "id": "q13",
+   "kind": "filter",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE state = 'failed' AND started LIKE '2024%'",
+   "result": [
+    [
+     3
+    ]
+   ],
+   "grade": "right",
+   "S_grade": "right"
+  },
+  {
+   "id": "q14",
+   "kind": "filter",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE state != 'failed' AND started >= '2025-01-01' AND (strftime('%H:%M', started) >= '22:00' OR strftime('%H:%M', started) <= '07:00');",
+   "result": [
+    [
+     3
+    ]
+   ],
+   "grade": "right",
+   "S_grade": "right",
+   "note": "adds state != 'failed' (a definition the question did not set: mine counts failed rows); failed rows in this span: 0, so the number is the same"
+  },
+  {
+   "id": "q15",
+   "kind": "filter",
+   "sql": "SELECT COUNT(*) FROM deploys WHERE author = 'Daniel' AND started LIKE '2026%'",
+   "result": [
+    [
+     28
+    ]
+   ],
+   "grade": "right",
+   "S_grade": "right"
+  },
+  {
+   "id": "q16",
+   "kind": "filter",
+   "sql": "SELECT count(*) FROM deploys WHERE service = 'payments' AND id LIKE 'r-%'",
+   "result": [
+    [
+     4
+    ]
+   ],
+   "grade": "right",
+   "S_grade": "wrong"
+  },
+  {
+   "id": "q17",
+   "kind": "latest",
+   "sql": "SELECT * FROM deploys WHERE service = 'payments' AND started < '2025-11-18' ORDER BY started DESC LIMIT 1;",
+   "result": [
+    [
+     "d-5718",
+     "payments",
+     "2025-11-13T15:00",
+     "2025-11-13T15:09",
+     "Mei",
+     "superseded",
+     "v2.30"
+    ]
+   ],
+   "grade": "wrong",
+   "S_grade": "wrong",
+   "reason": "definition",
+   "line": "still takes the day's start (started < '2025-11-18') as the incident edge; the incident time is on a page, not in the table: the words do not carry it",
+   "corrected_sql": "SELECT * FROM deploys WHERE service = 'payments' AND started < '2025-11-18T02:21' ORDER BY started DESC LIMIT 1",
+   "corrected_result": [
+    [
+     "d-4230",
+     "payments",
+     "2025-11-18T02:14",
+     "2025-11-18T02:20",
+     "Mei",
+     "rolled back",
+     "v2.31 pool 50 to 20; rolled back to v2.30 at 02:58"
+    ]
+   ]
+  },
+  {
+   "id": "q18",
+   "kind": "latest",
+   "sql": "SELECT started FROM deploys WHERE service = 'api' ORDER BY started DESC LIMIT 1",
+   "result": [
+    [
+     "2026-10-08T16:10"
+    ]
+   ],
+   "grade": "right",
+   "S_grade": "right"
+  },
+  {
+   "id": "q19",
+   "kind": "latest",
+   "sql": "SELECT * FROM deploys WHERE service = 'notifier' AND finished < '2026-07-28' AND state != 'failed' ORDER BY finished DESC LIMIT 1;",
+   "result": [
+    [
+     "d-8912",
+     "notifier",
+     "2026-07-24T10:40",
+     "2026-07-24T10:47",
+     "Tom",
+     "superseded",
+     "queue worker tuning"
+    ]
+   ],
+   "grade": "right",
+   "S_grade": "right",
+   "note": "adds state != 'failed' (a definition the question did not set: mine counts failed rows); failed rows in this span: 0, so the number is the same"
+  },
+  {
+   "id": "q20",
+   "kind": "latest",
+   "sql": "SELECT started, finished, id, author, state, note FROM deploys WHERE service = 'payments' AND started < '2026-03-03' ORDER BY started DESC LIMIT 1;",
+   "result": [
+    [
+     "2026-02-24T16:45",
+     "2026-02-24T16:56",
+     "d-9961",
+     "Leo",
+     "superseded",
+     "dependency bumps"
+    ]
+   ],
+   "grade": "right",
+   "S_grade": "right"
+  }
+ ],
+ "per_kind": {
+  "week": {
+   "right": 5
+  },
+  "span": {
+   "right": 6
+  },
+  "filter": {
+   "right": 5
+  },
+  "latest": {
+   "wrong": 1,
+   "right": 3
+  }
+ },
+ "total": {
+  "right": 19,
+  "wrong": 1
+ },
+ "flips_vs_S": {
+  "wrong_to_right": [
+   "q12",
+   "q16"
+  ],
+  "right_to_wrong": []
+ }
+}

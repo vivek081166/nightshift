@@ -1,0 +1,209 @@
+{
+ "what": "P hand grades: I read all 20 answers. Grades: right / said-not / partial-number / wrong.",
+ "run": "runs/ep14/2026-10-14-p-pages.json",
+ "grades": [
+  {
+   "id": "q01",
+   "kind": "week",
+   "question": "how many deploys went out last week?",
+   "grade": "said-not",
+   "quote": "it does not say how many deploys went out last week (Monday 2026-10-05 to Sunday 2026-10-11)",
+   "note": null,
+   "holding_page_in_call": []
+  },
+  {
+   "id": "q02",
+   "kind": "week",
+   "question": "how many deploys went out between 2026-07-27 and 2026-08-02?",
+   "grade": "right",
+   "quote": "there were **7 deploys** in total across the services: web: 3, api: 2, payments: 1, notifier: 1",
+   "note": "handover-2026-08-03 line 17: 'Deploys this week: web 3, api 2, payments 1, notifier 1'",
+   "holding_page_in_call": [
+    "handover-2026-08-03"
+   ]
+  },
+  {
+   "id": "q03",
+   "kind": "week",
+   "question": "how many api deploys last week?",
+   "grade": "said-not",
+   "quote": "The provided pages do not say how many api deploys occurred last week",
+   "note": null,
+   "holding_page_in_call": []
+  },
+  {
+   "id": "q04",
+   "kind": "week",
+   "question": "how many deploys did we do the week of feb 9 2026?",
+   "grade": "said-not",
+   "quote": "there is no mention of how many deploys were done during the week of February 9, 2026",
+   "note": "retrieval miss: handover-2026-02-16 (which has the count, 4) is not in the top 5",
+   "holding_page_in_call": []
+  },
+  {
+   "id": "q05",
+   "kind": "week",
+   "question": "how many web deploys the week of 2025-07-21?",
+   "grade": "said-not",
+   "quote": "the exact total number of `web` deploys for the week of 2025-07-21 is not stated",
+   "note": "names one web deploy (d-0891) from the page it was sent; gives no total",
+   "holding_page_in_call": [
+    "postmortem-web-cdn-purge-stuck"
+   ]
+  },
+  {
+   "id": "q06",
+   "kind": "span",
+   "question": "how many deploys went out in september?",
+   "grade": "said-not",
+   "quote": "the total number of deploys that went out in September is not stated",
+   "note": null,
+   "holding_page_in_call": [
+    "deploying-with-shipyard"
+   ]
+  },
+  {
+   "id": "q07",
+   "kind": "span",
+   "question": "how many payments deploys in august?",
+   "grade": "said-not",
+   "quote": "the number of payments deploys in August is not mentioned",
+   "note": null,
+   "holding_page_in_call": []
+  },
+  {
+   "id": "q08",
+   "kind": "span",
+   "question": "how many deploys did we do in Q3 2026?",
+   "grade": "said-not",
+   "quote": "the exact number of deploys done in Q3 2026 is not mentioned",
+   "note": null,
+   "holding_page_in_call": [
+    "deploying-with-shipyard"
+   ]
+  },
+  {
+   "id": "q09",
+   "kind": "span",
+   "question": "how many api deploys in 2025?",
+   "grade": "said-not",
+   "quote": "the total number of `api` deploys in 2025 is not mentioned",
+   "note": "quotes one week's 'api 3' (handover-2025-11-10) and says it is not a year total; no total built",
+   "holding_page_in_call": [
+    "handover-2025-01-06",
+    "handover-2025-11-10"
+   ]
+  },
+  {
+   "id": "q10",
+   "kind": "span",
+   "question": "how many web deploys since api and payments moved to shipyard?",
+   "grade": "said-not",
+   "quote": "The provided pages do not say how many web deploys have occurred since api and payments moved",
+   "note": null,
+   "holding_page_in_call": []
+  },
+  {
+   "id": "q11",
+   "kind": "span",
+   "question": "how many deploys in the last 30 days?",
+   "grade": "said-not",
+   "quote": "the documentation does not state how many deploys occurred in the last 30 days",
+   "note": null,
+   "holding_page_in_call": []
+  },
+  {
+   "id": "q12",
+   "kind": "filter",
+   "question": "how many deploys got rolled back since the start of 2025?",
+   "grade": "said-not",
+   "quote": "the total number of deploys rolled back since the start of 2025 is not stated",
+   "note": "lists two it found (payments v2.31, the 2026-08-20 api rollback) and does not add them up",
+   "holding_page_in_call": [
+    "postmortem-payments-pool-timeout"
+   ]
+  },
+  {
+   "id": "q13",
+   "kind": "filter",
+   "question": "how many deploys failed in 2024?",
+   "grade": "said-not",
+   "quote": "the total number of deploys that failed in 2024 is not stated",
+   "note": null,
+   "holding_page_in_call": []
+  },
+  {
+   "id": "q14",
+   "kind": "filter",
+   "question": "how many deploys went out between 22:00 and 07:00 JST since 2025?",
+   "grade": "said-not",
+   "quote": "the exact total number of deploys that went out between 22:00 and 07:00 JST since 2025 is **not stated**",
+   "note": "names the one on the pages it was sent (payments v2.31 at 02:14); no total",
+   "holding_page_in_call": [
+    "postmortem-payments-pool-timeout"
+   ]
+  },
+  {
+   "id": "q15",
+   "kind": "filter",
+   "question": "how many deploys did Daniel do in 2026?",
+   "grade": "said-not",
+   "quote": "it is not mentioned how many deploys Daniel did in 2026",
+   "note": null,
+   "holding_page_in_call": []
+  },
+  {
+   "id": "q16",
+   "kind": "filter",
+   "question": "how many payments releases has shipyard done?",
+   "grade": "said-not",
+   "quote": "The provided pages do not say how many releases Shipyard has done for payments",
+   "note": null,
+   "holding_page_in_call": [
+    "deploying-with-shipyard"
+   ]
+  },
+  {
+   "id": "q17",
+   "kind": "latest",
+   "question": "what was the last payments deploy before the 2025-11-18 checkout timeouts?",
+   "grade": "wrong",
+   "quote": "the deploy immediately preceding the incident's release (v2.31) was **v2.30**",
+   "note": "not invented: v2.30 is on the page. It answered the deploy BEFORE v2.31; the page says v2.31 went out at 02:14 and the first ticket came at 02:21, so the last deploy before the timeouts is v2.31",
+   "holding_page_in_call": [
+    "postmortem-payments-pool-timeout"
+   ]
+  },
+  {
+   "id": "q18",
+   "kind": "latest",
+   "question": "when did api last deploy?",
+   "grade": "said-not",
+   "quote": "The provided pages do not say when `api` last deployed.",
+   "note": null,
+   "holding_page_in_call": []
+  },
+  {
+   "id": "q19",
+   "kind": "latest",
+   "question": "what was the last notifier deploy before the queue stalled on 2026-07-28?",
+   "grade": "right",
+   "quote": "the last `notifier` deploy before the queue stalled was **`d-8912`**, which was 4 days old",
+   "note": "postmortem-notifier-template-crash line 49: 'last deploy age 4 days (`d-8912`)'",
+   "holding_page_in_call": [
+    "postmortem-notifier-template-crash"
+   ]
+  },
+  {
+   "id": "q20",
+   "kind": "latest",
+   "question": "when did payments last deploy before the stripe webhook incident on 2026-03-03?",
+   "grade": "said-not",
+   "quote": "the exact date and time of the last `payments` deploy prior to the 2026-03-03 incident is not stated",
+   "note": "quotes 'no code deploys within the last 48 hours'; true, and no date",
+   "holding_page_in_call": [
+    "postmortem-payments-webhook-secret"
+   ]
+  }
+ ]
+}

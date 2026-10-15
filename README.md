@@ -66,6 +66,11 @@ You can write a Python function and call an HTTP API. No machine learning needed
     python3 check.py --saved "i see two 'refund sent' lines for the same ref in the payments logs. what do i do now?"   # ep13: no call, the measured run's answer checked again: all six lines found
     python3 check.py "<question>"                     # each line of the answer, its page and the exact words it copied, then found or NOT ON THE PAGE
 
+    python3 deploys.py --saved --plain "how many deploys went out last week?"   # ep14: no call, the measured query run again on the table: 9
+    python3 deploys.py --saved --plain "how many deploys got rolled back since the start of 2025?"   # the query spells it 'rolled_back': 0, and no error
+    python3 deploys.py --saved "how many deploys got rolled back since the start of 2025?"           # with the table's words in the message, 'rolled back': 7
+    python3 deploys.py "<question>"                   # the model writes one SELECT, the code runs it read-only (--plain: the CREATE line and three rows only)
+
 `lookup.py` wraps its answer to your terminal's width from ep11 on. At 89 columns or wider, and under a pipe,
 it prints exactly what ep10 printed.
 
@@ -73,6 +78,11 @@ it prints exactly what ep10 printed.
 holds every page's embedding, keyed by the page's id and the md5 of its text, so `--meaning` sends only the question;
 a page you change is embedded again on the next run. From ep12 on, `library/INDEX.json` lists all 127 pages, so
 `lookup.py` reads the grown library; the `ep11` tag keeps the 75-page list.
+
+`deploys.py` reads `deploys/deploys.db`, which is committed, so the `--saved` commands run with no key and no setup.
+`deploys/make_deploys.py` writes the CSV, the db and `CANON.json` again from seed 14, the CSV and the db byte for byte.
+It checks every page fact about a deploy against the rows, and two of those pages are in `pages/`, which `topage.py`
+makes (both from typed PDFs, so neither goes to the model).
 
 The `ep03` tag holds `score.py` as the episode leaves it, with RULES filled in. The first five runs in
 the video used the same file with `RULES = ""` on line 14. Replace the RULES block with that one line
@@ -99,6 +109,7 @@ the course depends on the vendor.
 | `ep11` | [PDF Parsing for RAG: My Scanned PDF Came Back Empty (PDF to Text for LLMs)](https://youtu.be/bD8vp5NGc7A) | `topage.py` turns each PDF in `pdf/` into a page for `lookup.py`. It takes the text out with pypdf and counts the characters: the five typed PDFs gave thousands, the three scans gave 0, with no error. A PDF with 0 goes to the model once, as the PDF itself, and what the model writes out becomes the page. Before the check, the escalation sheet question came back saying the sheet's page was empty; after it, `ext. 4417`. Each page's first line carries a tag of its PDF's bytes, so a PDF that changes gets its page made again. The count is per PDF: a PDF that mixes typed and scanned pages is not caught. The PDFs are made up for the course, and the scans were made to look scanned (see PROVENANCE) |
 | `ep12` | [Semantic Search vs Keyword Search: Embeddings Missed My Error Code (RAG Retrieval)](https://youtu.be/2s4dI1qsU48) | `search.py` finds the team's pages for a question two ways. Keyword search (`--keyword`) splits the question into words and gives each page points for every word it holds, far more for a rare word (BM25, written out by hand). Semantic search (`--meaning`) turns each page and the question into an embedding and hands back the five pages closest to the question. On "What does PAY-4031 mean and what fixed it?", keyword search put the two pages with PAY-4031 first and second; semantic search came back with five payments pages, none holding the code, and the page with the fix ranked 11th. On a question in other words (people who paid two times for one visit), semantic search put the payments team's page second and keyword search ranked it 47th. `lookup.py --search` sends keyword search's top five with the question. The company, its 127 pages and the error codes are made up for the course |
 | `ep13` | [RAG Citations: The Check Said NOT ON THE PAGE, but the Words Were There (Hallucination Check)](https://youtu.be/VNtn_6b6tFI) | `check.py` asks the model for each line of its answer, the page it came from and the exact words it copied, then searches that page for the words and prints found or NOT ON THE PAGE. A page name alone passed on all 213 lines, including one whose page says "one working day" where the line says "a week". On the refund question the first search found one quote of six: the page's file wraps bold words in stars and code words in backticks, and the model copied the words as you read them. `found` now takes the marks out and searches again, and all six are found. `--saved` re-checks a measured answer with no API call. The company and its pages are made up for the course |
+| `ep14` | [Text-to-SQL with an LLM: The Query Said 0, the Table Had 7 (RAG vs SQL)](https://youtu.be/zPXSDq6h2ZA) | `deploys.py` answers a count from the deploy table, `deploys/deploys.db` (779 rows, one per deploy). The model gets the question, the table's CREATE line and three rows, and writes one SQLite SELECT; the code opens the table read-only, refuses anything but one SELECT, and prints the query and the rows. Asked from the pages, the model said they don't give last week's count. With the whole table in the message, one answer said 8, listed 9 and corrected itself to 9. The query printed 9. On rolled-back deploys since 2025 the query spelled the state `'rolled_back'` and printed 0 with no error; the table spells it `'rolled back'` and holds 7. The default message now also carries a line on what each column holds and every word the short columns use, and the same question prints 7 (`--plain` leaves them out). `--saved` reruns a measured query with no API call. The company, its deploys and its pages are made up for the course |
 
 The map the course follows: [Andrew Ng's AI Engineering Skills Map](https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map)
 

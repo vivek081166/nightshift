@@ -454,3 +454,65 @@ screen and got `--saved`; on the 188 saved quotes it prints the same found / not
   `ep13_p_grades.py`, `ep13_c_grades.py`, `ep13_tables.py` build and grade. The vendor docs read on 2026-10-12 are in
   `runs/ep13/m0/`.
 - Spend: $1.56 for the runs (`runs/ep13/spend.json`, 170 billed calls). The takes made no call.
+
+## ep14
+
+Count the rows. Measured 2026-10-14 (UTC; the night of 10-14/15 JST) with `gemini-3.8-flash`, thinking low, raw HTTP.
+Every call carries `rules.SYSTEM` and `deploys.TODAY` ("Today is Monday 2026-10-12 (JST). Last week means Monday
+2026-10-05 to Sunday 2026-10-11."). The questions, the table and the code were frozen before the first call
+(`runs/ep14/2026-10-14-q-freeze.json`: questions md5 9f6b2451, `deploys.csv` 0caeaf71, `deploys.db` 761b622b,
+`deploys.py` c6a89fa4). Four ways of asking, one run file each in `runs/ep14/`: "P" `2026-10-14-p-pages.json` (keyword
+search's top five pages, as `lookup.py --search`), "L" `2026-10-14-l-table.json` (the whole `deploys.csv` in the
+message, 3 runs per question), "S" `2026-10-14-s-sql.json` (the model writes one SELECT from the CREATE line and three
+rows, the code runs it), "S2" `2026-10-14-s2-words.json` (S plus a line per column and the words the short columns
+use). S ran `runs/ep14/2026-10-14-deploys-as-measured-in-S.py` (md5 c6a89fa4); S2 ran
+`runs/ep14/2026-10-15-deploys-before-saved.py` (md5 ab392cb4, S2 meta `deploys_py_md5_now`), whose `--plain` rebuilds
+S's message byte for byte (`plain_rebuilds_S_system_text`). After the runs, `deploys.py` got `--saved` and `wrap()`,
+which never splits a quoted value like `'rolled back'` across two lines; nothing else changed.
+
+- Made up for the course: the company, its pages, its people and the deploy table. `deploys/deploys.csv`, 779 rows
+  (`deploys/CANON.json` `rows`), seed 14 (`make_deploys.py` `SEED`), first row d-0467 2024-03-26T13:30, last d-4028
+  2026-10-08T16:30 ("two and a half years"). `CANON.json`: 111 page facts about a deploy, 94 checked against the rows
+  and agree, 17 noted. The 20 questions: `tickets/questions-ep14.json` (5 week, 6 span, 5 filter, 4 latest), truth by
+  plain Python over the CSV (`measure/ep14_questions.py`), never SQL.
+- Last week = 9: question `q01` `truth` 9, `counted` d-6580 d-6971 r-203 d-7414 r-204 r-210 d-1293 r-205 d-4028
+  (2026-10-06 and 10-08). The four rows on the cold open and the nine on the answer card and P2 are these rows.
+- Cold open (P `q01`): "Based on the provided pages, it does not say how many deploys went out last week (Monday
+  2026-10-05 to Sunday 2026-10-11)." Five pages in every P call (`pages_in_call`). P overall
+  (`2026-10-14-p-pages-hand-grades.json`): 2 right (`q02`, `q19`), 17 said-not, 1 wrong (`q17`).
+- Part one (L `q01`, `2026-10-14-l-table-hand-grades.json` `per_question.q01.answers` [9, "8 then 9", "8 then 9"]):
+  run 3 (`q01-r3`) opens "**8** deploys went out last week", lists 9 rows, and ends "(Correction: There are **9**
+  deploys in total across those dates.)"; run 2 opens with 8 and ends "There were **9** deploys in total last week.";
+  run 1 says 9.
+- Part two, the three example rows (S meta `schema_shown`): d-0467 notifier, d-2679 payments, d-8706 web, all three
+  `superseded`. Read-only: `open_db()` opens `file:deploys/deploys.db?mode=ro`; `refuse()` lets through one SELECT or
+  WITH only. The code screen (C1) is the S copy's `table()`, `open_db()`, `ask()`, `run()` and its `__main__`.
+- Take R1 = S `q01`: `started >= '2026-10-05' AND started < '2026-10-12'`, result [[9]]. Take R2 = S `q12`:
+  `state = 'rolled_back' AND started >= '2025-01-01T00:00'`, result [[0]], `error` null. Take R3 = S2 `q12`:
+  `state = 'rolled back' AND started >= '2025-01-01'`, result [[7]]. Each take is `python3 deploys.py --saved` (R1, R2
+  with `--plain`) on the saved query, no model call. "Nine every time": the same query on the same read-only table.
+- Seven rolled back since 2025: `q12` `truth` 7, `counted` d-4486 api 2025-04-24, d-8564 notifier 2025-06-03, d-8990
+  web 2025-06-17, d-6195 web 2025-07-10, d-4230 payments 2025-11-18, d-5120 api 2026-08-20, r-209 payments 2026-10-02
+  (the seven rows on screen). The state column's four words (screen E and the filter list): S2 meta `table_shown`,
+  "state: 'failed', 'live', 'rolled back', 'superseded'".
+- Not in the episode (the description carries these): S 17/20 (`2026-10-14-s-sql-grades.json` `total`; every week and
+  span question right). Its 3 misses: `q12` 0 for 7; `q16` looked for Shipyard in `author`, 0 for 4; `q17` took
+  midnight on 2025-11-18 as the edge and gave v2.30 (the last deploy before the timeouts is d-4230, v2.31, 02:14). S2 19/20 (`2026-10-14-s2-words-grades.json`,
+  `flips_vs_S` q12 and q16, none right to wrong); `q17` is still wrong: the incident time is on a page, not in the
+  table. S2 added `state != 'failed'` on its own in `q01` `q02` `q06` `q14` `q19`; all five are graded right. L, 60
+  answers (`2026-10-14-l-table-hand-grades.json` `total`): 40 right, 11 lead with one total and end with another, 8
+  wrong, 1 names two and picks neither. Q3 2026 (`q08`, truth 76): "64 then 82" (`q08-r1`), 81, 76. Rolled back since
+  2025 under L: "6 then 7" in all 3 runs. `q04-r2` counted d-1482 with its date moved a year (2025-02-12 to 2026-02-12).
+- Tokens (never spoken): the whole CSV is 41,157 tokens (`2026-10-14-tokens.json` `csv_tokens`, countTokens, not
+  billed); each L call sent 41,431 to 41,456 (`prompt_tokens`; `q01` 41,434). S sent 462 to 487 (`q01` 465), S2 650
+  to 675.
+- Harness (not episode code): `measure/ep14.py` (`freeze`, `tokens`, `p`, `l`, `s`, `s2`) records every call;
+  `measure/ep14_questions.py` writes the questions and their truth. The grade files were read and graded by hand. The
+  vendor docs read on 2026-10-14 are in `runs/ep14/m0/`.
+- Spend: $2.49 for the runs (`runs/ep14/spend.json`, 140 billed calls). $0.14 of it is P run 1, lost to a harness bug
+  that wrote an empty file over it (`2026-10-14-p-pages-run1-LOST-empty.json`); P was asked once more, and run 2 is the
+  measured one. The takes made no call.
+- The table again: `deploys/make_deploys.py` writes the same `deploys.csv` (md5 0caeaf71) and `deploys.db` (md5
+  761b622b). It reads two pages from `pages/` (made by `topage.py` from typed PDFs, no model call); a page made today
+  starts with a `Source:` line and a blank line, so a rebuilt `CANON.json` gives 8 of its 111 facts line numbers two
+  higher than the committed file; the rows and the checks are the same.
